@@ -439,7 +439,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 $('.popup-title').addClass("iettitle");
                 $('.popup-buttons').addClass("ietpopup-buttons");
                 $rootScope.alertPopupA = function() {
-                      $rootScope.flagpopup=false;                      
+                      $rootScope.flagpopup=false;
                        var myPopup = $ionicPopup.show({
                            template: '<b>Please make sure that you have network connection.</b>',
                            title: 'No Internet Connection',
@@ -764,6 +764,15 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         views: {
             'tab-login': {
                 templateUrl: 'templates/tab-login.html',
+                controller: 'LoginCtrl'
+            }
+        }
+    })
+    .state('tab.serviceUnavailableError', {
+        url: '/serviceUnavailableError/:lastFunctionCall/:serviceUnavailableError',
+        views: {
+            'tab-login': {
+                templateUrl: 'templates/tab-serviceUnavailableError.html',
                 controller: 'LoginCtrl'
             }
         }

@@ -974,15 +974,15 @@ this.getPatientMedicalProfile = function(params){
                     }
                 }).
                 error(function (data, status, headers, config) {
-					if(status == 404) {
-						if (typeof params.error != 'undefined') {
-							params.success(data);
-						}
-					} else {
-						if (typeof params.error != 'undefined') {
-						   params.error(data,status);
-						}
-					}
+        					if(status == 404) {
+        						if (typeof params.error != 'undefined') {
+        							params.success(data);
+        						}
+        					} else {
+        						if (typeof params.error != 'undefined') {
+        						   params.error(data,status);
+        						}
+        					}
                 });
     }
 
@@ -1013,20 +1013,20 @@ this.getPatientMedicalProfile = function(params){
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/v2/hospitals?patient=' + encodeURIComponent(params.emailAddress),
-
+           url: apiCommonURL + '/api/v2/hospitals?patient=' + encodeURIComponent(params.emailAddress),
+//  url: 'https://private-98763-snapmd.apiary-mock.com/api/Get503Error',
             method: 'GET'
         };
 
         $http(requestInfo).
                 success(function (data, status, headers, config) {
                     if (typeof params.success != 'undefined') {
-                        params.success(data);
+                       params.success(data);
                     }
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                       params.error(data,status);
+                      params.error(data,status);
                     }
                 });
     }
@@ -1645,7 +1645,7 @@ this.getPatientMedicalProfile = function(params){
             }).
             error(function (data, status, headers, config) {
                 if (typeof params.error != 'undefined') {
-                    params.success(data);
+                   params.error(data,status);
                 }
             });
   }
@@ -1664,7 +1664,7 @@ this.getPatientMedicalProfile = function(params){
             }).
             error(function (data, status, headers, config) {
                 if (typeof params.error != 'undefined') {
-                    params.success(data);
+                    params.error(data,status);
                 }
             });
   }

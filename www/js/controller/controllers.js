@@ -545,7 +545,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-    } else if (!$rootScope.AndroidDevice) {
+    } else if ($rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -935,6 +935,16 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $scope.doGetFacilitiesList();
     }
 
+    $scope.$on("callServiceUnAvailableErrorPage", function(event, args) {
+        $scope.callServiceUnAvailableError();
+    });
+
+    $scope.callServiceUnAvailableError = function() {
+        var url = 'https://www.connectedcarestatus.com/';
+        window.open(encodeURI(url), '_system', 'location=yes');
+        return false;
+    }
+
 
     $scope.checkSingleHospitalLogin = function() {
 
@@ -1108,13 +1118,25 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                   }
                 }
             },
-            error: function() {
+            error: function(data, status) {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         LoginService.getHospitalInfo(params);
     }
 
+    if ($stateParams.serviceUnavailableError === "yes") {
+      $interval(function() {
+          $stateParams.lastFunctionCall;
+      }, 100);
+    }
 
     $scope.doGetFacilitiesList = function() {
 
@@ -1180,12 +1202,21 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
             },
             error: function(data, status) {
+              $('#verifyEmail').hide();
+              $('#loginEmail').show();
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503) {
+                /*  $scope.lastFunctionCall = '$scope.doGetFacilitiesList()';
+                  $state.go('tab.serviceUnavailableError', { lastFunctionCall : $scope.lastFunctionCall, serviceUnavailableError: 'yes' });
+                  $.get("https://www.connectedcarestatus.com/", function(data) {
+                    var data = $(data);
+                    //do something
+                    $("#ddd").html(data);
+                  });*/
+                  $scope.callServiceUnAvailableError();
                 }
-                $('#verifyEmail').hide();
-                $('#loginEmail').show();
 
             }
         };
@@ -1312,10 +1343,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             },
             error: function(data, status) {
                 if (status === 0) {
-
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
+                } else if(status === 503) {
+                  $scope.callServiceUnAvailableError();
                 }
             }
         };
@@ -1384,10 +1415,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             },
             error: function(data, status) {
                 if (status === 0) {
-
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
+                } else if(status === 503) {
+                  $scope.callServiceUnAvailableError();
                 }
             }
         };
@@ -1517,12 +1548,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $state.go('tab.userhome');
             },
             error: function(data, status) {
-                if (status === 0) {
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-                } else {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
                     $rootScope.serverErrorMessageValidation();
-                }
+              }
             }
         };
         LoginService.getHospitalInfo(params);
@@ -1540,6 +1573,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503) {
+                  $scope.callServiceUnAvailableError();
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -1587,9 +1622,16 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $rootScope.Validation($scope.ErrorMessage);
                     }
                 },
-                error: function() {
-                    $scope.ErrorMessage = "Login Failed! Please try again";
-                    $rootScope.Validation($scope.ErrorMessage);
+                error: function(data,status) {
+                    if (status === 0) {
+                        $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if(status === 503) {
+                      $scope.callServiceUnAvailableError();
+                    } else {
+                      $scope.ErrorMessage = "Login Failed! Please try again";
+                      $rootScope.Validation($scope.ErrorMessage);
+                    }
                 }
             };
             LoginService.getFacilitiesList(params);
@@ -1633,20 +1675,18 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         if (status == '401' || status == '403') {
                                 $scope.ErrorMessage = "We are unable to log you in. Please contact customer support regarding your account";
                                 $rootScope.Validation($scope.ErrorMessage);
-
-                        }else if (status == '404' ) {
-                                  $scope.ErrorMessage = "Incorrect Username or Password. Please try again!";
-                                  $rootScope.Validation($scope.ErrorMessage);
-
-                        }else if(status===0){
-                               $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                               $rootScope.Validation($scope.ErrorMessage);
-                             }
-
-                            else {
-                                $scope.ErrorMessage = "Incorrect Password. Please try again";
-                                $rootScope.Validation($scope.ErrorMessage);
-                            }
+                        } else if (status == '404' ) {
+                              $scope.ErrorMessage = "Incorrect Username or Password. Please try again!";
+                              $rootScope.Validation($scope.ErrorMessage);
+                        } else if (status === 0) {
+                              $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                              $rootScope.Validation($scope.ErrorMessage);
+                        } else if(status === 503) {
+                            $scope.callServiceUnAvailableError();
+                        } else {
+                            $scope.ErrorMessage = "Incorrect Password. Please try again";
+                            $rootScope.Validation($scope.ErrorMessage);
+                        }
 
                     }
                 };
@@ -1693,13 +1733,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         if (status === '401' || status === '403') {
                             $scope.ErrorMessage = "We are unable to log you in. Please contact customer support regarding your account";
                             $rootScope.Validation($scope.ErrorMessage);
-
                         } else if(status===0  ){
                            $scope.ErrorMessage = "Internet connection not available, Try again later!";
                            $rootScope.Validation($scope.ErrorMessage);
-                         }
-
-                        else {
+                         } else if(status === 503) {
+                             $scope.callServiceUnAvailableError();
+                         } else {
                             $scope.ErrorMessage = "Incorrect Password. Please try again";
                             $rootScope.Validation($scope.ErrorMessage);
                         }
@@ -1824,6 +1863,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                           } else if (status == null) {
                               $scope.ErrorMessage = "Internet connection not available, Try again later!";
                               $rootScope.Validation($scope.ErrorMessage);
+                          } else if (status === 0) {
+                                $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                                $rootScope.Validation($scope.ErrorMessage);
+                          } else if(status === 503) {
+                            $scope.callServiceUnAvailableError();
                           } else {
                               $rootScope.serverErrorMessageValidation();
                           }
@@ -1849,6 +1893,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                       } else if (status == null) {
                         $scope.ErrorMessage = "Internet connection not available, Try again later!";
                         $rootScope.Validation($scope.ErrorMessage);
+                      } else if (status === 0) {
+                          $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                          $rootScope.Validation($scope.ErrorMessage);
+                      } else if(status === 503) {
+                        $scope.callServiceUnAvailableError();
                       } else {
                         $rootScope.serverErrorMessageValidation();
                       }
@@ -1923,10 +1972,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             },
             error: function(data, status) {
                 if (status === 0) {
-
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
+                } else if (status === 0) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503) {
+                  $scope.callServiceUnAvailableError();
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -2012,8 +2064,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 });*/
                 $scope.getTimezoneList();
             },
-            error: function() {
-
+            error: function(data, status) {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              }
             }
         };
         LoginService.getCountiesList(params);
@@ -2026,8 +2083,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 addGroupingToTimeZone(data.data);
 
             },
-            error: function() {
-
+            error: function(data, status) {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              }
             }
         };
         LoginService.getTimezoneList(params);
@@ -2187,12 +2249,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
             },
             error: function(data, status) {
-                if (status === 0) {
-
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-
-                }
                 $rootScope.patientInfomation = '';
                 $rootScope.patientAccount = '';
                 $rootScope.patientAddresses = '';
@@ -2217,6 +2273,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.state = '';
                 $rootScope.zipCode = '';
                 $rootScope.primaryPatientId = '';
+                if (status === 0) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503) {
+                  $scope.callServiceUnAvailableError();
+                }
             }
         };
 
@@ -2259,7 +2321,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
+                } else if(status === 503) {
+                    $scope.callServiceUnAvailableError();
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -2297,9 +2360,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $('#loginPwdVerify').hide();
                 $('#loginPwd').show();
                 if (status === 0) {
-
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503) {
+                    $scope.callServiceUnAvailableError();
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -2373,11 +2437,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
                 } else if (status === 401) {
                     $scope.ErrorMessage = "You are not authorized to view this account";
                     $rootScope.Validation($scope.ErrorMessage);
-
+                } else if(status === 503) {
+                    $scope.callServiceUnAvailableError();
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -2460,10 +2524,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             },
             error: function(data, status) {
                 if (status === 0) {
-
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
+                } else if(status === 503) {
+                    $scope.callServiceUnAvailableError();
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -2493,7 +2557,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
           //  history.back();
         },
         error: function(data,status) {
-           alert("fail");
+          if (status === 0) {
+              $scope.ErrorMessage = "Internet connection not available, Try again later!";
+              $rootScope.Validation($scope.ErrorMessage);
+          } else if(status === 503) {
+            $scope.callServiceUnAvailableError();
+          }
         }
       };
         LoginService.putListOfCountryLocation(params);
@@ -2554,7 +2623,12 @@ var deregisterBackButton;
                   }
                 },
                 error: function(data, status) {
-
+                  if (status === 0) {
+                      $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                      $rootScope.Validation($scope.ErrorMessage);
+                  } else if(status === 503) {
+                    $scope.callServiceUnAvailableError();
+                  }
                 }
 
             };
@@ -2662,6 +2736,8 @@ var deregisterBackButton;
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503) {
+                    $scope.callServiceUnAvailableError();
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -2684,10 +2760,10 @@ var deregisterBackButton;
             },
             error: function(data, status) {
                 if (status === 0) {
-
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
+                } else if(status === 503) {
+                    $scope.callServiceUnAvailableError();
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -2707,10 +2783,10 @@ var deregisterBackButton;
             },
             error: function(data, status) {
                 if (status === 0) {
-
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
+                } else if(status === 503) {
+                    $scope.callServiceUnAvailableError();
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -2814,6 +2890,8 @@ var deregisterBackButton;
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503) {
+                    $scope.callServiceUnAvailableError();
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -2982,10 +3060,10 @@ var deregisterBackButton;
             },
             error: function(data, status) {
                 if (status === 0) {
-
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
+                } else if(status === 503) {
+                    $scope.callServiceUnAvailableError();
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -3057,7 +3135,8 @@ var deregisterBackButton;
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
+                } else if(status === 503) {
+                    $scope.callServiceUnAvailableError();
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -3309,8 +3388,15 @@ var deregisterBackButton;
                         }
                     }
                 },
-                error: function(data) {
+                error: function(data,status) {
+                  if (status === 0) {
+                      $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                      $rootScope.Validation($scope.ErrorMessage);
+                  } else if(status === 503) {
+                    $scope.callServiceUnAvailableError();
+                  } else {
                     $rootScope.serverErrorMessageValidationForHealthPlanApply();
+                  }
                 }
             };
         } else {
@@ -3462,6 +3548,8 @@ var deregisterBackButton;
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503) {
+                  $scope.callServiceUnAvailableError();
                 }
             }
         };
@@ -3542,8 +3630,9 @@ var deregisterBackButton;
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
-                } else {
+                } else if(status === 503) {
+                  $scope.callServiceUnAvailableError();
+                }  else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
@@ -3564,11 +3653,11 @@ var deregisterBackButton;
             },
             error: function(data, status) {
                 if (status === 0) {
-
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
-                } else {
+                } else if(status === 503) {
+                  $scope.callServiceUnAvailableError();
+                }  else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
@@ -3793,11 +3882,18 @@ var deregisterBackButton;
                         $rootScope.verifyCardDisplay = "none";
                         $rootScope.planverify = "inherit";
                     },
-                    error: function() {
+                    error: function(data, status) {
                         $rootScope.cardDisplay = "inherit;";
                         $rootScope.verifyCardDisplay = "none";
                         $rootScope.planverify = "inherit";
-                        $rootScope.serverErrorMessageValidationForPayment();
+                        if (status === 0) {
+                            $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                            $rootScope.Validation($scope.ErrorMessage);
+                        } else if(status === 503) {
+                          $scope.callServiceUnAvailableError();
+                        }  else {
+                          $rootScope.serverErrorMessageValidationForPayment();
+                        }
                     }
                 };
                 LoginService.postPaymentProfileDetails(params);
@@ -3861,12 +3957,12 @@ var deregisterBackButton;
                 });
             },
             error: function(data, status) {
-                if (status === 0) {
-
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-
-                }
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              }
             }
         };
         $rootScope.MedicationAllegiesItem = "";
@@ -3912,12 +4008,12 @@ var deregisterBackButton;
                 $scope.$root.$broadcast("callAppointmentConsultation");
             },
             error: function(data, status) {
-                if (status === 0) {
-
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-
-                } else {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
@@ -4023,11 +4119,12 @@ var deregisterBackButton;
                 }
             },
             error: function(status) {
-                if (status === 0) {
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-
-                } else {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
@@ -4152,9 +4249,11 @@ var deregisterBackButton;
                 },
                 error: function(data, status) {
                     if (status === 0) {
-                      $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                      $rootScope.Validation($scope.ErrorMessage);
-                    } else if (status === 400) {
+                        $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if(status === 503) {
+                      $scope.callServiceUnAvailableError();
+                    }  else if (status === 400) {
                       $scope.ErrorMessage = "There's an error with this transaction due to technical issues";
                       $rootScope.Validation($scope.ErrorMessage);
                     } else {
@@ -4176,12 +4275,12 @@ var deregisterBackButton;
                 $rootScope.doGetAccountDependentDetails();
             },
             error: function(data, status) {
-                if (status === 0) {
-
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-
-                } else {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
@@ -4339,11 +4438,12 @@ var deregisterBackButton;
                 }
             },
             error: function(data, status) {
-                if (status === 0) {
-
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-                } else if (status === 401) {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else if (status === 401) {
                     $scope.ErrorMessage = "You are not authorized to view this account";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else {
@@ -4552,15 +4652,14 @@ var deregisterBackButton;
                 }
             },
             error: function(data, status) {
-                if (status === 0) {
-
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-
-                } else if (status === 401) {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else if (status === 401) {
                     $scope.ErrorMessage = "You are not authorized to view this account";
                     $rootScope.Validation($scope.ErrorMessage);
-
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -4591,12 +4690,12 @@ var deregisterBackButton;
 
             },
             error: function(data, status) {
-                if (status === 0) {
-
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-
-                } else if (status === 401) {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else if (status === 401) {
                     $scope.ErrorMessage = "You are not authorized to view this account";
                     $rootScope.Validation($scope.ErrorMessage);
 
@@ -4646,12 +4745,12 @@ var deregisterBackButton;
 
             },
             error: function(data, status) {
-                if (status === 0) {
-
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-
-                } else {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
@@ -4693,12 +4792,12 @@ $scope.loction={};
 
             },
             error: function(data, status) {
-                if (status === 0) {
-
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-
-                } else {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
@@ -4792,12 +4891,12 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
 
             },
             error: function(data, status) {
-                if (status === 0) {
-
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-
-                } else {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
@@ -4929,12 +5028,12 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                 }
             },
             error: function(data, status) {
-                if (status === 0) {
-
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-
-                } else {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
@@ -5004,12 +5103,12 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
 
             },
             error: function(data, status) {
-                if (status === 0) {
-
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-
-                } else if (status === 401) {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else if (status === 401) {
                     $scope.ErrorMessage = "You are not authorized to view this account";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else {
@@ -5054,12 +5153,12 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                 }
             },
             error: function(data, status) {
-                if (status === 0) {
-
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-
-                } else {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
@@ -5176,9 +5275,11 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                 $rootScope.patientMedicalSurgeriesCount = $rootScope.patientmedicalsurgeries.length;
               },
             error: function(data,status) {
-              if(status===0 ){
-                $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                $rootScope.Validation($scope.ErrorMessage);
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
               }
             }
         };
@@ -5374,11 +5475,12 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
               $rootScope.doPutConsultationSave();
               },
             error: function(data, status) {
-                if (status === 0) {
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-
-                } else {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
@@ -5395,11 +5497,12 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
               console.log($rootScope.scheduledConsultSave);
             },
             error: function(data,status) {
-              if(status===0 ){
-                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                   $rootScope.Validation($scope.ErrorMessage);
-
-              }else{
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else{
                 $rootScope.serverErrorMessageValidation();
               }
             }
@@ -5542,12 +5645,12 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
               }
             },
             error: function(data, status) {
-                if (status === 0) {
-
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-
-                } else {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
@@ -5646,10 +5749,12 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                 }
             },
             error: function(data, status) {
-                if (status === 0) {
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-                } else {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
@@ -5741,10 +5846,12 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                 }
             },
             error: function(data, status) {
-                if (status === 0) {
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-                } else {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
@@ -5852,10 +5959,12 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                 window.open(fileUrl, '_system', 'location=yes');
             },
             error: function(data, status) {
-                if (status === 0) {
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-                } else {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
