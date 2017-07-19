@@ -910,7 +910,7 @@ this.getPatientMedicalProfile = function(params){
       $http(requestInfo).
               success(function (data, status, headers, config) {
                   if (typeof params.success != 'undefined') {
-                      params.success(data);
+                      params.success(data, status);
                   }
               }).
               error(function (data, status, headers, config) {
