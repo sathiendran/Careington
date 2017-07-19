@@ -3177,13 +3177,14 @@ var deregisterBackButton;
     });
 
     $("#addNewCard_submitPay").change(function() {
-        $rootScope.userCardNumber = $('option:selected', this).text();
         if ($('option:selected', this).text() === 'Add a new card') {
             $rootScope.userCardDetails = $('option:selected', this).text();
             $rootScope.submitPayBack = $rootScope.currState.$current.name;
-            $rootScope.cardPage = "submitPayment";
+            $rootScope.userCardNumber = 'Choose Your Card';
+            //$rootScope.cardPage = "submitPayment";
             $state.go('tab.cardDetails');
         } else {
+            $rootScope.userCardNumber = $('option:selected', this).text();
             $rootScope.userCardDetails = $('option:selected', this).val();
             $('div.cardViewport').text($("option:selected", this).text());
         }
