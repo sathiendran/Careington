@@ -400,8 +400,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             apiCommonURL = 'https://snap-test.com';
             api_keys_env = "Snap.QA";
         } else if (env === "Snap-azure") {
-            $rootScope.APICommonURL = 'https://connectedcarepilotweb2.azurewebsites.net';
-            apiCommonURL = 'https://connectedcarepilotweb2.azurewebsites.net';
+          //  $rootScope.APICommonURL = 'https://connectedcarepilotweb2.azurewebsites.net';
+          //  apiCommonURL = 'https://connectedcarepilotweb2.azurewebsites.net';
+              $rootScope.APICommonURL = 'https://emerald.dev2.snapvcm.com';
+              apiCommonURL = 'https://emerald.dev2.snapvcm.com';
             api_keys_env = "Snap.QA";
         }
         $state.go('tab.login');
@@ -940,7 +942,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     });
 
     $scope.callServiceUnAvailableError = function() {
-        var url = 'https://www.connectedcarestatus.com/';
+        var url = serviceAPIError;
         window.open(encodeURI(url), '_system', 'location=yes');
         return false;
     }

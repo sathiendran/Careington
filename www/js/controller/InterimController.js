@@ -48,6 +48,11 @@ angular.module('starter.controllers')
         newdate.setTime(inDate.getTime() + inMinutes * 60000);
         return newdate;
     }
+    $scope.callServiceUnAvailableError = function() {
+        var url = serviceAPIError;
+        window.open(encodeURI(url), '_system', 'location=yes');
+        return false;
+    }
     $scope.doGetSingleUserHospitalInformation = function() {
         $rootScope.paymentMode = '';
         $rootScope.insuranceMode = '';
@@ -132,7 +137,7 @@ angular.module('starter.controllers')
             },
             error: function(data,status) {
             if(status === 503) {
-                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                $scope.callServiceUnAvailableError();
               } else {
                 $rootScope.serverErrorMessageValidation();
               }
@@ -210,7 +215,7 @@ angular.module('starter.controllers')
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if(status === 503) {
-                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                  $scope.callServiceUnAvailableError();
                 }  else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -254,7 +259,7 @@ angular.module('starter.controllers')
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if(status === 503) {
-                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                  $scope.callServiceUnAvailableError();
                 }  else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -338,7 +343,7 @@ angular.module('starter.controllers')
             },
             error: function(data,status) {
                if(status === 503) {
-                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                $scope.callServiceUnAvailableError();
               } else {
                 $scope.ssoMessage = 'Authentication Failed! Please try again later!';
                 $rootScope.patientInfomation = '';
@@ -420,7 +425,7 @@ angular.module('starter.controllers')
             },
             error: function(data,status) {
                if(status === 503) {
-                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                $scope.callServiceUnAvailableError();
               } else{
                 $rootScope.serverErrorMessageValidation();
               }
@@ -485,7 +490,7 @@ angular.module('starter.controllers')
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if(status === 503) {
-                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                  $scope.callServiceUnAvailableError();
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -589,7 +594,7 @@ angular.module('starter.controllers')
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if(status === 503) {
-                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                  $scope.callServiceUnAvailableError();
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -621,7 +626,7 @@ angular.module('starter.controllers')
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if(status === 503) {
-                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                  $scope.callServiceUnAvailableError();
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -652,7 +657,7 @@ angular.module('starter.controllers')
                     $scope.ErrorMessage = "Incorrect Password. Please try again";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if(status === 503) {
-                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                  $scope.callServiceUnAvailableError();
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }

@@ -1013,8 +1013,8 @@ this.getPatientMedicalProfile = function(params){
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-           url: apiCommonURL + '/api/v2/hospitals?patient=' + encodeURIComponent(params.emailAddress),
-//  url: 'https://private-98763-snapmd.apiary-mock.com/api/Get503Error',
+          url: apiCommonURL + '/api/v2/hospitals?patient=' + encodeURIComponent(params.emailAddress),
+  //url: 'https://private-98763-snapmd.apiary-mock.com/api/Get503Error',
             method: 'GET'
         };
 

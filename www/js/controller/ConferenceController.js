@@ -527,29 +527,29 @@ angular.module('starter.controllers')
     }
 
     $scope.getSoapNotes = function() {
-        $("#reportSubjective").html($rootScope.existingConsultationReport.subjective);
-        $("#reportObjective").html($rootScope.existingConsultationReport.objective);
-        $("#reportAssessment").html($rootScope.existingConsultationReport.assessment);
-        $("#reportPlan").html($rootScope.existingConsultationReport.plan);
         if ($rootScope.existingConsultationReport.subjective !== '' && typeof $rootScope.existingConsultationReport.subjective !== 'undefined') {
+          $("#reportSubjective").html($rootScope.existingConsultationReport.subjective);
             $rootScope.reportSubjective = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.subjective);
         } else {
             $rootScope.reportSubjective = 'None Reported';
         }
 
         if ($rootScope.existingConsultationReport.objective !== '' && typeof $rootScope.existingConsultationReport.objective !== 'undefined') {
+          $("#reportObjective").html($rootScope.existingConsultationReport.objective);
             $rootScope.reportObjective = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.objective);
         } else {
             $rootScope.reportObjective = 'None Reported';
         }
 
         if ($rootScope.existingConsultationReport.assessment !== '' && typeof $rootScope.existingConsultationReport.assessment !== 'undefined') {
+          $("#reportAssessment").html($rootScope.existingConsultationReport.assessment);
             $rootScope.reportAssessment = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.assessment);
         } else {
             $rootScope.reportAssessment = 'None Reported';
         }
 
         if ($rootScope.existingConsultationReport.plan !== '' && typeof $rootScope.existingConsultationReport.plan !== 'undefined') {
+          $("#reportPlan").html($rootScope.existingConsultationReport.plan);
             $rootScope.reportPlan = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.plan);
         } else {
             $rootScope.reportPlan = 'None Reported';
