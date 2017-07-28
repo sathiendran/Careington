@@ -2354,7 +2354,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $scope.doGetSingleHospitalRegistrationInformation();
                     $rootScope.primaryPatientId = $rootScope.currentPatientDetails[0].profileId;
                     $state.go('tab.healthinfo');
-                    $rootScope.doGetRequiredPatientProfiles($rootScope.currentPatientDetails[0].profileId);
+                    $scope.chkPatientFillDetails = true;
+                    $rootScope.doGetRequiredPatientProfiles($rootScope.currentPatientDetails[0].profileId, $scope.chkPatientFillDetails);
                 }
 
             },
@@ -2382,7 +2383,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         return newStr;
     }
 
-    $rootScope.doGetRequiredPatientProfiles = function(patientId) {
+    $rootScope.doGetRequiredPatientProfiles = function(patientId, chkPreviousPage, cutlocations, authen) {
         $rootScope.PatientImageSelectUser = '';
         $rootScope.PatientImage = '';
         $rootScope.primaryPatientName = '';
@@ -2432,8 +2433,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.dob = $rootScope.currentPatientDetails[0].dob;
                 $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
                 $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
-                $rootScope.getHealtPageForFillingRequiredDetails();
-
+                if(chkPreviousPage === true) {
+                  $rootScope.getHealtPageForFillingRequiredDetails();
+                } else {
+                  $rootScope.GoToPatientDetails(cutlocations,$rootScope.currentPatientDetails[0].account.profileImagePath, $rootScope.currentPatientDetails[0].patientName, $rootScope.currentPatientDetails[0].lastName, $rootScope.currentPatientDetails[0].dob, $rootScope.currentPatientDetails[0].guardianName, $rootScope.patientId, authen, ' ');
+                }
             },
             error: function(data, status) {
                 if (status === 0) {
