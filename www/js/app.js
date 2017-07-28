@@ -375,7 +375,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             //}, 10000);
         }
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
            cordova.plugins.Keyboard.disableScroll(true);
          }
          if(window.StatusBar) {

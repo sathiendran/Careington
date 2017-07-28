@@ -326,7 +326,7 @@ angular.module('starter.controllers')
             $scope.droppedshow = true;
         }
         $scope.consultsearch = function() {
-            $scope.passededconsultants();
+          //  $scope.passededconsultants();
             $state.go('tab.consultationSearch');
         }
 
@@ -836,7 +836,7 @@ angular.module('starter.controllers')
 
         $rootScope.passedsearchconsult = function() {
             $scope.data.searchProvider = '';
-            $scope.passededconsultants();
+            $rootScope.passededconsultants();
             var myEl = angular.element(document.querySelector('#passedsearch'));
             myEl.removeClass('btnextcolor');
             myEl.addClass('btcolor');
