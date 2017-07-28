@@ -8,9 +8,9 @@
          <h1 class="healthTitle-{{deviceName}} chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}">
             <div class="HealthTitle-{{deviceName}}" style="display: {{viewmyhealthDisplay}};"> My Health </div>
             <div class="HealthTitle-{{deviceName}}" style="display: {{viewhealthDisplay}};"> Health Info</div>
-            <span ng-if="editOption !== 'None' && customerSso != 'Mandatory' && P_isAuthorized !== false" class="headerval healthLeft-{{deviceName}}" ng-click="edittext()" ng-show="editshow" style="right: 10px;">Edit</span>
+            <span ng-show="patientAuthorize" ng-if="patientAuthorizeValue = 'Y' && editOption !== 'None' && customerSso != 'Mandatory' && P_isAuthorized !== false" class="headerval healthLeft-{{deviceName}}" ng-click="edittext()" ng-show="editshow" style="right: 10px;">Edit</span>
             <!--<span class="headerval healthLeft-{{deviceName}}"  ng-show="cancelshow" ><a ng-href="#/tab/userAccount" class="headerval" >Cancel</a></span>-->
-            <button type="submit" class="headerval healthLeft-{{deviceName}}"  ng-hide="doneshow" >
+            <button  type="submit" class="headerval healthLeft-{{deviceName}}"  ng-hide="doneshow" >
                Done</span>
          </h1>
          <div class="Server_Error ErrorMessageDiv" ></div>
@@ -181,8 +181,8 @@
                   </label>
                   <label class="item item-input itemtab validated" ng-if="primaryPatientId != currentPatientDetails[0].account.patientId && editOption !== 'None'">
                      <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('lock-open')"></i><b class="formlabel labelfont">Authorization</b></span>
-                     <div ng-if="currentPatientDetails[0].account.isAuthorized == 'Y'|| currentPatientDetails[0].account.isAuthorized == 'true'" class="healthViewDetails ellipsis">Authorized</div>
-                     <div ng-if="currentPatientDetails[0].account.isAuthorized == 'N'|| currentPatientDetails[0].account.isAuthorized == 'false'" class="healthViewDetails ellipsis">Unauthorized</div>
+                     <div ng-show="patientAuthorize" class="healthViewDetails ellipsis">Authorized</div>
+                     <div ng-show="patientUnAuthorize" class="healthViewDetails ellipsis">Unauthorized</div>
                   </label>
                </div>
                <div class="list listprofile listprofileEdit" ng-hide="flag">
