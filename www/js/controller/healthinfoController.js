@@ -261,6 +261,19 @@ angular.module('starter.controllers')
         }).remove();
 
     };
+    $rootScope.SubmitCardValidation = function($a) {
+        function refresh_close() {
+            $('.close').click(function() {
+                $(this).parent().fadeOut(200);
+            });
+        }
+        refresh_close();
+        var top = '<div id="notifications-top-center" class="notificationError" ><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i>' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
+        $("#notifications-top-center").remove();
+        $(".Error_Message").append(top);
+        refresh_close();
+        //});
+    }
     $rootScope.ValidationFunction1 = function($a) {
         function refresh_close() {
             $('.close').click(function() {
@@ -268,10 +281,12 @@ angular.module('starter.controllers')
             });
         }
         refresh_close();
-        var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
-        $("#notifications-top-center").remove();
+        var top = '<div class="notifications-top-center class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
+
+        $(".notifications-top-center").remove();
         $(".ErrorMessage").append(top);
         refresh_close();
+
     }
     $scope.heighteditsave=function(){
       $rootScope.patHeightUnit = '';
@@ -436,6 +451,30 @@ angular.module('starter.controllers')
           $rootScope.patientId = $rootScope.currentPatientDetails[0].profileId;
     }
     $scope.edittext = function() {
+           console.log("Patientlist" + $rootScope.PatientIdentifiers);
+           var Patientidentif = $rootScope.PatientIdentifiers.length;
+          for(i=1; i<=$rootScope.PatientIdentifiers.length; i++)
+          {
+       var val3 = document.getElementById("helthPatVal_"+i).value;
+         $scope.length3 = val3.length;
+         $scope.setSelectionRange(document.getElementById("helthPatVal_"+i),$scope.length3,$scope.length3);
+          }
+
+        // var val = document.getElementById("helthPatVal_4").value;
+        // var val1 = document.getElementById("helthPatVal_3").value;
+        // var val2 = document.getElementById("helthPatVal_2").value;
+        // var val3 = document.getElementById("helthPatVal_1").value;
+
+        // $scope.length = val.length;
+        // $scope.length1 = val1.length;
+        // $scope.length2 = val2.length;
+        // $scope.length3 = val3.length;
+        // $scope.setSelectionRange(document.getElementById("helthPatVal_4"),$scope.length,$scope.length);
+        // $scope.setSelectionRange(document.getElementById("helthPatVal_3"),$scope.length1,$scope.length1);
+        // $scope.setSelectionRange(document.getElementById("helthPatVal_2"),$scope.length2,$scope.length2);
+        // $scope.setSelectionRange(document.getElementById("helthPatVal_1"),$scope.length3,$scope.length3);
+
+        // console.log("value le :" + $scope.val.length);
         $scope.healthfoottab=false;
         $scope.healthfootsave=false;
         //  $rootScope.getPatientids();
@@ -597,6 +636,7 @@ $scope.editDob=function(){
                 $rootScope.patAllIdentifier =  $rootScope.PatientIdentifiers;
                 $rootScope.patSelectedIdentifier = $rootScope.listOfPatientIdentifiers;
                 $scope.total_patients =  $rootScope.listOfPatientIdentifiers.length;
+                $scope.Patienuplist = $rootScope.PatientIdentifiers.length;
             } else if($rootScope.PatientIdentifiers.length ===  $rootScope.listOfPatientIdentifiers.length) {
                   $scope.unique = function(arr) {
                      var a = arr.concat();
@@ -1117,6 +1157,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
           if(typeof $rootScope.PatientidupdateList !== 'undefined' && $rootScope.PatientidupdateList !== '') {
               var patIndentifierDetailsArray =  $("input[name^='patIndentifierDetails']");
               var patIndentifierDetailsLength = $("input[name^= 'patIndentifierDetails']").length;
+
               var patIdentValue = $("input[id^='patval']");
           } else {
             var patIndentifierDetailsArray =  $("input[name^='patientidentifiDetails']");
@@ -2372,7 +2413,11 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             }, 100);
         });
     };
+
+
     $scope.closeSurgeryPopup = function() {
+      console.log('inside closeSurgeryPopup');
+      console.log('name :' + $scope.surgery.name + ', date : ' + $scope.surgery.dateString);
         $scope.surgery.name;
         $scope.surgery.dateString;
         $scope.surgery.dateStringMonthVal = $scope.surgery.dateStringMonth;
@@ -2393,16 +2438,17 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 var isSurgeryDateIsFuture = false;
             }
         }
-        if ($scope.surgery.name === '' || $scope.surgery.name === undefined) {
+
+        if (($scope.surgery.name === '' || $scope.surgery.name === undefined) && $rootScope.showNewSurgeryAdd === true ) {
             $scope.ErrorMessage = "Please provide a name/description for this surgery";
-            $rootScope.ValidationFunction1($scope.ErrorMessage);
-        } else if (($scope.surgery.dateStringMonth === '' || $scope.surgery.dateStringMonth === undefined || $scope.surgery.dateStringYear === '' || $scope.surgery.dateStringYear === undefined)) {
+             $rootScope.ValidationFunction1($scope.ErrorMessage);
+        } else if (($scope.surgery.dateStringMonth === '' || $scope.surgery.dateStringMonth === undefined || $scope.surgery.dateStringYear === '' || $scope.surgery.dateStringYear === undefined) && $rootScope.showNewSurgeryAdd === true ) {
             $scope.ErrorMessage = "Please enter the date as MM/YYYY";
             $rootScope.ValidationFunction1($scope.ErrorMessage);
-        } else if (!isSurgeryDateValid) {
+        } else if (!isSurgeryDateValid && $rootScope.showNewSurgeryAdd === true ) {
             $scope.ErrorMessage = "Surgery date should not be before your birthdate";
             $rootScope.ValidationFunction1($scope.ErrorMessage);
-        } else if (!isSurgeryDateIsFuture) {
+        } else if (!isSurgeryDateIsFuture && $rootScope.showNewSurgeryAdd === true ) {
             $scope.ErrorMessage = "Surgery date should not be the future Date";
             $rootScope.ValidationFunction1($scope.ErrorMessage);
         } else {
@@ -2421,6 +2467,8 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         }
     }
     $scope.updateMedicalProfile = function(hide) {
+      console.log('update medical profile');
+
         var params = {
             accessToken: $rootScope.accessToken,
             MedicationAllergies: $rootScope.patientmedicationsallergies,
@@ -2440,12 +2488,13 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 if (hide) {
                     $scope.modal.hide();
                 }
+
             },
             error: function() {
                 $scope.putPatientMedicalProfile = 'Error getting Patient Medical Profile';
             }
         };
-
+        console.log('params : ' + JSON.stringify(params));
         LoginService.putPatientMedicalProfile(params);
     };
     $scope.hideSurgeryPopup = function(model) {
@@ -2684,6 +2733,10 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             }
         }
     };
+    // $scope.cursorposw = function() {
+    // var app =   $(event.target).attr("id");
+    //   alert(app);
+    // }
     $scope.goTOSchedule = function() {
         /* $("#style1").attr("disabled", "disabled");
           $("#style2").attr("disabled", "disabled");*/
@@ -2695,4 +2748,72 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         //  $state.go('tab.providerSearch', { viewMode : 'all' });
         $state.go('tab.providerSearch');
     }
+    jQuery.fn.putCursorAtEnd = function() {
+
+      return this.each(function() {
+
+        // Cache references
+        var $el = $(this),
+            el = this;
+
+        // Only focus if input isn't already
+        if (!$el.is(":focus")) {
+         $el.focus();
+        }
+
+        // If this function exists... (IE 9+)
+        if (el.setSelectionRange) {
+
+          // Double the length because Opera is inconsistent about whether a carriage return is one character or two.
+          var len = $el.val().length * 2;
+
+          // Timeout seems to be required for Blink
+          setTimeout(function() {
+            el.setSelectionRange(len, len);
+          }, 1);
+
+        } else {
+
+          // As a fallback, replace the contents with itself
+          // Doesn't work in Chrome, but Chrome supports setSelectionRange
+          $el.val($el.val());
+
+        }
+
+        // Scroll to the bottom, in case we're in a tall textarea
+        // (Necessary for Firefox and Chrome)
+        this.scrollTop = 999999;
+
+      });
+
+    };
+
+    (function() {
+
+      var searchInput = $("#helthPatVal_3");
+
+      searchInput
+        .putCursorAtEnd() // should be chainable
+        .on("focus", function() { // could be on any event
+          searchInput.putCursorAtEnd()
+        });
+
+    })();
+    $scope.setSelectionRange = function(input, selectionStart, selectionEnd) {
+        if (input.setSelectionRange) {
+          input.focus();
+          input.setSelectionRange(selectionStart, selectionEnd);
+        }
+        else if (input.createTextRange) {
+          var range = input.createTextRange();
+          range.collapse(true);
+          range.moveEnd('character', selectionEnd);
+          range.moveStart('character', selectionStart);
+          range.select();
+        }
+    };
+    //     $scope.setCaretToPos = function() {
+    //     // console.log("length:" + $scope.length);
+    //
+    // };
 });
