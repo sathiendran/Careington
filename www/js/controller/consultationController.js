@@ -255,8 +255,12 @@ angular.module('starter.controllers')
                     });
 
                 },
-                error: function() {
+                error: function(data,status) {
+                  if(status === 503) {
+                    $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                  } else {
                     $scope.listOfConsultations = 'Error getting List Of Consultations';
+                  }
                 }
             };
             LoginService.getListOfMissedConsultation(params);
@@ -309,8 +313,12 @@ angular.module('starter.controllers')
                     });
 
                 },
-                error: function() {
+                error: function(data, status) {
+                  if(status === 503) {
+                    $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                  } else{
                     $rootScope.serverErrorMessageValidation();
+                  }
                 }
             };
             LoginService.getListOfDroppedConsultations(params);
@@ -330,7 +338,7 @@ angular.module('starter.controllers')
             $scope.droppedshow = true;
         }
         $scope.consultsearch = function() {
-            $scope.passededconsultants();
+          //  $scope.passededconsultants();
             $state.go('tab.consultationSearch');
         }
 
@@ -745,8 +753,12 @@ angular.module('starter.controllers')
                     $scope.doGetChatTranscript(consultation.consultationId);
 
                 },
-                error: function() {
+                error: function(data, status) {
+                  if(status === 503) {
+                    $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                  } else {
                     $rootScope.serverErrorMessageValidation();
+                  }
                 }
             };
 
@@ -777,8 +789,12 @@ angular.module('starter.controllers')
                     $rootScope.attachmentLength = $rootScope.getAttachmentList.length;
 
                 },
-                error: function() {
+                error: function(data,status) {
+                  if(status === 503) {
+                    $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                  } else {
                     $rootScope.serverErrorMessageValidation();
+                  }
                 }
             };
             LoginService.getAttachmentList(params);
@@ -800,8 +816,12 @@ angular.module('starter.controllers')
                         });
                     }
                 },
-                error: function() {
+                error: function(data,status) {
+                  if(status === 503) {
+                    $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                  } else {
                     $rootScope.serverErrorMessageValidation();
+                  }
                 }
             };
 
@@ -898,8 +918,12 @@ angular.module('starter.controllers')
 
 
                 },
-                error: function() {
+                error: function(data,status) {
+                  if(status === 503) {
+                    $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                  } else {
                     $rootScope.serverErrorMessageValidation();
+                  }
                 }
             };
 
@@ -927,7 +951,7 @@ angular.module('starter.controllers')
 
         $rootScope.passedsearchconsult = function() {
             $scope.data.searchProvider = '';
-            $scope.passededconsultants();
+            $rootScope.passededconsultants();
             var myEl = angular.element(document.querySelector('#passedsearch'));
             myEl.removeClass('btnextcolor');
             myEl.addClass('btcolor');

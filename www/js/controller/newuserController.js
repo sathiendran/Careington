@@ -141,8 +141,9 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
               if(status===0 ){
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
-
-              }else{
+              } else if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else{
                 var Emailerror=data.message
                 if(Emailerror==="Email ID Already Registered"){
                     $scope.ErrorMessage = "Patient already exists with email " + $scope.email;

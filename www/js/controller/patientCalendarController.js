@@ -125,10 +125,12 @@ angular.module('starter.controllers')
                     $rootScope.appointmentDisplay = "test";
                     $scope.$root.$broadcast("callAppointmentConsultation");
                 },
-                error: function(data) {
+                error: function(data,status) {
                     if (data === 'null') {
                         $scope.ErrorMessage = "Internet connection not available, Try again later!";
                         $rootScope.Validation($scope.ErrorMessage);
+                    } else if(status === 503) {
+                      $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                     } else {
                         $rootScope.serverErrorMessageValidation();
                     }

@@ -721,10 +721,10 @@ angular.module('starter.controllers')
                     $scope.ErrorMessage = data.statusText;
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if (status === 0) {
-
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
+                } else if(status === 503) {
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -747,8 +747,12 @@ angular.module('starter.controllers')
                     $rootScope.Validation($scope.ErrorMessage);
                 }
             },
-            error: function() {
+            error: function(data, status) {
+              if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else {
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         LoginService.chkAddressForReg(params);
@@ -768,8 +772,12 @@ angular.module('starter.controllers')
                     $state.go('tab.relatedusers');
                 }
             },
-            error: function() {
+            error: function(data,status) {
+              if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              }else {
                 $rootScope.serverErrorMessageValidation();
+               }
             }
         };
         LoginService.updateDependentsAuthorize(params);
@@ -789,9 +797,13 @@ angular.module('starter.controllers')
                   $scope.ErrorMessage = "A verification email has been sent to the user";
                   $rootScope.Validation($scope.ErrorMessage);
                 },
-                error: function() {
+                error: function(data,status) {
+                  if(status === 503) {
+                    $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                  }else{
                   $scope.ErrorMessage = "Unable to sent email invitation";
                   $rootScope.Validation($scope.ErrorMessage);
+                }
                 }
             };
             LoginService.sendCoUserEmailInvitation(params);

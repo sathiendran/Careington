@@ -55,7 +55,10 @@ angular.module('starter.controllers')
                       }
                   }
               },
-              error: function() {
+              error: function(data,status) {
+                if(status === 503) {
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                }
               }
           };
           $ionicLoading.show({

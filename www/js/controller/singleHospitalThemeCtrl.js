@@ -26,6 +26,11 @@ angular.module('starter.controllers')
             api_keys_env = "Sandbox";
         }
     }
+    $scope.callServiceUnAvailableError = function() {
+        var url = serviceAPIError;
+        window.open(encodeURI(url), '_system', 'location=yes');
+        return false;
+    }
 
     $rootScope.patientConsultEndUrl = "";
 
@@ -117,8 +122,12 @@ angular.module('starter.controllers')
                 $ionicLoading.hide();
                 $state.go('tab.loginSingle');
             },
-            error: function() {
+            error: function(data,status) {
+              if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
                 $ionicLoading.hide();
+              }
 
             }
         };

@@ -122,8 +122,10 @@ angular.module('starter.controllers')
                 }
 
             },
-            error: function() {
-
+            error: function(data,status) {
+              if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              }
             }
         };
 
@@ -531,14 +533,23 @@ angular.module('starter.controllers')
                             $rootScope.reportMedicalCodeDetails = 'None Reported';
                         }
 
+                        $window.localStorage.setItem('ChkVideoConferencePage', "");
+
                         session = null;
                         $scope.getSoapNotes(consultation);
                         $scope.doGetAttachmentList(consultation.consultationId);
                         $scope.doGetChatTranscript(consultation.consultationId);
 
                     },
-                    error: function() {
+                    error: function(data,status) {
+                      if(status===0 ){
+                           $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                           $rootScope.Validation($scope.ErrorMessage);
+                      } else if(status === 503) {
+                        $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                      } else{
                         $rootScope.serverErrorMessageValidation();
+                      }
                     }
                 };
 
@@ -567,12 +578,17 @@ angular.module('starter.controllers')
                             });
 
                         });
-
                         $rootScope.attachmentLength = $rootScope.getAttachmentList.length;
-
                     },
-                    error: function() {
+                    error: function(data,status) {
+                      if(status===0 ){
+                           $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                           $rootScope.Validation($scope.ErrorMessage);
+                      } else if(status === 503) {
+                        $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                      } else{
                         $rootScope.serverErrorMessageValidation();
+                      }
                     }
                 };
                 LoginService.getAttachmentList(params);
@@ -603,11 +619,11 @@ angular.module('starter.controllers')
             },
             error: function(data,status) {
               if(status===0 ){
-
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
-
-              }else{
+              } else if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else{
                 $rootScope.serverErrorMessageValidation();
               }
             }
@@ -617,29 +633,29 @@ angular.module('starter.controllers')
     }
 
     $scope.getSoapNotes = function() {
-        $("#reportSubjective").html($rootScope.existingConsultationReport.subjective);
-        $("#reportObjective").html($rootScope.existingConsultationReport.objective);
-        $("#reportAssessment").html($rootScope.existingConsultationReport.assessment);
-        $("#reportPlan").html($rootScope.existingConsultationReport.plan);
         if ($rootScope.existingConsultationReport.subjective !== '' && typeof $rootScope.existingConsultationReport.subjective !== 'undefined') {
+          $("#reportSubjective").html($rootScope.existingConsultationReport.subjective);
             $rootScope.reportSubjective = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.subjective);
         } else {
             $rootScope.reportSubjective = 'None Reported';
         }
 
         if ($rootScope.existingConsultationReport.objective !== '' && typeof $rootScope.existingConsultationReport.objective !== 'undefined') {
+          $("#reportObjective").html($rootScope.existingConsultationReport.objective);
             $rootScope.reportObjective = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.objective);
         } else {
             $rootScope.reportObjective = 'None Reported';
         }
 
         if ($rootScope.existingConsultationReport.assessment !== '' && typeof $rootScope.existingConsultationReport.assessment !== 'undefined') {
+          $("#reportAssessment").html($rootScope.existingConsultationReport.assessment);
             $rootScope.reportAssessment = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.assessment);
         } else {
             $rootScope.reportAssessment = 'None Reported';
         }
 
         if ($rootScope.existingConsultationReport.plan !== '' && typeof $rootScope.existingConsultationReport.plan !== 'undefined') {
+          $("#reportPlan").html($rootScope.existingConsultationReport.plan);
             $rootScope.reportPlan = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.plan);
         } else {
             $rootScope.reportPlan = 'None Reported';
@@ -751,8 +767,12 @@ angular.module('starter.controllers')
                     $state.go('tab.login');
                 }
             },
-            error: function() {
+            error: function(data, status) {
+              if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else {
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         LoginService.getHospitalInfo(params);

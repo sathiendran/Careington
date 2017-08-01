@@ -209,11 +209,11 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
                 } else if (status === 401) {
                     $scope.ErrorMessage = "You are not authorized to view this account";
                     $rootScope.Validation($scope.ErrorMessage);
-
+                } else if(status === 503) {
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -245,6 +245,29 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
         }  */
          $scope.betDelay=false;
     }
+
+    $scope.doGetAppointPaymentStatus = function() {
+      $rootScope.isPaid = '';
+          var params = {
+            consultationId: $rootScope.consultationId,
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+              $rootScope.isPaid = data.isPaid;
+              $scope.doGetConcentToTreat();
+              },
+            error: function(data, status) {
+                if (status === 0) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503) {
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+        LoginService.getAppointPaymentStatus(params);
+      }
 
     $scope.delay = function () {
              $scope.betDelay=true;
@@ -400,13 +423,13 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                               $rootScope.hourDisplay = 'none';
                               $rootScope.dayDisplay = 'none';
                           }
-                          if (args.millis < 600) {
+                        if (args.minutes === 0 && args.seconds === 1) {
                               $rootScope.timeNew = 'none';
                               $rootScope.timeNew1 = 'block';
                               $rootScope.timerCOlor = '#E1FCD4';
                               $('.AvailableIn').hide();
                               $('.enterAppoinment').show();
-                          } else if (args.millis > 600) {
+                          } else if (args.minutes >= 0 && args.seconds > 0) {
                               $rootScope.timeNew = 'block';
                               $rootScope.timeNew1 = 'none';
                               $rootScope.timerCOlor = '#FDD8C5';
@@ -436,7 +459,8 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
               if (status === 0) {
                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
                   $rootScope.Validation($scope.ErrorMessage);
-
+              } else if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
               } else if (status === 401) {
                   $scope.ErrorMessage = "You are not authorized to view this account";
                   $rootScope.Validation($scope.ErrorMessage);
@@ -661,7 +685,8 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
+                } else if(status === 503) {
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -757,7 +782,8 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
+                } else if(status === 503) {
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -800,10 +826,10 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
             },
             error: function(data, status) {
                 if (status === 0) {
-
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
+                } else if(status === 503) {
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -842,7 +868,8 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
+                } else if(status === 503) {
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }

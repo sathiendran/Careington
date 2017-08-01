@@ -111,7 +111,8 @@ angular.module('starter.controllers')
                   if (status === 0) {
                       $scope.ErrorMessage = "Internet connection not available, Try again later!";
                       $rootScope.Validation($scope.ErrorMessage);
-
+                  } else if(status === 503) {
+                    $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                   } else {
                     $scope.$root.$broadcast("callServerErrorMessageValidation");
                   }
@@ -151,7 +152,8 @@ angular.module('starter.controllers')
                     if (status === 0) {
                         $scope.ErrorMessage = "Internet connection not available, Try again later!";
                         $rootScope.Validation($scope.ErrorMessage);
-
+                    } else if(status === 503) {
+                      $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                     } else {
                         $rootScope.serverErrorMessageValidation();
                     }

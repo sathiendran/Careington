@@ -289,10 +289,11 @@ angular.module('starter.controllers')
               },
               error: function(data,status) {
                   $rootScope.isRegistrationCompleted = false;
-                  if(data.status == 400){
-                  var emailerror = data.data.message;
-                  $scope.ErrorMessage = "Email address already registered.";
-                 if($scope.ErrorMessage === emailerror) {
+                 if(data.status == 400){
+                     //   var emailerror = data.data.message;
+                   //  $scope.ErrorMessage = "Email address already registered.";
+                     //if($scope.ErrorMessage === emailerror) {
+                  if (data.data.message.indexOf('already registered') > 0) {
                    $scope.contactmail=$scope.email;
                         var myPopup = $ionicPopup.show({
 
@@ -328,8 +329,9 @@ angular.module('starter.controllers')
                       $scope.ErrorMessage = data.statusText;
                       $rootScope.Validation($scope.ErrorMessage);
                     }
-                  }
-               else {
+                  } else if(status === 503) {
+                    $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                  } else {
                       $scope.$root.$broadcast("callServerErrorMessageValidation");
                   }
               }
@@ -402,22 +404,11 @@ angular.module('starter.controllers')
           },
           error: function(data,status) {
               $rootScope.isRegistrationCompleted = false;
-            /*  if (data.message.indexOf('already registered') > 0) {
-                  navigator.notification.alert(
-                      data.message, // message
-                      function() {},
-                      $rootScope.alertMsgName, // title
-                      'Done' // buttonName
-                  );
-                  return false;
-              } else {
-                  $scope.$root.$broadcast("callServerErrorMessageValidation");
-              }
-            */
-            if(data.status == 400){
-                   var emailerror = data.data.message;
-                $scope.ErrorMessage = "Email address already registered.";
-                if($scope.ErrorMessage === emailerror) {
+              if(data.status == 400){
+                  //   var emailerror = data.data.message;
+                //  $scope.ErrorMessage = "Email address already registered.";
+                  //if($scope.ErrorMessage === emailerror) {
+               if (data.data.message.indexOf('already registered') > 0) {
                     $scope.contactmail=$scope.email;
                   var myPopup = $ionicPopup.show({
 
@@ -449,7 +440,9 @@ angular.module('starter.controllers')
                   $scope.closepopup = function() {
                       myPopup.close();
                   }
-              }else if(data.statusText == "Bad Request" && data.status == 400){
+              } else if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else if(data.statusText == "Bad Request" && data.status == 400){
                 $scope.ErrorMessage = "Patient Registration is not allowed for this address!";
                 $rootScope.Validation($scope.ErrorMessage);
               } else {
@@ -477,12 +470,13 @@ angular.module('starter.controllers')
                       $state.go('tab.registerAddress');
                     }
               },
-              error: function(data) {
+              error: function(data,status) {
                 if(data ==='null' ){
                $scope.ErrorMessage = "Internet connection not available, Try again later!";
                $rootScope.Validation($scope.ErrorMessage);
-             }
-             else{
+             } else if(status === 503) {
+               $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+             } else{
                  $rootScope.serverErrorMessageValidation();
              }
               }

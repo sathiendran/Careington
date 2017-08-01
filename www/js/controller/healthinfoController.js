@@ -1308,8 +1308,9 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             success: function(data) {
               if ($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !== 'undefined') {
                   $scope.uploadPhotoForExistingPatient();
-              } debugger;
+              }
               $rootScope.PatientIdentifiers =  $rootScope.listOfPatientIdentifiers;
+              var chkPreviousPage = false;
               var depPatientSuccessPtId = data.patientID;
               var depPatientSecurityToken = data.securityToken;
                 if (!angular.isUndefined(depPatientSecurityToken) && $rootScope.restage >= 12 && $scope.healthInfoEmail != "") {
@@ -1326,7 +1327,15 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                   }
                 }else {
                   if ($rootScope.primaryPatientId !== data.patientID) {
+                      if($rootScope.patientAuthorizeValue === 'Y')
+                      {
+                          $scope.authen = true;
+                      } else {
+                          $scope.authen = false;
+                      }
                       $scope.updateDependentRelation(data.patientID, $scope.getRelationshipId, $rootScope.patientAuthorizeValue);
+                  } else {
+                    $scope.authen = true;
                   }
                   $rootScope.currentPatientDetails.homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.homePhone));
                   $rootScope.currentPatientDetails.mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.mobilePhone));
@@ -1342,8 +1351,8 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                   var locat=newloc[1];
                   var sploc=locat.split("/");
                   var cutlocations=sploc[1] +"."+sploc[2];
-
-                  $rootScope.GoToPatientDetails(cutlocations,$rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $rootScope.currentPatientDetails.account.isAuthorized, ' ');
+                  $rootScope.doGetRequiredPatientProfiles(data.patientID, ' ', cutlocations, $scope.authen);
+                //  $rootScope.GoToPatientDetails(cutlocations,$rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $scope.authen, ' ');
                   var editdate = $rootScope.currentPatientDetails.dob;
                   $rootScope.doddate = new Date($rootScope.healthInfoDOB);
                   $rootScope.restage = getAge( $rootScope.doddate);
@@ -1380,6 +1389,8 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 } else if(status === 0 ){
                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
                   $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503){
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                 } else if(data.statusText === "City is empty"){
                   $scope.ErrorMessage = "City is empty";
                   $rootScope.Validation($scope.ErrorMessage);
@@ -1404,9 +1415,13 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 Token: securityToken.substring(2),
                 success: function() {
                 },
-                error: function() {
+                error: function(data, status) {
+                   if(status === 503) {
+                    $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                  } else {
                   $scope.ErrorMessage = "Unable to sent email invitation";
                   $rootScope.Validation($scope.ErrorMessage);
+                }
                 }
             };
             LoginService.sendCoUserEmailInvitation(params);
@@ -1510,9 +1525,11 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 if (status === 401) {
                     $scope.ErrorMessage = "Relation did not update";
                     $rootScope.Validation($scope.ErrorMessage);
-                }else if(status===0 ){
+                } else if(status===0 ){
                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
                   $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503){
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -1609,6 +1626,8 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
               if(status===0 ){
                 $scope.ErrorMessage = "Internet connection not available, Try again later!";
                 $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503){
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
               }
             }
         };
@@ -1710,6 +1729,8 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
               if(status===0 ){
                 $scope.ErrorMessage = "Internet connection not available, Try again later!";
                 $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503){
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
               }
             }
         };
@@ -1743,7 +1764,9 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
               if(status===0 ){
                 $scope.ErrorMessage = "Internet connection not available, Try again later!";
                 $rootScope.Validation($scope.ErrorMessage);
-              }else{
+              } else if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else{
                   $rootScope.serverErrorMessageValidation();
               }
             }
@@ -1965,8 +1988,12 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             success: function() {
                 $scope.health();
             },
-            error: function() {
+            error: function(data, status) {
+               if(status === 503){
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else {
                 $scope.putPatientMedicalProfile = 'Error getting Patient Medical Profile';
+              }
             }
         };
         LoginService.putPatientMedicalProfile(params);
@@ -2131,8 +2158,12 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             success: function() {
                 $scope.health();
             },
-            error: function() {
+            error: function(data, status) {
+               if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else {
                 $scope.putPatientMedicalProfile = 'Error getting Patient Medical Profile';
+              }
             }
         };
         LoginService.putPatientMedicalProfile(params);
@@ -2228,8 +2259,12 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             success: function() {
                 $scope.health();
             },
-            error: function() {
+            error: function(data, status) {
+              if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else {
                 $scope.putPatientMedicalProfile = 'Error getting Patient Medical Profile';
+              }
             }
         };
         LoginService.putPatientMedicalProfile(params);
@@ -2320,7 +2355,9 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
               if(status===0  ){
                $scope.ErrorMessage = "Internet connection not available, Try again later!";
                $rootScope.Validation($scope.ErrorMessage);
-             }else{
+             } else if(status === 503) {
+               $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+             } else{
                  $rootScope.serverErrorMessageValidation();
              }
             }
@@ -2338,7 +2375,9 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
               if(status===0 ){
                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
                  $rootScope.Validation($scope.ErrorMessage);
-               }else{
+               } else if(status === 503) {
+                 $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+               } else{
                    $rootScope.serverErrorMessageValidation();
                }
             }
@@ -2441,8 +2480,12 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                     $scope.modal.hide();
                 }
             },
-            error: function() {
+            error: function(data, status) {
+             if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else{
                 $scope.putPatientMedicalProfile = 'Error getting Patient Medical Profile';
+              }
             }
         };
 

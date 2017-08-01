@@ -18,6 +18,7 @@ var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
 var deploymentEnvForProduction = ''; //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
 var loginPageEnv = 'Single';
 var appVersion = 67;
+var serviceAPIError = 'https://www.connectedcarestatus.com/';
 //var xApiKey = 'c69fe0477e08cb4352e07c502ddd2d146b316112'; // For Photo Upload
 //var xDeveloperId = '84f6101ff82d494f8fcc5c0e54005895'; // For Photo Upload
 var timeoutValue = 0;
@@ -375,7 +376,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             //}, 10000);
         }
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
            cordova.plugins.Keyboard.disableScroll(true);
          }
          if(window.StatusBar) {
@@ -441,23 +442,28 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 $('.popup-buttons').addClass("ietpopup-buttons");
                 $rootScope.alertPopupA = function() {
                       $rootScope.flagpopup=false;
-                      myPopup = $ionicPopup.show({
-                          template: '<b>Please make sure that you have network connection.</b>',
-                          title: 'No Internet Connection',
-                          cssClass: 'my-custom-popup',
-                          buttons: [
-                                 { text: '<b class="ietfonttype">ok</b>',
-                                   type:'button',
-                                }
-
-                               ]
-                       }).then(function(result){
-                          console.log('Tapped', result);
-                       }, function(error){
-                          console.log('error', error);
-                       }, function(popup){
-                          popup.close();
+                       var myPopup = $ionicPopup.show({
+                           template: '<b>Please make sure that you have network connection.</b>',
+                           title: 'No Internet Connection',
+                           rootScope: $rootScope,
+                           cssClass: 'my-custom-popup',
+                           buttons: [{
+                               text: '<b class="ietfonttype">ok</b>',
+                                type:'button',
+                           }]
                        });
+
+                       myPopup.then(function(res) {
+                           if (res) {
+                               console.log('res', res);
+                           } else {
+                             console.log('else');
+                           }
+                       });
+                       $rootScope.closepopup = function() {
+                           myPopup.close();
+                           $rootScope.flagpopup = true;
+                       }
                  }
                  if($rootScope.flagpopup===true) {
                     $rootScope.alertPopupA();
@@ -476,9 +482,9 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }else{
               if($state.$current.name == "tab.waitingRoom")
                  $rootScope.waitingroomlostconnection();
-              if($rootScope.flagpopup==false){
-                myPopup.close();
-              }
+            //  if($rootScope.flagpopup==false){
+                $rootScope.closepopup();
+              //}
             }
         }
 
@@ -517,7 +523,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
       cordova.plugins.backgroundMode.onactivate = function () {
            var backGroundNetConnection;
            backGroundNetConnection = setInterval(function() {
-                $rootScope.flagpopup=true;
+              //  $rootScope.flagpopup=true;
                 var myPopup;
                $rootScope.online = navigator.onLine;
 
@@ -533,32 +539,36 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                                $('#publisher').hide();
                                $('#subscriber').hide();
                                OT.updateViews();
-                              // $state.go('tab.videoLost', { retry : 1 });
                            }else{
                                $('.popup').addClass("ietpopup");
                                $('.popup-title').addClass("iettitle");
                                $('.popup-buttons').addClass("ietpopup-buttons");
-                               // $rootScope.flagpopup=false;
-                                   // An elaborate, custom popup
                              $rootScope.alertPopupA = function() {
                                    $rootScope.flagpopup=false;
-                                   myPopup = $ionicPopup.show({
-                                       template: '<b>Please make sure that you have network connection.</b>',
-                                       title: 'No Internet Connection',
-                                       cssClass: 'my-custom-popup',
-                                       buttons: [
-                                              { text: '<b class="ietfonttype">ok</b>',
-                                                type:'button',
-                                             }
-
-                                            ]
-                                    }).then(function(result){
-                                       console.log('Tapped', result);
-                                    }, function(error){
-                                       console.log('error', error);
-                                    }, function(popup){
-                                       popup.close();
+                                    var myPopup = $ionicPopup.show({
+                                        template: '<b>Please make sure that you have network connection.</b>',
+                                        title: 'No Internet Connection',
+                                        rootScope: $rootScope,
+                                        cssClass: 'my-custom-popup',
+                                        buttons: [{
+                                            text: '<b class="ietfonttype">ok</b>',
+                                            onTap: function(e) {
+                                                return false;
+                                            }
+                                        }]
                                     });
+
+                                    myPopup.then(function(res) {
+                                        if (res) {
+                                            console.log('res', res);
+                                        } else {
+                                          console.log('else');
+                                        }
+                                    });
+                                    $rootScope.closepopup = function() {
+                                        myPopup.close();
+                                        $rootScope.flagpopup = true;
+                                    }
                               }
                               if($rootScope.flagpopup===true) {
                                  $rootScope.alertPopupA();
@@ -576,11 +586,10 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                        if($rootScope.connAlertStatus !== false) {
                              if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
                                   $rootScope.netConnectionStaus = true;
-                                 //$state.go('tab.videoLost', { retry : 2 });
                              }else{
-                               if($rootScope.flagpopup==false){
-                                 myPopup.close();
-                               }
+                               //if($rootScope.flagpopup==false){
+                                 $rootScope.closepopup();
+                               //}
                              }
                         }
                   });
@@ -757,6 +766,15 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         views: {
             'tab-login': {
                 templateUrl: 'templates/tab-login.html',
+                controller: 'LoginCtrl'
+            }
+        }
+    })
+    .state('tab.serviceUnavailableError', {
+        url: '/serviceUnavailableError/:lastFunctionCall/:serviceUnavailableError',
+        views: {
+            'tab-login': {
+                templateUrl: 'templates/tab-serviceUnavailableError.html',
                 controller: 'LoginCtrl'
             }
         }

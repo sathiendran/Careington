@@ -132,8 +132,12 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                     $state.go('tab.login');
                 }
             },
-            error: function() {
+            error: function(data,status) {
+              if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else {
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         LoginService.getHospitalInfo(params);
@@ -264,8 +268,12 @@ $scope.locat=false;
                 }
                 $state.go('tab.ChronicCondition');
             },
-            error: function(data) {
+            error: function(data,status) {
+              if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else {
                 $scope.existingConsultation = 'Error getting existing consultation';
+              }
             }
         };
         LoginService.getExistingConsulatation(params);
@@ -475,8 +483,9 @@ $scope.locat=false;
               if(status===0 ){
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
-
-              }else{
+              } else if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else{
                 $rootScope.serverErrorMessageValidation();
               }
             }
@@ -514,11 +523,13 @@ $scope.locat=false;
                   $state.go('tab.ConsentTreat');
                 }
             },
-            error: function(data) {
+            error: function(data,status) {
               if(data =='null' ){
              $scope.ErrorMessage = "Internet connection not available, Try again later!";
              $rootScope.Validation($scope.ErrorMessage);
-           }else{
+           } else if(status === 503) {
+             $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+           } else{
                $rootScope.serverErrorMessageValidation();
            }
             }
@@ -529,6 +540,14 @@ $scope.locat=false;
     $scope.goToConsentToTreat = function() {
       $rootScope.scheduledConsultSave = '';
         if($rootScope.userAgeForIntake === 8) {
+          $scope.ConsultationSaveData = {
+              "medicationAllergies": [],
+              "surgeries": [],
+              "medicalConditions": [],
+              "medications": [],
+              "infantData": [],
+              "concerns": []
+          };
           $scope.schedConsultationSaveData = {
               "infantData": []
           };
@@ -545,6 +564,13 @@ $scope.locat=false;
               $scope.ErrorMessage = "Please choose if the patients vaccinations are up-to-date or not?";
               $rootScope.ValidationFunction1($scope.ErrorMessage);
           }else {
+            $scope.ConsultationSaveData.infantData = {
+              "patientAgeUnderOneYear": "Y",
+              "fullTerm": $("input[name='birthBorn']:checked").val(),
+              "vaginalBirth": $("input[name='birthVagin']:checked").val(),
+              "dischargedWithMother": $("input[name='birthDischargedwithMother']:checked").val(),
+              "vaccinationsCurrent": $("input[name='birthVaccination']:checked").val()
+            }
             $scope.schedConsultationSaveData.infantData = {
               "patientAgeUnderOneYear": "Y",
               "fullTerm": $("input[name='birthBorn']:checked").val(),
@@ -772,8 +798,9 @@ $scope.locat=false;
               if(status===0 ){
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
-
-              }else{
+              } else if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else{
                 $rootScope.serverErrorMessageValidation();
               }
             }
@@ -1239,6 +1266,8 @@ $scope.locat=false;
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503) {
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -1425,7 +1454,8 @@ $scope.locat=false;
               if(status===0 ){
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
-
+              } else if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
               }else{
                 $rootScope.serverErrorMessageValidation();
               }
@@ -1522,7 +1552,8 @@ $scope.locat=false;
               if(status===0 ){
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
-
+              } else if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
               }else{
                 $rootScope.serverErrorMessageValidation();
               }
@@ -1607,7 +1638,7 @@ $scope.locat=false;
         if (checkAndChangeMenuIcon) {
             $interval.cancel(checkAndChangeMenuIcon);
         }
-        if ($state.current.name !== "tab.login" || $state.current.name !== "tab.loginSingle") {
+        if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle" && $state.current.name !== "tab.waitingRoom" && $state.current.name !== "tab.videoConference" && $state.current.name !== "tab.connectionLost" ) {
             checkAndChangeMenuIcon = $interval(function() {
                 $rootScope.checkAndChangeMenuIcon();
             }, 300);
