@@ -369,19 +369,19 @@ angular.module('starter.controllers')
                             $rootScope.reportHeight = $rootScope.existingConsultationReport.height;
                         }
                     } else {
-                        $rootScope.reportHeight = 'NA';
+                        $rootScope.reportHeight = 'N/R';
                     }
                     if ($rootScope.existingConsultationReport.weight !== '' && typeof $rootScope.existingConsultationReport.weight !== 'undefined') {
                         $rootScope.reportWeight = $rootScope.existingConsultationReport.weight;
                         $rootScope.reportWeightunit =  $rootScope.existingConsultationReport.weightUnit;
                     } else {
-                        $rootScope.reportWeight = 'NA';
+                        $rootScope.reportWeight = 'N/R';
                     }
                     if($rootScope.existingConsultationReport.note !== '' && typeof $rootScope.existingConsultationReport.note !== 'undefined') {
                       $rootScope.repadditionalnotes = $rootScope.existingConsultationReport.note;
                     }
                     else{
-                        $rootScope.repadditionalnotes = 'NA';
+                        $rootScope.repadditionalnotes = 'N/R';
                     }
                     $rootScope.reportPatientName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.patientName);
                     $rootScope.reportLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.lastName);
@@ -392,7 +392,14 @@ angular.module('starter.controllers')
                        }
                       }
 
-                      $rootScope.reportethnicity = $rootScope.existingConsultationReport.ethnicity;
+
+                      if($rootScope.existingConsultationReport.ethnicity !== '' && typeof $rootScope.existingConsultationReport.ethnicity !== 'undefined') {
+                        $rootScope.reportethnicity = $rootScope.existingConsultationReport.ethnicity;
+
+                      }else{
+                         $rootScope.reportethnicity = 'N/R';
+                      }
+
                       $rootScope.reportservicetype = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.serviceTypeName);
                     if ($rootScope.existingConsultationReport.patientAddress !== '' && typeof $rootScope.existingConsultationReport.patientAddress !== 'undefined') {
                         $rootScope.reportPatientAddress = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.patientAddress);
@@ -403,37 +410,43 @@ angular.module('starter.controllers')
                     if (!angular.isUndefined($rootScope.existingConsultationReport.location)) {
                         $rootScope.location = $rootScope.existingConsultationReport.location;
                     } else {
-                        $rootScope.location = 'N/A';
+                        $rootScope.location = 'N/R';
                     }
 
                     if (!angular.isUndefined($rootScope.existingConsultationReport.organization)) {
                         $rootScope.organization = $rootScope.existingConsultationReport.organization;
                     } else {
-                        $rootScope.organization = 'N/A';
+                        $rootScope.organization = 'N/R';
                     }
 
                     if ($rootScope.existingConsultationReport.homePhone !== '' && typeof $rootScope.existingConsultationReport.homePhone !== 'undefined') {
                         $rootScope.reportHomePhone = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.homePhone);
                     } else {
-                        $rootScope.reportHomePhone = 'NA';
+                        $rootScope.reportHomePhone = 'N/R';
                     }
 
                     if ($rootScope.existingConsultationReport.hospitalAddress !== '' && typeof $rootScope.existingConsultationReport.hospitalAddress !== 'undefined') {
                         $rootScope.reportHospitalAddress = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.hospitalAddress);
                     } else {
-                        $rootScope.reportHospitalAddress = 'NA';
+                        $rootScope.reportHospitalAddress = 'N/R';
                     }
 
                     if ($rootScope.existingConsultationReport.doctorFirstName !== '' && typeof $rootScope.existingConsultationReport.doctorFirstName !== 'undefined') {
                         $rootScope.reportDoctorFirstName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.doctorFirstName);
                     } else {
-                        $rootScope.reportDoctorFirstName = 'NA';
+                        $rootScope.reportDoctorFirstName = 'N/R';
                     }
                     if ($rootScope.existingConsultationReport.medicalSpeciality !== '' && typeof $rootScope.existingConsultationReport.medicalSpeciality !== 'undefined') {
                         $rootScope.reportMedicalSpeciality = ', ' + htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.medicalSpeciality);
                     } else {
                         $rootScope.reportMedicalSpeciality = '';
                     }
+
+                    if ($rootScope.existingConsultationReport.department !== '' && typeof $rootScope.existingConsultationReport.department !== 'undefined') {
+                     $rootScope.providerDepartment =  htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.department);
+                  } else {
+                      $rootScope.providerDepartment = '';
+                  }
 
                     if ($rootScope.existingConsultationReport.doctorLastName !== '' && typeof $rootScope.existingConsultationReport.doctorLastName !== 'undefined') {
                         $rootScope.reportDoctorLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.doctorLastName);
@@ -779,7 +792,7 @@ angular.module('starter.controllers')
                     angular.forEach(data.data[0].snapFile.files, function(index) {
                         var attachImage = index.name.split(".");
                         $rootScope.getAttachmentList.push({
-                            'id': index.id,
+                            'id': "'" + index.id + "'",
                             'name': index.name,
                             'image': attachImage[attachImage.length - 1]
                         });
