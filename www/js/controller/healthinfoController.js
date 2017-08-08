@@ -1147,6 +1147,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
               if ($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !== 'undefined') {
                   $scope.uploadPhotoForExistingPatient();
               }
+              var chkPreviousPage = false;
               var depPatientSuccessPtId = data.patientID;
               var depPatientSecurityToken = data.securityToken;
                 if (!angular.isUndefined(depPatientSecurityToken) && $rootScope.restage >= 12 && $scope.healthInfoEmail != "") {
@@ -1187,8 +1188,8 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                   var locat=newloc[1];
                   var sploc=locat.split("/");
                   var cutlocations=sploc[1] +"."+sploc[2];
-
-                  $rootScope.GoToPatientDetails(cutlocations,$rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $scope.authen, ' ');
+                  $rootScope.doGetRequiredPatientProfiles(data.patientID, ' ', cutlocations, $scope.authen);
+                //  $rootScope.GoToPatientDetails(cutlocations,$rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $scope.authen, ' ');
                   var editdate = $rootScope.currentPatientDetails.dob;
                   $rootScope.doddate = new Date($rootScope.healthInfoDOB);
                   $rootScope.restage = getAge( $rootScope.doddate);
