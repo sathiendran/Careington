@@ -570,9 +570,6 @@ $scope.editDob=function(){
       }
     }
     $scope.putUpdatePatientDetails = function() {
-            $scope.editimg = true;
-            $scope.viewimg = false;
-            $scope.doneshow = true;
             var selectDate = document.getElementById('healthInfoDOB').value;
             var now = new Date();
             var dt1 = Date.parse(now),
@@ -1144,6 +1141,9 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             },
             patientMedicalHistoryData: $scope.patientMedicalHistoryDetails,
             success: function(data) {
+              $scope.editimg = true;
+              $scope.viewimg = false;
+              $scope.doneshow = true;
               if ($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !== 'undefined') {
                   $scope.uploadPhotoForExistingPatient();
               }
