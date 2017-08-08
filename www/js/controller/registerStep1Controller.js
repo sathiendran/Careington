@@ -429,7 +429,12 @@ angular.module('starter.controllers')
 
                   myPopup.then(function(res) {
                       if (res) {
-                      $state.go('tab.login');
+                      //$state.go('tab.login');
+                        if (deploymentEnvLogout === "Single") {
+                            $state.go('tab.loginSingle');
+                        } else {
+                            $state.go('tab.login');
+                        }
                       } else {
                           $('.regemail').addClass("emailbackground");
                           $scope.emailexisterror=true;

@@ -3,6 +3,7 @@ angular.module('starter.controllers')
   $rootScope.drawSVGCIcon = function(iconName) {
     return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
   };
+
     $rootScope.patientAuthorize = true;
     $rootScope.patientUnAuthorize = false;
     $rootScope.patientAuthorizeValue = 'Y';
@@ -207,17 +208,19 @@ angular.module('starter.controllers')
           backdropClickToClose: false
       }).then(function(modal) {
         var hghtinval=$('#heightuser').val();
+        //var hghtinvalArr = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
+        //var hghtinval = hghtinvalArr[0];
 
           $scope.modal = modal;
           $scope.modal.show().then(function() {
-          if(hghtinval===""){
+          if(hghtinval === ""){
             $('#healthInfoHeight').val("");
             $('#healthInfoHeight2').val("");
-            document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
-            $scope.hfeet=true;
-            $scope.hinch=true;
-            $scope.hmeter=true;
-            $scope.hcmeter=true;
+            document.getElementById('healthInfoHeightUnit').selectedIndex = 1;
+            $scope.hfeet=false;
+            $scope.hinch=false;
+            $scope.hmeter=false;
+            $scope.hcmeter=false;
           }else{
             var reminspace=hghtinval.split(" ");
             var fet=reminspace[0];
@@ -436,6 +439,7 @@ angular.module('starter.controllers')
     $scope.edittext = function() {
         $scope.healthfoottab=false;
         $scope.healthfootsave=false;
+        $scope.patientAuthorize = false;
         $rootScope.doddate = $rootScope.currentPatientDetails[0].dob;
         $rootScope.restage = getAge( $rootScope.doddate);
         if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId ===  $rootScope.currentPatientDetails[0].account.patientId)) {
@@ -568,6 +572,7 @@ $scope.editDob=function(){
     $scope.putUpdatePatientDetails = function() {
             $scope.editimg = true;
             $scope.viewimg = false;
+            $scope.doneshow = true;
             var selectDate = document.getElementById('healthInfoDOB').value;
             var now = new Date();
             var dt1 = Date.parse(now),
@@ -982,6 +987,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 }
 
             }
+              $scope.patientAuthorize = true;
         }
     $rootScope.doPutProfileUpdation = function() {
       $scope.patientMedicalHistoryDetails = {};
@@ -1389,6 +1395,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         }
     }
     $scope.profile = function() {
+        $scope.patientAuthorize = true;
         var myEl = angular.element(document.querySelector('#profid'));
         myEl.addClass('btcolor');
         myEl.removeClass('btnextcolor');
@@ -1521,6 +1528,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
     $scope.getMedicalDetailsinHealthInfo = function() {
           $scope.healthfoottab=true;
           $scope.healthfootsave=true;
+          $scope.patientAuthorize = false;
       if($rootScope.hasRequiredFields === true) {
         $scope.health();
       }else {
