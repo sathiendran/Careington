@@ -36,7 +36,7 @@ if (deploymentEnv == 'Single') {
 
 
 
-    var cobrandApp = 'Totalcare';
+    var cobrandApp = 'ambientcare';
 
 
     if (cobrandApp == 'EpicMD') {
