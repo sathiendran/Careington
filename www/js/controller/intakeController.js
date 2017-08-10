@@ -278,7 +278,7 @@ $scope.locat=false;
         LoginService.getExistingConsulatation(params);
     }
 
-    $scope.goBackFromConcern = function() {
+    $rootScope.goBackFromConcern = function() {
          $state.go($rootScope.locationdet);
     }
     $scope.model = null;
