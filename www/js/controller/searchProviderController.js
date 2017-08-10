@@ -85,7 +85,7 @@ angular.module('starter.controllers')
                                 }
                             } else {
                                 $scope.chkImageorNot = "";
-                                $scope.proImage = get2CharInString.getProv2Char(index.hospitalName);
+                                $scope.proImage = get2CharInString.getProv2Char(index.brandName);
                             }
                             $rootScope.searchProviderList.push({
                                 'customerSso': index.customerSso,

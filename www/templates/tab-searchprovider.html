@@ -22,7 +22,7 @@
    <ion-content class="content-height">
       <div id="providerListDiv" class="list has-subheader provider" >
          <a class="item item-avatar item-icon-right" ng-repeat="providerList in searchProviderList" ng-click="goToRegisterStep1(providerList)">
-            <div class="searchProvFirstLetterDiv newProImage" ng-if="!providerList.chkImageorNot" >
+            <div class="searchProvFirstLetterDiv newProImage" ng-if="!providerList.chkImageorNot" style="background-color: {{providerList.brandColor}}" >
                <p>{{providerList.firstCharactOfHosName}}</p>
             </div>
             <div class="searchProvFirstLetterDiv newProImage" ng-if="providerList.chkImageorNot"><img ng-src="{{providerList.firstCharactOfHosName}}"  ></div>
