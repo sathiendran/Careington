@@ -216,7 +216,7 @@ angular.module('starter.controllers')
           if(hghtinval === ""){
             $('#healthInfoHeight').val("");
             $('#healthInfoHeight2').val("");
-            document.getElementById('healthInfoHeightUnit').selectedIndex = 1;
+            document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
             $scope.hfeet=true;
             $scope.hinch=true;
             $scope.hmeter=true;
@@ -229,7 +229,7 @@ angular.module('starter.controllers')
             if(units==="ft"){
               $('#healthInfoHeight').val(fet);
               $('#healthInfoHeight2').val(finc);
-              document.getElementById('healthInfoHeightUnit').selectedIndex = 1;
+              document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
               $scope.hfeet=true;
               $scope.hinch=true;
               $scope.hmeter=true;
@@ -237,7 +237,7 @@ angular.module('starter.controllers')
             }else {
               $('#healthInfoHeight').val(fet);
               $('#healthInfoHeight2').val(finc);
-              document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
+              document.getElementById('healthInfoHeightUnit').selectedIndex = 1;
               $scope.hfeet=false;
               $scope.hinch=false;
               $scope.hmeter=false;
@@ -439,7 +439,8 @@ angular.module('starter.controllers')
     $scope.edittext = function() {
         $scope.healthfoottab=false;
         $scope.healthfootsave=false;
-        $scope.patientAuthorize = false;
+      //  $scope.patientAuthorize = false;
+      //$rootScope.patientUnAuthorize = true;
         $rootScope.doddate = $rootScope.currentPatientDetails[0].dob;
         $rootScope.restage = getAge( $rootScope.doddate);
         if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId ===  $rootScope.currentPatientDetails[0].account.patientId)) {
@@ -984,7 +985,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 }
 
             }
-              $scope.patientAuthorize = true;
+            //  $scope.patientAuthorize = true;
         }
     $rootScope.doPutProfileUpdation = function() {
       $scope.patientMedicalHistoryDetails = {};
@@ -1164,15 +1165,23 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                   }
                 }else {
                   if ($rootScope.primaryPatientId !== data.patientID) {
+                    alert($rootScope.patientAuthorizeValue);
                       if($rootScope.patientAuthorizeValue === 'Y')
                       {
                           $scope.authen = true;
+                          $rootScope.patientAuthorize = true;
+                          $rootScope.patientUnAuthorize = false;
                       } else {
                           $scope.authen = false;
+                          $rootScope.patientAuthorize = false;
+                          $rootScope.patientUnAuthorize = true;
+
                       }
                       $scope.updateDependentRelation(data.patientID, $scope.getRelationshipId, $rootScope.patientAuthorizeValue);
                   } else {
                     $scope.authen = true;
+                    $rootScope.patientAuthorize = true;
+                    $rootScope.patientUnAuthorize = false;
                   }
                   $rootScope.currentPatientDetails.homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.homePhone));
                   $rootScope.currentPatientDetails.mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.mobilePhone));
@@ -1395,7 +1404,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         }
     }
     $scope.profile = function() {
-        $scope.patientAuthorize = true;
+        $rootScope.patientAuthorize = true;
         var myEl = angular.element(document.querySelector('#profid'));
         myEl.addClass('btcolor');
         myEl.removeClass('btnextcolor');
@@ -1528,7 +1537,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
     $scope.getMedicalDetailsinHealthInfo = function() {
           $scope.healthfoottab=true;
           $scope.healthfootsave=true;
-          $scope.patientAuthorize = false;
+          $rootScope.patientAuthorize = false;
       if($rootScope.hasRequiredFields === true) {
         $scope.health();
       }else {
