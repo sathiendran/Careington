@@ -551,7 +551,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-    } else if ($rootScope.AndroidDevice) {
+    } else if (!$rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -5996,6 +5996,92 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
         };
         LoginService.getAttachmentURL(params);
     }
+
+    $scope.loadDependent = function(){
+        $rootScope.RelatedPatientProfiles = '';
+        var params = {
+          patientId: $rootScope.patientId,
+          accessToken: $rootScope.accessToken,
+          success: function(data) {
+              $rootScope.RelatedPatientProfiles = [];
+              angular.forEach(data.data, function(index) {
+                  if (typeof index.gender !== 'undefined') {
+                      if (index.gender === 'F') {
+                            $scope.patGender = "Female";
+                        } else {
+                            $scope.patGender = "Male";
+                        }
+                    } else {
+                        $scope.patGender = "NA";
+                    }
+                    if(typeof $rootScope.listOfRelationship !== 'undefined' && $rootScope.listOfRelationship !== '') {
+                      var getdependRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
+                          codeId: index.relationCode
+                      })
+                      if (getdependRelationShip.length !== 0) {
+                          var depRelationShip = getdependRelationShip[0].text;
+                      } else {
+                          var depRelationShip = '';
+                      }
+                    } else {
+                      var depRelationShip = '';
+                    }
+
+                    $rootScope.RelatedPatientProfiles.push({
+                        'id': index.$id,
+                        'patientId': index.patientId,
+                        'patientName': index.patientName,
+                        'profileImagePath': index.profileImagePath,
+                        'relationCode': index.relationCode,
+                        'depRelationShip': depRelationShip,
+                        'isAuthorized': index.isAuthorized,
+                        'birthdate': index.birthdate,
+                        'ageBirthDate': ageFilter.getDateFilter(index.birthdate),
+                        'addresses': angular.fromJson(index.addresses),
+                        'gender': $scope.patGender,
+                        'patientFirstName': angular.element('<div>').html(index.patientFirstName).text(),
+                        'patientLastName': angular.element('<div>').html(index.patientLastName).text(),
+                        'personId': index.personId,
+
+                    });
+                });
+                $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
+                $scope.doGetCodesSet();
+                if (ReDirectPage === 'tab.userhome') {
+                    $('#loginPwdVerify').hide();
+                    $('#loginPwd').show();
+                    if (deploymentEnv === "Single") {
+                        $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme();
+                    } else {
+                        if ($rootScope.cuttlocations == "tab.ReportScreen") {
+                            $state.go('tab.userhome');
+                        }
+                        // else if ($rootScope.cuttlocations == undefined) {
+                        //   $scope.doGetlocationResponse();
+                        // } else {
+                        //     $scope.doGetlocationResponse();
+                        // }
+                    }
+                } else {
+                    $state.go('tab.healthinfo');
+                }
+            },
+            error: function(data, status) {
+                if (status === 0) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503) {
+                    $scope.callServiceUnAvailableError();
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+
+        LoginService.getRelatedPatientProfiles(params);
+      };
+
+
 
 
 })

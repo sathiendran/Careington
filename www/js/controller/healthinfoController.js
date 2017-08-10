@@ -1165,7 +1165,6 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                   }
                 }else {
                   if ($rootScope.primaryPatientId !== data.patientID) {
-                    alert($rootScope.patientAuthorizeValue);
                       if($rootScope.patientAuthorizeValue === 'Y')
                       {
                           $scope.authen = true;
