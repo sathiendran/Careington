@@ -535,7 +535,7 @@ $scope.editDob=function(){
   }
 
 }
-    $scope.healthphoneblur = function() {
+    /*$scope.healthphoneblur = function() {
         $scope.homephonelength = $('#healthInfoHomePhone').val().length;
         var homephoneval = $('#healthInfoHomePhone').val();
         if (homephoneval !== '') {
@@ -545,7 +545,7 @@ $scope.editDob=function(){
             }
 
         }
-    }
+    }*/
     $scope.ValidateEmail = function(email) {
         var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return expr.test(email);
@@ -706,6 +706,18 @@ $scope.editDob=function(){
                       return this.value.indexOf('?') >= 0;
                   }).remove();
               }, 100);
+          if($('#healthInfoHomePhone').val() !== '') {
+              $scope.homephonelength = $('#healthInfoHomePhone').val().length;
+              var homephoneval = $('#healthInfoHomePhone').val();
+              if (homephoneval !== '') {
+                  if ($scope.homephonelength < 14) {
+                      $scope.ErrorMessage = "Please enter valid Home Phone Number";
+                      $rootScope.Validation($scope.ErrorMessage);
+                      return false;
+                  }
+
+              }
+          }
 if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.patientId) {
                 if (($rootScope.restage >= 12)) {
                     if($rootScope.currentPatientDetails[0].account.email !== '') {

@@ -551,7 +551,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-    } else if (!$rootScope.AndroidDevice) {
+    } else if ($rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -714,7 +714,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $timeout(function() {
             $scope.$broadcast('scroll.refreshComplete');
         }, 1000);
-        $scope.$apply();
+      //  $scope.$apply();
     };
 
 
@@ -5553,7 +5553,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
               $rootScope.enableCreditVerification = "none";
               $rootScope.enableWaivefeeVerification = "block";
               $rootScope.ReceiptTimeout();
-            } else if($rootScope.appointmentwaivefee === true){
+          /*  } else if($rootScope.appointmentwaivefee === true){
               $rootScope.applyPlanMode = "none";
               $rootScope.chooseHealthHide = 'initial';
               $rootScope.chooseHealthShow = 'none';
@@ -5565,7 +5565,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
               $rootScope.providerName = "";
               $rootScope.PolicyNo = "";
               $scope.doGetPatientHealthPlansList();
-              $state.go('tab.consultCharge');
+              $state.go('tab.consultCharge');*/
             } else {
                 $rootScope.doGetHospitalInformation();
             }
@@ -5692,7 +5692,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
             success: function(data) {
                 $rootScope.getDetails = data.data[0].enabledModules;
                 if ($rootScope.getDetails !== '') {
-                  if(($rootScope.insuranceMode === 'on' && $rootScope.InsuranceBeforeWaiting === 'on') && ($rootScope.paymentMode === 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on')) {
+                  if((($rootScope.insuranceMode === 'on' && $rootScope.InsuranceBeforeWaiting === 'on') && ($rootScope.paymentMode === 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on')) || ($rootScope.appointmentwaivefee === true)) {
                     $rootScope.applyPlanMode = "block";
                     $rootScope.verifyPlanMode = "none";
                     $rootScope.consultChargeNoPlanPage = "none";
@@ -6047,24 +6047,6 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                 });
                 $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
                 $scope.doGetCodesSet();
-                if (ReDirectPage === 'tab.userhome') {
-                    $('#loginPwdVerify').hide();
-                    $('#loginPwd').show();
-                    if (deploymentEnv === "Single") {
-                        $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme();
-                    } else {
-                        if ($rootScope.cuttlocations == "tab.ReportScreen") {
-                            $state.go('tab.userhome');
-                        }
-                        // else if ($rootScope.cuttlocations == undefined) {
-                        //   $scope.doGetlocationResponse();
-                        // } else {
-                        //     $scope.doGetlocationResponse();
-                        // }
-                    }
-                } else {
-                    $state.go('tab.healthinfo');
-                }
             },
             error: function(data, status) {
                 if (status === 0) {

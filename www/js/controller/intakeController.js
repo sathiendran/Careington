@@ -278,8 +278,8 @@ $scope.locat=false;
         LoginService.getExistingConsulatation(params);
     }
 
-    $scope.goBackFromConcern = function() {
-    $state.go(locationdet);
+    $rootScope.goBackFromConcern = function() {
+         $state.go($rootScope.locationdet);
     }
     $scope.model = null;
     var today = new Date();
@@ -513,7 +513,7 @@ $scope.locat=false;
                     $rootScope.enableCreditVerification = "none";
                     $rootScope.enableWaivefeeVerification = "block";
                      $rootScope.ReceiptTimeout();
-                  } else if($rootScope.appointmentwaivefee === true){
+                /*  } else if($rootScope.appointmentwaivefee === true){
                      $rootScope.applyPlanMode = "none";
                      $rootScope.chooseHealthHide = 'initial';
                      $rootScope.chooseHealthShow = 'none';
@@ -525,7 +525,7 @@ $scope.locat=false;
                      $rootScope.providerName = "";
                      $rootScope.PolicyNo = "";
                      $scope.doGetPatientHealthPlansList();
-                     $state.go('tab.consultCharge');
+                     $state.go('tab.consultCharge');*/
                   } else {
                       $rootScope.doGetHospitalInformation();
                   }
