@@ -279,7 +279,7 @@ $scope.locat=false;
     }
 
     $scope.goBackFromConcern = function() {
-    $state.go(locationdet);
+         $state.go($rootScope.locationdet);
     }
     $scope.model = null;
     var today = new Date();
