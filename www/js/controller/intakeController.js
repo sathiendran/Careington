@@ -513,11 +513,24 @@ $scope.locat=false;
                     $rootScope.enableCreditVerification = "none";
                     $rootScope.enableWaivefeeVerification = "block";
                      $rootScope.ReceiptTimeout();
-                  }
-                   else {
+                  } else if($rootScope.appointmentwaivefee === true){
+                     $rootScope.applyPlanMode = "none";
+                     $rootScope.chooseHealthHide = 'initial';
+                     $rootScope.chooseHealthShow = 'none';
+                     $rootScope.verifyPlanMode = "block";
+                     $rootScope.consultChargeNoPlanPage = "none";
+                     $rootScope.healthPlanPage = "block";
+                     $rootScope.chooseHealthHide = 'initial';
+                     $rootScope.chooseHealthShow = 'none';
+                     $rootScope.providerName = "";
+                     $rootScope.PolicyNo = "";
+                     $scope.doGetPatientHealthPlansList();
+                     $state.go('tab.consultCharge');
+                  } else {
                       $rootScope.doGetHospitalInformation();
                   }
                 } else {
+                  $rootScope.appointmentwaivefee = '';
                   $rootScope.appointmentsPage = false;
                   $state.go('tab.ConsentTreat');
                 }
@@ -787,6 +800,7 @@ $scope.locat=false;
             OnDemandConsultationData: $scope.OnDemandConsultationSaveData,
             patientId: $rootScope.patientId,
             success: function(data) {
+                $rootScope.appointmentwaivefee = '';
                 $rootScope.OnDemandConsultationSaveResult = data.data[0];
                 $rootScope.consultationAmount = $rootScope.OnDemandConsultationSaveResult.consultationAmount;
                 $rootScope.copayAmount = $rootScope.OnDemandConsultationSaveResult.consultationAmount;
