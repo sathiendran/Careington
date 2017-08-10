@@ -42,7 +42,7 @@
 </div>
 
 
-<ion-content class="ContentUserHome UserHme" ng-controller="LoginCtrl" >
+<ion-content class="ContentUserHome UserHme" ng-controller="LoginCtrl" ng-init="loadDependent()">
  	<ion-list>
 
 	<div><ion-refresher on-refresh="doRefreshUserHome()"  >
@@ -54,7 +54,7 @@
 				<div class="UserhmePatientDetails">
 				<!--	<img ng-src="{{PatientImage}}" src="{{PatientImage}}" class="UserHmelistImgView">-->
 					<div class="userHomeImageMainPat" ng-bind-html="drawImage(PatientImage,primaryPatientName,primaryPatientLastName)"></div>
-					<div class= "ListTextTitle ellipsis userHomeFullName" > <b class="ng-binding firstname"> {{primaryPatientName}} </b><span class="SubTitleSpan ellipsis"> {{primaryPatientLastName}}</span></div>
+					<div class= "ListTextTitle ellipsis userHomeFullName" > <b class="ng-binding firstname"> name {{primaryPatientName}} </b><span class="SubTitleSpan ellipsis"> {{primaryPatientLastName}}</span></div>
 					<!--<p class="ListText listTitle" style="font-size: 24px;overflow: auto;"><b>Login Details Welcome</b> <span class="SubTitleSpan">Sathiendran <span></p> -->
 					<p class="ListHomeUser_pTitle DateFormateStyle"><span ng-if="primaryPatGender != ''">{{primaryPatGender}} . </span>{{dob | ageFilter}} <!--<span ng-if="primaryPatientGuardianName"> | Guardain : {{primaryPatientGuardianName}}</span>--></p>
 					<!--<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>-->
@@ -72,7 +72,7 @@
 			   <span class="DateFormateStyle AppointmentView" >View Details</span>
 		    </a>
 		</ion-item>-->
-		<div style="display: none;"><timer end-time="time"  ></timer></div>
+		<div style="display: none;"><timer end-time="time"></timer></div>
 
 		<ion-item style="background-color: {{userHomeRecentAppointmentColor}}; border-top: none; display: {{nextAppointmentDisplay}}"  class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData, 'userHome')" ng-if="$first">
 			<a class="HrefListView"  >

@@ -326,7 +326,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
 
-.controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup) {
+.controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup)
+{
     window.localStorage.setItem('isVideoCallProgress', "No");
     window.localStorage.setItem("isCustomerInWaitingRoom", "No");
     $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
@@ -414,9 +415,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         } else if (env === "Snap-azure") {
           //  $rootScope.APICommonURL = 'https://connectedcarepilotweb2.azurewebsites.net';
           //  apiCommonURL = 'https://connectedcarepilotweb2.azurewebsites.net';
-              $rootScope.APICommonURL = 'https://emerald.dev2.snapvcm.com';
-              apiCommonURL = 'https://emerald.dev2.snapvcm.com';
-            api_keys_env = "Snap.QA";
+          $rootScope.APICommonURL = 'https://emerald.qa1.snapvcm.com';
+                      apiCommonURL = 'https://emerald.qa1.snapvcm.com';
+                      api_keys_env = "Snap.QA";
+
+            //   $rootScope.APICommonURL = 'https://emerald.dev2.snapvcm.com';
+            //   apiCommonURL = 'https://emerald.dev2.snapvcm.com';
+            // api_keys_env = "Snap.QA";
+
         }
         snap.baseUrl = apiCommonURL;
         $state.go('tab.login');
@@ -561,7 +567,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-    } else if ($rootScope.AndroidDevice) {
+    } else if (!$rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -2756,7 +2762,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.primaryPatientId = $rootScope.currentPatientDetails[0].profileId;
                     $state.go('tab.healthinfo');
                     $scope.chkPatientFillDetails = true;
-                    $rootScope.doGetRequiredPatientProfiles($rootScope.currentPatientDetails[0].profileId, $scope.chkPatientFillDetails);
+                    if($rootScope.currentPatientDetails[0].profileId != '25198')
+                    {
+                          $rootScope.doGetRequiredPatientProfiles($rootScope.currentPatientDetails[0].profileId, $scope.chkPatientFillDetails);
+                    }
+
                 }
 
             },
@@ -2797,6 +2807,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     }
 
     $rootScope.doGetRequiredPatientProfiles = function(patientId, chkPreviousPage, cutlocations, authen) {
+
+      alert(patientId);
+      //if(patientId == '25198')
+      if(patientId)
+      {
         $rootScope.PatientImageSelectUser = '';
         $rootScope.PatientImage = '';
         $rootScope.primaryPatientName = '';
@@ -2870,11 +2885,95 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         };
 
         LoginService.getSelectedPatientProfiles(params);
+      }
+
     }
-
-    $rootScope.doGetRelatedPatientProfiles = function(ReDirectPage) {
+    $scope.loadDependent = function(){
         $rootScope.RelatedPatientProfiles = '';
+        var params = {
+          patientId: $rootScope.patientId,
+          accessToken: $rootScope.accessToken,
+          success: function(data) {
+              $rootScope.RelatedPatientProfiles = [];
+              angular.forEach(data.data, function(index) {
+                  if (typeof index.gender !== 'undefined') {
+                      if (index.gender === 'F') {
+                            $scope.patGender = "Female";
+                        } else {
+                            $scope.patGender = "Male";
+                        }
+                    } else {
+                        $scope.patGender = "NA";
+                    }
+                    if(typeof $rootScope.listOfRelationship !== 'undefined' && $rootScope.listOfRelationship !== '') {
+                      var getdependRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
+                          codeId: index.relationCode
+                      })
+                      if (getdependRelationShip.length !== 0) {
+                          var depRelationShip = getdependRelationShip[0].text;
+                      } else {
+                          var depRelationShip = '';
+                      }
+                    } else {
+                      var depRelationShip = '';
+                    }
 
+                    $rootScope.RelatedPatientProfiles.push({
+                        'id': index.$id,
+                        'patientId': index.patientId,
+                        'patientName': index.patientName,
+                        'profileImagePath': index.profileImagePath,
+                        'relationCode': index.relationCode,
+                        'depRelationShip': depRelationShip,
+                        'isAuthorized': index.isAuthorized,
+                        'birthdate': index.birthdate,
+                        'ageBirthDate': ageFilter.getDateFilter(index.birthdate),
+                        'addresses': angular.fromJson(index.addresses),
+                        'gender': $scope.patGender,
+                        'patientFirstName': angular.element('<div>').html(index.patientFirstName).text(),
+                        'patientLastName': angular.element('<div>').html(index.patientLastName).text(),
+                        'personId': index.personId,
+
+                    });
+                });
+                $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
+                $scope.doGetCodesSet();
+                if (ReDirectPage === 'tab.userhome') {
+                    $('#loginPwdVerify').hide();
+                    $('#loginPwd').show();
+                    if (deploymentEnv === "Single") {
+                        $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme();
+                    } else {
+                        if ($rootScope.cuttlocations == "tab.ReportScreen") {
+                            $state.go('tab.userhome');
+                        }
+                        // else if ($rootScope.cuttlocations == undefined) {
+                        //   $scope.doGetlocationResponse();
+                        // } else {
+                        //     $scope.doGetlocationResponse();
+                        // }
+                    }
+                } else {
+                    $state.go('tab.healthinfo');
+                }
+            },
+            error: function(data, status) {
+                if (status === 0) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503) {
+                    $scope.callServiceUnAvailableError();
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+
+        LoginService.getRelatedPatientProfiles(params);
+      };
+
+     $rootScope.doGetRelatedPatientProfiles = function(ReDirectPage) {
+        $rootScope.RelatedPatientProfiles = '';
         var params = {
             patientId: $rootScope.patientId,
             accessToken: $rootScope.accessToken,
@@ -6869,6 +6968,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         };
         LoginService.getAttachmentURL(params);
     }
+
 
     // Note
 
