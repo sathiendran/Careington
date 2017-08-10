@@ -1403,7 +1403,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         }
     }
     $scope.profile = function() {
-        $rootScope.patientAuthorize = true;
+        //$rootScope.patientAuthorize = true;
         var myEl = angular.element(document.querySelector('#profid'));
         myEl.addClass('btcolor');
         myEl.removeClass('btnextcolor');
@@ -1536,7 +1536,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
     $scope.getMedicalDetailsinHealthInfo = function() {
           $scope.healthfoottab=true;
           $scope.healthfootsave=true;
-          $rootScope.patientAuthorize = false;
+          //$rootScope.patientAuthorize = false;
       if($rootScope.hasRequiredFields === true) {
         $scope.health();
       }else {
