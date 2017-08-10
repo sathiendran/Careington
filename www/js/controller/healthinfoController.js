@@ -217,10 +217,10 @@ angular.module('starter.controllers')
             $('#healthInfoHeight').val("");
             $('#healthInfoHeight2').val("");
             document.getElementById('healthInfoHeightUnit').selectedIndex = 1;
-            $scope.hfeet=false;
-            $scope.hinch=false;
-            $scope.hmeter=false;
-            $scope.hcmeter=false;
+            $scope.hfeet=true;
+            $scope.hinch=true;
+            $scope.hmeter=true;
+            $scope.hcmeter=true;
           }else{
             var reminspace=hghtinval.split(" ");
             var fet=reminspace[0];
@@ -229,7 +229,7 @@ angular.module('starter.controllers')
             if(units==="ft"){
               $('#healthInfoHeight').val(fet);
               $('#healthInfoHeight2').val(finc);
-              document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
+              document.getElementById('healthInfoHeightUnit').selectedIndex = 1;
               $scope.hfeet=true;
               $scope.hinch=true;
               $scope.hmeter=true;
@@ -237,7 +237,7 @@ angular.module('starter.controllers')
             }else {
               $('#healthInfoHeight').val(fet);
               $('#healthInfoHeight2').val(finc);
-              document.getElementById('healthInfoHeightUnit').selectedIndex = 1;
+              document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
               $scope.hfeet=false;
               $scope.hinch=false;
               $scope.hmeter=false;
