@@ -5531,7 +5531,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
         if ($rootScope.appointmentsPage !== true) {
-
+            $rootScope.appointmentwaivefee = '';
             if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on' && $rootScope.InsuranceBeforeWaiting !== 'on') {
                 $rootScope.healthPlanPage = "none";
                 $rootScope.consultChargeNoPlanPage = "block";
