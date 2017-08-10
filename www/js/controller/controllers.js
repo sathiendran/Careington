@@ -2388,13 +2388,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     }
 
     $rootScope.doGetRequiredPatientProfiles = function(patientId, chkPreviousPage, cutlocations, authen) {
-        $rootScope.PatientImageSelectUser = '';
-        $rootScope.PatientImage = '';
-        $rootScope.primaryPatientName = '';
-        $rootScope.primaryPatientLastName = '';
-        $rootScope.dob = '';
-        $rootScope.primaryPatGender = '';
-
+        if(chkPreviousPage === true) {
+          $rootScope.PatientImageSelectUser = '';
+          $rootScope.PatientImage = '';
+          $rootScope.primaryPatientName = '';
+          $rootScope.primaryPatientLastName = '';
+          $rootScope.dob = '';
+          $rootScope.primaryPatGender = '';
+        }
         var params = {
             accessToken: $rootScope.accessToken,
             patientId: patientId,
@@ -2429,15 +2430,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     });
                 });
                 $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
-                $rootScope.PatientImageSelectUser = $rootScope.currentPatientDetails[0].account.profileImage;
                 $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
-                $rootScope.PatientImage = $rootScope.PatientImageSelectUser;
-                $rootScope.primaryPatientName = $rootScope.currentPatientDetails[0].patientName;
-                $rootScope.primaryPatientLastName = $rootScope.currentPatientDetails[0].lastName;
-                $rootScope.dob = $rootScope.currentPatientDetails[0].dob;
                 $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
                 $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
                 if(chkPreviousPage === true) {
+                  $rootScope.PatientImageSelectUser = $rootScope.currentPatientDetails[0].account.profileImage;
+                  $rootScope.PatientImage = $rootScope.PatientImageSelectUser;
+                  $rootScope.primaryPatientName = $rootScope.currentPatientDetails[0].patientName;
+                  $rootScope.primaryPatientLastName = $rootScope.currentPatientDetails[0].lastName;
+                  $rootScope.dob = $rootScope.currentPatientDetails[0].dob;
                   $rootScope.getHealtPageForFillingRequiredDetails();
                 } else {
                   $rootScope.GoToPatientDetails(cutlocations,$rootScope.currentPatientDetails[0].account.profileImagePath, $rootScope.currentPatientDetails[0].patientName, $rootScope.currentPatientDetails[0].lastName, $rootScope.currentPatientDetails[0].dob, $rootScope.currentPatientDetails[0].guardianName, $rootScope.patientId, authen, ' ');
@@ -3509,7 +3510,7 @@ var deregisterBackButton;
                 $state.go('tab.receipt');
                 $rootScope.ReceiptTimeout();
               } else {
-                  if($rootScope.paymentMode !== 'on' || $rootScope.HidePaymentPageBeforeWaitingRoom === 'on') {
+                  if($rootScope.paymentMode !== 'on' || $rootScope.HidePaymentPageBeforeWaitingRoom === 'on' || $rootScope.appointmentwaivefee === true) {
                     $rootScope.enablePaymentSuccess = "none";
                     $rootScope.enableCreditVerification = "none"
                     $rootScope.enableWaivefeeVerification = "none";;
@@ -3523,7 +3524,7 @@ var deregisterBackButton;
               }
             },
             error: function() {
-                if($rootScope.paymentMode !== 'on' || $rootScope.HidePaymentPageBeforeWaitingRoom === 'on') {
+                if($rootScope.paymentMode !== 'on' || $rootScope.HidePaymentPageBeforeWaitingRoom === 'on' || $rootScope.appointmentwaivefee === true) {
                   $rootScope.enablePaymentSuccess = "none";
                   $rootScope.enableCreditVerification = "none";
                   $rootScope.enableWaivefeeVerification = "none";
@@ -5552,6 +5553,19 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
               $rootScope.enableCreditVerification = "none";
               $rootScope.enableWaivefeeVerification = "block";
               $rootScope.ReceiptTimeout();
+            } else if($rootScope.appointmentwaivefee === true){
+              $rootScope.applyPlanMode = "none";
+              $rootScope.chooseHealthHide = 'initial';
+              $rootScope.chooseHealthShow = 'none';
+              $rootScope.verifyPlanMode = "block";
+              $rootScope.consultChargeNoPlanPage = "none";
+              $rootScope.healthPlanPage = "block";
+              $rootScope.chooseHealthHide = 'initial';
+              $rootScope.chooseHealthShow = 'none';
+              $rootScope.providerName = "";
+              $rootScope.PolicyNo = "";
+              $scope.doGetPatientHealthPlansList();
+              $state.go('tab.consultCharge');
             } else {
                 $rootScope.doGetHospitalInformation();
             }
