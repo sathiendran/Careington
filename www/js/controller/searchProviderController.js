@@ -69,7 +69,7 @@ angular.module('starter.controllers')
                         cordova.plugins.Keyboard.close();
                     }
                     $rootScope.searchProviderList = [];
-                    if (data.data !== '') {
+                    if (data.data.length !== 0) {
                         $('#startSearchProvider').hide();
                         $('#emptyProvider').hide();
                         $('#providerListDiv').show();

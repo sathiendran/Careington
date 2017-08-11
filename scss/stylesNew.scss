@@ -5066,3 +5066,12 @@ font-size: 19px;
 .code6 {
   font-size: 18px !important;
 }
+.depenBackgroundColor {
+  .col-50 {
+        max-width: 47%;
+  }
+  .depGreyLabel {
+      max-width: 64%;
+      flex:auto;
+   }
+}

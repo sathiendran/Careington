@@ -500,6 +500,17 @@ angular.module('starter.controllers')
             return false;
         });
 
+        $rootScope.backtoPreviousPage = function() {
+           $state.go($rootScope.frontPage);
+       }
+       $rootScope.backtoPreviousPagefromReg = function() {
+         if (deploymentEnvLogout === "Single") {
+             $state.go('tab.loginSingle');
+         } else {
+             $state.go('tab.searchprovider');
+         }
+      }
+
 
        /* $scope.registerStepBack=function(){
           history.back();

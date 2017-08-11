@@ -843,7 +843,7 @@ angular.module('starter.controllers')
                     $("#health_width").css("width", "62px");
                }
                else if ($scope.addNewDependent.healthInfoCountryCode.length == 4){
-                $("#health_width").css("width", "47px");
+                $("#health_width").css("width", "42px");
               }
              else if($scope.addNewDependent.healthInfoCountryCode.length == 3){
                    $("#health_width").css("width", "36px");
@@ -858,7 +858,7 @@ angular.module('starter.controllers')
                    $("#health_width").css("width", "62px");
               }
               else if ($scope.addNewDependent.healthInfoCountryCode.length == 4){
-               $("#health_width").css("width", "47px");
+               $("#health_width").css("width", "42px");
              }
             else if($scope.addNewDependent.healthInfoCountryCode.length == 3){
                   $("#health_width").css("width", "36px");

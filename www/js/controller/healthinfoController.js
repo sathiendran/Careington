@@ -1512,7 +1512,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                $("#health_width").css("width", "62px");
           }
           else if ($scope.healthInfoModel.healthInfoCountryCode.length == 4){
-           $("#health_width").css("width", "47px");
+           $("#health_width").css("width", "42px");
          }
         else if($scope.healthInfoModel.healthInfoCountryCode.length == 3){
               $("#health_width").css("width", "36px");
@@ -2257,7 +2257,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                   $("#health_width").css("width", "62px");
              }
              else if ($scope.healthInfoModel.healthInfoCountryCode.length == 4){
-              $("#health_width").css("width", "47px");
+              $("#health_width").css("width", "42px");
             }
            else if($scope.healthInfoModel.healthInfoCountryCode.length == 3){
                  $("#health_width").css("width", "36px");
@@ -2276,7 +2276,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                if($scope.healthInfoModel.healthInfoCountryCode.length == 6){
                     $("#health_width").css("width", "62px");
                } else if ($scope.healthInfoModel.healthInfoCountryCode.length == 4){
-                    $("#health_width").css("width", "47px");
+                    $("#health_width").css("width", "42px");
                } else if($scope.healthInfoModel.healthInfoCountryCode.length == 3){
                     $("#health_width").css("width", "36px");
                }  else if($scope.healthInfoModel.healthInfoCountryCode.length == 2){
@@ -2290,7 +2290,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                       $("#health_width").css("width", "62px");
                  }
                  else if($rootScope.countrycodevalue.length == 4){
-                  $("#health_width").css("width", "47px");
+                  $("#health_width").css("width", "42px");
                 }
                  else if($rootScope.countrycodevalue.length == 3){
                      $("#health_width").css("width", "36px");
