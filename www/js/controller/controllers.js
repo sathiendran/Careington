@@ -5692,7 +5692,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
             success: function(data) {
                 $rootScope.getDetails = data.data[0].enabledModules;
                 if ($rootScope.getDetails !== '') {
-                  if((($rootScope.insuranceMode === 'on' && $rootScope.InsuranceBeforeWaiting === 'on') && ($rootScope.paymentMode === 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on')) || ($rootScope.appointmentwaivefee === true)) {
+                  if(($rootScope.insuranceMode === 'on' && $rootScope.InsuranceBeforeWaiting === 'on') && ($rootScope.paymentMode === 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on')) {
                     $rootScope.applyPlanMode = "block";
                     $rootScope.verifyPlanMode = "none";
                     $rootScope.consultChargeNoPlanPage = "none";
@@ -5887,6 +5887,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
     $rootScope.GoToappoimentDetailsFromUserHome = function(scheduledListData, fromPreviousPage) {
         $rootScope.AppointScheduleTime = '';
         $rootScope.scheduledListDatas = scheduledListData;
+        $rootScope.appointmentwaivefee = scheduledListData.waiveFee;
         var currentTime = $rootScope.scheduledListDatas.scheduledTime;
         var getMinsExtraTime = $scope.addMinutes(currentTime, 30);
         var getEnterTime = new Date();

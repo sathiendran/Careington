@@ -123,6 +123,7 @@ angular.module('starter.controllers')
         $scope.GoToappoimentDetails = function(scheduledListData) {
             $rootScope.AppointScheduleTime = '';
             $rootScope.scheduledListDatas = scheduledListData;
+            $rootScope.appointmentwaivefee = scheduledListData.waiveFee;
             var currentTime = $rootScope.scheduledListDatas.scheduledTime;
             var getMinsExtraTime = $scope.addMinutes(currentTime, 30);
             var getEnterTime = new Date();
