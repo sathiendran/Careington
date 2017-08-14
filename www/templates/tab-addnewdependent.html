@@ -119,7 +119,7 @@
                   </div>
                   <div class="col col-50 depGreyLabel">
                      <div class="dependHeigh-{{deviceName}}">
-                        <input id="weight" class="usertext textdata" type="number" value="" placeholder="Required"  name="weight" ng-keyup="weight1len()" >
+                        <input id="weight" class="usertext textdata" type="tel" value="" placeholder="Required"  name="weight" ng-keyup="weight1len()" >
                      </div>
                      <div class="dependHeighUnit-{{deviceName}}" style="width: 50%;">
                         <select class="optionselect textdata dependwetUnit-{{deviceName}}" name="weightunit" id="weightunit" ng-model="weightunits" >
@@ -166,20 +166,26 @@
                      <span class="input-label labelcolor">
                      <i class="iconsize" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel">Mobile</b><i class="ion-asterisk"></i></span>
                   </div>
-                  <div class="col col-50 depGreyLabel">
+                  <!--<div class="col col-50 depGreyLabel">
                     <div id="health_width" style=" float: left; position: relative; left: -5px" ng-disabled="!currntCountryCode">
+                     <input style="background-color: #e9e9e9; padding: 2px;" type="text" readonly="readonly" class="textdata optionselect"  name="healthInfoCountryCode" id="healthInfoCountryCode" ng-model="addNewDependent.healthInfoCountryCode"  >
+                   </div>
+                     <input class="textdata" style="display: inline; left: -5px; position: relative; color: #7c7c7c; min-width: 15%;max-width: 77%;width: 128px;" id="mobile" type="tel" value=""  placeholder="Required"   ng-model="dependmobile"   name="mobile" phone-input >
+                  </div>-->
+                  <span class="healthViewDetails" style="padding: 5px 2px 4px 2px; background-color: #e9e9e9; ">
+                    <div id="health_width" class="health-wid" style=" float: left; position: relative; left: 0px;" ng-disabled="!currntCountryCode">
                      <!-- <select stryle="height: 41px; padding-top: 14px;" class="textdata optionselect"  name="healthInfoCountryCode" id="healthInfoCountryCode" ng-model="healthInfoModel.healthInfoCountryCode" >
                          <option  ng-repeat="country in currntCountryCode" ng-selected="currentPatientDetails[0].countryCode == country.code"  value="{{country.code}}" ><b>{{country.code}}</b></option>
                      </select>-->
-                     <input style="background-color: #e9e9e9; padding: 2px;" type="text" readonly="readonly" class="textdata optionselect"  name="healthInfoCountryCode" id="healthInfoCountryCode" ng-model="addNewDependent.healthInfoCountryCode"  >
+                     <input style="padding-left: 2px; background-color: #e9e9e9;" type="text" readonly="readonly" class="textdata optionselect"  name="healthInfoCountryCode" id="healthInfoCountryCode" ng-model="addNewDependent.healthInfoCountryCode"  >
                    </div>
-                     <input class="textdata" style="display: inline; left: -5px; position: relative; color: #7c7c7c; width: 73%;" id="mobile" type="tel" value=""  placeholder="Required"   ng-model="dependmobile"   name="mobile" phone-input >
-                  </div>
+                    <input type="tel" class="code6" style="position: relative; color: #7c7c7c;min-width: 15%;max-width: 70%; padding-right: 0px; line-height: 45px; margin-top: -2px;" class=" textdata" placeholder="Required" ng-model="dependmobile" id="mobile"  name="mobile" phone-input>
+                  </span>
                </div>
                <div class="item item-input validated">
                   <div class="col col-50">
                      <span class="input-label labelcolor" >
-                     <i class="iconsize" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel">Home Address</b><i class="ion-asterisk"></i></span>
+                     <i class="iconsize" style="left: -5px; position: relative;" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel" style="margin-left: -4px;">Home Address</b><i class="ion-asterisk"></i></span>
                   </div>
                   <div class="col col-50 depGreyLabel">
                      <ion-google-place class="coUserAddress-{{deviceName}}" placeholder="Full Address" ng-model="addNewDependent.homeadd" style="fon-size:18px !important;font-family: Glober Regular;" />
@@ -261,7 +267,7 @@
                <div class="item item-input validated fadediv">
                   <div class="col col-50">
                      <span class="input-label labelcolor">
-                     <i _style="display: none;" class="iconsize" ng-bind-html="drawSVGCIcon('lock-open')"></i><b class="formlabel" >Authorization</b><i class="ion-asterisk"></i></span>
+                     <i style="position: relative; left: -3px;" class="iconsize" ng-bind-html="drawSVGCIcon('lock-open')"></i><b class="formlabel" style="margin-left: 2px;" >Authorization</b><i class="ion-asterisk"></i></span>
                   </div>
                   <div class="col col-50 dependentAddAuthorize depGreyLabel" >
                      Authorized

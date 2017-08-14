@@ -560,7 +560,7 @@ angular.module('starter.controllers')
     $scope.doGetExistingConsulatation();
 
     $rootScope.ClearRootScope = function() {
-
+        $rootScope.cuttlocations = '';
         $window.localStorage.setItem('tokenExpireTime', '');
 
         $rootScope = $rootScope.$new(true);

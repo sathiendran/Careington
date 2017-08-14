@@ -431,7 +431,12 @@ angular.module('starter.controllers')
 
                   myPopup.then(function(res) {
                       if (res) {
-                      $state.go('tab.login');
+                      //$state.go('tab.login');
+                        if (deploymentEnvLogout === "Single") {
+                            $state.go('tab.loginSingle');
+                        } else {
+                            $state.go('tab.login');
+                        }
                       } else {
                           $('.regemail').addClass("emailbackground");
                           $scope.emailexisterror=true;
@@ -496,6 +501,17 @@ angular.module('starter.controllers')
             window.open(encodeURI(url), '_system', 'location=yes');
             return false;
         });
+
+        $rootScope.backtoPreviousPage = function() {
+           $state.go($rootScope.frontPage);
+       }
+       $rootScope.backtoPreviousPagefromReg = function() {
+         if (deploymentEnvLogout === "Single") {
+             $state.go('tab.loginSingle');
+         } else {
+             $state.go('tab.searchprovider');
+         }
+      }
 
 
        /* $scope.registerStepBack=function(){

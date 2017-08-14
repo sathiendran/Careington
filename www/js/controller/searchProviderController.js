@@ -69,7 +69,7 @@ angular.module('starter.controllers')
                         cordova.plugins.Keyboard.close();
                     }
                     $rootScope.searchProviderList = [];
-                    if (data.total > 0) {
+                    if (data.data.length !== 0) {
                         $('#startSearchProvider').hide();
                         $('#emptyProvider').hide();
                         $('#providerListDiv').show();
@@ -85,7 +85,7 @@ angular.module('starter.controllers')
                                 }
                             } else {
                                 $scope.chkImageorNot = "";
-                                $scope.proImage = get2CharInString.getProv2Char(index.hospitalName);
+                                $scope.proImage = get2CharInString.getProv2Char(index.brandName);
                             }
                             $rootScope.searchProviderList.push({
                                 'customerSso': index.customerSso,
