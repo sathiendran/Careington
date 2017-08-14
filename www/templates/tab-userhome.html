@@ -42,7 +42,7 @@
 </div>
 
 
-<ion-content class="ContentUserHome UserHme" ng-controller="LoginCtrl" ng-init="loadDependent()">
+<ion-content class="ContentUserHome UserHme" ng-controller="LoginCtrl" ng-init="loadDependent(); doRefreshUserHome()" >
  	<ion-list>
 
 	<div><ion-refresher on-refresh="doRefreshUserHome()"  >

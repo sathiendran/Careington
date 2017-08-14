@@ -102,7 +102,7 @@ angular.module('starter.controllers')
             $timeout(function() {
                 $scope.$broadcast('scroll.refreshComplete');
             }, 1000);
-            $scope.$apply();
+            //$scope.$apply();
         };
 
         if($stateParams.getPage === 'webSS'){
@@ -145,6 +145,7 @@ angular.module('starter.controllers')
             $rootScope.appointPersonId = '';
             $rootScope.AppointScheduleTime = '';
             $rootScope.scheduledListDatas = scheduledListData;
+            $rootScope.appointmentwaivefee = scheduledListData.waiveFee;
             var currentTime = $rootScope.scheduledListDatas.scheduledTime;
             var getMinsExtraTime = $scope.addMinutes(currentTime, 30);
             var getEnterTime = new Date();

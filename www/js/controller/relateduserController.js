@@ -192,6 +192,11 @@
                 IsAuthorized: relateDependentAuthorize,
                 success: function() {
                     $scope.authorizedview = false;
+                    if(relateDependentAuthorize = 'Y' && $rootScope.patientId === relateDependentId) {
+                      $rootScope.P_isAuthorized = true;
+                    } else if(relateDependentAuthorize = 'N' && $rootScope.patientId === relateDependentId) {
+                        $rootScope.P_isAuthorized = false;
+                    }
                     $rootScope.doGetAccountDependentDetails();
                 },
                 error: function(data, status) {

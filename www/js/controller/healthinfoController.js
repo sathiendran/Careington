@@ -209,10 +209,12 @@ angular.module('starter.controllers')
           backdropClickToClose: false
       }).then(function(modal) {
         var hghtinval=$('#heightuser').val();
+        //var hghtinvalArr = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
+        //var hghtinval = hghtinvalArr[0];
 
           $scope.modal = modal;
           $scope.modal.show().then(function() {
-          if(hghtinval===""){
+          if(hghtinval === ""){
             $('#healthInfoHeight').val("");
             $('#healthInfoHeight2').val("");
             document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
@@ -481,7 +483,9 @@ angular.module('starter.controllers')
         // console.log("value le :" + $scope.val.length);
         $scope.healthfoottab=false;
         $scope.healthfootsave=false;
-        //  $rootScope.getPatientids();
+          //  $rootScope.getPatientids();
+      //  $scope.patientAuthorize = false;
+      //$rootScope.patientUnAuthorize = true;
         $rootScope.doddate = $rootScope.currentPatientDetails[0].dob;
         $rootScope.restage = getAge( $rootScope.doddate);
         if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId ===  $rootScope.currentPatientDetails[0].account.patientId)) {
@@ -588,7 +592,7 @@ $scope.editDob=function(){
   }
 
 }
-    $scope.healthphoneblur = function() {
+    /*$scope.healthphoneblur = function() {
         $scope.homephonelength = $('#healthInfoHomePhone').val().length;
         var homephoneval = $('#healthInfoHomePhone').val();
         if (homephoneval !== '') {
@@ -598,7 +602,7 @@ $scope.editDob=function(){
             }
 
         }
-    }
+    }*/
     $scope.ValidateEmail = function(email) {
         var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return expr.test(email);
@@ -623,11 +627,7 @@ $scope.editDob=function(){
         $rootScope.timezoneDisplay = 'none';
       }
     }
-
-
-          $scope.putUpdatePatientDetails = function() {
-            $scope.editimg = true;
-            $scope.viewimg = false;
+    $scope.putUpdatePatientDetails = function() {
             var selectDate = document.getElementById('healthInfoDOB').value;
             var now = new Date();
             var dt1 = Date.parse(now),
@@ -830,7 +830,18 @@ $scope.editDob=function(){
                      break;
                 }
               }
+              if($('#healthInfoHomePhone').val() !== '') {
+                  $scope.homephonelength = $('#healthInfoHomePhone').val().length;
+                  var homephoneval = $('#healthInfoHomePhone').val();
+                  if (homephoneval !== '') {
+                      if ($scope.homephonelength < 14) {
+                          $scope.ErrorMessage = "Please enter valid Home Phone Number";
+                          $rootScope.Validation($scope.ErrorMessage);
+                          return false;
+                      }
 
+                  }
+              }
 
 if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.patientId) {
                 if (($rootScope.restage >= 12)) {
@@ -1154,6 +1165,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                     $scope.doPutProfileUpdation();
                 }
             }
+            //  $scope.patientAuthorize = true;
         }
 
         $scope.newupdatePatientDetails = function(){
@@ -1351,6 +1363,9 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             },
             patientMedicalHistoryData: $scope.patientMedicalHistoryDetails,
             success: function(data) {
+              $scope.editimg = true;
+              $scope.viewimg = false;
+              $scope.doneshow = true;
               if ($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !== 'undefined') {
                   $scope.uploadPhotoForExistingPatient();
               }
@@ -1375,12 +1390,19 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                       if($rootScope.patientAuthorizeValue === 'Y')
                       {
                           $scope.authen = true;
+                          $rootScope.patientAuthorize = true;
+                          $rootScope.patientUnAuthorize = false;
                       } else {
                           $scope.authen = false;
+                          $rootScope.patientAuthorize = false;
+                          $rootScope.patientUnAuthorize = true;
+
                       }
                       $scope.updateDependentRelation(data.patientID, $scope.getRelationshipId, $rootScope.patientAuthorizeValue);
                   } else {
                     $scope.authen = true;
+                    $rootScope.patientAuthorize = true;
+                    $rootScope.patientUnAuthorize = false;
                   }
                   $rootScope.currentPatientDetails.homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.homePhone));
                   $rootScope.currentPatientDetails.mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.mobilePhone));
@@ -1606,6 +1628,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         }
     }
     $scope.profile = function() {
+        //$rootScope.patientAuthorize = true;
         var myEl = angular.element(document.querySelector('#profid'));
         myEl.addClass('btcolor');
         myEl.removeClass('btnextcolor');
@@ -1698,11 +1721,11 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         $rootScope.currntCountryCode = $rootScope.serviceCountries.filter(function(r) { var show = r.code == $rootScope.currentPatientDetails[0].countryCode; return show; });
         if($rootScope.currntCountryCode.length !== 0) {
          $scope.healthInfoModel.healthInfoCountryCode =  $rootScope.currntCountryCode[0].code;
-         if($scope.healthInfoModel.healthInfoCountryCode.length == 6){
+         if($scope.healthInfoModel.healthInfoCountryCode.length == 6 || $scope.healthInfoModel.healthInfoCountryCode.length == 5){
                $("#health_width").css("width", "62px");
           }
           else if ($scope.healthInfoModel.healthInfoCountryCode.length == 4){
-           $("#health_width").css("width", "47px");
+           $("#health_width").css("width", "42px");
          }
         else if($scope.healthInfoModel.healthInfoCountryCode.length == 3){
               $("#health_width").css("width", "36px");
@@ -1738,6 +1761,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
     $scope.getMedicalDetailsinHealthInfo = function() {
           $scope.healthfoottab=true;
           $scope.healthfootsave=true;
+          //$rootScope.patientAuthorize = false;
       if($rootScope.hasRequiredFields === true) {
         $scope.health();
       }else {
@@ -2592,11 +2616,11 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
       if (!angular.isUndefined($rootScope.currentPatientDetails[0].countryCode) && $rootScope.currentPatientDetails[0].countryCode !== '' && angular.isUndefined(newVal)) {
             $rootScope.currntCountryCode = $rootScope.serviceCountries.filter(function(r) { var show = r.code == $rootScope.currentPatientDetails[0].countryCode; return show; });
             $scope.healthInfoModel.healthInfoCountryCode =  $rootScope.currntCountryCode[0].code;
-            if($scope.healthInfoModel.healthInfoCountryCode.length == 6){
+            if($scope.healthInfoModel.healthInfoCountryCode.length == 6 || $scope.healthInfoModel.healthInfoCountryCode.length == 5){
                   $("#health_width").css("width", "62px");
              }
              else if ($scope.healthInfoModel.healthInfoCountryCode.length == 4){
-              $("#health_width").css("width", "47px");
+              $("#health_width").css("width", "42px");
             }
            else if($scope.healthInfoModel.healthInfoCountryCode.length == 3){
                  $("#health_width").css("width", "36px");
@@ -2612,10 +2636,10 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             if (newVal) {
               $rootScope.currntCountryCode = $rootScope.serviceCountries.filter(function(r) { var show = r.code == newVal; return show; });
               $scope.healthInfoModel.healthInfoCountryCode =  $rootScope.currntCountryCode[0].code;
-               if($scope.healthInfoModel.healthInfoCountryCode.length == 6){
+               if($scope.healthInfoModel.healthInfoCountryCode.length == 6 || $scope.healthInfoModel.healthInfoCountryCode.length == 5){
                     $("#health_width").css("width", "62px");
                } else if ($scope.healthInfoModel.healthInfoCountryCode.length == 4){
-                    $("#health_width").css("width", "47px");
+                    $("#health_width").css("width", "42px");
                } else if($scope.healthInfoModel.healthInfoCountryCode.length == 3){
                     $("#health_width").css("width", "36px");
                }  else if($scope.healthInfoModel.healthInfoCountryCode.length == 2){
@@ -2625,11 +2649,11 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                }
             } else{
               if(typeof $rootScope.countrycodevalue !== 'undefined') {
-                if($rootScope.countrycodevalue.length == 6){
+                if($rootScope.countrycodevalue.length == 6 || $rootScope.countrycodevalue.length == 5){
                       $("#health_width").css("width", "62px");
                  }
                  else if($rootScope.countrycodevalue.length == 4){
-                  $("#health_width").css("width", "47px");
+                  $("#health_width").css("width", "42px");
                 }
                  else if($rootScope.countrycodevalue.length == 3){
                      $("#health_width").css("width", "36px");
