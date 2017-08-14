@@ -43,7 +43,7 @@
                <div class="item item-input ">
                   <span class="input-label cardfont" >Card Number</span>
                   <!--<input type="number" style="{{invalidCard}}" placeholder="Required" ng-model="getCardDetails.CardNumber" name="CardNumber" id="CardNumber" maxlength="19" required> -->
-                  <input style="{{invalidCard}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" ng-model="getCardDetails.CardNumber" name="CardNumber" id="CardNumber" maxlength="19" required/>
+                  <input style="padding-top: 10px; font-size: 20px; line-height: 20px; {{invalidCard}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" ng-model="getCardDetails.CardNumber" name="CardNumber" id="CardNumber" maxlength="19" required/>
                </div>
                <div class="item item-input">
                   <span class="input-label cardfont">Expiration Date</span>
@@ -62,7 +62,7 @@
                <div class="item item-input" >
                   <span class="input-label cardfont" >CVV Code</span>
                   <!--<input type="password" pattern="[0-9]*" inputmode="numeric" style="{{invalidCVV}}" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>-->
-                  <input style="{{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>
+                  <input style="-webkit-text-security: disc; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "password" pattern="[0-9]*" inputmode="numeric"  placeholder="Required" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>
                </div>
                <div class="item item-input" >
                   <span class="input-label cardfont" >Billing Address</span>
@@ -70,7 +70,7 @@
                </div>
                <div class="item item-input" >
                   <span class="input-label cardfont" >City</span>
-                  <ion-google-place placeholder="Required" ng-model="getCardDetails.City" required/>
+                  <ion-google-place style="font-size: 20px !important;" placeholder="Required" ng-model="getCardDetails.City" required/>
                </div>
                <div class="item item-input">
                   <span class="input-label cardfont" >State</span>
