@@ -673,7 +673,7 @@ angular.module('starter.controllers')
     }
 
     $rootScope.ClearRootScope = function() {
-
+        $rootScope.cuttlocations = '';
         $window.localStorage.setItem('tokenExpireTime', '');
 
         if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging') {

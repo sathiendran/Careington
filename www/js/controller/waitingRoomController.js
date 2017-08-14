@@ -153,7 +153,7 @@ angular.module('starter.controllers')
     }
 
     $rootScope.ClearRootScope = function() {
-
+      $rootScope.cuttlocations = '';
       $(".ion-google-place-container").css({
           "display": "none"
       });
