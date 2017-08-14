@@ -839,7 +839,7 @@ angular.module('starter.controllers')
           if (!angular.isUndefined(newVal) && newVal !== '') {
               $scope.depCurrntCountryCode = $rootScope.serviceCountries.filter(function(r) { var show = r.code == newVal; return show; });
               $scope.addNewDependent.healthInfoCountryCode =  $scope.depCurrntCountryCode[0].code;
-              if($scope.addNewDependent.healthInfoCountryCode.length == 6){
+              if($scope.addNewDependent.healthInfoCountryCode.length == 6 || $scope.addNewDependent.healthInfoCountryCode.length == 5){
                     $("#health_width").css("width", "62px");
                }
                else if ($scope.addNewDependent.healthInfoCountryCode.length == 4){
@@ -854,7 +854,7 @@ angular.module('starter.controllers')
             } else {
               //  $scope.addNewDependent.healthInfoCountryCode = '+1';
              $scope.addNewDependent.healthInfoCountryCode =  $rootScope.primaryPatientDetails[0].countryCode;
-             if($scope.addNewDependent.healthInfoCountryCode.length == 6){
+             if($scope.addNewDependent.healthInfoCountryCode.length == 6 || $scope.addNewDependent.healthInfoCountryCode.length == 5){
                    $("#health_width").css("width", "62px");
               }
               else if ($scope.addNewDependent.healthInfoCountryCode.length == 4){

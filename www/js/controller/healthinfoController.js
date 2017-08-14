@@ -1508,7 +1508,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         $rootScope.currntCountryCode = $rootScope.serviceCountries.filter(function(r) { var show = r.code == $rootScope.currentPatientDetails[0].countryCode; return show; });
         if($rootScope.currntCountryCode.length !== 0) {
          $scope.healthInfoModel.healthInfoCountryCode =  $rootScope.currntCountryCode[0].code;
-         if($scope.healthInfoModel.healthInfoCountryCode.length == 6){
+         if($scope.healthInfoModel.healthInfoCountryCode.length == 6 || $scope.healthInfoModel.healthInfoCountryCode.length == 5){
                $("#health_width").css("width", "62px");
           }
           else if ($scope.healthInfoModel.healthInfoCountryCode.length == 4){
@@ -2253,7 +2253,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
       if (!angular.isUndefined($rootScope.currentPatientDetails[0].countryCode) && $rootScope.currentPatientDetails[0].countryCode !== '' && angular.isUndefined(newVal)) {
             $rootScope.currntCountryCode = $rootScope.serviceCountries.filter(function(r) { var show = r.code == $rootScope.currentPatientDetails[0].countryCode; return show; });
             $scope.healthInfoModel.healthInfoCountryCode =  $rootScope.currntCountryCode[0].code;
-            if($scope.healthInfoModel.healthInfoCountryCode.length == 6){
+            if($scope.healthInfoModel.healthInfoCountryCode.length == 6 || $scope.healthInfoModel.healthInfoCountryCode.length == 5){
                   $("#health_width").css("width", "62px");
              }
              else if ($scope.healthInfoModel.healthInfoCountryCode.length == 4){
@@ -2273,7 +2273,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             if (newVal) {
               $rootScope.currntCountryCode = $rootScope.serviceCountries.filter(function(r) { var show = r.code == newVal; return show; });
               $scope.healthInfoModel.healthInfoCountryCode =  $rootScope.currntCountryCode[0].code;
-               if($scope.healthInfoModel.healthInfoCountryCode.length == 6){
+               if($scope.healthInfoModel.healthInfoCountryCode.length == 6 || $scope.healthInfoModel.healthInfoCountryCode.length == 5){
                     $("#health_width").css("width", "62px");
                } else if ($scope.healthInfoModel.healthInfoCountryCode.length == 4){
                     $("#health_width").css("width", "42px");
@@ -2286,7 +2286,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                }
             } else{
               if(typeof $rootScope.countrycodevalue !== 'undefined') {
-                if($rootScope.countrycodevalue.length == 6){
+                if($rootScope.countrycodevalue.length == 6 || $rootScope.countrycodevalue.length == 5){
                       $("#health_width").css("width", "62px");
                  }
                  else if($rootScope.countrycodevalue.length == 4){
