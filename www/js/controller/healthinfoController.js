@@ -452,6 +452,10 @@ angular.module('starter.controllers')
     }
     $scope.edittext = function() {
            console.log("Patientlist" + $rootScope.PatientIdentifiers);
+           if($rootScope.PatientIdentifiers == '' || $rootScope.PatientIdentifiers == 'undefined')
+           {
+             $rootScope.PatientidupdateList= [];
+           }
            var Patientidentif = $rootScope.PatientIdentifiers.length;
           for(i=1; i<=$rootScope.PatientIdentifiers.length; i++)
           {
@@ -1392,7 +1396,10 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                   var locat=newloc[1];
                   var sploc=locat.split("/");
                   var cutlocations=sploc[1] +"."+sploc[2];
+
+
                   $rootScope.doGetRequiredPatientProfiles(data.patientID, ' ', cutlocations, $scope.authen);
+
                 //  $rootScope.GoToPatientDetails(cutlocations,$rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $scope.authen, ' ');
                   var editdate = $rootScope.currentPatientDetails.dob;
                   $rootScope.doddate = new Date($rootScope.healthInfoDOB);

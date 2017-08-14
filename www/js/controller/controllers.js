@@ -2807,11 +2807,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     }
 
     $rootScope.doGetRequiredPatientProfiles = function(patientId, chkPreviousPage, cutlocations, authen) {
-
-      alert(patientId);
-      //if(patientId == '25198')
-      if(patientId)
-      {
+     
         $rootScope.PatientImageSelectUser = '';
         $rootScope.PatientImage = '';
         $rootScope.primaryPatientName = '';
@@ -2885,7 +2881,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         };
 
         LoginService.getSelectedPatientProfiles(params);
-      }
+     
 
     }
     $scope.loadDependent = function(){
