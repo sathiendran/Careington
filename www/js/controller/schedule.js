@@ -11,9 +11,10 @@ angular.module('starter.controllers')
                 userData.token = snap.userSession.token;
                 userData.snapLogin = true;
                 userData.timeZoneSystemId = data.message;
+                snap.userSession.timeZoneSystemId = data.message;
                 var userDataJsonData = JSON.stringify(userData);
                 $window.localStorage.setItem('snap_user_session', userDataJsonData);
-
+                  if(userData.timeZoneSystemId !== '') {
                             snap.cachedGetHtml("schedule/tab-providerBody.html").then(function(html) {
                                 $(".schedular-continer").html(html);
                                 var chkClass = $("body").hasClass("is-main-nav");
@@ -21,6 +22,7 @@ angular.module('starter.controllers')
                                   $("body").removeClass("is-main-nav");
                                 }
                                 snap.updateSnapJsSession("snap_user_session", "timeZoneSystemId", snap.userSession.timeZoneSystemId);
+                                snap.resolveObject("snap.patient.schedule");
                                 var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
                                 var headerVM = snap.resolveObject("snap.patient.PatientHeaderViewModel");
                                 headerVM.set("moduleTitle", "Provider");
@@ -40,6 +42,7 @@ angular.module('starter.controllers')
                                   // vm.vm_favoriteClinicianCardsList_onDataBound();
                                 }
                             });
+                        }
               },
               error: function(data, status) {
                   if (status === 0) {

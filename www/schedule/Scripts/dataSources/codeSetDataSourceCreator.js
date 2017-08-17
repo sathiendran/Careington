@@ -1,24 +1,26 @@
-﻿// Todo: Provide a comment indicating what this file is for.
+// Todo: Provide a comment indicating what this file is for.
 
 var snap = snap || {};
 snap.dataSource = snap.dataSource || {};
 
 
-(function() {
-    snap.dataSource.codeSetDataSourceWrapper = function(codeSetsList) {
+(function () {
+    snap.dataSource.codeSetDataSourceWrapper = function (codeSetsList) {
         this._codeSetsList = codeSetsList || [];
         this._firstRun = true;
+        this._codeSetsItems = [];
+        this._codeSetsLoadingPromise = $.Deferred();
     };
     snap.dataSource.codeSetDataSourceWrapper.prototype = {
         _codeSetItems: [],
         _codeSetsList: [],
         _firstRun: false,
         _codeSetsLoadingPromise: $.Deferred(),
-        _readCodeSets: function(hospitalId) {
+        _readCodeSets: function (hospitalId) {
             var ds = this;
             if (ds._firstRun) {
                 ds._firstRun = false;
-                $('<link/>', {
+ $('<link/>', {
                     rel: 'stylesheet',
                     type: 'text/css',
                     href: 'css/styles.v3.less.dynamic.css'
@@ -32,44 +34,46 @@ snap.dataSource = snap.dataSource || {};
                         hospitalId: hospitalId,
                         fields: ds._codeSetsList.join(',')
                     },
-                    headers: head
+					headers: head
 
-                }).done(function(resp) {
+                }).done(function (resp) {
                     ds._codeSetItems = resp.data;
                     ds._codeSetsLoadingPromise.resolve(ds._codeSetItems);
-                }).fail(function() {
+                }).fail(function () {
                     ds._codeSetsLoadingPromise.reject();
                 });
             }
             return ds._codeSetsLoadingPromise.promise();
         },
-        _getCodeSetData: function(codeSetName, hospitalId) {
+        _sortCodeSets : function(codes){
+            return codes.sort(function (a, b) {
+                return a.displayOrder - b.displayOrder;
+            });
+        },
+        _getCodeSetData: function (codeSetName, hospitalId) {
+            var ds = this;
             var readPromise = $.Deferred();
-
-            this._readCodeSets(hospitalId).done(function(data) {
-                var codes = [];
-                var set = data.find(function(item) {
+            this._readCodeSets(hospitalId).done(function (data) {
+                var set = data.find(function (item) {
                     return item.name.toLowerCase().indexOf(codeSetName) > -1;
                 });
                 if (set && set.codes) {
-                    codes = set.codes.sort(function(a, b) {
-                        return a.displayOrder - b.displayOrder;
-                    });
+                    var codes = ds._sortCodeSets(set.codes);
                     readPromise.resolve(codes);
                 } else {
-                    readPromise.reject();
+                    readPromise.resolve([]);
                 }
 
-            }).fail(function() {
-                readPromise.reject();
+            }).fail(function (error) {
+                readPromise.reject(error);
             });
             return readPromise.promise();
         },
 
-        getItemIdByName: function(codeSetName, hospitalId, requestedName) {
+        getItemIdByName: function (codeSetName, hospitalId, requestedName) {
             var def = $.Deferred();
             var ds = this;
-            ds._getCodeSetData(codeSetName, hospitalId).done(function(data) {
+            ds._getCodeSetData(codeSetName, hospitalId).done(function (data) {
                 var requestedNameLC = requestedName.toLowerCase();
                 for (var i = 0, l = data.length; i < l; i++) {
                     if (data[i].text.toLowerCase().indexOf(requestedNameLC) > -1) {
@@ -86,49 +90,87 @@ snap.dataSource = snap.dataSource || {};
             return def.promise();
         },
 
-        getCodeSetDataSourceReplacingNames: function(codeSetName, hospitalId, replaceNames, replaceByObjects) {
+        getCodeSetDataSourceReplacingNames: function (codeSetName, hospitalId, replaceNames, replaceByObjects, keepId) {
             var ds = this;
             return new kendo.data.DataSource({
                 transport: {
-                    read: function(options) {
-                        ds._getCodeSetData(codeSetName, hospitalId).done(function(data) {
-                            var filteredData = (replaceNames && replaceNames.length > 0 && replaceByObjects &&
-                                replaceByObjects.length === replaceNames.length) ? (data.map(function(item) {
-                                var itemText = item.text.toLowerCase();
-                                for (var i = 0, l = replaceNames.length; i < l; i++) {
-                                    if (itemText.indexOf(replaceNames[i].toLowerCase()) > -1) {
-                                        return $.extend({}, replaceByObjects[i]);
+                    read: function (options) {
+                        ds._getCodeSetData(codeSetName, hospitalId).done(function (data) {
+                            var lastInOrder = data.length ? data[data.length - 1].displayOrder : 0;
+                            var filteredData = (replaceNames && replaceNames.length > 0 && replaceByObjects
+                                && replaceByObjects.length === replaceNames.length) ? (data.map(function (item) {
+                                    var itemText = item.text.toLowerCase();
+                                    for (var i = 0, l = replaceNames.length; i < l; i++) {
+                                        if (itemText.indexOf(replaceNames[i].toLowerCase()) > -1) {
+                                            if (keepId) {
+                                                return $.extend({}, replaceByObjects[i], { displayOrder: lastInOrder + i + 1 }, { codeId: item.codeId });
+                                            } else{
+                                                return $.extend({}, replaceByObjects[i], { displayOrder: lastInOrder + i + 1 });
+                                            }
+                                        }
                                     }
-                                }
-                                return item;
-                            })) : data;
-                            options.success(filteredData);
-                        }).fail(function() {
-                            options.error();
+                                    return item;
+                                })) : data;
+                            filteredData = ds._sortCodeSets(filteredData);
+                            options.success({ data: filteredData, total: filteredData.length });
+                        }).fail(function (error) {
+                            options.error(error);
                         });
                     }
                 },
                 schema: {
-                    id: "codeId"
+                    id: "codeId",
+                    data: "data",
+                    total: "total"
                 }
             });
         },
-
-        getCodeSetDataSource: function(codeSetName, hospitalId) {
+        getCodeSetDataSourceAddingObjects: function (codeSetName, hospitalId, objectsToAdd, namesToRemove) {
             var ds = this;
             return new kendo.data.DataSource({
                 transport: {
-                    read: function(options) {
-                        ds._getCodeSetData(codeSetName, hospitalId).done(function(data) {
-                            options.success(data);
-                        }).fail(function() {
-                            options.error();
+                    read: function (options) {
+                        ds._getCodeSetData(codeSetName, hospitalId).done(function (data) {
+                            var filteredData = data;
+                            if (typeof (namesToRemove) !== "undefined") {
+                                namesToRemove.forEach(function (name) {
+                                    var nameLC = name.toLowerCase();
+                                    filteredData = filteredData.filter(function (item) {
+                                        return item.text.toLowerCase().indexOf(nameLC) === -1;
+                                    });
+                                });
+                            }
+                            filteredData = filteredData.concat(objectsToAdd);
+
+                            options.success({ data: filteredData, total: filteredData.length });
+                        }).fail(function (error) {
+                            options.error(error);
                         });
                     }
                 },
                 schema: {
-
-                    id: "codeId"
+                    id: "codeId",
+                    data: "data",
+                    total: "total"
+                }
+            });
+        },
+        getCodeSetDataSource: function (codeSetName, hospitalId) {
+            var ds = this;
+            return new kendo.data.DataSource({
+                transport: {
+                    read: function (options) {
+                        ds._getCodeSetData(codeSetName, hospitalId).done(function (data) {
+                            options.success({ data: data, total: data.length });
+                        }).fail(function (error) {
+                            options.error(error);
+                        });
+                    }
+                },
+                schema: {
+                    id: "codeId",
+                    data: "data",
+                    total: "total"
                 }
             });
         }
