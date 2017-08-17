@@ -146,6 +146,7 @@ angular.module('starter.controllers')
             $rootScope.AppointScheduleTime = '';
             $rootScope.scheduledListDatas = scheduledListData;
             $rootScope.appointmentwaivefee = scheduledListData.waiveFee;
+            $rootScope.schedulemobile = scheduledListData.participants[1].person.phones[0].value;
             var currentTime = $rootScope.scheduledListDatas.scheduledTime;
             var getMinsExtraTime = $scope.addMinutes(currentTime, 30);
             var getEnterTime = new Date();
@@ -177,6 +178,7 @@ angular.module('starter.controllers')
 
               $rootScope.appointmentDisplay = "test";
               $scope.$root.$broadcast("callAppointmentConsultation");
+              
           //  $rootScope.doGetAppointmentConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');
         };
 
