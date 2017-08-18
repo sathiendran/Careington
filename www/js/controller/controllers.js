@@ -318,7 +318,7 @@ if (deploymentEnv === "Sandbox") {
         apiCommonURL = 'https://connectedcare.md';
         api_keys_env = "Production";
     } else if (deploymentEnvForProduction === 'Staging') {
-        apiCommonURL = 'https://snap-stage.com';
+        apiCommonURL = 'https://emerald.stage.snapvcm.com';
         api_keys_env = "Staging";
     } else if (deploymentEnvForProduction === 'QA') {
         //apiCommonURL = 'https://snap-qa.com';
@@ -332,7 +332,7 @@ if (deploymentEnv === "Sandbox") {
     }
 } else if (deploymentEnv === "Staging") {
 
-    apiCommonURL = 'https://snap-stage.com';
+    apiCommonURL = 'https://emerald.stage.snapvcm.com';
     api_keys_env = "Staging";
 }
 
@@ -396,8 +396,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             apiCommonURL = 'https://sandbox.connectedcare.md';
             api_keys_env = "Sandbox";
         } else if (env === "Staging") {
-            $rootScope.APICommonURL = 'https://snap-stage.com';
-            apiCommonURL = 'https://snap-stage.com';
+            $rootScope.APICommonURL = 'https://emerald.stage.snapvcm.com';
+            apiCommonURL = 'https://emerald.stage.snapvcm.com';
             api_keys_env = "Staging";
         } else if (env === "Snap-test") {
             $rootScope.APICommonURL = 'https://snap-test.com';
@@ -928,9 +928,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
         if (deploymentEnv === "Production") {
             if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
-                apiCommonURL = 'https://snap-stage.com';
+                apiCommonURL = 'https://emerald.stage.snapvcm.com';
                 api_keys_env = 'Staging';
-                $rootScope.APICommonURL = 'https://snap-stage.com';
+                $rootScope.APICommonURL = 'https://emerald.stage.snapvcm.com';
             } else {
                 apiCommonURL = 'https://connectedcare.md';
                 api_keys_env = 'Production';
@@ -992,9 +992,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
 
                     $rootScope.hospitalId = singleStagingHospitalId;
-                    apiCommonURL = 'https://snap-stage.com';
+                    apiCommonURL = 'https://emerald.stage.snapvcm.com';
                     api_keys_env = 'Staging';
-                    $rootScope.APICommonURL = 'https://snap-stage.com';
+                    $rootScope.APICommonURL = 'https://emerald.stage.snapvcm.com';
                 } else {
                     $rootScope.hospitalId = singleHospitalId;
                     apiCommonURL = 'https://connectedcare.md';
@@ -1818,9 +1818,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         if (deploymentEnvForProduction === 'Production') {
                             if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
                                 $rootScope.hospitalId = singleStagingHospitalId;
-                                apiCommonURL = 'https://snap-stage.com';
+                                apiCommonURL = 'https://emerald.stage.snapvcm.com';
                                 api_keys_env = 'Staging';
-                                $rootScope.APICommonURL = 'https://snap-stage.com';
+                                $rootScope.APICommonURL = 'https://emerald.stage.snapvcm.com';
                             } else {
 
                                 $rootScope.hospitalId = singleHospitalId;
@@ -1944,9 +1944,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
 
                     $rootScope.hospitalId = singleStagingHospitalId;
-                    apiCommonURL = 'https://snap-stage.com';
+                    apiCommonURL = 'https://emerald.stage.snapvcm.com';
                     api_keys_env = 'Staging';
-                    $rootScope.APICommonURL = 'https://snap-stage.com';
+                    $rootScope.APICommonURL = 'https://emerald.stage.snapvcm.com';
                 } else {
 
                     $rootScope.hospitalId = singleHospitalId;
