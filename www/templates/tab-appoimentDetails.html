@@ -95,7 +95,7 @@
                  <h2 class="fdate"><span class="fname ftime apponitmentftime-{{devicename}}">{{scheduledListDatas.scheduledTime | date: "hh:mm"}}{{scheduledListDatas.scheduledTime | date: "a"}}</span> </h2>
                    <p class="fday apponitmentfday-{{deviceName}}">{{scheduledListDatas.scheduledTime | date: "EEEE, MMMM dd, yyyy"}}</p>
                </div>
-               <div class="appointEdit" >
+               <div class="appointEdit" ng-if="scheduledListDatas.appointmentTypeCode !== 3" >
                  <button  ng-disabled="betDelay" ng-click="editAppointment(scheduledListDatas);delay();" style="border: none;padding: 0;background: none;" >
                    <!--<i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i>-->
                    Edit
@@ -182,7 +182,7 @@
 <ion-footer-bar ng-if="scheduledListDatas.encountertypecode == '3'" class="bar bar-footer  footer-color footheight enterAppoinment" style=" height: 73px; display: {{timeNew1}}" >
      <a style="margin-left: 76px;" ng-click="enterWaitingRoom(appointmentsPatientImage,appointmentsPatientFirstName,appointmentsPatientLastName,appointmentsPatientDOB,appointmentsPatientGurdianName,appointmentId,appointPersonId)">
 
-				<h1 class="title enterAppoint-{{deviceName}}" id="centercolor" >     <span style="padding:4px;" >
+				<h1 class="title enterAppoint-{{deviceName}}" id="centercolorforEnterAppointment" >     <span style="padding:4px;" >
               <i ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>Enter Appointment</h1>
 			</a>
 

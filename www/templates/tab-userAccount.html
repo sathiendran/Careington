@@ -53,6 +53,7 @@
          </div>
       </div>
    </ion-header-bar>
+   1appointmentPatientId = {{appointmentPatientId}} ----  2patientId = {{patientId}}
    <ion-view title="User Account Details" ng-if="appointmentPatientId != patientId"  >
       <ion-content padding="true"  title="User Account" class="usercontent-{{deviceName}} scroll-content ionic-scroll  has-header"  style="display: {{individualwithoutAppointmentDisplay}};">
          <ion-refresher on-refresh="doRefreshAccount()"></ion-refresher>
@@ -92,6 +93,7 @@
          </ion-list>
       </ion-content>
    </ion-view>
+   1appointmentPatientId = {{appointmentPatientId}} ----  2patientId = {{patientId}}
    <ion-view title="User Account Details" ng-if="appointmentPatientId == patientId"  >
       <ion-content  title="User Account" class="usercontentpat-{{deviceName}} scroll-content ionic-scroll  has-header"  style="display: {{individualNextAppointmentDisplay}};">
          <ion-refresher on-refresh="doRefreshUserPage()"></ion-refresher>

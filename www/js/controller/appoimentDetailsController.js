@@ -160,10 +160,10 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
             }
         });
 
-        $timeout(function() {
-            document.getElementsByTagName('timer')[0].stop();
+    /*    $timeout(function() {
+           document.getElementsByTagName('timer')[0].stop();
             document.getElementsByTagName('timer')[0].start();
-        }, 100);
+        }, 100);*/
     }
 
     var d = new Date();
@@ -375,28 +375,28 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
               d.setHours(d.getHours() + 12);
               //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
               var currentUserHomeDate = d;
-              $rootScope.individualNextAppointmentDisplay = 'none';
+            /*  $rootScope.individualNextAppointmentDisplay = 'none';
               $rootScope.individualwithoutAppointmentDisplay = 'block';
               $rootScope.accountClinicianFooter = 'block';
               $rootScope.accountStyle = "";
-              $rootScope.userAccContent = "";
-
+              $rootScope.userAccContent = "";*/
+              if ($rootScope.individualScheduledList != '') {
                   var getReplaceTime = $rootScope.scheduledListDatas.scheduledTime;
                   var currentUserHomeDate = currentUserHomeDate;
 
 
-                  if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
+                //  if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                       $("#appointNotes").html($rootScope.appointNotes);
                       $rootScope.accountClinicianFooter = 'none';
                       $rootScope.individualNextAppointmentDisplay = 'block';
-                      $rootScope.individualwithoutAppointmentDisplay = 'none';
+                     $rootScope.individualwithoutAppointmentDisplay = 'none';
                       $rootScope.accountStyle = "AppointNone" + $rootScope.deviceName;
                       $rootScope.userAccContent = "userAccContent" + $rootScope.deviceName;
                       $rootScope.appointmentPatientId = $rootScope.patientId;
                       var beforAppointmentTime = getReplaceTime;
                       var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
-                      if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {}
-                  }
+                      //if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {}
+                //  }
                   var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
                   var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
                   var currentUserHomeDate = currentUserHomeDate;
@@ -816,14 +816,9 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                     $rootScope.appointmentsPatientFirstName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);
                     $rootScope.appointmentsPatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);
                   }
-                // $rootScope.appointmentsPatientFirstName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);
-                // $rootScope.appointmentsPatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);
                 $rootScope.appointmentsPatientImage = data.data[0].profileImagePath;
-                  //  $rootScope.GoToPatientDetails = function(Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) ;
-                  //  $rootScope.GoToPatientDetails('',$rootScope.appointmentsPatientImage, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, '', ' ');
-                 $rootScope.GoToPatientDetails('',   $rootScope.appointmentsPatientImage, $rootScope.appointmentsPatientFirstName, $rootScope.appointmentsPatientLastName, $rootScope.PatientAge, '',  $rootScope.appointmentPatientId, '', '');
-                 // $rootScope.GoToPatientDetails('', '', $scope.paticipatingPatient.person.name.given, $scope.paticipatingPatient.person.name.family, $rootScope.appointmentsPatientDOB, '',  $rootScope.appointmentsPatientId, '', '');
-            },
+                // $rootScope.GoToPatientDetails('',   $rootScope.appointmentsPatientImage, $rootScope.appointmentsPatientFirstName, $rootScope.appointmentsPatientLastName, $rootScope.PatientAge, '',  $rootScope.appointmentPatientId, '', '');
+                  },
             error: function(data, status) {
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";

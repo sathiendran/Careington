@@ -5658,7 +5658,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             success: function(data) {
 
                 angular.forEach(data.data[0].familyMembers, function(index) {
-                    if (index.patientId == $rootScope.checkpatid) {
+                    if (index.patientId == $rootScope.checkpatid || typeof $rootScope.checkpatid === 'undefined') {
                         $rootScope.providerAvailability = index.providerAvailable;
                     }
                 });
