@@ -380,7 +380,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
               $rootScope.accountClinicianFooter = 'block';
               $rootScope.accountStyle = "";
               $rootScope.userAccContent = "";*/
-              if ($rootScope.individualScheduledList != '') {
+              //if ($rootScope.individualScheduledList != '') {
                   var getReplaceTime = $rootScope.scheduledListDatas.scheduledTime;
                   var currentUserHomeDate = currentUserHomeDate;
 
