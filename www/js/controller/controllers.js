@@ -3866,7 +3866,7 @@ $scope.EditHealth = {};
             } else {
               $rootScope.editCardStyle ="block";
               var payValue = ($('option:selected', this).val()).split("@");
-              $("div.cardViewport").html('<div class="insCardName"><img ng-src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png" />'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+              $("div.cardViewport").html('<div class="insCardName"><img ng-src = "https://emerald.qa1.snapvcm.com/images/creditcards/Visa-dark.png" />'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
             // $("div.cardViewport").html('<div class="parenttt" style=" display: table;padding: 4px;  width: 100%;  margin: -10px 5px;"><div class="insCardImage"><img src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png"  style =" width: 75px;  height: 50px;vertical-align: middle;"/> '+payValue[1]+'</div> <div class="insCardNumber" style =" vertical-align: middle;display: table-cell; text-align: justify; font-family: GloberSemiBold; font-size: 21px;padding: 12px 0px 12px 25px;">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div> </div>');
             }
             //$('div.cardViewport').text($("option:selected", this).text());
@@ -3887,7 +3887,7 @@ $scope.EditHealth = {};
             } else {
               $rootScope.editCardStyle ="block";
               var payValue = ($('option:selected', this).val()).split("@");
-              $("div.cardViewport").html('<div class="insCardName"><img ng-src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png" />'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+              $("div.cardViewport").html('<div class="insCardName"><img ng-src = "https://emerald.qa1.snapvcm.com/images/creditcards/Visa-dark.png" />'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
             // $("div.cardViewport").html('<div class="parenttt" style=" display: table;padding: 4px;  width: 100%;  margin: -10px 5px;"><div class="insCardImage"><img src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png"  style =" width: 75px;  height: 50px;vertical-align: middle;"/> '+payValue[1]+'</div> <div class="insCardNumber" style =" vertical-align: middle;display: table-cell; text-align: justify; font-family: GloberSemiBold; font-size: 21px;padding: 12px 0px 12px 25px;">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div> </div>');
             }
         }
@@ -3903,7 +3903,7 @@ $scope.EditHealth = {};
         } else {
           //  $('div.cardViewport').text($("option:selected", this).text());
           var payValue = ($('option:selected', this).val()).split("@");
-          $("div.cardViewport").html('<div class="insCardName"><img ng-src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png" />'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+          $("div.cardViewport").html('<div class="insCardName"><img ng-src = "https://emerald.qa1.snapvcm.com/images/creditcards/Visa-dark.png" />'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
           $rootScope.userCardNumber = $('option:selected', this).text();
           $rootScope.userCardDetails = $('option:selected', this).val();
         //  $('div.cardViewport').text($("option:selected", this).text());
