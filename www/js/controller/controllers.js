@@ -1453,20 +1453,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
   				}else{
       					var confirmPopup = $ionicPopup.prompt({
 
-      						  templateUrl: 'templates/tab-updationpopup.html',
+      						  templateUrl: 'templates/updationpopup.html',
       						  cssClass: 'updatepopup',
       						  hardwareBackButtonClose: false,
-      					});
-              //  $ionicModal.fromTemplateUrl('templates/tab-updationpopup.html', {
-                /*$ionicModal.fromTemplateUrl('templates/tab-heightedittemplate.html', {
                     scope: $scope,
-                    animation: 'slide-in-up',
-                    focusFirstInput: false,
-                    backdropClickToClose: false
-                }).then(function(modal) {
-                    $scope.modal = modal;
-                    $scope.modal.show();
-                });*/
+      					});
 
           }
         },

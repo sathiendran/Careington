@@ -223,12 +223,12 @@ angular.module('starter.controllers')
                         $rootScope.isSSORegisterAvailable = '';
                     }
                 }else{
-            					var confirmPopup = $ionicPopup.confirm({
-
-            						  templateUrl: 'templates/updationpopup.html',
-            						  cssClass: 'updatepopup',
-            						  hardwareBackButtonClose: false,
-            					});
+                    var confirmPopup = $ionicPopup.prompt({
+                        templateUrl: 'templates/updationpopup.html',
+                        cssClass: 'updatepopup',
+                        hardwareBackButtonClose: false,
+                        scope: $scope,
+                    });
                 }
             },
             error: function(data, status) {

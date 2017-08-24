@@ -211,11 +211,11 @@ angular.module('starter.controllers')
                     $ionicLoading.hide();
                     $state.go('tab.loginSingle');
                 }else{
-            					var confirmPopup = $ionicPopup.confirm({
-
+            					var confirmPopup = $ionicPopup.prompt({
             						  templateUrl: 'templates/updationpopup.html',
             						  cssClass: 'updatepopup',
             						  hardwareBackButtonClose: false,
+                          scope: $scope,
             					});
                 }
             },
