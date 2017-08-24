@@ -387,12 +387,12 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
 
                 //  if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                       $("#appointNotes").html($rootScope.appointNotes);
-                      $rootScope.accountClinicianFooter = 'none';
+                  /*    $rootScope.accountClinicianFooter = 'none';
                       $rootScope.individualNextAppointmentDisplay = 'block';
                      $rootScope.individualwithoutAppointmentDisplay = 'none';
                       $rootScope.accountStyle = "AppointNone" + $rootScope.deviceName;
                       $rootScope.userAccContent = "userAccContent" + $rootScope.deviceName;
-                      $rootScope.appointmentPatientId = $rootScope.patientId;
+                      $rootScope.appointmentsPatientId = $rootScope.patientId;*/
                       var beforAppointmentTime = getReplaceTime;
                       var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
                       //if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {}
@@ -811,7 +811,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                   if($rootScope.scheduledListDatas.patFirstName !== undefined ){
                     $rootScope.appointmentsPatientFirstName  =  $rootScope.scheduledListDatas.patFirstName;
                       $rootScope.appointmentsPatientLastName = $rootScope.scheduledListDatas.patLastName;
-                       $rootScope.appointmentPatientId       = $rootScope.scheduledListDatas.patientId ;
+                      // $rootScope.appointmentsPatientId       = $rootScope.scheduledListDatas.patientId ;
                   }else{
                     $rootScope.appointmentsPatientFirstName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);
                     $rootScope.appointmentsPatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);

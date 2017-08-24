@@ -17,7 +17,7 @@ var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProdu
 var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
 var deploymentEnvForProduction = ''; //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
 var loginPageEnv = 'Single';
-var appVersion = 67;
+var appVersion = 6.2;
 var serviceAPIError = 'https://www.connectedcarestatus.com/';
 //var xApiKey = 'c69fe0477e08cb4352e07c502ddd2d146b316112'; // For Photo Upload
 //var xDeveloperId = '84f6101ff82d494f8fcc5c0e54005895'; // For Photo Upload
@@ -219,7 +219,8 @@ var handleOpenURL = function(url) {
     }, 0);
 }
 
-angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.services' , 'ngMaterial' ])
+//angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.services' , 'ngMaterial' ])
+angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform, $state, $rootScope, LoginService, $ionicPopup, $window, Idle, $ionicBackdrop, $interval) {
 
@@ -859,6 +860,15 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
+    /*.state('tab.updationpopup', {
+        url: '/patientCalendar',
+        views: {
+            'tab-login': {
+                templateUrl: 'templates/tab-updationpopup.html',
+                controller: 'LoginCtrl'
+            }
+        }
+    })*/
     .state('tab.appoimentDetails', {
         url: '/appoimentDetails/:getPage',
         views: {

@@ -88,10 +88,11 @@ h3{
 	padding-top: 43px;
 }
 .updatetitle{
-	font-family: Glober Bold;
-    font-size: 20px;
+	font-family: GloberBold;
+    font-size: 22px;
     text-align: center;
-        color: rgba(0, 0, 0, 0.75);
+    padding-bottom: 5px;
+    color: rgba(0, 0, 0, 0.75);
 }
 .updateline{
 	background-color:#f1efef;
@@ -103,6 +104,9 @@ h3{
 	position: relative;
 	text-align:center;
 	color:rgba(0,0,0,0.12);
+  .icon-new{
+    font-size: 32px;
+  }
 }
 .popup-body{
   padding:0px !important;
@@ -151,6 +155,13 @@ font-size: 18px;
 font-weight: normal;
 padding:10px !important;
 
+  }
+  .newLogBut {
+    padding: 5px 0px 20px;
+    .buttonupdate {
+      height: 43%;
+      width: 133px;
+    }
   }
  }
 }

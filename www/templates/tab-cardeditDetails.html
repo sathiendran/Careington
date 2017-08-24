@@ -37,25 +37,32 @@
                </div>
                <div class="item item-input ">
                   <span class="input-label cardfont" >Card Number</span>
-                  <input type="text"  value="xxxx-xxxx-xxxx-{{editcardNumber}}" placeholder="Required" name="CardNumber" id="editCardNumber" readonly="true" required>
+                  <!--<input type="text"  placeholder="xxxx-xxxx-xxxx-{{editcardNumber}}" value="" name="CardNumber" id="editCardNumber" required>-->
+                  <input style="line-height: 20px; font-size: 18px; padding: 0px;" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="xxxx-xxxx-xxxx-{{editcardNumber}}" ng-model="getCardDetails.CardNumber" name="CardNumber" id="editCardNumber" maxlength="19" required/>
                </div>
                <div class="item item-input">
                   <span class="input-label cardfont">Expiration Date</span>
                   <select id="editExpmonth" name="CardExpireDatesMonth"  style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px; font-size: 18px;{{invalidMonth}}{{CardDetailmonth}}" required>
-                     <option ng-repeat="month in monthsList" value="{{month.value}}" ng-selected="{{month.selected}}">
+                     <option ng-repeat="month in monthsList" value="{{month.value}}" ng-selected="month.value === cardExpirationSplitValue[0]">
                         <b><span>{{month.text}}</span></b>
                      </option>
                   </select>
                   <span> /{{validCC}}</span>
                   <select id="editExpyear" name="CardExpireDatesYear" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px; font-size: 18px;{{invalidMonth}}{{CardDetailYear}}" required>
-                     <option ng-repeat="ccYear in ccYearsList" value="{{ccYear.value}}">
+                     <option ng-repeat="ccYear in ccYearsList" value="{{ccYear.value}}" ng-selected="{{ccYear.value}} === {{cardExpirationSplitValue[1]}}">
                         <b><span>{{ccYear.text }}</span></b>
                      </option>
                   </select>
                </div>
-               <div class="item item-input" >
+               <div class="item item-input" ng-if="AndroidDevice !== true" >
                   <span class="input-label cardfont" >Security Code</span>
-                  <input type="password" pattern="[0-9]*"  inputmode="numeric" id="editcvv" style="{{invalidCVV}}" placeholder="XXX" maxlength="{{editCvvLength}}"   name="Cvv"  required>
+                  <!--<input type="password" pattern="[0-9]*"  inputmode="numeric" id="editcvv" style="{{invalidCVV}}" placeholder="XXX" maxlength="{{editCvvLength}}"   name="Cvv"  required> -->
+                  <input style="-webkit-text-security: disc; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type="password" pattern="[0-9]*" inputmode="numeric"  placeholder="Required" maxlength="4"  name="editcvv" id="editcvv" required/>
+               </div>
+               <div class="item item-input" ng-if="AndroidDevice === true" >
+                  <span class="input-label cardfont" >Security Code</span>
+                  <!--<input type="password" pattern="[0-9]*"  inputmode="numeric" id="editcvv" style="{{invalidCVV}}" placeholder="XXX" maxlength="{{editCvvLength}}"   name="Cvv"  required> -->
+                  <input style="-webkit-text-security: disc; font-size: 20px; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" maxlength="4"   name="editcvv" id="editcvv" required/>
                </div>
                <div class="item item-input" >
                   <span class="input-label cardfont" >Billing Address</span>
@@ -71,15 +78,16 @@
                </div>
                <div class="item item-input" >
                   <span class="input-label cardfont" >Country</span>
-                <!--  <input type="text" placeholder="Required" ng-model="getCardDetails.Country" value="{{editbilling.country}}"  name="Country" id="Country" required>-->
+                <!-- ng-selected="{{editbilling.country}} == {{country.name}}" <input type="text" placeholder="Required" ng-model="getCardDetails.Country" value="{{editbilling.country}}"  name="Country" id="Country" required>-->
                 <select class="textdata optionselect"  name="healthInfoCountry" id="editCountry" ng-model="editcard.cardcountry" >
                    <option value="">Choose</option>
-                   <option ng-selected="editbilling.country == country.name"  ng-repeat="country in serviceCountries"  value="{{country.name}}" ><b>{{country.name}}</b></option>
+                   <option  ng-repeat="country in serviceCountries"  value="{{country.name}}" ><b>{{country.name}}</b></option>
                 </select>
                </div>
                <div class="item item-input" >
                   <span class="input-label cardfont" >Zip</span>
-                  <input type="number" placeholder="Required" ng-model="editzip"   input-max-length-number maxlength="7" name="Zip" id="editZip" required/>
+                  <!--<input type="number" placeholder="Required"  value="{{editbilling.zip}}"  maxlength="7" ng-model="editZip" name="Zip" id="editZip" required/>-->
+                  <input style="line-height: 20px; font-size: 18px; padding: 0px;" value="{{editbilling.zip}}"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" ng-model="editZip" name="editZip" id="editZip" maxlength="7" required/>
                </div>
             </div>
             <div class="planDetails"  style="opacity:{{planverify}};">

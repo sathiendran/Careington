@@ -125,7 +125,7 @@
               <span class="encounterappticon " ng-if="scheduledListData.encountertypecode != 3">
                 <i ng-bind-html="drawSVGCIcon('phone')"></i> </span>
             <h4 style="margin-top:-16px;"><span class="fname" style="margin-left:12px;">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
-            </h4>>
+            </h4>
          </a>
          <ion-item  class="noapptviewResult" ng-if="!scheduledList.length" style="white-space: normal;" >There are no appointments found!</ion-item>
       </div>

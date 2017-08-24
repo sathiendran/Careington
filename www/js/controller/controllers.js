@@ -1320,146 +1320,156 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             success: function(data) {
                 $rootScope.getDetails = data.data[0].enabledModules;
                $rootScope.mobileSettings = data.data[0].settings;
-              var mobappversion = $rootScope.mobileSettings.mobileApp_MinSupportedVersion;
+               var mobappversion = $rootScope.mobileSettings.mobileApp_MinSupportedVersion;
                var sptversion = mobappversion.split("v");
                var checkmobilever = parseFloat(sptversion[1]);
               // var checkmobilever = 71;
-               if(appVersion > checkmobilever){
+              if(appVersion > checkmobilever){
+      					if ($rootScope.getDetails !== '') {
+      						for (var i = 0; i < $rootScope.getDetails.length; i++) {
+      							if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
+      								$rootScope.insuranceMode = 'on';
+      							}
+      							if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
+      								$rootScope.paymentMode = 'on';
+      							}
+      							if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
+      								$rootScope.onDemandMode = 'on';
+      							}
+                    if ($rootScope.getDetails[i] === 'ShowCTTOnScheduled' || $rootScope.getDetails[i] === 'mShowCTTOnScheduled') {
+                          $rootScope.Cttonscheduled = 'on';
+                      }
+                    if ($rootScope.getDetails[i] === 'ClinicianSearch' || $rootScope.getDetails[i] === 'mClinicianSearch') {
+                        $rootScope.onSSAvailability = 'on';
+                    }
+      							if ($rootScope.getDetails[i] === 'OrganizationLocation' || $rootScope.getDetails[i] === 'mOrganizationLocation') {
+      								$rootScope.OrganizationLocation = 'on';
+      							}
+      							if ($rootScope.getDetails[i] === 'PPIsBloodTypeRequired') {
+      								$rootScope.PPIsBloodTypeRequired = 'on';
+      							}
+      							if ($rootScope.getDetails[i] === 'PPIsHairColorRequired') {
+      								$rootScope.PPIsHairColorRequired = 'on';
+      							}
+      							if ($rootScope.getDetails[i] === 'PPIsEthnicityRequired') {
+      								$rootScope.PPIsEthnicityRequired = 'on';
+      							}
+      							if ($rootScope.getDetails[i] === 'PPIsEyeColorRequired') {
+      								$rootScope.PPIsEyeColorRequired = 'on';
+      							}
+      						}
+      					}
+      					$rootScope.brandColor = data.data[0].brandColor;
 
-					if ($rootScope.getDetails !== '') {
-						for (var i = 0; i < $rootScope.getDetails.length; i++) {
-							if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
-								$rootScope.insuranceMode = 'on';
-							}
-							if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
-								$rootScope.paymentMode = 'on';
-							}
-							if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
-								$rootScope.onDemandMode = 'on';
-							}
-              if ($rootScope.getDetails[i] === 'ShowCTTOnScheduled' || $rootScope.getDetails[i] === 'mShowCTTOnScheduled') {
-                    $rootScope.Cttonscheduled = 'on';
-                }
-              if ($rootScope.getDetails[i] === 'ClinicianSearch' || $rootScope.getDetails[i] === 'mClinicianSearch') {
-                  $rootScope.onSSAvailability = 'on';
-              }
-							if ($rootScope.getDetails[i] === 'OrganizationLocation' || $rootScope.getDetails[i] === 'mOrganizationLocation') {
-								$rootScope.OrganizationLocation = 'on';
-							}
-							if ($rootScope.getDetails[i] === 'PPIsBloodTypeRequired') {
-								$rootScope.PPIsBloodTypeRequired = 'on';
-							}
-							if ($rootScope.getDetails[i] === 'PPIsHairColorRequired') {
-								$rootScope.PPIsHairColorRequired = 'on';
-							}
-							if ($rootScope.getDetails[i] === 'PPIsEthnicityRequired') {
-								$rootScope.PPIsEthnicityRequired = 'on';
-							}
-							if ($rootScope.getDetails[i] === 'PPIsEyeColorRequired') {
-								$rootScope.PPIsEyeColorRequired = 'on';
-							}
-						}
-					}
-					$rootScope.brandColor = data.data[0].brandColor;
+      					$rootScope.logo = data.data[0].hospitalImage;
+      					$rootScope.Hospital = data.data[0].brandName;
+      					if (deploymentEnvLogout === 'Single') {
+      						$rootScope.alertMsgName = $rootScope.Hospital;
+      						$rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
+      					} else {
+      						$rootScope.alertMsgName = 'Virtual Care';
+      						$rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
+      					}
+      					$rootScope.HospitalTag = data.data[0].brandTitle;
+      					$rootScope.contactNumber = data.data[0].contactNumber;
+      					$rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
+      					$rootScope.clientName = data.data[0].hospitalName;
 
-					$rootScope.logo = data.data[0].hospitalImage;
-					$rootScope.Hospital = data.data[0].brandName;
-					if (deploymentEnvLogout === 'Single') {
-						$rootScope.alertMsgName = $rootScope.Hospital;
-						$rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
-					} else {
-						$rootScope.alertMsgName = 'Virtual Care';
-						$rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
-					}
-					$rootScope.HospitalTag = data.data[0].brandTitle;
-					$rootScope.contactNumber = data.data[0].contactNumber;
-					$rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
-					$rootScope.clientName = data.data[0].hospitalName;
+      					var hospitaData = {};
+      					hospitaData.hospitalId = $rootScope.hospitalId;
+      					hospitaData.brandName = data.data[0].brandName;
+      					hospitaData.subBrandName = data.data[0].brandTitle;
+      					hospitaData.clientName = data.data[0].hospitalName;
+      					hospitaData.brandColor = data.data[0].brandColor;
+      					hospitaData.hospitalLogo = data.data[0].hospitalImage;
+      					hospitaData.address = data.data[0].address;
+      					hospitaData.locale = data.data[0].locale;
 
-					var hospitaData = {};
-					hospitaData.hospitalId = $rootScope.hospitalId;
-					hospitaData.brandName = data.data[0].brandName;
-					hospitaData.subBrandName = data.data[0].brandTitle;
-					hospitaData.clientName = data.data[0].hospitalName;
-					hospitaData.brandColor = data.data[0].brandColor;
-					hospitaData.hospitalLogo = data.data[0].hospitalImage;
-					hospitaData.address = data.data[0].address;
-					hospitaData.locale = data.data[0].locale;
+      					hospitaData.patientLogin = data.data[0].patientLogin;
+      					hospitaData.patientConsultEndUrl = data.data[0].patientConsultEndUrl;
 
-					hospitaData.patientLogin = data.data[0].patientLogin;
-					hospitaData.patientConsultEndUrl = data.data[0].patientConsultEndUrl;
+      					hospitaData.customerSSO = data.data[0].customerSso;
+      					hospitaData.customerSSOButtonText = data.data[0].customerSsoLinkText;
 
-					hospitaData.customerSSO = data.data[0].customerSso;
-					hospitaData.customerSSOButtonText = data.data[0].customerSsoLinkText;
+      					hospitaData.clinicianConsultEndUrl = data.data[0].clinicianConsultEndUrl;
+      					hospitaData.clinicianLogin = data.data[0].clinicianLogin;
 
-					hospitaData.clinicianConsultEndUrl = data.data[0].clinicianConsultEndUrl;
-					hospitaData.clinicianLogin = data.data[0].clinicianLogin;
+      					hospitaData.clinicianSSO = data.data[0].clinicianSso;
+      					hospitaData.clinicianSSOButtonText = data.data[0].clinicianSsoLinkText;
 
-					hospitaData.clinicianSSO = data.data[0].clinicianSso;
-					hospitaData.clinicianSSOButtonText = data.data[0].clinicianSsoLinkText;
+      					hospitaData.contactNumber = data.data[0].contactNumber;
+      					hospitaData.email = data.data[0].email;
+      					var hosJsonData = JSON.stringify(hospitaData);
+      					$window.localStorage.setItem('snap_hospital_session', hosJsonData);
 
-					hospitaData.contactNumber = data.data[0].contactNumber;
-					hospitaData.email = data.data[0].email;
-					var hosJsonData = JSON.stringify(hospitaData);
-					$window.localStorage.setItem('snap_hospital_session', hosJsonData);
+      					var hsettings = {};
 
-					var hsettings = {};
+      					hsettings.eCommerce = $rootScope.getDetails.indexOf("ECommerce") > -1;
+      					hsettings.onDemand = $rootScope.getDetails.indexOf("OnDemand") > -1;
+      					hsettings.cPTCodes = $rootScope.getDetails.indexOf("CPTCodes") > -1;
+      					hsettings.messaging = $rootScope.getDetails.indexOf("Messaging") > -1;
 
-					hsettings.eCommerce = $rootScope.getDetails.indexOf("ECommerce") > -1;
-					hsettings.onDemand = $rootScope.getDetails.indexOf("OnDemand") > -1;
-					hsettings.cPTCodes = $rootScope.getDetails.indexOf("CPTCodes") > -1;
-					hsettings.messaging = $rootScope.getDetails.indexOf("Messaging") > -1;
+      					hsettings.insuranceVerification = $rootScope.getDetails.indexOf("InsuranceVerification") > -1;
+      					hsettings.ePrescriptions = $rootScope.getDetails.indexOf("EPrescriptions") > -1;
+      					hsettings.ePrescriptions_EPSchedule = $rootScope.getDetails.indexOf("EPrescriptions_EPSchedule") > -1;
+      					hsettings.intakeForm = $rootScope.getDetails.indexOf("IntakeForm") > -1;
+      					hsettings.intakeForm_OnDemand = $rootScope.getDetails.indexOf("IntakeForm_OnDemand") > -1;
+      					hsettings.intakeForm_Scheduled = $rootScope.getDetails.indexOf("IntakeForm_Scheduled") > -1;
+      					hsettings.providerSearch = $rootScope.getDetails.indexOf("ClinicianSearch") > -1;
+      					hsettings.rxNTEHR = $rootScope.getDetails.indexOf("RxNTEHR") > -1;
+      					hsettings.rxNTPM = $rootScope.getDetails.indexOf("RxNTPM") > -1;
+      					hsettings.hidePaymentPageBeforeWaitingRoom = $rootScope.getDetails.indexOf("HidePaymentPageBeforeWaitingRoom") > -1;
+      					hsettings.fileSharing = $rootScope.getDetails.indexOf("FileSharing") > -1;
+      					hsettings.insuranceBeforeWaiting = $rootScope.getDetails.indexOf("InsuranceBeforeWaiting") > -1;
+      					hsettings.ePerscriptions = $rootScope.getDetails.indexOf("EPerscriptions") > -1;
+      					hsettings.ePSchedule1 = $rootScope.getDetails.indexOf("EPSchedule1") > -1;
 
-					hsettings.insuranceVerification = $rootScope.getDetails.indexOf("InsuranceVerification") > -1;
-					hsettings.ePrescriptions = $rootScope.getDetails.indexOf("EPrescriptions") > -1;
-					hsettings.ePrescriptions_EPSchedule = $rootScope.getDetails.indexOf("EPrescriptions_EPSchedule") > -1;
-					hsettings.intakeForm = $rootScope.getDetails.indexOf("IntakeForm") > -1;
-					hsettings.intakeForm_OnDemand = $rootScope.getDetails.indexOf("IntakeForm_OnDemand") > -1;
-					hsettings.intakeForm_Scheduled = $rootScope.getDetails.indexOf("IntakeForm_Scheduled") > -1;
-					hsettings.providerSearch = $rootScope.getDetails.indexOf("ClinicianSearch") > -1;
-					hsettings.rxNTEHR = $rootScope.getDetails.indexOf("RxNTEHR") > -1;
-					hsettings.rxNTPM = $rootScope.getDetails.indexOf("RxNTPM") > -1;
-					hsettings.hidePaymentPageBeforeWaitingRoom = $rootScope.getDetails.indexOf("HidePaymentPageBeforeWaitingRoom") > -1;
-					hsettings.fileSharing = $rootScope.getDetails.indexOf("FileSharing") > -1;
-					hsettings.insuranceBeforeWaiting = $rootScope.getDetails.indexOf("InsuranceBeforeWaiting") > -1;
-					hsettings.ePerscriptions = $rootScope.getDetails.indexOf("EPerscriptions") > -1;
-					hsettings.ePSchedule1 = $rootScope.getDetails.indexOf("EPSchedule1") > -1;
+      					hsettings.iCD9Codes = $rootScope.getDetails.indexOf("ICD9Codes") > -1;
+      					hsettings.textMessaging = $rootScope.getDetails.indexOf("TextMessaging") > -1;
+      					hsettings.insVerificationDummy = $rootScope.getDetails.indexOf("InsVerificationDummy") > -1;
+      					hsettings.videoBeta = $rootScope.getDetails.indexOf("VideoBeta") > -1;
+      					hsettings.hidePaymentBeforeWaiting = $rootScope.getDetails.indexOf("HidePaymentBeforeWaiting") > -1;
+      					hsettings.showCTTOnScheduled = $rootScope.getDetails.indexOf("ShowCTTOnScheduled") > -1;
 
-					hsettings.iCD9Codes = $rootScope.getDetails.indexOf("ICD9Codes") > -1;
-					hsettings.textMessaging = $rootScope.getDetails.indexOf("TextMessaging") > -1;
-					hsettings.insVerificationDummy = $rootScope.getDetails.indexOf("InsVerificationDummy") > -1;
-					hsettings.videoBeta = $rootScope.getDetails.indexOf("VideoBeta") > -1;
-					hsettings.hidePaymentBeforeWaiting = $rootScope.getDetails.indexOf("HidePaymentBeforeWaiting") > -1;
-					hsettings.showCTTOnScheduled = $rootScope.getDetails.indexOf("ShowCTTOnScheduled") > -1;
+      					hsettings.pPIsBloodTypeRequired = $rootScope.getDetails.indexOf("PPIsBloodTypeRequired") > -1;
+      					hsettings.pPIsHairColorRequired = $rootScope.getDetails.indexOf("PPIsHairColorRequired") > -1;
+      					hsettings.pPIsEthnicityRequired = $rootScope.getDetails.indexOf("PPIsEthnicityRequired") > -1;
+      					hsettings.pPIsEyeColorRequired = $rootScope.getDetails.indexOf("PPIsEyeColorRequired") > -1;
+      					hsettings.organizationLocation = $rootScope.getDetails.indexOf("OrganizationLocation") > -1;
 
-					hsettings.pPIsBloodTypeRequired = $rootScope.getDetails.indexOf("PPIsBloodTypeRequired") > -1;
-					hsettings.pPIsHairColorRequired = $rootScope.getDetails.indexOf("PPIsHairColorRequired") > -1;
-					hsettings.pPIsEthnicityRequired = $rootScope.getDetails.indexOf("PPIsEthnicityRequired") > -1;
-					hsettings.pPIsEyeColorRequired = $rootScope.getDetails.indexOf("PPIsEyeColorRequired") > -1;
-					hsettings.organizationLocation = $rootScope.getDetails.indexOf("OrganizationLocation") > -1;
+      					hsettings.AddressValidation = $rootScope.getDetails.indexOf("AddressValidation") > -1;
 
-					hsettings.AddressValidation = $rootScope.getDetails.indexOf("AddressValidation") > -1;
+      					hsettings.hideOpenConsultation = $rootScope.getDetails.indexOf("HideOpenConsultation") > -1;
+      					hsettings.hideDrToDrChat = $rootScope.getDetails.indexOf("HideDrToDrChat") > -1;
+      					hsettings.drToDrChatInAdmin = false; //data.indexOf("DrToDrChatInAdmin") > -1;
+      					//alert(data.indexOf("HideDrToDrChat"));
+      					//Addd Public facing Hospital Setting
+      					if (data.data[0]['settings']) {
+      						$.extend(hsettings, data.data[0]['settings']);
+      					}
+      					var hsettingsJsonData = JSON.stringify(hsettings);
+      					$window.localStorage.setItem('snap_hospital_settings', hsettingsJsonData);
+      					$state.go('tab.password');
+  				}else{
+      					var confirmPopup = $ionicPopup.prompt({
 
-					hsettings.hideOpenConsultation = $rootScope.getDetails.indexOf("HideOpenConsultation") > -1;
-					hsettings.hideDrToDrChat = $rootScope.getDetails.indexOf("HideDrToDrChat") > -1;
-					hsettings.drToDrChatInAdmin = false; //data.indexOf("DrToDrChatInAdmin") > -1;
-					//alert(data.indexOf("HideDrToDrChat"));
-					//Addd Public facing Hospital Setting
-					if (data.data[0]['settings']) {
-						$.extend(hsettings, data.data[0]['settings']);
-					}
-					var hsettingsJsonData = JSON.stringify(hsettings);
-					$window.localStorage.setItem('snap_hospital_settings', hsettingsJsonData);
-					$state.go('tab.password');
-				}else{
-					var confirmPopup = $ionicPopup.confirm({
+      						  templateUrl: 'templates/tab-updationpopup.html',
+      						  cssClass: 'updatepopup',
+      						  hardwareBackButtonClose: false,
+      					});
+              //  $ionicModal.fromTemplateUrl('templates/tab-updationpopup.html', {
+                /*$ionicModal.fromTemplateUrl('templates/tab-heightedittemplate.html', {
+                    scope: $scope,
+                    animation: 'slide-in-up',
+                    focusFirstInput: false,
+                    backdropClickToClose: false
+                }).then(function(modal) {
+                    $scope.modal = modal;
+                    $scope.modal.show();
+                });*/
 
-						  templateUrl: 'templates/updationpopup.html',
-						  cssClass: 'updatepopup',
-						  hardwareBackButtonClose: false,
-					});
-               }
-            },
+          }
+        },
             error: function(data, status) {
                 if (status === 0) {
 
@@ -1470,6 +1480,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             }
         };
         LoginService.getHospitalInfo(params);
+    }
+
+    $scope.goToStore = function() {
+      if($rootScope.AndroidDevice) {
+         window.location.href = 'https://play.google.com/store/apps/details?id=com.snap.connectedcare.production';
+      } else {
+         window.location.href = 'https://itunes.apple.com/us/app/virtual-care/id1035220141?ls=1&mt=8';
+      }
     }
 
 
@@ -4375,6 +4393,33 @@ $scope.EditHealth = {};
         LoginService.getPatientPaymentProfile(params);
     }
 
+    $rootScope.doGetChargifyPayUpdateCardDetails = function(profileID) {
+      $rootScope.chargifyUpdateCardStatus = '';
+      $rootScope.chargifyPayUpdateCardDetails = '';
+        var params = {
+            accessToken: $rootScope.accessToken,
+            profileID: profileID,
+            success: function(data, status) {
+              $rootScope.chargifyPayUpdateCardDetails = [];
+              $rootScope.chargifyUpdateCardStatus = status;
+                if (data !== '') {
+                   $rootScope.chargifyPayUpdateCardDetails = data;
+                //   $scope.doPostChargifyDetails();
+                }
+            },
+            error: function(data, status) {
+              $rootScope.chargifyUpdateCardStatus = status;
+                if (status === 0) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503) {
+                  $scope.callServiceUnAvailableError();
+                }
+            }
+        };
+        LoginService.getPayUpdateCardDetails(params);
+    }
+
     $rootScope.editcard={};
     $scope.editpaymentcard = function(pageName){
     //  var proid = $("#addNewCard").val();
@@ -4402,27 +4447,30 @@ $scope.EditHealth = {};
       //$rootScope.profileid = proid;
       $rootScope.editPaymentProfile = [];
     angular.forEach(  $rootScope.PaymentProfile, function(index) {
-                   if (index.profileID  == $rootScope.profileid) {
+           if (index.profileID  == $rootScope.profileid) {
 
-                     $rootScope.editPaymentProfile.push({
-                         'id': index.$id,
-                         'billingAddress': angular.fromJson(index.billingAddress),
-                         'cardExpiration': index.cardExpiration,
-                         'cardNumber': replaceCardNumber.getCardNumber(index.cardNumber),
-                         'isBusiness': index.isBusiness,
-                         'profileID': index.profileID,
-                         'cardType' : index.cardType,
-                     });
+             $rootScope.editPaymentProfile.push({
+                 'id': index.$id,
+                 'billingAddress': angular.fromJson(index.billingAddress),
+                 'cardExpiration': index.cardExpiration,
+                 'cardNumber': replaceCardNumber.getCardNumber(index.cardNumber),
+                 'isBusiness': index.isBusiness,
+                 'profileID': index.profileID,
+                 'cardType' : index.cardType,
+             });
 
-                   }
-               });
-               $rootScope.editbilling =  $rootScope.editPaymentProfile[0].billingAddress;
-                $rootScope.editcardNumber =  $rootScope.editPaymentProfile[0].cardNumber;
-                  $rootScope.editcard.cardcountry = $rootScope.editbilling.country;
-                  $("#editCountry").val(  $rootScope.editcard.cardcountry);
-               $state.go('tab.cardeditDetails');
-
+           }
+       });
+       $rootScope.doGetChargifyPayUpdateCardDetails($rootScope.editPaymentProfile[0].profileID);
+       var cardExpiration = $rootScope.editPaymentProfile[0].cardExpiration;
+       $rootScope.cardExpirationSplitValue = cardExpiration.split('/');
+       $rootScope.editbilling =  $rootScope.editPaymentProfile[0].billingAddress;
+        $rootScope.editcardNumber =  $rootScope.editPaymentProfile[0].cardNumber;
+          $rootScope.editcard.cardcountry = $rootScope.editbilling.country;
+          $("#editCountry").val($rootScope.editcard.cardcountry);
+       $state.go('tab.cardeditDetails');
     }
+
     $scope.doPostClearHealthPlan = function() {
         var params = {
             healthPlanID: $rootScope.healthPlanID,
@@ -4550,7 +4598,9 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         } else if ($('#editlaststName').val() === '') {
               $scope.ErrorMessage = "Last Name can't be empty";
               $rootScope.Validation($scope.ErrorMessage);
-
+        } else if ($('#editCardNumber').val() === '') {
+              $scope.ErrorMessage = "Card number can't be empty";
+              $rootScope.Validation($scope.ErrorMessage);
         } else if ($('#editExpmonth').val() === '') {
               $scope.ErrorMessage = "Expiry Month can't be empty";
               $rootScope.Validation($scope.ErrorMessage);
@@ -4591,6 +4641,57 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             $rootScope.cardDisplay = "none;";
             $rootScope.verifyCardDisplay = "inherit";
             $rootScope.planverify = "0.3";
+        if($rootScope.chargifyUpdateCardStatus === 200) {
+            var params = {
+                uri: $rootScope.chargifyPayUpdateCardDetails.uri,
+                api_id: $rootScope.chargifyPayUpdateCardDetails.form["secure[api_id]"],
+                data: $rootScope.chargifyPayUpdateCardDetails.form["secure[data]"],
+                nonce: $rootScope.chargifyPayUpdateCardDetails.form["secure[nonce]"],
+                timestamp: $rootScope.chargifyPayUpdateCardDetails.form["secure[timestamp]"],
+                signature: $rootScope.chargifyPayUpdateCardDetails.form["secure[signature]"],
+                profile_ID: $rootScope.chargifyPayUpdateCardDetails.form["payment_profile[id]"],
+                card_number: $rootScope.editCardNumber,
+                expiration_month: $rootScope.editExpiryMonth,
+                expiration_year: $rootScope.editExpiryYear,
+                cvv: $rootScope.editCvv,
+                first_name: $rootScope.editFirstName,
+                last_name: $rootScope.editLastName,
+                billing_state: $rootScope.editState,
+                billing_address: $rootScope.editBillingAddress,
+                billing_city: $rootScope.editCity,
+                billing_zip: $rootScope.editZip,
+                billing_country: $scope.editCountry,
+                accessToken: $rootScope.accessToken,
+                success: function(data) {
+                  $scope.EditPaymentDetails = data;
+                  $rootScope.userCardDetails = $rootScope.paymentProfileId;
+                  $rootScope.chkProfileIdForCrdType = $rootScope.paymentProfileId;
+                if (typeof $rootScope.CardNumber === 'undefined') {
+                        $rootScope.choosePaymentShow = 'none';
+                        $rootScope.choosePaymentHide = 'initial';
+                    } else if (typeof $rootScope.CardNumber !== 'undefined') {
+                        $rootScope.choosePaymentShow = 'initial';
+                        $rootScope.choosePaymentHide = 'none';
+                        var cardNo = $rootScope.CardNumber;
+                        var strCardNo = cardNo.toString();
+                        var getLastFour = strCardNo.substr(strCardNo.length - 4);
+                        $rootScope.userCardNumber = getLastFour;
+                    }
+                    $rootScope.doGetPatientPaymentProfiles();
+                    $state.go('tab.submitPayment');
+                    $rootScope.cardDisplay = "inherit;";
+                    $rootScope.verifyCardDisplay = "none";
+                    $rootScope.planverify = "inherit";
+                },
+                error: function() {
+                    $rootScope.cardDisplay = "inherit;";
+                    $rootScope.verifyCardDisplay = "none";
+                    $rootScope.planverify = "inherit";
+                    $rootScope.serverErrorMessageValidationForPayment();
+                }
+            };
+            LoginService.PostUpdateChargifyDetails(params);
+        } else {
             var params = {
                 EmailId: $rootScope.UserEmail,
                 BillingAddress: $rootScope.editBillingAddress,
@@ -4607,8 +4708,6 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 Cvv: $rootScope.editCvv,
                 Patientprofileid:  $rootScope.patientprofileID,
                 accessToken: $rootScope.accessToken,
-
-
                 success: function(data) {
                   $scope.EditPaymentDetails = data;
                   $rootScope.userCardDetails = $rootScope.profileid;
@@ -4637,9 +4736,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     $rootScope.serverErrorMessageValidationForPayment();
                 }
             };
-
             LoginService.editPaymentProfile(params);
-
+          }
         }
     }
 
@@ -4713,6 +4811,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             $rootScope.planverify = "0.3";
             if($rootScope.addCardStatus === 200) {
                   var params = {
+                      uri: $rootScope.PayAddCardDetails.uri,
                       api_id: $rootScope.PayAddCardDetails.form["secure[api_id]"],
                       data: $rootScope.PayAddCardDetails.form["secure[data]"],
                       nonce: $rootScope.PayAddCardDetails.form["secure[nonce]"],
@@ -5203,7 +5302,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     //To save the last used card for user.
                   //  var cardSelectedText = $('#cardViewport').html();
                     $window.localStorage.setItem("Card" + $rootScope.UserEmail, $rootScope.paymentProfileId);
-                    $window.localStorage.setItem("CardText" + $rootScope.UserEmail, cardSelectedText);
+                  //  $window.localStorage.setItem("CardText" + $rootScope.UserEmail, cardSelectedText);
                     $window.localStorage.setItem("hosNameforCard", $rootScope.hospitalName);
                     $rootScope.paymentConfirmationNumber = data.data[0].confirmationNumber;
                     $scope.CreditCardDetails = data;
@@ -5431,7 +5530,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
     $rootScope.doGetIndividualScheduledConsulatation = function() {
         $scope.individualScheduledConsultationList = '';
-        $rootScope.appointmentPatientId = '';
+        $rootScope.appointmentsPatientId = '';
         $rootScope.getIndividualScheduledList = '';
         $rootScope.individualScheduleParticipants = '';
         $rootScope.individualScheduledList = '';
@@ -5567,7 +5666,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             $rootScope.individualwithoutAppointmentDisplay = 'none';
                             $rootScope.accountStyle = "AppointNone" + $rootScope.deviceName;
                             $rootScope.userAccContent = "userAccContent" + $rootScope.deviceName;
-                            $rootScope.appointmentPatientId = $rootScope.patientId;
+                            $rootScope.appointmentsPatientId = $rootScope.patientId;
                             var beforAppointmentTime = getReplaceTime;
                             var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
 
