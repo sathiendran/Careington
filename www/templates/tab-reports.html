@@ -72,13 +72,13 @@
                     </div>
 
                     <div class="pc-report__company-info">
-                        <h1>Company Name</h1>
-                        <address>{{reportHospitalAddress}}</address>
-
-                        <h2 ng-if="OrganizationLocation === 'on'">Organization</h2>
+                        
+                        <h2 style="width: 142px;">{{reportBrandName}}</h2>
+                        <hr>
+                        <h2 ng-if="OrganizationLocation === 'on'" style="color: #666;">Organization</h2>
                         <p ng-if="OrganizationLocation === 'on'"> {{organization}}</p>
 
-                        <h2 ng-if="OrganizationLocation === 'on'">Location</h2>
+                        <h2 ng-if="OrganizationLocation === 'on'" style="color: #666;">Location</h2>
                         <p ng-if="OrganizationLocation === 'on'">{{location}}</p>
                     </div>
 
@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="pc-report__data-list-item pc-report__data-list-item--small">
                                     <span class="pc-report__data-list-title">DOB</span>
-                                    <span class="pc-report__data-list-desc">{{reportdob }}</span>
+                                    <span class="pc-report__data-list-desc">{{reportdob  | date :  "MM/dd/yyyy" }}</span>
                                 </div>
                            </div>
 
@@ -137,7 +137,7 @@
                                     <li>2.{{reportScreenSecondaryConcern}}</li>
                                 </ol>
 
-                                <p class="pc-report__add-notes"><strong>Additional Notes:</strong> <span>{{repadditionalnotes}}</span></p>
+                                <p  ng-if="repadditionalnotes !== 'N/R'" class="pc-report__add-notes"><strong>Additional Notes:</strong> <span>{{repadditionalnotes}}</span></p>
                             </div>
                         </div>
                         <!--// Patient Info -->
@@ -145,7 +145,7 @@
                         <!-- Encounter Info -->
                         <div class="pc-report__encounter-info">
                             <div class="pc-report__sub-section-title">Encounter Information</div>
-                            <div class="pc-report__name pc-report__name--provider">Dr.{{reportDoctorFirstName}}{{reportDoctorLastName}}</div>
+                            <div class="pc-report__name pc-report__name--provider">{{reportDoctorFirstName}} {{reportDoctorLastName}}</div>
                             <div class="pc-report__name-details"><strong>Department</strong>:  {{providerDepartment}}</div>
 
                             <!-- Report Chart -->
@@ -429,11 +429,19 @@
                   <!--   <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Waiting Room</div>
                      <p class="pc-report__chat-transcript">[1:04:52 PM] Ben: @dejan can you give me a quick list of what is working and what is not for all the items included in this hotfix?<br>[1:13:51 PM] Dejan Zivanovic: it's in chetna report<br>[1:13:54 PM] Dejan Zivanovic: and in new column</p>
 -->
+                     <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Waiting Room</div>
+                     <p class="pc-report__chat-transcript" ng-if="chatTranscript.length">
+                     <li ng-repeat = "chatTranscript in chatTranscript" style="font-size: 0.56em;">{{chatTranscript.ChatMessage}}</li>
+                     </p>
+                     <p class="pc-report__chat-transcript " ng-if="!chatTranscript.length">None Reported</p>
+
                      <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Consultation</div>
                      <p class="pc-report__chat-transcript" ng-if="chatTranscript.length">
                      <li ng-repeat = "chatTranscript in chatTranscript" style="font-size: 0.56em;">{{chatTranscript.ChatMessage}}</li>
                      </p>
                      <p class="pc-report__chat-transcript " ng-if="!chatTranscript.length">None Reported</p>
+
+
                      <!--// chat -->
 
 
@@ -452,7 +460,7 @@
                                  <li>None Reported</li>
                              </ul>
 
-                             <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width">Medication Allergies <span class="pc-report__sub-section-date"></span></div>
+                             <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width">Medication Allergies <span class="pc-report__sub-section-date">As of {{currentDate123}}</span></div>
                              <div class="pc-report__list-title" ng-if="intake.medicationAllergies != ''" >Name</div>
                              <ul class="pc-report__med-list" ng-repeat="getAllergyList in ReportMedicationAllergies">
                                  <li>{{getAllergyList.description}}</li>
