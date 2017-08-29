@@ -624,7 +624,7 @@ angular.module('starter.controllers')
             var mnth = start.getMonth() + 1;
             var year = start.getFullYear();
 
-                    $rootScope.currentDate123 = mnth+"/"+day+"/"+year;
+                    $rootScope.todayDateForReport = mnth+"/"+day+"/"+year;
 
                     var usDOB = ageFilter.getDateFilter($rootScope.existingConsultationReport.dob);
 
@@ -715,7 +715,8 @@ angular.module('starter.controllers')
 
                     $rootScope.reportMedicalCodeDetails = [];
 
-                    if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $rootScope.existingConsultationReport.medicalCodeDetails !== 'undefined') {
+                    if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $rootScope.existingConsultationReport.medicalCodeDetails !== 'undefined') 
+                    {
                         angular.forEach($rootScope.existingConsultationReport.medicalCodeDetails, function(index, item) {
                           var cptcode = index.shortDescription;
                           var spcptcode = cptcode.split("-");

@@ -430,10 +430,11 @@
                      <p class="pc-report__chat-transcript">[1:04:52 PM] Ben: @dejan can you give me a quick list of what is working and what is not for all the items included in this hotfix?<br>[1:13:51 PM] Dejan Zivanovic: it's in chetna report<br>[1:13:54 PM] Dejan Zivanovic: and in new column</p>
 -->
                      <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Waiting Room</div>
-                     <p class="pc-report__chat-transcript" ng-if="chatTranscript.length">
+                     <p class="pc-report__chat-transcript ">None Reported</p>
+                    <!--  <p class="pc-report__chat-transcript" ng-if="chatTranscript.length">
                      <li ng-repeat = "chatTranscript in chatTranscript" style="font-size: 0.56em;">{{chatTranscript.ChatMessage}}</li>
                      </p>
-                     <p class="pc-report__chat-transcript " ng-if="!chatTranscript.length">None Reported</p>
+                     <p class="pc-report__chat-transcript " ng-if="!chatTranscript.length">None Reported</p> -->
 
                      <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Consultation</div>
                      <p class="pc-report__chat-transcript" ng-if="chatTranscript.length">
@@ -460,7 +461,7 @@
                                  <li>None Reported</li>
                              </ul>
 
-                             <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width">Medication Allergies <span class="pc-report__sub-section-date">As of {{currentDate123}}</span></div>
+                             <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width">Medication Allergies <span class="pc-report__sub-section-date">As of {{todayDateForReport}}</span></div>
                              <div class="pc-report__list-title" ng-if="intake.medicationAllergies != ''" >Name</div>
                              <ul class="pc-report__med-list" ng-repeat="getAllergyList in ReportMedicationAllergies">
                                  <li>{{getAllergyList.description}}</li>
@@ -547,7 +548,7 @@
                      </ul> -->
 
                      <div class="pc-report__attachments">
-                         <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed">Other Attachments</div>
+                         <div  ng-if="getAttachmentList != '' && undefined" class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed">Other Attachments</div>
 
                          <ul class="pc-report__other-atmts" ng-if="getAttachmentList != ''">
                              <li  ng-repeat="getAttachment in getAttachmentList" ng-click="doGetAttachmentURL({{getAttachment.id}});" >
