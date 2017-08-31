@@ -787,6 +787,7 @@ angular.module('starter.controllers')
                     $scope.getSoapNotes(consultation);
                     $scope.doGetAttachmentList(consultation.consultationId);
                     $scope.doGetChatTranscript(consultation.consultationId);
+                    $scope.doGetWaitingRoomChatTranscript(consultation.consultationId);
 
                 },
                 error: function(data, status) {
@@ -862,6 +863,39 @@ angular.module('starter.controllers')
             };
 
             LoginService.getChatTranscript(params);
+
+        }
+
+         $scope.doGetWaitingRoomChatTranscript = function(consultationId) {
+
+            var params = {
+                consultationId: consultationId,
+                accessToken: $rootScope.accessToken,
+                success: function(data) {
+
+                    $rootScope.waitingRoomChatTranscript = [];
+                    if (data.count !== 0) {
+                     var chatdetails=data.data;
+                     
+                        angular.forEach(chatdetails, function(index) {
+                             
+                            $rootScope.waitingRoomChatTranscript.push({
+                              'ChatMessage': index,
+                            });
+                            
+                        });
+                    }
+                },
+                error: function(data,status) {
+                  if(status === 503) {
+                    $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                  } else {
+                    $rootScope.serverErrorMessageValidation();
+                  }
+                }
+            };
+
+            LoginService.getWaitingRoomChatTranscript(params);
 
         }
 

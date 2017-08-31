@@ -359,7 +359,7 @@
 
                      <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin-lg">Encounter Codes</div>
                      <div class="pc-report__encounter-codes">
-                           <div ng-if = "medicalCodeDetails != '' || undefined" class="pc-report__table-title pc-report__table-title--right">
+                           <div ng-if = "existingConsultationReport.medicalCodeDetails != '' || undefined" class="pc-report__table-title pc-report__table-title--right">
                                <span>Category</span>
                                <span>Code</span>
                                <span>Description</span>
@@ -393,7 +393,7 @@
                                <span>{{reportSNOMED.SNOMEDcodeDescription}}</span>
                            </div>
                       </div>
-                          <div ng-if = "medicalCodeDetails == '' || undefined">
+                          <div class="pc-report__chat-transcript" ng-if = "existingConsultationReport.medicalCodeDetails  == '' || undefined">
                             <p>None Reported</p>
                           </div>
                      </div>
@@ -430,11 +430,11 @@
                      <p class="pc-report__chat-transcript">[1:04:52 PM] Ben: @dejan can you give me a quick list of what is working and what is not for all the items included in this hotfix?<br>[1:13:51 PM] Dejan Zivanovic: it's in chetna report<br>[1:13:54 PM] Dejan Zivanovic: and in new column</p>
 -->
                      <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Waiting Room</div>
-                     <p class="pc-report__chat-transcript ">None Reported</p>
-                    <!--  <p class="pc-report__chat-transcript" ng-if="chatTranscript.length">
-                     <li ng-repeat = "chatTranscript in chatTranscript" style="font-size: 0.56em;">{{chatTranscript.ChatMessage}}</li>
+                     <!-- <p class="pc-report__chat-transcript ">None Reported</p> -->
+                     <p class="pc-report__chat-transcript" ng-if="waitingRoomChatTranscript.length">
+                     <li ng-repeat = "waitingRoomChatTranscript in waitingRoomChatTranscript" style="font-size: 0.56em;">{{waitingRoomChatTranscript.ChatMessage}}</li>
                      </p>
-                     <p class="pc-report__chat-transcript " ng-if="!chatTranscript.length">None Reported</p> -->
+                     <p class="pc-report__chat-transcript " ng-if="!waitingRoomChatTranscript.length">None Reported</p>
 
                      <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Consultation</div>
                      <p class="pc-report__chat-transcript" ng-if="chatTranscript.length">

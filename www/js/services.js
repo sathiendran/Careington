@@ -1642,6 +1642,7 @@ this.getPatientMedicalProfile = function(params){
     }
 
     this.getChatTranscript = function (params) {
+      
           var requestInfo = {
               headers: util.getHeaders(params.accessToken),
               url: apiCommonURL + '/api/v2/reports/consultation/chat/' + params.consultationId,
@@ -1661,6 +1662,25 @@ this.getPatientMedicalProfile = function(params){
                   });
       }
 
+this.getWaitingRoomChatTranscript = function (params) {
+          var requestInfo = {
+              headers: util.getHeaders(params.accessToken),
+              url: apiCommonURL + '/api/reports/consultationreportdetails/chatnote/' + params.consultationId+'/1',
+              method: 'GET'
+          };
+
+          $http(requestInfo).
+                  success(function (data, status, headers, config) {
+                      if (typeof params.success != 'undefined') {
+                          params.success(data);
+                      }
+                  }).
+                  error(function (data, status, headers, config) {
+                      if (typeof params.error != 'undefined') {
+                         params.error(data,status);
+                      }
+                  });
+      }
 
    this.postNewDependentuser = function(params) {
 
