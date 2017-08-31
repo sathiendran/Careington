@@ -571,7 +571,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-    } else if (!$rootScope.AndroidDevice) {
+    } else if ($rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -1488,6 +1488,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
       $rootScope.patientId = JSON.parse(sessionStorage.getItem("appointPatId"));
       $rootScope.userhome = true;
       $rootScope.SSPage = true;
+      $rootScope.appointmentsPage = true;
       $rootScope.consultationId = $stateParams.getconsultId;
       $rootScope.P_isAuthorized = true;
       $rootScope.concentToTreatPreviousPage = "tab.userhome";
@@ -1617,6 +1618,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     });
                 });
                 if(getStatus === 'Now') {
+                  $rootScope.schedulePatAge = getAge($scope.selPatDetails[0].dob);
                   $rootScope.GoToPatientDetails($scope.selPatDetails[0].location, $scope.selPatDetails[0].account.profileImage, $scope.selPatDetails[0].patientName, $scope.selPatDetails[0].lastName, $scope.selPatDetails[0].dob, ' ', $rootScope.patientId, 'true', 'SS');
                 } else {
                   $rootScope.GoToPatientDetails($scope.selPatDetails[0].location, $scope.selPatDetails[0].account.profileImage, $scope.selPatDetails[0].patientName, $scope.selPatDetails[0].lastName, $scope.selPatDetails[0].dob, ' ', $rootScope.patientId, 'true', 'notNow');
@@ -6540,7 +6542,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             accessToken: $rootScope.accessToken,
             success: function(data) {
               $rootScope.isPaidOnDemand = data.isPaid;
-              $rootScope.doPutConsultationSave();
+              $scope.$root.$broadcast("callDoPutConsultationSave");
               },
             error: function(data, status) {
               if (status === 0) {

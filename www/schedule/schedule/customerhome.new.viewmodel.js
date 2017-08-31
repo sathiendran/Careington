@@ -204,7 +204,7 @@ var setUserVars = function() {
                                     isLoading = false;
                                     var data = response.data[0];
                                     //this works slow
-                                    $overlay.setLoadingIcn("images/Clipboard-Done-C.svg");
+                                    $overlay.setLoadingIcn("../images/Clipboard-Done-C.svg");
                                     $overlay.setLoadingTxt("All set.");
 
                                     if (appt.encounterTypeCode === snap.enums.EncounterTypeCode.Phone) {

@@ -469,6 +469,8 @@ $scope.locat=false;
             $rootScope.isPaid = '';
             $rootScope.appointIntakePage = '';
             $rootScope.appointmentsPage = '';
+            $rootScope.userhome = '';
+            $rootScope.SSPage = '';
             $scope.doPostOnDemandConsultation();
         }
     }
@@ -1478,6 +1480,11 @@ $scope.locat=false;
         };
         LoginService.putConsultationSave(params);
     }
+
+    $scope.$on("callDoPutConsultationSave", function(event, args) {
+        $rootScope.doPutConsultationSave();
+    });
+
     $scope.doPostOndemandDepitDetails = function() {
         var params = {
             patientId: $rootScope.patientId,
