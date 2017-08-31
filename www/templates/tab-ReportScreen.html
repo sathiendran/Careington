@@ -54,12 +54,12 @@
                     </div>
 
                     <div class="pc-report__company-info">
-                        <h1>Company Name</h1>
-                        <address>{{reportHospitalAddress}}</address>
-                        <h2 ng-if="OrganizationLocation === 'on'">Organization</h2>
+                        <h2 style="width: 142px;">{{reportBrandName}}</h2>
+                        <hr>
+                        <h2 ng-if="OrganizationLocation === 'on'"  style="color: #666;">Organization</h2>
                         <p ng-if="OrganizationLocation === 'on'"> {{organization}}</p>
 
-                        <h2 ng-if="OrganizationLocation === 'on'">Location</h2>
+                        <h2 ng-if="OrganizationLocation === 'on'"  style="color: #666;">Location</h2>
                         <p ng-if="OrganizationLocation === 'on'">{{location}}</p>
                     </div>
 
@@ -91,13 +91,13 @@
                                 </div>
                                 <div class="pc-report__data-list-item pc-report__data-list-item--small">
                                     <span class="pc-report__data-list-title">DOB</span>
-                                    <span class="pc-report__data-list-desc">{{reportdob }}</span>
+                                    <span class="pc-report__data-list-desc">{{reportdob | date :  "MM/dd/yyyy" }}</span>
                                 </div>
                            </div>
 
                             <div class="pc-report__data-list pc-report__data-list-item">
                                 <span class="pc-report__data-list-title">RACE</span>
-                                <span class="pc-report__data-list-desc">NA</span>
+                                <span class="pc-report__data-list-desc">N/R</span>
                             </div>
                                <div class="pc-report__data-list pc-report__data-list-item">
                                 <span class="pc-report__data-list-title">ETHNICITY</span>
@@ -106,7 +106,7 @@
 
                             <div class="pc-report__data-list pc-report__data-list-item">
                                 <span class="pc-report__data-list-title">LANGUAGE</span>
-                                <span class="pc-report__data-list-desc">NA</span>
+                                <span class="pc-report__data-list-desc">N/R</span>
                             </div>
                             <!--// report chart -->
 
@@ -118,16 +118,18 @@
                                     <li>2.{{reportScreenSecondaryConcern}}</li>
                                 </ol>
 
-                                <p class="pc-report__add-notes"><strong>Additional Notes:</strong> <span>{{repadditionalnotes}}</span></p>
+                                <p ng-if="repadditionalnotes !== 'N/R'"  class="pc-report__add-notes"><strong>Additional Notes:</strong> <span>{{repadditionalnotes}}</span></p>
+
                             </div>
                         </div>
                         <!--// Patient Info -->
-
                         <!-- Encounter Info -->
                         <div class="pc-report__encounter-info">
                             <div class="pc-report__sub-section-title">Encounter Information</div>
-                            <div class="pc-report__name pc-report__name--provider">Dr.{{reportDoctorFirstName}}{{reportDoctorLastName}}</div>
-                            <div class="pc-report__name-details"><strong>Department</strong>:{{reportMedicalSpeciality}}</div>
+                            <div class="pc-report__name pc-report__name--provider">{{reportDoctorFirstName}} {{reportDoctorLastName}}</div>
+                            <div class="pc-report__name-details"><strong>Department</strong>
+                            :{{providerDepartment}}</div>
+                            <!--:{{reportMedicalSpeciality}}</div> -->
 
                             <!-- Report Chart -->
                             <div class="pc-report__data-list pc-report__data-list-item">
@@ -138,7 +140,8 @@
                             </div>
                                <div class="pc-report__data-list pc-report__data-list-item">
                                 <span class="pc-report__data-list-title">encounter</span>
-                                <span class="pc-report__data-list-desc">{{consultdate | date: "MMM dd, yyyy"}}, {{consultdate | date: "hh:mm"}}, {{consultdate | date: "a"}} PST</span>
+                               <!--  <span class="pc-report__data-list-desc">{{consultdate | date: "MMM dd, yyyy"}}, {{consultdate | date: "hh:mm"}}, {{consultdate | date: "a"}} PST</span> -->
+                                 <span class="pc-report__data-list-desc">{{consultationDate | date: "MMM dd, yyyy"}}, {{consultationDate | date: "hh:mm"}}, {{consultationDate | date: "a"}} PST</span>
                             </div>
 
                             <div class="pc-report__data-list pc-report__data-list-item">
@@ -167,7 +170,7 @@
                             <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Other Attendees</div>
 
                             <div class="pc-report__attendees">
-                                   <div class="pc-report__table-title pc-report__table-title--left">
+                                   <div  ng-if="existconsultationparticipants != ''" class="pc-report__table-title pc-report__table-title--left">
                                        <span>Name</span>
                                        <span>Joined</span>
                                        <span>Departed</span>
@@ -209,7 +212,7 @@
                              <span class="pc-report__vital-title">Patient Reported</span>
 
                              <div class="pc-report__vital-box">
-                                 <span class="pc-report__vital-data">NA</span>
+                                 <span class="pc-report__vital-data">N/R</span>
                                  <div class="pc-report__vital-type">Blood Pressure</div>
                              </div>
                          </div>
@@ -218,7 +221,7 @@
                              <span class="pc-report__vital-title">Apple Health</span>
 
                              <div class="pc-report__vital-box">
-                                 <span class="pc-report__vital-data">NA</span>
+                                 <span class="pc-report__vital-data">N/R</span>
                                  <div class="pc-report__vital-type">Pulse</div>
                              </div>
                          </div>
@@ -227,7 +230,7 @@
                              <span class="pc-report__vital-title">Provider Entered</span>
 
                              <div class="pc-report__vital-box">
-                                 <span class="pc-report__vital-data">NA</span>
+                                 <span class="pc-report__vital-data">N/R</span>
                                  <div class="pc-report__vital-type">Temperature</div>
                              </div>
                          </div>
@@ -238,7 +241,7 @@
                              <span class="pc-report__vital-title">Chat Thread</span>
 
                              <div class="pc-report__vital-box">
-                                 <span class="pc-report__vital-data">NA</span>
+                                 <span class="pc-report__vital-data">N/R</span>
                                  <div class="pc-report__vital-type">SpO2</div>
                              </div>
                          </div>
@@ -270,7 +273,7 @@
                              <span class="pc-report__vital-title">Philips Device</span>
 
                              <div class="pc-report__vital-box">
-                                 <span class="pc-report__vital-data">NA/span>
+                                 <span class="pc-report__vital-data">N/R</span>
                                  <div class="pc-report__vital-type">BMI</div>
                              </div>
                          </div>
@@ -281,21 +284,21 @@
                              <div class="pc-report__social-icon pc-report__social-icon--drink"></div>
                              <div class="pc-report__social-block">
                                  <span class="pc-report__social-title">Alcohol Use</span>
-                                 <span class="pc-report__social-desc">NA</span>
+                                 <span class="pc-report__social-desc">N/R</span>
                              </div>
                          </div>
                          <div class="pc-report__social">
                              <div class="pc-report__social-icon"></div>
                              <div class="pc-report__social-block">
                                  <span class="pc-report__social-title">Smoking Tobacco Use</span>
-                                 <span class="pc-report__social-desc">NA</span>
+                                 <span class="pc-report__social-desc">N/R</span>
                              </div>
                          </div>
                      </div>
                      <div class="pc-report__socials-container">
                          <div class="pc-report__social">
                              <span class="pc-report__social-title">Smokeless Tobacco Use</span>
-                             <span class="pc-report__social-desc">NA</span>
+                             <span class="pc-report__social-desc">N/R</span>
                          </div>
                          <div class="pc-report__social">
                              <span class="pc-report__social-title">Comments:</span>
@@ -340,7 +343,7 @@
 
                      <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin-lg">Encounter Codes</div>
                      <div class="pc-report__encounter-codes">
-                           <div class="pc-report__table-title pc-report__table-title--right">
+                           <div ng-if = "medicalCodeDetails != ''" class="pc-report__table-title pc-report__table-title--right">
                                <span>Category</span>
                                <span>Code</span>
                                <span>Description</span>
@@ -386,8 +389,8 @@
 
                      <div class="pc-report__prescriptions">
                          <div class="pc-report__table-title pc-report__table-title--50x50">
-                               <span>Name</span>
-                               <span>Dosage</span>
+                               <!-- <span>Name</span>
+                               <span>Dosage</span> -->
                            </div>
 
                            <div class="pc-report__table-row pc-report__table-row--50x50">
@@ -407,9 +410,15 @@
                      <!-- chat -->
                      <div class="pc-report__section-title">Chat</div>
 
-                  <!--   <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Waiting Room</div>
-                     <p class="pc-report__chat-transcript">[1:04:52 PM] Ben: @dejan can you give me a quick list of what is working and what is not for all the items included in this hotfix?<br>[1:13:51 PM] Dejan Zivanovic: it's in chetna report<br>[1:13:54 PM] Dejan Zivanovic: and in new column</p>
--->
+                     <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Waiting Room</div>
+                     <p class="pc-report__chat-transcript">None Reported</p>
+                     <!-- <p class="pc-report__chat-transcript">[1:04:52 PM] Ben: @dejan can you give me a quick list of what is working and what is not for all the items included in this hotfix?<br>[1:13:51 PM] Dejan Zivanovic: it's in chetna report<br>[1:13:54 PM] Dejan Zivanovic: and in new column</p> -->
+                   <!--   <p class="pc-report__chat-transcript" ng-if="chatTranscript.length">
+                     <li ng-repeat = "chatTranscript in chatTranscript" style="font-size: 0.56em;">{{chatTranscript.ChatMessage}}</li>
+                     </p>
+                     <p class="pc-report__chat-transcript " ng-if="!chatTranscript.length">None Reported</p> -->
+
+
                      <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Consultation</div>
                      <p class="pc-report__chat-transcript" ng-if="chatTranscript.length">
                      <li ng-repeat = "chatTranscript in chatTranscript" style="font-size: 0.56em;">{{chatTranscript.ChatMessage}}</li>
@@ -425,7 +434,7 @@
                          <div class="pc-report__med-history-left">
                              <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width">Current Medications</div>
 
-                             <div class="pc-report__list-title">Name</div>
+                             <div ng-if="intake.medications != ''" class="pc-report__list-title">Name</div>
                              <ul class="pc-report__med-list" ng-repeat="getMedicationList in ReportMedications">
                                  <li>{{getMedicationList.description}}</li>
                              </ul>
@@ -433,8 +442,8 @@
                                  <li>None Reported</li>
                              </ul>
 
-                             <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width">Medication Allergies <span class="pc-report__sub-section-date"></span></div>
-                             <div class="pc-report__list-title">Name</div>
+                             <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width">Medication Allergies<span class="pc-report__sub-section-date">As of {{todayDateForReport}}</span></div>
+                             <div ng-if="intake.medicationAllergies != ''" class="pc-report__list-title">Name</div>
                              <ul class="pc-report__med-list" ng-repeat="getAllergyList in ReportMedicationAllergies">
                                  <li>{{getAllergyList.description}}</li>
                              </ul>
@@ -446,7 +455,7 @@
                          <div class="pc-report__med-history-right">
                              <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width">Chronic Conditions</div>
 
-                             <div class="pc-report__list-title">Name</div>
+                             <div ng-if="intake.medicalConditions != ''" class="pc-report__list-title">Name</div>
                              <ul class="pc-report__med-list" ng-repeat="getmedicalConditionsList in ReportMedicalConditions">
                                  <li>{{getmedicalConditionsList.description}}</li>
                              </ul>
@@ -458,7 +467,7 @@
                              <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width">Prior Surgeries</div>
 
                              <div class="pc-report__prior-surgeries">
-                                 <div class="pc-report__table-title pc-report__table-title--50x50">
+                                 <div ng-if="intake.surgeries != ''" class="pc-report__table-title pc-report__table-title--50x50">
                                      <span>Name</span>
                                        <span>Date</span>
                                    </div>
@@ -474,7 +483,7 @@
                          </div>
                      </div>
 
-                     <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Birth Info <span class="pc-report__sub-section-child">(Child < 1yr)</div>
+                    <!--  <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Birth Info <span class="pc-report__sub-section-child">(Child < 1yr)</div>
 
                      <div class="pc-report__table-title pc-report__table-title--50x50-qa">
                          <span>Question</span>
@@ -487,9 +496,34 @@
                           <span>Child discharged with mother : {{dischargedWithMother}}</span><br>
                           <span>Child vaccinations up-to-date : {{vaccinationsCurrent}}</span><br>
                        </div>
-                       <div ng-if="userReportDOB >= 1" class="pc-report__table-row pc-report__table-row--50x50-qa" >None Reported</div>
+                       <div ng-if="userReportDOB >= 1" class="pc-report__table-row pc-report__table-row--50x50-qa" >None Reported</div> -->
                      <!--// medical history -->
 
+<div ng-if="userReportDOB <= 1">
+                     <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Birth Info <span class="pc-report__sub-section-child">(Child < 1yr)</div>
+
+                     <div class="pc-report__table-title pc-report__table-title--50x50-qa">
+                         <span>Question</span>
+                           <span>Response</span>
+                       </div>
+
+                       <div class="pc-report__table-row pc-report__table-title--50x50-qa" style="font-weight: bold;">
+                           <span>Child born at full term :</span>
+                             <span>{{fullTerm}}</span>
+                         </div>
+                         <div class="pc-report__table-row pc-report__table-title--50x50-qa" style="font-weight: bold;">
+                         <span>Child born vaginally :</span>
+                               <span>{{vaginalBirth}}</span>
+                           </div>
+                           <div class="pc-report__table-row pc-report__table-title--50x50-qa" style="font-weight: bold;">
+                          <span>Child discharged with mother :</span>
+                           <span>{{dischargedWithMother}}</span>
+                             </div>
+                             <div class="pc-report__table-row pc-report__table-title--50x50-qa" style="font-weight: bold;">
+                             <span>Child vaccinations up-to-date :</span>
+                                   <span>{{vaccinationsCurrent}}</span>
+                               </div>
+                            </div>
                      <!-- Files -->
                      <div class="pc-report__section-title">Attached Files</div>
                     <!-- <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed">Snapshots</div>
@@ -500,7 +534,7 @@
                      </ul> -->
 
                      <div class="pc-report__attachments">
-                         <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed">Other Attachments</div>
+                         <div ng-if="getAttachmentList != '' && undefined" class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed">Other Attachments</div>
 
                          <ul class="pc-report__other-atmts" ng-if="getAttachmentList != ''">
                              <li  ng-repeat="getAttachment in getAttachmentList" ng-click="doGetAttachmentURL({{getAttachment.id}});" >

@@ -141,7 +141,7 @@ angular.module('starter.controllers')
                 $rootScope.existingConsultationReport = data.data[0].details[0];
                 $rootScope.existconsultationparticipants=data.data[0].participants;
 
-                if ($rootScope.existingConsultationReport.height !== '' && typeof $rootScope.existingConsultationReport.height !== 'undefined')
+                /*if ($rootScope.existingConsultationReport.height !== '' && typeof $rootScope.existingConsultationReport.height !== 'undefined')
                 {
                   if ($rootScope.existingConsultationReport.heightUnit !== '' && typeof $rootScope.existingConsultationReport.heightUnit !== 'undefined') {
                     $rootScope.reportHeight = $rootScope.existingConsultationReport.height + " " + $rootScope.existingConsultationReport.heightUnit;
@@ -149,16 +149,41 @@ angular.module('starter.controllers')
                     $rootScope.reportHeight = $rootScope.existingConsultationReport.height;
                   }
                 } else {
-                    $rootScope.reportHeight = 'NA';
-                }
+                    $rootScope.reportHeight = 'N/R';
+                }*/
+
+                if ($rootScope.existingConsultationReport.height !== '' && typeof $rootScope.existingConsultationReport.height !== 'undefined') {
+                        if ($rootScope.existingConsultationReport.heightUnit !== '' && typeof $rootScope.existingConsultationReport.heightUnit !== 'undefined') {
+                            $rootScope.reportHeight = $rootScope.existingConsultationReport.height + " " + $rootScope.existingConsultationReport.heightUnit;
+                            var reheight = $rootScope.existingConsultationReport.height.split("|")
+                            $rootScope.reportheight1 = reheight[0];
+                            $rootScope.reportheight2 = reheight[1];
+                            var reheightunit = $rootScope.existingConsultationReport.heightUnit.split("/");
+                            $rootScope.reportheightunit1 = reheightunit[0];
+                            $rootScope.reportheightunit2 = reheightunit[1];
+                        } else {
+                            $rootScope.reportHeight = $rootScope.existingConsultationReport.height;
+                        }
+                    } else {
+                        $rootScope.reportHeight = 'N/R';
+                    }
 
                 if ($rootScope.existingConsultationReport.weight !== '' && typeof $rootScope.existingConsultationReport.weight !== 'undefined') {
                     $rootScope.reportWeight = $rootScope.existingConsultationReport.weight + " " + $rootScope.existingConsultationReport.weightUnit;
                 } else {
-                    $rootScope.reportWeight = 'NA';
+                    $rootScope.reportWeight = 'N/R';
                 }
+
+                 if($rootScope.existingConsultationReport.note !== '' && typeof $rootScope.existingConsultationReport.note !== 'undefined') {
+                      $rootScope.repadditionalnotes = $rootScope.existingConsultationReport.note;
+                    }
+                    else{
+                        $rootScope.repadditionalnotes = 'N/R';
+                    }
+
                 $rootScope.reportPatientName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.patientName);
                 $rootScope.reportLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.lastName);
+                 $rootScope.reportpatientid =htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.patientId);
                 if ($rootScope.primaryPatientId !== $rootScope.existingConsultationReport.patientId){
                   if ($rootScope.existingConsultationReport.guardianName !== '' && typeof $rootScope.existingConsultationReport.guardianName !== 'undefined') {
                       $rootScope.reportGuardian = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.guardianName);
@@ -170,10 +195,16 @@ angular.module('starter.controllers')
                     $rootScope.reportPatientAddress = 'None Reported';
                 }
 
+                if($rootScope.existingConsultationReport.ethnicity !== '' && typeof $rootScope.existingConsultationReport.ethnicity !== 'undefined') {
+                    $rootScope.reportethnicity = $rootScope.existingConsultationReport.ethnicity;
+
+                  }else{
+                     $rootScope.reportethnicity = 'N/R';
+                  }
                 if ($rootScope.existingConsultationReport.homePhone !== '' && typeof $rootScope.existingConsultationReport.homePhone !== 'undefined') {
                     $rootScope.reportHomePhone = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.homePhone);
                 } else {
-                    $rootScope.reportHomePhone = 'NA';
+                    $rootScope.reportHomePhone = 'N/R';
                 }
 
                 if ($rootScope.existingConsultationReport.hospitalAddress !== '' && typeof $rootScope.existingConsultationReport.hospitalAddress !== 'undefined') {
@@ -182,16 +213,22 @@ angular.module('starter.controllers')
 
                 }
 
+                if ($rootScope.existingConsultationReport.brandName !== '' && typeof $rootScope.existingConsultationReport.brandName !== 'undefined') {
+                        $rootScope.reportBrandName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.brandName);
+                    } else {
+                        $rootScope.reportBrandName = 'N/R';
+                    }
+
                 if (!angular.isUndefined($rootScope.existingConsultationReport.location)) {
                     $rootScope.location = $rootScope.existingConsultationReport.location;
                 } else {
-                    $rootScope.location = 'N/A';
+                    $rootScope.location = 'N/R';
                 }
 
                 if (!angular.isUndefined($rootScope.existingConsultationReport.organization)) {
                     $rootScope.organization =$rootScope.existingConsultationReport.organization;
                 } else {
-                    $rootScope.organization = 'N/A';
+                    $rootScope.organization = 'N/R';
                 }
 
                 if ($rootScope.existingConsultationReport.doctorFirstName !== '' && typeof $rootScope.existingConsultationReport.doctorFirstName !== 'undefined') {
@@ -204,17 +241,67 @@ angular.module('starter.controllers')
                 } else {
                     $rootScope.reportMedicalSpeciality = '';
                 }
-  if ($rootScope.existingConsultationReport.department !== '' && typeof $rootScope.existingConsultationReport.department !== 'undefined') {
-   $rootScope.providerDepartment = ', ' + htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.department);
-} else {
-    $rootScope.providerDepartment = '';
-}
+                  if ($rootScope.existingConsultationReport.department !== '' && typeof $rootScope.existingConsultationReport.department !== 'undefined') {
+                   $rootScope.providerDepartment = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.department);
+                } else {
+                    $rootScope.providerDepartment = '';
+                }
 
                 if ($rootScope.existingConsultationReport.doctorFirstName != '' && typeof $rootScope.existingConsultationReport.doctorFirstName != 'undefined') {
                     $rootScope.reportDoctorLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.doctorLastName);
                 } else {
                     $rootScope.reportDoctorLastName = 'None Reported';
                 }
+            
+                $rootScope.reportservicetype = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.serviceTypeName);
+
+                if ($rootScope.existingConsultationReport.encounterTypeCode !== '' && typeof $rootScope.existingConsultationReport.encounterTypeCode !== 'undefined') {
+                      $rootScope.encountercode =  $rootScope.existingConsultationReport.encounterTypeCode;
+                        if ($rootScope.encountercode == 2) {
+                            $rootScope.encountertype = "Phone Consultation";
+                            $rootScope.consultationphone = $rootScope.existingConsultationReport.consultationPhoneNumber;
+                            if($rootScope.existingConsultationReport.consultationPhoneType == 1){
+                              $rootScope.phonetype = "Mobile"
+                            }if($rootScope.existingConsultationReport.consultationPhoneType == 2){
+                              $rootScope.phonetype = "Home"
+                            }if($rootScope.existingConsultationReport.consultationPhoneType == 3){
+                              $rootScope.phonetype = "Other"
+                            }
+
+                        } else if ($rootScope.encountercode == 3) {
+                            $rootScope.encountertype = "Video Consultation";
+                        }
+                    } else {
+                        $rootScope.encountertype = 'None Reported';
+                    }
+
+                if ($rootScope.existingConsultationReport.appointmentType !== '' && typeof $rootScope.existingConsultationReport.appointmentType !== 'undefined') {
+                      $rootScope.appointmentcode =  $rootScope.existingConsultationReport.appointmentType;
+                        if ($rootScope.appointmentcode == 1) {
+                            $rootScope.appointmenttype = "ClinicianScheduled";
+                        } else if ($rootScope.appointmentcode == 2) {
+                            $rootScope.appointmenttype = "On-Demand";
+                        }else if ($rootScope.appointmentcode == 3) {
+                            $rootScope.appointmenttype = "PatientScheduled";
+                        }
+                    } else {
+                        $rootScope.appointmenttype = 'None Reported';
+                    }
+
+                if ($rootScope.existingConsultationReport.consultationStatus !== '' && typeof $rootScope.existingConsultationReport.consultationStatus !== 'undefined') {
+                     $rootScope.consultstatus =  $rootScope.existingConsultationReport.consultationStatus;
+
+                        if ($rootScope.consultstatus == 72) {
+                            $rootScope.reportStatus = "Successful";
+                        } else if ($rootScope.consultstatus == 79) {
+                            $rootScope.reportStatus = "Cancelled";
+                        } else if ($rootScope.consultstatus == 81) {
+                            $rootScope.reportStatus = "Dropped";
+                        }
+                    } else {
+                        $rootScope.reportStatus = 'None Reported';
+                    }
+
 
                 if ($rootScope.existingConsultationReport.rx !== '' && typeof $rootScope.existingConsultationReport.rx !== 'undefined') {
                     $rootScope.reportrx = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.rx);
@@ -305,6 +392,20 @@ angular.module('starter.controllers')
                     $rootScope.vaccinationsCurrent = 'Yes';
                 }
 
+ var repdob =$rootScope.existingConsultationReport.dob;
+                    var reptdate = repdob.split("T");
+                    $rootScope.reportdob = reptdate[0];
+
+var now = new Date();
+            var duedate = new Date(now);
+            var stdate = duedate.setDate(now.getDate() - 365);
+            var start = new Date(stdate);
+            var day = start.getDate();
+            var mnth = start.getMonth() + 1;
+            var year = start.getFullYear();
+
+                    $rootScope.todayDateForReport = mnth+"/"+day+"/"+year;
+
                 if($rootScope.existingConsultationReport.dob !== "" && !angular.isUndefined($rootScope.existingConsultationReport.dob)) {
                   var ageDifMs = Date.now() - new Date($rootScope.existingConsultationReport.dob).getTime(); // parse string to date
                   var ageDate = new Date(ageDifMs); // miliseconds from epoch
@@ -336,7 +437,7 @@ angular.module('starter.controllers')
                         $rootScope.gender = 'Female';
                     }
                 } else {
-                    $rootScope.gender = 'NA';
+                    $rootScope.gender = 'N/R';
                 }
 
                 $rootScope.ReportMedicalConditions = [];
@@ -389,15 +490,14 @@ angular.module('starter.controllers')
                           'secondname':  index.person.name.family,
                           'consultstart': index.period.start,
                           'consultend': index.period.end,
-
-
                     });
                   }
                 });
 
                 $rootScope.reportMedicalCodeDetails = [];
 
-                if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $rootScope.existingConsultationReport.medicalCodeDetails !== 'undefined') {
+               /* if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $rootScope.existingConsultationReport.medicalCodeDetails !== 'undefined')
+                 {
                     angular.forEach($rootScope.existingConsultationReport.medicalCodeDetails, function(index, item) {
                         $rootScope.reportMedicalCodeDetails.push({
                             'Number': item + 1,
@@ -414,8 +514,75 @@ angular.module('starter.controllers')
 
                 } else {
                     $rootScope.reportMedicalCodeDetails = '';
-                }
+                }*/
 
+if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $rootScope.existingConsultationReport.medicalCodeDetails !== 'undefined') 
+                    {
+                        angular.forEach($rootScope.existingConsultationReport.medicalCodeDetails, function(index, item) {
+                          var cptcode = index.shortDescription;
+                          var spcptcode = cptcode.split("-");
+                          var icdcode =   index.shortDescription;
+                          var spicdcode = icdcode.split("-");
+                          var icd9code =   index.shortDescription;
+                          var spicd9code = icdcode.split("-");
+                          var snocode =   index.shortDescription;
+                          var spsnocode = snocode.split("-");
+                            $rootScope.reportMedicalCodeDetails.push({
+                                'Number': item + 1,
+                                'shortDescription': index.shortDescription,
+                                'medicalCodingSystem': index.medicalCodingSystem,
+                                'EnCPTCode' : spcptcode[0],
+                                'EnCPTDescription' : spcptcode[1],
+                                'EnICDcode' : spicdcode[0],
+                                'EnICDDescription' : spicdcode[1],
+                                'EnICD9code' : spicd9code[0],
+                                'EnICD9Description' : spicd9code[1],
+                                'SNOMEDcode' : spsnocode[0],
+                                'SNOMEDcodeDescription' : spsnocode[1]
+                            });
+                        });
+                        $rootScope.reportMediCPT = $filter('filter')($scope.reportMedicalCodeDetails, {
+                            medicalCodingSystem: 'CPT'
+                        });
+                        // if($rootScope.reportMediCPT != ""){
+                        //
+                        //   var cptcode =   $rootScope.reportMediCPT[0].shortDescription;
+                        //   var spcptcode = cptcode.split("-");
+                        //   $rootScope.reportMediCPTcode = spcptcode[0];
+                        //   $rootScope.reportMediCPTdescription = spcptcode[1];
+                        // }
+
+
+                        $rootScope.reportMediICD = $filter('filter')($scope.reportMedicalCodeDetails, {
+                            medicalCodingSystem: 'ICD-10-DX'
+                        });
+                        // if($rootScope.reportMediICD != ""){
+                        //   var icdcode =   $rootScope.reportMediICD[0].shortDescription;
+                        //   var spicdcode = cptcode.split("-");
+                        //   $rootScope.reportMediICDcode = spicdcode[0];
+                        //   $rootScope.reportMediICDdescription = spicdcode[1];
+                        // }
+                        $rootScope.reportMediICD9 = $filter('filter')($scope.reportMedicalCodeDetails, {
+                            medicalCodingSystem: 'ICD-9-DX'
+                        });
+                        // if($rootScope.reportMediICD9 != ""){
+                        //   var icd9code =   $rootScope.reportMediICD9[0].shortDescription;
+                        //   var spicd9code = cptcode.split("-");
+                        //   $rootScope.reportMediICD9code = spicd9code[0];
+                        //   $rootScope.reportMediICD9description = spicd9code[1];
+                        // }
+                        $rootScope.reportSNOMED = $filter('filter')($scope.reportMedicalCodeDetails, {
+                            medicalCodingSystem: 'SNOMED-CT'
+                        });
+                        if($rootScope.reportSNOMED != ""){
+                          var snocode =   $rootScope.reportSNOMED[0].shortDescription;
+                          var spsnocode = cptcode.split("-");
+                          $rootScope.reportMediSnocode = spsnocode[0];
+                          $rootScope.reportMediSnodescription = spsnocode[1];
+                        }
+                    } else {
+                        $rootScope.reportMedicalCodeDetails = 'None Reported';
+                    }
                 $window.localStorage.setItem('ChkVideoConferencePage', "");
                 session = null;
                 $scope.getSoapNotes();
@@ -437,7 +604,7 @@ angular.module('starter.controllers')
         LoginService.getConsultationFinalReport(params);
     }
 
-    $scope.doGetAttachmentList = function() {
+   /* $scope.doGetAttachmentList = function() {
 
         var params = {
             consultationId: $rootScope.consultationId,
@@ -474,7 +641,43 @@ angular.module('starter.controllers')
 
         LoginService.getAttachmentList(params);
 
-    }
+    }*/
+
+    $scope.doGetAttachmentList = function() {
+
+            var params = {
+              consultationId: $rootScope.consultationId,
+            accessToken: $rootScope.accessToken,
+                success: function(data) {
+                    $scope.getSoapNotes();
+                    $rootScope.getAttachmentList = []
+                    $rootScope.snapdetails = data.data[0];
+                    $rootScope.foldersize = $rootScope.snapdetails.myFolderMaxSize;
+                    $rootScope.foldercreation = $rootScope.snapdetails.snapFile.createdDate;
+                    angular.forEach(data.data[0].snapFile.files, function(index) {
+                        var attachImage = index.name.split(".");
+                        $rootScope.getAttachmentList.push({
+                            'id': "'" + index.id + "'",
+                            'name': index.name,
+                            'image': attachImage[attachImage.length - 1]
+                        });
+
+                    });
+
+                    $rootScope.attachmentLength = $rootScope.getAttachmentList.length;
+
+                },
+                error: function(data,status) {
+                  if(status === 503) {
+                    $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                  } else {
+                    $rootScope.serverErrorMessageValidation();
+                  }
+                }
+            };
+            LoginService.getAttachmentList(params);
+        }
+
     $scope.ConvChar=function( str ) {
       c = {'<':'&lt;', '>':'&gt;', '&':'&amp;', '"':'&quot;', "'":'&#039;',
            '#':'&#035;' };

@@ -353,6 +353,7 @@ angular.module('starter.controllers')
                 consultationId: consultation.consultationId,
                 accessToken: $rootScope.accessToken,
                 success: function(data) {
+                    console.log(data);
                     $rootScope.attachmentLength = '';
                     $rootScope.existingConsultationReport = data.data[0].details[0];
                     $rootScope.existconsultationparticipants = data.data[0].participants;
@@ -436,6 +437,8 @@ angular.module('starter.controllers')
                     } else {
                         $rootScope.reportDoctorFirstName = 'N/R';
                     }
+
+
                     if ($rootScope.existingConsultationReport.medicalSpeciality !== '' && typeof $rootScope.existingConsultationReport.medicalSpeciality !== 'undefined') {
                         $rootScope.reportMedicalSpeciality = ', ' + htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.medicalSpeciality);
                     } else {
@@ -461,6 +464,12 @@ angular.module('starter.controllers')
                         }
                     } else {
                         $rootScope.doctorGender = 'None Reported';
+                    }
+
+                      if ($rootScope.existingConsultationReport.brandName !== '' && typeof $rootScope.existingConsultationReport.brandName !== 'undefined') {
+                        $rootScope.reportBrandName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.brandName);
+                    } else {
+                        $rootScope.reportBrandName = 'N/R';
                     }
 
                     if ($rootScope.existingConsultationReport.encounterTypeCode !== '' && typeof $rootScope.existingConsultationReport.encounterTypeCode !== 'undefined') {
@@ -489,7 +498,7 @@ angular.module('starter.controllers')
                         if ($rootScope.appointmentcode == 1) {
                             $rootScope.appointmenttype = "ClinicianScheduled";
                         } else if ($rootScope.appointmentcode == 2) {
-                            $rootScope.appointmenttype = "OnDemand";
+                            $rootScope.appointmenttype = "On-Demand";
                         }else if ($rootScope.appointmentcode == 3) {
                             $rootScope.appointmenttype = "PatientScheduled";
                         }
@@ -601,9 +610,22 @@ angular.module('starter.controllers')
                     } else if ($rootScope.vaccinationsCurrent === 'Y') {
                         $rootScope.vaccinationsCurrent = 'Yes';
                     }
+
+
                     var repdob =$rootScope.existingConsultationReport.dob;
                     var reptdate = repdob.split("T");
                     $rootScope.reportdob = reptdate[0];
+
+                     var now = new Date();
+            var duedate = new Date(now);
+            var stdate = duedate.setDate(now.getDate() - 365);
+            var start = new Date(stdate);
+            var day = start.getDate();
+            var mnth = start.getMonth() + 1;
+            var year = start.getFullYear();
+
+                    $rootScope.todayDateForReport = mnth+"/"+day+"/"+year;
+
                     var usDOB = ageFilter.getDateFilter($rootScope.existingConsultationReport.dob);
 
                     if (typeof usDOB !== 'undefined' && usDOB !== '') {
@@ -693,7 +715,8 @@ angular.module('starter.controllers')
 
                     $rootScope.reportMedicalCodeDetails = [];
 
-                    if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $rootScope.existingConsultationReport.medicalCodeDetails !== 'undefined') {
+                    if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $rootScope.existingConsultationReport.medicalCodeDetails !== 'undefined') 
+                    {
                         angular.forEach($rootScope.existingConsultationReport.medicalCodeDetails, function(index, item) {
                           var cptcode = index.shortDescription;
                           var spcptcode = cptcode.split("-");
