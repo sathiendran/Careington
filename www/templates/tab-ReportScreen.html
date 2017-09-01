@@ -181,7 +181,7 @@
                                        <span>{{getAttendeelist.consultstart | date: "hh:mm"}}{{getAttendeelist.consultstart | date: "a"}}</span>
                                        <span>{{getAttendeelist.consultend | date: "hh:mm"}}{{getAttendeelist.consultend | date: "a"}}</span>
                                    </div>
-                                    <div class="pc-report__table-row pc-report__table-row--left" ng-if="existconsultationparticipants == ''">
+                                    <div class="pc-report__notes" style="font-size: 13px;" ng-if="existconsultationparticipants == ''">
                                       None Reported
                                     </div>
 
@@ -191,7 +191,7 @@
                     </div>
 
                     <!-- visit patient Info -->
-                    <div class="pc-report__section-title pc-report__section-title--visit">Visit &amp; Patient Information</div>
+                     <!--<div class="pc-report__section-title pc-report__section-title--visit">Visit &amp; Patient Information</div>
 
             <ul class="pc-report__totals-values">
                 <li><span class="icon_medication"></span>0</li>
@@ -377,7 +377,7 @@
                                 <span>{{reportSNOMED.SNOMEDcodeDescription}}</span>
                             </div>
                        </div>
-                          <div class="pc-report__chat-transcript"  ng-if = "existingConsultationReport.medicalCodeDetails == '' || undefined">
+                          <div class="pc-report__notes"  ng-if = "existingConsultationReport.medicalCodeDetails == '' || undefined">
                             <p>None Reported</p>
                           </div>
                      </div>
@@ -389,21 +389,12 @@
 
                      <div class="pc-report__prescriptions">
                          <div class="pc-report__table-title pc-report__table-title--50x50">
-                               <!-- <span>Name</span>
-                               <span>Dosage</span> -->
-                           </div>
+                         </div>
+                         <div class="pc-report__notes">
+                            <p>None Reported</p>
+                          </div>
 
-                           <div class="pc-report__table-row pc-report__table-row--50x50">
-                            <!--   <span>Fluoxitine (PROZAC) 20mg Oral Cap</span>
-                               <span>Take 3 Capsules Daily</span> -->
-                               <p> None Reported</p>
-
-                           </div>
-
-                          <!-- <div class="pc-report__table-row pc-report__table-row--50x50">
-                               <span>Fluoxitine (PROZAC) 20mg Oral Cap</span>
-                               <span>Take 3 Capsules Daily</span>
-                           </div> -->
+                         
                      </div>
                      <!--// Prescription -->
 
@@ -414,16 +405,16 @@
                      
                      <!-- <p class="pc-report__chat-transcript">[1:04:52 PM] Ben: @dejan can you give me a quick list of what is working and what is not for all the items included in this hotfix?<br>[1:13:51 PM] Dejan Zivanovic: it's in chetna report<br>[1:13:54 PM] Dejan Zivanovic: and in new column</p> -->
                      <p class="pc-report__chat-transcript" ng-if="waitingRoomChatTranscript.length">
-                     <li ng-repeat = "waitingRoomChatTranscript in waitingRoomChatTranscript" style="font-size: 0.56em;">{{waitingRoomChatTranscript.ChatMessage}}</li>
+                     <li ng-repeat = "waitingRoomChatTranscript in waitingRoomChatTranscript" style="font-size: 12px;">{{waitingRoomChatTranscript.ChatMessage}}</li>
                      </p>
-                     <p class="pc-report__chat-transcript " ng-if="!waitingRoomChatTranscript.length">None Reported</p>
+                     <p class="pc-report__notes" ng-if="!waitingRoomChatTranscript.length">None Reported</p>
 
 
 
 
                      <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Consultation</div>
                      <p class="pc-report__chat-transcript" ng-if="chatTranscript.length">
-                     <li ng-repeat = "chatTranscript in chatTranscript" style="font-size: 0.56em;">{{chatTranscript.ChatMessage}}</li>
+                     <li ng-repeat = "chatTranscript in chatTranscript" style="font-size: 12px;">{{chatTranscript.ChatMessage}}</li>
                      </p>
                      <p class="pc-report__chat-transcript " ng-if="!chatTranscript.length">None Reported</p>
                      <!--// chat -->
@@ -440,18 +431,26 @@
                              <ul class="pc-report__med-list" ng-repeat="getMedicationList in ReportMedications">
                                  <li>{{getMedicationList.description}}</li>
                              </ul>
-                             <ul class="pc-report__med-list" ng-if="intake.medications == ''">
+                           <!--   <ul class="pc-report__med-list" ng-if="intake.medications == ''">
                                  <li>None Reported</li>
-                             </ul>
+                             </ul> -->
+                            <div class="pc-report__chat-transcript" ng-if="intake.medications == ''">
+                                <p>None Reported</p>
+                              </div>
+
+
 
                              <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width">Medication Allergies<span class="pc-report__sub-section-date">As of {{todayDateForReport}}</span></div>
                              <div ng-if="intake.medicationAllergies != ''" class="pc-report__list-title">Name</div>
                              <ul class="pc-report__med-list" ng-repeat="getAllergyList in ReportMedicationAllergies">
                                  <li>{{getAllergyList.description}}</li>
                              </ul>
-                             <ul class="pc-report__med-list" ng-if="intake.medicationAllergies == ''">
+                             <!-- <ul class="pc-report__med-list" ng-if="intake.medicationAllergies == ''">
                                  <li>None Reported</li>
-                             </ul>
+                             </ul> -->
+                              <div class="pc-report__chat-transcript" ng-if="intake.medicationAllergies == ''">
+                                         <p>None Reported</p>
+                                    </div>
                          </div>
 
                          <div class="pc-report__med-history-right">
@@ -461,9 +460,13 @@
                              <ul class="pc-report__med-list" ng-repeat="getmedicalConditionsList in ReportMedicalConditions">
                                  <li>{{getmedicalConditionsList.description}}</li>
                              </ul>
-                             <ul class="pc-report__med-list" ng-if="intake.medicalConditions == ''">
+                             <!-- <ul class="pc-report__med-list" ng-if="intake.medicalConditions == ''">
                                  <li>None Reported</li>
-                             </ul>
+                             </ul> -->
+                             <div class="pc-report__chat-transcript" ng-if="intake.medicalConditions == Prescriptions
+                                         <p>None Reported</p>
+                                    </div>
+
 
 
                              <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width">Prior Surgeries</div>
@@ -478,9 +481,13 @@
                                        <span>{{getSurgeryList.description}}</span>
                                        <span>{{getSurgeryList.month}} / {{getSurgeryList.year}}</span>
                                    </div>
-                                   <div class="pc-report__table-row pc-report__table-row--50x50"  ng-if="intake.surgeries == ''">
+                                   <!-- <div class="pc-report__table-row pc-report__table-row--50x50"  ng-if="intake.surgeries == ''">
                                        None Reported
-                                   </div>
+                                   </div> -->
+
+                                   <div class="pc-report__notes" ng-if="intake.surgeries == ''">
+                                         <p>None Reported</p>
+                                    </div>
                                </div>
                          </div>
                      </div>
@@ -549,9 +556,12 @@
                              </li>
 
                          </ul>
-                          <ul class="pc-report__other-atmts" ng-if="getAttachmentList == '' || undefined">
+                         <!--  <ul class="pc-report__other-atmts" ng-if="getAttachmentList == '' || undefined">
                             <p> No Attachments</p>
-                          </ul>
+                          </ul> -->
+                           <div class="pc-report__notes" style="padding-top: 10px;" ng-if="getAttachmentList == '' || undefined">
+                            <p>No Attachments</p>
+                          </div>
 
                      </div>
                      <!--// Files -->
