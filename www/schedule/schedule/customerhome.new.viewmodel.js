@@ -2306,7 +2306,7 @@ var setUserVars = function() {
             var itemDefaultValues = {
                 id: null,
                 name: "Select a Person",
-                imageSource: "images/default-user.jpg",
+                imageSource: "../images/default-user.jpg",
                 info: "For the list",
             };
 
