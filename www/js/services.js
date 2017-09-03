@@ -2157,6 +2157,40 @@ this.getCountryDetails = function () {
         {"value" : "12", "text" : "12", "selected" : false}
     ];
 
+    var surgerymonths = [
+        {"value" : "", "text" : "MM"},
+        {"value" : "1", "text" : "01"},
+        {"value" : "2", "text" : "02"},
+        {"value" : "3", "text" : "03"},
+        {"value" : "4", "text" : "04"},
+        {"value" : "5", "text" : "05"},
+        {"value" : "6", "text" : "06"},
+        {"value" : "7", "text" : "07"},
+        {"value" : "8", "text" : "08"},
+        {"value" : "9", "text" : "09"},
+        {"value" : "10", "text" : "10"},
+        {"value" : "11", "text" : "11"},
+        {"value" : "12", "text" : "12"}
+    ];
+
+    /*var surgerymonths = [
+        {"value" : "0","text" : "MM"},
+        {"value" : "1", "text" : "01"},
+        {"value" : "2", "text" : "02"},
+        {"value" : "3", "text" : "03"},
+        {"value" : "4", "text" : "04"},
+        {"value" : "5", "text" : "05"},
+        {"value" : "6", "text" : "06"},
+        {"value" : "7", "text" : "07"},
+        {"value" : "8", "text" : "08"},
+        {"value" : "9", "text" : "09"},
+        {"value" : "10", "text" : "10"},
+        {"value" : "11", "text" : "11"},
+        {"value" : "12", "text" : "12"}
+   ];*/
+
+
+
     var monthsAll = [
         {"value" : "", "text" : "MM", "selected" : true},
         {"value" : "01", "text" : "01 (Jan)", "selected" : false},
@@ -2176,6 +2210,9 @@ this.getCountryDetails = function () {
 
     this.getMonthsList = function(){
         return months;
+    },
+    this.getMonthsListforSurgery = function(){
+        return surgerymonths;
     },
 
     this.getSurgeryYearsList = function(dateOfBirth){

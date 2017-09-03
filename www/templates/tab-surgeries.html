@@ -1,52 +1,92 @@
-<div class="modal">
-   <ion-view>
-      <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-         <div class="ErrorMessage ErrorMessageDiv"  ></div>
-         <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="hideSurgeryPopup()">Close</button>
-         <h1 class="title {{concernListTitleStyle}}" style="{{PrimaryConcernPopupTitle}}; ">My Surgeries</h1>
-         <button ng-show="showNewSurgeryAdd" class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="closeSurgeryPopup()" >Save</button>
-      </header>
-      <ion-content has-header="true" class="concernListContent">
-         <ion-list>
-            <div ng-show="showNewSurgeryAdd" class="list" style="padding-bottom: 0px !important; {{PriorSurgeryPopupTextBox}}">
-               <h5 class="surname">Add New Surgery</h5>
-               <label class="item item-input validated">
-               <span class="input-label">Surgery</span>
-               <input type="text" value=""  placeholder="Required" required="required" ng-model="surgery.name" name="name" id="name">
-               </label>
-               <div class="item item-input validated">
-                  <span class="input-label">Month</span>
-                  <select id="dateStringMonth" name="dateStringMonth" ng-model="surgery.dateStringMonth" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px;padding-right: 5px;  padding: 10px 10px 10px 0px; font-size: 16px;color:#666666;">
-                     <option ng-repeat="month in monthsList" value="{{month.value}}" ng-selected="{{month.selected}}">
-                        <b><span>{{month.text}}</span></b>
-                     </option>
-                  </select>
-                  /&nbsp;
-                  <select id="dateStringYear" name="dateStringYear" ng-model="surgery.dateStringYear" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px;position: relative; padding-left: 8px;  padding: 10px; font-size: 16px;color:#666666;">
-                     <option ng-repeat="surgeryYear in surgeryYearsList" value="{{surgeryYear.value}}">
-                        <b><span>{{surgeryYear.text }}</span></b>
-                     </option>
-                  </select>
-               </div>
-            </div>
-         </ion-list>
-         <div class="list" style="margin-top: 10px;" >
-            <div class="alignnexttext chronic">
-               <h2 class="surname subName-{{deviceName}}">Prior Surgeries</h2>
-               <span class="patientConternFontStyleSubTitle" style="font-size:14px !important;">Enter up to three</span>
-            </div>
-            <span ng-if="patientmedicalsurgeries.length < 3"><a ng-click="showNewSurgeryAddScreen();"><i class="ion-plus editicon" style="color:#666666;"> </i></a></span>
-            <div class="item item-button-right" href="#" ng-repeat="surgery in patientmedicalsurgeries" ng-if="patientmedicalsurgeries.length > 0" style="overflow: inherit;">
-               <h2 class="regularfamily">{{surgery.description}}</h2>
-               <p>{{getMonthName(surgery.month)}}, {{surgery.year}}</p>
-               <button class="button" style="margin-top: 10px; border: none !important; background: white;" ng-click="removeSurgeryItem({{$index}});">
-               <i class="icon ion-ios-close"></i>
-               </button>
-            </div>
-            <div class="item" ng-if="patientmedicalsurgeries.length == 0" style="overflow: inherit;">
-               <p>No Records Found</p>
-            </div>
-         </div>
-      </ion-content>
-   </ion-view>
-</div>
+
+
+        <div class="modal">
+           <ion-view>
+                <form>
+              <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+                 <div class="ErrorMessage ErrorMessageDiv"  ></div>
+                 <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="hideSurgeryPopup()">Done</button>
+                 <h1 class="title {{concernListTitleStyle}}" style="{{PrimaryConcernPopupTitle}}; ">Prior Surgeries</h1>
+                 <button ng-show="showNewSurgeryAdd" class="button button-clear surgeryTopAddButton {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="closeSurgeryPopup()" >Add</button>
+                 <button ng-show="showEditSurgery" class="button button-clear surgeryTopAddButton {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="EditSurgeryItem()" >Save</button>
+              </header>
+              <ion-content has-header="true" class="concernListContent">
+                 <div class="list" style="margin-top: 10px;" >
+                    <!--<div class="alignnexttext chronic" >
+                       <h2 class="surname subName-{{deviceName}}">Prior Surgeries</h2>
+                       <span class="patientConternFontStyleSubTitle" style="font-size:14px !important;">Enter up to three</span>
+                    </div>
+                    <span ng-if="patientmedicalsurgeries.length < 3"><a ng-click="showNewSurgeryAddScreen();"><i class="ion-plus editicon" style="color:#666666;"> </i></a></span>-->
+                    <div class="item item-button-right" href="#" ng-repeat="surgery in patientmedicalsurgeries" ng-if="patientmedicalsurgeries.length > 0" style="overflow: inherit; padding: 0px; border: none;">
+                         <div class="surDisplay surgeryDisplay-{{$index}}" >
+                            <div class="surDescription">
+                                 <h2 class="regularfamily">{{surgery.description}}</h2>
+                                 <p>{{getMonthName(surgery.month)}}, {{surgery.year}}</p>
+                          </div>
+                         <a class="button surEditIcon" ng-click="openEditSurgeryItem({{$index}}, surgery);" ><i class="currentedit" ng-bind-html="drawSVGCIcon('pencil')"></i></a>
+                         </div>
+
+                         <div class="surgeryEdit-{{$index}} animated slideInRight" style="display: none">
+                              <div class="item item-input validated">
+                                   <span class="input-label">Procedure</span>
+                                   <input type="text"  name="surDescription" id="surDescription_{{$index}}" value="{{surgery.description}}"  placeholder="Short description" >
+                                   <a class="surgeryCloseIcon" ng-click="removeSurgeryItem({{$index}});" ><i class="ion-trash-b" ></i></a>
+                              </div>
+                              <div class="item item-input validated">
+                                 <span class="input-label">Date</span>
+                                 <select id="surDateStringMonth_{{$index}}" name="surDateStringMonth" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px;padding-right: 5px;  padding: 10px 10px 10px 0px; font-size: 16px;color:#666666;">
+                                    <option ng-repeat="month in EditSurgerymonthsList" value="{{month.value}}" ng-selected="month.value == surgery.month">
+                                       <b><span>{{month.text}}</span></b>
+                                    </option>
+                                 </select>
+                                 /&nbsp;
+                                 <select id="dateStringYear_{{$index}}" name="dateStringYear"  style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px;position: relative; padding-left: 8px;  padding: 10px; font-size: 16px;color:#666666;">
+                                    <option ng-repeat="surgeryYear in surgeryYearsList" value="{{surgeryYear.value}}" ng-selected="surgeryYear.text === surgery.year">
+                                       <b><span>{{surgeryYear.text }}</span></b>
+                                    </option>
+                                 </select>
+                              </div>
+                         </div>
+                    </div>
+                 </div>
+                 <ion-list>
+                    <div ng-show="showNewSurgeryAdd" class="list" style="padding-bottom: 0px !important; {{PriorSurgeryPopupTextBox}}">
+                       <!--<h5 class="surname">Add New Surgery</h5>-->
+                       <div class="item item-input validated">
+                            <span class="input-label">Procedure</span>
+                            <input type="text" value=""  placeholder="Short description" ng-model="surgery.name" name="name" id="name">
+                           <!-- <a class="surgeryCloseIcon" ng-click="backtoSurgeryView();"><i class="ion-close" ></i></a>-->
+                           <a class="surEditIcon" ng-click="backtoSurgeryView();" ><i class="ion-close" ></i></a>
+                         </div>
+                       <div class="item item-input validated">
+                          <span class="input-label">Date</span>
+                          <select id="dateStringMonth" name="dateStringMonth" ng-model="surgery.dateStringMonth" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px;padding-right: 5px;  padding: 10px 10px 10px 0px; font-size: 16px;color:#666666;">
+                             <option ng-repeat="month in monthsList" value="{{month.value}}" ng-selected="{{month.selected}}">
+                                <b><span>{{month.text}}</span></b>
+                             </option>
+                          </select>
+                          /&nbsp;
+                          <select id="dateStringYear" name="dateStringYear" ng-model="surgery.dateStringYear" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px;position: relative; padding-left: 8px;  padding: 10px; font-size: 16px;color:#666666;">
+                             <option ng-repeat="surgeryYear in surgeryYearsList" value="{{surgeryYear.value}}">
+                                <b><span>{{surgeryYear.text }}</span></b>
+                             </option>
+                          </select>
+                       </div>
+                    </div>
+                 </ion-list>
+                 <div class="noSurgeryText" ng-if="patientmedicalsurgeries.length == 3" style="padding-top: 30px;">
+                   <p>You can include up to three surgeries in your health history.</p>
+                 </div>
+                 <div class="noSurgeryText" ng-if="patientmedicalsurgeries.length == 0" ng-hide="showNewSurgeryAdd">
+                   <p>No surgeries are included in your health history.</p>
+                 </div>
+              </ion-content>
+
+              <ion-footer-bar  class="bar bar-footer footer healthSurgeryBottom" hide-on-keyboard="true" >
+                   <button ng-if="patientmedicalsurgeries.length < 3" type="submit" class="button surgeryAddButton" ng-click="showNewSurgeryAddScreen();" ng-hide="showNewSurgeryAdd || showEditSurgery" >
+                   Add a surgery
+                   </button>
+            </ion-footer-bar>
+            </form>
+           </ion-view>
+        </div>

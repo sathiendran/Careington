@@ -398,9 +398,14 @@
             <div class="listprofile" style="margin-top: -22px;">
                <h4 style="color:#666666;margin-top:32px; font-size: 25px;"> <span class="aligntext">Basic Health </span><i class="ion-chevron-down icondown"></i></h4>
                <hr class="bhealth">
-               <div>
+               <div ng-if="patientmedications.length !== 0">
                   <h4>
                      <span class="alignnexttext">Current Medications</span><span ng-show="patientAuthorize" ng-if="editOption !== 'None'"><a ng-click="healthsearch(patientmedications)" ><i class="currentedit" ng-bind-html="drawSVGCIcon('pencil')"></i></a></span>
+                  </h4>
+               </div>
+               <div ng-if="patientmedications.length === 0">
+                  <h4>
+                     <span class="alignnexttext">Current Medications</span><span ng-show="patientAuthorize" ng-if="editOption !== 'None'"><a ng-click="healthsearch(patientmedications)" ><i class="currentedit ion-plus-round"></i></a></span>
                   </h4>
                </div>
                <hr class="dothr dotalign">
@@ -408,9 +413,14 @@
                   <li  ng-repeat="medicationspt in patientmedications">{{$index + 1}}. {{medicationspt.description}}</li>
                   <li ng-if="patientmedications == ''"  >N/A   </li>
                </ul>
-               <h4 class="h4align">
+               <h4 class="h4align" ng-if="patientmedicationsallergies.length !== 0">
                   <div class="alignnexttext chronic"  >Medication Allergies</div>
                   <span ng-show="patientAuthorize" ng-if="editOption !== 'None'"><a ng-click="alergiessearch()" ><i class="editicons" ng-bind-html="drawSVGCIcon('pencil')" ></i></a>
+                  </span>
+               </h4>
+               <h4 class="h4align" ng-if="patientmedicationsallergies.length === 0">
+                  <span class="alignnexttext chronic"  >Medication Allergies</span>
+                  <span ng-show="patientAuthorize" ng-if="editOption !== 'None'"><a ng-click="alergiessearch()" ><i class="currentedit ion-plus-round"></i></a>
                   </span>
                </h4>
                <hr class="dothr dotalign">
@@ -418,18 +428,27 @@
                   <li ng-if="patientmedicationsallergies == ''"  >N/A</li>
                   <li ng-repeat="allergies in patientmedicationsallergies"> {{$index + 1}}. {{allergies.description}}</li>
                </ul>
-               <h4 class="h4align">
+               <h4 class="h4align" ng-if="patientmedicalConditions.length !== 0">
                   <div class="alignnexttext chronic">Chronic Conditions</div>
                   <span ng-show="patientAuthorize" ng-if="editOption !== 'None'"><a ng-click="chronicsearch()" ><i class="editicon" ng-bind-html="drawSVGCIcon('pencil')" ></i></a></span>
+               </h4>
+               <h4 class="h4align" ng-if="patientmedicalConditions.length === 0">
+                  <span class="alignnexttext chronic">Chronic Conditions</span>
+                  <span ng-show="patientAuthorize" ng-if="editOption !== 'None'"><a ng-click="chronicsearch()" ><i class="currentedit ion-plus-round"></i></a></span>
                </h4>
                <hr class="dothr dotalign">
                <ul class="aligntext alvalue">
                   <li ng-if="patientmedicalConditions==''"  >N/A</li>
                   <li ng-repeat=" chronic in patientmedicalConditions" >{{$index + 1}}. {{chronic.description}}</li>
                </ul>
-               <h4 class="h4align">
+               <h4 class="h4align" ng-if="patientmedicalsurgeries.length !== 0">
                   <div class="alignnexttext chronic">Prior Surgeries</div>
                   <span ng-show="patientAuthorize" ng-if="editOption !== 'None'"><a ng-click="showSurgeryPopup()" ><i class="editicons" ng-bind-html="drawSVGCIcon('pencil')" ></i></a>
+                  </span>
+               </h4>
+               <h4 class="h4align" ng-if="patientmedicalsurgeries.length === 0">
+                  <span class="alignnexttext chronic">Prior Surgeries</span>
+                  <span ng-show="patientAuthorize" ng-if="editOption !== 'None'"><a ng-click="showSurgeryPopup()" ><i class="currentedit ion-plus-round"></i></a>
                   </span>
                </h4>
                <hr class="dothr dotalign">

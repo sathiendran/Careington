@@ -710,13 +710,21 @@ margin-bottom: 120px;
 padding-bottom: 100px;
 }
 .listprofile {
-padding-bottom: 95px;
-.icondown {
-    font-size: 11px;
-}
-.icon-pencil {
-    font-size: 16px !important;
-}
+     padding-bottom: 95px;
+     .icondown {
+         font-size: 11px;
+     }
+     .icon-pencil {
+         font-size: 16px !important;
+     }
+     .ion-plus-round:before {
+          color: black;
+         background-color: snow;
+         padding: 0px;
+         border-radius: 2px;
+         font-size: 20px;
+         width: 16px;
+    }
 }
 .popup-head {
 padding: 8px 10px;
@@ -5888,4 +5896,74 @@ border-radius: 6px;
       max-width: 64%;
       flex:auto;
    }
+}
+/* Health history Surgery Popup */
+.noSurgeryText {
+     text-align: center;
+    font-size: 15px;
+    color: #666;
+    font-family: Glober Regular;
+    padding: 5% 10%;
+}
+.surgeryTopAddButton {
+     background-color: #A2D28A !important;
+    border-color: #A2D28A !important;
+    background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%) !important;
+    height: 28px;
+    min-height: 20px !important;
+    top: 10px !important;
+    margin-top: 7px;
+    width: 50px;
+    border-radius: 6px;
+    line-height: 29px !important;
+    padding: 0px;
+    position: absolute;
+    right: 9px;
+}
+.surgeryCloseIcon {
+     margin-top: 5px;
+     font-weight: bold;
+    /* margin-left: -20px; */
+    padding: 5px 7px 5px 6px;
+    left: -22px;
+    position: relative;
+    .ion-close:before {
+         font-size: 14px !important;
+    }
+}
+.healthSurgeryBottom {
+     background-color: #fff !important;
+     border: none;
+     padding: 14px 2%;
+     height: 60px;
+     .surgeryAddButton {
+          background-color: #A2D28A;
+         border-color: #A2D28A;
+         background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);
+         font-weight: normal;
+         padding-top: -50px;
+         width: 100%;
+         min-height: 28px;
+         color: #fff;
+         font-family: Glober Bold;
+         border-radius: 6px;
+         font-size: 15px;
+     }
+}
+.surDisplay {
+     border: 1px solid #C4C5C3;
+     .surDescription {
+          padding: 10px;
+         width: 80%;
+         float: left;
+     }
+}
+.surEditIcon {
+     margin-top: 10px; border: none !important; background: white; box-shadow: none !important;
+     .ion-close:before {
+          font-size: 15px !important;
+     }
+}
+.surEditIcon:hover{
+     margin-top: 10px; border: none !important; background: white;
 }
