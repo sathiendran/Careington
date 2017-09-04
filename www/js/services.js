@@ -2264,29 +2264,29 @@ this.getCountryDetails = function () {
     this.getMonthName = function(PriorSurgerymonth) {
         PriorSurgerymonth = Number(PriorSurgerymonth);
         if(PriorSurgerymonth == 1) {
-            return 'Jan' ;
+            return 'january' ;
         } else if(PriorSurgerymonth == 2) {
-         return 'Feb';
+         return 'February';
         } else if(PriorSurgerymonth == 3) {
-         return 'Mar';
+         return 'March';
          } else if(PriorSurgerymonth == 4) {
-             return 'Apr';
+             return 'April';
          } else if(PriorSurgerymonth == 5) {
              return 'May';
          } else if(PriorSurgerymonth == 6) {
-             return 'Jun';
+             return 'June';
          } else if(PriorSurgerymonth == 7) {
-             return 'Jul';
+             return 'July';
          } else if(PriorSurgerymonth == 8) {
-             return 'Aug';
+             return 'Auguest';
          } else if(PriorSurgerymonth == 9) {
-             return 'Sep';
+             return 'September';
          } else if(PriorSurgerymonth == 10) {
-             return 'Oct';
+             return 'October';
          } else if(PriorSurgerymonth == 11) {
-             return 'Nov';
+             return 'November';
          } else if(PriorSurgerymonth == 12) {
-         return 'Dec';
+         return 'December';
         }
     }
 
