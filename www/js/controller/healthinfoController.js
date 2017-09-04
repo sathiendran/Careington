@@ -1965,7 +1965,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
            }
         // $rootScope.PatientIdentifiers = $rootScope.PatientidupdateList;
 
-           $scope.modal.hide();
+           $scope.modal.remove();
            $rootScope.viewpatapiDisplay = 'flex';
            $rootScope.viewpatmodalDisplay = 'none';
        }
@@ -1987,7 +1987,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             }
             if ($rootScope.checkedpatientdet >= 4) {
                 currentpatientdet.checked === false;
-                $scope.modal.hide();
+                $scope.modal.remove();
             }
 
     }
@@ -2047,7 +2047,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                     description: $rootScope.CurrentMedicationsearchItem[i].text
                 });
             }
-            $scope.modal.hide();
+            $scope.modal.remove();
         //$scope.patientdone();
         }
 
@@ -2091,7 +2091,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             }
             if ($rootScope.checkedMedication >= 4) {
                 currentmedication.checked === false;
-                $scope.modal.hide();
+                $scope.modal.remove();
             }
         }
     }
@@ -2201,7 +2201,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         $scope.editshow = false;
     }
     $scope.allergiedone = function() {
-        $scope.modal.hide();
+        $scope.modal.remove();
         $rootScope.AllergiesupdateList = [];
         $rootScope.AllergiessearchItem = $filter('filter')($rootScope.medicationAllergiesearchList, {
             checked: true
@@ -2218,7 +2218,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                     description: $rootScope.AllergiessearchItem[i].text
                 });
             }
-            $scope.modal.hide();
+            $scope.modal.remove();
         }
 
         $scope.InfantData = [];
@@ -2258,7 +2258,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             }
             if ($rootScope.checkedAllergies >= 4) {
                 allergie.checked === false;
-                $scope.modal.hide();
+                $scope.modal.remove();
             }
         }
     }
@@ -2304,7 +2304,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         $scope.editshow = false;
     }
     $scope.chronicdone = function() {
-        $scope.modal.hide();
+        $scope.modal.remove();
         $rootScope.ChronicupdateList = [];
         $rootScope.ChronicsearchItem = $filter('filter')($rootScope.chronicConditionsearchList, {
             checked: true
@@ -2321,7 +2321,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                     description: $rootScope.ChronicsearchItem[i].text
                 });
             }
-            $scope.modal.hide();
+            $scope.modal.remove();
         }
         $scope.InfantData = [];
         var params = {
@@ -2359,7 +2359,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             }
             if ($rootScope.checkedChronic >= 4) {
                 chronic.checked === false;
-                $scope.modal.hide();
+                $scope.modal.remove();
             }
         }
     }
@@ -2462,7 +2462,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
     }
     $scope.removePatientIdmodal = function() {
       $rootScope.PatientidupdateList = $rootScope.PatientIdentifiers;
-        $scope.modal.hide();
+        $scope.modal.remove();
         $scope.cancelshow = true;
     };
     $scope.surgery = {};
@@ -2562,7 +2562,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                     }).remove();
                 }, 100);
                 if (hide) {
-                    $scope.modal.hide();
+                    $scope.modal.remove();
                 }
 
             },
@@ -2578,7 +2578,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         LoginService.putPatientMedicalProfile(params);
     };
     $scope.hideSurgeryPopup = function(model) {
-        $scope.modal.hide();
+        $scope.modal.remove();
         $rootScope.showNewSurgeryAdd = false;
         $scope.showEditSurgery = false;
     };
@@ -2619,7 +2619,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
     };
     //$scope.Editsurgery = {};
     $scope.openEditSurgeryItem = function(index,surgery) {
-       if($scope.showEditSurgery !== true) {
+       if($scope.showEditSurgery !== true && $rootScope.showNewSurgeryAdd !== true) {
              $rootScope.showNewSurgeryAdd = false;
              $scope.showEditSurgery = true;
              $scope.editItemIndex = index;
@@ -2630,9 +2630,11 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
       //  $scope.Editsurgery.surDescription = description;
    }
     $scope.EditSurgeryItem = function() {
-        $scope.surDescription = $('#surDescription_'+$scope.editItemIndex).val()
-        $scope.dateStringMonth = $('#surDateStringMonth_'+$scope.editItemIndex).val();
-        $scope.dateStringYear = $('#dateStringYear_'+$scope.editItemIndex).val();
+      //  $scope.$apply(function() {
+          $scope.surDescription = $('#surDescription_'+$scope.editItemIndex).val()
+          $scope.dateStringMonth = $('#surDateStringMonth_'+$scope.editItemIndex).val();
+          $scope.dateStringYear = $('#dateStringYear_'+$scope.editItemIndex).val();
+      //  });
         var selectedSurgeryDate = new Date($scope.dateStringYear, $scope.dateStringMonth - 1, 01);
         $scope.dateString = selectedSurgeryDate;
         var patientBirthDateStr = new Date($rootScope.PatientAge);
@@ -2649,7 +2651,10 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                         var isSurgeryDateIsFuture = false;
                     }
                 }
-       if (($scope.dateStringMonth === '' || $scope.dateStringMonth === undefined || $scope.dateStringYear === '' || $scope.dateStringYear === undefined)) {
+        if (($scope.surDescription === '' || $scope.surDescription === undefined) && $rootScope.showEditSurgery === true ) {
+            $scope.ErrorMessage = "Provide a short description of the surgical procedure";
+             $rootScope.ValidationFunction1($scope.ErrorMessage);
+       } else if (($scope.dateStringMonth === '' || $scope.dateStringMonth === undefined || $scope.dateStringYear === '' || $scope.dateStringYear === undefined)) {
             $scope.ErrorMessage = "Provide both the month and year of the surgical procedure";
             $rootScope.ValidationFunction1($scope.ErrorMessage);
        } else if (!isSurgeryDateValid && $scope.showEditSurgery === true ) {

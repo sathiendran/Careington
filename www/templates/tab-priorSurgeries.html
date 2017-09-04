@@ -1,12 +1,12 @@
 <ion-side-menus>
 <ion-side-menu-content>
    <div ng-include src="'templates/intakeHeader.html'"></div>
-   <ion-view title="Prior Surgeries">
+   <ion-view title="Prior Surgeries" cache-view="false">
       <ion-content class="ContentHomeUser ConcernsContent" >
          <ion-list>
          <ion-item class="PrimaryList" style="{{IntakeFormInnerStyle}}">
             <div class="Step1">Step <b style="color:#535353;">3</b> of <b style="color:#535353;">{{userAgeForIntake}}</b></div>
-            <div ng-if="IsToPriorCount != 3" ng-click="getSurgeryPopup();" >
+            <div  ng-click="getSurgeryPopup();" >
                <div class="PrimaryContent">
                   <h1 class="title ChronicCondition concernsSubTit" >Prior Surgeries</h1>
                   <p class="patientConternFontStyle">
@@ -19,7 +19,7 @@
                   </div>
                </div>
             </div>
-            <div ng-if="IsToPriorCount == 3" >
+          <!--  <div ng-if="IsToPriorCount == 3" >
                <div class="PrimaryContent">
                   <h1 class="title ChronicCondition concernsSubTit">Prior Surgeries</h1>
                   <p>
@@ -31,7 +31,7 @@
                      <i class="addBtn disabled" ng-bind-html="drawSVGCIcon('circle-with-plus')"></i>
                   </div>
                </div>
-            </div>
+            </div> -->
          </ion-item>
          <div class="list surgeryList" style="margin-top: 3px;">
             <a class="item item-avatar" ng-repeat="surgery in patientSurgeriess" show-delete="data.showDelete" >

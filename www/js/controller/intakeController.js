@@ -367,13 +367,13 @@ $scope.locat=false;
                     $rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
                     $rootScope.IsValue = $scope.PatientPrimaryConcernItem.length;
                       $rootScope.PrimaryCount = $scope.PatientPrimaryConcernItem.length;
-                    $scope.modal.hide();
+                    $scope.modal.remove();
                 }
             } else {
                 $rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
                 $rootScope.IsValue = $scope.PatientPrimaryConcernItem.length;
                   $rootScope.PrimaryCount = $scope.PatientPrimaryConcernItem.length;
-                $scope.modal.hide();
+                $scope.modal.remove();
             }
         }
     };
@@ -697,12 +697,12 @@ $scope.locat=false;
                 } else {
                     $rootScope.PatientSecondaryConcern = $scope.PatientSecondaryConcernItem;
                     $rootScope.secondaryConcernValueExist = $rootScope.PatientSecondaryConcern.length;
-                    $scope.modal.hide();
+                    $scope.modal.remove();
                 }
             } else {
                 $rootScope.PatientSecondaryConcern = $scope.PatientSecondaryConcernItem;
                 $rootScope.secondaryConcernValueExist = $rootScope.PatientSecondaryConcern.length;
-                $scope.modal.hide();
+                $scope.modal.remove();
             }
         }
     };
@@ -875,7 +875,7 @@ $scope.locat=false;
         if ($scope.PatientChronicConditionItem !== '') {
             $rootScope.PatientChronicCondition = $rootScope.PatientChronicConditionItem;
             $rootScope.ChronicCount = $rootScope.PatientChronicCondition.length;
-            $scope.modal.hide();
+            $scope.modal.remove();
         }
     };
 
@@ -973,7 +973,7 @@ $scope.locat=false;
         if ($rootScope.MedicationAllegiesItem !== '') {
             $rootScope.patinentMedicationAllergies = $rootScope.MedicationAllegiesItem;
             $rootScope.AllegiesCount = $scope.patinentMedicationAllergies.length;
-            $scope.modal.hide();
+            $scope.modal.remove();
         }
     };
     // Onchnge of Medication Alligies
@@ -1071,7 +1071,7 @@ $scope.locat=false;
         if ($rootScope.CurrentMedicationItem !== '') {
             $rootScope.patinentCurrentMedication = $rootScope.CurrentMedicationItem;
             $rootScope.MedicationCount = $scope.patinentCurrentMedication.length;
-            $scope.modal.hide();
+            $scope.modal.remove();
         }
     };
     // Onchange of Current Medication
@@ -1151,21 +1151,25 @@ $scope.locat=false;
         $state.go('tab.priorSurgeries');
     }
     $scope.getSurgeryPopup = function() {
+      //  $scope.modal.remove();
         $rootScope.LastName1 = '';
         $rootScope.datestr = '';
- $rootScope.selectYearsList = CustomCalendar.getSurgeryYearsList( $rootScope.SelectPatientAge);
+        $rootScope.selectYearsList = CustomCalendar.getSurgeryYearsList( $rootScope.SelectPatientAge);
         $ionicModal.fromTemplateUrl('templates/surgeryPopup.html', {
             scope: $scope,
+            reload: true,
             animation: 'slide-in-up',
             focusFirstInput: false,
             backdropClickToClose: false
         }).then(function(modal) {
-
+          //  $state.reload();
             $scope.modal = modal;
             $scope.surgery.name = '';
             $scope.surgery.dateString = '';
             $scope.surgery.dateStringMonth = '';
             $scope.surgery.dateStringYear = '';
+            $rootScope.showIntakeNewSurgeryAdd = false;
+            $scope.showIntakeEditSurgery = false;
             $scope.modal.show();
             $timeout(function() {
                 $('option').filter(function() {
@@ -1207,10 +1211,10 @@ $scope.locat=false;
             }
         }
         if ($scope.surgery.name === '' || $scope.surgery.name === undefined) {
-            $scope.ErrorMessage = "Please provide a name/description for this surgery";
+            $scope.ErrorMessage = "Provide a short description of the surgical procedure";
             $rootScope.ValidationFunction1($scope.ErrorMessage);
         } else if (($scope.surgery.dateStringMonth === '' || $scope.surgery.dateStringMonth === undefined || $scope.surgery.dateStringYear === '' || $scope.surgery.dateStringYear === undefined)) {
-            $scope.ErrorMessage = "Please enter the date as MM/YYYY";
+            $scope.ErrorMessage = "Provide both the month and year of the surgical procedure";
             $rootScope.ValidationFunction1($scope.ErrorMessage);
         }else if(!isSurgeryDateValid){
             $scope.ErrorMessage = "Surgery date should not be before your birthdate";
@@ -1222,18 +1226,114 @@ $scope.locat=false;
             SurgeryStocksListService.addSurgery($scope.surgery.name, $scope.surgery.dateString);
             $rootScope.patientSurgeriess = SurgeryStocksListService.SurgeriesList;
             $rootScope.IsToPriorCount = $rootScope.patientSurgeriess.length;
-            $scope.modal.hide();
+            $rootScope.showIntakeNewSurgeryAdd = false;
+            $scope.showIntakeEditSurgery = false;
+            $(".surgeryDisplay-"+$scope.editItemIndex).css("display", "block");
+            $(".surgeryEdit-"+$scope.editItemIndex).css("display", "none");
+            if ($rootScope.patientSurgeriess.length === 3)
+               $scope.modal.remove();
         }
     }
     $scope.RemoveSurgeryPopup = function() {
         $scope.data.searchProvider='';
-        $scope.modal.hide();
+        $scope.modal.remove();
     };
     $scope.removePriorSurgeries = function(index, item) {
         $rootScope.patientSurgeriess.splice(index, 1);
         var indexPos = $rootScope.patientSurgeriess.indexOf(item);
         $rootScope.IsToPriorCount--;
     }
+    $scope.removeSurgeryItem = function(index, item) {
+        $rootScope.patientSurgeriess.splice(index, 1);
+        var indexPos = $rootScope.patientSurgeriess.indexOf(item);
+        $rootScope.IsToPriorCount--;
+        $rootScope.showIntakeNewSurgeryAdd = false;
+        $scope.showIntakeEditSurgery = false;
+        if ($rootScope.patientSurgeriess.length === 3)
+            $scope.modal.remove();
+    };
+
+    $scope.openEditSurgeryItem = function(index,surgery) {
+       if($scope.showIntakeEditSurgery !== true && $rootScope.showIntakeNewSurgeryAdd !== true) {
+             $rootScope.showIntakeNewSurgeryAdd = false;
+             $scope.showIntakeEditSurgery = true;
+             $scope.editItemIndex = index;
+             $(".surgeryDisplay-"+index).css("display", "none");
+             $(".surgeryEdit-"+index).css("display", "block");
+             $scope.editSurgeryArray = surgery;
+      }
+      //  $scope.Editsurgery.surDescription = description;
+   }
+   $scope.showNewSurgeryAddScreen = function() {
+       $scope.surgery = {};
+       $timeout(function() {
+           $('select option').filter(function() {
+               return this.value.indexOf('?') >= 0;
+           }).remove();
+       }, 100);
+
+       $rootScope.showIntakeNewSurgeryAdd = true;
+       $scope.showIntakeEditSurgery = false;
+   };
+
+   //$scope.surgery = {};
+   $scope.EditIntakeSurgeryItem = function() {
+    //   $timeout(function() {
+         $scope.surDescription = $('#surDescription_'+$scope.editItemIndex).val()
+         $scope.dateStringMonth = $('#surDateStringMonth_'+$scope.editItemIndex).val();
+         $scope.dateStringYear = $('#dateStringYear_'+$scope.editItemIndex).val();
+        var selectedSurgeryDate = new Date($scope.dateStringYear, $scope.dateStringMonth - 1, 01);
+         $scope.dateString = selectedSurgeryDate;
+         var patientBirthDateStr = new Date($rootScope.PatientAge);
+         var isSurgeryDateValid = true;
+         if (selectedSurgeryDate < patientBirthDateStr) {
+             isSurgeryDateValid = false;
+         }
+         var today = new Date();
+         var mm = today.getMonth() + 1;
+         var yyyy = today.getFullYear();
+         var isSurgeryDateIsFuture = true;
+         if (+$scope.dateStringYear === yyyy) {
+             if (+$scope.dateStringMonth > mm) {
+                 isSurgeryDateIsFuture = false;
+             }
+         }
+         if (($scope.surDescription === '' || $scope.surDescription === undefined) && $rootScope.showIntakeEditSurgery === true ) {
+             $scope.ErrorMessage = "Provide a short description of the surgical procedure";
+              $rootScope.ValidationFunction1($scope.ErrorMessage);
+        } else  if (($scope.dateStringMonth === '' || $scope.dateStringMonth === undefined || $scope.dateStringYear === '' || $scope.dateStringYear === undefined)) {
+              $scope.ErrorMessage = "Provide both the month and year of the surgical procedure";
+              $rootScope.ValidationFunction1($scope.ErrorMessage);
+         } else if (!isSurgeryDateValid && $scope.showIntakeEditSurgery === true ) {
+              $scope.ErrorMessage = "Surgery date should not be before your birthdate";
+              $rootScope.ValidationFunction1($scope.ErrorMessage);
+         } else if (!isSurgeryDateIsFuture && $scope.showIntakeEditSurgery === true ) {
+              $scope.ErrorMessage = "Surgery date should not be the future Date";
+              $rootScope.ValidationFunction1($scope.ErrorMessage);
+          } else {
+              $scope.newEditSurgery = {
+                '$$hashKey': $scope.editSurgeryArray.$$hashKey,
+                  'Name': $scope.surDescription,
+                  'Date': $scope.dateString
+              };
+             SurgeryStocksListService.SurgeriesList[$scope.editItemIndex] = $scope.newEditSurgery;
+             $rootScope.patientSurgeriess = SurgeryStocksListService.SurgeriesList;
+             $rootScope.IsToPriorCount = $rootScope.patientSurgeriess.length;
+             $rootScope.showIntakeNewSurgeryAdd = false;
+             $scope.showIntakeEditSurgery = false;
+             $(".surgeryDisplay-"+$scope.editItemIndex).css("display", "block");
+             $(".surgeryEdit-"+$scope.editItemIndex).css("display", "none");
+             if ($rootScope.patientSurgeriess.length === 3)
+                $scope.modal.remove();
+         }
+      // }, 1000);
+    //   $scope.$apply();
+   }
+
+   $scope.backtoSurgeryView = function(index, description) {
+       $rootScope.showIntakeNewSurgeryAdd = false;
+     //  $scope.surgeryDisplayTrue = true;
+  }
 
     $scope.doGetPatientHealthPlansList = function() {
 
@@ -1678,4 +1778,5 @@ $scope.locat=false;
         //  $state.go('tab.providerSearch', { viewMode : 'all' });
         $state.go('tab.providerSearch');
     }
+
 })

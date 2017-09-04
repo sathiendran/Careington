@@ -26,13 +26,13 @@
                          <a class="button surEditIcon" ng-click="openEditSurgeryItem({{$index}}, surgery);" ><i class="currentedit" ng-bind-html="drawSVGCIcon('pencil')"></i></a>
                          </div>
 
-                         <div class="surgeryEdit-{{$index}} animated slideInRight" style="display: none">
-                              <div class="item item-input validated">
+                         <div class="surgeryEdit-{{$index}} animated slideInRight" style="display: none;">
+                              <div class="item item-input validated" style="border-left: none; border-right: none;">
                                    <span class="input-label">Procedure</span>
                                    <input type="text"  name="surDescription" id="surDescription_{{$index}}" value="{{surgery.description}}"  placeholder="Short description" >
                                    <a class="surgeryCloseIcon" ng-click="removeSurgeryItem({{$index}});" ><i class="ion-trash-b" ></i></a>
                               </div>
-                              <div class="item item-input validated">
+                              <div class="item item-input validated" style="border-left: none; border-right: none;">
                                  <span class="input-label">Date</span>
                                  <select id="surDateStringMonth_{{$index}}" name="surDateStringMonth" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px;padding-right: 5px;  padding: 10px 10px 10px 0px; font-size: 16px;color:#666666;">
                                     <option ng-repeat="month in EditSurgerymonthsList" value="{{month.value}}" ng-selected="month.value == surgery.month">
