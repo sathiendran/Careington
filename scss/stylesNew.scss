@@ -5899,9 +5899,9 @@ border-radius: 6px;
 }
 /* Health history Surgery Popup */
 .noSurgeryText {
-     text-align: center;
-    font-size: 15px;
-    color: #666;
+    text-align: center;
+    font-size: 16pt;
+    color: rgba(0, 0, 0, 0.38);
     font-family: Glober Regular;
     padding: 5% 10%;
 }
@@ -5909,11 +5909,12 @@ border-radius: 6px;
      background-color: #A2D28A !important;
     border-color: #A2D28A !important;
     background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%) !important;
-    height: 28px;
+    height: 32pt;
     min-height: 20px !important;
     top: 10px !important;
-    margin-top: 7px;
-    width: 50px;
+    margin-top: -4px;
+    width: 64pt;
+
     border-radius: 6px;
     line-height: 29px !important;
     padding: 0px;
@@ -5940,21 +5941,28 @@ border-radius: 6px;
      padding: 14px 2%;
      height: 60px;
      .surgeryAddButton {
-          background-color: #A2D28A;
+         background-color: #A2D28A;
          border-color: #A2D28A;
          background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);
          font-weight: normal;
          padding-top: -50px;
-         width: 100%;
+         //width: 100%;
+         width: 288pt;
          min-height: 28px;
          color: #fff;
          font-family: Glober Bold;
-         border-radius: 6px;
-         font-size: 15px;
+         //border-radius: 6px;
+         border-radius: 4pt;
+         //font-size: 15px;
+         font-size: 20pt;
+         height: 44pt;
+         top: -27px;
+         margin: 0 !important;
      }
 }
 .surDisplay {
      border: 1px solid #C4C5C3;
+     height: 60pt;
      .surDescription {
           padding: 10px;
          width: 80%;
@@ -5969,4 +5977,46 @@ border-radius: 6px;
 }
 .surEditIcon:hover{
      margin-top: 10px; border: none !important; background: white;
+}
+
+div.surDescription h2 {
+    font-size: 18pt;
+    font-family: GloberSemiBold;
+    line-height: 24pt;
+    color: rgba(0,0,0,0.75);
+    height: 24pt;
+    width: 88pt;
+}
+
+div.surDescription p {
+    font-size: 16pt;
+    font-family: GloberRegular;
+    line-height: 20pt;
+    color: rgba(0,0,0,0.54);
+    height: 20pt;
+    width: 112pt;
+}
+
+.priorValueDate{
+    font-size: 16pt;
+    font-family: GloberSemiBold;
+    color: rgba(0,0,0,0.75);
+}
+
+.priorValue{
+    font-size: 16pt;
+    font-family: GloberSemiBold;
+    line-height: 20pt;
+    color: rgba(0,0,0,0.75);
+    height: 20pt;
+    width: 93pt;
+}
+
+.priorTag {
+    font-size: 16pt;
+    font-family: GloberSemiBold;
+    line-height: 20pt;
+    color: rgba(0,0,0,0.54);
+    height: 20pt;
+    width: 72pt;
 }
