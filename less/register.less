@@ -1202,7 +1202,7 @@
         width:140px;
         color: @grey_darker;
         text-align: right;
-				font-size:12px;
+		font-size:17px;
 
         h1{
             font-size:0.7em;
@@ -1254,7 +1254,7 @@
 
     &__title{
         font-family: @bold_family;
-        font-size:18px;
+        font-size:22px;
         color:@grey_dark;
         line-height: 1.33;
         display: inline-block;
@@ -1264,7 +1264,7 @@
     }
 
     &__section-title{
-        font-size:16px;
+        font-size:20px;
         color:@grey_dark;
         line-height: 1.44;
         font-family: @bold_family;
@@ -1275,13 +1275,14 @@
         display: block;
         float: left;
         width: 100%;
-        height:26px;
+        height:33px;
 			  font-family: Glober;
 				font-weight: bold;
+				margin-bottom: 5px;
     }
 
     &__sub-section-title{
-        font-size:11px;
+        font-size:14px;
         font-family: @bold_family;
         color:@grey_dark;
         clear:both;
@@ -1292,12 +1293,13 @@
         &--border-dashed{
             border-bottom: 1px dashed #979797;
             height:23px;
+            margin-bottom: 5px;
             -webkit-print-color-adjust: exact;
         }
 
         &--border-solid{
             border-bottom: 1px solid #979797;
-            height:23px;
+            height:30px;
             line-height:2.5;
             -webkit-print-color-adjust: exact;
         }
@@ -1319,6 +1321,7 @@
     &__sub-section-date{
         float:right;
         font-size:0.5rem;
+        padding: 5px;
     }
 
     &__sub-section-child{
@@ -1331,7 +1334,7 @@
         margin-top:-5px;
 
         &--patient{
-            font-size:24px;
+            font-size:35px;
             color:@black;
         }
 
@@ -1340,15 +1343,16 @@
         }
 
         &--provider{
-            font-size:1.01em;
+            font-size:22px;
             color:@grey_darker;
             margin-top: 2px;
+ 			padding-bottom: 5px;
         }
     }
 
     &__name-details{
-        font-size:0.8em;
-        margin:-4px 0 10px;
+        font-size:14px;
+        margin:-14px 0 10px;
         height: 26px;
         line-height: 2.1;
 
@@ -1393,14 +1397,14 @@
 
 				font-family: Glober;
 				font-weight: bold;
-				font-size: 9px;
+				font-size: 10px;
     }
 
     &__data-list-desc{
         border:1px solid @grey_lighter;
         box-sizing: border-box;
         padding-left:5px;
-        font-size:0.8em;
+        font-size:16px;
         color:@grey_darker;
         font-family: @bold_family;
         float:left;
@@ -1408,7 +1412,7 @@
         margin:0;
         height:21px;
         line-height: 1.3;
-				padding-top:4px;
+		padding-top:4px;
 
         &::after{
             font-family:'icomoon';
@@ -1488,7 +1492,7 @@
             margin:0;
             padding:0;
             line-height: 18px;
-						font-size: 12px;
+						font-size: 13px;
 						font-family: Glober;
 						font-weight: bold;
 
@@ -1508,7 +1512,7 @@
     }
 
     &__table-title{
-        font-size:0.56em;
+        font-size:10px;
         color:@grey_dark;
 
         &--left{
@@ -1577,7 +1581,7 @@
     }
 
     &__table-row{
-        font-size:0.6em;
+        font-size:12px;
         font-family: @bold_family;
         line-height: 2;
         color:@grey_darker;
@@ -1847,9 +1851,15 @@
     }
 
     &__notes{
-        font-size: 0.6em;
+        font-size: 13px;
         color:@black;
         padding: 6px 0;
+    }
+
+    &__nonereport{
+        font-size: 13px;
+        color:@black;
+        padding: 9px 0;
     }
 
     &__encounter-codes{
@@ -1858,10 +1868,9 @@
     }
 
     &__chat-transcript{
-        font-size: 0.56em;
-        color: #444;
-        margin:5px 0 0 0;
-        line-height: 16px;
+    font-size: 13px;
+    color: #000;
+    padding: 6px 0;
 				li{
 					font-size: 0.56em;
 					color: #444;
@@ -1876,7 +1885,7 @@
     }
 
     &__med-list{
-        font-size: 0.6em;
+        font-size: 13px;
         font-family: @bold_family;
         color:@grey_darker;
         margin:0;
@@ -1950,7 +1959,7 @@
         color:@grey_dark;
         font-family: @semibold_family;
         float:left;
-        line-height: 1;
+        line-height: 1.9;
     }
 
     &__atmt-details{
