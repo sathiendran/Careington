@@ -5912,7 +5912,7 @@ border-radius: 6px;
     height: 32pt;
     min-height: 20px !important;
     top: 10px !important;
-    margin-top: -4px;
+    margin-top: 0px;
     width: 64pt;
 
     border-radius: 6px;
@@ -5947,7 +5947,7 @@ border-radius: 6px;
          font-weight: normal;
          padding-top: -50px;
          //width: 100%;
-         width: 288pt;
+         width: 100%;
          min-height: 28px;
          color: #fff;
          font-family: Glober Bold;
@@ -5965,18 +5965,33 @@ border-radius: 6px;
      height: 60pt;
      .surDescription {
           padding: 10px;
-         width: 80%;
+         width: 85%;
          float: left;
      }
 }
 .surEditIcon {
-     margin-top: 10px; border: none !important; background: white; box-shadow: none !important;
+     margin-top: 22px; border: none !important; background: white; box-shadow: none !important;
      .ion-close:before {
           font-size: 21px !important;
      }
 }
 .surEditIcon:hover{
-     margin-top: 10px; border: none !important; background: white;
+     margin-top: 22px; border: none !important; background: white;
+}
+
+.surCloseIcon {
+     margin-top: 0px; border: none !important; background: white; box-shadow: none !important;
+     margin-top: 5px;
+    font-weight: bold;
+    padding: 5px 7px 5px 6px;
+    left: -22px;
+    position: relative;
+     .ion-close:before {
+          font-size: 21px !important;
+     }
+}
+.surCloseIcon:hover{
+     margin-top: 0px; border: none !important; background: white;
 }
 
 div.surDescription h2 {
@@ -5985,7 +6000,7 @@ div.surDescription h2 {
     line-height: 24pt;
     color: rgba(0,0,0,0.75);
     height: 24pt;
-    width: 88pt;
+    width: 100%;
 }
 
 div.surDescription p {
@@ -6004,12 +6019,12 @@ div.surDescription p {
 }
 
 .priorValue{
-    font-size: 16pt;
-    font-family: GloberSemiBold;
-    line-height: 20pt;
-    color: rgba(0,0,0,0.75);
-    height: 20pt;
-    width: 93pt;
+    font-size: 16pt !important;
+    font-family: GloberSemiBold !important;
+    line-height: 25pt !important;
+    color: rgba(0,0,0,0.75) !important;
+    height: 30pt !important;
+    width: 93pt !important;
 }
 
 .priorTag {
@@ -6018,5 +6033,14 @@ div.surDescription p {
     line-height: 20pt;
     color: rgba(0,0,0,0.54);
     height: 20pt;
-    width: 72pt;
+    //width: 72pt;
+}
+.surgeryMonth {
+  appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px;padding-right: 5px;  padding: 10px 10px 10px 0px; color: rgba(0, 0, 0, 0.75) !important;
+    font-size: 16pt;
+}
+.surgeryYear {
+  appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px;position: relative; padding-left: 8px;  padding: 10px;
+  color: rgba(0, 0, 0, 0.75) !important;
+    font-size: 16pt;
 }

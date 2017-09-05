@@ -400,12 +400,12 @@
                <hr class="bhealth">
                <div ng-if="patientmedications.length !== 0">
                   <h4>
-                     <span class="alignnexttext">Current Medications</span><span ng-show="patientAuthorize" ng-if="editOption !== 'None'"><a ng-click="healthsearch(patientmedications)" ><i class="currentedit" ng-bind-html="drawSVGCIcon('pencil')"></i></a></span>
+                     <span class="alignnexttext">Current Medications</span><span ng-show="patientAuthorize" ng-if="editOption !== 'None'"><a ng-click="healthsearch(patientmedications)" ><i class="currenteditHealthInfo" ng-bind-html="drawSVGCIcon('pencil')"></i></a></span>
                   </h4>
                </div>
                <div ng-if="patientmedications.length === 0">
                   <h4>
-                     <span class="alignnexttext">Current Medications</span><span ng-show="patientAuthorize" ng-if="editOption !== 'None'"><a ng-click="healthsearch(patientmedications)" ><i class="currentedit ion-plus-round"></i></a></span>
+                     <span class="alignnexttext">Current Medications</span><span ng-show="patientAuthorize" ng-if="editOption !== 'None'"><a ng-click="healthsearch(patientmedications)" ><i class="currenteditHealthInfo ion-plus-round"></i></a></span>
                   </h4>
                </div>
                <hr class="dothr dotalign">
@@ -420,7 +420,7 @@
                </h4>
                <h4 class="h4align" ng-if="patientmedicationsallergies.length === 0">
                   <span class="alignnexttext chronic"  >Medication Allergies</span>
-                  <span ng-show="patientAuthorize" ng-if="editOption !== 'None'"><a ng-click="alergiessearch()" ><i class="currentedit ion-plus-round"></i></a>
+                  <span ng-show="patientAuthorize" ng-if="editOption !== 'None'"><a ng-click="alergiessearch()" ><i class="currenteditHealthInfo ion-plus-round"></i></a>
                   </span>
                </h4>
                <hr class="dothr dotalign">
@@ -434,7 +434,7 @@
                </h4>
                <h4 class="h4align" ng-if="patientmedicalConditions.length === 0">
                   <span class="alignnexttext chronic">Chronic Conditions</span>
-                  <span ng-show="patientAuthorize" ng-if="editOption !== 'None'"><a ng-click="chronicsearch()" ><i class="currentedit ion-plus-round"></i></a></span>
+                  <span ng-show="patientAuthorize" ng-if="editOption !== 'None'"><a ng-click="chronicsearch()" ><i class="currenteditHealthInfo ion-plus-round"></i></a></span>
                </h4>
                <hr class="dothr dotalign">
                <ul class="aligntext alvalue">
@@ -448,7 +448,7 @@
                </h4>
                <h4 class="h4align" ng-if="patientmedicalsurgeries.length === 0">
                   <span class="alignnexttext chronic">Prior Surgeries</span>
-                  <span ng-show="patientAuthorize" ng-if="editOption !== 'None'"><a ng-click="showSurgeryPopup()" ><i class="currentedit ion-plus-round"></i></a>
+                  <span ng-show="patientAuthorize" ng-if="editOption !== 'None'"><a ng-click="showSurgeryPopup()" ><i class="currenteditHealthInfo ion-plus-round"></i></a>
                   </span>
                </h4>
                <hr class="dothr dotalign">
