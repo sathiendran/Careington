@@ -3042,6 +3042,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         }  else if ($rootScope.cuttlocations == undefined) {
                           $scope.doGetlocationResponse();
                         } else {
+                            //$scope.doGetWaitingConsultent();
                             $scope.doGetlocationResponse();
                         }
                     }
@@ -3156,6 +3157,68 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         };
 
         LoginService.getLocationResponse(params);
+    }
+
+    $scope.doGetWaitingConsultent = function() {
+        var params = {
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+                if (data.active == true) {
+                    $state.go('tab.userhome');
+
+                    deregisterBackButton = $ionicPlatform.registerBackButtonAction(function(e){}, 401);
+
+                    var confirmPopup = $ionicPopup.confirm({
+
+                        title: "<div class='locationtitle'> Appointment in progress </div> ",
+
+                        templateUrl: 'templates/waitingConsultent.html',
+                        cssClass: 'locpopup',
+                        hardwareBackButtonClose: false,
+
+                        buttons: [{
+                            text: '<b>No</b>',
+                            onTap: function(e) {
+
+                                $scope.showAlert();
+                                return true;
+                            }
+                        }, {
+                            text: '<b>Yes</b>',
+                            type: 'button-positive',
+                            onTap: function(e) {
+                                //  return true;
+                                //$rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
+                            }
+                        }, ],
+
+                    });
+                    $timeout(function(){
+                     confirmPopup.close();
+                        }, 1794000);
+                    confirmPopup.then(function(res) {
+                        if (res) {
+                            deregisterBackButton();
+                        } else {
+                            $scope.updateYesCurrentLocation();
+                          //  $rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
+                        }
+                    });
+                } else {
+                    $state.go('tab.userhome');
+                }
+            },
+            error: function(data, status) {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              }
+            }
+        };
+
+        LoginService.getWaitingConsultent(params);
     }
 
     $scope.showAlert = function() {

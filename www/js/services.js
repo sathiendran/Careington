@@ -385,6 +385,27 @@ angular.module('starter.services', [])
   }
 
 
+  this.getWaitingConsultent= function(params) {
+    var PatientLocation = {
+      headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2/patients/availableconsultations/waiting',
+            method: 'GET'
+    };
+
+    $http(PatientLocation).
+      success(function (data, status, headers, config) {
+        if (typeof params.success != 'undefined') {
+          params.success(data);
+        }
+      }).
+      error(function (data, status, headers, config) {
+        if (typeof params.error != 'undefined') {
+          params.error(data,status);
+        }
+    });
+  }
+
+
 	this.getRelatedPatientProfiles = function(params) {
 		var confirmHealthPlanList = {
 			headers: util.getHeaders(params.accessToken),
