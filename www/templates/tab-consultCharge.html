@@ -164,26 +164,27 @@
                            </div>
 
 
-<!-- 
+<!--
 <select class="consultHealthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-chang="cardchange('consulCharge')">
                               <option><b>Choose Your Card</b></option>
                               <option  ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value="{{PaymentProfile.profileID + '@' + PaymentProfile.cardType + '@' + PaymentProfile.cardNumber}}" ng-style="{'background-image':'url(https://emerald.qa1.snapvcm.com/images/creditcards/Visa-dark.png)'}"><b>
-                               <div> 
+                               <div>
                                <span>{{PaymentProfile.cardType + '       '}}</span>  <span >{{  + '             ' +  'XXXX-XXXX-XXXX-'+PaymentProfile.cardNumber}}</span></b></option>
                               <option ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
                            </select>  -->
 
 <div class="consultHealthPlanDropDown"  ng-class='{active:active}' ng-click="active=!active">
-  <ul class="options">
+  <ul class="options"  id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-chang="cardchange('consulCharge')">
      <li><b>Choose Your Card</b></li>
-     <li ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value="{{PaymentProfile.profileID + '@' + PaymentProfile.cardType + '@' + PaymentProfile.cardNumber}}" ng-style="{'background-image':'url(https://emerald.qa1.snapvcm.com/images/creditcards/Visa-dark.png)'}">
+     <li ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value="{{PaymentProfile.profileID + '@' + PaymentProfile.cardType + '@' + PaymentProfile.cardNumber}}" ng-style="{'background-image':'url(https://emerald.qa1.snapvcm.com/images/creditcards/Visa-dark.png)'}" style="background-size: 34px 23px; background-repeat: no-repeat;">
      <b><span>{{PaymentProfile.cardType + '       '}}</span>  <span >{{  + '             ' +  'XXXX-XXXX-XXXX-'+PaymentProfile.cardNumber}}</span></b>
      </li>
      <li ng-if="totalPaymentCard != 10"><b>Add a new card</b></li>
   </ul>
 </div>
-                         
-<!-- 
+
+
+<!--
 <div class="select_list" ng-class='{active:active}' ng-click="active=!active">
     <span ng-style="{'background-image':'url(https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/it.png)'}">{{ + '             ' +  'XXXX-XXXX-XXXX-'+obj.language_selected.cardNumber}}</span>
     <ul class="options">
@@ -211,7 +212,7 @@
                            <!-- <select class="consultHealthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-chang="cardchange('consulCharge')">
                               <option><b>Choose Your Card</b></option>
                               <option  ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value="{{PaymentProfile.profileID + '@' + PaymentProfile.cardType + '@' + PaymentProfile.cardNumber}}"><b>
-                               <div> 
+                               <div>
                                <span>{{PaymentProfile.cardType + '       '}}</span>  <span >{{  + '             ' +  'XXXX-XXXX-XXXX-'+PaymentProfile.cardNumber}}</span></b></option>
                               <option ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
                            </select> -->
@@ -219,7 +220,7 @@
                       <!-- <select class="consultHealthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-chang="cardchange('consulCharge')">
                               <option><b>Choose Your Card</b></option>
                               <option  ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value="{{PaymentProfile.profileID + '@' + PaymentProfile.cardType + '@' + PaymentProfile.cardNumber}}"><b>
-                               <div> 
+                               <div>
                                <span>{{PaymentProfile.cardType + '       '}}</span>  <span >{{  + '             ' +  'XXXX-XXXX-XXXX-'+PaymentProfile.cardNumber}}</span></b></option>
                               <option ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
                            </select> -->
