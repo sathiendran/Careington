@@ -34,13 +34,13 @@
                               </div>
                               <div class="item item-input validated" style="border-left: none; border-right: none;">
                                  <span class="input-label priorTag">Date</span>
-                                 <select id="surDateStringMonth_{{$index}}" name="surDateStringMonth" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px;padding-right: 5px;  padding: 10px 10px 10px 0px;">
+                                 <select id="surDateStringMonth_{{$index}}" name="surDateStringMonth" class="surgeryMonth" >
                                     <option ng-repeat="month in EditSurgerymonthsList" value="{{month.value}}" ng-selected="month.value == surgery.month">
                                        <b><span class="priorValueDate">{{month.text}}</span></b>
                                     </option>
                                  </select>
                                  /&nbsp;
-                                 <select id="dateStringYear_{{$index}}" name="dateStringYear"  style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px;position: relative; padding-left: 8px;  padding: 10px;">
+                                 <select id="dateStringYear_{{$index}}" name="dateStringYear" class="surgeryYear" >
                                     <option ng-repeat="surgeryYear in surgeryYearsList" value="{{surgeryYear.value}}" ng-selected="surgeryYear.text === surgery.year">
                                        <b><span class="priorValueDate">{{surgeryYear.text }}</span></b>
                                     </option>
@@ -53,20 +53,20 @@
                     <div ng-show="showNewSurgeryAdd" class="list" style="padding-bottom: 0px !important; {{PriorSurgeryPopupTextBox}}">
                        <!--<h5 class="surname">Add New Surgery</h5>-->
                        <div class="item item-input validated">
-                            <span class="input-label">Procedure</span>
+                            <span class="input-label priorTag">Procedure</span>
                             <input type="text" value=""  placeholder="Short description" ng-model="surgery.name" name="name" class="priorValue" id="name">
                            <!-- <a class="surgeryCloseIcon" ng-click="backtoSurgeryView();"><i class="ion-close" ></i></a>-->
-                           <a class="surEditIcon" ng-click="backtoSurgeryView();" ><i class="ion-close" ></i></a>
+                           <a class="surCloseIcon" ng-click="backtoSurgeryView();" ><i class="ion-close" ></i></a>
                          </div>
                        <div class="item item-input validated">
-                          <span class="input-label">Date</span>
-                          <select id="dateStringMonth" name="dateStringMonth" ng-model="surgery.dateStringMonth" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px;padding-right: 5px;  padding: 10px 10px 10px 0px; ">
+                          <span class="input-label priorTag">Date</span>
+                          <select id="dateStringMonth" name="dateStringMonth" ng-model="surgery.dateStringMonth" class="surgeryMonth" >
                              <option ng-repeat="month in monthsList" value="{{month.value}}" ng-selected="{{month.selected}}">
                                 <b><span class="priorValueDate">{{month.text}}</span></b>
                              </option>
                           </select>
                           /&nbsp;
-                          <select id="dateStringYear" name="dateStringYear" ng-model="surgery.dateStringYear" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px;position: relative; padding-left: 8px;  padding: 10px;">
+                          <select id="dateStringYear" name="dateStringYear" ng-model="surgery.dateStringYear" class="surgeryYear" >
                              <option ng-repeat="surgeryYear in surgeryYearsList" value="{{surgeryYear.value}}">
                                 <b><span class="priorValueDate">{{surgeryYear.text }}</span></b>
                              </option>

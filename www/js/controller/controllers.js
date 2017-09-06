@@ -2738,9 +2738,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
       $scope.doGetConutriesList();
       $rootScope.doGetLocations();
 
-      $scope.doGetConutriesList();
-      $rootScope.doGetLocations();
-
         var params = {
             accessToken: $rootScope.accessToken,
             success: function(data) {
