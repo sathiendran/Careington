@@ -385,6 +385,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $rootScope.drawSVGCIconForVideo = function(iconName) {
         return "<svg class='icon-" + iconName + " svgIcon" + iconName + " svgIconForVideo'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
     };
+
+    $scope.language_list = [{'name': 'english', 'url': 'https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/gb.png'},{'name': 'italian', 'url': 'https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/it.png'}];
     $rootScope.canceloption = function() {
         $window.history.back();
         $scope.apply();
