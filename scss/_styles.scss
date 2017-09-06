@@ -4156,7 +4156,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
           -moz-appearance: none;
           text-indent: 0.01px;
           text-overflow: "";
-          color: transparent;
+          //color: transparent;
           option {
               color: #666666;
           }
@@ -4227,7 +4227,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
             border-top: 1px solid #666666! important;
             height: 60px;
             font-size: 18px;
-            color: transparent;
+            //color: transparent;
             option {
                 color: #666666;
             }
@@ -5553,3 +5553,48 @@ hr {
 //    left: -5px;
 //   }
 // }
+.select_list{
+    background-color: #fff;
+    border: 1px solid #b3b3b3;
+    cursor: pointer;
+    height: 21px;
+    line-height: 21px;
+    padding: 3px 5px;
+    position: relative;
+    vertical-align: middle;
+    width: 250px;
+}
+.select_list:after{
+    content:"▼";
+    position:absolute;
+    right:3px;
+    color:#b3b3b3;
+}
+.consultHealthPlanDropDown > .options{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:-1px;
+    width:100%;
+    border:1px solid #666;
+    padding:0;
+    margin:0;
+}
+
+.consultHealthPlanDropDown.active > .options{
+    display:block;
+}
+
+.consultHealthPlanDropDown > span, .consultHealthPlanDropDown > .options li {
+    background-position: 5px center;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    list-style:none;
+}
+
+.consultHealthPlanDropDown > .options li:hover {
+    background-color:#eee;
+}
+
+
+
