@@ -146,7 +146,7 @@
 
                             <div class="pc-report__data-list pc-report__data-list-item">
                                 <div class="pc-report__data-list-title">length</div>
-                                <div class="pc-report__data-list-desc">{{consultDurationMinutes}}:{{consultDurationSeconds}}</div>
+                                <div class="pc-report__data-list-desc">{{consultDurationMinutes}}:{{consultDurationSeconds}} <strong>min</strong></div>
                             </div>
 
                             <div class="pc-report__data-list pc-report__data-list-item">
@@ -159,7 +159,7 @@
                                     <span class="pc-report__data-list-title">class</span>
                                     <span class="pc-report__data-list-desc">{{reportservicetype}}</span>
                                 </div>
-                                <div class="pc-report__data-list-item pc-report__data-list-item--small">
+                                <div class="pc-report__data-list-item pc-report__data-list-item--small" style="width: 23% !important">
                                     <span class="pc-report__data-list-title">VIA</span>
                                     <span class="pc-report__data-list-desc pc-report__data-list-desc--video" ng-if="encountercode == 3">Video</span>
                                     <span class="pc-report__data-list-desc pc-report__data-list-desc--phone" ng-if="encountercode != 3">Phone</span>
