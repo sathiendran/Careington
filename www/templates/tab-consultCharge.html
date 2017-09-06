@@ -174,7 +174,7 @@
                            </select>  -->
 
 <div class="consultHealthPlanDropDown"  ng-class='{active:active}' ng-click="active=!active">
-  <ul class="options"  id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-chang="cardchange('consulCharge')">
+  <ul ng-model="cardPaymentId.addNewCard" ng-chang="cardchange('consulCharge')" class="options"  id="addNewCard" name="addNewCard" ng-model="cardPaymentId.addNewCard" ng-chang="cardchange('consulCharge')">
      <li><b>Choose Your Card</b></li>
      <li ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value="{{PaymentProfile.profileID + '@' + PaymentProfile.cardType + '@' + PaymentProfile.cardNumber}}" ng-style="{'background-image':'url(https://emerald.qa1.snapvcm.com/images/creditcards/Visa-dark.png)'}" style="background-size: 34px 23px; background-repeat: no-repeat;">
      <b><span>{{PaymentProfile.cardType + '       '}}</span>  <span >{{  + '             ' +  'XXXX-XXXX-XXXX-'+PaymentProfile.cardNumber}}</span></b>
