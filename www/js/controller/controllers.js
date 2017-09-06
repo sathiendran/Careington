@@ -572,7 +572,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -3039,11 +3039,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     } else {
                         if ($rootScope.cuttlocations == "tab.ReportScreen") {
                             $state.go('tab.userhome');
-                        }  else if ($rootScope.cuttlocations == undefined) {
-                          $scope.doGetlocationResponse();
+                      /*  }  else if ($rootScope.cuttlocations == undefined) {
+                          $scope.doGetlocationResponse();*/
                         } else {
-                            //$scope.doGetWaitingConsultent();
-                            $scope.doGetlocationResponse();
+                            $scope.doGetWaitingConsultent();
+                            //$scope.doGetlocationResponse();
                         }
                     }
                 } else {
@@ -3159,18 +3159,148 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         LoginService.getLocationResponse(params);
     }
 
+    $scope.doGetWaitingConsultantPatientProfiles = function() {
+        var params = {
+            accessToken: $rootScope.accessToken,
+            patientId: $rootScope.videoWaitingConsultentDetails[0].patientId,
+            success: function(data) {
+                    $scope.selectedPatientDetails = [];
+                    angular.forEach(data.data, function(index) {
+                        $scope.selectedPatientDetails.push({
+                          'identifiers': angular.fromJson(index.identifiers),
+                            'account': angular.fromJson(index.account),
+                            'address': index.address,
+                            'addresses': angular.fromJson(index.addresses),
+                            'anatomy': angular.fromJson(index.anatomy),
+                            'countryCode': index.countryCode,
+                            'createDate': index.createDate,
+                            'fieldChangesTrackingDetails': angular.fromJson(index.fieldChangesTrackingDetails),
+                            'dependentRelation': angular.fromJson(index.dependentRelation),
+                            'dob': index.dob,
+                            'gender': index.gender,
+                            'homePhone': index.homePhone,
+                            'lastName': index.lastName,
+                            'location': index.location,
+                            'locationId': index.locationId,
+                            'medicalHistory': angular.fromJson(index.medicalHistory),
+                            'mobilePhone': index.mobilePhone,
+                            'organization': index.organization,
+                            'organizationId': index.organizationId,
+                            'patientName': index.patientName,
+                            'personId': index.personId,
+                            'pharmacyDetails': index.pharmacyDetails,
+                            'physicianDetails': index.physicianDetails,
+                            'schoolContact': index.schoolContact,
+                            'schoolName': index.schoolName
+                        });
+
+                    });
+                    $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
+                    $rootScope.cutaddress = $rootScope.currentPatientDetails[0].address;
+                    $rootScope.PatientIdentifiers = $rootScope.currentPatientDetails[0].identifiers;
+                    $rootScope.PatidentifierCount = $scope.PatientIdentifiers.length;
+                    var cutaddresses = $rootScope.cutaddress.split(",");
+                    $rootScope.stateaddresses = cutaddresses[0];
+                    var date = new Date($rootScope.currentPatientDetails[0].dob);
+                    $rootScope.userDOBDateFormat = date;
+                    $rootScope.userDOBDateForAuthorize = $filter('date')(date, "MM-dd-yyyy");
+                  //  $rootScope.userGender = $rootScope.currentPatientDetails[0].gender;
+                    if ($rootScope.currentPatientDetails[0].gender === 'M' || $rootScope.currentPatientDetails[0].gender === 'Male') {
+                        $rootScope.userGender = "Male";
+                    } else if ($rootScope.currentPatientDetails[0].gender === 'F' || $rootScope.currentPatientDetails[0].gender === 'Female') {
+                        $rootScope.userGender = "Female";
+                    }
+                    $rootScope.userDOB = $rootScope.currentPatientDetails[0].dob;
+                    if($rootScope.primaryPatientId != $rootScope.videoWaitingConsultentDetails[0].patientId) {
+                      $rootScope.patRelationShip = $rootScope.currentPatientDetails[0].dependentRelation.relationship;
+                    } else {
+                      $rootScope.patRelationShip = '';
+                    }
+
+                    $.getScript("lib/jquery.signalR-2.1.2.js", function(data, textStatus, jqxhr) {
+
+                    });
+                    setTimeout(function() {
+                      $scope.enterWaitingRoom($rootScope.currentPatientDetails[0].account.profileImage, $rootScope.currentPatientDetails[0].patientName, $rootScope.currentPatientDetails[0].lastName, $rootScope.currentPatientDetails[0].dob, $rootScope.primaryPatientName)
+                    }, 100);
+            },
+            error: function(data, status) {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else if (status === 401) {
+                    $scope.ErrorMessage = "You are not authorized to view this account";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+
+        LoginService.getSelectedPatientProfiles(params);
+    }
+
+    $scope.doDeleteWaitingConsultant = function() {
+        var params = {
+            accessToken: $rootScope.accessToken,
+            consultationId: $rootScope.videoWaitingConsultentDetails[0].consultationId,
+            success: function(data) {
+                $scope.doGetlocationResponse();
+            },
+            error: function(data, status) {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+        LoginService.deleteWaitingConsultant(params);
+    }
+
     $scope.doGetWaitingConsultent = function() {
+      $rootScope.WaitingConsultentDetails = '';
+      $rootScope.videoWaitingConsultentDetails = '';
+      $rootScope.phoneWaitingConsultentDetails = '';
         var params = {
             accessToken: $rootScope.accessToken,
             success: function(data) {
-                if (data.active == true) {
+                if (data.data.length !== 0) {
                     $state.go('tab.userhome');
+                    $rootScope.WaitingConsultentDetails = [];
+                    angular.forEach(data.data, function(index, item) {
+                        $rootScope.WaitingConsultentDetails.push({
+                            'consultantUserId': index.consultantUserId,
+                            'consultationDateInfo': index.consultationDateInfo,
+                            'consultationId': index.consultationId,
+                            'createdDate': index.createdDate,
+                            'doctorStatus': index.doctorStatus,
+                            'encounterTypeCode': index.encounterTypeCode,
+                            'expireDate': index.expireDate,
+                            'expireDateInfo': index.expireDateInfo,
+                            'isTimeConverted': index.isTimeConverted,
+                            'meetingId': index.meetingId,
+                            'patientId': index.patientId,
+                            'patientStatus': index.patientStatus,
+                            'personId': index.personId,
+                            'status': index.status
+                        });
+                    });
 
+                    $rootScope.videoWaitingConsultentDetails = $rootScope.WaitingConsultentDetails.filter(function(r) { var show = r.encounterTypeCode == 3; return show; });
+                    $rootScope.phoneWaitingConsultentDetails = $rootScope.WaitingConsultentDetails.filter(function(r) { var show = r.encounterTypeCode == 2; return show; });
+                    $rootScope.consultationId = $rootScope.videoWaitingConsultentDetails[0].consultationId;
+                    $rootScope.patientId = $rootScope.videoWaitingConsultentDetails[0].patientId;
                     deregisterBackButton = $ionicPlatform.registerBackButtonAction(function(e){}, 401);
 
                     var confirmPopup = $ionicPopup.confirm({
 
-                        title: "<div class='locationtitle'> Appointment in progress </div> ",
+                        title: "<div class='locationtitle appointProgreeTitle'> Appointment in progress </div> ",
 
                         templateUrl: 'templates/waitingConsultent.html',
                         cssClass: 'locpopup',
@@ -3198,14 +3328,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         }, 1794000);
                     confirmPopup.then(function(res) {
                         if (res) {
-                            deregisterBackButton();
+                             $scope.doDeleteWaitingConsultant();
                         } else {
-                            $scope.updateYesCurrentLocation();
-                          //  $rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
+                          $scope.doGetWaitingConsultantPatientProfiles();
                         }
                     });
                 } else {
-                    $state.go('tab.userhome');
+                    $scope.doGetlocationResponse();
                 }
             },
             error: function(data, status) {

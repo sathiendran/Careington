@@ -384,28 +384,6 @@ angular.module('starter.services', [])
     });
   }
 
-
-  this.getWaitingConsultent= function(params) {
-    var PatientLocation = {
-      headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/v2/patients/availableconsultations/waiting',
-            method: 'GET'
-    };
-
-    $http(PatientLocation).
-      success(function (data, status, headers, config) {
-        if (typeof params.success != 'undefined') {
-          params.success(data);
-        }
-      }).
-      error(function (data, status, headers, config) {
-        if (typeof params.error != 'undefined') {
-          params.error(data,status);
-        }
-    });
-  }
-
-
 	this.getRelatedPatientProfiles = function(params) {
 		var confirmHealthPlanList = {
 			headers: util.getHeaders(params.accessToken),
@@ -613,11 +591,6 @@ this.getPatientMedicalProfile = function(params){
              }
          });
      }
-
-
-
-
-
 
 	this.postGetConsultationId = function(params) {
 		var registerDetails = {
@@ -2032,6 +2005,45 @@ this.getWaitingRoomChatTranscript = function (params) {
                    }
                });
          }
+
+
+				   this.getWaitingConsultent= function(params) {
+				     var PatientLocation = {
+				       headers: util.getHeaders(params.accessToken),
+				             url: apiCommonURL + '/api/v2/patients/availableconsultations/waiting',
+				             method: 'GET'
+				     };
+
+				     $http(PatientLocation).
+				       success(function (data, status, headers, config) {
+				         if (typeof params.success != 'undefined') {
+				           params.success(data);
+				         }
+				       }).
+				       error(function (data, status, headers, config) {
+				         if (typeof params.error != 'undefined') {
+				           params.error(data,status);
+				         }
+				     });
+				   }
+				 	this.deleteWaitingConsultant = function(params){
+				 		var requestInfo = {
+				 				headers: util.getHeaders(params.accessToken),
+				 				url: apiCommonURL + '/api/v2/patients/availableconsultations/waiting/'+ params.consultationId,
+				 				method: 'DELETE',
+				 		};
+				 		$http(requestInfo).
+				 				success(function (data, status, headers, config) {
+				 						if (typeof params.success != 'undefined') {
+				 								params.success(data);
+				 						}
+				 				}).
+				 				error(function (data, status, headers, config) {
+				 						if (typeof params.error != 'undefined') {
+				 								params.success(data);
+				 						}
+				 				});
+				 	}
 
 })
 
