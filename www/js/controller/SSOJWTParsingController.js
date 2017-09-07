@@ -111,8 +111,10 @@ angular.module('starter.controllers')
                     }
                 }
                 $rootScope.brandColor = data.data[0].brandColor;
+                $rootScope.backColor = data.data[0].brandColor;
                 $rootScope.logo = data.data[0].hospitalImage;
                 $rootScope.Hospital = data.data[0].brandName;
+                $rootScope.singleHospital = data.data[0].brandName;
                 if (deploymentEnvLogout === 'Multiple') {
                     $rootScope.alertMsgName = 'Virtual Care';
                     $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
@@ -712,10 +714,16 @@ angular.module('starter.controllers')
             $scope.doGetTokenUsingSsoJwt();
         }
     } else {
-        if (deploymentEnvLogout === "Multiple") {
+         if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
         } else if (deploymentEnvLogout === "Single") {
-            $state.go('tab.loginSingle');
+             if(cobrandApp === 'MDAmerica' && deploymentEnv === "Single"){
+                  $rootScope.cobrandApp_New = 'MDAmerica';
+                  $rootScope.deploymentEnv_New = deploymentEnv;
+                  $state.go('tab.login');
+             } else {
+                  $state.go('tab.loginSingle');
+             }
         } else {
             $state.go('tab.login');
         }

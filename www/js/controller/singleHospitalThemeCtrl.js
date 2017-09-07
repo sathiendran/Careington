@@ -92,8 +92,10 @@ angular.module('starter.controllers')
                     }
                 }
                 $rootScope.brandColor = data.data[0].brandColor;
+                $rootScope.backColor = data.data[0].brandColor;
                 $rootScope.logo = data.data[0].hospitalImage;
                 $rootScope.Hospital = data.data[0].brandName;
+                $rootScope.singleHospital = data.data[0].brandName;
                 if (deploymentEnvLogout === 'Multiple') {
                     $rootScope.alertMsgName = 'Virtual Care';
                     $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
@@ -107,9 +109,11 @@ angular.module('starter.controllers')
                 $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
                 $rootScope.clientName = data.data[0].hospitalName;
                 brandColor = $rootScope.brandColor;
+                $rootScope.backColor = $rootScope.brandColor;
                 logo = $rootScope.logo;
                 HospitalTag = $rootScope.HospitalTag;
                 Hospital = $rootScope.Hospital;
+                $rootScope.singleHospital = $rootScope.Hospital;
                 if (!angular.isUndefined(data.data[0].customerSso) && data.data[0].customerSso === "Mandatory") {
                     $rootScope.customerSso = "Mandatory";
                     ssoURL = data.data[0].patientLogin;
@@ -120,7 +124,13 @@ angular.module('starter.controllers')
                     $rootScope.isSSORegisterAvailable = '';
                 }
                 $ionicLoading.hide();
-                $state.go('tab.loginSingle');
+                if(cobrandApp === 'MDAmerica' && deploymentEnv === "Single"){
+                     $rootScope.cobrandApp_New = 'MDAmerica';
+                    $rootScope.deploymentEnv_New = deploymentEnv;
+                     $state.go('tab.login');
+                } else if(cobrandApp !== 'MDAmerica' && deploymentEnv === "Single"){
+                    $state.go('tab.loginSingle');
+                }
             },
             error: function(data,status) {
               if(status === 503) {

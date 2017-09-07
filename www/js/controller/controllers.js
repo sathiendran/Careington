@@ -428,14 +428,18 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     /******** Prabin: Code to implement static brand color, logo and tagline. *******/
     if (deploymentEnvLogout === 'Single') {
         if ($rootScope.currState.$current.name === "tab.loginSingle") {
-
             $rootScope.brandColor = brandColor;
             $rootScope.logo = logo;
             $rootScope.HospitalTag = HospitalTag;
             $rootScope.Hospital = Hospital;
             $rootScope.alertMsgName = Hospital;
             $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
-        }
+       } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === 'Single' && $rootScope.currState.$current.name === "tab.login") {
+         $rootScope.HospitalTag = HospitalTag;
+         $rootScope.Hospital = Hospital;
+         $rootScope.alertMsgName = Hospital;
+         $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
+       }
     } else {
         $rootScope.alertMsgName = 'Virtual Care';
     }
@@ -725,20 +729,23 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             "display": "none"
         });
 
-        if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging') {
+        if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging' && cobrandApp !== 'MDAmerica') {
               $rootScope.hospitalId = singleHospitalId;
               apiCommonURL = 'https://connectedcare.md';
               api_keys_env = 'Production';
               $rootScope.APICommonURL = 'https://connectedcare.md';
               $scope.doGetSingleHosInfoForiTunesStage('logOut');
         } else {
-          if (deploymentEnvLogout === "Multiple") {
-              $state.go('tab.chooseEnvironment');
-          } else if (deploymentEnvLogout === "Single") {
-              $state.go('tab.loginSingle');
-          } else {
-              $state.go('tab.login');
-          }
+             if (deploymentEnvLogout === "Multiple") {
+                 $state.go('tab.chooseEnvironment');
+             } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
+                 //$rootScope.hospitalId = singleStagingHospitalId;
+                 $state.go('tab.login');
+             }else if (cobrandApp_New !== 'MDAmerica' && deploymentEnvLogout === "Single") {
+                 $state.go('tab.loginSingle');
+             }else {
+                 $state.go('tab.login');
+             }
         }
 
         $ionicBackdrop.release();
@@ -1792,8 +1799,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $scope.doPostSendPasswordResetEmail = function() {
 
-        if (deploymentEnv === "Single") {
+        if (deploymentEnv === "Single" && cobrandApp !== 'MDAmerica') {
             $scope.userEmailId = $('#UserEmail').val();
+        } else if (deploymentEnv === "Single" && cobrandApp ==='MDAmerica') {
+             $scope.userEmailId = $rootScope.UserEmail;
         } else {
             $scope.userEmailId = $rootScope.UserEmail;
         }
@@ -1811,9 +1820,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $scope.ErrorMessage = "Please enter a valid email address";
                 $rootScope.Validation($scope.ErrorMessage);
             } else {
-
-
-                if (deploymentEnv === "Single") {
+                if (deploymentEnv === "Single" && cobrandApp !== 'MDAmerica') {
                     if (deploymentEnvLogout === 'Single') {
                         if (deploymentEnvForProduction === 'Production') {
                             if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
@@ -1930,7 +1937,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     }
 
     $scope.goBackFromReset = function() {
-        if (deploymentEnv === "Single") {
+        if (deploymentEnv === "Single" && cobrandApp !== 'MDAmerica') {
             $state.go('tab.loginSingle');
         } else {
             $state.go('tab.password');

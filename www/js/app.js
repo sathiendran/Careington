@@ -12,8 +12,8 @@
 // Production - https://connectedcare.md
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
-var deploymentEnv = 'Multiple'; //Production //Multiple //Multiple //Single //Demo
-var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProduction = 'Production';
+var deploymentEnv = 'Single'; //Production //Multiple //Multiple //Single //Demo
+var deploymentEnvLogout = 'Single'; // same as above var deploymentEnvForProduction = 'Production';
 var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
 var deploymentEnvForProduction = ''; //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
 var loginPageEnv = 'Single';
@@ -36,176 +36,203 @@ if (deploymentEnv == 'Single') {
 
 
 
-    var cobrandApp = 'ambientcare';
+    var cobrandApp = 'MDAmerica';
+    switch (cobrandApp)
+                   {
+                        case "EpicMD":
+                             singleStagingHospitalId = 155;
+                             singleHospitalId = 190;
+                             singleQAHospitalId = '';
+                             singleSandboxHospitalId = '';
+                             brandColor = '#66c3b0';
+                             logo = 'img/epicmd_logotypebg.png';
+                             Hospital = 'EpicMD';
+                             HospitalTag = 'Virtual Care Concierge';
+                             ssoURL = "";
+                             break ;
+                        case "TelehealthOne":
+                             singleStagingHospitalId = 142;
+                             singleHospitalId = 142;
+                             singleQAHospitalId = '';
+                             singleSandboxHospitalId = '';
+                             brandColor = '#5ec4fe';
+                             logo = 'img/teleLogo.png';
+                             Hospital = 'telehealthONE';
+                             HospitalTag = 'Virtual Care Concierge';
+                             ssoURL = "";
+                             break ;
+                        case "Dokita":
+                            singleStagingHospitalId = 156;
+                            singleHospitalId = 184;
+                            singleQAHospitalId = '';
+                            singleSandboxHospitalId = '';
+                            brandColor = '#ff0000';
+                            logo = 'img/dokita.png';
+                            Hospital = 'Dokita247';
+                            HospitalTag = 'Virtual Care Concierge';
+                            ssoURL = "";
+                            break ;
+                        case  "DYW":
+                             singleStagingHospitalId = 157;
+                             singleHospitalId = 168;
+                             singleQAHospitalId = 156;
+                             singleSandboxHospitalId = '126';
+                             brandColor = '#22508b';
+                             logo = 'img/dyw.jpg';
+                             Hospital = "DocYourWay's Global Care Management";
+                             HospitalTag = 'Virtual Care Concierge';
+                             ssoURL = "";
+                            break;
+                        case "Hello420":
+                             singleStagingHospitalId = 160;
+                             singleHospitalId = 197;
+                             singleQAHospitalId = '';
+                             singleSandboxHospitalId = 142;
+                             brandColor = '#000080';
+                             logo = 'img/hello420.png';
+                             logo = 'https://connectedcare.md/api/v2.1/images/91e9aff7-4236-415e-aff5-17434a17c17b';
+                             Hospital = "Hello420";
+                             HospitalTag = 'Medical marijuana cards, quickly';
+                             ssoURL = "http://52.34.151.119/hello420/login/";
+                             break;
+                        case "ambientcare":
+                              singleStagingHospitalId = 161;
+                              singleHospitalId = 212;
+                              singleQAHospitalId = 164;
+                              singleSandboxHospitalId = '';
+                              brandColor = '#193def';
+                              logo = 'img/ambientcare.png';
+                              logo = 'https://snap-stage.com/api/v2.1/images/1456c0dc-9322-4502-98c4-d26e501f0dc0';
+                              Hospital = "Ambient Virtual Care";
+                              HospitalTag = 'Virtual Consultation Platform';
+                              ssoURL = "";
+                              break;
+                          case "1800md":
+                              singleStagingHospitalId = 164;
+                              singleHospitalId = 229;
+                              singleQAHospitalId = 165;
+                              singleSandboxHospitalId = 146;
+                              brandColor = '#005b9f';
+                              logo = 'img/1800md.png';
+                              logo = 'https://snap-stage.com/api/v2.1/images/b98206b9-1238-4a69-9e5d-3b8090406e32';
+                              Hospital = "1.800MD";
+                              HospitalTag = 'Convenient Care Anywhere';
+                              ssoURL = "";
+                              break;
+                          case "LatchOn":
+                              singleStagingHospitalId = 166;
+                              singleHospitalId = 218;
+                              singleQAHospitalId = '';
+                              singleSandboxHospitalId = '';
+                              brandColor = '#d14a43';
+                              logo = 'img/1800md.png';
+                              logo = 'https://snap-stage.com/api/v2.1/images/b98206b9-1238-4a69-9e5d-3b8090406e32';
+                              Hospital = "1.800MD";
+                              HospitalTag = 'Convenient Care Anywhere';
+                              ssoURL = "";
+                              break;
+                          case "Emerald Healthcare Group":
+                              singleStagingHospitalId = 126;
+                              singleHospitalId = 126;
+                              singleQAHospitalId = '';
+                              singleSandboxHospitalId = 129; // 126;
+                              brandColor = '#0071bb';
+                              logo = 'https://sandbox.connectedcare.md/api/v2.1/images/745eb236-2286-4635-b7c1-50dfe7fac390';
+                              Hospital = 'Emerald City Healthcare';
+                              HospitalTag = 'Virtual Telemedicine';
+                              ssoURL = "";
+                              break;
+                          case "TeleMD Virtual Clinic":
+                               singleStagingHospitalId = 167;
+                               singleHospitalId = 268;
+                               singleQAHospitalId = '';
+                               singleSandboxHospitalId = 144; // 126;
+                               brandColor = '#0000ff';
+                               logo = 'https://sandbox.connectedcare.md/api/v2.1/images/59953d85-4202-4b1b-ae0b-c4bf31203b19';
+                               Hospital = 'TeleMD Virtual Clinic';
+                               HospitalTag = 'Always Nearby';
+                               ssoURL = "";
+                               break;
+                          case "TheDocApp":
+                               singleStagingHospitalId = 162;
+                               singleHospitalId = 259;
+                               singleQAHospitalId = '';
+                               singleSandboxHospitalId = '';
+                               brandColor = '#4bc9f0';
+                             //  logo = 'img/1800md.png';
+                               logo = 'https://snap-stage.com/api/v2.1/images/7900bdca-83e3-4a66-850e-7bd4c78a8f58';
+                               Hospital = "TheDocApp";
+                               HospitalTag = 'Convenient Care Anywhere';
+                               ssoURL = "";
+                               break;
+                         case "eVirtualcare":
+                                    singleStagingHospitalId = 168;
+                                    singleHospitalId = 271;
+                                    singleQAHospitalId = '';
+                                    singleSandboxHospitalId = '';
+                                    brandColor = '#0073c0';
+                                    logo = 'https://snapmdadmin.snap-stage.com/api/v2.1/images/ca001725-db79-4cdb-99d1-5193029a884b';
+                                    Hospital = "eVirtualcare";
+                                    HospitalTag = '';
+                                    ssoURL = "";
+                                    break;
+                         case "Quensic":
+                                    singleStagingHospitalId = 169;
+                                    singleHospitalId = 298;
+                                    singleQAHospitalId = '';
+                                    singleSandboxHospitalId = '';
+                                    brandColor = '#275ba9';
+                                    logo = 'https://snapadmin.snap-stage.com/api/v2.1/images/acd5f13c-94b1-49b8-8c86-a84fac870a70';
+                                    Hospital = "Quensic Health";
+                                    HospitalTag = '';
+                                    ssoURL = "";
+                                    break;
+                         case "Totalcare":
+                                    singleStagingHospitalId = 172 ;
+                                    singleHospitalId = 283;
+                                    singleQAHospitalId = '';
+                                    singleSandboxHospitalId = '';
+                                    brandColor = '#275ba9';
+                                    logo = 'https://snapadmin.snap-stage.com/api/v2.1/images/acd5f13c-94b1-49b8-8c86-a84fac870a70';
+                                    Hospital = "Total Care";
+                                    HospitalTag = '';
+                                    ssoURL = "";
+                                    break;
+                         case  "AvaMD":
+                               singleStagingHospitalId = 170;
+                               singleHospitalId = 293;
+                               singleQAHospitalId = '';
+                               singleSandboxHospitalId = '';
+                               brandColor = '#0073c0';
+                               logo = 'https://connectedcare.md/api/v2.1/images/0ad39512-5d3f-40a4-afa7-e829a1c996f2';
+                               Hospital = "AVA MD";
+                               HospitalTag = '';
+                               ssoURL = "";
+                                  break;
+                         case "UKOnline":
+                               singleStagingHospitalId = '';
+                               singleHospitalId = '';
+                               singleQAHospitalId = '';
+                               singleSandboxHospitalId = 129; // 126;
+                               brandColor = '#007bb6';
+                               logo = 'https://sandbox.connectedcare.md/api/v2.1/images/9bc12213-bf66-4aa6-81b2-d932d6034690';
+                               Hospital = 'Online Doctor';
+                               HospitalTag = 'Your Personal Online Consultation';
+                               ssoURL = "";
+                                  break;
+                         case "MDAmerica":
+                               singleStagingHospitalId = 175;
+                               singleHospitalId = 191;
+                               singleQAHospitalId = 205;
+                               singleSandboxHospitalId = ''; // 126;
+                              // brandColor = '#d14a43';
+                            //   logo = 'https://sandbox.connectedcare.md/api/v2.1/images/9bc12213-bf66-4aa6-81b2-d932d6034690';
+                               Hospital = 'MD America';
+                               HospitalTag = 'Your Personal Online Consultation';
+                               ssoURL = "";
+                               break;
+                   }
 
-
-    if (cobrandApp == 'EpicMD') {
-        singleStagingHospitalId = 155;
-        singleHospitalId = 190;
-        singleQAHospitalId = '';
-        singleSandboxHospitalId = '';
-        brandColor = '#66c3b0';
-        logo = 'img/epicmd_logotypebg.png';
-        Hospital = 'EpicMD';
-        HospitalTag = 'Virtual Care Concierge';
-        ssoURL = "";
-    } else if (cobrandApp == 'TelehealthOne') {
-        singleStagingHospitalId = 142;
-        singleHospitalId = 142;
-        singleQAHospitalId = '';
-        singleSandboxHospitalId = '';
-        brandColor = '#5ec4fe';
-        logo = 'img/teleLogo.png';
-        Hospital = 'telehealthONE';
-        HospitalTag = 'Virtual Care Concierge';
-        ssoURL = "";
-    } else if (cobrandApp == 'Dokita') {
-        singleStagingHospitalId = 156;
-        singleHospitalId = 184;
-        singleQAHospitalId = '';
-        singleSandboxHospitalId = '';
-        brandColor = '#ff0000';
-        logo = 'img/dokita.png';
-        Hospital = 'Dokita247';
-        HospitalTag = 'Virtual Care Concierge';
-        ssoURL = "";
-    } else if (cobrandApp == 'DYW') {
-        singleStagingHospitalId = 157;
-        singleHospitalId = 168;
-        singleQAHospitalId = 156;
-        singleSandboxHospitalId = '126';
-        brandColor = '#22508b';
-        logo = 'img/dyw.jpg';
-        Hospital = "DocYourWay's Global Care Management";
-        HospitalTag = 'Virtual Care Concierge';
-        ssoURL = "";
-    } else if (cobrandApp == 'Hello420') {
-        singleStagingHospitalId = 160;
-        singleHospitalId = 197;
-        singleQAHospitalId = '';
-        singleSandboxHospitalId = 142;
-        brandColor = '#000080';
-        logo = 'img/hello420.png';
-        logo = 'https://connectedcare.md/api/v2.1/images/91e9aff7-4236-415e-aff5-17434a17c17b';
-        Hospital = "Hello420";
-        HospitalTag = 'Medical marijuana cards, quickly';
-        ssoURL = "http://52.34.151.119/hello420/login/";
-    } else if (cobrandApp == 'ambientcare') {
-      singleStagingHospitalId = 161;
-      singleHospitalId = 212;
-      singleQAHospitalId = 164;
-      singleSandboxHospitalId = '';
-      brandColor = '#193def';
-      logo = 'img/ambientcare.png';
-      logo = 'https://snap-stage.com/api/v2.1/images/1456c0dc-9322-4502-98c4-d26e501f0dc0';
-      Hospital = "Ambient Virtual Care";
-      HospitalTag = 'Virtual Consultation Platform';
-      ssoURL = "";
-  } else if (cobrandApp == '1800md') {
-      singleStagingHospitalId = 164;
-      singleHospitalId = 229;
-      singleQAHospitalId = 165;
-      singleSandboxHospitalId = 146;
-      brandColor = '#005b9f';
-      logo = 'img/1800md.png';
-      logo = 'https://snap-stage.com/api/v2.1/images/b98206b9-1238-4a69-9e5d-3b8090406e32';
-      Hospital = "1.800MD";
-      HospitalTag = 'Convenient Care Anywhere';
-      ssoURL = "";
-  } else if (cobrandApp == 'LatchOn') {
-      singleStagingHospitalId = 166;
-      singleHospitalId = 218;
-      singleQAHospitalId = '';
-      singleSandboxHospitalId = '';
-      brandColor = '#d14a43';
-      logo = 'img/1800md.png';
-      logo = 'https://snap-stage.com/api/v2.1/images/b98206b9-1238-4a69-9e5d-3b8090406e32';
-      Hospital = "1.800MD";
-      HospitalTag = 'Convenient Care Anywhere';
-      ssoURL = "";
-  }else if (cobrandApp == 'Emerald Healthcare Group') {
-      singleStagingHospitalId = 126;
-      singleHospitalId = 126;
-      singleQAHospitalId = '';
-      singleSandboxHospitalId = 129; // 126;
-      brandColor = '#0071bb';
-      logo = 'https://sandbox.connectedcare.md/api/v2.1/images/745eb236-2286-4635-b7c1-50dfe7fac390';
-      Hospital = 'Emerald City Healthcare';
-      HospitalTag = 'Virtual Telemedicine';
-      ssoURL = "";
-  }else if (cobrandApp == 'TeleMD Virtual Clinic') {
-      singleStagingHospitalId = 167;
-      singleHospitalId = 268;
-      singleQAHospitalId = '';
-      singleSandboxHospitalId = 144; // 126;
-      brandColor = '#0000ff';
-      logo = 'https://sandbox.connectedcare.md/api/v2.1/images/59953d85-4202-4b1b-ae0b-c4bf31203b19';
-      Hospital = 'TeleMD Virtual Clinic';
-      HospitalTag = 'Always Nearby';
-      ssoURL = "";
-
-  } else if (cobrandApp == 'TheDocApp') {
-      singleStagingHospitalId = 162;
-      singleHospitalId = 259;
-      singleQAHospitalId = '';
-      singleSandboxHospitalId = '';
-      brandColor = '#4bc9f0';
-    //  logo = 'img/1800md.png';
-      logo = 'https://snap-stage.com/api/v2.1/images/7900bdca-83e3-4a66-850e-7bd4c78a8f58';
-      Hospital = "TheDocApp";
-      HospitalTag = 'Convenient Care Anywhere';
-      ssoURL = "";
-  } else if (cobrandApp == 'eVirtualcare') {
-      singleStagingHospitalId = 168;
-      singleHospitalId = 271;
-      singleQAHospitalId = '';
-      singleSandboxHospitalId = '';
-      brandColor = '#0073c0';
-      logo = 'https://snapmdadmin.snap-stage.com/api/v2.1/images/ca001725-db79-4cdb-99d1-5193029a884b';
-      Hospital = "eVirtualcare";
-      HospitalTag = '';
-      ssoURL = "";
-  }else if (cobrandApp == 'Quensic') {
-       singleStagingHospitalId = 169;
-       singleHospitalId = 298;
-       singleQAHospitalId = '';
-       singleSandboxHospitalId = '';
-       brandColor = '#275ba9';
-       logo = 'https://snapadmin.snap-stage.com/api/v2.1/images/acd5f13c-94b1-49b8-8c86-a84fac870a70';
-       Hospital = "Quensic Health";
-       HospitalTag = '';
-       ssoURL = "";
- }else if (cobrandApp == 'Totalcare') {
-      singleStagingHospitalId = 172 ;
-      singleHospitalId = 283;
-      singleQAHospitalId = '';
-      singleSandboxHospitalId = '';
-      brandColor = '#275ba9';
-      logo = 'https://snapadmin.snap-stage.com/api/v2.1/images/acd5f13c-94b1-49b8-8c86-a84fac870a70';
-      Hospital = "Total Care";
-      HospitalTag = '';
-      ssoURL = "";
-  } else if (cobrandApp == 'AvaMD') {
-      singleStagingHospitalId = 170;
-      singleHospitalId = 293;
-      singleQAHospitalId = '';
-      singleSandboxHospitalId = '';
-      brandColor = '#0073c0';
-      logo = 'https://connectedcare.md/api/v2.1/images/0ad39512-5d3f-40a4-afa7-e829a1c996f2';
-      Hospital = "AVA MD";
-      HospitalTag = '';
-      ssoURL = "";
-  } else if (cobrandApp == 'UKOnline') {
-      singleStagingHospitalId = '';
-      singleHospitalId = '';
-      singleQAHospitalId = '';
-      singleSandboxHospitalId = 129; // 126;
-      brandColor = '#007bb6';
-      logo = 'https://sandbox.connectedcare.md/api/v2.1/images/9bc12213-bf66-4aa6-81b2-d932d6034690';
-      Hospital = 'Online Doctor';
-      HospitalTag = 'Your Personal Online Consultation';
-      ssoURL = "";
-  }
  }
 
 
