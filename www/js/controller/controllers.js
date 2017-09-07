@@ -1,5 +1,6 @@
 
 
+
 var indexOf = [].indexOf || function(item) {
         for (var i = 0, l = this.length; i < l; i++) {
             if (i in this && this[i] === item) return i;
@@ -325,8 +326,6 @@ if (deploymentEnv === "Sandbox") {
 }
 
 angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', 'timer', 'ion-google-place', 'ngIOS9UIWebViewPatch', 'ngCordova', 'ngIdle'])
-
-
 
 .controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup)
 {
@@ -4060,7 +4059,7 @@ $scope.EditHealth = {};
             } else {
               $rootScope.editCardStyle ="block";
               var payValue = ($('option:selected', this).val()).split("@");
-              $("div.cardViewport").html('<div class="insCardName"><img ng-src = "https://emerald.qa1.snapvcm.com/images/creditcards/Visa-dark.png" />'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+              $("div.cardViewport").html('<div class="insCardName"><img class="cardlogo" src = "'+payValue[3]+'" /></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
             // $("div.cardViewport").html('<div class="parenttt" style=" display: table;padding: 4px;  width: 100%;  margin: -10px 5px;"><div class="insCardImage"><img src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png"  style =" width: 75px;  height: 50px;vertical-align: middle;"/> '+payValue[1]+'</div> <div class="insCardNumber" style =" vertical-align: middle;display: table-cell; text-align: justify; font-family: GloberSemiBold; font-size: 21px;padding: 12px 0px 12px 25px;">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div> </div>');
             }
             //$('div.cardViewport').text($("option:selected", this).text());
@@ -4081,7 +4080,7 @@ $scope.EditHealth = {};
             } else {
               $rootScope.editCardStyle ="block";
               var payValue = ($('option:selected', this).val()).split("@");
-              $("div.cardViewport").html('<div class="insCardName"><img ng-src = "https://emerald.qa1.snapvcm.com/images/creditcards/Visa-dark.png" />'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+              $("div.cardViewport").html('<div class="insCardName"><img class="cardlogo"  src = "'+payValue[3]+'" /></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
             // $("div.cardViewport").html('<div class="parenttt" style=" display: table;padding: 4px;  width: 100%;  margin: -10px 5px;"><div class="insCardImage"><img src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png"  style =" width: 75px;  height: 50px;vertical-align: middle;"/> '+payValue[1]+'</div> <div class="insCardNumber" style =" vertical-align: middle;display: table-cell; text-align: justify; font-family: GloberSemiBold; font-size: 21px;padding: 12px 0px 12px 25px;">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div> </div>');
             }
         }
@@ -4097,7 +4096,7 @@ $scope.EditHealth = {};
         } else {
           //  $('div.cardViewport').text($("option:selected", this).text());
           var payValue = ($('option:selected', this).val()).split("@");
-          $("div.cardViewport").html('<div class="insCardName"><img ng-src = "https://emerald.qa1.snapvcm.com/images/creditcards/Visa-dark.png" />'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+          $("div.cardViewport").html('<div class="insCardName"><img class="cardlogo"  src = "'+payValue[3]+'" /></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
           $rootScope.userCardNumber = $('option:selected', this).text();
           $rootScope.userCardDetails = $('option:selected', this).val();
         //  $('div.cardViewport').text($("option:selected", this).text());
@@ -4495,6 +4494,69 @@ $scope.EditHealth = {};
                         $rootScope.patientprofileID = data.data[0].profileID;
                         $rootScope.PaymentProfile = [];
                         angular.forEach(data.data[0].paymentProfiles, function(index) {
+                            var imgUrl = '';
+                            switch(index.cardType)
+                            {
+                                case "Visa":
+                                    imgUrl = 'img/card-logo/Visa-dark.png';
+                                    break;
+                                case "Master":
+                                    imgUrl = 'img/card-logo/MasterCard-dark.png';
+                                    break;
+                                case "American_express":
+                                    imgUrl = 'img/card-logo/AmericanExpress-dark.png';
+                                    break;
+                                case "Discover":
+                                    imgUrl = 'img/card-logo/Discover.png';
+                                    break;
+                                case "Diners_club":
+                                    imgUrl = 'img/card-logo/DinersClub-dark.png';
+                                    break;
+                                case "Jcb":
+                                    imgUrl = 'img/card-logo/JCB-dark.png';
+                                    break;
+                                case "Maestro":
+                                    imgUrl = 'img/card-logo/Maestro-dark.png';
+                                    break;
+                                case "Laser":
+                                    imgUrl = 'img/card-logo/Laser-dark.png';
+                                    break;
+                                default:
+                                    imgUrl = '';
+
+                            }
+                            /*if(index.cardType == "Visa")
+                            {
+                                var imgUrl = 'img/card-logo/Visa-dark.png';
+                            }
+                             if(index.cardType == "Master")
+                            {
+                                var imgUrl = 'img/card-logo/MasterCard-dark.png';
+                            }
+                             if(index.cardType == "American_express")
+                            {
+                                var imgUrl = 'img/card-logo/AmericanExpress-dark.png';
+                            }
+                            if(index.cardType == "Discover")
+                            {
+                                var imgUrl = 'img/card-logo/Discover-dark.png';
+                            }
+                            if(index.cardType == "Diners_club")
+                            {
+                                var imgUrl = 'img/card-logo/DinersClub-dark.png';
+                            }
+                             if(index.cardType == "Jcb")
+                            {
+                                var imgUrl = 'img/card-logo/JCB-dark.png';
+                            }
+                             if(index.cardType == "Maestro")
+                            {
+                                var imgUrl = 'img/card-logo/Maestro-dark.png';
+                            }
+                            if(index.cardType == "Laser")
+                            {
+                                var imgUrl = 'img/card-logo/Laser-dark.png';
+                            }*/
                             $rootScope.PaymentProfile.push({
                                 'id': index.$id,
                                 'billingAddress': angular.fromJson(index.billingAddress),
@@ -4502,14 +4564,18 @@ $scope.EditHealth = {};
                                 'cardNumber': replaceCardNumber.getCardNumber(index.cardNumber),
                                 'isBusiness': index.isBusiness,
                                 'profileID': index.profileID,
-								                'cardType' : index.cardType,
+							    'cardType' : index.cardType,
+                                'userCardlogo' : imgUrl,
+                                'cardLogo' : imgUrl,
                             });
+                            
                         });
                         if(typeof $rootScope.chkProfileIdForCrdType !== 'undefined' && $rootScope.chkProfileIdForCrdType !== '') {
                           $scope.userCrdType = $filter('filter')($rootScope.PaymentProfile, {
                               profileID: $rootScope.chkProfileIdForCrdType
                           });
-                          $rootScope.userCardType = $scope.userCrdType[0].cardType;
+                          
+                          $rootScope.userCardType = $scope.userCrdType[0].userCardlogo;
                           $scope.crdNum = $scope.userCrdType[0].cardNumber.split('XXXX');
                           $rootScope.userCardNumber = $scope.crdNum[1];
                           $rootScope.editCardStyle ="block";
@@ -4645,6 +4711,7 @@ $scope.EditHealth = {};
              });
 
            }
+
        });
        $rootScope.doGetChargifyPayUpdateCardDetails($rootScope.editPaymentProfile[0].profileID);
        var cardExpiration = $rootScope.editPaymentProfile[0].cardExpiration;
@@ -4953,13 +5020,13 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             $('#BillingAddress').val() === '' || $('#City').val() === '' || $('#State').val() === '' || $('#Zip').val() === '') {
             $scope.ErrorMessage = "Required fields can't be empty";
             $rootScope.Validation($scope.ErrorMessage);
-        } else if (!CreditCardValidations.validCreditCard($rootScope.CardNumber)) {
+       /* } else if (!CreditCardValidations.validCreditCard($rootScope.CardNumber)) {
             $scope.invalidZip = "";
             $scope.invalidMonth = "";
             $scope.invalidCVV = "";
             $scope.invalidCard = "border: 1px solid red;max-width:50%;";
             $scope.ErrorMessage = "Invalid Card Number";
-            $rootScope.Validation($scope.ErrorMessage);
+            $rootScope.Validation($scope.ErrorMessage);*/
         } else if (ExpiryDateCheck < currentTime) {
             $scope.invalidZip = "";
             $scope.invalidCard = "";
@@ -5028,7 +5095,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             var cardNo = $rootScope.CardNumber;
                             var strCardNo = cardNo.toString();
                             var getLastFour = strCardNo.substr(strCardNo.length - 4);
-                            $rootScope.userCardNumber = "Card ending in..." + getLastFour;
+                            $rootScope.userCardNumber =getLastFour;
                         }
                         $rootScope.doGetPatientPaymentProfiles();
                         $state.go('tab.submitPayment');
@@ -5072,7 +5139,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             var cardNo = $rootScope.CardNumber;
                             var strCardNo = cardNo.toString();
                             var getLastFour = strCardNo.substr(strCardNo.length - 4);
-                            $rootScope.userCardNumber = "Card ending in..." + getLastFour;
+                            $rootScope.userCardNumber = getLastFour;
                         }
                         $rootScope.doGetPatientPaymentProfiles();
                         $state.go('tab.submitPayment');

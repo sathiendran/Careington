@@ -5569,7 +5569,7 @@ hr {
     position:absolute;
     right:3px;
     color:#b3b3b3;
-}*/
+}
 .consultHealthPlanDropDown > .options{
     display:none;
     position:absolute;
@@ -5590,7 +5590,7 @@ hr {
     background-repeat: no-repeat;
     padding-left: 30px;
     list-style:none;
-    color: red;
+    color: #666666;
     z-index: 1;
     margin-bottom: 5px;
 }
@@ -5602,4 +5602,9 @@ hr {
 .options{
     background-color: white;
     border: solid 1px black;
+}*/
+
+.cardlogo{
+    width:65px;
+    height:35px;
 }

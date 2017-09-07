@@ -57,15 +57,13 @@
                     </h4>
                   <div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}"  >
                      <div  class="dropdownContainer">
-                        <!--<div id="cardViewport" class="viewport">Card ending in...{{userCardNumber}}</div>-->
-                        <!--<div id="cardViewport" class="viewport">{{userCardNumber}}</div>
-                         <select class="healthPlanDropDown" id="addNewCard_submitPay" name="addNewCard_submitPay" ng-model="cardPaymentId.addNewCard" style="border: none;">-->
+                        
                           <div id="cardViewport" class="cardViewport" style="margin-top: 8px;">
-                            <div class="insCardName">{{userCardType}}</div><div class="insCardNumber">{{ 'XXXX-XXXX-XXXX-'+userCardNumber}}</div>
+                            <div class="insCardName"><img src="{{userCardType}}"></div><div class="insCardNumber">{{ 'XXXX-XXXX-XXXX-'+userCardNumber}}</div>
                           </div>
                         <select class="consultHealthPlanDropDown" id="addNewCard_submitPay" name="addNewCard_submitPay" ng-model="cardPaymentId.addNewCard" ng-change="cardchange('submitPay')" style="border: none;">
                            <option><b>Choose Your Card</b></option>
-                           <option  ng-repeat="getPayment in PaymentProfile" value="{{getPayment.profileID}}" ng-selected="userCardDetails == getPayment.profileID"><b>
+                           <option  ng-repeat="getPayment in PaymentProfile" value="{{getPayment.profileID + '@' + getPayment.cardType + '@' + getPayment.cardNumber + '@' + getPayment.cardLogo}}" ng-selected="userCardDetails == getPayment.profileID"><b>
                               <span>{{getPayment.cardType + '       '}}</span>  <span >{{ + '             ' +  'XXXX-XXXX-XXXX-'+getPayment.cardNumber}}</span></b></option>
                            <option ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
                         </select>
