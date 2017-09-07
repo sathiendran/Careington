@@ -6,9 +6,10 @@
 <ion-view>
    <div id="Error_Message" ></div>
    <div class="Server_Error" ></div>
-   <ion-content class="register loginEmail regLogin" style="background-color: #EF4B27;">
+   <ion-content class="register loginEmail regLogin" style="background-color: {{backColor}}">
       <div >
-         <h2><span>Virtual Care</span></h2>
+           <h2 ng-if="cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'"><span>Virtual Care</span></h2>
+           <h2 ng-if="cobrandApp_New == 'MDAmerica' && deploymentEnv_New == 'Single'"><span>{{singleHospital}}</span></h2>
       </div>
       <form ng-submit="LoginFunction()">
          <div class="card" id="loginEmail" style="display: block;">
@@ -63,10 +64,10 @@
             <i class="ion-ios-circle-outline" style="display: none;"></i>
          </div>
       </div>
-      <div class="acinfo1-{{deviceName}}">
+      <div class="acinfo1-{{deviceName}}" ng-if="(deploymentEnv == 'Multiple' || deploymentEnv == 'Single') && cobrandApp_New != 'MDAmerica'">
          <h4>Need an account?</h4>
       </div>
-      <div class="acinfo1-{{deviceName}} newLogProviderSecDiv-{{deviceName}}">
+      <div class="acinfo1-{{deviceName}} newLogProviderSecDiv-{{deviceName}}" ng-if="(deploymentEnv == 'Multiple' || deploymentEnv == 'Single') && cobrandApp_New != 'MDAmerica'">
          <h4><span ng-click="goToSearchProvider('login');">Click here to find your provider.</span></h4>
       </div>
    </ion-content>
@@ -74,13 +75,14 @@
 
    <!-- Footer Start-->
    <!-- <div class="hide-on-keyboard-open"> -->
-      <ion-footer-bar class="footer" hide-on-keyboard='true' style="background-color: #EF4B27 !important; border-color: #EF4B27 !important">
+      <ion-footer-bar class="footer"  hide-on-keyboard="true" style="background-color: {{backColor}} !important; border-color: {{backColor}} !important">
          <div class="terms" >
             <a ng-if="deploymentEnv == 'Multiple'" class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/chooseEnvironment"><span>Back</span></a>
-            <a ng-if="deploymentEnv != 'Multiple'" ng-href="#/tab/terms"><b>Terms & Conditions</b></a>
-         </div>
+            <a ng-if="deploymentEnv != 'Multiple' && cobrandApp_New !== 'MDAmerica'" ng-href="#/tab/terms"><b>Terms & Conditions</b></a>
+           <a ng-if="deploymentEnv != 'Multiple' && cobrandApp_New === 'MDAmerica'" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.login');"><b>Terms & Conditions</b></a>
+        </div>
          <div class="powerdBySnapMD">
-            <a><b>v7.8.4<b></a>
+            <a><b>v7.8.5<b></a>
          </div>
       </ion-footer-bar>
    <!-- </div> -->

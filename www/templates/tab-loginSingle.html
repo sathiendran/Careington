@@ -48,8 +48,8 @@
       </div>
    </ion-content>
    <!-- Footer Start-->
-   <div class="hide-on-keyboard-open">
-      <ion-footer-bar class="footer" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
+   <!--<div class="hide-on-keyboard-open">-->
+      <ion-footer-bar class="footer"  hide-on-keyboard="true" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
          <div class="terms" >
             <a ng-if="deploymentEnv == 'Multiple'" class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/chooseEnvironment"><span>Back</span></a>
             <a ng-if="deploymentEnv != 'Multiple'" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.loginSingle');" _ng-href="#/tab/singleTerms"><b>Terms & Conditions</b></a>
@@ -58,6 +58,6 @@
             <a><b>v7.6.3<b></a>
          </div>
       </ion-footer-bar>
-   </div>
+  <!-- </div>-->
    <!-- Footer End-->
 </ion-view>
