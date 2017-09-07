@@ -414,7 +414,8 @@ angular.module('starter.controllers')
     $scope.isDisabled = false;
 
     $scope.postDependentDetails = function() {
-
+      $rootScope.listOfAddPatientIdentifiers = [];
+        $scope.newupdatePatientDetails();
 
         $scope.firstName = $("#firstname").val();
         $scope.lastName = $("#lastname").val();
@@ -509,6 +510,18 @@ angular.module('starter.controllers')
         } else {
             $scope.getBloodtypeid = null;
         }
+        $scope.total_patients =  $rootScope.listOfAddPatientIdentifiers.length;
+        var identifierTypeCode_ = '', span_Text ='';
+       for(i=1 ; i<=$scope.total_patients;i++){
+         if(typeof $rootScope.addPatientidupdateList !== 'undefined' && $rootScope.addPatientidupdateList !== '') {
+              $scope.patvalue = $('#patval_'+i).val();
+         }
+          if (typeof $scope.patvalue === 'undefined' || $scope.patvalue === '') {
+              identifierTypeCode_ =document.getElementById("pattext_"+i).innerText;
+             //  identifierTypeCode_ = $('#identifierTypeCode_'+i).val();
+               break;
+          }
+        }
 
         $rootScope.doddate = $('#dob').val();
         $rootScope.restage = getAge($scope.dob);
@@ -573,6 +586,17 @@ angular.module('starter.controllers')
             } else if ($rootScope.PPIsEthnicityRequired === 'on' && (typeof $scope.getEthnicityId === 'undefined' || $scope.getEthnicityId === '' || $scope.getEthnicityId === null)) {
                 $scope.ErrorMessage = "Please select Ethnicity";
                 $rootScope.Validation($scope.ErrorMessage);
+            } else if(identifierTypeCode_ !== ''){
+               if (identifierTypeCode_.indexOf("Driver's license number") != -1) {
+                   $scope.ErrorMessage = "Please enter Driver's licence number";
+                }else if(identifierTypeCode_.indexOf("Employee number") != -1) {
+                   $scope.ErrorMessage = "Please enter Employee number";
+                }else if(identifierTypeCode_.indexOf("Patient Medicaid number") != -1) {
+                   $scope.ErrorMessage = "Please enter Patient Medicaid number";
+                }else if(identifierTypeCode_.indexOf("Patient's Medicare number") != -1) {
+                   $scope.ErrorMessage = "Please enter Patient's Medicare number";
+                }
+              $rootScope.Validation($scope.ErrorMessage);
             } else {
                 if (typeof $scope.height2 === 'undefined' || $scope.height2 === '') {
                     $scope.height2 = "0";
@@ -632,6 +656,17 @@ angular.module('starter.controllers')
             } else if ($rootScope.PPIsEthnicityRequired === 'on' && (typeof $scope.getEthnicityId === 'undefined' || $scope.getEthnicityId === '' || $scope.getEthnicityId === null)) {
                 $scope.ErrorMessage = "Please select Ethnicity";
                 $rootScope.Validation($scope.ErrorMessage);
+            } else if(identifierTypeCode_ !== ''){
+               if (identifierTypeCode_.indexOf("Driver's license number") != -1) {
+                   $scope.ErrorMessage = "Please enter Driver's licence number";
+                }else if(identifierTypeCode_.indexOf("Employee number") != -1) {
+                   $scope.ErrorMessage = "Please enter Employee number";
+                }else if(identifierTypeCode_.indexOf("Patient Medicaid number") != -1) {
+                   $scope.ErrorMessage = "Please enter Patient Medicaid number";
+                }else if(identifierTypeCode_.indexOf("Patient's Medicare number") != -1) {
+                   $scope.ErrorMessage = "Please enter Patient's Medicare number";
+                }
+              $rootScope.Validation($scope.ErrorMessage);
             } else {
                 $scope.doPostNewDependentuser();
             }
@@ -672,7 +707,8 @@ angular.module('starter.controllers')
                 location: $scope.location,
                 organizationId: $scope.orgid,
                 locationId: $scope.locationid,
-                country: $scope.dependentCountry
+                country: $scope.dependentCountry,
+                identifiers: $rootScope.listOfAddPatientIdentifiers
             },
             TimeZoneId: $scope.dependentTimezone,
             PatientProfileFieldsTracing: {
@@ -808,6 +844,211 @@ angular.module('starter.controllers')
             };
             LoginService.sendCoUserEmailInvitation(params);
         }
+    }
+
+    $scope.data = {};
+    $scope.$watch('data.searchProvider', function(searchKey) {
+        $rootScope.providerSearchKey = searchKey;
+        if (typeof $rootScope.providerSearchKey === 'undefined') {
+            $scope.data.searchProvider = $rootScope.backProviderSearchKey;
+        }
+        if ($rootScope.providerSearchKey !== '' && typeof $rootScope.providerSearchKey !== 'undefined') {
+            $rootScope.iconDisplay = 'none';
+        } else {
+            $rootScope.iconDisplay = 'Block';
+        }
+    });
+
+    $scope.doGetPatientIdList = function(){
+      $rootScope.currentPatientIDlist = '';
+      $rootScope.CurPatientidCount = '';
+      var params = {
+          accessToken: $rootScope.accessToken,
+          success: function(data) {
+         $rootScope.currentPatientIDlist = data.data;
+          $rootScope.CurPatientidCount = $rootScope.currentPatientIDlist.length;
+          $scope.data.searchProvider = '';
+          angular.forEach($rootScope.currentPatientIDlist, function(value, key2) {
+                          value.checked = false;
+          });
+          if (typeof $rootScope.addPatientidupdateList !== 'undefined' && $rootScope.addPatientidupdateList != 0 && $rootScope.addPatientidupdateList != '') {
+               $scope.clearSelectionAndRebindpatapiSelectionList($rootScope.addPatientidupdateList, $rootScope.currentPatientIDlist);
+               $scope.addCheckedpatientdet = $rootScope.addPatientidupdateList.length;
+            } else {
+                $scope.addCheckedpatientdet = 0;
+            }
+
+          $ionicModal.fromTemplateUrl('templates/tab-addNewPatientId.html', {
+              scope: $scope,
+              animation: 'slide-in-up',
+              focusFirstInput: false,
+              backdropClickToClose: false
+          }).then(function(modal) {
+              $scope.modal = modal;
+              $scope.modal.show();
+          });
+          },
+          error: function(data,status) {
+            if(status===0 ){
+              $scope.ErrorMessage = "Internet connection not available, Try again later!";
+              $rootScope.Validation($scope.ErrorMessage);
+            }else{
+                $rootScope.serverErrorMessageValidation();
+            }
+          }
+      };
+      LoginService.getListOfPatientids(params);
+
+            $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
+
+             $scope.alphabet = iterateAlphabet();
+              var users = $rootScope.currentPatientIDlist;
+              if(typeof users !== 'undefined') {
+                var userslength = users.length;
+                var log = [];
+                var tmp = {};
+                for (i = 0; i < userslength; i++) {
+                    var letter = users[i].display.toUpperCase().charAt(0);
+                    if (tmp[letter] == undefined) {
+                        tmp[letter] = []
+                    }
+                    tmp[letter].push(users[i]);
+                }
+                $rootScope.sorted_users = tmp;
+                $scope.selectedObject = {};
+                $rootScope.gotopatList = function(id) {
+                  $location.hash(id);
+                  $ionicScrollDelegate.anchorScroll();
+                }
+            }
+
+    }
+    function iterateAlphabet() {
+        var str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ#";
+        var numbers = new Array();
+        for (var i = 0; i < str.length; i++) {
+            var nextChar = str.charAt(i);
+            numbers.push(nextChar);
+        }
+        return numbers;
+    }
+
+    $scope.newupdatePatientDetails = function(){
+          var patIndentifierDetailsArray =  $("input[name^='patIndentifierDetails']");
+          var patIndentifierDetailsLength = $("input[name^= 'patIndentifierDetails']").length;
+          var patIdentValue = $("input[id^='patval']");
+
+        for(i=0;i<patIndentifierDetailsLength;i++)
+          {
+             var patIndentifierArray =  patIndentifierDetailsArray[i].value;
+             var patIndentifierSingleArrayDetails = (patIndentifierDetailsArray[i].value).split(',');
+             if(patIndentifierSingleArrayDetails[2] === '') {
+               patIndentifierSingleArrayDetails[2] = new Date();
+           }
+
+              var  patIdentValue_New = $('#patval_'+(i+1)).val();
+               if(patIdentValue_New !== patIdentValue[i].value){
+                   patIdentValue[i].value = patIdentValue_New ;
+               }
+           $rootScope.listOfAddPatientIdentifiers.push({
+                effectiveDate : patIndentifierSingleArrayDetails[2],
+                identifierTypeCode :  patIndentifierSingleArrayDetails[0],
+                identifierTypeTitle : patIndentifierSingleArrayDetails[1],
+                statusCode: patIndentifierSingleArrayDetails[3],
+                 value : patIdentValue_New
+                // value : patIdentValue[i].value
+            });
+        }
+    }
+
+    $scope.OnSelectPatientdet = function(currentpatientdet) {
+        if (currentpatientdet.checked === true) {
+            $scope.addCheckedpatientdet++;
+
+        } else {
+            $scope.addCheckedpatientdet--;
+            currentpatientdet.checked === false;
+        }
+
+            if ($scope.addCheckedpatientdet === 4) {
+                $scope.addCheckedpatientdet--;
+                 $scope.patientdone();
+            }
+            if ($scope.addCheckedpatientdet >= 4) {
+                currentpatientdet.checked === false;
+                $scope.modal.remove();
+            }
+
+    }
+    $scope.clearSelectionAndRebindpatSelectionList = function(selectedListItem, mainListItem) {
+        angular.forEach(mainListItem, function(item, key2) {
+            item.checked = false;
+        });
+        if (!angular.isUndefined(selectedListItem)) {
+            if (selectedListItem.length > 0) {
+                angular.forEach(selectedListItem, function(value1, key1) {
+                    angular.forEach(mainListItem, function(value2, key2) {
+                        if (value1.display === value2.display) {
+                            value2.checked = true;
+                        }
+                    });
+                });
+            }
+        }
+    };
+    $scope.clearSelectionAndRebindpatapiSelectionList = function(selectedListItem, mainListItem) {
+        angular.forEach(mainListItem, function(item, key2) {
+            item.checked = false;
+        });
+
+        if (!angular.isUndefined(selectedListItem)) {
+            if (selectedListItem.length > 0) {
+                angular.forEach(selectedListItem, function(value1, key1) {
+                    angular.forEach(mainListItem, function(value2, key2) {
+                        if (value1.display === value2.display) {
+                            value2.checked = true;
+                            value2.value = value1.value;
+                            value2.createdDate = value1.createdDate;
+                            value2.identifierTypeCode = value1.identifierTypeCode;
+                            value2.display = value1.display;
+                            value2.statusCode = value1.statusCode;
+                        }
+                    });
+                });
+            }
+        }
+    };
+
+    $scope.removePatientIdmodal = function() {
+    //  $rootScope.addPatientidupdateList = $rootScope.PatientIdentifiers;
+        $rootScope.viewAddpatapiDisplay = 'flex';
+        $scope.modal.remove();
+    };
+
+    $scope.patientdone = function(){
+      $rootScope.addPatientidupdateList = [];
+       $scope.PatientsearchItem = $filter('filter')($rootScope.currentPatientIDlist, {
+           checked: true
+       });
+       if ($scope.PatientsearchItem !== '') {
+        // $rootScope.PatientIdentifiers = [];
+           $rootScope.patientmedicationsSearch = $scope.PatientsearchItem;
+           $rootScope.PatientsdetCount = $scope.PatientsearchItem.length;
+           for (var i = 0; i < $rootScope.PatientsdetCount; i++) {
+               $rootScope.addPatientidupdateList.push({
+                   identifierTypeCode: $scope.PatientsearchItem[i].identifierTypeCode,
+                   display: $scope.PatientsearchItem[i].display,
+                   value:$scope.PatientsearchItem[i].value,
+                   createdDate:$scope.PatientsearchItem[i].createdDate,
+                   statusCode:$scope.PatientsearchItem[i].statusCode
+               });
+           }
+        // $rootScope.PatientIdentifiers = $rootScope.PatientidupdateList;
+
+           $scope.modal.remove();
+           $rootScope.viewAddpatapiDisplay = 'flex';
+       }
+
     }
 
     $scope.canceldependent = function() {
