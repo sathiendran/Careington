@@ -2229,9 +2229,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                $scope.ErrorMessage = "Please enter a valid email address";
                $rootScope.Validation($scope.ErrorMessage);
            } else {
-
-
-               if (deploymentEnv === "Single") {
+              if (deploymentEnv === "Single" && cobrandApp !== 'MDAmerica') {
                    if (deploymentEnvLogout === 'Single') {
                        if (deploymentEnvForProduction === 'Production') {
                            if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
