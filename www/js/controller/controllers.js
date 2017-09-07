@@ -307,7 +307,7 @@ if (deploymentEnv === "Sandbox") {
         apiCommonURL = 'https://connectedcare.md';
         api_keys_env = "Production";
     } else if (deploymentEnvForProduction === 'Staging') {
-        apiCommonURL = 'https://snap-stage.com';
+        apiCommonURL = 'https://emerald.stage.snapvcm.com';
         api_keys_env = "Staging";
     } else if (deploymentEnvForProduction === 'QA') {
         //apiCommonURL = 'https://snap-qa.com';
@@ -321,7 +321,7 @@ if (deploymentEnv === "Sandbox") {
     }
 } else if (deploymentEnv === "Staging") {
 
-    apiCommonURL = 'https://snap-stage.com';
+    apiCommonURL = 'https://emerald.stage.snapvcm.com';
     api_keys_env = "Staging";
 }
 
@@ -410,8 +410,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             apiCommonURL = 'https://sandbox.connectedcare.md';
             api_keys_env = "Sandbox";
         } else if (env === "Staging") {
-            $rootScope.APICommonURL = 'https://snap-stage.com';
-            apiCommonURL = 'https://snap-stage.com';
+            $rootScope.APICommonURL = 'https://emerald.stage.snapvcm.com';
+            apiCommonURL = 'https://emerald.stage.snapvcm.com';
             api_keys_env = "Staging";
         } else if (env === "Snap-test") {
             $rootScope.APICommonURL = 'https://snap-test.com';
@@ -449,14 +449,18 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     /******** Prabin: Code to implement static brand color, logo and tagline. *******/
     if (deploymentEnvLogout === 'Single') {
         if ($rootScope.currState.$current.name === "tab.loginSingle") {
-
             $rootScope.brandColor = brandColor;
             $rootScope.logo = logo;
             $rootScope.HospitalTag = HospitalTag;
             $rootScope.Hospital = Hospital;
             $rootScope.alertMsgName = Hospital;
             $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
-        }
+       } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === 'Single' && $rootScope.currState.$current.name === "tab.login") {
+         $rootScope.HospitalTag = HospitalTag;
+         $rootScope.Hospital = Hospital;
+         $rootScope.alertMsgName = Hospital;
+         $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
+       }
     } else {
         $rootScope.alertMsgName = 'Virtual Care';
         $rootScope.reportHospitalUpperCase = 'Virtual Care';
@@ -747,20 +751,23 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             "display": "none"
         });
 
-        if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging') {
+        if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging' && cobrandApp !== 'MDAmerica') {
               $rootScope.hospitalId = singleHospitalId;
               apiCommonURL = 'https://connectedcare.md';
               api_keys_env = 'Production';
               $rootScope.APICommonURL = 'https://connectedcare.md';
               $scope.doGetSingleHosInfoForiTunesStage('logOut');
         } else {
-          if (deploymentEnvLogout === "Multiple") {
-              $state.go('tab.chooseEnvironment');
-          } else if (deploymentEnvLogout === "Single") {
-              $state.go('tab.loginSingle');
-          } else {
-              $state.go('tab.login');
-          }
+             if (deploymentEnvLogout === "Multiple") {
+                 $state.go('tab.chooseEnvironment');
+             } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
+                 //$rootScope.hospitalId = singleStagingHospitalId;
+                 $state.go('tab.login');
+             }else if (cobrandApp_New !== 'MDAmerica' && deploymentEnvLogout === "Single") {
+                 $state.go('tab.loginSingle');
+             }else {
+                 $state.go('tab.login');
+             }
         }
 
         $ionicBackdrop.release();
@@ -949,9 +956,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
         if (deploymentEnv === "Production") {
             if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
-                apiCommonURL = 'https://snap-stage.com';
+                apiCommonURL = 'https://emerald.stage.snapvcm.com';
                 api_keys_env = 'Staging';
-                $rootScope.APICommonURL = 'https://snap-stage.com';
+                $rootScope.APICommonURL = 'https://emerald.stage.snapvcm.com';
             } else {
                 apiCommonURL = 'https://connectedcare.md';
                 api_keys_env = 'Production';
@@ -1013,9 +1020,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
 
                     $rootScope.hospitalId = singleStagingHospitalId;
-                    apiCommonURL = 'https://snap-stage.com';
+                    apiCommonURL = 'https://emerald.stage.snapvcm.com';
                     api_keys_env = 'Staging';
-                    $rootScope.APICommonURL = 'https://snap-stage.com';
+                    $rootScope.APICommonURL = 'https://emerald.stage.snapvcm.com';
                 } else {
                     $rootScope.hospitalId = singleHospitalId;
                     apiCommonURL = 'https://connectedcare.md';
@@ -2200,11 +2207,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $scope.doPostSendPasswordResetEmail = function() {
 
-       if (deploymentEnv === "Single") {
-           $scope.userEmailId = $('#UserEmail').val();
-       } else {
+      if (deploymentEnv === "Single" && cobrandApp !== 'MDAmerica') {
+          $scope.userEmailId = $('#UserEmail').val();
+      } else if (deploymentEnv === "Single" && cobrandApp ==='MDAmerica') {
            $scope.userEmailId = $rootScope.UserEmail;
-       }
+      } else {
+          $scope.userEmailId = $rootScope.UserEmail;
+      }
        if ($scope.userEmailId === '') {
 
            $scope.ErrorMessage = "Please enter an email!";
@@ -2219,9 +2228,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                $scope.ErrorMessage = "Please enter a valid email address";
                $rootScope.Validation($scope.ErrorMessage);
            } else {
-
-
-               if (deploymentEnv === "Single") {
+              if (deploymentEnv === "Single" && cobrandApp !== 'MDAmerica') {
                    if (deploymentEnvLogout === 'Single') {
                        if (deploymentEnvForProduction === 'Production') {
                            if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
@@ -2325,7 +2332,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
    }
 
     $scope.goBackFromReset = function() {
-        if (deploymentEnv === "Single") {
+        if (deploymentEnv === "Single" && cobrandApp !== 'MDAmerica') {
             $state.go('tab.loginSingle');
         } else {
             $state.go('tab.password');
@@ -2339,9 +2346,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
 
                     $rootScope.hospitalId = singleStagingHospitalId;
-                    apiCommonURL = 'https://snap-stage.com';
+                    apiCommonURL = 'https://emerald.stage.snapvcm.com';
                     api_keys_env = 'Staging';
-                    $rootScope.APICommonURL = 'https://snap-stage.com';
+                    $rootScope.APICommonURL = 'https://emerald.stage.snapvcm.com';
                 } else {
 
                     $rootScope.hospitalId = singleHospitalId;

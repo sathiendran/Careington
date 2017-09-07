@@ -641,6 +641,19 @@ $scope.editDob=function(){
 
 
            if($rootScope.PatientIdentifiers.length >  $rootScope.listOfPatientIdentifiers.length) {
+             var a = $rootScope.PatientIdentifiers;
+             var b = $rootScope.listOfPatientIdentifiers;
+
+             for (i=0;i<a.length;i++)
+                 {
+                     for(j=0;j<b.length;j++)
+                     {
+                         if (a[i].identifierTypeCode == b[j].identifierTypeCode)
+                         {
+                             a[i].value = b[j].value;
+                         }
+                     }
+               }
                 $rootScope.patAllIdentifier =  $rootScope.PatientIdentifiers;
                 $rootScope.patSelectedIdentifier = $rootScope.listOfPatientIdentifiers;
                 $scope.total_patients =  $rootScope.listOfPatientIdentifiers.length;
@@ -1874,15 +1887,15 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
     };*/
   //    $rootScope.getPatientids();
     $rootScope.healthpatid = function(){
+      $rootScope.currentPatientsearchList = '';
+      $rootScope.CurPatientidCount = '';
       var params = {
 
           accessToken: $rootScope.accessToken,
 
           success: function(data) {
          $rootScope.currentPatientsearchList = data.data;
-
-          $rootScope.CurPatientidCount = $scope.currentPatientsearchList.length;
-          $scope.data.searchProvider = '';
+          $rootScope.CurPatientidCount = $rootScope.currentPatientsearchList.length;
           $scope.data.searchProvider = '';
           if($rootScope.PatidentifierCount == 0){
                 $scope.clearSelectionAndRebindpatSelectionList($rootScope.PatientidupdateList, $rootScope.currentPatientsearchList);
@@ -1946,21 +1959,21 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
 
 
       $rootScope.PatientidupdateList = [];
-       $rootScope.PatientsearchItem = $filter('filter')($rootScope.currentPatientsearchList, {
+       $scope.PatientsearchItem = $filter('filter')($rootScope.currentPatientsearchList, {
            checked: true
        });
-       if ($rootScope.PatientsearchItem !== '') {
+       if ($scope.PatientsearchItem !== '') {
         // $rootScope.PatientIdentifiers = [];
-           $rootScope.patientmedicationsSearch = $rootScope.PatientsearchItem;
-           $rootScope.PatientsdetCount = $rootScope.PatientsearchItem.length;
+           $rootScope.patientmedicationsSearch = $scope.PatientsearchItem;
+           $rootScope.PatientsdetCount = $scope.PatientsearchItem.length;
            for (var i = 0; i < $rootScope.PatientsdetCount; i++) {
                $rootScope.PatientidupdateList.push({
-                   identifierTypeCode: $rootScope.PatientsearchItem[i].identifierTypeCode,
-                   display: $rootScope.PatientsearchItem[i].display,
-                   value:$rootScope.PatientsearchItem[i].value,
-                  effectiveDate:$rootScope.PatientsearchItem[i].effectiveDate,
-                   statusCode:$rootScope.PatientsearchItem[i].statusCode,
-                    identifierTypeTitle: $rootScope.PatientsearchItem[i].identifierTypeTitle
+                   identifierTypeCode: $scope.PatientsearchItem[i].identifierTypeCode,
+                   display: $scope.PatientsearchItem[i].display,
+                   value:$scope.PatientsearchItem[i].value,
+                  effectiveDate:$scope.PatientsearchItem[i].effectiveDate,
+                   statusCode:$scope.PatientsearchItem[i].statusCode,
+                    identifierTypeTitle: $scope.PatientsearchItem[i].identifierTypeTitle
                });
            }
         // $rootScope.PatientIdentifiers = $rootScope.PatientidupdateList;

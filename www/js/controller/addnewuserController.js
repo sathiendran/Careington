@@ -131,6 +131,8 @@ angular.module('starter.controllers')
         $rootScope.adddependent = function() {
             $scope.doGetLocations();
             $rootScope.newDependentImagePath = '';
+            $rootScope.addPatientidupdateList = '';
+            $rootScope.listOfAddPatientIdentifiers = '';
             $('select').prop('selectedIndex', 0);
             $state.go('tab.addnewdependent');
         }

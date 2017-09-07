@@ -129,40 +129,28 @@
             <div class="animated slideInRight" >
                <div style="display: {{enableSubmitpayment}}">
                   <div class="healthPlan_header consultCard"  >
-
                      <h4 class="insurancelist">
                        <div class="selectInsurancelist">Select your Payment card
                               <span class="insuranceedit" style="display: {{editCardStyle}};" ng-click="editpaymentcard('consulCharge')" >Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>
                         </div>
                      </h4>
-
-
                      <div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}">
                          <div  class="dropdownContainer">
                            <div ng-if="userDefaultPaymentProfileText == null || userDefaultPaymentProfileText == 'undefined'"  id="cardViewport" class="cardViewport">
                               <div class="insCHooseProviderName">Choose Your Card</div>
                            </div>
                            <div ng-if="userDefaultPaymentProfileText != null && userDefaultPaymentProfileText != 'undefined'" id="cardViewport" class="cardViewport">
-
                                <div class="insCardName">{{userDefaultPaymentProfileText}}</div><div class="insCardNumber">{{'XXXX-'+userDefaultPaymentProfileType}}</div>
                            </div>
 
- <select class="consultHealthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-change="cardchange('consulCharge')">
+                      <select class="consultHealthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-change="cardchange('consulCharge')">
                               <option><b>Choose Your Card</b></option>
                               <option  ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value="{{PaymentProfile.profileID + '@' + PaymentProfile.cardType + '@' + PaymentProfile.cardNumber + '@' + PaymentProfile.cardLogo}}"><b>
                                <span>{{PaymentProfile.cardType + '       '}}</span>  <span >{{  + '             ' +  'XXXX-XXXX-XXXX-'+PaymentProfile.cardNumber}}</span></b></option>
                               <option ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
                            </select>
-<!-- ng-if="totalPaymentCard != 10" -->
-  <!-- <select class="consultHealthPlanDropDown image-select" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-chang="cardchange('consulCharge')" >
-  <option><b>Choose Your Card</b></option>
-  <option  ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value="{{PaymentProfile.profileID + '@' + PaymentProfile.cardType + '@' + PaymentProfile.cardNumber + '@' + PaymentProfile.cardLogo}}"><b>
-   <span>{{PaymentProfile.cardType + '       '}}</span>  <span >{{  + '             ' +  'XXXX-XXXX-XXXX-'+PaymentProfile.cardNumber}}</span></b></option>
-  <option ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
-  </select>   -->
 
-
-                     </div>
+                    </div>
                      </div>
                   </div>
 

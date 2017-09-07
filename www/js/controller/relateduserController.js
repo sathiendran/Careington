@@ -498,6 +498,8 @@
         $rootScope.adddependent = function() {
             $rootScope.doGetOrgLoclist();
             $rootScope.newDependentImagePath = '';
+            $rootScope.addPatientidupdateList = '';
+            $rootScope.listOfAddPatientIdentifiers = '';
             $('select').prop('selectedIndex', 0);
             $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
             $state.go('tab.addnewdependent');

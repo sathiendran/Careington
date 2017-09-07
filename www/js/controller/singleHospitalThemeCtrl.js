@@ -108,6 +108,8 @@ angular.module('starter.controllers')
                     $rootScope.brandColor = data.data[0].brandColor;
                     $rootScope.logo = data.data[0].hospitalImage;
                     $rootScope.Hospital = data.data[0].brandName;
+                    $rootScope.backColor = data.data[0].brandColor;
+                    $rootScope.singleHospital = data.data[0].brandName;
                     if (deploymentEnvLogout === 'Multiple') {
                         $rootScope.alertMsgName = 'Virtual Care';
                         $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
@@ -199,6 +201,7 @@ angular.module('starter.controllers')
                     logo = $rootScope.logo;
                     HospitalTag = $rootScope.HospitalTag;
                     Hospital = $rootScope.Hospital;
+                    $rootScope.singleHospital = $rootScope.Hospital;
                     if (!angular.isUndefined(data.data[0].customerSso) && data.data[0].customerSso === "Mandatory") {
                         $rootScope.customerSso = "Mandatory";
                         ssoURL = data.data[0].patientLogin;
@@ -209,15 +212,22 @@ angular.module('starter.controllers')
                         $rootScope.isSSORegisterAvailable = '';
                     }
                     $ionicLoading.hide();
-                    $state.go('tab.loginSingle');
-                }else{
-            					var confirmPopup = $ionicPopup.prompt({
-            						  templateUrl: 'templates/updationpopup.html',
-            						  cssClass: 'updatepopup',
-            						  hardwareBackButtonClose: false,
-                          scope: $scope,
-            					});
+                    if(cobrandApp === 'MDAmerica' && deploymentEnv === "Single"){
+                         $rootScope.cobrandApp_New = 'MDAmerica';
+                        $rootScope.deploymentEnv_New = deploymentEnv;
+                         $state.go('tab.login');
+                    } else if(cobrandApp !== 'MDAmerica' && deploymentEnv === "Single"){
+                        $state.go('tab.loginSingle');
+                    }
+                  }else{
+                      var confirmPopup = $ionicPopup.prompt({
+                            templateUrl: 'templates/updationpopup.html',
+                            cssClass: 'updatepopup',
+                            hardwareBackButtonClose: false,
+                            scope: $scope,
+                      });
                 }
+
             },
             error: function(data,status) {
               if(status === 503) {
