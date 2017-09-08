@@ -52,7 +52,7 @@
                      <div  class="dropdownContainer">
                         <div ng-if="userDefaultPaymentProfileText == null || userDefaultPaymentProfileText == 'undefined'"  id="cardViewport" class="cardViewport"><div class="insCHooseProviderName">Choose Your Card</div></div>
                         <div ng-if="userDefaultPaymentProfileText != null && userDefaultPaymentProfileText != 'undefined'" id="cardViewport" class="cardViewport">
-                          <div class="insCardName">{{userDefaultPaymentProfileText}}</div><div class="insCardNumber">{{ 'XXXX-XXXX-XXXX-'+userDefaultPaymentProfileType}}</div>
+                          <div class="insCardName"><img class="cardlogo" src="{{userDefaultPaymentLogo}}"></div><div class="insCardNumber">{{ 'XXXX-XXXX-XXXX-'+userDefaultPaymentProfileText}}</div>
                         </div>
                         <select class="consultHealthPlanDropDown" id="addNewCard_addCard" name="addNewCard_addCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-change="cardchange('addNewCard')">
                            <option ><b>Choose Your Card</b></option>

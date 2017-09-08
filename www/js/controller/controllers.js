@@ -297,6 +297,7 @@ angular.module('ngIOS9UIWebViewPatch', ['ng']).config(function($provide) {
 if (deploymentEnv === "Sandbox") {
     apiCommonURL = 'https://sandbox.connectedcare.md';
 } else if (deploymentEnv === "Production") {
+    $rootScope.backColor = '#DD472D';
     apiCommonURL = 'https://connectedcare.md';
     api_keys_env = "Production";
 } else if (deploymentEnv === "QA") {
@@ -398,6 +399,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $rootScope.envList = ["Snap.QA1", "Sandbox", "Staging", "Snap-test", "Snap-azure-Dev2"];
 
     $scope.ChangeEnv = function(env) {
+        $rootScope.backColor = '#DD472D';
         $window.localStorage.setItem('tokenExpireTime', '');
         if (env === "Snap.QA1") {
           //  $rootScope.APICommonURL = 'https://snap-qa.com';
@@ -4106,6 +4108,7 @@ $scope.EditHealth = {};
           $("div.cardViewport").html('<div class="insCardName"><img class="cardlogo"  src = "'+payValue[3]+'" /></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
           $rootScope.userCardNumber = $('option:selected', this).text();
           $rootScope.userCardDetails = $('option:selected', this).val();
+          $rootScope.userCardType = payValue[3];
         //  $('div.cardViewport').text($("option:selected", this).text());
         // $("div.cardViewport").html('<div class="parenttt" style=" display: table;padding: 4px;  width: 100%;  margin: -10px 5px;"><div class="insCardImage"><img src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png"  style =" width: 75px;  height: 50px;vertical-align: middle;"/> '+payValue[1]+'</div> <div class="insCardNumber" style =" vertical-align: middle;display: table-cell; text-align: justify; font-family: GloberSemiBold; font-size: 21px;padding: 12px 0px 12px 25px;">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div> </div>');
         }
@@ -4530,40 +4533,8 @@ $scope.EditHealth = {};
                                     break;
                                 default:
                                     imgUrl = '';
+                            }
 
-                            }
-                            /*if(index.cardType == "Visa")
-                            {
-                                var imgUrl = 'img/card-logo/Visa-dark.png';
-                            }
-                             if(index.cardType == "Master")
-                            {
-                                var imgUrl = 'img/card-logo/MasterCard-dark.png';
-                            }
-                             if(index.cardType == "American_express")
-                            {
-                                var imgUrl = 'img/card-logo/AmericanExpress-dark.png';
-                            }
-                            if(index.cardType == "Discover")
-                            {
-                                var imgUrl = 'img/card-logo/Discover-dark.png';
-                            }
-                            if(index.cardType == "Diners_club")
-                            {
-                                var imgUrl = 'img/card-logo/DinersClub-dark.png';
-                            }
-                             if(index.cardType == "Jcb")
-                            {
-                                var imgUrl = 'img/card-logo/JCB-dark.png';
-                            }
-                             if(index.cardType == "Maestro")
-                            {
-                                var imgUrl = 'img/card-logo/Maestro-dark.png';
-                            }
-                            if(index.cardType == "Laser")
-                            {
-                                var imgUrl = 'img/card-logo/Laser-dark.png';
-                            }*/
                             $rootScope.PaymentProfile.push({
                                 'id': index.$id,
                                 'billingAddress': angular.fromJson(index.billingAddress),
@@ -4571,18 +4542,27 @@ $scope.EditHealth = {};
                                 'cardNumber': replaceCardNumber.getCardNumber(index.cardNumber),
                                 'isBusiness': index.isBusiness,
                                 'profileID': index.profileID,
-							    'cardType' : index.cardType,
-                                'userCardlogo' : imgUrl,
+							                  'cardType' : index.cardType,
                                 'cardLogo' : imgUrl,
                             });
-                            
+
                         });
+
+                        if(typeof $rootScope.userCardDetails !== 'undefined' && $rootScope.userCardDetails !== '') {
+                            $scope.userCrdType = $filter('filter')($rootScope.PaymentProfile, {
+                                profileID: $rootScope.userCardDetails
+                            });
+                            if($scope.userCrdType.length != 0) {
+                              $rootScope.userCardType = $scope.userCrdType[0].cardLogo;
+                              $rootScope.editCardStyle ="block";
+                            }
+                        }
+
                         if(typeof $rootScope.chkProfileIdForCrdType !== 'undefined' && $rootScope.chkProfileIdForCrdType !== '') {
                           $scope.userCrdType = $filter('filter')($rootScope.PaymentProfile, {
                               profileID: $rootScope.chkProfileIdForCrdType
                           });
-                          
-                          $rootScope.userCardType = $scope.userCrdType[0].userCardlogo;
+                          $rootScope.userCardType = $scope.userCrdType[0].cardLogo;
                           $scope.crdNum = $scope.userCrdType[0].cardNumber.split('XXXX');
                           $rootScope.userCardNumber = $scope.crdNum[1];
                           $rootScope.editCardStyle ="block";
@@ -4680,54 +4660,60 @@ $scope.EditHealth = {};
 
     $rootScope.editcard={};
     $scope.editpaymentcard = function(pageName){
-    //  var proid = $("#addNewCard").val();
-    if(pageName === 'consulCharge') {
-      var insplanCrdVal = $('#addNewCard').val();
-    } else if(pageName === 'addNewCard') {
-      var insplanCrdVal = $('#addNewCard_addCard').val();
-    } else if (pageName === 'submitPay') {
-      var insplanCrdVal = $('#addNewCard_submitPay').val();
-    }
-
-    if (typeof insplanCrdVal !== 'undefined') {
-        //$rootScope.paymentProfileId = $scope.cardPaymentId.addNewCard;
-        var payValue = insplanCrdVal.split("@");
-        $rootScope.profileid = payValue[0];
-    } else if (typeof insplanCrdVal === 'undefined') {
-        if (typeof $rootScope.userCardDetails === 'undefined') {
-            $rootScope.profileid = $rootScope.userDefaultPaymentProfile;
-        } else {
-            $rootScope.profileid = $rootScope.userCardDetails;
+        //  var proid = $("#addNewCard").val();
+        if (typeof $scope.cardPaymentId.addNewCard !== 'undefined') {
+            if(pageName === 'consulCharge') {
+              var insplanCrdVal = $('#addNewCard').val();
+            } else if(pageName === 'addNewCard') {
+              var insplanCrdVal = $('#addNewCard_addCard').val();
+            } else if (pageName === 'submitPay') {
+              var insplanCrdVal = $('#addNewCard_submitPay').val();
+            }
+            if (typeof insplanCrdVal !== 'undefined') {
+                var payValue = insplanCrdVal.split("@");
+                $rootScope.profileid = payValue[0];
+            } else if (typeof insplanCrdVal === 'undefined') {
+                if (typeof $rootScope.userCardDetails === 'undefined') {
+                    $rootScope.profileid = $rootScope.userDefaultPaymentProfile;
+                } else {
+                    $rootScope.profileid = $rootScope.userCardDetails;
+                }
+            }
+        } else if (typeof $scope.cardPaymentId.addNewCard === 'undefined') {
+            if (typeof $rootScope.userCardDetails === 'undefined') {
+                $rootScope.profileid = $rootScope.userDefaultPaymentProfile;
+            } else {
+                $rootScope.profileid = $rootScope.userCardDetails;
+            }
         }
-    }
 
-      $rootScope.editCardStyle ="none";
-      //$rootScope.profileid = proid;
-      $rootScope.editPaymentProfile = [];
-    angular.forEach(  $rootScope.PaymentProfile, function(index) {
-           if (index.profileID  == $rootScope.profileid) {
 
-             $rootScope.editPaymentProfile.push({
-                 'id': index.$id,
-                 'billingAddress': angular.fromJson(index.billingAddress),
-                 'cardExpiration': index.cardExpiration,
-                 'cardNumber': replaceCardNumber.getCardNumber(index.cardNumber),
-                 'isBusiness': index.isBusiness,
-                 'profileID': index.profileID,
-                 'cardType' : index.cardType,
-             });
 
-           }
-
-       });
-       $rootScope.doGetChargifyPayUpdateCardDetails($rootScope.editPaymentProfile[0].profileID);
-       var cardExpiration = $rootScope.editPaymentProfile[0].cardExpiration;
-       $rootScope.cardExpirationSplitValue = cardExpiration.split('/');
-       $rootScope.editbilling =  $rootScope.editPaymentProfile[0].billingAddress;
-        $rootScope.editcardNumber =  $rootScope.editPaymentProfile[0].cardNumber;
-          $rootScope.editcard.cardcountry = $rootScope.editbilling.country;
-          $("#editCountry").val($rootScope.editcard.cardcountry);
-       $state.go('tab.cardeditDetails');
+        $rootScope.editCardStyle ="none";
+        //$rootScope.profileid = proid;
+        $rootScope.editPaymentProfile = [];
+        angular.forEach($rootScope.PaymentProfile, function(index) {
+             if (index.profileID  == $rootScope.profileid) {
+               $rootScope.editPaymentProfile.push({
+                   'id': index.$id,
+                   'billingAddress': angular.fromJson(index.billingAddress),
+                   'cardExpiration': index.cardExpiration,
+                   'cardNumber': replaceCardNumber.getCardNumber(index.cardNumber),
+                   'isBusiness': index.isBusiness,
+                   'profileID': index.profileID,
+                   'cardType' : index.cardType,
+                   'cardLogo' : index.cardLogo,
+               });
+             }
+         });
+         $rootScope.doGetChargifyPayUpdateCardDetails($rootScope.editPaymentProfile[0].profileID);
+         var cardExpiration = $rootScope.editPaymentProfile[0].cardExpiration;
+         $rootScope.cardExpirationSplitValue = cardExpiration.split('/');
+         $rootScope.editbilling =  $rootScope.editPaymentProfile[0].billingAddress;
+          $rootScope.editcardNumber =  $rootScope.editPaymentProfile[0].cardNumber;
+            $rootScope.editcard.cardcountry = $rootScope.editbilling.country;
+            $("#editCountry").val($rootScope.editcard.cardcountry);
+         $state.go('tab.cardeditDetails');
     }
 
     $scope.doPostClearHealthPlan = function() {
@@ -5536,17 +5522,18 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 var payValue = $scope.cardPaymentId.addNewCard.split("@");
                 $rootScope.paymentProfileId = payValue[0];
                 $rootScope.paymentProfileIdType = payValue[1];
-                $rootScope.paymentProfileIdNumber = payValue[2];
+                $rootScope.paymentCardNumber = payValue[2];
+                $rootScope.paymentProfileLogo = payValue[3];
             } else if (typeof $scope.cardPaymentId.addNewCard === 'undefined') {
                 if (typeof $rootScope.userCardDetails === 'undefined') {
                     $scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
                     $rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
-                    $rootScope.paymentProfileIdType = $rootScope.userDefaultPaymentProfileType;
-                    $rootScope.paymentProfileIdNumber = $rootScope.userDefaultPaymentProfileNumber;
+                  //  $rootScope.paymentProfileIdType = $rootScope.userDefaultPaymentProfileType;
+                    $rootScope.paymentCardNumber = $rootScope.userDefaultPaymentProfileText;
                 } else {
                     $rootScope.paymentProfileId = $rootScope.userCardDetails;
-                    $rootScope.paymentProfileIdType = $rootScope.userCardType;
-                    $rootScope.paymentProfileIdNumber =$rootScope.userCardNumber;
+                  //  $rootScope.paymentProfileIdType = $rootScope.userCardType;
+                    $rootScope.paymentCardNumber =$rootScope.userCardNumber;
                 }
             }
 
@@ -5561,7 +5548,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     //To save the last used card for user.
                   //  var cardSelectedText = $('#cardViewport').html();
                     $window.localStorage.setItem("Card" + $rootScope.UserEmail, $rootScope.paymentProfileId);
-                  //  $window.localStorage.setItem("CardText" + $rootScope.UserEmail, cardSelectedText);
+                    $window.localStorage.setItem("CardText" + $rootScope.UserEmail, $rootScope.paymentCardNumber);
+                    $window.localStorage.setItem("CardLogo" + $rootScope.UserEmail, $rootScope.paymentProfileLogo);
                     $window.localStorage.setItem("hosNameforCard", $rootScope.hospitalName);
                     $rootScope.paymentConfirmationNumber = data.data[0].confirmationNumber;
                     $scope.CreditCardDetails = data;
@@ -6279,6 +6267,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                         if($window.localStorage.getItem("hosNameforCard") === $rootScope.hospitalName) {
                           $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
                           $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+                          $rootScope.userDefaultPaymentLogo = $window.localStorage.getItem("CardLogo" + $rootScope.UserEmail);
                         } else {
                           $rootScope.userDefaultPaymentProfile = null;
                         }
@@ -6653,6 +6642,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         if($window.localStorage.getItem("hosNameforCard") === $rootScope.hospitalName) {
           $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
           $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+          $rootScope.userDefaultPaymentLogo = $window.localStorage.getItem("CardLogo" + $rootScope.UserEmail);
         } else {
           $rootScope.userDefaultPaymentProfile = null;
         }
@@ -6732,6 +6722,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         if($window.localStorage.getItem("hosNameforCard") === $rootScope.hospitalName) {
           $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
           $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+          $rootScope.userDefaultPaymentLogo = $window.localStorage.getItem("CardLogo" + $rootScope.UserEmail);
         } else {
           $rootScope.userDefaultPaymentProfile = null;
         }
@@ -7259,6 +7250,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
           if($window.localStorage.getItem("hosNameforCard") === $rootScope.hospitalName) {
             $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
             $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+            $rootScope.userDefaultPaymentLogo = $window.localStorage.getItem("CardLogo" + $rootScope.UserEmail);
           } else {
             $rootScope.userDefaultPaymentProfile = null;
           }
