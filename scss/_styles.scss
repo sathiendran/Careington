@@ -3197,8 +3197,9 @@ a {
     position: relative;
     top: 6px;
     margin-left: 66px;
-    font-family: $fontFamily_bold;
-    color: #666666;
+    font-family: GloberBold;
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 20pt;
 }
 .listTitle {
     position: relative;
@@ -3233,8 +3234,13 @@ a {
     padding-top: 2px;
 }
 .SubTitleSpan {
-    @include font($fontFamily_regular, normal, 100%);
-    color: #666666;
+    /*@include font($ fontFamily_regular, normal, 100%);
+    color: #666666;*/
+
+    font-family: "Glober Regular";
+    font-weight: normal;
+    font-size: 20pt;
+    color: rgba(0, 0, 0, 0.54);
 }
 .docName {
     width: 63%;
@@ -3923,6 +3929,9 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .UserHomeNextAppointment {
     top: -2px;
     height: 64px;
+    .icon-video_camera {
+        font-size: 36px !important;       
+    }
     a {
         margin-left: 10px;
         .UHomeNextAppoinment {
@@ -3933,9 +3942,10 @@ form.ng-submitted input.ng-valid + i.icon.error {
         }
         h2 {
             margin-left: 4px;
-            margin-top: 2px;
+            margin-top: -11px;
             font-size: 22px;
-            color: #706A67;
+            color: rgb(255, 255, 255);
+            font-family: GloberBold;
             .NextAppointTime {
                 font-size: 18px;
             }
@@ -3944,16 +3954,25 @@ form.ng-submitted input.ng-valid + i.icon.error {
             }
         }
         .nextList {
-            color: #888;
-            margin-top: -35px;
+            color: white;
             margin-right: 12px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            border: solid 1px white;
+            margin-top: -31px;
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            font-size: 1.3em;
         }
         .AppointmentView {
-            float: right;
-            font-size: 14px;
-            margin-right: 30px;
-            color: #888;
-            margin-top: -33px;
+                    float: right;
+                    font-size: 14px;
+                    margin-right: 9px;
+                    color: white;
+                    margin-top: -26px;
+                    font-family: GloberSemiBold;
         }
     }
 }
@@ -4018,8 +4037,9 @@ form.ng-submitted input.ng-valid + i.icon.error {
     top: 0px !important;
 }
 #WhoNeeds {
-    font-size: 23px;
+    font-size: 24px;
     width: 85%;
+    color: rgba(0,0,0,0.75);
 }
 .BackButton {
     padding-top: 14px;
@@ -5607,4 +5627,27 @@ hr {
 .cardlogo{
     width:65px;
     height:35px;
+}
+
+.outside
+{
+     margin-top: 3px;
+    
+}
+
+.inside
+{
+    width: 0px;
+    /* position: relative; */
+    height: 0px;
+    border-style: solid;
+    margin: auto;
+    border-width: 12px 14px 0 14px !important;
+    border-color: white transparent transparent transparent;
+    line-height: 0px;
+    z-index: 2000;
+    left: 50%;
+    /* width: 100px; */
+    /* height: 50px; */
+    position: absolute;
 }

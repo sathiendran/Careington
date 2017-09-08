@@ -577,7 +577,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -5390,8 +5390,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             var beforAppointmentTime = getReplaceTime;
                             var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
                             if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {
-                                $rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
-                                $rootScope.timerCOlor = '#E1FCD4';
+                                $rootScope.userHomeRecentAppointmentColor = '#a2d28a';//E1FCD4
+                                $rootScope.timerCOlor = '#a2d28a';
                             }
                         }
                     }
@@ -5965,7 +5965,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                                 if (args.minutes === 0 && args.seconds === 1) {
                                     $rootScope.timeNew = 'none';
                                     $rootScope.timeNew1 = 'block';
-                                    $rootScope.timerCOlor = '#E1FCD4';
+                                    $rootScope.timerCOlor = '#a2d28a';
                                     $('.AvailableIn').hide();
                                     $('.enterAppoinment').show();
                               //} else if (args.millis > 600) {
@@ -5982,7 +5982,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
                             var currentUserHomeDate = d;
                             if (getReplaceTime < currentUserHomeDate) {
-                                $rootScope.timerCOlor = '#E1FCD4';
+                                $rootScope.timerCOlor = '#a2d28a';
                                 $('.AvailableIn').hide();
                                 $('.enterAppoinment').show();
                             }
