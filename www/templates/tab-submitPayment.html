@@ -57,9 +57,9 @@
                     </h4>
                   <div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}"  >
                      <div  class="dropdownContainer">
-                        
+
                           <div id="cardViewport" class="cardViewport" style="margin-top: 8px;">
-                            <div class="insCardName"><img src="{{userCardType}}"></div><div class="insCardNumber">{{ 'XXXX-XXXX-XXXX-'+userCardNumber}}</div>
+                            <div class="insCardName"><img class="cardlogo" src="{{userCardType}}"></div><div class="insCardNumber">{{ 'XXXX-XXXX-XXXX-'+userCardNumber}}</div>
                           </div>
                         <select class="consultHealthPlanDropDown" id="addNewCard_submitPay" name="addNewCard_submitPay" ng-model="cardPaymentId.addNewCard" ng-change="cardchange('submitPay')" style="border: none;">
                            <option><b>Choose Your Card</b></option>

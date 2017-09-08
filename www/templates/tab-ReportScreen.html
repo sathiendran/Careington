@@ -394,7 +394,7 @@
                             <p>None Reported</p>
                           </div>
 
-                         
+
                      </div>
                      <!--// Prescription -->
 
@@ -402,7 +402,7 @@
                      <div class="pc-report__section-title">Chat</div>
 
                      <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Waiting Room</div>
-                     
+
                      <!-- <p class="pc-report__chat-transcript">[1:04:52 PM] Ben: @dejan can you give me a quick list of what is working and what is not for all the items included in this hotfix?<br>[1:13:51 PM] Dejan Zivanovic: it's in chetna report<br>[1:13:54 PM] Dejan Zivanovic: and in new column</p> -->
                      <p class="pc-report__chat-transcript" ng-if="waitingRoomChatTranscript.length">
                      <li ng-repeat = "waitingRoomChatTranscript in waitingRoomChatTranscript" style="font-size: 12px;">{{waitingRoomChatTranscript.ChatMessage}}</li>
@@ -462,11 +462,13 @@
                              </ul>
                              <!-- <ul class="pc-report__med-list" ng-if="intake.medicalConditions == ''">
                                  <li>None Reported</li>
-                             </ul> -->
-                             <div class="pc-report__chat-transcript" ng-if="intake.medicalConditions == Prescriptions
+                             </ul>
+                             <div class="pc-report__chat-transcript" ng-if="intake.medicalConditions == Prescriptions">
                                          <p>None Reported</p>
-                                    </div>
-
+                                    </div> -->
+                            <div class="pc-report__chat-transcript" ng-if="intake.medicalConditions == ''">
+                                       <p>None Reported</p>
+                                  </div>
 
 
                              <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width">Prior Surgeries</div>
