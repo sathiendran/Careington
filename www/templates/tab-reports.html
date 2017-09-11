@@ -133,8 +133,8 @@
                                 <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Chief Complaints</div>
 
                                 <ol class="pc-report__complaints">
-                                    <li>1.{{reportScreenPrimaryConcern}}</li>
-                                    <li>2.{{reportScreenSecondaryConcern}}</li>
+                                    <li>1. {{reportScreenPrimaryConcern}}</li>
+                                    <li>2. {{reportScreenSecondaryConcern}}</li>
                                 </ol>
 
                                 <p  ng-if="repadditionalnotes !== 'N/R'" class="pc-report__add-notes"><strong>Additional Notes:</strong> <span>{{repadditionalnotes}}</span></p>
@@ -157,7 +157,7 @@
                             </div>
                                <div class="pc-report__data-list pc-report__data-list-item">
                                 <span class="pc-report__data-list-title">encounter</span>
-                                <span class="pc-report__data-list-desc">{{consultationDate | date: "MMM dd, yyyy"}} {{consultationDate | date: "hh:mm"}} {{consultationDate | date: "a"}} </span>
+                                <span class="pc-report__data-list-desc">{{consultationDate | date: "MMM dd, yyyy"}}, {{consultationDate | date: "hh:mm a" | lowercase}}</span>
                             </div>
 
                             <div class="pc-report__data-list pc-report__data-list-item">
