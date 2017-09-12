@@ -333,7 +333,8 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                     'patLastName': $scope.paticipatingPatient.person.name.family,
                     'phiFirstName': $scope.paticipatingPhysician.person.name.given,
                     'phiLastName': $scope.paticipatingPhysician.person.name.family,
-                    'clinicianId': index.clinicianId
+                    'clinicianId': index.clinicianId,
+                    'where' : index.where
                 });
               });
               $rootScope.scheduledListDatas = $rootScope.scheduledListDatas[0];
@@ -349,7 +350,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
               } else {
                   $rootScope.AppointScheduleTime = '';
               }
-
+              $rootScope.schedulemobile = $rootScope.scheduledListDatas.where;
               $rootScope.appointPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[0].customCode.description);
               $rootScope.appointSecondConcern = $rootScope.scheduledListDatas.intakeMetadata.concerns[1];
               if ($rootScope.appointSecondConcern === '' || typeof $rootScope.appointSecondConcern === 'undefined') {

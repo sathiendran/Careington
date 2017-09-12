@@ -579,7 +579,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -1681,16 +1681,16 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                       if($rootScope.Cttonscheduled === 'on'){
                           $state.go('tab.ConsentTreat');
                       } else if($rootScope.appointmentwaivefee == true) {
-                            $rootScope.doGetWaiveFeeHospitalInformation();
-                      } else if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee === false && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on') {
-                            $rootScope.doPostDepitDetails();
-                      } else if($rootScope.getIndividualPatientCreditCount !== 0 &&  $rootScope.appointmentwaivefee === true && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on'){
-                            $state.go('tab.receipt');
-                            $rootScope.enablePaymentSuccess = "none";
-                            $rootScope.enableInsuranceVerificationSuccess = "none";
-                            $rootScope.enableCreditVerification = "none";
-                            $rootScope.enableWaivefeeVerification = "block";
-                             $rootScope.ReceiptTimeout();
+                          $rootScope.doGetWaiveFeeHospitalInformation();
+                      }else  if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee === false && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on') {
+                        $rootScope.doPostDepitDetails();
+                      }else if($rootScope.getIndividualPatientCreditCount !== 0 &&  $rootScope.appointmentwaivefee === true && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on'){
+                        $state.go('tab.receipt');
+                        $rootScope.enablePaymentSuccess = "none";
+                        $rootScope.enableInsuranceVerificationSuccess = "none";
+                        $rootScope.enableCreditVerification = "none";
+                        $rootScope.enableWaivefeeVerification = "block";
+                         $rootScope.ReceiptTimeout();
                       }
                        else {
                           $rootScope.doGetHospitalInformation();
@@ -3608,23 +3608,23 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     } else if ($rootScope.currState.$current.name === "tab.planDetails") {
                         $rootScope.disableAddHealthPlan = "none";
                         $rootScope.enableAddHealthPlan = "block";
-						            $rootScope.editplan = "block";
+						$rootScope.editplan = "block";
                         $rootScope.planchange();
                         $state.go('tab.consultCharge');
+
                     }  else if ($rootScope.currState.$current.name === "tab.planeditDetails") {
                        $rootScope.disableAddHealthPlan = "none";
                        $rootScope.enableAddHealthPlan = "block";
                        $rootScope.editplan = "block";
                        $rootScope.planchange();
                        $state.go('tab.consultCharge');
-                   }  else if ($rootScope.currState.$current.name === "tab.ConsentTreat") {
-                      $rootScope.disableAddHealthPlan = "none";
-                      $rootScope.enableAddHealthPlan = "block";
-                      $rootScope.editplan = "none";
-                    //  $rootScope.planchange();
-                      $state.go('tab.consultCharge');
-
-                  }
+                     }  else if ($rootScope.currState.$current.name === "tab.ConsentTreat") {
+                        $rootScope.disableAddHealthPlan = "none";
+                        $rootScope.enableAddHealthPlan = "block";
+                        $rootScope.editplan = "none";
+                      //  $rootScope.planchange();
+                        $state.go('tab.consultCharge');
+                    }
                 } else {
                     if ($rootScope.currState.$current.name === "tab.consultCharge") {
                         $rootScope.enableAddHealthPlan = "none";
@@ -4149,44 +4149,44 @@ $scope.EditHealth = {};
 
     $scope.showConsultChargeNoPlan = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Page) {
       if($rootScope.appointmentwaivefee == true) {
-        $rootScope.enableInsuranceVerificationSuccess = "none";
-        $rootScope.enablePaymentSuccess = "none";
-        if(P_Page == "skipThis") {
-          $rootScope.enableCreditVerification = "none";
-          $rootScope.enableWaivefeeVerification = "block";
+          $rootScope.enableInsuranceVerificationSuccess = "none";
+          $rootScope.enablePaymentSuccess = "none";
+          if(P_Page == "skipThis") {
+            $rootScope.enableCreditVerification = "none";
+            $rootScope.enableWaivefeeVerification = "block";
+          } else {
+            $rootScope.enableCreditVerification = "none";
+            $rootScope.enableWaivefeeVerification = "none";
+          }
+          $state.go('tab.receipt');
+          $rootScope.ReceiptTimeout();
+        } else if($rootScope.isPaid === true || ($rootScope.getIndividualPatientCreditCount !== 0 && !angular.isUndefined($rootScope.getIndividualPatientCreditCount))) {
+          $rootScope.enableInsuranceVerificationSuccess = "none";
+          $rootScope.enablePaymentSuccess = "none";
+          if($rootScope.appointmentwaivefee === true) {
+            $rootScope.enableCreditVerification = "none";
+            $rootScope.enableWaivefeeVerification = "block";
+          } else {
+            $rootScope.enableWaivefeeVerification = "none";
+            $rootScope.enableCreditVerification = "block";
+          }
+          $state.go('tab.receipt');
+          $rootScope.ReceiptTimeout();
         } else {
-          $rootScope.enableCreditVerification = "none";
-          $rootScope.enableWaivefeeVerification = "none";
+          $rootScope.PatientImageSelectUser = P_img;
+          $rootScope.PatientFirstName = P_Fname;
+          $rootScope.PatientLastName = P_Lname;
+          $rootScope.PatientAge = P_Age;
+          $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
+          $rootScope.BackPage = P_Page;
+          $rootScope.copayAmount = $rootScope.consultationAmount;
+          $rootScope.healthPlanPage = "none";
+          $rootScope.consultChargeNoPlanPage = "block";
+  		      $rootScope.editCardStyle = "none";
+          $('option').filter(function() {
+              return this.value.indexOf('?') >= 0;
+          }).remove();
         }
-        $state.go('tab.receipt');
-        $rootScope.ReceiptTimeout();
-      } else if($rootScope.isPaid === true || ($rootScope.getIndividualPatientCreditCount !== 0 && !angular.isUndefined($rootScope.getIndividualPatientCreditCount))) {
-        $rootScope.enableInsuranceVerificationSuccess = "none";
-        $rootScope.enablePaymentSuccess = "none";
-        if($rootScope.appointmentwaivefee === true) {
-          $rootScope.enableCreditVerification = "none";
-          $rootScope.enableWaivefeeVerification = "block";
-        } else {
-          $rootScope.enableWaivefeeVerification = "none";
-          $rootScope.enableCreditVerification = "block";
-        }
-        $state.go('tab.receipt');
-        $rootScope.ReceiptTimeout();
-      } else {
-        $rootScope.PatientImageSelectUser = P_img;
-        $rootScope.PatientFirstName = P_Fname;
-        $rootScope.PatientLastName = P_Lname;
-        $rootScope.PatientAge = P_Age;
-        $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
-        $rootScope.BackPage = P_Page;
-        $rootScope.copayAmount = $rootScope.consultationAmount;
-        $rootScope.healthPlanPage = "none";
-        $rootScope.consultChargeNoPlanPage = "block";
-		      $rootScope.editCardStyle = "none";
-        $('option').filter(function() {
-            return this.value.indexOf('?') >= 0;
-        }).remove();
-      }
     }
 
     $scope.backAddHealthPlan = function() {
@@ -4277,7 +4277,7 @@ $scope.EditHealth = {};
                 }
             }
             if (typeof $scope.Health.addHealthPlan === 'undefined' || $scope.Health.addHealthPlan === 'Choose Your Health Plan') {
-                if ($rootScope.NewHealth === "" && $rootScope.providerName === "") {
+              if ((typeof $rootScope.NewHealth === 'undefined' || $rootScope.NewHealth === "") && $rootScope.providerName === "") {
                     $scope.Choose = 'true';
                 } else {
                     if ($rootScope.NewHealth !== "") {
@@ -4391,7 +4391,7 @@ $scope.EditHealth = {};
                 }
             }
             if (typeof $scope.Health.addHealthPlan === 'undefined' || $scope.Health.addHealthPlan === 'Choose Your Health Plan') {
-                if ((typeof $rootScope.NewHealth === 'undefined' || $rootScope.NewHealth === "") && $rootScope.providerName === "") {
+              if ((typeof $rootScope.NewHealth === 'undefined' || $rootScope.NewHealth === "") && $rootScope.providerName === "") {
                     $scope.Choose = 'true';
                 } else {
                     if ($rootScope.NewHealth !== "") {
@@ -5045,7 +5045,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             $('#BillingAddress').val() === '' || $('#City').val() === '' || $('#State').val() === '' || $('#Zip').val() === '') {
             $scope.ErrorMessage = "Required fields can't be empty";
             $rootScope.Validation($scope.ErrorMessage);
-      /*  } else if (!CreditCardValidations.validCreditCard($rootScope.CardNumber)) {
+       /* } else if (!CreditCardValidations.validCreditCard($rootScope.CardNumber)) {
             $scope.invalidZip = "";
             $scope.invalidMonth = "";
             $scope.invalidCVV = "";
@@ -6896,7 +6896,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             if($rootScope.appointmentwaivefee == true) {
               $rootScope.doGetWaiveFeeHospitalInformation();
             } else if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee === false && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on' && $rootScope.isPaid !== true) {
-                $rootScope.doPostDepitDetails();
+              $rootScope.doPostDepitDetails();
             }else if($rootScope.getIndividualPatientCreditCount !== 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee === true && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on'){
               $state.go('tab.receipt');
               $rootScope.enablePaymentSuccess = "none";
@@ -7141,20 +7141,20 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
     $rootScope.doGetWaiveFeeHospitalInformation = function() {
       $rootScope.paymentBackPage = '';
-        var params = {
-            accessToken: $rootScope.accessToken,
-            hospitalId: $rootScope.hospitalId,
-            success: function(data) {
-                $rootScope.getDetails = data.data[0].enabledModules;
-                if ($rootScope.getDetails !== '') {
-                  if(($rootScope.insuranceMode === 'on' && $rootScope.InsuranceBeforeWaiting !== 'on') || $rootScope.insuranceMode !== 'on') {
-                    $rootScope.enablePaymentSuccess = "none";
-                    $rootScope.enableCreditVerification = "none"
-                    $rootScope.enableWaivefeeVerification = "none";;
-                    $rootScope.enableInsuranceVerificationSuccess = "none";
-                    $state.go('tab.receipt');
-                    $rootScope.ReceiptTimeout();
-                  } else {
+      var params = {
+          accessToken: $rootScope.accessToken,
+          hospitalId: $rootScope.hospitalId,
+          success: function(data) {
+              $rootScope.getDetails = data.data[0].enabledModules;
+              if ($rootScope.getDetails !== '') {
+                if(($rootScope.insuranceMode === 'on' && $rootScope.InsuranceBeforeWaiting !== 'on') || $rootScope.insuranceMode !== 'on') {
+                  $rootScope.enablePaymentSuccess = "none";
+                  $rootScope.enableCreditVerification = "none"
+                  $rootScope.enableWaivefeeVerification = "none";
+                  $rootScope.enableInsuranceVerificationSuccess = "none";
+                  $state.go('tab.receipt');
+                  $rootScope.ReceiptTimeout();
+                } else {
                     $rootScope.applyPlanMode = "none";
                     $rootScope.chooseHealthHide = 'initial';
                     $rootScope.chooseHealthShow = 'none';
@@ -7166,8 +7166,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     $rootScope.providerName = "";
                     $rootScope.PolicyNo = "";
                     $scope.doGetPatientHealthPlansList();
-                  }
                 }
+              }
             },
             error: function(data, status) {
               if (status === 0) {
@@ -7187,6 +7187,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $rootScope.AppointScheduleTime = '';
         $rootScope.appointmentsPatientId = '';
         $rootScope.schedulemobile = scheduledListData.participants[1].person.phones[0].value;
+       // $rootScope.schedulemobile = scheduledListData.where;
         $rootScope.scheduledListDatas = scheduledListData;
         $rootScope.appointmentwaivefee = scheduledListData.waiveFee;
         var currentTime = $rootScope.scheduledListDatas.scheduledTime;
