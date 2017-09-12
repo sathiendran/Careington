@@ -966,7 +966,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                         } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
                             $scope.ErrorMessage = "Please select Country";
                             $rootScope.Validation($scope.ErrorMessage);
-                        } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '' || $scope.healthInfoTimezone === 'Choose') {
+                        } else if ((typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '' || $scope.healthInfoTimezone === 'Choose') && $rootScope.timezoneDisplay != 'none') {
                             $scope.ErrorMessage = "Please select Time Zone";
                             $rootScope.Validation($scope.ErrorMessage);
                             } else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {
@@ -1127,7 +1127,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
                     $scope.ErrorMessage = "Please select Country";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '' || $scope.healthInfoTimezone === 'Choose') {
+                } else if ((typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '' || $scope.healthInfoTimezone === 'Choose') && $rootScope.timezoneDisplay != 'none') {
                     $scope.ErrorMessage = "Please select Time Zone";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {

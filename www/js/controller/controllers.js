@@ -5045,13 +5045,13 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             $('#BillingAddress').val() === '' || $('#City').val() === '' || $('#State').val() === '' || $('#Zip').val() === '') {
             $scope.ErrorMessage = "Required fields can't be empty";
             $rootScope.Validation($scope.ErrorMessage);
-        } else if (!CreditCardValidations.validCreditCard($rootScope.CardNumber)) {
+      /*  } else if (!CreditCardValidations.validCreditCard($rootScope.CardNumber)) {
             $scope.invalidZip = "";
             $scope.invalidMonth = "";
             $scope.invalidCVV = "";
             $scope.invalidCard = "border: 1px solid red;max-width:50%;";
             $scope.ErrorMessage = "Invalid Card Number";
-            $rootScope.Validation($scope.ErrorMessage);
+            $rootScope.Validation($scope.ErrorMessage);*/
         } else if (ExpiryDateCheck < currentTime) {
             $scope.invalidZip = "";
             $scope.invalidCard = "";
