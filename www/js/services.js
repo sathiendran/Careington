@@ -286,7 +286,7 @@ angular.module('starter.services', [])
 			headers: util.getHeaders(params.accessToken),
       // url: apiCommonURL + '/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
 		  // url: apiCommonURL + '/api/v2/patients/profile?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
-      url: apiCommonURL + '/api/v2/patients/profile?include=all',
+      url: apiCommonURL + '/api/v2/patients/profile?include=all,appointments',
        method: 'GET'
 		};
 

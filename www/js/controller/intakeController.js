@@ -508,6 +508,8 @@ $scope.locat=false;
                   }
                   if($rootScope.Cttonscheduled === 'on'){
                       $state.go('tab.ConsentTreat');
+                  } else if($rootScope.appointmentwaivefee == true) {
+                        $rootScope.doGetWaiveFeeHospitalInformation();
                   }else  if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee === false && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on') {
                     $rootScope.doPostDepitDetails();
                   }else if($rootScope.getIndividualPatientCreditCount !== 0 &&  $rootScope.appointmentwaivefee === true && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on'){

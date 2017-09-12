@@ -176,11 +176,11 @@
       <h1 class="title enterAppoint-{{deviceName}}" id="centercolor" > <p style="color:#666666 !important; margin-top:-11px;"> Your Provider will call you at</p>
            <p style="color:#444444 !important; margin-top:-30px;">{{schedulemobile  |  tel}} </p> </h1>
 
-  	</ion-footer-bar>
+  	</ion-footer-bar>  
 
 
 <ion-footer-bar ng-if="scheduledListDatas.encountertypecode == '3'" class="bar bar-footer  footer-color footheight enterAppoinment" style=" height: 73px; display: {{timeNew1}}" >
-     <a style="margin-left: 76px;" ng-click="enterWaitingRoom(appointmentsPatientImage,appointmentsPatientFirstName,appointmentsPatientLastName,appointmentsPatientDOB,appointmentsPatientGurdianName,appointmentId,appointPersonId)">
+     <a style="text-align: center; width: 100%;  position: relative; top: 18px;" ng-click="enterWaitingRoom(appointmentsPatientImage,appointmentsPatientFirstName,appointmentsPatientLastName,appointmentsPatientDOB,appointmentsPatientGurdianName,appointmentId,appointPersonId)">
 
 				<h1 class="title enterAppoint-{{deviceName}}" id="centercolorforEnterAppointment" >     <span style="padding:4px;" >
               <i ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>Enter Appointment</h1>

@@ -639,63 +639,66 @@ $scope.editDob=function(){
           $rootScope.listOfPatientIdentifiers = [];
           $scope.newupdatePatientDetails();
 
+          if(typeof $rootScope.PatientIdentifiers != 'undefined') {
+             if($rootScope.PatientIdentifiers.length >  $rootScope.listOfPatientIdentifiers.length) {
+               var a = $rootScope.PatientIdentifiers;
+               var b = $rootScope.listOfPatientIdentifiers;
 
-           if($rootScope.PatientIdentifiers.length >  $rootScope.listOfPatientIdentifiers.length) {
-             var a = $rootScope.PatientIdentifiers;
-             var b = $rootScope.listOfPatientIdentifiers;
-
-             for (i=0;i<a.length;i++)
-                 {
-                     for(j=0;j<b.length;j++)
-                     {
-                         if (a[i].identifierTypeCode == b[j].identifierTypeCode)
-                         {
-                             a[i].value = b[j].value;
-                         }
-                     }
-               }
-                $rootScope.patAllIdentifier =  $rootScope.PatientIdentifiers;
-                $rootScope.patSelectedIdentifier = $rootScope.listOfPatientIdentifiers;
-                $scope.total_patients =  $rootScope.listOfPatientIdentifiers.length;
-                $scope.Patienuplist = $rootScope.PatientIdentifiers.length;
-            } else if($rootScope.PatientIdentifiers.length ===  $rootScope.listOfPatientIdentifiers.length) {
-                  $scope.unique = function(arr) {
-                     var a = arr.concat();
-                     for(var i=0; i<a.length; ++i) {
-                         for(var j=i+1; j<a.length; ++j) {
-                             if(a[i] === a[j])
-                                 a.splice(j--, 1);
-                         }
-                     }
-                     return a;
-                 };
-                 $rootScope.patSelectedIdentifier = $rootScope.listOfPatientIdentifiers;
-                 $rootScope.patAllIdentifier = $scope.unique($rootScope.PatientIdentifiers.concat($rootScope.patSelectedIdentifier));
+               for (i=0;i<a.length;i++)
+                   {
+                       for(j=0;j<b.length;j++)
+                       {
+                           if (a[i].identifierTypeCode == b[j].identifierTypeCode)
+                           {
+                               a[i].value = b[j].value;
+                           }
+                       }
+                 }
+                  $rootScope.patAllIdentifier =  $rootScope.PatientIdentifiers;
+                  $rootScope.patSelectedIdentifier = $rootScope.listOfPatientIdentifiers;
                   $scope.total_patients =  $rootScope.listOfPatientIdentifiers.length;
-            }else if($rootScope.PatientIdentifiers.length <  $rootScope.listOfPatientIdentifiers.length) {
+                  $scope.Patienuplist = $rootScope.PatientIdentifiers.length;
+              } else if($rootScope.PatientIdentifiers.length ===  $rootScope.listOfPatientIdentifiers.length) {
+                    $scope.unique = function(arr) {
+                       var a = arr.concat();
+                       for(var i=0; i<a.length; ++i) {
+                           for(var j=i+1; j<a.length; ++j) {
+                               if(a[i] === a[j])
+                                   a.splice(j--, 1);
+                           }
+                       }
+                       return a;
+                   };
+                   $rootScope.patSelectedIdentifier = $rootScope.listOfPatientIdentifiers;
+                   $rootScope.patAllIdentifier = $scope.unique($rootScope.PatientIdentifiers.concat($rootScope.patSelectedIdentifier));
+                    $scope.total_patients =  $rootScope.listOfPatientIdentifiers.length;
+              }else if($rootScope.PatientIdentifiers.length <  $rootScope.listOfPatientIdentifiers.length) {
 
-              $rootScope.patSelectedIdentifier =$rootScope.listOfPatientIdentifiers;
-              $rootScope.patAllIdentifier =  $rootScope.patSelectedIdentifier;
-            // $rootScope.patAllIdentifier =  $rootScope.PatientIdentifiers;
-            // $rootScope.patSelectedIdentifier =$rootScope.listOfPatientIdentifiers;
-           $scope.total_patients = $rootScope.listOfPatientIdentifiers.length;
-            }
-            if($rootScope.PatientIdentifiers.length) {
-                $rootScope.patAllIdentifier.forEach(function(item){
-                var result = addEmpty(item);
-                  if(!result)
-                    item.value = null;
+                $rootScope.patSelectedIdentifier =$rootScope.listOfPatientIdentifiers;
+                $rootScope.patAllIdentifier =  $rootScope.patSelectedIdentifier;
+              // $rootScope.patAllIdentifier =  $rootScope.PatientIdentifiers;
+              // $rootScope.patSelectedIdentifier =$rootScope.listOfPatientIdentifiers;
+             $scope.total_patients = $rootScope.listOfPatientIdentifiers.length;
+              }
+              if($rootScope.PatientIdentifiers.length) {
+                  $rootScope.patAllIdentifier.forEach(function(item){
+                  var result = addEmpty(item);
+                    if(!result)
+                      item.value = null;
 
-                });
-    // $rootScope.patAllIdentifier =   $rootScope.listOfPatientIdentifiers;
-                function addEmpty(item){
-                  var result = false;
-                  $rootScope.patSelectedIdentifier.forEach(function(item1){
-                    if(item1.identifierTypeCode === item.identifierTypeCode) {
-                      result = true;
-                    }
-                });
-                return result;
+                  });
+      // $rootScope.patAllIdentifier =   $rootScope.listOfPatientIdentifiers;
+                  function addEmpty(item){
+                    var result = false;
+                    $rootScope.patSelectedIdentifier.forEach(function(item1){
+                      if(item1.identifierTypeCode === item.identifierTypeCode) {
+                        result = true;
+                      }
+                  });
+                  return result;
+                }
+              } else {
+                $rootScope.patAllIdentifier =   $rootScope.listOfPatientIdentifiers;
               }
             } else {
               $rootScope.patAllIdentifier =   $rootScope.listOfPatientIdentifiers;
