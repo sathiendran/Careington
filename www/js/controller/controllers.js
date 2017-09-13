@@ -1668,6 +1668,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
                   $rootScope.concentToTreatPreviousPage = CurrentPage;
+                  $rootScope.editplan ="none";
                   $rootScope.concentToTreatContent = htmlEscapeValue.getHtmlEscapeValue(data.data[0].documentText);
                   if ($rootScope.appointmentsPage === true) {
                     if($rootScope.schedulePatAge === 0) {
@@ -4549,7 +4550,7 @@ $scope.EditHealth = {};
                                     imgUrl = 'img/card-logo/AmericanExpress-dark.png';
                                     break;
                                 case "Discover":
-                                    imgUrl = 'img/card-logo/Discover.png';
+                                    imgUrl = 'img/card-logo/Discover-dark.png'; 
                                     break;
                                 case "Diners_club":
                                     imgUrl = 'img/card-logo/DinersClub-dark.png';
@@ -6877,16 +6878,15 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
+        $rootScope.editplan ="none";
         if ($rootScope.appointmentsPage !== true) {
             $rootScope.appointmentwaivefee = '';
             if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on' && $rootScope.InsuranceBeforeWaiting !== 'on') {
                 $rootScope.healthPlanPage = "none";
                 $rootScope.consultChargeNoPlanPage = "block";
-				$rootScope.editplan ="none";
             } else {
                 $rootScope.consultChargeNoPlanPage = "none";
                 $rootScope.healthPlanPage = "block";
-				 $rootScope.editplan ="none";
             }
             $scope.doGetOndemandAppointPaymentStatus();
         } else if ($rootScope.appointmentsPage === true) {

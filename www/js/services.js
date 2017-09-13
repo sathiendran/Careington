@@ -457,7 +457,7 @@ angular.module('starter.services', [])
             headers: util.getHeaders(params.accessToken),
             //url: apiCommonURL + '/api/v2/patients/scheduledconsultations?Id=' + params.patientId,
 
-			url: apiCommonURL + '/api/v2.1/patients/' + params.patientId +'/details?include=Appointments',
+			url: apiCommonURL + '/api/v2.1/patients/' + params.patientId +'/details?include=Appointments&includeInactive=false',
             method: 'GET'
 
         };
