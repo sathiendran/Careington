@@ -1781,4 +1781,6 @@ $scope.locat=false;
         $state.go('tab.providerSearch');
     }
 
+    
+
 })

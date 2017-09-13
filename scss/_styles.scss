@@ -1707,7 +1707,7 @@ body {
     input[type="text"],
     input[type="number"],
     input[type="password"] {
-        font-size: 19px;
+        font-size: 18px;
         line-height: 30px;
         padding-top: 9px;
     }
@@ -2393,8 +2393,9 @@ select {
     }
     .concernListDone {
         top: 7px !important;
-        font-size: 20px !important;
-        font-family: $fontFamily_semibold;
+        font-size: 18px !important;
+        font-family: $fontFamily_regular;
+        padding: 9px !important;
     }
     .concernListTitle-ios {
         top: 17px !important;
@@ -2781,7 +2782,7 @@ select {
 }
 .UserHomeIcon {
     color: #999999;
-    margin-top: -34px;
+    margin-top: -40px;
 }
 .UserNeeds {
     border-bottom: 1px solid #9D9E9C;
@@ -3165,10 +3166,10 @@ a {
     border: 2px solid white;
 }
 .UserHmelistImgView {
-    width: 52px;
-    height: 52px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    border: 2px solid #FFFFFF;
+    border: 2px solid rgb(153, 153, 153);
 }
 .HrefListView {
     @include font($fontFamily_thin, normal, 21px);
@@ -3195,11 +3196,11 @@ a {
 }
 .ListTextTitle {
     position: relative;
-    top: 6px;
-    margin-left: 66px;
-    font-family: GloberBold;
+    top: 10px;
+    margin-left: 71px;
+    font-family: Glober Bold;
     color: rgba(0, 0, 0, 0.54);
-    font-size: 20pt;
+    font-size: 18pt;
 }
 .listTitle {
     position: relative;
@@ -3229,9 +3230,8 @@ a {
     color: #999999 !important;
     font-size: 14px;
     margin-bottom: -1px;
-    margin-left: 66px;
-    margin-top: 1px;
-    padding-top: 2px;
+    margin-left: 71px;
+    padding-top: 8px;
 }
 .SubTitleSpan {
     /*@include font($ fontFamily_regular, normal, 100%);
@@ -3239,7 +3239,7 @@ a {
 
     font-family: "Glober Regular";
     font-weight: normal;
-    font-size: 20pt;
+    font-size: 18pt;
     color: rgba(0, 0, 0, 0.54);
 }
 .docName {
@@ -3484,7 +3484,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
     -moz-flex: 0 0 30%;
     -ms-flex: 0 0 30%;
     flex: 0 0 30%;
-    max-width: 50%;
+    max-width: 45%;
 }
 .validated input {
     -webkit-box-flex: 0;
@@ -3905,6 +3905,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
         top: 5px;
         padding: 11px;
         height: 104px;
+        margin-bottom: -28px;
         .UserhmePatientDetails {
             margin-left: 0px;
             margin-top: 0px !important;
@@ -3930,7 +3931,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
     top: -2px;
     height: 54px;
     .icon-video_camera {
-        font-size: 36px !important;       
+        font-size: 30px !important;       
     }
     a {
         margin-left: 10px;

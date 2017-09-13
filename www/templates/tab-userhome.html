@@ -19,7 +19,7 @@
 
 
 			<div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds">
-				<div class="TitleHomeUser_Sub" id="WhoNeeds">Who Needs Care Today:</div>
+				<div class="TitleHomeUser_Sub" id="WhoNeeds">Who Needs Care Today?</div>
 
 					<div class="SearchImage" ng-click="showSearchInput();">
 						<i class="ion-search" style="float: right; font-size: 23px;color: #666666;"></i>
@@ -49,7 +49,7 @@
     </ion-refresher></div>
 
 	<a ng-if="primaryPatientName != ''" class="UserHomePatient"  ng-click = "GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'patientClick')">
-		<ion-item class="UserHomeHeader" ng-hide="data.searchQuery" style="border: none; top: -2px; height: 77px;">
+		<ion-item class="UserHomeHeader" ng-hide="data.searchQuery" style="border: none; top: -2px; height: px;">
 			 <div class="HrefListView">
 				<div class="UserhmePatientDetails">
 				<!--	<img ng-src="{{PatientImage}}" src="{{PatientImage}}" class="UserHmelistImgView">-->
@@ -69,11 +69,11 @@
 				<a class="HrefListView"  >
 				  <!-- <span class = "ListText UHomeNextAppoinment">Next Appointment:</span>
 				    <h2 class="DateFormateStyle"><b>{{scheduledListData.scheduledTime | date: "MMM dd"}} </b> <span class="NextAppointTime"><sup>@</sup></span> <b>{{scheduledListData.scheduledTime | date: "hh:mm"}}</b><span class="NextAppointAMorPM"  style="font-size: 15px; font-weight: bold;">{{scheduledListData.scheduledTime | date: "a"}}</span></h2> -->
-				    <h2><i ng-bind-html="drawSVGCIcon('video_camera')" class="ng-binding"><svg class="iconImg-video_camera"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-video_camera"></use></svg></i> <span style="top: -10px;position: relative;padding-left: 5px;">Appt @  <b>{{scheduledListData.scheduledTime | date: "hh:mm a" | lowercase}}</b></span></h2>
-				   <list class="ion-chevron-right ListLinkHref nextList" style="    top: -10px !important;
+				    <h2><i ng-bind-html="drawSVGCIcon('video_camera')" class="ng-binding"><svg class="iconImg-video_camera"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-video_camera"></use></svg></i> <span style="top: -7px;position: relative;padding-left: 5px;">Appt @  <b>{{scheduledListData.scheduledTime | date: "hh:mm a" | lowercase}}</b></span></h2>
+				   <list class="ion-chevron-right ListLinkHref nextList" style="    top: -7px !important;
     position: relative !important;
     font-size: 22px  !important;"></list>
-				   <span class="DateFormateStyle AppointmentView" style="top: -8px;
+				   <span class="DateFormateStyle AppointmentView" style="top: -5px;
     position: relative;">View Details</span>
 
 			    </a>

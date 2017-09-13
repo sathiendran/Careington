@@ -21,7 +21,7 @@
                          <div class="surDisplay surgeryDisplay-{{$index}}" >
                             <div class="surDescription">
                                  <h2 class="regularfamily">{{surgery.description}}</h2>
-                                 <p>{{getMonthName(surgery.month)}}, {{surgery.year}}</p>
+                                 <p>{{getMonthName(surgery.month)}} {{surgery.year}}</p>
                           </div>
                          <a class="button surEditIcon" ng-click="openEditSurgeryItem({{$index}}, surgery);" ><i class="currentedit" ng-bind-html="drawSVGCIcon('pencil')"></i></a>
                          </div>
