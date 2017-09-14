@@ -812,12 +812,14 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                   if($rootScope.scheduledListDatas.patFirstName !== undefined ){
                     $rootScope.appointmentsPatientFirstName  =  $rootScope.scheduledListDatas.patFirstName;
                       $rootScope.appointmentsPatientLastName = $rootScope.scheduledListDatas.patLastName;
+                      $rootScope.appointmentsPatientImage = $rootScope.scheduledListDatas.patientImage;
                       // $rootScope.appointmentsPatientId       = $rootScope.scheduledListDatas.patientId ;
                   }else{
                     $rootScope.appointmentsPatientFirstName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);
                     $rootScope.appointmentsPatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);
+                      $rootScope.appointmentsPatientImage = data.data[0].profileImagePath;
                   }
-                $rootScope.appointmentsPatientImage = data.data[0].profileImagePath;
+
                 // $rootScope.GoToPatientDetails('',   $rootScope.appointmentsPatientImage, $rootScope.appointmentsPatientFirstName, $rootScope.appointmentsPatientLastName, $rootScope.PatientAge, '',  $rootScope.appointmentPatientId, '', '');
                   },
             error: function(data, status) {

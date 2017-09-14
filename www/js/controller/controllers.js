@@ -4550,7 +4550,7 @@ $scope.EditHealth = {};
                                     imgUrl = 'img/card-logo/AmericanExpress-dark.png';
                                     break;
                                 case "Discover":
-                                    imgUrl = 'img/card-logo/Discover-dark.png'; 
+                                    imgUrl = 'img/card-logo/Discover-dark.png';
                                     break;
                                 case "Diners_club":
                                     imgUrl = 'img/card-logo/DinersClub-dark.png';
