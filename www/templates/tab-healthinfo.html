@@ -456,7 +456,7 @@
                   <li  ng-if="patientmedicalsurgeries==''" >N/A </li>
                   <li ng-repeat="surgeries in patientmedicalsurgeries">
                      {{$index + 1}}. <strong>{{surgeries.description}}</strong>
-                     {{getMonthName(surgeries.month)}}, {{surgeries.year}}
+                     {{getMonthName(surgeries.month)}} {{surgeries.year}}
                   </li>
                </ul>
             </div>

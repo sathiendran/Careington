@@ -352,6 +352,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             if (imagePath.indexOf("api") >= 0) {
                 var image = imagePath;
                 return "<img ng-src=" + image + " src=" + image + " class='UserHmelistImgView'>";
+                
+                //return $sce.trustAsHtml("<div class='patProfileImage'><span> <img ng-src=" + image + " src=" + image + " class='UserHmelistImgView'></sapn></div>");
             } else {
                 return $sce.trustAsHtml("<div class='patProfileImage'><span>" + Name + "</sapn></div>");
             }
@@ -7486,7 +7488,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 days: dateAge
             };
 
-            yearString = "y";
+            yearString = "yrs";
             monthString = "m";
 
             if (age.years === 0) {
