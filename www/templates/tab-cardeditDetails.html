@@ -49,7 +49,7 @@
                   </select>
                   <span> /{{validCC}}</span>
                   <select id="editExpyear" name="CardExpireDatesYear" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px; font-size: 18px;{{invalidMonth}}{{CardDetailYear}}" required>
-                     <option ng-repeat="ccYear in ccYearsList" value="{{ccYear.value}}" ng-selected="{{ccYear.value}} === {{cardExpirationSplitValue[1]}}">
+                     <option ng-repeat="ccYear in ccYearsList" value="{{ccYear.value}}" ng-selected="ccYear.value == cardExpirationSplitValue[1]">
                         <b><span>{{ccYear.text }}</span></b>
                      </option>
                   </select>
@@ -90,7 +90,7 @@
                   <input style="line-height: 20px; font-size: 18px; padding: 0px;" value="{{editbilling.zip}}"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" ng-model="editZip" name="editZip" id="editZip" maxlength="7" required/>
                </div>
             </div>
-            <div class="planDetails"  style="opacity:{{planverify}};">
+            <div class="planDetails" ng-if="addCardStatus !== 200"  style="opacity:{{planverify}};">
                <p class="carddetails">When you add a credit card, information about your card, will be sent to Authorize.net and your card issuer.</p>
             </div>
             <div class="privacy" style="opacity:{{planverify}};"><a class="hospitalDynamicLink" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">About {{Hospital}} Privacy</a></div>

@@ -85,10 +85,10 @@ angular.module('starter.controllers')
           $('.regstCountry').removeClass("emailbackground");
           $('.ssooptionCountry').removeClass("emailbackground");
           if (($('#regCountryCode').val() === 'Choose') || ($('#regCountryCode').val() === ' ')) {
-                $("div.viewport").html('<div class="insCHooseProviderName">Choose</div>');
+                $("div.viewport").html('<div class="regCountryOpt">Choose</div>');
           } else {
                 var selectedValue = $('#regCountryCode').val();
-                $("div.viewport").html('<div class="insProviderName">'+selectedValue+'</div>');
+                $("div.viewport").html('<div class="regCountryOpt">'+selectedValue+'</div>');
           }
         }
         $scope.timeZoneBlur=function(){

@@ -124,10 +124,12 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                 } else {
                     $rootScope.isSSORegisterAvailable = '';
                 }
+                $window.location.reload();
                 if (deploymentEnvLogout === "Multiple") {
                     $state.go('tab.chooseEnvironment');
                 } else if (deploymentEnvLogout === "Single") {
-                    $state.go('tab.loginSingle');
+                    //$state.go('tab.loginSingle');
+                      $state.go('tab.singleTheme');
                 } else {
                     $state.go('tab.login');
                 }
@@ -153,12 +155,18 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
             $rootScope.APICommonURL = 'https://connectedcare.md';
             $scope.doGetSingleHosInfoForiTunesStage();
       } else {
+        $window.location.reload();
         if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
-        } else if (deploymentEnvLogout === "Single") {
-            $state.go('tab.loginSingle');
-        } else {
-            $state.go('tab.login');
+        } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
+                 //$state.go('tab.login');
+                 $state.go('tab.singleTheme');
+        }else if (cobrandApp !== 'MDAmerica' && deploymentEnvLogout === "Single") {
+            //$state.go('tab.loginSingle');
+            $state.go('tab.singleTheme');
+        }else {
+           $state.go('tab.login');
+           //$state.go('tab.singleTheme');
         }
       }
       $rootScope = $rootScope.$new(true);
@@ -1781,6 +1789,6 @@ $scope.locat=false;
         $state.go('tab.providerSearch');
     }
 
-    
+
 
 })

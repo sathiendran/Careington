@@ -3927,11 +3927,11 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .sfont {
     margin-left: 10px;
 }
-.UserHomeNextAppointment {      
+.UserHomeNextAppointment {
     top: -2px;
     height: 54px;
     .icon-video_camera {
-        font-size: 30px !important;       
+        font-size: 30px !important;
     }
     a {
         margin-left: 10px;
@@ -4324,7 +4324,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
         position: absolute;
         width: 60%;
         height: 100%;
-        z-index: 15;
+        //z-index: 15;
         overflow: hidden;
         white-space: nowrap;
         -ms-text-overflow: ellipsis;
@@ -5646,7 +5646,7 @@ hr {
 .outside
 {
      margin-top: 3px;
-    
+
 }
 
 .inside
@@ -5664,4 +5664,10 @@ hr {
     /* width: 100px; */
     /* height: 50px; */
     position: absolute;
+}
+
+.regCountryOpt {
+    font-family: Glober Regular !important;
+    font-size: 16px;
+    padding-top: 2px;
 }

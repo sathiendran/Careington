@@ -224,6 +224,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
     }
 
     $scope.editAppointment = function(scheduledListData,$timeout) {
+      snap.baseUrl  = apiCommonURL;
           $scope.betDelay=true;
         $ionicLoading.show({
             template: '<img src="img/puff.svg" alt="Loading" />',

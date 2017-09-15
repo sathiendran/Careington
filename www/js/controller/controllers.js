@@ -352,7 +352,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             if (imagePath.indexOf("api") >= 0) {
                 var image = imagePath;
                 return "<img ng-src=" + image + " src=" + image + " class='UserHmelistImgView'>";
-                
+
                 //return $sce.trustAsHtml("<div class='patProfileImage'><span> <img ng-src=" + image + " src=" + image + " class='UserHmelistImgView'></sapn></div>");
             } else {
                 return $sce.trustAsHtml("<div class='patProfileImage'><span>" + Name + "</sapn></div>");
@@ -754,7 +754,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $(".ion-google-place-container").css({
             "display": "none"
         });
-
         if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging' && cobrandApp !== 'MDAmerica') {
               $rootScope.hospitalId = singleHospitalId;
               apiCommonURL = 'https://connectedcare.md';
@@ -762,15 +761,18 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
               $rootScope.APICommonURL = 'https://connectedcare.md';
               $scope.doGetSingleHosInfoForiTunesStage('logOut');
         } else {
+            $window.location.reload();
              if (deploymentEnvLogout === "Multiple") {
                  $state.go('tab.chooseEnvironment');
              } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
-                 //$rootScope.hospitalId = singleStagingHospitalId;
-                 $state.go('tab.login');
-             }else if (cobrandApp_New !== 'MDAmerica' && deploymentEnvLogout === "Single") {
-                 $state.go('tab.loginSingle');
+                      //$state.go('tab.login');
+                      $state.go('tab.singleTheme');
+             }else if (cobrandApp !== 'MDAmerica' && deploymentEnvLogout === "Single") {
+                 //$state.go('tab.loginSingle');
+                 $state.go('tab.singleTheme');
              }else {
-                 $state.go('tab.login');
+                $state.go('tab.login');
+                //$state.go('tab.singleTheme');
              }
         }
 
@@ -1156,12 +1158,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 if(HosForCoBrand === 'HosInfoForCoBrand') {
                   $scope.doGetTokenSSO();
                 } else {
+                  $window.location.reload();
                   if (deploymentEnvLogout === "Multiple") {
                       $state.go('tab.chooseEnvironment');
                   } else if (deploymentEnvLogout === "Single") {
-                      $state.go('tab.loginSingle');
+                      //$state.go('tab.loginSingle');
+                        $state.go('tab.singleTheme');
                   } else {
-                      $state.go('tab.login');
+                     $state.go('tab.login');
                   }
                 }
             },
@@ -1508,6 +1512,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     if($stateParams.getPage === 'CTT'){
       $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
       $rootScope.patientId = JSON.parse(sessionStorage.getItem("appointPatId"));
+      $rootScope.appointmentwaivefee = JSON.parse(sessionStorage.getItem("waivefee"));
       $rootScope.userhome = true;
       $rootScope.SSPage = true;
       $rootScope.appointmentsPage = true;

@@ -252,7 +252,7 @@ angular.module('starter.controllers')
                 } else {
                     $rootScope.reportDoctorLastName = 'None Reported';
                 }
-            
+
                 $rootScope.reportservicetype = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.serviceTypeName);
 
                 if ($rootScope.existingConsultationReport.encounterTypeCode !== '' && typeof $rootScope.existingConsultationReport.encounterTypeCode !== 'undefined') {
@@ -516,7 +516,7 @@ var now = new Date();
                     $rootScope.reportMedicalCodeDetails = '';
                 }*/
 
-if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $rootScope.existingConsultationReport.medicalCodeDetails !== 'undefined') 
+if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $rootScope.existingConsultationReport.medicalCodeDetails !== 'undefined')
                     {
                         angular.forEach($rootScope.existingConsultationReport.medicalCodeDetails, function(index, item) {
                           var cptcode = index.shortDescription;
@@ -810,12 +810,18 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
             "display": "none"
         });
         $ionicBackdrop.release();
+        $window.location.reload();        
         if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
-        } else if (deploymentEnvLogout === "Single") {
-            $state.go('tab.loginSingle');
-        } else {
-            $state.go('tab.login');
+        } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
+                 //$state.go('tab.login');
+                 $state.go('tab.singleTheme');
+        }else if (cobrandApp !== 'MDAmerica' && deploymentEnvLogout === "Single") {
+            //$state.go('tab.loginSingle');
+            $state.go('tab.singleTheme');
+        }else {
+           $state.go('tab.login');
+           //$state.go('tab.singleTheme');
         }
     }
 
