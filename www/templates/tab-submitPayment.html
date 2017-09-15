@@ -61,11 +61,14 @@
                           <div id="cardViewport" class="cardViewport" style="margin-top: 8px;">
                             <div class="insCardName"><img class="cardlogo" src="{{userCardType}}"></div><div class="insCardNumber">{{ 'XXXX-XXXX-XXXX-'+userCardNumber}}</div>
                           </div>
+                          <!-- <div ng-if="userCardNumber == 'Choose Your Card'" id="cardViewport" class="cardViewport" style="margin-top: 8px;">
+                            <div class="insCardNumber">{{userCardNumber}}</div>
+                          </div> -->
                         <select class="consultHealthPlanDropDown" id="addNewCard_submitPay" name="addNewCard_submitPay" ng-model="cardPaymentId.addNewCard" ng-change="cardchange('submitPay')" style="border: none;">
-                           <option><b>Choose Your Card</b></option>
+                           <option value="Choose Your Card"><b>Choose Your Card</b></option>
                            <option  ng-repeat="getPayment in PaymentProfile" value="{{getPayment.profileID + '@' + getPayment.cardType + '@' + getPayment.cardNumber + '@' + getPayment.cardLogo}}" ng-selected="userCardDetails == getPayment.profileID"><b>
                               <span>{{getPayment.cardType + '       '}}</span>  <span >{{ + '             ' +  'XXXX-XXXX-XXXX-'+getPayment.cardNumber}}</span></b></option>
-                           <option ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
+                           <option value="Add a new card" ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
                         </select>
                      </div>
                   </div>

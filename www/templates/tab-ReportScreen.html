@@ -27,7 +27,10 @@
    </ion-header-bar>
    <ion-view title="Post Consult Report">
       <ion-content class="ReportContent">
-
+ <div>
+            <ion-refresher on-refresh="doRefreshReportDetails()"  >
+            </ion-refresher>
+         </div>
         <div class="roundedCornersWindow">
             <div id="reportConsulationWin"
                  class="popup claim-area"

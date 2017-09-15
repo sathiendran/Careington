@@ -41,7 +41,7 @@ angular.module('starter.controllers')
             }
         }, 100);
 
-        var checkAndChangeMenuIcon;
+       /* var checkAndChangeMenuIcon;
         $interval.cancel(checkAndChangeMenuIcon);
         $rootScope.checkAndChangeMenuIcon = function() {
                 if (!$ionicSideMenuDelegate.isOpen(true)) {
@@ -74,8 +74,26 @@ angular.module('starter.controllers')
                     $rootScope.checkAndChangeMenuIcon();
                 }, 300);
             }
-        };
+        };*/
+/*$scope.toggleLeft = function() {
+        $rootScope.statename = $rootScope.currState.$current.name;
+        $ionicSideMenuDelegate.toggleLeft();
+        $rootScope.checkAndChangeMenuIcon();
+        if (checkAndChangeMenuIcon) {
+            $interval.cancel(checkAndChangeMenuIcon);
+        }
+        if ($rootScope.statename === "tab.userhome") {
+            $('.sideuserhome').addClass("uhome");
 
+        }
+        if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle") {
+            checkAndChangeMenuIcon = $interval(function() {
+                if ($rootScope.checkAndChangeMenuIcon) {
+                    $rootScope.checkAndChangeMenuIcon();
+                }
+            }, 300);
+        }
+    };*/
         $scope.pastshow = true;
         $scope.missedshow = false;
         $scope.droppedshow = false;
