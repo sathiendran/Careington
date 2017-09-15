@@ -1164,6 +1164,8 @@ $scope.locat=false;
       //  $scope.modal.remove();
         $rootScope.LastName1 = '';
         $rootScope.datestr = '';
+        $scope.showIntakeEditSurgery = false;
+        $rootScope.showIntakeNewSurgeryAdd = false;
         $rootScope.selectYearsList = CustomCalendar.getSurgeryYearsList( $rootScope.SelectPatientAge);
         $ionicModal.fromTemplateUrl('templates/surgeryPopup.html', {
             scope: $scope,

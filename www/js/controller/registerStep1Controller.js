@@ -1,6 +1,7 @@
 angular.module('starter.controllers')
     .controller('registerStep1Controller', function($scope, ageFilter, $timeout, step1PostRegDetailsService, $ionicPlatform, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
         $rootScope.isRegistrationCompleted = false;
+
         $ionicPlatform.registerBackButtonAction(function() {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -80,8 +81,10 @@ angular.module('starter.controllers')
           $('.regstgender').removeClass("emailbackground");
           $('.ssooption').removeClass("emailbackground");
         }
+
         $scope.countryBlur=function(){
           $scope.countryError =false;
+
           $('.regstCountry').removeClass("emailbackground");
           $('.ssooptionCountry').removeClass("emailbackground");
           if (($('#regCountryCode').val() === 'Choose') || ($('#regCountryCode').val() === ' ')) {
