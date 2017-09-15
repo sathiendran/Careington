@@ -4803,6 +4803,22 @@ span {
     color: #fff;
 }
 }
+
+.patProfileImageIntake {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    text-align: center;
+    font-family: Glober XBold;
+    font-size: 29px;
+    border: 2px solid #999999;
+    margin-top: -3px;
+    span {
+        position: relative;
+        top: 24px;
+        color: #fff;
+    }
+}
 .patProfileImageSS {
   width: 52px;
   height: 52px;
@@ -5821,10 +5837,8 @@ margin-right: 10px;
   }
 }
 .insProviderName {
-  font-family: GloberBold !important;
-  font-size: 18px;
+  font-size: 16px;
   position: relative;
-  top: -5px;
 }
 .insCardName {
   font-family: GloberBold !important;
@@ -5960,23 +5974,24 @@ border-radius: 6px;
          height: 44pt;
          top: -27px;
          margin: 0 !important; */
-        width: 90%;
-        margin: 0px 18px;
+        width: 80%;
+        text-align: center;
+        margin-left: 10%;
         color: #fff;
         background-color: #A2D28A;
         border-color: #A2D28A;
         background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);
         font-weight: normal;
         border-radius: 5px;
-        font-size: 22px;
-        min-height: 35px;
+        font-size: 25px;
+        min-height: 41px;
         text-decoration: none;
         font-family: "Glober Bold";
         box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
         -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
         -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
         background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);
-        line-height: 35px;
+        
      }
 }
 .surDisplay {

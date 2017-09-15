@@ -2462,15 +2462,22 @@ this.getCountryDetails = function () {
 		if (age.years > 0) { return ageString = age.years; }
 		*/
 
-		 yearString = "y";
+		 yearString = "yrs";
 		 monthString = "m";
+      dayString = "days";
 
 	 if(age.years == 0 ) {
-			if(age.days <= 15) {
+			/*if(age.days <= 15) {
 				return ageString = age.months + monthString;
 			} else if (age.days > 15) {
 				 return ageString = (age.months + 1) + monthString;
-			}
+			}*/
+       var dob1 = new Date(dateString);
+                var difdt1 = new Date(new Date() - dob1);
+                var num_years = difdt1/31536000000;
+                var num_months = (difdt1 % 31536000000)/2628000000;
+                var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
+                return ageString = Math.floor(num_months) + monthString + '/' + Math.floor(num_days) + dayString ;
 	   }
 		if (age.years > 0) {
 			if(age.days <= 15) {

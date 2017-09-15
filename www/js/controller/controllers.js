@@ -362,6 +362,28 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
     };
 
+    $rootScope.drawImageIntake = function(imagePath, firstName, lastName) {
+        $('.patProfileImageIntake').css({
+            'background-color': $rootScope.brandColor
+        });
+        var Name = getInitialFromName(firstName, lastName);
+        if (Name === 'WW') {
+            Name = 'W';
+        }
+        if (!angular.isUndefined(imagePath) && imagePath !== '') {
+            if (imagePath.indexOf("api") >= 0) {
+                var image = imagePath;
+                return "<img ng-src=" + image + " src=" + image + " class='UserHmelistImgView'>";
+                
+                //return $sce.trustAsHtml("<div class='patProfileImage'><span> <img ng-src=" + image + " src=" + image + " class='UserHmelistImgView'></sapn></div>");
+            } else {
+                return $sce.trustAsHtml("<div class='patProfileImageIntake'><span>" + Name + "</sapn></div>");
+            }
+        } else {
+            return $sce.trustAsHtml("<div class='patProfileImageIntake'><span>" + Name + "</sapn></div>");
+        }
+    };
+
     $scope.obj={language_selected : {'name':'Choose a language'}};
         $scope.language_list = [{'name': 'english', 'url': 'https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/gb.png'},{'name': 'italian', 'url': 'http://www.gravatar.com/avatar/b3e04a46e85ad3e165d66f5d927eb609?d=monsterid&amp;r=g&amp;s=16&apos'}];
     $rootScope.drawImageSS = function(imagePath, firstName, lastName) {
@@ -581,7 +603,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -7456,6 +7478,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             var yearDob = dob.getYear();
             var monthDob = dob.getMonth();
             var dateDob = dob.getDate();
+            
             var age = {};
             var ageString = "";
             var yearString = "";
@@ -7490,13 +7513,21 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
             yearString = "yrs";
             monthString = "m";
+            dayString = "days";
 
             if (age.years === 0) {
-                if (age.days <= 15) {
+               /* if (age.days <= 15) {
                     return ageString = age.months + monthString;;
                 } else if (age.days > 15) {
                     return ageString = (age.months + 1) + monthString;;
-                }
+                }*/
+                //var sdt = new Date('1993-10-20');
+                var dob1 = new Date(dateString);
+                var difdt1 = new Date(new Date() - dob1);
+                var num_years = difdt1/31536000000;
+                var num_months = (difdt1 % 31536000000)/2628000000;
+                var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
+                return ageString = Math.floor(num_months) + monthString + '/' + Math.floor(num_days) + dayString ;
             }
             if (age.years > 0) {
                 if (age.days <= 15) {
