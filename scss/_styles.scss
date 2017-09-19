@@ -3904,7 +3904,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
     .UserHomeHeader {
         top: 5px;
         padding: 11px;
-        height: 104px;
+        height: 80px;
         margin-bottom: -28px;
         .UserhmePatientDetails {
             margin-left: 0px;
@@ -3928,7 +3928,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
     margin-left: 10px;
 }
 .UserHomeNextAppointment {
-    top: -2px;
+    top: 22px;
     height: 54px;
     .icon-video_camera {
         font-size: 30px !important;
@@ -3996,7 +3996,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 }
 .DependentList {
     padding: 11px;
-    top: -2px;
+    top: 25px;
     height: 79px;
     a {
         cursor: pointer;
@@ -4557,6 +4557,7 @@ textarea {
 }
 .item {
     border-color: #C4C5C3;
+    border-bottom: none;
 }
 .patientConternFontStyle {
     font-family: $fontFamily_semibold;
@@ -5654,7 +5655,7 @@ hr {
 }
 
 .inside
-{
+{ 
     width: 0px;
     /* position: relative; */
     height: 0px;
@@ -5668,6 +5669,7 @@ hr {
     /* width: 100px; */
     /* height: 50px; */
     position: absolute;
+    top: 76px;
 }
 
 .regCountryOpt {
@@ -5693,4 +5695,92 @@ hr {
     margin-top: 21px;
     padding-left: 3%;
     padding-bottom: 5px;
+}
+
+.UserHomeNextAppointment1 {
+    top: 16px;
+    height: 54px;
+    position:relative;
+    .icon-video_camera {
+        font-size: 30px !important;
+    }
+    .icon-phone {
+        position: relative;
+        top: -3px;
+    }
+    a {
+        margin-left: 10px;
+        .UHomeNextAppoinment {
+            font-size: 14px;
+            top: 1px;
+            color: #888;
+            margin-left: -5px;
+        }
+        h2 {
+            margin-left: 4px;
+            margin-top: -20px;
+            font-size: 22px;
+            color: rgb(255, 255, 255);
+            font-family: GloberBold;
+            .NextAppointTime {
+                font-size: 18px;
+            }
+            .NextAppointAMorPM {
+                font-size: 14px;
+            }
+        }
+        .nextList {
+            /*color: white;
+            margin-right: 12px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            border: solid 1px white;
+            margin-top: -31px;
+            padding: 5px 12px;
+            border-radius: 50%;
+                color: white;
+                margin-right: 12px;
+                -moz-border-radius: 50%;
+                border: solid 1px white;
+                margin-top: -25px;
+                padding: 0px 7px;
+                border-radius: 50%;*/
+
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            padding-left: 7px;
+            margin-top: -23px;
+            border: 1px solid white;
+            color: white;
+            margin-right: 12px;
+        }
+        .AppointmentView {
+                    float: right;
+                    font-size: 14px;
+                    margin-right: 39px;
+                    color: white;
+                    margin-top: -26px;
+                    font-family: GloberSemiBold;
+        }
+    }
+}
+
+
+.inside1
+{ 
+    width: 0px;
+     position: relative; 
+    height: 0px;
+    border-style: solid;
+    margin: auto;
+    border-width: 6px 14px 0 14px !important;
+    border-color: white transparent transparent transparent;
+    line-height: 0px;
+    z-index: 2000;
+    left: 2%;
+    /* width: 100px; */
+    /* height: 50px; */
+    /* position: absolute; */
+    top: 26px;
 }

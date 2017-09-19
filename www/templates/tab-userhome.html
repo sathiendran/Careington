@@ -49,7 +49,7 @@
     </ion-refresher></div>
 
 	<a ng-if="primaryPatientName != ''" class="UserHomePatient"  ng-click = "GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'patientClick')">
-		<ion-item class="UserHomeHeader" ng-hide="data.searchQuery" style="border: none; top: -2px;">
+		<ion-item class="UserHomeHeader" ng-hide="data.searchQuery" style="border: none; top: -2px;border-bottom: 1px solid #9D9E9C;">
 			 <div class="HrefListView">
 				<div class="UserhmePatientDetails">
 				<!--	<img ng-src="{{PatientImage}}" src="{{PatientImage}}" class="UserHmelistImgView">-->
@@ -112,8 +112,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="inside"></div>
-			<div ng-if="dependentDetails.patientId == dependentDetails.appoint.patientId" style="background-color: {{dependentDetails.appoint.userHomeRecentAppointmentColor}}; border-top: none; display: {{dependentDetails.appoint.nextAppointmentDisplay}}; margin-bottom: 17px;"  class="UserHomeNextAppointment ItemList outside" ng-hide="data.searchQuery"  ng-click="GoToappoimentDetailsFromUserHome(dependentDetails.appoint, 'userHome')" >
+		<div class="inside1"></div>
+			<div ng-if="dependentDetails.patientId == dependentDetails.appoint.patientId" style="background-color: {{dependentDetails.appoint.userHomeRecentAppointmentColor}}; border-top: none; display: {{dependentDetails.appoint.nextAppointmentDisplay}}; margin-bottom: 17px;"  class="UserHomeNextAppointment1 ItemList outside" ng-hide="data.searchQuery"  ng-click="GoToappoimentDetailsFromUserHome(dependentDetails.appoint, 'userHome')" >
 				<a class="HrefListView"  >
 					<h2>
 						 <i ng-if="dependentDetails.appoint.encountertypecode == 3" ng-bind-html="drawSVGCIcon('video_camera')" class="ng-binding">
