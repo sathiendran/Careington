@@ -244,7 +244,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
             $mainHub.start();
             snap.hub.mainHub().stop();
         }  */
-         $scope.betDelay=false;    
+         $scope.betDelay=false;
     }
 
     $scope.doGetAppointPaymentStatus = function() {
@@ -323,7 +323,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                     'participants': angular.fromJson(index.participants),
                     'patientId': index.patientId,
                     'waiveFee': index.waiveFee,
-                    'encountertypecode':index.encounterTypeCode,
+                    'encounterTypeCode':index.encounterTypeCode,
                     'patientName': $scope.paticipatingPatientName,
                     'patientInitial': $scope.paticipatingPatientInitial,
                     'patientImage': $scope.paticipatingPatientPhoto,
