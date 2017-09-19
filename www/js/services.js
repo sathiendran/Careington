@@ -406,8 +406,15 @@ angular.module('starter.services', [])
 
 	this.getScheduledNowPhoneConsulatation = function (params) {
 			var requestInfo = {
-					headers: util.getHeaders(params.accessToken),
-		 url: apiCommonURL + '/api/v2.1/patients/filtered-appointments?appointmentStatusCodes=2&appointmentTypeCodes=1&appointmentTypeCodes=3&patientIds=' + params.patientId +'&includePatientDependents=true',
+				//	headers: util.getHeaders(params.accessToken),
+					headers: {
+							'Authorization': 'Bearer ' +params.accessToken,
+							'X-Api-Key': util.getHeaders()["X-Api-Key"],
+							'X-Developer-Id': util.getHeaders()["X-Developer-Id"],
+							'Time-Zone': 'West Asia Standard Time',
+							'Content-Type': params.userTimeZoneId
+					},
+		      url: apiCommonURL + '/api/v2.1/patients/filtered-appointments?appointmentStatusCodes=2&appointmentTypeCodes=1&appointmentTypeCodes=3&patientIds=' + params.patientId +'&includePatientDependents=true',
 					method: 'GET'
 			};
 

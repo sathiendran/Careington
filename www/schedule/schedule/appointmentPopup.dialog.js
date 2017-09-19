@@ -10,7 +10,7 @@
         "snap.patient.schedule.patientAppointmentService",
         "snap.service.availabilityBlockService",
         "snap.common.schedule.ScheduleCommon",
-        "snap.admin.schedule.TimeUtils",
+        "snap.common.timeUtils",
         "snap.service.selfSchedulingService"])
         .define("appointmentDialog", function ($snapNotification,
             $eventAggregator, $appointmentFactory, $appointmentsService,
@@ -36,7 +36,7 @@
 
                 return dfd.promise();
             }
-            
+
             function open(eventVM) {
                 close();
 
@@ -83,7 +83,7 @@
 
                         currentDialog = $container.data("kendoWindow");
                     }
-                    
+
                     kendo.bind($container, eventVM);
 
                     $container.show();
@@ -98,6 +98,23 @@
 
                     $container.find(".k-grid-header").css('display', 'none');
 
+                    $(".k-overlay").click(function () {
+                        close();
+                    });
+
+                    $("#patientPopUpContainer").click(function (e) {
+                        var div = eventVM._type + "_editor";
+
+                        if(e.target.id == div){
+                            close();
+                        }
+
+                        if (e.target !== this)
+                            return;
+
+                        close();
+                    });
+
                     dfd.resolve();
                 });
 
@@ -109,8 +126,8 @@
                     $(container).find('.dialogbox-master').addClass("is-hidden");
                     $snapNotification.hideAllConfirmations();
                     setTimeout(function(){
-                        currentDialog.close();
-                        currentDialog.destroy();
+                      //  currentDialog.close();
+                        //currentDialog.destroy();
                         currentDialog = null;
                         $eventAggregator.published(dlg.appointmentPopupClosedEvent);
                     }, 200);
@@ -143,14 +160,10 @@
             /*********************** PUBLIC METHODS *****************************/
             this.open = function (opt) {
                 var event = $appointmentFactory.createNew(opt);
-                
+
                 event = kendo.observable(event);
                 open(event).done(function () {
-                    // var editor = $("#editor").data("kendoEditor");
-                    // if (editor !== null) {
-                    //     editor.refresh();
-                    // }
-
+                    // Empty is intentional
                 });
 
                 return event;
@@ -185,6 +198,12 @@
                             }
                         },
                         participantTypeCode: $scheduleCommon.participantTypeCode.practicioner
+                    }, {
+                        appointmentId: null,
+                        attendenceCode: $scheduleCommon.attendenceCode.required,
+                        person: {},
+                        participantTypeCode: $scheduleCommon.participantTypeCode.patient,
+                        patientId: dialogOpt.patientProfileId ? dialogOpt.patientProfileId : snap.profileSession.profileId
                     }];
 
                     var result = {
@@ -202,32 +221,15 @@
 
                         },
                         // we need this in order to select current patient in dialog. Currently we do not have api which can return person record on clinician site.
-                        patientProfileId: snap.profileSession.profileId
+                        patientProfileId: dialogOpt.patientProfileId ? dialogOpt.patientProfileId : snap.profileSession.profileId
                     };
-                   
-                        
-                    $selfSchedulingService.getFamillyGroup().done(function (resp) {
-                        for (var i = 0; i < resp.data.length; i++) {
-                            var patient = resp.data[i];
-                            if (patient.patientId === snap.profileSession.profileId) {
-                                result.appt.participants.push({
-                                    appointmentId: null,
-                                    attendenceCode: $scheduleCommon.attendenceCode.required,
-                                    person: patient.person,
-                                    participantTypeCode: $scheduleCommon.participantTypeCode.patient,
-                                    patientId: patient.patientId
-                                });
-                            }
-                        }
 
-                        var appt = that.open(result);
-                        dfd.resolve(appt);
-                    });
-
+                    var appt = that.open(result);
+                    dfd.resolve(appt);
             }).fail(function () {
                 $snapNotification.error("Provider card information is not available");
             });
-               
+
                 return dfd.promise();
             };
 
@@ -251,33 +253,27 @@
                     result.appt.end = $timeUtils.dateFromSnapDateString(result.appt.endTime);
                     result.appt.phoneNumber = result.appt.where;
                     result.appt.phoneType = result.appt.whereUse;
-                    $availabilityBlockService.getUserCurrentTime().done(function (resp) {
-                        var userDNATime = $timeUtils.dateFromSnapDateString(resp.data[0]);
-                        userDNATime.setMinutes(userDNATime.getMinutes() - 30);
-                        result.isFuture = userDNATime <= result.appt.end;
-                        $selfSchedulingService.getClinicianCard(result.appt.clinicianId, $timeUtils.dateToString($timeUtils.dateFromSnapDateString(result.appt.startTime))).done(function (clinicianResp) {
-                            var clinicianCard =  clinicianResp.data[0];
-                            result.clinicianCard = {
-                                userId: clinicianCard.userId,
-                                slots: clinicianCard.slots
+
+                    $selfSchedulingService.getClinicianCard(result.appt.clinicianId, $timeUtils.dateToString($timeUtils.dateFromSnapDateString(result.appt.startTime))).done(function (clinicianResp) {
+                        var clinicianCard =  clinicianResp.data[0];
+                        result.clinicianCard = {
+                            userId: clinicianCard.userId,
+                            slots: clinicianCard.slots
+                        };
+                        var clinician = $scheduleCommon.findProvider(result.appt.participants);
+                        if (clinician) {
+                            clinician.person.speciality = {
+                                primary: clinicianCard.medicalSpeciality,
+                                secondary: clinicianCard.subSpeciality
                             };
-                            var clinician = $scheduleCommon.findProvider(result.appt.participants);
-                            if (clinician) {
-                                clinician.person.speciality = {
-                                    primary: clinicianCard.medicalSpeciality,
-                                    secondary: clinicianCard.subSpeciality
-                                };
-                            }
-                        }).fail(function () {
-                            if (!result.isReadOnly) {
-                                result.isClinicianDisabled = true;
-                            }
-                        }).always(function () {
-                            var appt = that.open(result);
-                            dfd.resolve(appt);
-                        });
+                        }
                     }).fail(function () {
-                        dfd.reject();
+                        if (!result.isReadOnly) {
+                            result.isClinicianDisabled = true;
+                        }
+                    }).always(function () {
+                        var appt = that.open(result);
+                        dfd.resolve(appt);
                     });
                 });
 

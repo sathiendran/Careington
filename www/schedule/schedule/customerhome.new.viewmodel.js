@@ -168,12 +168,13 @@ var setUserVars = function() {
             function saveAppointmen(appt) {
                 var dfd = $.Deferred();
                 sessionStorage.setItem("appointPatId", appt.participants[1].patientId);
+                sessionStorage.setItem("waivefee", appt.waiveFee);
                 saveAppt(appt).done(function(appointmentResponse) {
                     if (appt.isNow && $overlay) {
                         var isLoading = true;
 
                         $overlay.loadOverlay();
-                        $overlay.setLoadingIcn("../images/Clipboard-Anim-C.svg");
+                        $overlay.setLoadingIcn("images/Clipboard-Anim-C.svg");
                         $overlay.toggleOverlay();
 
 
@@ -204,7 +205,7 @@ var setUserVars = function() {
                                     isLoading = false;
                                     var data = response.data[0];
                                     //this works slow
-                                    $overlay.setLoadingIcn("../images/Clipboard-Done-C.svg");
+                                    $overlay.setLoadingIcn("images/Clipboard-Done-C.svg");
                                     $overlay.setLoadingTxt("All set.");
 
                                     if (appt.encounterTypeCode === snap.enums.EncounterTypeCode.Phone) {
@@ -1005,7 +1006,7 @@ var setUserVars = function() {
                 var defaultPatient = {
                     id: null,
                     name: "Select a Patient",
-                    imageSource: "../images/Patient-Male.gif",
+                    imageSource: "images/Patient-Male.gif",
                     info: "For this appointment"
                 };
 
@@ -1020,7 +1021,7 @@ var setUserVars = function() {
                 this._removedSuccesfullyMessage = "The Appointment was removed successfully";
 
                 this.clinician = null;
-                this.clinicianImageSource = "../images/Patient-Male.gif";
+                this.clinicianImageSource = "images/Patient-Male.gif";
                 this.clinicianFullName = "Select a Provider";
 
 
@@ -2306,7 +2307,7 @@ var setUserVars = function() {
             var itemDefaultValues = {
                 id: null,
                 name: "Select a Person",
-                imageSource: "../images/default-user.jpg",
+                imageSource: "images/default-user.jpg",
                 info: "For the list",
             };
 
@@ -4711,13 +4712,15 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                                                 snap.openMobileApp(parseInt(newConsultationId), function() {
                                                     sessionStorage.setItem("consultationinitaction", "1");
                                                     //location.href = "/Customer/Main/#/Waiting";
-                                                    location.href = "#/tab/receipt/CTT/" +newConsultationId;
+                                                    //location.href = "#/tab/receipt/CTT/" +newConsultationId;
+                                                    location.href = "#/tab/consultCharge/CTT/" +newConsultationId;
                                                 });
                                                 return;
                                             }
                                             sessionStorage.setItem("consultationinitaction", "1");
                                             //location.href = "/Customer/Main/#/Waiting";
-                                            location.href = "#/tab/receipt/CTT/" +newConsultationId;
+                                          //  location.href = "#/tab/receipt/CTT/" +newConsultationId;
+                                              location.href = "#/tab/consultCharge/CTT/" +newConsultationId;
                                         }
                                     }
                                 });

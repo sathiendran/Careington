@@ -82,14 +82,14 @@ angular.module('starter.controllers')
         };
 
         $scope.doRefreshAccount = function() {
-            $rootScope.doGetIndividualScheduledConsulatation();
+            $rootScope.doGetScheduledNowPhoneConsulatation();
             $timeout(function() {
                 $scope.$broadcast('scroll.refreshComplete');
             }, 1000);
             $scope.$apply();
         };
         $scope.doRefreshUserPage = function() {
-            $rootScope.doGetIndividualScheduledConsulatation();
+            $rootScope.doGetScheduledNowPhoneConsulatation();
             $timeout(function() {
                 $scope.$broadcast('scroll.refreshComplete');
             }, 1000);
@@ -171,7 +171,7 @@ angular.module('starter.controllers')
 
         $rootScope.doGetCurrentUserAppointment = function() {
             $rootScope.passededconsultants();
-            $rootScope.doGetIndividualScheduledConsulatation();
+            $rootScope.doGetScheduledNowPhoneConsulatation();
 
             if ($rootScope.primaryPatientId === $rootScope.currentPatientDetails[0].account.patientId) {
                 $rootScope.viewmyhealthDisplay = 'block';

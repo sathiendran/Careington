@@ -3003,7 +3003,7 @@ a {
         margin: -5px;
     }
     .button-bar{
-      padding:2px 6%;
+      padding:2px 1%;
     }
 
     .userAccountPanel {
@@ -3932,6 +3932,10 @@ form.ng-submitted input.ng-valid + i.icon.error {
     height: 54px;
     .icon-video_camera {
         font-size: 30px !important;
+    }
+    .icon-phone {
+        position: relative;
+        top: -3px;
     }
     a {
         margin-left: 10px;
@@ -5670,4 +5674,23 @@ hr {
     font-family: Glober Regular !important;
     font-size: 16px;
     padding-top: 2px;
+}
+.appointInQueueTitle {
+    font-family: Glober Regular;
+    font-size: 13pt;
+    color: #999999 !important;
+    margin-top: 21px;
+    padding-left: 3%;
+    padding-bottom: 5px;
+}
+.appointInQueueMainDiv{
+  padding-bottom: 15px;
+}
+.appointScheduledMainDiv {
+    font-family: Glober Regular;
+    font-size: 13pt;
+    color: #999999 !important;
+    margin-top: 21px;
+    padding-left: 3%;
+    padding-bottom: 5px;
 }

@@ -97,8 +97,8 @@ angular.module('starter.controllers')
       var currentUserHomeDate = d;
 
         $scope.doRefreshApptDetails = function() {
-            $rootScope.doGetScheduledConsulatation();
-            $rootScope.doGetIndividualScheduledConsulatation();
+            $rootScope.doGetScheduledNowPhoneConsulatation();
+          //  $rootScope.doGetIndividualScheduledConsulatation();
             $timeout(function() {
                 $scope.$broadcast('scroll.refreshComplete');
             }, 1000);
@@ -111,8 +111,8 @@ angular.module('starter.controllers')
         }
 
         if($stateParams.getPage === 'webSSCancel'){
-          $rootScope.doGetScheduledConsulatation();
-          $rootScope.doGetIndividualScheduledConsulatation();
+          $rootScope.doGetScheduledNowPhoneConsulatation();
+        //  $rootScope.doGetIndividualScheduledConsulatation();
         }
 
       /*  $rootScope.doGetAppointmentConsultationId = function(appointmentId, personId) {
@@ -178,7 +178,7 @@ angular.module('starter.controllers')
 
               $rootScope.appointmentDisplay = "test";
               $scope.$root.$broadcast("callAppointmentConsultation");
-              
+
           //  $rootScope.doGetAppointmentConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');
         };
 
@@ -204,7 +204,7 @@ angular.module('starter.controllers')
             myEl.addClass('btnextcolor');
             $scope.addmore = true;
             $scope.healthhide = false;
-            $rootScope.doGetScheduledConsulatation();
+            $rootScope.doGetScheduledNowPhoneConsulatation();
         }
 
         if ($rootScope.getIndividualScheduleDetails !== undefined && $rootScope.getIndividualScheduleDetails.length !== 0) {
@@ -314,7 +314,7 @@ angular.module('starter.controllers')
             myEl.addClass('btnextcolor');
             $scope.healthsearchhide = false;
             $scope.addmoresearch = true;
-            $rootScope.doGetScheduledConsulatation();
+            $rootScope.doGetScheduledNowPhoneConsulatation();
         }
 
         $scope.goTOSchedule = function() {

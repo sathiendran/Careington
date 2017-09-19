@@ -1,4 +1,4 @@
-//@ sourceURL=apptSlotsTray.viewmodel.js
+﻿//@ sourceURL=apptSlotsTray.viewmodel.js
 
 (function ($, snap, kendo) {
     "use strict";
@@ -48,7 +48,7 @@
                 };
             })();
 
-           function Tray(clinicianCard, scheduleDate, slotClickCallback, refreshCardOnSlotLockUnlock) {
+           function Tray(clinicianCard, scheduleDate, slotClickCallback, refreshCardOnSlotLockUnlock) { 
                 this.userSelectedDate = new Date(scheduleDate);
                 this.userSelectedDate.setHours(0, 0, 0, 0);
 
@@ -72,7 +72,7 @@
                             halfOfApptDuration = getHalfOfAppointmentDuration(),
                             nowStart = new Date(firstSlot.from.getTime() - halfOfApptDuration * 60000),
                             nowEnd = new Date(firstSlot.from.getTime() + halfOfApptDuration * 60000);
-
+                        
                         firstSlot.isNow = nowStart < currentTime && currentTime < nowEnd;
                     }
 
@@ -94,6 +94,12 @@
                     });
 
                     return slots.length > 0;
+                };
+
+                this.hasSlotForNextDate = function() {
+                    var nextDay = getClosestNextSlotDate(this.slots);
+
+                    return nextDay ? true : false;
                 };
 
                 // this.vm_onNextButtuonClick = function() {
@@ -138,7 +144,7 @@
                         return null;
                     }
 
-                    var minDate = new Date(Math.min.apply(null,dates));
+                    var minDate = new Date(Math.min.apply(null,dates)); 
                     minDate.setHours(0, 0, 0, 0);
 
                     return minDate;
@@ -177,6 +183,17 @@
 
                 this.vm_isInvisible = false;
                 this.vm_onSlotClick = function () {
+                    var that = this;
+                    if (this.isNow) {
+                        if (kendo.support.mobileOS !== false) {
+                            snap.openMobileApp("", function () {
+                                slotClickCallback({ clinicianId: that.clinicianUserId, start: new Date(that.from), end: new Date(that.to), availabilityBlockId: that.availabilityBlockId, isNow: that.isNow });
+                                $eventAggregator.published("slotTray_slotClickCallback");
+                            });
+                            return;
+                        }
+
+                    }
                     slotClickCallback({ clinicianId: this.clinicianUserId, start: new Date(this.from), end: new Date(this.to), availabilityBlockId: this.availabilityBlockId, isNow: this.isNow });
                     $eventAggregator.published("slotTray_slotClickCallback");
                 };
@@ -196,7 +213,7 @@
                     this.set("vm_isInvisible", true);
 
                     if(refreshCardOnSlotLockUnlock) {
-                        refreshCardOnSlotLockUnlock();
+                        refreshCardOnSlotLockUnlock();    
                     }
                 };
 

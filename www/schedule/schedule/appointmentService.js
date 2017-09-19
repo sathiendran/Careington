@@ -1,8 +1,9 @@
 (function ($, snap) {
     "use strict";
 
-    snap.namespace("snap.patient.schedule").use(["snap.service.selfSchedulingService", "snap.common.timeUtils", "snap.common.overlay"])
-        .define("patientAppointmentService", function ($selfSchedulingService, $timeUtils, $overlay) {
+    snap.namespace("snap.patient.schedule").use(["snap.service.selfSchedulingService", "snap.common.timeUtils", "snap.common.overlay",
+        "snap.patient.patientEnterConsultationHelper"])
+        .define("patientAppointmentService", function ($selfSchedulingService, $timeUtils, $overlay, $patientEnterConsultationHelper) {
             var formatErrorMessage = function (error) {
                 if (typeof (error) === "undefined" || error === null) {
                     return "Unknown error";
@@ -68,7 +69,7 @@
                         var isLoading = true;
 
                         $overlay.loadOverlay();
-                        $overlay.setLoadingIcn("../images/Clipboard-Anim-C.svg");
+                        $overlay.setLoadingIcn("images/Clipboard-Anim-C.svg");
                         $overlay.toggleOverlay();
 
 
@@ -97,7 +98,7 @@
                                     isLoading = false;
                                     var data = response.data[0];
                                     //this works slow
-                                    $overlay.setLoadingIcn("../images/Clipboard-Done-C.svg");
+                                    $overlay.setLoadingIcn("images/Clipboard-Done-C.svg");
                                     $overlay.setLoadingTxt("All set.");
 
                                     if (appt.encounterTypeCode === snap.enums.EncounterTypeCode.Phone) {
@@ -106,7 +107,7 @@
                                         $overlay.setSubTxt(" ");
                                     }
 
-                                    Snap.Patient.PatientHomeNewViewModel().goToSchedConsultInternal(data, function() {
+                                    $patientEnterConsultationHelper.enterConsultation(data).done(function() {
                                         window.setTimeout(function() {
                                             $overlay.toggleOverlay();
                                         }, 2000);
