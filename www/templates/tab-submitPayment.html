@@ -59,7 +59,12 @@
                      <div  class="dropdownContainer">
 
                           <div id="cardViewport" class="cardViewport" style="margin-top: 8px;">
-                            <div class="insCardName"><img class="cardlogo" src="{{userCardType}}"></div><div class="insCardNumber">{{ 'XXXX-XXXX-XXXX-'+userCardNumber}}</div>
+                            <div class="insCardName"><img ng-if="userCardType != 'logoNone'" class="cardlogo" src="{{userCardType}}">
+
+                             <i  ng-if="userCardType == 'logoNone'" ng-bind-html="drawSVGCIcon('creditcard')"></i>
+
+
+                            </div><div class="insCardNumber">{{ 'XXXX-XXXX-XXXX-'+userCardNumber}}</div>
                           </div>
                           <!-- <div ng-if="userCardNumber == 'Choose Your Card'" id="cardViewport" class="cardViewport" style="margin-top: 8px;">
                             <div class="insCardNumber">{{userCardNumber}}</div>
