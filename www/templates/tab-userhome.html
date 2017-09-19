@@ -65,7 +65,7 @@
 	</a>
 			 <div style="display: none;"><timer end-time="time"></timer></div>
 
-			<div class="inside"></div>
+			<div class="inside" ng-if="primaryAppointDetails != ''"></div>
 			<ion-item  class="UserHomeNextAppointment ItemList outside" ng-hide="data.searchQuery" ng-repeat="scheduledListData in primaryAppointDetails"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData, 'userHome')" ng-if="$first" style="background-color: {{scheduledListData.userHomeRecentAppointmentColor}}; border-top: none; display: {{scheduledListData.nextAppointmentDisplay}}; margin-bottom: 17px;" >
 				<a class="HrefListView"  >
 					 <h2>
@@ -100,7 +100,8 @@
 
 
 		<div style="top: -2px;" ng-repeat="dependentDetails in (filteredResult = (RelatedPatientProfiles | filter: data.searchQuery))" ng-if="dependentDetails.isAuthorized !== false" >
-			<div class="DependentList item">
+			
+			<div class="DependentList item">		
 			 <div class="HrefListViewDependent"  ng-click= "GoToPatientDetails(location,dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,dependentDetails.patientId, dependentDetails.isAuthorized, 'patientClick')">
 				<div class="UserhmePatientDetails">
 					<!--	<img ng-src="{{dependentDetails.profileImagePath}}" src="{{dependentDetails.profileImagePath}}" class="UserHmelistImgView">-->
@@ -112,7 +113,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="inside1"></div>
+
+
+		<div class="inside1" ng-if="dependentDetails.patientId == dependentDetails.appoint.patientId"></div>
 			<div ng-if="dependentDetails.patientId == dependentDetails.appoint.patientId" style="background-color: {{dependentDetails.appoint.userHomeRecentAppointmentColor}}; border-top: none; display: {{dependentDetails.appoint.nextAppointmentDisplay}}; margin-bottom: 17px;"  class="UserHomeNextAppointment1 ItemList outside" ng-hide="data.searchQuery"  ng-click="GoToappoimentDetailsFromUserHome(dependentDetails.appoint, 'userHome')" >
 				<a class="HrefListView"  >
 					<h2>
