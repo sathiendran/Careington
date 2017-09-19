@@ -244,8 +244,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
             $mainHub.start();
             snap.hub.mainHub().stop();
         }  */
-         $scope.betDelay=false;
-    };
+         $scope.betDelay=false;    
     }
 
     $scope.doGetAppointPaymentStatus = function() {
