@@ -245,10 +245,6 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
             snap.hub.mainHub().stop();
         }  */
          $scope.betDelay=false;
-      $scope.doGetSelectedappoimentDetails(sessionStorage.getItem("SSscheduledAppointmentId"));
-         if($stateParams.getPage === 'webSSAppointUpdate'){
-      $scope.doGetSelectedappoimentDetails(sessionStorage.getItem("SSscheduledAppointmentId"));
-      $scope.doRefreshAccountdetails(sessionStorage.getItem("SSscheduledAppointmentId"));
     };
     }
 
@@ -484,7 +480,6 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
 
     if($stateParams.getPage === 'webSSAppointUpdate'){
       $scope.doGetSelectedappoimentDetails(sessionStorage.getItem("SSscheduledAppointmentId"));
-      $scope.doRefreshAccountdetails();
     };
 
     $scope.$on("callAppointmentConsultation", function(event, args) {

@@ -52,7 +52,7 @@
             </div>
          </div>
       </div>
-   </ion-header-bar>
+   </ion-header-bar> {{appointmentsPatientId}}--{{patientId}} -- {{individualwithoutAppointmentDisplay}} -- {{individualNextAppointmentDisplay}}
    <ion-view title="User Account Details" ng-if="appointmentsPatientId != patientId"  >
       <ion-content padding="true"  title="User Account" class="usercontent-{{deviceName}} scroll-content ionic-scroll  has-header"  style="display: {{individualwithoutAppointmentDisplay}};">
          <ion-refresher on-refresh="doRefreshAccount()"></ion-refresher>
@@ -153,7 +153,8 @@
                <span>Appointment @ {{scheduledListData.scheduledTime | date: "hh:mm"}}</span>
                <span style="text-transform: lowercase;">{{scheduledListData.scheduledTime | date: "a"}}</span>
                <span id="viewicon" class="accountAppointview-{{deviceName}}">
-               <a class="appalignrighticon"> View Details</a>
+               <a class="appalignrighticon" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">In queue</a>
+               <a class="appalignrighticon" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'"> View Details</a>
                <span  class="aslignspan"><i class="accNextAppoint-{{deviceName}}" ng-bind-html="drawSVGCIcon('chevron-with-circle-right');"  ></i>
                </span>
                </span>

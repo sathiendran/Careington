@@ -145,12 +145,7 @@
                               <div class="insCHooseProviderName">Choose Your Card</div>
                            </div>
                            <div ng-if="userDefaultPaymentProfileText != null && userDefaultPaymentProfileText != 'undefined'" id="cardViewport" class="cardViewport">
-                               <div class="insCardName">
-
-                                <img class="cardlogo" ng-if="userDefaultPaymentLogo != 'logoNone'" src="{{userDefaultPaymentLogo}}">
-
-                              <i  ng-if="userDefaultPaymentLogo == 'logoNone'" ng-bind-html="drawSVGCIcon('creditcard')"></i>
-                             </div><div class="insCardNumber">{{'XXXX-XXXX-XXXX-'+userDefaultPaymentProfileText}}</div>
+                             <div class="insCardName"><img class="cardlogo" src="{{userCardType}}"></div> <div class="insCardNumber">{{ 'XXXX-XXXX-XXXX-'+userDefaultPaymentProfileText}}</div>
                            </div>
 
                       <select class="consultHealthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-change="cardchange('consulCharge')">

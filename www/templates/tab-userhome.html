@@ -61,26 +61,31 @@
 					<i class="iconfontSVG ListLinkHref UserHomeIcon" ng-bind-html="drawSVGCIcon('chevron-right')"></i>
 				</div>
 			 </div>
-</a>
+		 </ion-item>
+	</a>
 			 <div style="display: none;"><timer end-time="time"></timer></div>
 
 			<div class="inside"></div>
-			<ion-item style="background-color: {{userHomeRecentAppointmentColor}}; border-top: none; display: {{nextAppointmentDisplay}};    margin-bottom: 17px;"  class="UserHomeNextAppointment ItemList outside" ng-hide="data.searchQuery" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData, 'userHome')" ng-if="$first">
+			<ion-item  class="UserHomeNextAppointment ItemList outside" ng-hide="data.searchQuery" ng-repeat="scheduledListData in primaryAppointDetails"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData, 'userHome')" ng-if="$first" style="background-color: {{scheduledListData.userHomeRecentAppointmentColor}}; border-top: none; display: {{scheduledListData.nextAppointmentDisplay}}; margin-bottom: 17px;" >
 				<a class="HrefListView"  >
-				  <!-- <span class = "ListText UHomeNextAppoinment">Next Appointment:</span>
-				    <h2 class="DateFormateStyle"><b>{{scheduledListData.scheduledTime | date: "MMM dd"}} </b> <span class="NextAppointTime"><sup>@</sup></span> <b>{{scheduledListData.scheduledTime | date: "hh:mm"}}</b><span class="NextAppointAMorPM"  style="font-size: 15px; font-weight: bold;">{{scheduledListData.scheduledTime | date: "a"}}</span></h2> -->
-				    <h2><i ng-bind-html="drawSVGCIcon('video_camera')" class="ng-binding"><svg class="iconImg-video_camera"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-video_camera"></use></svg></i> <span style="top: -7px;position: relative;padding-left: 5px;">Appt @  <b>{{scheduledListData.scheduledTime | date: "hh:mm a" | lowercase}}</b></span></h2>
-				   <list class="ion-chevron-right ListLinkHref nextList" style="    top: -7px !important;
-    position: relative !important;
-    font-size: 22px  !important;"></list>
-				   <span class="DateFormateStyle AppointmentView" style="top: -5px;
-    position: relative;">View Details</span>
+					 <h2>
+								<i ng-if="scheduledListData.encounterTypeCode == 3" ng-bind-html="drawSVGCIcon('video_camera')" class="ng-binding">
+									<svg class="iconImg-video_camera"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-video_camera"></use></svg>
+								</i>
+								<i ng-if="scheduledListData.encounterTypeCode != 3" ng-bind-html="drawSVGCIcon('phone')" class="ng-binding" style="font-size: 30px;">
+									<svg class="iconImg-phone"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-phone"></use></svg>
+								</i>
+							 <span style="top: -7px;position: relative;padding-left: 5px;">Appt @  <b>{{scheduledListData.scheduledTime | date: "hh:mm a" | lowercase}}</b></span>
+					</h2>
+				   <list class="ion-chevron-right ListLinkHref nextList" style="top: -7px !important; position: relative !important; font-size: 22px  !important;"></list>
+				   <span ng-if="scheduledListData.appointmentStatusCode == 'Waiting'" class="DateFormateStyle AppointmentView" style="top: -5px; position: relative;">In queue</span>
+					 <span ng-if="scheduledListData.appointmentStatusCode != 'Waiting'" class="DateFormateStyle AppointmentView" style="top: -5px; position: relative;">View Details</span>
 
 			    </a>
 			</ion-item>
 
-		</ion-item>
-	
+
+
 
 	<!--<ion-item class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-click="GoToPatientDetails()">
 			<a class="HrefListView"  >
@@ -90,13 +95,13 @@
 			   <span class="DateFormateStyle AppointmentView" >View Details</span>
 		    </a>
 		</ion-item>-->
-		
 
 
 
-		<ion-item class="DependentList" style="top: -2px;" ng-repeat="dependentDetails in (filteredResult = (RelatedPatientProfiles | filter: data.searchQuery))" ng-if="dependentDetails.isAuthorized !== false"  ng-click= "GoToPatientDetails(location,dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,dependentDetails.patientId, dependentDetails.isAuthorized, 'patientClick')">
-			<!-- <a class="HrefListView">   -->
-			 <div class="HrefListViewDependent">
+
+		<div style="top: -2px;" ng-repeat="dependentDetails in (filteredResult = (RelatedPatientProfiles | filter: data.searchQuery))" ng-if="dependentDetails.isAuthorized !== false" >
+			<div class="DependentList item">
+			 <div class="HrefListViewDependent"  ng-click= "GoToPatientDetails(location,dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,dependentDetails.patientId, dependentDetails.isAuthorized, 'patientClick')">
 				<div class="UserhmePatientDetails">
 					<!--	<img ng-src="{{dependentDetails.profileImagePath}}" src="{{dependentDetails.profileImagePath}}" class="UserHmelistImgView">-->
 				<div class="userHomeImage" ng-bind-html="drawImage(dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName)"></div>
@@ -106,9 +111,25 @@
 						<i class="iconfontSVG ListLinkHref UserHomeIcon" ng-bind-html="drawSVGCIcon('chevron-right')"></i>
 				</div>
 			</div>
-			<!-- </a>-->
-
-		</ion-item>
+		</div>
+		<div class="inside"></div>
+			<div ng-if="dependentDetails.patientId == dependentDetails.appoint.patientId" style="background-color: {{dependentDetails.appoint.userHomeRecentAppointmentColor}}; border-top: none; display: {{dependentDetails.appoint.nextAppointmentDisplay}}; margin-bottom: 17px;"  class="UserHomeNextAppointment ItemList outside" ng-hide="data.searchQuery"  ng-click="GoToappoimentDetailsFromUserHome(dependentDetails.appoint, 'userHome')" >
+				<a class="HrefListView"  >
+					<h2>
+						 <i ng-if="dependentDetails.appoint.encountertypecode == 3" ng-bind-html="drawSVGCIcon('video_camera')" class="ng-binding">
+							 <svg class="iconImg-video_camera"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-video_camera"></use></svg>
+						 </i>
+						 <i ng-if="dependentDetails.appoint.encountertypecode != 3" ng-bind-html="drawSVGCIcon('phone')" class="ng-binding" style="font-size: 30px;">
+							 <svg class="iconImg-phone"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-phone"></use></svg>
+						 </i>
+						<span style="top: -7px;position: relative;padding-left: 5px;">Appt @  <b>{{dependentDetails.appoint.scheduledTime | date: "hh:mm a" | lowercase}}</b></span>
+				 </h2>
+					<list class="ion-chevron-right ListLinkHref nextList" style="top: -13px !important; position: relative !important; font-size: 22px  !important;"></list>
+					<span ng-if="dependentDetails.appoint.appointmentStatusCode == 'Waiting'" class="DateFormateStyle AppointmentView" style="top: -10px; position: relative;">In queue</span>
+					<span ng-if="dependentDetails.appoint.appointmentStatusCode != 'Waiting'" class="DateFormateStyle AppointmentView" style="top: -10px; position: relative;">View Details</span>
+				 </a>
+			</div>
+		</div>
 
 		<ion-item ng-if="searched == true && filteredResult == ''" class="noResult" > Search result not found! </ion-item>
 		<div ng-controller="appoimentDetailsCtrl">
