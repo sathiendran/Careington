@@ -727,7 +727,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     var checkAndChangeMenuIcon;
     $interval.cancel(checkAndChangeMenuIcon);
     $scope.currentstateview = true;
-    $rootScope.checkAndChangeMenuIcon = function() {
+    /*$rootScope.checkAndChangeMenuIcon = function() {
         if (!$ionicSideMenuDelegate.isOpen(true)) {
             if ($('#BackButtonIcon svg').hasClass("ion-close")) {
                 $('#BackButtonIcon svg').removeClass("ion-close");
@@ -741,7 +741,42 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
     }
 
-    $scope.toggleLeft = function() {
+    $rootScope.toggleLeft = function() {
+        $rootScope.statename = $rootScope.currState.$current.name;
+        $ionicSideMenuDelegate.toggleLeft();
+        $rootScope.checkAndChangeMenuIcon();
+        if (checkAndChangeMenuIcon) {
+            $interval.cancel(checkAndChangeMenuIcon);
+        }
+        if ($rootScope.statename === "tab.userhome") {
+            $('.sideuserhome').addClass("uhome");
+
+        }
+        if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle") {
+            checkAndChangeMenuIcon = $interval(function() {
+                if ($rootScope.checkAndChangeMenuIcon) {
+                    $rootScope.checkAndChangeMenuIcon();
+                }
+            }, 300);
+        }
+    };*/
+
+
+$rootScope.checkAndChangeMenuIcon = function() {
+            if (!$ionicSideMenuDelegate.isOpen(true)) {
+                if ($('#BackButtonIcon svg').hasClass("ion-close")) {
+                    $('#BackButtonIcon svg').removeClass("ion-close");
+                    $('#BackButtonIcon svg').addClass("icon-menu");
+                }
+            } else {
+                if ($('#BackButtonIcon svg').hasClass("icon-menu")) {
+                    $('#BackButtonIcon svg').removeClass("icon-menu");
+                    $('#BackButtonIcon svg').addClass("ion-close");
+                }
+            }
+        }
+
+    $rootScope.toggleLeft = function() {
         $rootScope.statename = $rootScope.currState.$current.name;
         $ionicSideMenuDelegate.toggleLeft();
         $rootScope.checkAndChangeMenuIcon();
@@ -760,7 +795,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             }, 300);
         }
     };
-
+    
     $scope.doRefreshUserHome = function() {
         $rootScope.doGetPatientProfiles();
         $rootScope.cuttlocations = "tab.ReportScreen";
@@ -4111,11 +4146,18 @@ $scope.EditHealth = {};
         } else {
             if ($('option:selected', this).text() === 'Choose Your Card') {
               $rootScope.editCardStyle ="none";
+              $("div.cardViewport").empty();
               $("div.cardViewport").html('<div class="insCHooseProviderName">Choose Your Card</div>');
             } else {
               $rootScope.editCardStyle ="block";
               var payValue = ($('option:selected', this).val()).split("@");
-              $("div.cardViewport").html('<div class="insCardName"><img class="cardlogo" src = "'+payValue[3]+'" /></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+              $("div.cardViewport").empty();
+              if(payValue[3] != "logoNone" )
+              {
+                  $("div.cardViewport").html('<div class="insCardName"><img class="cardlogo" src = "'+payValue[3]+'" /></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+              }else{
+                $("div.cardViewport").html('<div class="insCardName"> <i class="iconfontSVG"><svg version="1.1" id="Credit_card" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 3 150 55" enable-background="new 0 3 150 55" width="10cm" height="10cm" preserveAspectRatio="xMinYMin meet"><path d="M18,3H2C0.899,3,0,3.9,0,5v10c0,1.1,0.899,2,2,2h16c1.1,0,2-0.9,2-2V5C20,3.9,19.1,3,18,3z M18,15H2V9h16V15z M18,6H2V5h16    V6z M4,11.1v0.6h0.6v-0.6H4z M7.6,12.299V12.9h1.2v-0.601h0.6v-0.6H10v-0.6H8.8v0.6H8.199v0.6H7.6z M10,12.9v-0.601H9.399V12.9H10z     M7,12.9v-0.601H5.8V12.9H7z M7.6,11.699h0.6v-0.6H7v1.199h0.6V11.699z M5.199,12.299H5.8v-0.6h0.6v-0.6h-1.2v0.6H4.6v0.6H4V12.9    h1.199V12.299z"></path></svg></i></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+            }
             // $("div.cardViewport").html('<div class="parenttt" style=" display: table;padding: 4px;  width: 100%;  margin: -10px 5px;"><div class="insCardImage"><img src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png"  style =" width: 75px;  height: 50px;vertical-align: middle;"/> '+payValue[1]+'</div> <div class="insCardNumber" style =" vertical-align: middle;display: table-cell; text-align: justify; font-family: GloberSemiBold; font-size: 21px;padding: 12px 0px 12px 25px;">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div> </div>');
             }
             //$('div.cardViewport').text($("option:selected", this).text());
@@ -4132,11 +4174,21 @@ $scope.EditHealth = {};
             //$('div.cardViewport').text($("option:selected", this).text());
             if ($('option:selected', this).text() === 'Choose Your Card') {
               $rootScope.editCardStyle ="none";
+              $("div.cardViewport").empty();
               $("div.cardViewport").html('<div class="insCHooseProviderName">Choose Your Card</div>');
             } else {
               $rootScope.editCardStyle ="block";
               var payValue = ($('option:selected', this).val()).split("@");
-              $("div.cardViewport").html('<div class="insCardName"><img class="cardlogo"  src = "'+payValue[3]+'" /></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+              $("div.cardViewport").empty();
+              if(payValue[3] != "logoNone" )
+              {
+                $("div.cardViewport").html('<div class="insCardName"><img class="cardlogo"  src = "'+payValue[3]+'" /></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+              }else{
+                //$("div.cardViewport").html('<div class="insCardName"> <i class="iconfontSVG"><svg class="icon-creditcard"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-creditcard"></use></svg></i></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+                $("div.cardViewport").html('<div class="insCardName"> <i class="iconfontSVG"><svg version="1.1" id="Credit_card" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 3 150 55" enable-background="new 0 3 150 55" width="10cm" height="10cm" preserveAspectRatio="xMinYMin meet" ><path d="M18,3H2C0.899,3,0,3.9,0,5v10c0,1.1,0.899,2,2,2h16c1.1,0,2-0.9,2-2V5C20,3.9,19.1,3,18,3z M18,15H2V9h16V15z M18,6H2V5h16    V6z M4,11.1v0.6h0.6v-0.6H4z M7.6,12.299V12.9h1.2v-0.601h0.6v-0.6H10v-0.6H8.8v0.6H8.199v0.6H7.6z M10,12.9v-0.601H9.399V12.9H10z     M7,12.9v-0.601H5.8V12.9H7z M7.6,11.699h0.6v-0.6H7v1.199h0.6V11.699z M5.199,12.299H5.8v-0.6h0.6v-0.6h-1.2v0.6H4.6v0.6H4V12.9    h1.199V12.299z"></path></svg></i></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+              }
+
+              
             // $("div.cardViewport").html('<div class="parenttt" style=" display: table;padding: 4px;  width: 100%;  margin: -10px 5px;"><div class="insCardImage"><img src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png"  style =" width: 75px;  height: 50px;vertical-align: middle;"/> '+payValue[1]+'</div> <div class="insCardNumber" style =" vertical-align: middle;display: table-cell; text-align: justify; font-family: GloberSemiBold; font-size: 21px;padding: 12px 0px 12px 25px;">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div> </div>');
             }
         }
@@ -4146,16 +4198,33 @@ $scope.EditHealth = {};
         if ($('option:selected', this).text() === 'Add a new card') {
             $rootScope.userCardDetails = $('option:selected', this).text();
             $rootScope.submitPayBack = $rootScope.currState.$current.name;
-            $rootScope.userCardNumber = 'Choose Your Card';
+           // $rootScope.userCardNumber = 'Choose Your Card';
             //$rootScope.cardPage = "submitPayment";
             $state.go('tab.cardDetails');
         } else {
+
+            if ($('option:selected', this).text() === 'Choose Your Card') {
+              $rootScope.editCardStyle ="none";
+              $("div.cardViewport").empty();
+              $("div.cardViewport").html('<div class="insCHooseProviderName">Choose Your Card</div>');
+            }
+            else{ 
           //  $('div.cardViewport').text($("option:selected", this).text());
           var payValue = ($('option:selected', this).val()).split("@");
-          $("div.cardViewport").html('<div class="insCardName"><img class="cardlogo"  src = "'+payValue[3]+'" /></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+          $("div.cardViewport").empty();
+          if(payValue[3] != "logoNone" )
+              {
+                $("div.cardViewport").html('<div class="insCardName"><img class="cardlogo"  src = "'+payValue[3]+'" /></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+              }else{
+                //$("div.cardViewport").html('<div class="insCardName"> <i class="iconfontSVG"><svg class="icon-creditcard"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-creditcard"></use></svg></i></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+                $("div.cardViewport").html('<div class="insCardName"> <i class="iconfontSVG"><svg version="1.1" id="Credit_card" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 3 150 55" enable-background="new 0 3 150 55" width="10cm" height="10cm" preserveAspectRatio="xMinYMin meet" ><path d="M18,3H2C0.899,3,0,3.9,0,5v10c0,1.1,0.899,2,2,2h16c1.1,0,2-0.9,2-2V5C20,3.9,19.1,3,18,3z M18,15H2V9h16V15z M18,6H2V5h16    V6z M4,11.1v0.6h0.6v-0.6H4z M7.6,12.299V12.9h1.2v-0.601h0.6v-0.6H10v-0.6H8.8v0.6H8.199v0.6H7.6z M10,12.9v-0.601H9.399V12.9H10z     M7,12.9v-0.601H5.8V12.9H7z M7.6,11.699h0.6v-0.6H7v1.199h0.6V11.699z M5.199,12.299H5.8v-0.6h0.6v-0.6h-1.2v0.6H4.6v0.6H4V12.9    h1.199V12.299z"></path></svg></i></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+              }
+
+          
           $rootScope.userCardNumber = $('option:selected', this).text();
           $rootScope.userCardDetails = $('option:selected', this).val();
           $rootScope.userCardType = payValue[3];
+      }
         //  $('div.cardViewport').text($("option:selected", this).text());
         // $("div.cardViewport").html('<div class="parenttt" style=" display: table;padding: 4px;  width: 100%;  margin: -10px 5px;"><div class="insCardImage"><img src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png"  style =" width: 75px;  height: 50px;vertical-align: middle;"/> '+payValue[1]+'</div> <div class="insCardNumber" style =" vertical-align: middle;display: table-cell; text-align: justify; font-family: GloberSemiBold; font-size: 21px;padding: 12px 0px 12px 25px;">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div> </div>');
         }
@@ -4564,12 +4633,46 @@ $scope.EditHealth = {};
                         $rootScope.PaymentProfile = [];
                         angular.forEach(data.data[0].paymentProfiles, function(index) {
                             var imgUrl = '';
+                            var cardTypeStr = index.cardType;
+                            var cardTypeStr = cardTypeStr.toLowerCase();
+                            
+                            if(cardTypeStr.indexOf("visa") >= 0)
+                            {
+                                imgUrl = 'img/card-logo/Visa-dark.png';
+                            }else if(cardTypeStr.indexOf("master") >= 0)
+                            {
+                                imgUrl = 'img/card-logo/MasterCard-dark.png';
+                            }else if(cardTypeStr.indexOf("america") >= 0)
+                            {
+                                imgUrl = 'img/card-logo/AmericanExpress-dark.png';
+                            }else if(cardTypeStr.indexOf("discover") >= 0)
+                            {
+                                imgUrl = 'img/card-logo/Discover-dark.png';
+                            }else if(cardTypeStr.indexOf("dinners") >= 0)
+                            {
+                                imgUrl = 'img/card-logo/DinersClub-dark.png';
+                            }else if(cardTypeStr.indexOf("jcb") >= 0)
+                            {
+                                imgUrl = 'img/card-logo/JCB-dark.png';
+                            }else if(cardTypeStr.indexOf("maestro") >= 0)
+                            {
+                                imgUrl = 'img/card-logo/Maestro-dark.png';
+                            }else if(cardTypeStr.indexOf("laser") >= 0)
+                            {
+                                imgUrl = 'img/card-logo/Laser-dark.png';
+                            }
+                            else
+                            {
+                                imgUrl = 'logoNone';
+                            }
+
+                              /*  
                             switch(index.cardType)
                             {
                                 case "Visa":
                                     imgUrl = 'img/card-logo/Visa-dark.png';
                                     break;
-                                case "Master":
+                                case "MasterCard":
                                     imgUrl = 'img/card-logo/MasterCard-dark.png';
                                     break;
                                 case "American_express":
@@ -4591,9 +4694,9 @@ $scope.EditHealth = {};
                                     imgUrl = 'img/card-logo/Laser-dark.png';
                                     break;
                                 default:
-                                    imgUrl = '';
+                                    imgUrl = 'logoNone';
                             }
-
+*/
                             $rootScope.PaymentProfile.push({
                                 'id': index.$id,
                                 'billingAddress': angular.fromJson(index.billingAddress),
@@ -4601,7 +4704,7 @@ $scope.EditHealth = {};
                                 'cardNumber': replaceCardNumber.getCardNumber(index.cardNumber),
                                 'isBusiness': index.isBusiness,
                                 'profileID': index.profileID,
-							                  'cardType' : index.cardType,
+							    'cardType' : index.cardType,
                                 'cardLogo' : imgUrl,
                             });
 
@@ -4623,7 +4726,8 @@ $scope.EditHealth = {};
                           });
                           $rootScope.userCardType = $scope.userCrdType[0].cardLogo;
                           $scope.crdNum = $scope.userCrdType[0].cardNumber.split('XXXX');
-                          $rootScope.userCardNumber = $scope.crdNum[1];
+                         // $rootScope.userCardNumber = $scope.crdNum[1];
+                          $rootScope.userCardNumber = $scope.crdNum;
                           $rootScope.editCardStyle ="block";
                         }
 
@@ -4967,20 +5071,33 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 billing_country: $scope.editCountry,
                 accessToken: $rootScope.accessToken,
                 success: function(data) {
+                    
+                    
+
                   $scope.EditPaymentDetails = data;
                   $rootScope.userCardDetails = $rootScope.paymentProfileId;
                   $rootScope.chkProfileIdForCrdType = $rootScope.paymentProfileId;
-                if (typeof $rootScope.CardNumber === 'undefined') {
+                if (typeof $rootScope.editCardNumber === 'undefined') {
                         $rootScope.choosePaymentShow = 'none';
                         $rootScope.choosePaymentHide = 'initial';
-                    } else if (typeof $rootScope.CardNumber !== 'undefined') {
+                    } else if (typeof $rootScope.editCardNumber !== 'undefined') {
                         $rootScope.choosePaymentShow = 'initial';
                         $rootScope.choosePaymentHide = 'none';
-                        var cardNo = $rootScope.CardNumber;
+                        var cardNo = $rootScope.editCardNumber;
                         var strCardNo = cardNo.toString();
                         var getLastFour = strCardNo.substr(strCardNo.length - 4);
                         $rootScope.userCardNumber = getLastFour;
+
+                        /*if($rootScope.paymentProfileId == $window.localStorage.getItem("Card"+ $rootScope.UserEmail))
+                            {
+                                 $window.localStorage.setItem("Card" + $rootScope.UserEmail, $rootScope.paymentProfileId);
+                                 $window.localStorage.setItem("CardText" + $rootScope.UserEmail, $rootScope.userCardNumber);
+                                 $window.localStorage.setItem("CardLogo" + $rootScope.UserEmail, $rootScope.paymentProfileLogo);
+                                 $window.localStorage.setItem("hosNameforCard", $rootScope.hospitalName);
+                            }*/
+
                     }
+                    alert("lasr -> "+$rootScope.userCardNumber);
                     $rootScope.doGetPatientPaymentProfiles();
                     $state.go('tab.submitPayment');
                     $rootScope.cardDisplay = "inherit;";
@@ -5013,19 +5130,31 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 Patientprofileid:  $rootScope.patientprofileID,
                 accessToken: $rootScope.accessToken,
                 success: function(data) {
+
+
                   $scope.EditPaymentDetails = data;
                   $rootScope.userCardDetails = $rootScope.profileid;
                   $rootScope.chkProfileIdForCrdType = $rootScope.profileid;
-                if (typeof $rootScope.CardNumber === 'undefined') {
+                if (typeof $rootScope.editCardNumber === 'undefined') {
                         $rootScope.choosePaymentShow = 'none';
                         $rootScope.choosePaymentHide = 'initial';
-                    } else if (typeof $rootScope.CardNumber !== 'undefined') {
+                    } else if (typeof $rootScope.editCardNumber !== 'undefined') {
                         $rootScope.choosePaymentShow = 'initial';
                         $rootScope.choosePaymentHide = 'none';
-                        var cardNo = $rootScope.CardNumber;
+                        var cardNo = $rootScope.editCardNumber;
+                        alert('cardno ->'+cardNo);
                         var strCardNo = cardNo.toString();
                         var getLastFour = strCardNo.substr(strCardNo.length - 4);
                         $rootScope.userCardNumber = getLastFour;
+                        alert('cardno ->'+$rootScope.userCardNumber);
+
+                        /*if($rootScope.paymentProfileId == $window.localStorage.getItem("Card"+ $rootScope.UserEmail))
+                        {
+                             $window.localStorage.setItem("Card" + $rootScope.UserEmail, $rootScope.paymentProfileId);
+                             $window.localStorage.setItem("CardText" + $rootScope.UserEmail, $rootScope.paymentCardNumber);
+                             $window.localStorage.setItem("CardLogo" + $rootScope.UserEmail, $rootScope.paymentProfileLogo);
+                             $window.localStorage.setItem("hosNameforCard", $rootScope.hospitalName);
+                        }*/
                     }
                     $rootScope.doGetPatientPaymentProfiles();
                     $state.go('tab.submitPayment');

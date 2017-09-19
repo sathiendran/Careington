@@ -224,9 +224,9 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
     }
 
     $scope.editAppointment = function(scheduledListData,$timeout) {
-      snap.baseUrl  = apiCommonURL;
+         snap.baseUrl  = apiCommonURL;
           $scope.betDelay=true;
-        $ionicLoading.show({
+         $ionicLoading.show({
             template: '<img src="img/puff.svg" alt="Loading" />',
             duration: 3000
         });
@@ -245,6 +245,11 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
             snap.hub.mainHub().stop();
         }  */
          $scope.betDelay=false;
+      $scope.doGetSelectedappoimentDetails(sessionStorage.getItem("SSscheduledAppointmentId"));
+         if($stateParams.getPage === 'webSSAppointUpdate'){
+      $scope.doGetSelectedappoimentDetails(sessionStorage.getItem("SSscheduledAppointmentId"));
+      $scope.doRefreshAccountdetails(sessionStorage.getItem("SSscheduledAppointmentId"));
+    };
     }
 
     $scope.doGetAppointPaymentStatus = function() {
@@ -279,6 +284,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
 
 
     $scope.doGetSelectedappoimentDetails = function(SSscheduledAppointmentId) {
+      //alert("enter");
     //  $rootScope.appointmentId = '';
     //  $rootScope.appointPersonId = '';
     //  $rootScope.AppointScheduleTime = '';
@@ -478,6 +484,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
 
     if($stateParams.getPage === 'webSSAppointUpdate'){
       $scope.doGetSelectedappoimentDetails(sessionStorage.getItem("SSscheduledAppointmentId"));
+      $scope.doRefreshAccountdetails();
     };
 
     $scope.$on("callAppointmentConsultation", function(event, args) {
