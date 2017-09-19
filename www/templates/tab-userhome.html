@@ -116,10 +116,10 @@
 			<div ng-if="dependentDetails.patientId == dependentDetails.appoint.patientId" style="background-color: {{dependentDetails.appoint.userHomeRecentAppointmentColor}}; border-top: none; display: {{dependentDetails.appoint.nextAppointmentDisplay}}; margin-bottom: 17px;"  class="UserHomeNextAppointment ItemList outside" ng-hide="data.searchQuery"  ng-click="GoToappoimentDetailsFromUserHome(dependentDetails.appoint, 'userHome')" >
 				<a class="HrefListView"  >
 					<h2>
-						 <i ng-if="dependentDetails.appoint.encountertypecode == 3" ng-bind-html="drawSVGCIcon('video_camera')" class="ng-binding">
+						 <i ng-if="dependentDetails.appoint.encounterTypeCode == 3" ng-bind-html="drawSVGCIcon('video_camera')" class="ng-binding">
 							 <svg class="iconImg-video_camera"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-video_camera"></use></svg>
 						 </i>
-						 <i ng-if="dependentDetails.appoint.encountertypecode != 3" ng-bind-html="drawSVGCIcon('phone')" class="ng-binding" style="font-size: 30px;">
+						 <i ng-if="dependentDetails.appoint.encounterTypeCode != 3" ng-bind-html="drawSVGCIcon('phone')" class="ng-binding" style="font-size: 30px;">
 							 <svg class="iconImg-phone"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-phone"></use></svg>
 						 </i>
 						<span style="top: -7px;position: relative;padding-left: 5px;">Appt @  <b>{{dependentDetails.appoint.scheduledTime | date: "hh:mm a" | lowercase}}</b></span>

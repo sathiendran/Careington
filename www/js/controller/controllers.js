@@ -2852,7 +2852,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
                     $rootScope.cuttlocations = "";
                     $rootScope.viewmyhealthDisplay = 'block';
                     $rootScope.viewhealthDisplay = 'none';
-                    $rootScope.doGetPatientProfiles();
+                    $state.go('tab.userhome');
+                  //  $rootScope.doGetPatientProfiles();
                     //  $rootScope.doGetRelatedPatientProfiles('tab.userhome');
                 } else {
                     $scope.doGetSingleHospitalRegistrationInformation();
@@ -5528,7 +5529,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                                 'patLastName': $scope.paticipatingPatient.person.name.family,
                                 'phiFirstName': $scope.paticipatingPhysician.person.name.given,
                                 'phiLastName': $scope.paticipatingPhysician.person.name.family,
-                                'encountertypecode':index.encounterTypeCode,
+                                'encounterTypeCode':index.encounterTypeCode,
                                 'clinicianId': index.clinicianId,
                                 'userHomeRecentAppointmentColor': userHomeRecentAppointmentColor,
                                 'nextAppointmentDisplay': nextAppointmentDisplay
@@ -5660,7 +5661,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                                 'patLastName': $scope.paticipatingPatient.person.name.family,
                                 'phiFirstName': $scope.paticipatingPhysician.person.name.given,
                                 'phiLastName': $scope.paticipatingPhysician.person.name.family,
-                                'encountertypecode':index.encounterTypeCode,
+                                'encounterTypeCode':index.encounterTypeCode,
                                 'clinicianId': index.clinicianId,
                                 'userHomeRecentAppointmentColor': userHomeRecentAppointmentColor,
                                 'nextAppointmentDisplay': nextAppointmentDisplay

@@ -329,7 +329,7 @@ angular.module('starter.controllers')
                                   'patLastName': $scope.paticipatingPatient.person.name.family,
                                   'phiFirstName': $scope.paticipatingPhysician.person.name.given,
                                   'phiLastName': $scope.paticipatingPhysician.person.name.family,
-                                  'encountertypecode':index.encounterTypeCode,
+                                  'encounterTypeCode':index.encounterTypeCode,
                                   'clinicianId': index.clinicianId,
                                   'userHomeRecentAppointmentColor': userHomeRecentAppointmentColor,
                                   'nextAppointmentDisplay': nextAppointmentDisplay
@@ -461,7 +461,7 @@ angular.module('starter.controllers')
                                 'patLastName': $scope.paticipatingPatient.person.name.family,
                                 'phiFirstName': $scope.paticipatingPhysician.person.name.given,
                                 'phiLastName': $scope.paticipatingPhysician.person.name.family,
-                                'encountertypecode':index.encounterTypeCode,
+                                'encounterTypeCode':index.encounterTypeCode,
                                 'clinicianId': index.clinicianId,
                                 'userHomeRecentAppointmentColor': userHomeRecentAppointmentColor,
                                 'nextAppointmentDisplay': nextAppointmentDisplay

@@ -63,7 +63,7 @@
 
     <div class="list aptlist Appointmentdetails-{{devicename}}" >
 
-        <a class="item item-avatar patavatar" ng-if="scheduledListDatas.encountertypecode == 3">
+        <a class="item item-avatar patavatar" ng-if="scheduledListDatas.encounterTypeCode == 3">
              <!--<img ng-src="{{scheduledDoctorDetails[0].profileImagePath}}" class="patimage">-->
              <div class="docAppointImage" ng-bind-html="drawImage(scheduledDoctorDetails[0].profileImagePath,scheduledDoctorDetails[0].firstName,scheduledDoctorDetails[0].lastName)"></div>
               <div>
@@ -76,7 +76,7 @@
                   <p class="patage" style="margin-top:-22px !important;">{{scheduledDoctorDetails[0].gender}} <span> .</span> {{scheduledDoctorDetails[0].dob | ageFilter}}</p>
               </div>
            </a>
-           <a class="item item-avatar patavatar" ng-if="scheduledListDatas.encountertypecode != 3">
+           <a class="item item-avatar patavatar" ng-if="scheduledListDatas.encounterTypeCode != 3">
                 <!--<img ng-src="{{scheduledDoctorDetails[0].profileImagePath}}" class="patimage">-->
                 <div class="docAppointImage" ng-bind-html="drawImage(scheduledDoctorDetails[0].profileImagePath,scheduledDoctorDetails[0].firstName,scheduledDoctorDetails[0].lastName)"></div>
                  <div>
@@ -136,7 +136,7 @@
 
  </ion-content>
 
-<ion-footer-bar ng-if="scheduledListDatas.encountertypecode == '3'"  align-title="left" class="bar-assertive AvailableIn" style="height: 73px; display: {{timeNew}}" >
+<ion-footer-bar ng-if="scheduledListDatas.encounterTypeCode == '3'"  align-title="left" class="bar-assertive AvailableIn" style="height: 73px; display: {{timeNew}}" >
 		<div>
 			<div class="title availableImage" >
 				<div class="AvailableText">
@@ -156,7 +156,7 @@
 
 	</ion-footer-bar>
 
-  <ion-footer-bar ng-if="scheduledListDatas.encountertypecode != '3'"  align-title="left" class="bar-assertive AvailableIn" style="height: 73px; display: {{timeNew}}" >
+  <ion-footer-bar ng-if="scheduledListDatas.encounterTypeCode != '3'"  align-title="left" class="bar-assertive AvailableIn" style="height: 73px; display: {{timeNew}}" >
   		<!-- <div>
   			<div class="title availableImage" >
   				<div class="AvailableText">
@@ -176,10 +176,10 @@
       <h1 class="title enterAppoint-{{deviceName}}" id="centercolor" > <p style="color:#666666 !important; margin-top:-11px;"> Your Provider will call you at</p>
            <p style="color:#444444 !important; margin-top:-30px;">{{schedulemobile  |  tel}} </p> </h1>
 
-  	</ion-footer-bar>  
+  	</ion-footer-bar>
 
 
-<ion-footer-bar ng-if="scheduledListDatas.encountertypecode == '3'" class="bar bar-footer  footer-color footheight enterAppoinment" style=" height: 73px; display: {{timeNew1}}" >
+<ion-footer-bar ng-if="scheduledListDatas.encounterTypeCode == '3'" class="bar bar-footer  footer-color footheight enterAppoinment" style=" height: 73px; display: {{timeNew1}}" >
      <a style="text-align: center; width: 100%;  position: relative; top: 18px;" ng-click="enterWaitingRoom(appointmentsPatientImage,appointmentsPatientFirstName,appointmentsPatientLastName,appointmentsPatientDOB,appointmentsPatientGurdianName,appointmentId,appointPersonId)">
 
 				<h1 class="title enterAppoint-{{deviceName}}" id="centercolorforEnterAppointment" >     <span style="padding:4px;" >
@@ -188,7 +188,7 @@
 
 
 </ion-footer-bar>
-<ion-footer-bar ng-if="scheduledListDatas.encountertypecode != '3'" class="bar bar-footer   footheight enterAppoinment" style="background-color:#FFC60B!important; height: 73px; display: {{timeNew1}}" >
+<ion-footer-bar ng-if="scheduledListDatas.encounterTypeCode != '3'" class="bar bar-footer   footheight enterAppoinment" style="background-color:#FFC60B!important; height: 73px; display: {{timeNew1}}" >
 				<h1 class="title enterAppoint-{{deviceName}}" id="centercolor" > <p style="color:#666666 !important; margin-top:-11px;"> Your Provider will call you at</p>
            <p style="color:#444444 !important; margin-top:-30px;">{{schedulemobile  |  tel}} </p> </h1>
 </ion-footer-bar>
