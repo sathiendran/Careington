@@ -5396,6 +5396,18 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 $rootScope.listOfHeightunit = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
                     name: "Height Units"
                 });
+                if($rootScope.listOfHeightunit[0].codes[0].text == "m/cm")
+                {
+                    var cmId = $rootScope.listOfHeightunit[0].codes[0].codeId;
+                    var ftId = $rootScope.listOfHeightunit[0].codes[1].codeId;
+                    $rootScope.listOfHeightunit[0].codes[0].codeId = ftId;
+                    $rootScope.listOfHeightunit[0].codes[0].text = "ft/in"
+                    $rootScope.listOfHeightunit[0].codes[0].displayOrder = 1;
+                    $rootScope.listOfHeightunit[0].codes[1].codeId = cmId
+                    $rootScope.listOfHeightunit[0].codes[1].text = "m/cm"
+                    $rootScope.listOfHeightunit[0].codes[1].displayOrder = 2;
+                }
+                
                 $rootScope.listOfWeightunit = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
                     name: "Weight Units"
                 });
