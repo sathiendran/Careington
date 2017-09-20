@@ -156,8 +156,8 @@
 
 	</ion-footer-bar>
 
-  <ion-footer-bar ng-if="scheduledListDatas.encounterTypeCode != '3'"  align-title="left" class="bar-assertive AvailableIn" style="height: 73px; display: {{timeNew}}" >
-  		<!-- <div>
+  <!--<ion-footer-bar ng-if="scheduledListDatas.encounterTypeCode != '3'"  align-title="left" class="bar-assertive AvailableIn" style="height: 73px; display: {{timeNew}}" >
+  		 <div>
   			<div class="title availableImage" >
   				<div class="AvailableText">
   					<i class="ion-clock" style=" font-size: 18px; padding-right: 7px;"></i> available in:
@@ -172,11 +172,11 @@
   					<b><timer end-time="time">{{days}} day</timer></b>
   				</div>
   			</div>
-  		</div> -->
+  		</div>
       <h1 class="title enterAppoint-{{deviceName}}" id="centercolor" > <p style="color:#666666 !important; margin-top:-11px;"> Your Provider will call you at</p>
            <p style="color:#444444 !important; margin-top:-30px;">{{schedulemobile  |  tel}} </p> </h1>
 
-  	</ion-footer-bar>
+  	</ion-footer-bar>-->
 
 
 <ion-footer-bar ng-if="scheduledListDatas.encounterTypeCode == '3'" class="bar bar-footer  footer-color footheight enterAppoinment" style=" height: 73px; display: {{timeNew1}}" >
@@ -188,7 +188,7 @@
 
 
 </ion-footer-bar>
-<ion-footer-bar ng-if="scheduledListDatas.encounterTypeCode != '3'" class="bar bar-footer   footheight enterAppoinment" style="background-color:#FFC60B!important; height: 73px; display: {{timeNew1}}" >
+<ion-footer-bar ng-if="scheduledListDatas.encounterTypeCode != '3'" class="bar bar-footer footheight enterAppoinment" style="background-color:#FFC60B !important; height: 73px; display: block" >
 				<h1 class="title enterAppoint-{{deviceName}}" id="centercolor" > <p style="color:#666666 !important; margin-top:-11px;"> Your Provider will call you at</p>
            <p style="color:#444444 !important; margin-top:-30px;">{{schedulemobile  |  tel}} </p> </h1>
 </ion-footer-bar>

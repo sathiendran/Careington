@@ -207,8 +207,8 @@ angular.module('starter.controllers')
             $rootScope.doGetScheduledNowPhoneConsulatation();
         }
 
-        if ($rootScope.getIndividualScheduleDetails !== undefined && $rootScope.getIndividualScheduleDetails.length !== 0) {
-            var getReplaceTime2 = $rootScope.getIndividualScheduleDetails[0].scheduledTime;
+        if ($rootScope.getIndividualPatScheduleDetails !== undefined && $rootScope.getIndividualPatScheduleDetails.length !== 0) {
+            var getReplaceTime2 = $rootScope.getIndividualPatScheduleDetails[0].scheduledTime;
             var getReplaceTime3 = $scope.addMinutes(getReplaceTime2, -30);
             var currentUserHomeDate = currentUserHomeDate;
             if ((new Date(getReplaceTime3).getTime()) <= (new Date(currentUserHomeDate).getTime())) {

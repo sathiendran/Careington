@@ -5407,7 +5407,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     $rootScope.listOfHeightunit[0].codes[1].text = "m/cm"
                     $rootScope.listOfHeightunit[0].codes[1].displayOrder = 2;
                 }
-                
+
                 $rootScope.listOfWeightunit = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
                     name: "Weight Units"
                 });
@@ -6403,7 +6403,11 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
               $rootScope.accountStyle = "";
               $rootScope.userAccContent = "";
               if ($rootScope.getIndividualScheduleDetails != '') {
-                  var getReplaceTime = $rootScope.getIndividualScheduleDetails[0].scheduledTime;
+                  if($rootScope.getIndividualPatScheduleDetails != '') {
+                      var getReplaceTime = $rootScope.getIndividualPatScheduleDetails[0].scheduledTime;
+                  } else {
+                      var getReplaceTime = $rootScope.getIndividualScheduleDetails[0].scheduledTime;
+                  }
                   var currentUserHomeDate = currentUserHomeDate;
 
                   if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
@@ -6421,7 +6425,11 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                       }
                   }
 
-                  var getReplaceTime1 = $rootScope.getIndividualScheduleDetails[0].scheduledTime;
+                  if($rootScope.getIndividualPatScheduleDetails != '') {
+                      var getReplaceTime1 = $rootScope.getIndividualPatScheduleDetails[0].scheduledTime;
+                  } else {
+                      var getReplaceTime1 = $rootScope.getIndividualScheduleDetails[0].scheduledTime;
+                  }
                   var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
                   var currentUserHomeDate = currentUserHomeDate;
                   if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
