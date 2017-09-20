@@ -4635,36 +4635,41 @@ $scope.EditHealth = {};
                         angular.forEach(data.data[0].paymentProfiles, function(index) {
                             var imgUrl = '';
                             var cardTypeStr = index.cardType;
-                            var cardTypeStr = cardTypeStr.toLowerCase();
 
-                            if(cardTypeStr.indexOf("visa") >= 0)
-                            {
-                                imgUrl = 'img/card-logo/Visa-dark.png';
-                            }else if(cardTypeStr.indexOf("master") >= 0)
-                            {
-                                imgUrl = 'img/card-logo/MasterCard-dark.png';
-                            }else if(cardTypeStr.indexOf("america") >= 0)
-                            {
-                                imgUrl = 'img/card-logo/AmericanExpress-dark.png';
-                            }else if(cardTypeStr.indexOf("discover") >= 0)
-                            {
-                                imgUrl = 'img/card-logo/Discover-dark.png';
-                            }else if(cardTypeStr.indexOf("dinners") >= 0)
-                            {
-                                imgUrl = 'img/card-logo/DinersClub-dark.png';
-                            }else if(cardTypeStr.indexOf("jcb") >= 0)
-                            {
-                                imgUrl = 'img/card-logo/JCB-dark.png';
-                            }else if(cardTypeStr.indexOf("maestro") >= 0)
-                            {
-                                imgUrl = 'img/card-logo/Maestro-dark.png';
-                            }else if(cardTypeStr.indexOf("laser") >= 0)
-                            {
-                                imgUrl = 'img/card-logo/Laser-dark.png';
-                            }
-                            else
-                            {
-                                imgUrl = 'logoNone';
+                            if(typeof cardTypeStr !== 'undefined' && cardTypeStr !== '') {
+                                var cardTypeStr = cardTypeStr.toLowerCase();
+
+                                if(cardTypeStr.indexOf("visa") >= 0)
+                                {
+                                    imgUrl = 'img/card-logo/Visa-dark.png';
+                                }else if(cardTypeStr.indexOf("master") >= 0)
+                                {
+                                    imgUrl = 'img/card-logo/MasterCard-dark.png';
+                                }else if(cardTypeStr.indexOf("america") >= 0)
+                                {
+                                    imgUrl = 'img/card-logo/AmericanExpress-dark.png';
+                                }else if(cardTypeStr.indexOf("discover") >= 0)
+                                {
+                                    imgUrl = 'img/card-logo/Discover-dark.png';
+                                }else if(cardTypeStr.indexOf("dinners") >= 0)
+                                {
+                                    imgUrl = 'img/card-logo/DinersClub-dark.png';
+                                }else if(cardTypeStr.indexOf("jcb") >= 0)
+                                {
+                                    imgUrl = 'img/card-logo/JCB-dark.png';
+                                }else if(cardTypeStr.indexOf("maestro") >= 0)
+                                {
+                                    imgUrl = 'img/card-logo/Maestro-dark.png';
+                                }else if(cardTypeStr.indexOf("laser") >= 0)
+                                {
+                                    imgUrl = 'img/card-logo/Laser-dark.png';
+                                }
+                                else
+                                {
+                                    imgUrl = 'logoNone';
+                                }
+                            } else {
+                              imgUrl = 'logoNone';
                             }
 
                               /*
@@ -4705,7 +4710,7 @@ $scope.EditHealth = {};
                                 'cardNumber': replaceCardNumber.getCardNumber(index.cardNumber),
                                 'isBusiness': index.isBusiness,
                                 'profileID': index.profileID,
-							    'cardType' : index.cardType,
+							                   'cardType' : index.cardType,
                                 'cardLogo' : imgUrl,
                             });
 
