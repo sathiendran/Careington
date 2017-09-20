@@ -5346,6 +5346,24 @@ margin-right: 10px;
     font-size: 9px;
 }
 }
+.searchencountericon {
+  background-color: #666;
+  border-radius: 50%;
+  padding: 1px 5px 0px 4px;
+  color: white;
+  //margin-left: -14px;
+      margin-left: 20px;
+      top: -20px !important;
+  position: relative;
+  border: 2px solid white;
+  //top: -3px !important;
+[class^="icon-"], [class*=" icon-"] {
+    font-size: 9px;
+}
+}
+.consultSearchRow{
+    height: 56px !important;
+}
 
 .encounterappticon {
     background-color: #666;
