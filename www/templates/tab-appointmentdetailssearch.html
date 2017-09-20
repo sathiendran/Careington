@@ -70,7 +70,7 @@
          <div class="list listfirst allsearch-{{deviceName}}">
             <div class="appointInQueueMainDiv" ng-if="getIndividualInQueueScheduleDetails.length > 0" ng-hide="(getIndividualScheduleDetails | filter:data.searchProvider).length==0">
                 <div class="appointInQueueTitle">IN QUEUE</div>
-                <a class="item item-avatar avatheight" style=" background-color: {{timerCOlor}};"  ng-repeat="scheduledListData in filteredItems=(getIndividualInQueueScheduleDetails  | filter: data.searchProvider)"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
+                <a class="item item-avatar avatheight" style="background-color: #a2d28a;"  ng-repeat="scheduledListData in filteredItems=(getIndividualInQueueScheduleDetails  | filter: data.searchProvider)"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
                    <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
                    <h2 class="aptsname">Next Appointment</h2>
                    <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'" >
@@ -165,7 +165,7 @@
          <div class="list listall allsearch-{{deviceName}}">
            <div class="appointInQueueMainDiv" ng-if="getAllInQueueScheduleDetails.length > 0" ng-hide="(scheduledList | filter:data.searchProvider).length==0">
                <div class="appointInQueueTitle">IN QUEUE</div>
-               <a class="item item-avatar avatheight" style="background-color: {{timerCOlor}};" ng-repeat="scheduledListData in filteredItems=(getAllInQueueScheduleDetails  | filter: data.searchProvider)"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
+               <a class="item item-avatar avatheight" style="background-color: #a2d28a;" ng-repeat="scheduledListData in filteredItems=(getAllInQueueScheduleDetails  | filter: data.searchProvider)"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
                   <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
                   <h2 class="aptsname">Next Appointment</h2>
                   <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
