@@ -4557,7 +4557,7 @@ textarea {
 }
 .item {
     border-color: #C4C5C3;
-    border-bottom: none;
+  //  border-bottom: none;
 }
 
 .patientConternFontStyle {
@@ -5656,7 +5656,7 @@ hr {
 }
 
 .inside
-{ 
+{
     width: 0px;
     /* position: relative; */
     height: 0px;
@@ -5771,7 +5771,7 @@ hr {
 .inside1
 { 
     width: 0px;
-     position: relative; 
+    position: relative;
     height: 0px;
     border-style: solid;
     margin: auto;
@@ -5783,5 +5783,5 @@ hr {
     /* width: 100px; */
     /* height: 50px; */
     /* position: absolute; */
-    top: 26px;
+    top: 25px;
 }
