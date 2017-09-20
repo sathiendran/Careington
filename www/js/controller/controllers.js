@@ -5548,7 +5548,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     //    }
                     });
                     $rootScope.scheduledList = $filter('filter')($filter('orderBy')($rootScope.getScheduledList, "scheduledTime"), "a");
-                    $rootScope.primaryAppointDetails = $rootScope.scheduledList.filter(function(r) { var show = r.patientId == $rootScope.primaryPatientId; return show; });
+                  //  $rootScope.primaryAppointDetails = $rootScope.scheduledList.filter(function(r) { var show = r.patientId == $rootScope.primaryPatientId; return show; });
 
                      $rootScope.inqueueAppoint = true;
                      $rootScope.doGetScheduledConsulatation(redirectToPage);
@@ -5681,7 +5681,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     });
 
                     $rootScope.scheduledList = $filter('filter')($filter('orderBy')($rootScope.getScheduledList, "scheduledTime"), "a");
-                    $rootScope.primaryAppointDetails = $rootScope.scheduledList.filter(function(r) { var show = r.patientId == $rootScope.primaryPatientId; return show; });
+                  //  $rootScope.primaryAppointDetails = $rootScope.scheduledList.filter(function(r) { var show = r.patientId == $rootScope.primaryPatientId; return show; });
                     $rootScope.doGetIndividualScheduledConsulatation();
                     if(redirectToPage == 'tab.userhome')
                      $rootScope.doGetRelatedPatientProfiles('tab.userhome');
@@ -6064,7 +6064,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             $rootScope.P_isAuthorized = false;
                         }
                     }
-                    $rootScope.accountClinicianFooter = 'ngLoadingSpinner';
+                  //  $rootScope.accountClinicianFooter = 'ngLoadingSpinner';
 
                     $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
 
@@ -6368,12 +6368,19 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $rootScope.individualScheduledConsultationList = [];
         $rootScope.getIndividualInQueueScheduleDetails = [];
         $rootScope.getIndividualPatScheduleDetails = [];
+        $rootScope.primaryAppointDetails = [];
+        $rootScope.getAllInQueueScheduleDetails =[];
+        $rootScope.getAllPatScheduleDetails = [];
 
         $rootScope.scheduledList = $filter('filter')($filter('orderBy')($rootScope.getScheduledList, "scheduledTime"), "a");
         if($rootScope.scheduledList != '') {
+              $rootScope.primaryAppointDetails = $rootScope.scheduledList.filter(function(r) { var show = r.patientId == $rootScope.primaryPatientId; return show; });
+              $rootScope.getAllInQueueScheduleDetails = $rootScope.scheduledList.filter(function(r) { var show = r.appointmentStatusCode == 'Waiting'; return show; });
+              $rootScope.getAllPatScheduleDetails = $rootScope.scheduledList.filter(function(r) { var show = r.appointmentStatusCode != 'Waiting'; return show; });
+
               $rootScope.getIndividualScheduleDetails = $rootScope.scheduledList.filter(function(r) { var show = r.patientId == $rootScope.patientId; return show; });
-              $rootScope.getIndividualInQueueScheduleDetails = $rootScope.scheduledList.filter(function(r) { var show = r.appointmentStatusCode == 'Waiting'; return show; });
-              $rootScope.getIndividualPatScheduleDetails = $rootScope.scheduledList.filter(function(r) { var show = r.appointmentStatusCode != 'Waiting'; return show; });
+              $rootScope.getIndividualInQueueScheduleDetails = $rootScope.getIndividualScheduleDetails.filter(function(r) { var show = r.appointmentStatusCode == 'Waiting'; return show; });
+              $rootScope.getIndividualPatScheduleDetails = $rootScope.getIndividualScheduleDetails.filter(function(r) { var show = r.appointmentStatusCode != 'Waiting'; return show; });
               var d = new Date();
               d.setHours(d.getHours() + 12);
               //var currentUserHomeDate = CustomCalendar.getLocalTime(d);

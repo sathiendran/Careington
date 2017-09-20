@@ -2,11 +2,12 @@
 // Provides session timeout monitoring for application end-users.
 // Dependencies: jQuery, SignalR, server-generated SignalR module ("~/signalr/hubs")
 ;
-(function(global, $) {
+(function(global, $, snap) {
+    "use strict";
     if (snap.hub && snap.hub.mainHub) {
         return;
     }
-
+  
     snap.namespace("snap.hub").use(["snap.hub.hubModel"])
         .define("mainHub", function($hubModel) {
 
@@ -15,34 +16,9 @@
                 hubs = [],
                 isInitialized = false;
 
+            this._name = "mainHub";
+
             $hubModel._initModel(null, this);
-
-            $.connection.hub.reconnected(function() {
-                console.log("SignalR: reconnected");
-                setTimeout(function() {
-                    console.log("SignalR: hub restarting");
-                    scope.start();
-                }, 5000);
-            });
-
-            $.connection.hub.connectionSlow(function() {
-                console.log("SignalR: connectionSlow");
-            });
-
-            $.connection.hub.stateChanged(function(change) {
-                console.log("SignalR newState: " + change.newState);
-                if (change.newState === $.signalR.connectionState.connected) {
-                    if (hubReconnctTimer) {
-                        clearInterval(hubReconnctTimer);
-                        hubReconnctTimer = null;
-                    }
-                    onStart();
-                } else if (change.newState === $.signalR.connectionState.disconnected) {
-
-                    onDisconnect();
-                }
-            });
-
 
             var initConnection = function() {
                 if (isInitialized) {
@@ -77,11 +53,16 @@
             };
             var hubReconnctTimer = null;
             var numberofRetry = 0;
-            var notificationIsActive = false;
+            var notificationIsActive = false; 
 
             var onDisconnect = function() {
+                if (snap.isUnloading) {
+                    window.console.log("SignalR was disconnected due to page unloading");
+                    // do nothing if disconnects due to navigation between pages
+                    return;
+                }
                 var wasConsultation = snap.ConsultationPage;
-                console.log("SignalR: disconnected");
+                window.console.log("SignalR: disconnected");
                 $.each(hubs, function(index, hub) {
                     if (hub.markAsStarted) {
                         hub.markAsStarted(false);
@@ -93,7 +74,7 @@
 
                 //only show the message on consulation Page
                 if (wasConsultation) {
-                    snapInfo("Attempting to reconnect...."); //todo keep this up
+                    global.snapInfo("Attempting to reconnect...."); //todo keep this up 
                 }
                 if (hubReconnctTimer) {
                     clearInterval(hubReconnctTimer);
@@ -102,7 +83,7 @@
                 hubReconnctTimer = setInterval(function () {
                     numberofRetry++;
                     if (numberofRetry >= 5 && !notificationIsActive) {
-
+                        
                         notificationIsActive = true;
 
                         var yesCall = function () {
@@ -113,14 +94,14 @@
                         var noCall = function () {
                             notificationIsActive = false;
                             numberofRetry = 0;
-                        }
+                        };
 
                         snap
                             .SnapNotification()
-                          //  .confirmationWithCallbacks("Connection to the system is lost. Do you want to refresh the page?", yesCall, noCall);
+                            .confirmationWithCallbacks("Connection to the system is lost. Do you want to refresh the page?", yesCall, noCall);
                     }
 
-                    console.log("SignalR: Reconnection attempt");
+                    window.console.log("SignalR: Reconnection attempt");
                     $.connection.hub.start()
                         .done(function() {
                             if (hubReconnctTimer) {
@@ -138,19 +119,26 @@
                 if (typeof hub === "undefined" || !hub) {
                     return;
                 }
+                if (hub._name) {
+                    window.console.log('SignalR: Register Hub: ' + hub._name);
+                }
                 var args = Array.prototype.slice.call(arguments, 1);
                 hub.init.apply(hub, args);
-                hubs.push(hub);
+                
+                if (hubs.indexOf(hub) === -1) {
+                    hubs.push(hub);
+                }
             };
             this.isManualStop = false;
             this.start = function() {
+                $.connection.hub.url = snap.baseUrl + "/api/signalr";
                 var dfd = $.Deferred();
                 initConnection();
-                console.log('Register Hubs_' + hubs.length);
+                window.console.log('SignalR: Invoking start. Were registered', hubs.length, 'hubs, hub.url', $.connection.hub.url);
                 numberofRetry = 0;
                 this.isManualStop = true;
                 $.connection.hub.stop();
-
+                
 
                 window.setTimeout(function () {
                     var option = {};
@@ -165,7 +153,7 @@
                         dfd.reject();
                     });
                 }, 100);
-
+                
                 return dfd.promise();
             };
 
@@ -174,10 +162,36 @@
             };
 
             this.stop = function() {
-                window.console.log("SignalR: stop");
+                window.console.log("SignalR: manual stop");
                 this.isManualStop = true;
                 $.connection.hub.stop();
                 isInitialized = false;
             };
+
+            $.connection.hub.reconnected(function () {
+                window.console.log("SignalR: reconnected");
+                window.setTimeout(function () {
+                    window.console.log("SignalR: hub restarting");
+                    scope.start();
+                }, 5000);
+            });
+
+            $.connection.hub.connectionSlow(function () {
+                window.console.log("SignalR: connectionSlow");
+            });
+
+            $.connection.hub.stateChanged(function (change) {
+                window.console.log("SignalR newState: " + change.newState);
+                if (change.newState === $.signalR.connectionState.connected) {
+                    if (hubReconnctTimer) {
+                        clearInterval(hubReconnctTimer);
+                        hubReconnctTimer = null;
+                    }
+                    onStart();
+                } else if (change.newState === $.signalR.connectionState.disconnected) {
+
+                    onDisconnect();
+                }
+            });
         }).singleton();
-}(window, jQuery));
+}(window, jQuery, snap));

@@ -14,7 +14,7 @@ snap.model.Common = snap.model.Common || {};
             },
         }
     });
-    
+
     snap.model.Common.userList = kendo.data.Model.define({
         id: "userID",
         fields: {
@@ -30,7 +30,7 @@ snap.model.Common = snap.model.Common || {};
             "profileImagePath": {
                 type: "string",
                 nullable: false,
-                defaultValue: "../images/Patient-Male.gif"
+                defaultValue: "images/Patient-Male.gif"
             }
         }
     });

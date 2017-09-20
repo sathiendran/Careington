@@ -166,7 +166,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
         }, 100);*/
     }
 
-    var d = new Date();
+  /*  var d = new Date();
     //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
     var currentUserHomeDate = d;
 
@@ -175,14 +175,14 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
         $rootScope.timeNew1 = 'block';
         $('.AvailableIn').hide();
         $('.enterAppoinment').show();
-        $rootScope.timerCOlor = '#E1FCD4';
+        $rootScope.timerCOlor = '#a2d28a';
     } else {
         $rootScope.timeNew = 'block';
         $rootScope.timeNew1 = 'none';
         $('.AvailableIn').show();
         $('.enterAppoinment').hide();
-        $rootScope.timerCOlor = '#FEEFE8';
-    }
+        $rootScope.timerCOlor = '#FDD8C5';
+    }*/
 
     $scope.showEnterWaitingRoomButton = function() {
         $rootScope.timeNew = 'none';
@@ -429,7 +429,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                         if (args.minutes === 0 && args.seconds === 1) {
                               $rootScope.timeNew = 'none';
                               $rootScope.timeNew1 = 'block';
-                              $rootScope.timerCOlor = '#E1FCD4';
+                              $rootScope.timerCOlor = '#a2d28a';
                               $('.AvailableIn').hide();
                               $('.enterAppoinment').show();
                           } else if (args.minutes >= 0 && args.seconds > 0) {
@@ -445,7 +445,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                     //  var currentUserHomeDate = CustomCalendar.getLocalTime(d);
                       var currentUserHomeDate = d;
                       if (getReplaceTime < currentUserHomeDate) {
-                          $rootScope.timerCOlor = '#E1FCD4';
+                          $rootScope.timerCOlor = '#a2d28a';
                           $('.AvailableIn').hide();
                           $('.enterAppoinment').show();
                       }

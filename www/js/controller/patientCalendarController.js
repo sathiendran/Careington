@@ -90,7 +90,7 @@ angular.module('starter.controllers')
             newdate.setTime(inDate.getTime() + inMinutes * 60000);
             return newdate;
         }
-        $rootScope.getIndividualScheduleDetails = $rootScope.individualScheduledList;
+      //  $rootScope.getIndividualScheduleDetails = $rootScope.individualScheduledList;
         var d = new Date();
         d.setHours(d.getHours() + 12);
       //  var currentUserHomeDate = CustomCalendar.getLocalTime(d);
@@ -230,14 +230,14 @@ angular.module('starter.controllers')
                     if (args.minutes === 0 && args.seconds === 1) {
                         $rootScope.timeNew = 'none';
                         $rootScope.timeNew1 = 'block';
-                        $rootScope.timerCOlor = '#E1FCD4';
+                        $rootScope.timerCOlor = '#a2d28a';
                         $('.AvailableIn').hide();
                         $('.enterAppoinment').show();
                   //  } else if (args.millis > 600) {
                     } else if (args.minutes >= 0 && args.seconds > 0) {
                         $rootScope.timeNew = 'block';
                         $rootScope.timeNew1 = 'none';
-                        $rootScope.timerCOlor = '#FEEFE8';
+                        $rootScope.timerCOlor = '#FDD8C5';
                         $('.AvailableIn').show();
                         $('.enterAppoinment').hide();
                     }
@@ -251,7 +251,7 @@ angular.module('starter.controllers')
 
                 var d = new Date();
                 if (getReplaceTime3 < currentUserHomeDate) {
-                    $rootScope.timerCOlor = '#E1FCD4';
+                    $rootScope.timerCOlor = '#a2d28a';
                 }
                 //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
                 var currentUserHomeDate = d;
@@ -260,13 +260,13 @@ angular.module('starter.controllers')
                     $rootScope.timeNew1 = 'block';
                     $('.AvailableIn').hide();
                     $('.enterAppoinment').show();
-                    $rootScope.timerCOlor = '#E1FCD4';
+                    $rootScope.timerCOlor = '#a2d28a';
                 } else {
                     $rootScope.timeNew = 'block';
                     $rootScope.timeNew1 = 'none';
                     $('.AvailableIn').show();
                     $('.enterAppoinment').hide();
-                    $rootScope.timerCOlor = '#FEEFE8';
+                    $rootScope.timerCOlor = '#FDD8C5';
                 }
             } else if ((new Date(getReplaceTime3).getTime()) >= (new Date(d).getTime())) {
                 $rootScope.timerCOlor = 'transparent';

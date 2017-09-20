@@ -3,7 +3,7 @@
 /// <reference path="snap.core.js" />
 
 ;(function ($, snap) {
-	"use strict";
+
 
     snap.define("SnapNotification", function () {
 
@@ -57,26 +57,6 @@
             show: onSnapNotification,
         }).data("kendoNotification");
 
-         var erorrWithConfirmationGlobal = $("<span>").kendoNotification({
-            pinned: true,
-            position: {
-                top: 30,
-                right: 30
-            },
-            stacking: "down",
-            autoHideAfter: 0,
-            hideOnClick: false,
-            button: true,
-          
-            templates: [{
-                type: "error",
-                template: "<div class='snapError' style='width:73%'><span class='icon_warning'></span><h3>Error:</h3><p> #= content # </p></div>" +
-                    "<div><span id='btnConfirmNo'  class='confirm-btnNo' style='float:right'>No</span>" +
-                    "<span id='btnConfirmYes'  class='confirm-btnYes' style='float:left'>Yes</span></div>"
-            }],
-            show: onSnapNotification,
-        }).data("kendoNotification");
-
         var confirmationThreeBtnGlobal = $("<span>").kendoNotification({
             pinned: true,
             position: {
@@ -116,7 +96,7 @@
                 },
                     {
                         type: "announcement",
-                        template: "<div class='snapAnnouncement' style='width:73%'><span class='icon_new'></span><p> #: content # </p></div>"
+                        template: "<div class='snapAnnouncement'><span class='icon_new'></span><p> #: content # </p></div>"
                     },
                     {
                         type: "email",
@@ -190,49 +170,31 @@
             $(".snapSuccess").prepend("<span class='icon_circle-with-cross' ></span>");
         };
        
-       this.confirmationWithClb = function(opt) {
-            if(opt.templateType === "confirmation") {
-                confirmationGlobal.show(opt.msg, "confirmation");    
-            } else if(opt.templateType === "error") {
-                erorrWithConfirmationGlobal.show(opt.msg, "error");    
-            }
+        that["confirmationWithCallbacks"] = function(msg, yesCallback, noCallback, yesText, noText) {
+            confirmationGlobal.show(msg, "confirmation");
 
-            var s = ".k-notification-" + opt.templateType;
+            var $yesBth = $(".k-notification-confirmation .confirm-btnYes"),
+                $noBth = $(".k-notification-confirmation .confirm-btnNo");
 
-            var $yesBth = $(s + " .confirm-btnYes").last(),
-                $noBth = $(s + " .confirm-btnNo").last();
-
-            $yesBth.on("click", function (e) {
-                if (opt.yesCallback) {
-                    opt.yesCallback();
-                }
-                var confirmation = $(e.target).closest(".k-animation-container");
-                confirmation.remove();
-            });
-
-            $noBth.on("click", function (e) {
-                if (opt.noCallback) {
-                    opt.noCallback();
+            $yesBth.on("click", function () {
+                if (yesCallback) {
+                    yesCallback();
                 }
 
-                var confirmation = $(e.target).closest(".k-animation-container");
-                confirmation.remove();
+                confirmationGlobal.hide();
             });
 
-            $yesBth.text(opt.yesText ? opt.yesText : "Yes");
-            $noBth.text(opt.noText ? opt.noText : "No");
-        };
-       
-        this.confirmationWithCallbacks = function(msg, yesCallback, noCallback, yesText, noText) {
-            this.confirmationWithClb({
-                msg: msg,
-                yesCallback: yesCallback,
-                noCallback: noCallback,
-                yesText: yesText,
-                noText: noText,
-                templateType: "confirmation"
+            $noBth.on("click", function () {
+                if (noCallback) {
+                    noCallback();
+                }
+
+                confirmationGlobal.hide();
             });
-        };
+
+            $yesBth.text(yesText ? yesText : "Yes");
+            $noBth.text(noText ? noText : "No");
+        }
 
         that["confirmationWithThreeBtns"] = function (msg, optionOneCallback, optionTwoCallback, optionOneText, optionTwoText) {
             confirmationThreeBtnGlobal.show(msg, "confirmation");
@@ -267,7 +229,7 @@
         that["notificationWithCheckBox"] = function (msg, okCallback) {
             notificationWithCheckBox.show(msg, "confirmation");
 
-            $(".k-notification-confirmation .confirm-btnYes").on("click", function () {
+            $(".k-notification-confirmation .confirm-btnYes").on("click", function (event) {
                 if (okCallback) {
                     var isCheckboxChecked = $(".k-notification-confirmation input[type='checkbox']").is(':checked');
                     okCallback(isCheckboxChecked);

@@ -4,7 +4,7 @@
       <div class="buttons">
          <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
       </div>
-      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span ><a class="headerval searchIcon-{{deviceName}}" ng-href="#tab/consultations" ><i class="icon ion-search" ></i></a></span></h1>
+      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span ><a class="headerval searchIcon-{{deviceName}}" ng-href="#/tab/consultations" ><i class="icon ion-search" ></i></a></span></h1>
       <div class="bar bar-subheader bar-dark subheaderheight" >
          <div class="row">
             <h1 class="headertitle">
@@ -242,7 +242,7 @@
          <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId != patientId">
          <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">Health Info</span>
          </a>
-         <a class="tab-item" ng-href="#/tab/appointmentpatientdetails">
+         <a class="tab-item" ng-href="#/tab/appointmentpatientdetails/">
          <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
          <span class="tabcolor">Appointments</span>
          </a>

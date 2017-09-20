@@ -33,7 +33,6 @@
 
     };
     $.extend(snap, {
-		idleInterval: null,
         timeoutNotification: function (isIdleTimeout) {
             function centerize(e) {
                 if (!$("." + e.sender._guid)[1]) {
@@ -145,12 +144,10 @@
             }
         }
     };
-     initSnapUserSession();
-    $(function() {
-        initIdleInterval();
-        var $mainHub = snap.resolveObject("snap.hub.mainHub");
-        $mainHub.register(snap.resolveObject("snap.hub.sessionLimiterHub"));
-        $mainHub.register(snap.resolveObject("snap.hub.notificationService"));
-    });
+    initSnapUserSession();
+    initIdleInterval();
+    var $mainHub = snap.resolveObject("snap.hub.mainHub");
+    $mainHub.register(snap.resolveObject("snap.hub.sessionLimiterHub"));
+    $mainHub.register(snap.resolveObject("snap.hub.notificationService"));
 
 })(window, jQuery);

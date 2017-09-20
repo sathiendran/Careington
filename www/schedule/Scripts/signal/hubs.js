@@ -521,7 +521,7 @@
         return proxies;
     };
 
-    var baseUrl = snap.baseUrl || "https://emerald.qa1.snapvcm.com";
+    var baseUrl = snap.baseUrl;
     signalR.hub = $.hubConnection(baseUrl + "/api/signalr", { useDefaultPath: false });
     $.extend(signalR, signalR.hub.createHubProxies());
 

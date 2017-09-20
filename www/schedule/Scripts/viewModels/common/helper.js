@@ -183,9 +183,9 @@
 
                         sessionStorage.setItem("snap_patientId_ref", opt.patientId);
                         if(isUserProfile) {
-                            window.location = snap.getBaseUrl() +  "Customer/User";
+                            window.location = snap.baseUrl +  "/patient/User";
                         } else {
-                            window.location = snap.getBaseUrl() +  "Customer/Dependent";
+                            window.location = snap.baseUrl +  "/patient/Dependent";
                         }
                     }); 
                 });

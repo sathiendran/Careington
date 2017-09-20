@@ -4,7 +4,7 @@
       <div class="buttons" >
          <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
       </div>
-      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Appointments <span ><a class="headerval searchIcon-{{deviceName}}" ng-href="#tab/appointmentpatientdetailssearch" ><i class="icon ion-search" ></i></a></span></h1>
+      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Appointments <span ><a class="headerval searchIcon-{{deviceName}}" ng-href="#/tab/appointmentpatientdetailssearch" ><i class="icon ion-search" ></i></a></span></h1>
       <div class="bar bar-subheader bar-dark subheaderheight" >
          <div class="row">
             <h1 class="headertitle">
@@ -65,12 +65,15 @@
             <div class="list listfirst" >
               <div class="appointInQueueMainDiv" ng-if="getIndividualInQueueScheduleDetails.length > 0">
                   <div class="appointInQueueTitle">IN QUEUE</div>
-                  <a class="item item-avatar avatheight" style=" background-color: {{timerCOlor}}; min-height: 75px !important;"  ng-repeat="scheduledListData in getIndividualInQueueScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
+                  <a class="item item-avatar avatheight" style=" background-color: {{timerCOlor}};"  ng-repeat="scheduledListData in getIndividualInQueueScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
 
                        <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)">
                        </div>
                      <h2 class="aptsname"><span style="margin-left:12px">Next Appointment</h2>
-                     <p class="appmarg">
+                     <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
+                        <span class="fontcolor regularfamily"> In queue </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
+                     </p>
+                     <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
                         <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
                      </p>
                      <span class="encounterappticon" style="top: 12px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
@@ -81,7 +84,10 @@
                   </a>
                   <a class="item item-avatar appitem" ng-repeat="scheduledListData in getIndividualInQueueScheduleDetails" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
                      <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
-                     <p class="appmarg" style="margin-top: 21px;">
+                     <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
+                        <span class="fontcolor regularfamily"> In queue </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
+                     </p>
+                     <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
                         <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
                      </p>
                      <span class="encounterappticon " ng-if="scheduledListData.encounterTypeCode == 3">
@@ -93,7 +99,7 @@
                   </a>
                 </div>
 
-                <div class="appointScheduledMainDiv" ng-if="getIndividualInQueueScheduleDetails.length > 0" >SCHEDULED</div>
+                <div class="appointScheduledMainDiv" ng-if="getIndividualPatScheduleDetails.length > 0" >SCHEDULED</div>
 
                <a class="item item-avatar avatheight" style=" background-color: {{timerCOlor}};"  ng-repeat="scheduledListData in getIndividualPatScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
 
@@ -134,7 +140,43 @@
          </ion-refresher>
       </div>
       <div class="list listall">
-         <a class="item item-avatar avatheight" style="background-color: {{timerCOlor}};" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
+
+        <div class="appointInQueueMainDiv" ng-if="getAllInQueueScheduleDetails.length > 0">
+            <div class="appointInQueueTitle">IN QUEUE</div>
+            <a class="item item-avatar avatheight" style="background-color: {{timerCOlor}};" ng-repeat="scheduledListData in getAllInQueueScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
+               <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
+                 <h2 class="aptsname"><span style="margin-left:12px">Next Appointment</h2>
+               <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
+                  <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
+               </p>
+               <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
+                  <span class="fontcolor regularfamily"> In queue </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
+               </p>
+               <span class="encounterappticon " style="top: 12px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
+                 <i ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
+                 <span class="encounterappticon " style="top: 12px !important;" ng-if="scheduledListData.encounterTypeCode != 3">
+                   <i ng-bind-html="drawSVGCIcon('phone')"></i> </span>
+                 <h4 style="margin-top:-16px;"><span class="fname" style="margin-left:12px;">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
+                 </h4>
+            </a>
+            <a class="item item-avatar appitem" ng-repeat="scheduledListData in getAllInQueueScheduleDetails" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
+               <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
+               <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
+                  <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
+               </p>
+               <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
+                  <span class="fontcolor regularfamily">In queue </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
+               </p>
+               <span class="encounterappticon " ng-if="scheduledListData.encounterTypeCode == 3">
+                 <i ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
+                 <span class="encounterappticon " ng-if="scheduledListData.encounterTypeCode != 3">
+                   <i ng-bind-html="drawSVGCIcon('phone')"></i> </span>
+               <h4 style="margin-top:-7px;"><span class="fname" style="margin-left:12px;">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
+               </h4>
+            </a>
+          </div>
+          <div class="appointScheduledMainDiv" ng-if="getAllPatScheduleDetails.length > 0" >SCHEDULED</div>
+         <a class="item item-avatar avatheight" style="background-color: {{timerCOlor}};" ng-repeat="scheduledListData in getAllPatScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
             <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
               <h2 class="aptsname"><span style="margin-left:12px">Next Appointment</h2>
             <p class="appmarg">
@@ -147,7 +189,7 @@
               <h4 style="margin-top:-16px;"><span class="fname" style="margin-left:12px;">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
               </h4>
          </a>
-         <a class="item item-avatar appitem" ng-repeat="scheduledListData in scheduledList" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
+         <a class="item item-avatar appitem" ng-repeat="scheduledListData in getAllPatScheduleDetails" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
             <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
             <p class="appmarg" style="margin-top: 21px;">
                <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
