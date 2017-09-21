@@ -54,7 +54,7 @@
       </div>
    </ion-header-bar>
    <ion-view title="Appointment Details">
-      <ion-content  ng-hide="addmoresearch" class=" appointcontentsearch-{{deviceName}}">
+      <ion-content  ng-hide="addmoresearch" class="scroll-content ionic-scroll  has-header appointcontentsearch-{{deviceName}}" overflow-scroll="false" has-bouncing="true">
          <div class="casearch-{{deviceName}}">
             <h6 class="hsearch">
                <div class=" searchbox" style="margin-top: 0px!important;border-bottom:none!important;">
@@ -149,7 +149,7 @@
             <timer end-time="time"  ></timer>
          </div>
       </ion-content>
-      <ion-content  ng-hide="healthsearchhide" class=" appointcontentsearch-{{deviceName}}">
+      <ion-content  ng-hide="healthsearchhide" class="scroll-content ionic-scroll  has-header appointcontentsearch-{{deviceName}}" overflow-scroll="false" has-bouncing="true">
          <div class="casearch-{{deviceName}}">
             <h6 class="hsearch">
                <div class=" searchbox" style="margin-top: 0px!important;border-bottom:none!important;">
