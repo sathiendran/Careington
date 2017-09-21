@@ -605,7 +605,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -4197,7 +4197,7 @@ $scope.EditHealth = {};
 
     $("#addNewCard_submitPay").change(function() {
         if ($('option:selected', this).text() === 'Add a new card') {
-            $rootScope.userCardDetails = $('option:selected', this).text();
+          //  $rootScope.userCardDetails = $('option:selected', this).text();
             $rootScope.submitPayBack = $rootScope.currState.$current.name;
            // $rootScope.userCardNumber = 'Choose Your Card';
             //$rootScope.cardPage = "submitPayment";
@@ -4222,7 +4222,8 @@ $scope.EditHealth = {};
               }
 
 
-          $rootScope.userCardNumber = $('option:selected', this).text();
+        //  $rootScope.userCardNumber = $('option:selected', this).text();
+          $rootScope.userCardNumber = payValue[2];
           $rootScope.userCardDetails = $('option:selected', this).val();
           $rootScope.userCardType = payValue[3];
       }
@@ -5467,10 +5468,18 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $rootScope.scheduleParticipants = [];
         $rootScope.scheduledList = '';
         $rootScope.scheduledConsultationList = [];
+        var date = new Date();
+        date = new Date(date.setDate(date.getDate() - 1));
+        var yesterdayDate = new Date(date.setHours(date.getHours() - 1));
+        var splitmnth = yesterdayDate.getMonth() + 1;
+                          var splitdate = yesterdayDate.getDate();
+                          var splityear = yesterdayDate.getFullYear(); var splitHour = yesterdayDate.getHours();  var splitMins = yesterdayDate.getMinutes(); var splitSec = yesterdayDate.getSeconds();
+                          var Aptdate = splityear + "-" + splitmnth + "-" + splitdate + "T" + splitHour+":"+splitMins+":"+splitSec;
         var params = {
             patientId: $rootScope.primaryPatientId,
             accessToken: $rootScope.accessToken,
             userTimeZoneId: $rootScope.userTimeZoneId,
+            yesterdayDate: Aptdate,
             success: function(data) {
                 if (data.total > 0) {
                     $scope.scheduledConsultationList = data.data;

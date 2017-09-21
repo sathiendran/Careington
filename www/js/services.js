@@ -414,7 +414,7 @@ angular.module('starter.services', [])
 							'Time-Zone': 'West Asia Standard Time',
 							'Content-Type': params.userTimeZoneId
 					},
-		      url: apiCommonURL + '/api/v2.1/patients/filtered-appointments?appointmentStatusCodes=2&appointmentTypeCodes=1&appointmentTypeCodes=3&patientIds=' + params.patientId +'&includePatientDependents=true',
+		      url: apiCommonURL + '/api/v2.1/patients/filtered-appointments?appointmentStatusCodes=2&appointmentTypeCodes=1&appointmentTypeCodes=3&patientIds=' + params.patientId +'&includePatientDependents=true&startDate=' + params.yesterdayDate,
 					method: 'GET'
 			};
 

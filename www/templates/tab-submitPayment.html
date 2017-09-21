@@ -52,13 +52,13 @@
                     <span class="insuranceedit" ng-click="editpaymentcard()" style="display: {{editcard}};">Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>-->
                     <h4 class="insurancelist">
                       <div class="selectInsurancelist">Select your Payment card
-                             <span class="insuranceedit" style="display: {{editCardStyle}};" ng-click="editpaymentcard('submitPay')" >Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>
+                             <span class="insuranceedit" ng-if="userCardDetails != '' && userCardDetails != 'undefined'" ng-click="editpaymentcard('submitPay')" >Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>
                        </div>
                     </h4>
                   <div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}"  >
                      <div  class="dropdownContainer">
 
-                          <div id="cardViewport" class="cardViewport" style="margin-top: 8px;">
+                          <div id="cardViewport" class="cardViewport" style="margin-top: 3px;">
                             <div class="insCardName"><img class="cardlogo" src="{{userCardType}}"></div><div class="insCardNumber">{{ 'XXXX-XXXX-XXXX-'+userCardNumber}}</div>
                           </div>
                           <!-- <div ng-if="userCardNumber == 'Choose Your Card'" id="cardViewport" class="cardViewport" style="margin-top: 8px;">
