@@ -1035,7 +1035,7 @@ border-radius: 5px;
 .casearch-Android {
 height: 27px;
 border-radius: 5px;
-margin-top: 260px;
+//margin-top: 260px;
 .hsearch {
     text-align: center;
     line-height: 2;
@@ -1047,7 +1047,7 @@ margin-top: 260px;
 .casearch-IOS {
 height: 50px;
 border-radius: 5px;
-margin-top: 260px;
+//margin-top: 260px;
 .hsearch {
     text-align: center;
     line-height: 2;
@@ -3898,6 +3898,7 @@ margin-top: 218px;
 }
 }
 .appointcontentsearch-Android {
+margin-top: 212px;
 .fname {
     font-size: 21px;
     font-family: Glober SemiBold !important;
@@ -3906,6 +3907,7 @@ margin-top: 218px;
 }
 }
 .appointcontentsearch-IOS {
+margin-top: 212px;
 .fname {
     font-family: Glober SemiBold !important;
     color: #666666;

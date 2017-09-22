@@ -1,6 +1,6 @@
 <ion-side-menus>
 <ion-side-menu-content>
-   <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+   <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
       <div class="buttons">
          <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
       </div>
@@ -54,7 +54,7 @@
       </div>
    </ion-header-bar>
    <ion-view title="Appointment Details">
-      <ion-content  ng-hide="addmoresearch" class="scroll-content ionic-scroll  has-header appointcontentsearch-{{deviceName}}" overflow-scroll="false" has-bouncing="true">
+      <ion-content  ng-hide="addmoresearch" class="scroll-content ionic-scroll  has-header aptpaticoncontent " style="margin-top: 223px;" overflow-scroll="false" has-bouncing="true">
          <div class="casearch-{{deviceName}}">
             <h6 class="hsearch">
                <div class=" searchbox" style="margin-top: 0px!important;border-bottom:none!important;">
@@ -149,7 +149,7 @@
             <timer end-time="time"  ></timer>
          </div>
       </ion-content>
-      <ion-content  ng-hide="healthsearchhide" class="scroll-content ionic-scroll  has-header appointcontentsearch-{{deviceName}}" overflow-scroll="false" has-bouncing="true">
+      <ion-content  ng-hide="healthsearchhide" class="scroll-content ionic-scroll  has-header aptpaticoncontent" style="margin-top: 223px;" overflow-scroll="false" has-bouncing="true">
          <div class="casearch-{{deviceName}}">
             <h6 class="hsearch">
                <div class=" searchbox" style="margin-top: 0px!important;border-bottom:none!important;">
