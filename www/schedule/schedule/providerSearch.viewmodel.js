@@ -51,7 +51,7 @@
             var filterItemChangedEvent = "fic_changed";
             var filerCathegoryDisplayChanged = "fcd_changed";
 
-		   var selector = $familyGroupSelector.createFamilyGroupSelectorSelector({
+ var selector = $familyGroupSelector.createFamilyGroupSelectorSelector({
                 isMultiselect: false,
                 htmlContainerId: "#selectFamilyMember",
                 scrollableElementClass: ".familyGroupSelector_scrollable",
@@ -403,15 +403,6 @@
                         that._updateCliniciansList();
                     }
                 });
-				if(!this.allCliniciansDS.isEndlessScrollInitialized()) {
-                    this.allCliniciansDS.initEndlessScroll();
-                }
-
-                if(!this.favoriteCliniciansDS.isEndlessScrollInitialized()) {
-                    this.favoriteCliniciansDS.initEndlessScroll();
-                }
-
-                this._updateCliniciansList();
             };
 
             this._reloadPatientSelector = function() {
@@ -436,15 +427,24 @@
                 this.trigger("change", {
                     field: "vm_getPagingCount"
                 });
- 				 // Refresh slick plug-in for current view mode.
-                // Slick do not works with hided elements, so as far as we display current view mode we need re-init slick.
-                this._getCurrentClinicianListTimeSlots().refreshSlickPlugin();
+ 				if(!this.allCliniciansDS.isEndlessScrollInitialized()) {
+                    this.allCliniciansDS.initEndlessScroll();
+                }
+
+                if(!this.favoriteCliniciansDS.isEndlessScrollInitialized()) {
+                    this.favoriteCliniciansDS.initEndlessScroll();
+                }
+
+                var filters = this._getCliniciansFilters();
+
+                this.allCliniciansDS.query({ filters: filters });
+                this.favoriteCliniciansDS.query({ filters: filters });
             };
             this.cleanup = function () { //For all that should be done on route change
                 this.set("vm_isNotificationActive", false);
             };
             /***************** MVVM BINDINGS *******************/
-			this.vm_patientsNameFilter = "";
+this.vm_patientsNameFilter = "";
             this.vm_isPatientSelectorActive = false; // patient filter, show famaly group members.
 
             this.vm_isPatinetLoactionInLoading = true;
@@ -523,7 +523,6 @@
             this.vm_closeNotification = function () {
                 this.vm_isNotificationActive = false;
                 this.set("vm_isNotificationActive", false);
-                scope.set("vm_isNotificationActive", false);
             };
             this.vm_goToCalendar = function () {
                 this.vm_closeNotification();
@@ -663,11 +662,12 @@
             };
 
             this.vm_toogleAllContents = function () {
-                if(this.vm_isGridMode()) {
+                if(isFooterActive && this.vm_isGridMode()) {
                     this._toogleAllFooters(false);
+                    this._toogleAllContents(true);
+                } else {
+                    this._toogleAllContents(!isContentActive);
                 }
-
-                this._toogleAllContents(!isContentActive);
             };
 
             this.vm_onDateFilterChange = function () {
@@ -876,13 +876,12 @@
                 this.favoriteCliniciansDS.refreshViewMode();
             };
 
-           this._toogleAllFooters = function (isFActive) {
+            this._toogleAllFooters = function (isFActive) {
                 isFooterActive = isFActive;
 
-                this.allCliniciansDS.data().forEach(function (clinicianCard) {
-                    clinicianCard.toogleFoter(isFActive);
-                });
-                this.favoriteCliniciansDS.data().forEach(function (clinicianCard) {
+                var ds = this._getCurrentClinicianListTimeSlots();
+
+                ds.data().forEach(function (clinicianCard) {
                     clinicianCard.toogleFoter(isFActive);
                 });
 
@@ -891,15 +890,12 @@
 
             this._toogleAllContents = function (isCActive) {
                 isContentActive = isCActive;
+                var ds = this._getCurrentClinicianListTimeSlots();
 
-                this.allCliniciansDS.data().forEach(function (clinicianCard) {
-                    clinicianCard.toogleContent(isCActive);
+                ds.data().forEach(function (clinicianCard) {
+                    clinicianCard.toogleContent(isContentActive);
                 });
-                this.favoriteCliniciansDS.data().forEach(function (clinicianCard) {
-                    clinicianCard.toogleContent(isCActive);
-                });
-
-                this.trigger("change", { field: "vm_toogleAllCardsContentIconText"});
+ 				this.trigger("change", { field: "vm_toogleAllCardsContentIconText"});
             };
 
 
@@ -1014,7 +1010,7 @@
                     this.slickFooter();
                 };
 
-              this.slickFooter = function() {
+                this.slickFooter = function() {
 
                     // Ticket 10105. Case #15: Next is not displayed in Time view.
                     //
@@ -1078,7 +1074,7 @@
                 this.vm_onConnectNowClick = function() {
                     var slots = this.apptsSlotsTray.getSlots().filter(function(slot) {
                         return slot.isNow;
-                    });
+                    })
 
                     if(slots.length > 0) {
                         var slot = slots[0];
@@ -1231,11 +1227,7 @@
                     });
                 };
 
-				this.refreshSlickPlugin = function() {
-                    this.vm_allItems.forEach(function(item) {
-                        item.slickFooter();
-                    });
-                };
+
 
                 var getSingleCardDfd = $.Deferred();
                 var getCardsDfd = $.Deferred();
