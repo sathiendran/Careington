@@ -126,7 +126,7 @@
                     <span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
                  </h4>
               </a>
-              <a class="item item-avatar appitem" ng-repeat="scheduledListData in filteredItems=(getIndividualPatScheduleDetails  | filter: data.searchProvider)" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
+              <a class="item item-avatar appitem scheduled" ng-repeat="scheduledListData in filteredItems=(getIndividualPatScheduleDetails  | filter: data.searchProvider)" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
                  <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
                  <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
                     <span class="fontcolor regularfamily"> In queue </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
@@ -212,7 +212,7 @@
                   <i ng-bind-html="drawSVGCIcon('phone')"></i> </span>
                 <h4 style="margin-top: -16px;"><span class="fname" style="margin-left: 12px;">{{scheduledListData.scheduledDate }}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
              </a>
-             <a class="item item-avatar appitem" ng-repeat="scheduledListData in filteredItems=(getAllPatScheduleDetails  | filter: data.searchProvider)" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
+             <a class="item item-avatar appitem scheduled" ng-repeat="scheduledListData in filteredItems=(getAllPatScheduleDetails  | filter: data.searchProvider)" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
                 <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
                 <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
                    <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
