@@ -605,7 +605,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -2003,7 +2003,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                     $rootScope.isSSORegisterAvailable = '';
                 }
 
-                if( $rootScope.cuttlocations != "tab.ReportScreen"){
+                if( $rootScope.cuttlocations != "tab.ReportScreen" && (!$rootScope.passwordPreviousPage || $rootScope.passwordPreviousPage == '')){
                   $scope.doGetlocationResponse();
                 }
 
@@ -2847,11 +2847,13 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
                 var userProfileJsonData = JSON.stringify(profileData);
                 $window.localStorage.setItem('snap_patientprofile_session', userProfileJsonData);
+                $rootScope.passwordPreviousPage = false;
 
                 if ($rootScope.hasRequiredFields === true) {
                     $rootScope.cuttlocations = "";
                     $rootScope.viewmyhealthDisplay = 'block';
                     $rootScope.viewhealthDisplay = 'none';
+                    $rootScope.passwordPreviousPage = true;
                     $state.go('tab.userhome');
                   //  $rootScope.doGetPatientProfiles();
                     //  $rootScope.doGetRelatedPatientProfiles('tab.userhome');
@@ -3121,11 +3123,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
                     if (deploymentEnv === "Single") {
                         $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme();
                     } else {
-                        if ($rootScope.cuttlocations == "tab.ReportScreen") {
+                        if ($rootScope.cuttlocations == "tab.ReportScreen" && (!$rootScope.passwordPreviousPage || $rootScope.passwordPreviousPage == '')) {
                             $state.go('tab.userhome');
                       /*  }  else if ($rootScope.cuttlocations == undefined) {
                           $scope.doGetlocationResponse();*/
                         } else {
+                            $rootScope.passwordPreviousPage = false;
                             $scope.doGetWaitingConsultent();
                             //$scope.doGetlocationResponse();
                         }
@@ -5864,10 +5867,12 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     $rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
                   //  $rootScope.paymentProfileIdType = $rootScope.userDefaultPaymentProfileType;
                     $rootScope.paymentCardNumber = $rootScope.userDefaultPaymentProfileText;
+                    $rootScope.paymentProfileLogo = $rootScope.userDefaultPaymentLogo;
                 } else {
                     $rootScope.paymentProfileId = $rootScope.userCardDetails;
                   //  $rootScope.paymentProfileIdType = $rootScope.userCardType;
-                    $rootScope.paymentCardNumber =$rootScope.userCardNumber;
+                    $rootScope.paymentCardNumber = $rootScope.userCardNumber;
+                    $rootScope.paymentProfileLogo = $rootScope.userCardType;
                 }
             }
 

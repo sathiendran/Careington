@@ -88,18 +88,18 @@
 
                 $("#btn-sessionLogout").on("click", function () {
                     clearTimeout(timeout);
-                    window.location.href = getLoginPath();
+                    location.href = snap.redirctPage;
                 });
             }
         },
 
         redirectTimeout: function () {
             timeout = setTimeout(function () {
-                window.location.href = getLoginPath();
+                location.href = snap.redirctPage;
             }, 110000);
         },
         redirectToLogin: function () {
-            window.location.href = getLoginPath();
+            location.href = snap.redirctPage;
         },
 
         cancelTimeout: function () {

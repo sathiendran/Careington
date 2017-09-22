@@ -19,16 +19,16 @@
             "snap.common.utility"])
         .extend(kendo.observable)
         .define("providerSearch", function (
-            $snapNotification,
-            $eventAggregator,
-            $selfSchedulingService,
-            $appointmentDialog,
-            $timeUtils,
-            $apptsSlotsTray,
-            $patientSelfSchedulingHub,
-            $userService,
+            $snapNotification, 
+            $eventAggregator, 
+            $selfSchedulingService, 
+            $appointmentDialog, 
+            $timeUtils, 
+            $apptsSlotsTray, 
+            $patientSelfSchedulingHub, 
+            $userService, 
             $providersSlotsLocator,
-            $familyGroupSelector,
+            $familyGroupSelector, 
             $customerDataService,
             $patientResponseAddressDialog,
             $dialogWindow,
@@ -51,12 +51,12 @@
             var filterItemChangedEvent = "fic_changed";
             var filerCathegoryDisplayChanged = "fcd_changed";
 
- var selector = $familyGroupSelector.createFamilyGroupSelectorSelector({
+ var selector = $familyGroupSelector.createFamilyGroupSelectorSelector({ 
                 isMultiselect: false,
                 htmlContainerId: "#selectFamilyMember",
                 scrollableElementClass: ".familyGroupSelector_scrollable",
                 pageSize: 50
-            });
+            });       
 
             var defaultPatient = {
                 id: snap.profileSession.profileId,
@@ -82,19 +82,19 @@
             };
 
            this.allCliniciansDS = kendo.observable(
-                new BaseDynamicList({
-                    mode: listViewMode.all,
-                    htmlContainerId: "allCliniciansContainer",
+                new BaseDynamicList({ 
+                    mode: listViewMode.all, 
+                    htmlContainerId: "allCliniciansContainer", 
                     onDataLoad: function() {
                         scope.set("vm_isAllCliniciansDSEmpty", scope.allCliniciansDS.data().length === 0);
                     }
                 })
             );
-
+            
             this.favoriteCliniciansDS = kendo.observable(
-                new BaseDynamicList({
-                    mode: listViewMode.favorite,
-                    htmlContainerId: "favoriteCliniciansContainer",
+                new BaseDynamicList({ 
+                    mode: listViewMode.favorite, 
+                    htmlContainerId: "favoriteCliniciansContainer", 
                     onDataLoad: function() {
                         scope.trigger("change", { field: "vm_isFavoriteCliniciansDSEmpty" });
                         scope.trigger("change", { field: "vm_hasSearchConditions" });
@@ -335,7 +335,7 @@
  $eventAggregator.subscriber("patientResponseDialog_locationConfirmed", function(currentLocation) {
                 if(scope.selectedPatient !== null) {
                     scope.selectedPatient.currentLocation = currentLocation;
-                     debugger;
+
                     scope.set("vm_currentPatientLocation", currentLocation);
 
                     var filters = scope._getCliniciansFilters();
@@ -356,7 +356,7 @@
 
                     that.set("dateFilter", dateFilter);
 
-
+                   
                     that.allCliniciansDS.query({
                         filters: scope._getCliniciansFilters(),
                         userId: obj.userId
@@ -432,7 +432,7 @@
                 }
 
                 if(!this.favoriteCliniciansDS.isEndlessScrollInitialized()) {
-                    this.favoriteCliniciansDS.initEndlessScroll();
+                    this.favoriteCliniciansDS.initEndlessScroll();    
                 }
 
                 var filters = this._getCliniciansFilters();
@@ -455,7 +455,7 @@ this.vm_patientsNameFilter = "";
                 selector.unselectAll();
 
                 if(this.selectedPatient) {
-                    selector.selectItem(this.selectedPatient);
+                    selector.selectItem(this.selectedPatient);    
                 }
             };
 
@@ -491,11 +491,11 @@ this.vm_patientsNameFilter = "";
                         dialog = $dialogWindow.createNewDialog({
                             vm: $patientResponseAddressDialog,
                             container: "#changePatientAddressPopUpContainer",
-                            contentPath: "schedule/tab-confirmPatientAddressDialog.html",
+                            contentPath: "/content/patient/schedule/confirmPatientAddressDialog.html",
                             required: true
                         });
                     }
-
+                    
                     dialog.open({
                         patientId: this.selectedPatient.id,
                         currentLocation: this.selectedPatient.currentLocation,
@@ -513,15 +513,14 @@ this.vm_patientsNameFilter = "";
             this.vm_isResponseRuleInactive = function() {
                 return !this.isResponseRuleActive;
             }
-
-
+           
+			
 
 			 this.vm_currentDate = new Date();
             this.vm_currentDate.setHours(0, 0, 0, 0);
 
             this.vm_isNotificationActive = false;
             this.vm_closeNotification = function () {
-                this.vm_isNotificationActive = false;
                 this.set("vm_isNotificationActive", false);
             };
             this.vm_goToCalendar = function () {
@@ -633,11 +632,11 @@ this.vm_patientsNameFilter = "";
                  ***/
                 var filters = this._getCliniciansFilters();
                 for(var key in filters){
-                    if(filters.hasOwnProperty(key) &&
+                    if(filters.hasOwnProperty(key) && 
                         !(
-                            key === "date" ||
-                            key === "name" ||
-                            key === "availableOnly" ||
+                            key === "date" || 
+                            key === "name" || 
+                            key === "availableOnly" || 
                             key === "patientId"
                         )){
                         return true;
@@ -645,8 +644,8 @@ this.vm_patientsNameFilter = "";
                 }
                 var today = new Date();
                 today.setHours(0, 0, 0, 0);
-                return !(filters.date === $timeUtils.dateToString(today) &&
-                    filters.name === "" &&
+                return !(filters.date === $timeUtils.dateToString(today) && 
+                    filters.name === "" && 
                     filters.availableOnly === false);
             };
             this.vm_isAllCliniciansMode = function () {
@@ -664,9 +663,9 @@ this.vm_patientsNameFilter = "";
             this.vm_toogleAllContents = function () {
                 if(isFooterActive && this.vm_isGridMode()) {
                     this._toogleAllFooters(false);
-                    this._toogleAllContents(true);
+                    this._toogleAllContents(true); 
                 } else {
-                    this._toogleAllContents(!isContentActive);
+                    this._toogleAllContents(!isContentActive); 
                 }
             };
 
@@ -749,7 +748,7 @@ this.vm_patientsNameFilter = "";
 
 
             this.vm_toogleAllCardsContentIconText = function() {
-                return (isContentActive ? "Hide" : "Show") +  " all provider details";
+                return (isContentActive ? "Hide" : "Show") +  " all provider details";  
             };
 
             this.vm_toogleAllCardsFooterIconText = function() {
@@ -767,7 +766,6 @@ this.vm_patientsNameFilter = "";
                 $customerDataService.getPatientProfileDetails(patient.id, "all").done(function (data) {
                     var location = "";
                     if(that.isResponseRuleActive) {
-
                         location = $utility.getEncounterAddressFromPatientProfile(data.data[0]);
                     } else if (that.isAddressRuleActive) {
                         location = $utility.getLocalAddressFromPatientProfile(data.data[0]);
@@ -792,34 +790,29 @@ this.vm_patientsNameFilter = "";
                 return af;
             };
 
-            this._updateCliniciansList = function () {
+            this._updateCliniciansList = function (userId) {
                 var param = {
-                    filters: this._getCliniciansFilters()
+                    skip: 0
                 };
+               
 
-                this.allCliniciansDS.query(param);
-                this.favoriteCliniciansDS.query(param);
+                this.allCliniciansDS.read(param);
+                this.favoriteCliniciansDS.read(param);
             };
 
             this._updateClinicianListForFavorite = function () {
-                var param = {
-                    filters: this._getCliniciansFilters()
-                };
-
-                this.favoriteCliniciansDS.query(param);
+                this.favoriteCliniciansDS.read();
                 if (this.clinicianListViewMode === listViewMode.favorite) {
-                    this.allCliniciansDS.query(param);
+                    this.allCliniciansDS.read();
                 }
             };
-
 
             this._getCliniciansFilters = function () {
                 var currentFilters = this._getCurrentFilters();
                 var filterValues = {
-                  date: $timeUtils.dateToString(this.dateFilter),
-                     name: this.nameFilter,
-                    availableOnly: currentFilters.Availability.filters.Available,
-                    patientId: this.selectedPatient.id
+                    date: $timeUtils.dateToString(this.dateFilter),
+                    name: this.nameFilter,
+                    availableOnly: currentFilters.Availability.filters.Available
                 };
 
                 if (!(currentFilters.Gender.filters.Male && currentFilters.Gender.filters.Female) && (currentFilters.Gender.filters.Male || currentFilters.Gender.filters.Female)) {
@@ -870,32 +863,20 @@ this.vm_patientsNameFilter = "";
                 return filterValues;
             };
 
-             //***************************** PRIVATE METHODS **********************************
-            this._refrechViewMode = function() {
-                this.allCliniciansDS.refreshViewMode();
-                this.favoriteCliniciansDS.refreshViewMode();
-            };
-
-            this._toogleAllFooters = function (isFActive) {
-                isFooterActive = isFActive;
-
+            this._toogleAllFooters = function (isFooterActive) {
                 var ds = this._getCurrentClinicianListTimeSlots();
 
                 ds.data().forEach(function (clinicianCard) {
-                    clinicianCard.toogleFoter(isFActive);
+                    clinicianCard.toogleFoter(isFooterActive);
                 });
-
-                this.trigger("change", { field: "vm_toogleAllCardsFooterIconText"});
             };
 
-            this._toogleAllContents = function (isCActive) {
-                isContentActive = isCActive;
+            this._toogleAllContents = function (isContentActive) {
                 var ds = this._getCurrentClinicianListTimeSlots();
 
                 ds.data().forEach(function (clinicianCard) {
                     clinicianCard.toogleContent(isContentActive);
                 });
- 				this.trigger("change", { field: "vm_toogleAllCardsContentIconText"});
             };
 
 
@@ -954,8 +935,8 @@ this.vm_patientsNameFilter = "";
                     return statesObj.map(function (item) {
                         return {
                             countryCode: item.countryCode,
-                            states: !!item.regions ? item.regions.map(function (region) { return region.regionCode; }).join(", ") : ""
-                        };
+                            states: !!item.regions ? item.regions.map(function (region) { return region.regionCode }).join(", ") : ""
+                        }
                     });
                 } catch (e) {
                     return [];
@@ -976,81 +957,37 @@ this.vm_patientsNameFilter = "";
 
                 this.vm_cardId = cardCounter++;
 
-                function openScheduleAppointmentDialog (timeSlotOptions) {
+                var openScheduleAppointmentDialog = function (timeSlotOptions) {
                     if (!scope.hasOpenDialog) {
-                        // Set current patient as default.
-                        timeSlotOptions.patientProfileId = scope.selectedPatient.id;
-
-
                         $appointmentDialog.openNewAppointmentDialog(timeSlotOptions);
                         scope.hasOpenDialog = true;
                         $patientSelfSchedulingHub.lockSlot(timeSlotOptions.availabilityBlockId, $timeUtils.dateToString(timeSlotOptions.start), $timeUtils.dateToString(timeSlotOptions.end));
                     }
-                }
+                };
 
-
-                this.apptsSlotsTray = null;
+                this.apptsSlotsTray = $apptsSlotsTray.createTimeSlotsTray(opt, scope.dateFilter, openScheduleAppointmentDialog);
 
                 this.vm_isSelected = opt._isSelected;
                 this.isFavorite = opt.isFavorite;
-                this.isFooterActive = scope.vm_isListMode();
+                this.isFooterActive = false;
                 this.isContentActive = false;
 
                 /*********** PUBLIC METHODS *************/
-                this.initApptsSlotTray = function() {
-                    var that = this;
-                    this.apptsSlotsTray = $apptsSlotsTray.createTimeSlotsTray(opt, scope.dateFilter, openScheduleAppointmentDialog, function() {
-                        that.trigger("change", { field: "apptsSlotsTray.vm_hasSlotsForRightNow" });
-                    });
-                };
-
                 this.toogleFoter = function (isFooterActive) {
                     this._toogle(isFooterActive, "isFooterActive");
 
-                    this.slickFooter();
-                };
+                    var footer = $("#card_" + this.vm_cardId).find('.js-footer-slider');
 
-                this.slickFooter = function() {
-
-                    // Ticket 10105. Case #15: Next is not displayed in Time view.
-                    //
-                    // It is difficult to reproduce problems in case #12 and #15.
-                    // I reproduced it only once for case 12. And it was a problem with slick slider.
-                    // According to image in case 15 we have slots for another cards, so we have only problem with cards where we have only "Next" button.
-                    // This fact mean that fix for case 12 works everywhere except a case when we have only "Next" button.
-                    // But in this case ("Next" button only) we do not need slick slider at all.
-                    //
-                    // SO, IF THERE IS NO AVAILABLE SLOTS WE DO NOT INIT SLICK SLIDER BECAUSE WE DO NOT NEED IT.
-                    if(!this.apptsSlotsTray.vm_isEmpty()) {
-                        var footer = $("#card_" + this.vm_cardId).find('.js-footer-slider');
-
-                        footer.not('.slick-initialized').slick({
-                            infinite: false,
-                            variableWidth: true,
-                            slidesToShow: 1,
-                            slidesToScroll: 3,
-                            draggable: false,
-                            easing: 'ease',
-                            prevArrow: '<button type="button" class="slick-prev"><span class="icon_chevron-thin-left"></span></button>',
-                            nextArrow: '<button type="button" class="slick-next"><span class="icon_chevron-thin-right"></span></button>'
-                        });
-
-                        var secondFooter =  $("#card_" + this.vm_cardId).find('.js-flip-slider');
-
-                        secondFooter.not('.slick-initialized').slick({
-                            vertical: true,
-                            infinite: false,
-                            slidesToShow: 4,
-                            slidesToScroll: 3,
-                            easing: 'ease',
-                            prevArrow: '<button type="button" class="slick-prev"><span class="icon_chevron-thin-up"></span></button>',
-                            nextArrow: '<button type="button" class="slick-next"><span class="icon_chevron-thin-down"></span></button>'
-                        });
-
-                        secondFooter.slick("slickGoTo", 0); // Ticket 10105. Case #12: Available times are not displayed when clicked from info mode
-                    }
-
-                    this.trigger("change", { field: "apptsSlotsTray.vm_hasSlotsForRightNow" });
+                    footer.not('.slick-initialized').slick({
+                        infinite: false,
+                        variableWidth: true,
+                        slidesToShow: 1,
+                        slidesToScroll: 3,
+                        draggable: false,
+                        easing: 'ease',
+                        prevArrow: '<button type="button" class="slick-prev"><span class="icon_chevron-thin-left"></span></button>',
+                        nextArrow: '<button type="button" class="slick-next"><span class="icon_chevron-thin-right"></span></button>'
+                    });
                 };
 
                 this.toogleContent = function (isContentActive) {
@@ -1070,25 +1007,7 @@ this.vm_patientsNameFilter = "";
                     this.set(prop, isActive);
                 };
 
-                 /*********** MVVM BINDINGS **************/
-                this.vm_onConnectNowClick = function() {
-                    var slots = this.apptsSlotsTray.getSlots().filter(function(slot) {
-                        return slot.isNow;
-                    })
-
-                    if(slots.length > 0) {
-                        var slot = slots[0];
-
-                        openScheduleAppointmentDialog({
-                            clinicianId: slot.clinicianUserId,
-                            start: new Date(slot.from),
-                            end: new Date(slot.to),
-                            availabilityBlockId: slot.availabilityBlockId,
-                            isNow: slot.isNow
-                        });
-                        $eventAggregator.published("slotTray_slotClickCallback");
-                    }
-                };
+                /*********** MVVM BINDINGS **************/
 
                 this.vm_toggleFavorite = function () {
                     var clinician = this;
@@ -1109,9 +1028,6 @@ this.vm_patientsNameFilter = "";
                     }
                 };
                 this.vm_getPracticingYears = function () {
-					if (!this.opt.practicingSince) {
-                        return "";
-                    }
                     var yearsOfPractice = new Date().getFullYear() - this.opt.practicingSince;
                     return [yearsOfPractice, " Year", yearsOfPractice > 1 ? "s" : ""].join("");
                 };
@@ -1134,243 +1050,21 @@ this.vm_patientsNameFilter = "";
                 this.vm_toggleContent = function () {
                     this.toogleContent();
                 };
-				this.vm_isGridMode = function() {
-                    return scope.vm_isGridMode();
-                };
-
-                this.vm_isListMode = function() {
-                    return scope.vm_isListMode();
-                };
             }
 
-            function BaseDynamicList(options) {
-                var
-                    htmlContainerId = "#" + options.htmlContainerId,
-                    total = 0,
-                    pageSize = 20,
-                    mode = options.mode;
+            function getSlotsFromDs(ds) {
+                var slots = [];
 
-                var providersSlotsLocator = $providersSlotsLocator.createSlotsLocator($patientSelfSchedulingHub);
-
-                var isInitialized = false;
-                var filters = null;
-
-                //********************* PUBLIC API ******************
-                this.vm_allItems = [];
-                this.vm_htmlContainerId = options.htmlContainerId;
-                this.vm_isItemsLoading = true;
-
-                this.initEndlessScroll = function() {
-                    var that = this;
-
-                    var requestInProgress = false;
-
-                    var $container = $(htmlContainerId).closest( ".provider-search-page__content" );
-                    $container.scroll(function() {
-                        var elementHeight = Math.floor($container[0].scrollHeight / that.vm_allItems.length);
-                        var loadAdditionItemHeight = Math.floor(pageSize / 3) * elementHeight;
-
-                        if ($container.scrollTop() + $container.innerHeight() >= $container[0].scrollHeight - loadAdditionItemHeight){
-                            if (that.vm_allItems.length >= total) {
-                                return false;
-                            }
-
-                            if(requestInProgress) {
-                                return false;
-                            }
-
-                            requestInProgress = true;
-
-
-                            that._load({
-                                take: pageSize,
-                                skip: that.vm_allItems.length,
-                                filters: filters
-                            }).always(function() {
-                                requestInProgress = false;
-                            });
-                        }
+                ds.data().forEach(function (clinicianCard) {
+                    clinicianCard.apptsSlotsTray.slots.sort(function (first, second) {
+                        return first.from - second.from;
+                    }).forEach(function (slot) {
+                        slots.push(slot);
                     });
+                });
 
-                    isInitialized = true;
-                };
-
-                this.isEndlessScrollInitialized = function() {
-                    return isInitialized;
-                };
-
-                this.query = function(opt) {
-                    filters = opt.filters;
-
-                    if(typeof(opt.take) !== "number") {
-                        opt.take = pageSize;
-                    }
-
-                    if(typeof(opt.skip) !== "number") {
-                        opt.skip = 0;
-                    }
-
-                    this.set("vm_allItems", []);
-                    total = 0;
-
-                    return this._load(opt);
-                };
-
-                this.data = function() {
-                    return this.vm_allItems;
-                };
-
-                this.refreshViewMode  = function() {
-                    this.vm_allItems.forEach(function(item) {
-                        item.trigger("change", { field: "vm_isGridMode"});
-                        item.trigger("change", { field: "vm_isListMode"});
-                    });
-                };
-
-
-
-                var getSingleCardDfd = $.Deferred();
-                var getCardsDfd = $.Deferred();
-
-                this._load  = function(opt) {
-                    // Abort any pending request before send new.
-                    // We need this in order to avoid situation when API slow and user quickly change filters or something else.
-                    // In such case without 'abort' user may see results of several requests at the same time.
-                    var abortMessage = "_abort";
-
-                    if(getSingleCardDfd.abort) {
-                        getSingleCardDfd.abort(abortMessage);
-                    }
-
-                    if(getCardsDfd.abort) {
-                        getCardsDfd.abort(abortMessage);
-                    }
-
-                    var that = this;
-
-                    that.set("vm_isItemsLoading", true);
-
-                    var apiPayload = $.extend({}, opt.filters);
-
-                    apiPayload.take = opt.take;
-                    apiPayload.skip = opt.skip;
-
-                    apiPayload.onlyMyProviders = mode === listViewMode.favorite;
-                    apiPayload.applyVisibilityRules = true;
-
-                    if (opt.userId) {
-                        // If user click on "Next" button on provider card we navigate to next date when this provider available.
-                        // And we must show this provider and all his available slots, this could be a problem if provider card not in first bunch of card (paging problem)
-                        // In order to solve this problem in such case we make addition request to API in order to get all information about this provider.
-                        // And then we add patient card to cards list.
-                        getSingleCardDfd = $selfSchedulingService.getClinicianCard(opt.userId, apiPayload.date);
-                    } else {
-                        getSingleCardDfd = $.Deferred();
-                        getSingleCardDfd.resolve(null);
-                    }
-
-                    getCardsDfd = $selfSchedulingService.getCliniciansCards(apiPayload);
-
-                    return $.when(getSingleCardDfd, getCardsDfd).done(function (singlCardResult, listOfCardsResult) {
-                        var cards = listOfCardsResult[0].data[0].clinicians;
-                        var totals = listOfCardsResult[0].data[0].totals;
-
-                        // If we provided 'userId' parameter we get concrete patient card which must be shown in list.
-                        if (singlCardResult) {
-                            var userId = singlCardResult[0].data[0].userId;
-
-                            for (var i = 0; i < cards.length; i++) {
-                                if (cards[i].userId === userId) {
-                                    cards.splice(i, 1);
-                                    break;
-                                }
-                            }
-
-                            var selectedClinicianCard = singlCardResult[0].data[0];
-                            selectedClinicianCard._isSelected = true; //Custom property, we use it in order to mark element in UI.
-
-                            cards.unshift(selectedClinicianCard);
-                        }
-
-                        $eventAggregator.published(dataSourceReadSuccessEvent, {
-                            mode: mode,
-                            data: totals,
-                            skip: apiPayload.skip,
-                            take: apiPayload.take
-                        });
-
-                        total = totals.total;
-
-                        var clinicians = cards.map(function (ap) {
-                            var c = kendo.observable(new Clinician(ap, scope));
-                            c.initApptsSlotTray();
-
-                            return c;
-                        });
-
-
-                        if(clinicians.length > 0) {
-                            // Add all new cards to providers list.
-                            // We use overrided by kendo push.apply in order to trigger change only once.
-                            that.vm_allItems.push.apply(that.vm_allItems, clinicians);
-
-                            // We put all slots in one colletction and monitor any changes (lock/unlock slot)
-                            providersSlotsLocator.setSlots(getSlotsFromDs(that.vm_allItems), $timeUtils.dateFromSnapDateString(apiPayload.date));
-
-                            // turn on Slick pugin for all cards.
-                            that.vm_allItems.forEach(function(card) {
-                                card.slickFooter();
-                            });
-
-                            if(scope.vm_isListMode()) {
-                                // Expand all new added cards, this is a card default state.
-                                expandClinicanCards(clinicians);
-                            }
-                        }
-
-                        // Callback for addition actions after data updated.
-                        options.onDataLoad();
-
-                        that.set("vm_isItemsLoading", false);
-                    }).fail(function (result) {
-                        // Ignore 'abort' operation and do not show error.
-                        // We abort requests in case if user send many requests (api slow and user change filters several times.)
-                        if(result.statusText && result.statusText === abortMessage) {
-                            return;
-                        }
-
-                        if (!snap.isUnloading) { //for FF. This prevents error handling from happening on aborted request when browser leaves the page.
-                            $snapNotification.error(result);
-                            that.set("vm_allItems", []);
-                        }
-                    });
-
-                };
-
-                function getSlotsFromDs(cards) {
-                    var slots = [];
-
-                    cards.forEach(function (clinicianCard) {
-                        clinicianCard.apptsSlotsTray.slots.sort(function (first, second) {
-                            return first.from - second.from;
-                        }).forEach(function (slot) {
-                            slots.push(slot);
-                        });
-                    });
-
-                    return slots;
-                }
-
-                function expandClinicanCards(cards) {
-
-                    setTimeout(function () {
-                        cards.forEach(function (clinicianCard) {
-                            clinicianCard.toogleFoter(true);
-                        });
-                    }, 100); // we need some delay in order to apply nested bindings. See this link for more details: http://www.telerik.com/forums/problem-with-databound-event-on-nested-list
-                }
+                return slots;
             }
-
 
             function loadJQuery() {
                 $('.js-toggle-bookmark').on('click', function (event) {
@@ -1392,3 +1086,69 @@ this.vm_patientsNameFilter = "";
 
         }).singleton();
 }(jQuery, snap, kendo));
+
+//Vertical orientation!
+/*
+       var clinicianCardViewType = {
+           vertical: "vertical",
+           horizontal: "horizontal",
+       };
+
+       this.clinicianListViewMode = clinicianCardViewType.horizontal;
+
+       this.vm_isClinicianCardHorizontalView = function () {
+           return this.get("clinicianCardViewType") === clinicianCardViewType.horizontal;
+       };
+
+       this.vm_isClinicianCardVerticalView = function () {
+           return this.get("clinicianCardViewType") === clinicianCardViewType.vertical;
+       };
+
+       this._triggerCardOrientation = function () {
+           this.trigger("change", {
+               field: "vm_isClinicianCardHorizontalView"
+           });
+
+           this.trigger("change", {
+               field: "vm_isClinicianCardVerticalView"
+           });
+
+           triggerConcreteListOfCards(this.allCliniciansDS.data());
+           triggerConcreteListOfCards(this.favoriteCliniciansDS.data());
+
+           function triggerConcreteListOfCards(cards) {
+               cards.forEach(function (card) {
+                   card.trigger("change", {
+                       field: "vm_isClinicianCardHorizontalView"
+                   });
+
+                   card.trigger("change", {
+                       field: "vm_isClinicianCardVerticalView"
+                   });
+               });
+           }
+       };
+       */
+
+
+// $("#clinicianCardsList").kendoMobileScroller().kendoMobileListView({
+//      dataSource: cliniciansDS,
+//      template:  kendo.template($("#clinicianCardTemplate").html()),
+//      endlessScroll: true,
+//  });
+
+//adding this css class provider-search-page__content in providerSearch.html seems to give an extra scroll bar
+
+//anytime bxslider is on a page there seems to be problems, I did see the same issues removing it though.
+
+//In case we have to do grid virtual
+/*  $("#grid").kendoGrid({
+    dataSource: cliniciansDS,
+    scrollable: {
+        virtual: true
+    },
+    height: "500px",
+    rowTemplate: kendo.template($("#clinicianCardTemplate").html()),
+
+
+});*/

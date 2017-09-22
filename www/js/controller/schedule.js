@@ -1,6 +1,17 @@
 angular.module('starter.controllers')
     .controller('ScheduleCtrl', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService, $window, $ionicBackdrop) {
         snap.baseUrl  = apiCommonURL;
+        snap.appName = $rootScope.alertMsgName;
+        if (deploymentEnvLogout === "Multiple") {
+              snap.redirctPage = '#/tab/chooseEnvironment';
+        } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
+                 snap.redirctPage = '#/tab/singleTheme';
+        }else if (cobrandApp !== 'MDAmerica' && deploymentEnvLogout === "Single") {
+            snap.redirctPage = '#/tab/singleTheme';
+        }else {
+           snap.redirctPage = '#/tab/login';
+        }
+
       $rootScope.doGetUserTimezone = function() {
           var params = {
               accessToken: $rootScope.accessToken,

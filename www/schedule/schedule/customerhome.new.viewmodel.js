@@ -168,7 +168,6 @@ var setUserVars = function() {
             function saveAppointmen(appt) {
                 var dfd = $.Deferred();
                 sessionStorage.setItem("appointPatId", appt.participants[1].patientId);
-                sessionStorage.setItem("waivefee", appt.waiveFee);
                 saveAppt(appt).done(function(appointmentResponse) {
                     if (appt.isNow && $overlay) {
                         var isLoading = true;
@@ -4712,15 +4711,13 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                                                 snap.openMobileApp(parseInt(newConsultationId), function() {
                                                     sessionStorage.setItem("consultationinitaction", "1");
                                                     //location.href = "/Customer/Main/#/Waiting";
-                                                    //location.href = "#/tab/receipt/CTT/" +newConsultationId;
-                                                    location.href = "#/tab/consultCharge/CTT/" +newConsultationId;
+                                                    location.href = "#/tab/receipt/CTT/" +newConsultationId;
                                                 });
                                                 return;
                                             }
                                             sessionStorage.setItem("consultationinitaction", "1");
                                             //location.href = "/Customer/Main/#/Waiting";
-                                          //  location.href = "#/tab/receipt/CTT/" +newConsultationId;
-                                              location.href = "#/tab/consultCharge/CTT/" +newConsultationId;
+                                            location.href = "#/tab/receipt/CTT/" +newConsultationId;
                                         }
                                     }
                                 });
@@ -4866,7 +4863,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                                 var dialog = $dialogWindow.createNewDialog({
                                     vm: $patientResponseAddressDialog,
                                     container: "#patientResponseAddressPopUpContainer",
-                                    contentPath: "/content/patient/patientResponseAddressDialog.html"
+                                    contentPath: "schedule/tab-patientResponseAddressDialog.html"
                                 });
 
                                 dialog.open({

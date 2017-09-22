@@ -1,9 +1,8 @@
 (function ($, snap) {
     "use strict";
 
-    snap.namespace("snap.patient.schedule").use(["snap.service.selfSchedulingService", "snap.common.timeUtils", "snap.common.overlay",
-        "snap.patient.patientEnterConsultationHelper"])
-        .define("patientAppointmentService", function ($selfSchedulingService, $timeUtils, $overlay, $patientEnterConsultationHelper) {
+    snap.namespace("snap.patient.schedule").use(["snap.service.selfSchedulingService", "snap.common.timeUtils", "snap.common.overlay"])
+        .define("patientAppointmentService", function ($selfSchedulingService, $timeUtils, $overlay) {
             var formatErrorMessage = function (error) {
                 if (typeof (error) === "undefined" || error === null) {
                     return "Unknown error";
@@ -107,7 +106,7 @@
                                         $overlay.setSubTxt(" ");
                                     }
 
-                                    $patientEnterConsultationHelper.enterConsultation(data).done(function() {
+                                    Snap.Patient.PatientHomeNewViewModel().goToSchedConsultInternal(data, function() {
                                         window.setTimeout(function() {
                                             $overlay.toggleOverlay();
                                         }, 2000);
