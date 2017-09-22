@@ -637,7 +637,7 @@ width: 85% !important;
 .avatheight {
 padding: 7px !important;
 margin-bottom: -8px;
-min-height: 85px !important;
+height: 80x !important;
 .aptsname {
     margin-top: 6px !important;
 }
@@ -672,7 +672,7 @@ min-height: 85px !important;
 //margin-top: -10px;
 padding: 7px !important;
 margin-bottom: -8px;
-min-height: 82px !important;
+height: 80px !important;
 .apptimage {
     float: left;
     margin-left: 9px;
@@ -6126,10 +6126,25 @@ width: 16px;
     position: relative;
     top: -7px;
 }
-a.item.item-avatar.appitem.scheduled:last-child {
-    margin-bottom: 65px !important;
-}
 
+a.item.item-avatar.appitem.scheduled:first-child{
+  min-height: 78px !important;
+}
 a.item.item-avatar.appitem.scheduled:last-child{
  margin-bottom: 100px !important;   
+  height: 72px !important;
+}
+a.item.item-avatar.appitem:first-child{
+  min-height: 78px !important;
+}
+a.item.item-avatar.appitem:last-child{
+ //margin-bottom: 100px !important;   
+  height: 72px !important;
+}
+a.item.item-avatar.avatheight{
+        min-height: 82px !important;
+}
+
+a.item.item-avatar.avatheight:first-child{
+        height: 78px !important;
 }

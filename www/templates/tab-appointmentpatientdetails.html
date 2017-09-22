@@ -100,7 +100,7 @@
 
                 <div class="appointScheduledMainDiv" ng-if="getIndividualPatScheduleDetails.length > 0" >SCHEDULED</div>
 
-               <a class="item item-avatar avatheight scheduled" style=" background-color: {{timerCOlor}};"  ng-repeat="scheduledListData in getIndividualPatScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
+               <a class="item item-avatar avatheight scheduled" style=" background-color: {{timerCOlor}};    min-height: 78px !important; "  ng-repeat="scheduledListData in getIndividualPatScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
 
                     <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)">
                     </div>
@@ -175,7 +175,7 @@
             </a>
           </div>
           <div class="appointScheduledMainDiv" ng-if="getAllPatScheduleDetails.length > 0" >SCHEDULED</div>
-         <a class="item item-avatar avatheight" style="background-color: {{timerCOlor}};" ng-repeat="scheduledListData in getAllPatScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
+         <a class="item item-avatar avatheight" style="background-color: {{timerCOlor}};  min-height: 78px !important;" ng-repeat="scheduledListData in getAllPatScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
             <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
               <h2 class="aptsname"><span style="margin-left:12px">Next Appointment</h2>
             <p class="appmarg">
