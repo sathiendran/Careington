@@ -1600,7 +1600,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                 $rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
                 if (!angular.isUndefined($rootScope.consultationStatusId)) {
                     if ($rootScope.consultationStatusId === 71) {
-                        $rootScope.doGetScheduledNowPhoneConsulatation();
+                      //  $rootScope.doGetScheduledNowPhoneConsulatation();
                         navigator.notification.alert(
                             'Your consultation is already started on other device.', // message
                             function() {
@@ -1612,7 +1612,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId === 72) {
-                        $rootScope.doGetScheduledNowPhoneConsulatation();
+                      //  $rootScope.doGetScheduledNowPhoneConsulatation();
                         navigator.notification.alert(
                             'Your consultation is already ended.', // message
                             function() {
@@ -1624,7 +1624,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId === 79) {
-                        $rootScope.doGetScheduledNowPhoneConsulatation();
+                      //  $rootScope.doGetScheduledNowPhoneConsulatation();
                         navigator.notification.alert(
                             'Your consultation is cancelled.', // message
                             function() {
@@ -1636,7 +1636,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId === 80) {
-                        $rootScope.doGetScheduledNowPhoneConsulatation();
+                        //$rootScope.doGetScheduledNowPhoneConsulatation();
                         navigator.notification.alert(
                             'Your consultation is in progress on other device.', // message
                             function() {
@@ -4227,7 +4227,7 @@ $scope.EditHealth = {};
 
         //  $rootScope.userCardNumber = $('option:selected', this).text();
           $rootScope.userCardNumber = payValue[2];
-          $rootScope.userCardDetails = $('option:selected', this).val();
+          $rootScope.userCardDetails = payValue[0];
           $rootScope.userCardType = payValue[3];
       }
         //  $('div.cardViewport').text($("option:selected", this).text());
@@ -4301,24 +4301,28 @@ $scope.EditHealth = {};
     }
 
     $scope.backConsultCharge = function() {
-        if (($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode === 'on' && $rootScope.Cttonscheduled === 'on') || ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on' && $rootScope.Cttonscheduled === 'on')) {
-            $state.go('tab.ConsentTreat');
-        } else if (($rootScope.healthPlanPage === "block" && $rootScope.Cttonscheduled === 'on') || ($rootScope.paymentBackPage === true && $rootScope.Cttonscheduled === 'on')) {
-            $state.go('tab.ConsentTreat');
-        } else if ($rootScope.consultChargeNoPlanPage === "block" && $rootScope.paymentBackPage !== true) {
-            $rootScope.consultChargeNoPlanPage = "none";
-            $rootScope.healthPlanPage = "block";
-        } else if ($rootScope.Cttonscheduled !== 'on'){
-            if($rootScope.concentToTreatPreviousPage === "tab.CurrentMedication") {
-                $state.go('tab.ConsentTreat');
-            } else {
-                $state.go($rootScope.concentToTreatPreviousPage);
-            }
+        if($stateParams.getPage === 'CTT') {
+            $state.go('tab.userhome');
         } else {
-          $rootScope.doGetScheduledNowPhoneConsulatation();
-        //  $rootScope.doGetIndividualScheduledConsulatation();
-          $state.go('tab.userhome');
-        }
+            if (($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode === 'on' && $rootScope.Cttonscheduled === 'on') || ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on' && $rootScope.Cttonscheduled === 'on')) {
+                $state.go('tab.ConsentTreat');
+            } else if (($rootScope.healthPlanPage === "block" && $rootScope.Cttonscheduled === 'on') || ($rootScope.paymentBackPage === true && $rootScope.Cttonscheduled === 'on')) {
+                $state.go('tab.ConsentTreat');
+            } else if ($rootScope.consultChargeNoPlanPage === "block" && $rootScope.paymentBackPage !== true) {
+                $rootScope.consultChargeNoPlanPage = "none";
+                $rootScope.healthPlanPage = "block";
+            } else if ($rootScope.Cttonscheduled !== 'on'){
+                if($rootScope.concentToTreatPreviousPage === "tab.CurrentMedication") {
+                    $state.go('tab.ConsentTreat');
+                } else {
+                    $state.go($rootScope.concentToTreatPreviousPage);
+                }
+            } else {
+            //  $rootScope.doGetScheduledNowPhoneConsulatation();
+            //  $rootScope.doGetIndividualScheduledConsulatation();
+              $state.go('tab.userhome');
+            }
+      }
     }
 
     $scope.goToNextPage = function() {
@@ -4720,6 +4724,19 @@ $scope.EditHealth = {};
 
                         });
 
+                        if((typeof $rootScope.paymentProfileId != 'undefined' && typeof $rootScope.paymentProfileId != '' && $window.localStorage.getItem("Card"+ $rootScope.UserEmail) != null && $window.localStorage.getItem("Card"+ $rootScope.UserEmail) != '') && ($rootScope.paymentProfileId == $window.localStorage.getItem("Card"+ $rootScope.UserEmail)))
+                            {
+                              $scope.userCrdType = $filter('filter')($rootScope.PaymentProfile, {
+                                  profileID: $rootScope.paymentProfileId
+                              });
+                              var userCardType = $scope.userCrdType[0].cardLogo;
+                              var crdNum = $scope.userCrdType[0].cardNumber.split('XXXX');
+                                 $window.localStorage.setItem("Card" + $rootScope.UserEmail, $rootScope.paymentProfileId);
+                                 $window.localStorage.setItem("CardText" + $rootScope.UserEmail, crdNum);
+                                 $window.localStorage.setItem("CardLogo" + $rootScope.UserEmail, userCardType);
+                                 $window.localStorage.setItem("hosNameforCard", $rootScope.hospitalName);
+                          }
+
                         if(typeof $rootScope.userCardDetails !== 'undefined' && $rootScope.userCardDetails !== '') {
                             $scope.userCrdType = $filter('filter')($rootScope.PaymentProfile, {
                                 profileID: $rootScope.userCardDetails
@@ -4734,6 +4751,8 @@ $scope.EditHealth = {};
                           $scope.userCrdType = $filter('filter')($rootScope.PaymentProfile, {
                               profileID: $rootScope.chkProfileIdForCrdType
                           });
+                        //  alert($scope.userCrdType);
+                        //  console.log($scope.userCrdType);
                           $rootScope.userCardType = $scope.userCrdType[0].cardLogo;
                           $scope.crdNum = $scope.userCrdType[0].cardNumber.split('XXXX');
                          // $rootScope.userCardNumber = $scope.crdNum[1];
@@ -5081,38 +5100,45 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 billing_country: $scope.editCountry,
                 accessToken: $rootScope.accessToken,
                 success: function(data) {
-
-
-
-                  $scope.EditPaymentDetails = data;
-                  $rootScope.userCardDetails = $rootScope.paymentProfileId;
-                  $rootScope.chkProfileIdForCrdType = $rootScope.paymentProfileId;
-                if (typeof $rootScope.editCardNumber === 'undefined') {
-                        $rootScope.choosePaymentShow = 'none';
-                        $rootScope.choosePaymentHide = 'initial';
-                    } else if (typeof $rootScope.editCardNumber !== 'undefined') {
-                        $rootScope.choosePaymentShow = 'initial';
-                        $rootScope.choosePaymentHide = 'none';
-                        var cardNo = $rootScope.editCardNumber;
-                        var strCardNo = cardNo.toString();
-                        var getLastFour = strCardNo.substr(strCardNo.length - 4);
-                        $rootScope.userCardNumber = getLastFour;
-
-                        /*if($rootScope.paymentProfileId == $window.localStorage.getItem("Card"+ $rootScope.UserEmail))
-                            {
-                                 $window.localStorage.setItem("Card" + $rootScope.UserEmail, $rootScope.paymentProfileId);
-                                 $window.localStorage.setItem("CardText" + $rootScope.UserEmail, $rootScope.userCardNumber);
-                                 $window.localStorage.setItem("CardLogo" + $rootScope.UserEmail, $rootScope.paymentProfileLogo);
-                                 $window.localStorage.setItem("hosNameforCard", $rootScope.hospitalName);
-                            }*/
-
+                  if(data.errorMessages === null || data.errorMessages === '') {
+                      $scope.EditPaymentDetails = data;
+                      $rootScope.userCardDetails = $rootScope.paymentProfileId;
+                      $rootScope.chkProfileIdForCrdType = $rootScope.paymentProfileId;
+                    if (typeof $rootScope.editCardNumber === 'undefined') {
+                            $rootScope.choosePaymentShow = 'none';
+                            $rootScope.choosePaymentHide = 'initial';
+                        } else if (typeof $rootScope.editCardNumber !== 'undefined') {
+                            $rootScope.choosePaymentShow = 'initial';
+                            $rootScope.choosePaymentHide = 'none';
+                            var cardNo = $rootScope.editCardNumber;
+                            var strCardNo = cardNo.toString();
+                            var getLastFour = strCardNo.substr(strCardNo.length - 4);
+                            $rootScope.userCardNumber = getLastFour;
+                        }
+                      //  alert("lasr -> "+$rootScope.userCardNumber);
+                        $rootScope.doGetPatientPaymentProfiles();
+                        $state.go('tab.submitPayment');
+                        $rootScope.cardDisplay = "inherit;";
+                        $rootScope.verifyCardDisplay = "none";
+                        $rootScope.planverify = "inherit";
+                    } else {
+                        $rootScope.cardDisplay = "inherit;";
+                        $rootScope.verifyCardDisplay = "none";
+                        $rootScope.planverify = "inherit";
+                        if (typeof $rootScope.editCardNumber !== 'undefined' && data.errorCode != '4221' ) {
+                            var cardNo = $rootScope.editCardNumber;
+                            var strCardNo = cardNo.toString();
+                            var getLastFour = strCardNo.substr(strCardNo.length - 4);
+                            $scope.ErrorMessage = "Unable to add payment method x"+getLastFour +". Credit card number: must be a valid credit card number";
+                            $rootScope.Validation($scope.ErrorMessage);
+                        } else if(data.errorCode != '4221'){
+                            $scope.ErrorMessage = "Credit card number: must be a valid credit card number";
+                            $rootScope.Validation($scope.ErrorMessage);
+                        } else {
+                            $scope.ErrorMessage = "Duplicate submission detected. Please try again, and refrain from using Cancel button";
+                            $rootScope.Validation($scope.ErrorMessage);
+                        }
                     }
-                  //  alert("lasr -> "+$rootScope.userCardNumber);
-                    $rootScope.doGetPatientPaymentProfiles();
-                    $state.go('tab.submitPayment');
-                    $rootScope.cardDisplay = "inherit;";
-                    $rootScope.verifyCardDisplay = "none";
-                    $rootScope.planverify = "inherit";
                 },
                 error: function() {
                     $rootScope.cardDisplay = "inherit;";
@@ -5275,24 +5301,43 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                       billing_country: $scope.Country,
                       accessToken: $rootScope.accessToken,
                       success: function(data) {
-                        $scope.PostPaymentDetails = data;
-                        $rootScope.userCardDetails = data.paymentProfileId;
-                        if (typeof $rootScope.CardNumber === 'undefined') {
-                            $rootScope.choosePaymentShow = 'none';
-                            $rootScope.choosePaymentHide = 'initial';
-                        } else if (typeof $rootScope.CardNumber !== 'undefined') {
-                            $rootScope.choosePaymentShow = 'initial';
-                            $rootScope.choosePaymentHide = 'none';
-                            var cardNo = $rootScope.CardNumber;
-                            var strCardNo = cardNo.toString();
-                            var getLastFour = strCardNo.substr(strCardNo.length - 4);
-                            $rootScope.userCardNumber =getLastFour;
+                        if(data.errorMessages === null || data.errorMessages === '') {
+                            $scope.PostPaymentDetails = data;
+                            $rootScope.userCardDetails = data.paymentProfileId;
+                            if (typeof $rootScope.CardNumber === 'undefined') {
+                                $rootScope.choosePaymentShow = 'none';
+                                $rootScope.choosePaymentHide = 'initial';
+                            } else if (typeof $rootScope.CardNumber !== 'undefined') {
+                                $rootScope.choosePaymentShow = 'initial';
+                                $rootScope.choosePaymentHide = 'none';
+                                var cardNo = $rootScope.CardNumber;
+                                var strCardNo = cardNo.toString();
+                                var getLastFour = strCardNo.substr(strCardNo.length - 4);
+                                $rootScope.userCardNumber =getLastFour;
+                            }
+                            $rootScope.doGetPatientPaymentProfiles();
+                            $state.go('tab.submitPayment');
+                            $rootScope.cardDisplay = "inherit;";
+                            $rootScope.verifyCardDisplay = "none";
+                            $rootScope.planverify = "inherit";
+                        } else {
+                            $rootScope.cardDisplay = "inherit;";
+                            $rootScope.verifyCardDisplay = "none";
+                            $rootScope.planverify = "inherit";
+                            if (typeof $rootScope.editCardNumber !== 'undefined' && data.errorCode != '4221') {
+                                var cardNo = $rootScope.editCardNumber;
+                                var strCardNo = cardNo.toString();
+                                var getLastFour = strCardNo.substr(strCardNo.length - 4);
+                                $scope.ErrorMessage = "Unable to add payment method x"+getLastFour +". Credit card number: must be a valid credit card number";
+                                $rootScope.Validation($scope.ErrorMessage);
+                            } else if(data.errorCode != '4221'){
+                                $scope.ErrorMessage = "Credit card number: must be a valid credit card number";
+                                $rootScope.Validation($scope.ErrorMessage);
+                            } else {
+                                $scope.ErrorMessage = "Duplicate submission detected. Please try again, and refrain from using Cancel button";
+                                $rootScope.Validation($scope.ErrorMessage);
+                            }
                         }
-                        $rootScope.doGetPatientPaymentProfiles();
-                        $state.go('tab.submitPayment');
-                        $rootScope.cardDisplay = "inherit;";
-                        $rootScope.verifyCardDisplay = "none";
-                        $rootScope.planverify = "inherit";
                       },
                       error: function(data, status) {
                         $rootScope.cardDisplay = "inherit;";
@@ -7168,7 +7213,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $rootScope.doGetCreditDetails();
         $rootScope.passededconsultants();
         $rootScope.doGetLocations();
-        $rootScope.doGetScheduledNowPhoneConsulatation();
+      //  $rootScope.doGetScheduledNowPhoneConsulatation();
         $rootScope.doGetonDemandAvailability();
         $rootScope.doGetListOfCoUsers();
         $scope.getHealthHistoryDetails();

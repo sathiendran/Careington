@@ -5,7 +5,7 @@
 
     snap.namespace("snap.patient")
     .use([
-            "snapNotification", 
+            "snapNotification",
             "snap.EventAggregator",
             "snap.admin.patientRules.ruleService",
             "snap.DataService.customerDataService",
@@ -103,7 +103,7 @@
 
                 this.set("vm_isLoading", true);
 
-                
+
                 var address = this.selectedCountry;
                 if(this.selectedRegion) {
                     address = [this.selectedRegion, this.selectedCountry].join(", ");
@@ -129,7 +129,7 @@
 
             this.vm_onRegionChange = function() {
                 var selectedRegion = searchByText(this.regions, this.selectedRegion) ;
-                
+
                 this.set("vm_stateError", selectedRegion === null);
 
                 if(selectedRegion){
@@ -149,14 +149,14 @@
                 var that = this;
                 return $customerDataService.getProviderLicensePatientAddressMetaRule().done(function(data){
                     var d = data.data[0].countries.map(function(country) {
-                        var obj = { 
+                        var obj = {
                             text: $.trim(country.country),
                             value: $.trim(country.countryCode)
                         };
 
                         if(country.regions) {
                             obj.regions = country.regions.map(function(region) {
-                                return { 
+                                return {
                                     text: $.trim(region.region),
                                     value: $.trim(region.regionCode)
                                 };
@@ -173,7 +173,7 @@
             this.loadStatesForSelectedCountry = function() {
                 this.set("regions", []);
                 this.set("selectedRegion", null);
-                
+
                 var selectedCountry = searchByText(this.countryCodes, this.selectedCountry);
                 if(selectedCountry !== null) {
                     this.set("vm_countryError", false);
@@ -236,11 +236,12 @@
                 var that = this;
 
 			    $('.search input').on('focus', function() {
-                    that.set("vm_isLocationAutocompleteFocused", true);
+                  //  that.set("vm_isLocationAutocompleteFocused", true);
                 });
 
                 $('.search input').on('blur', function(){
-                    that.set("vm_isLocationAutocompleteFocused", false);
+                  //  that.set("vm_isLocationAutocompleteFocused", false);
+                  that.set("vm_isLocationAutocompleteFocused", true);
                 });
             };
         }).singleton();
