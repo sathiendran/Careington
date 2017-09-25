@@ -120,13 +120,9 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
         $state.go('tab.waitingRoom');
     }
     if ($rootScope.appointmentDisplay === "test") {
-        /*$timeout(function() {
-            document.getElementsByTagName('timer')[0].stop();
-            document.getElementsByTagName('timer')[0].start();
-        }, 10);*/
         $("#appointNotes").html($rootScope.appointNotes);
-    //    $rootScope.consultationId = $rootScope.consultationId;
-        var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
+
+      /*  var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
 
         var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
 
@@ -158,31 +154,10 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                 $('.AvailableIn').show();
                 $('.enterAppoinment').hide();
             }
-        });
+        });*/
 
-    /*    $timeout(function() {
-           document.getElementsByTagName('timer')[0].stop();
-            document.getElementsByTagName('timer')[0].start();
-        }, 100);*/
     }
 
-  /*  var d = new Date();
-    //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
-    var currentUserHomeDate = d;
-
-    if (getReplaceTime < currentUserHomeDate) {
-        $rootScope.timeNew = 'none';
-        $rootScope.timeNew1 = 'block';
-        $('.AvailableIn').hide();
-        $('.enterAppoinment').show();
-        $rootScope.timerCOlor = '#a2d28a';
-    } else {
-        $rootScope.timeNew = 'block';
-        $rootScope.timeNew1 = 'none';
-        $('.AvailableIn').show();
-        $('.enterAppoinment').hide();
-        $rootScope.timerCOlor = '#FDD8C5';
-    }*/
 
     $scope.showEnterWaitingRoomButton = function() {
         $rootScope.timeNew = 'none';

@@ -1495,7 +1495,7 @@ var setUserVars = function() {
                         that.remove().done(function() {
                             $eventAggregator.published(fact.removedEvent, that);
                             $snapNotification.success("Appointment is unassigned successfully");
-                            $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+                           $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                             setTimeout(function() {
                                 location.href = "#/tab/appointmentpatientdetails/webSSCancel";
                             }, 2000);
@@ -2172,7 +2172,7 @@ var setUserVars = function() {
 
             this.openNewAppointmentDialog = function(dialogOpt) {
                 var dfd = $.Deferred();
-
+                sessionStorage.setItem('chkSSAddOrEdit', 'Add');
                 var that = this;
                 $selfSchedulingService.getClinicianCard(dialogOpt.clinicianId, $timeUtils.dateToString(dialogOpt.start)).done(function(response) {
                     var clinicianCard = response.data[0];
@@ -2608,7 +2608,11 @@ var setUserVars = function() {
                 this.vm_getSelectedItemOrDefault = function() {
                     if (this.selectedItem) {
                         var selected = kendo.observable(new Item(this.selectedItem));
-                        selected.set("isSelectorLocked", this.isSelectorLocked);
+                        if(sessionStorage.getItem('chkSSAddOrEdit') === 'Edit') {
+                          selected.set("isSelectorLocked", !this.isSelectorLocked);
+                        } else {
+                          selected.set("isSelectorLocked", this.isSelectorLocked);
+                        }
                         return selected;
                     } else {
                         var def = defaultItem;
@@ -2637,7 +2641,7 @@ var setUserVars = function() {
                     if (e) {
                         e.preventDefault();
                     }
-                    if (!this.isSelectorLocked) {
+                    if (!this.isSelectorLocked && sessionStorage.getItem('chkSSAddOrEdit') !== 'Edit') {
                         var that = this;
                         that.set("isItemsSelectorVisible", true);
 
@@ -4696,7 +4700,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                                         if (callback && callback.call) {
                                             callback.call();
                                         }
-                                        $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+                                      //  $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                                         if (snap.hospitalSettings.showCTTOnScheduled) {
                                             //location.href = "/Customer/Intake/#/Confirmation";
                                             location.href = "#/tab/ConsentTreat/CTT/" +newConsultationId;
