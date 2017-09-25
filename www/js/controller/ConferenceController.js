@@ -519,26 +519,60 @@ var now = new Date();
 if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $rootScope.existingConsultationReport.medicalCodeDetails !== 'undefined')
                     {
                         angular.forEach($rootScope.existingConsultationReport.medicalCodeDetails, function(index, item) {
-                          var cptcode = index.shortDescription;
+                          /*var cptcode = index.shortDescription;
                           var spcptcode = cptcode.split("-");
                           var icdcode =   index.shortDescription;
                           var spicdcode = icdcode.split("-");
                           var icd9code =   index.shortDescription;
                           var spicd9code = icdcode.split("-");
                           var snocode =   index.shortDescription;
-                          var spsnocode = snocode.split("-");
+                          var spsnocode = snocode.split("-");*/
+
+
+                          var cptcode = index.shortDescription;
+                         // var spcptcode = cptcode.split("-");
+                          var spcptcode = cptcode.substr(0,cptcode.indexOf('-'));
+                          var spcptcodeDesc =  cptcode.substr(cptcode.indexOf('-')+1);
+
+                          var icdcode =   index.shortDescription;
+                          //var spicdcode = icdcode.split("-");
+                          var spicdcode = icdcode.substr(0,icdcode.indexOf('-'));
+                          var spicdcodeDesc =  icdcode.substr(icdcode.indexOf('-')+1);
+                          
+
+                          var icd9code =   index.shortDescription;
+                          //var spicd9code = icdcode.split("-");
+
+                          var spicd9code = icd9code.substr(0,icd9code.indexOf('-'));
+                          var spicd9codeDesc =  icd9code.substr(icd9code.indexOf('-')+1);
+
+                          var snocode =   index.shortDescription;
+                          //var spsnocode = snocode.split("-");
+                          var spsnocode = snocode.substr(0,snocode.indexOf('-'));
+                          var spsnocodeDesc =  snocode.substr(snocode.indexOf('-')+1);
+
+
+
                             $rootScope.reportMedicalCodeDetails.push({
                                 'Number': item + 1,
                                 'shortDescription': index.shortDescription,
                                 'medicalCodingSystem': index.medicalCodingSystem,
-                                'EnCPTCode' : spcptcode[0],
+                                /*'EnCPTCode' : spcptcode[0],
                                 'EnCPTDescription' : spcptcode[1],
                                 'EnICDcode' : spicdcode[0],
                                 'EnICDDescription' : spicdcode[1],
                                 'EnICD9code' : spicd9code[0],
                                 'EnICD9Description' : spicd9code[1],
                                 'SNOMEDcode' : spsnocode[0],
-                                'SNOMEDcodeDescription' : spsnocode[1]
+                                'SNOMEDcodeDescription' : spsnocode[1]*/
+                                'EnCPTCode' : spcptcode,
+                                'EnCPTDescription' : spcptcodeDesc,
+                                'EnICDcode' : spicdcode,
+                                'EnICDDescription' : spicdcodeDesc,
+                                'EnICD9code' : spicd9code,
+                                'EnICD9Description' : spicd9codeDesc,
+                                'SNOMEDcode' : spsnocode,
+                                'SNOMEDcodeDescription' : spsnocodeDesc
                             });
                         });
                         $rootScope.reportMediCPT = $filter('filter')($scope.reportMedicalCodeDetails, {
@@ -576,9 +610,17 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
                         });
                         if($rootScope.reportSNOMED != ""){
                           var snocode =   $rootScope.reportSNOMED[0].shortDescription;
-                          var spsnocode = cptcode.split("-");
+                          /*var spsnocode = cptcode.split("-");
                           $rootScope.reportMediSnocode = spsnocode[0];
-                          $rootScope.reportMediSnodescription = spsnocode[1];
+                          $rootScope.reportMediSnodescription = spsnocode[1];*/
+
+
+                          var spsnocode = cptcode.substr(0,cptcode.indexOf('-'));
+                          var spsnocodeDes = cptcode.substr(cptcode.indexOf('-')+1);
+                          $rootScope.reportMediSnocode = spsnocode;
+                          $rootScope.reportMediSnodescription = spsnocodeDes;
+
+                          
                         }
                     } else {
                         $rootScope.reportMedicalCodeDetails = 'None Reported';

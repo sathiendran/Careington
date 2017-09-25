@@ -77,18 +77,18 @@
                       </a>   <span class="encountericon">  <i ng-bind-html="drawSVGCIcon('phone')"></i> </span>
                      </div>
                      <div class="passedDate-{{deviceName}}">
-                        <p class="colfamily"> {{passedData.consultationDate}}</p>
+                        <p class="colfamily consult"> {{passedData.consultationDate}}</p>
                      </div>
                      <div class="passedTime-{{deviceName}}">
-                        <p class="colfamily">{{passedData.consultationTime}}</p>
+                        <p class="colfamily consult">{{passedData.consultationTime}}</p>
                      </div>
                      <div class="ellipsis passedDoc-{{deviceName}}">
-                        <p class="ellipsis">
+                        <p class="ellipsis consult">
                            <a class="colfamily" ng-if="!passedData.assignedDoctorName">N/A</a>
                            <a class="colfamily" ng-if="passedData.assignedDoctorName">{{passedData.assignedDoctorName}}</a>
                         </p>
                      </div>
-                     <div class="passedDetails-{{deviceName}}">
+                     <div class="passedDetails-{{deviceName}} consult">
                         <span ng-click="showReportView({{passedData}}, 'tab.reports');">Report
                         <span><i class="icon ion-chevron-right "></i></span></span>
                      </div>
@@ -99,7 +99,7 @@
             </div>
          </div>
       </ion-content>
-      <!---- Past Consult End ----->
+      <!-- Past Consult End -->
       <ion-content class="consultcontent" ng-show="missedshow">
          <div>
             <div class="row rheader">
@@ -122,20 +122,20 @@
                         <span class="encountericon ">  <i ng-bind-html="drawSVGCIcon('phone')"></i> </span>
                      </div>
                      <div class="passedDate-{{deviceName}}">
-                        <p class="colfamily">{{misseddata.enddate | date: "MMM dd, yyyy"}}</p>
+                        <p class="colfamily consult">{{misseddata.enddate | date: "MMM dd, yyyy"}}</p>
                      </div>
                      <div class="passedTime-{{deviceName}}">
-                        <p class="colfamily">{{misseddata.startTime  | date: "hh:mm a"}}</p>
+                        <p class="colfamily consult">{{misseddata.startTime  | date: "hh:mm a"}}</p>
                      </div>
                      <div class="ellipsis passedDoc-{{deviceName}}">
-                        <p class="ellipsis">
+                        <p class="ellipsis consult">
                            <a class="colfamily" ng-if="!misseddata.docname">N/A
                            </a>
                            <a class="colfamily" ng-if="misseddata.docname">{{misseddata.docname}}
                            </a>
                         </p>
                      </div>
-                     <div class="passedDetails-{{deviceName}}">
+                     <div class="passedDetails-{{deviceName}} consult">
                         <span ng-click="showMissedDetailsView({{misseddata}},'tab.missedConsultAppoint');">Details
                         <span><i class="icon ion-chevron-right "></i></span></span>
                      </div>
@@ -146,7 +146,7 @@
             </div>
          </div>
       </ion-content>
-      <!---- Missed Consult End ----->
+      <!-- Missed Consult End -->
       <ion-content class="consultcontent" ng-show="droppedshow">
          <div>
             <div class="row rheader">
@@ -169,18 +169,18 @@
                        <span class="encountericon ">  <i ng-bind-html="drawSVGCIcon('phone')"></i> </span>
                     </div>
                      <div class="passedDate-{{deviceName}}">
-                        <p class="colfamily">{{droppedData.consultationDate}}</p>
+                        <p class="colfamily consult">{{droppedData.consultationDate}}</p>
                      </div>
                      <div class="passedTime-{{deviceName}}">
-                        <p class="colfamily">{{droppedData.consultationTime}}</p>
+                        <p class="colfamily consult">{{droppedData.consultationTime}}</p>
                      </div>
                      <div class="ellipsis passedDoc-{{deviceName}}">
-                        <p class="ellipsis">
+                        <p class="ellipsis consult">
                            <a class="colfamily" ng-if="!droppedData.assignedDoctorName">N/A</a>
                            <a class="colfamily" ng-if="droppedData.assignedDoctorName">{{droppedData.assignedDoctorName}}</a>
                         </p>
                      </div>
-                     <div class="passedDetails-{{deviceName}}">
+                     <div class="passedDetails-{{deviceName}} consult">
                         <span ng-click="showReportView({{droppedData}},'tab.reports');">Report
                         <span><i class="icon ion-chevron-right "></i></span></span>
                      </div>
@@ -193,7 +193,7 @@
       </ion-content>
       <div ng-controller="healthinfoController">
       </div>
-      <!--- Dropped Consult End--->
+      <!-- Dropped Consult End -->
    </ion-view>
    <ion-tabs class=" tabs-icon-top tabs-dark">
       <a class="tab-item" ng-href="#/tab/relatedusers" >
