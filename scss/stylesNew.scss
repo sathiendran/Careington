@@ -631,7 +631,7 @@ font-family: Glober SemiBold;
 margin-left: -4px;
 }
 .popup-container .popup {
-border-radius: 7px;
+//border-radius: 7px;
 width: 85% !important;
 }
 .avatheight {
@@ -6069,6 +6069,7 @@ div.surDescription p {
     color: rgba(0,0,0,0.54);
     height: 20pt;
     width: 112pt;
+    margin-top: 4px;
 }
 
 .priorValueDate{
