@@ -464,6 +464,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
 
 
     if($stateParams.getPage === 'webSSAppointUpdate'){
+      $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
       $scope.doGetSelectedappoimentDetails(sessionStorage.getItem("SSscheduledAppointmentId"));
     };
 

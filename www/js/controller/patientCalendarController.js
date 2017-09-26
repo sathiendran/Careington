@@ -108,10 +108,12 @@ angular.module('starter.controllers')
         if($stateParams.getPage === 'webSS'){
           $rootScope.patientId = JSON.parse(sessionStorage.getItem("appointPatId"));
           $rootScope.doGetpatDetailsForSS($rootScope.patientId,"notNow");
+          $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
         }
 
         if($stateParams.getPage === 'webSSCancel'){
           $rootScope.doGetScheduledNowPhoneConsulatation();
+            $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
         //  $rootScope.doGetIndividualScheduledConsulatation();
         }
 

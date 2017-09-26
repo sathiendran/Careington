@@ -335,6 +335,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     window.localStorage.setItem('isVideoCallProgress', "No");
     window.localStorage.setItem("isCustomerInWaitingRoom", "No");
     $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+  //  $('script[src="schedule/schedule/providerSearch.viewmodel.js"]').remove();
+  //  $('script[src*="schedule/schedule/providerSearch.viewmodel.js"]').remove();
+  //  $('#ff1233').remove();
+  /*  $('helloScript1').att('src').remove();
+    $('helloScript2').att('src').remove();
+    $('helloScript3').att('src').remove();*/
     $rootScope.is_iPadDeviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     $rootScope.drawSVGCIcon = function(iconName) {
         return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
@@ -605,7 +611,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -2895,8 +2901,26 @@ $rootScope.checkAndChangeMenuIcon = function() {
     }
 
     $scope.goTOSchedule = function() {
-        /* $("#style1").attr("disabled", "disabled");
-          $("#style2").attr("disabled", "disabled");*/
+      /*$.when(
+          $.getScript( "https://emerald.qa1.snapvcm.com/Scripts/slick.min.js" ),
+          $.getScript( "schedule/schedule/providerSearch.viewmodel.js" ),
+          $.getScript( "schedule/schedule/apptSlotsTray.viewmodel.js" ),
+          $.getScript( "schedule/schedule/timeUtils.js" ),
+          $.Deferred(function( deferred ){
+              $( deferred.resolve );
+          })
+        ).done(function(){
+
+          $('<link/>', {
+              rel: 'stylesheet',
+              type: 'text/css',
+              href: 'css/styles.v3.less.dynamic.css'
+          }).appendTo('head');
+          //  $state.go('tab.providerSearch', { viewMode : 'all' });
+          $state.go('tab.providerSearch');
+
+        });*/
+
         $('<link/>', {
             rel: 'stylesheet',
             type: 'text/css',
@@ -2904,6 +2928,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
         }).appendTo('head');
         //  $state.go('tab.providerSearch', { viewMode : 'all' });
         $state.go('tab.providerSearch');
+
     }
 
     $rootScope.doGetRequiredPatientProfiles = function(patientId, chkPreviousPage, cutlocations, authen) {

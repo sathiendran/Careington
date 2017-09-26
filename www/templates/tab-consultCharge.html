@@ -137,7 +137,7 @@
                      <h4 class="insurancelist">
                        <div class="selectInsurancelist">Select your Payment card
                               <!--<span class="insuranceedit" style="display: {{editCardStyle}};" ng-click="editpaymentcard('consulCharge')" >Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>-->
-                              <span ng-if="userDefaultPaymentProfile != '' && userDefaultPaymentProfile != 'undefined' && userDefaultPaymentProfile != null" class="insuranceedit"  ng-click="editpaymentcard('consulCharge')" >Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>
+                              <span ng-if="(userDefaultPaymentProfile != '' && userDefaultPaymentProfile != 'undefined' && userDefaultPaymentProfile != null) || editCardStyle == 'block'" class="insuranceedit"  ng-click="editpaymentcard('consulCharge')" >Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>
                         </div>
                      </h4>
                      <div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}">

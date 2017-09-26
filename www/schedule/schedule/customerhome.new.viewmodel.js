@@ -1305,7 +1305,7 @@ var setUserVars = function() {
                             sessionStorage.setItem('ssAppointUpdate', 'yes');
                             $snapNotification.success(that._typeName + " updated successfully");
                             setTimeout(function() {
-                              $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+                            //  $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                               location.href = "#/tab/appoimentDetails/webSSAppointUpdate";
                             }, 3000);
                         }
@@ -1471,7 +1471,7 @@ var setUserVars = function() {
 
                 this.vm_onCloseClick = function(e) {
                     if(sessionStorage.getItem('chkSSAddOrEdit') === 'Edit') {
-                      $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+                        $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                     }
                     this._clearDeactivationTimeout();
                     $eventAggregator.published(fact.closeEvent, this);
@@ -1495,7 +1495,7 @@ var setUserVars = function() {
                         that.remove().done(function() {
                             $eventAggregator.published(fact.removedEvent, that);
                             $snapNotification.success("Appointment is unassigned successfully");
-                           $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+                          // $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                             setTimeout(function() {
                                 location.href = "#/tab/appointmentpatientdetails/webSSCancel";
                             }, 2000);
