@@ -411,8 +411,8 @@ angular.module('starter.services', [])
 							'Authorization': 'Bearer ' +params.accessToken,
 							'X-Api-Key': util.getHeaders()["X-Api-Key"],
 							'X-Developer-Id': util.getHeaders()["X-Developer-Id"],
-							'Time-Zone': 'West Asia Standard Time',
-							'Content-Type': params.userTimeZoneId
+							'Time-Zone': params.userTimeZoneId,
+							'Content-Type': 'application/json; charset=utf-8'
 					},
 		      url: apiCommonURL + '/api/v2.1/patients/filtered-appointments?appointmentStatusCodes=2&appointmentTypeCodes=1&appointmentTypeCodes=3&patientIds=' + params.patientId +'&includePatientDependents=true&startDate=' + params.yesterdayDate,
 					method: 'GET'
@@ -437,10 +437,15 @@ angular.module('starter.services', [])
         //https://snap-dev.com/api/v2/patients/scheduledconsultations?patientId={patientId}
         //util.setHeaders($http, params);
         var requestInfo = {
-            headers: util.getHeaders(params.accessToken),
-            //url: apiCommonURL + '/api/v2/patients/scheduledconsultations?Id=' + params.patientId,
-			//url: apiCommonURL + '/api/v2/patients/profile?include=Appointments',
-	     url: apiCommonURL + '/api/v2.1/patients/appointments?includePatientCoUsers=false ',
+            //headers: util.getHeaders(params.accessToken),
+						headers: {
+								'Authorization': 'Bearer ' +params.accessToken,
+								'X-Api-Key': util.getHeaders()["X-Api-Key"],
+								'X-Developer-Id': util.getHeaders()["X-Developer-Id"],
+								'Time-Zone': params.userTimeZoneId,
+								'Content-Type': 'application/json; charset=utf-8'
+						},
+	     			url: apiCommonURL + '/api/v2.1/patients/appointments?includePatientCoUsers=false ',
             method: 'GET'
         };
 
@@ -489,8 +494,8 @@ angular.module('starter.services', [])
 									'Authorization': 'Bearer ' +params.accessToken,
 									'X-Api-Key': util.getHeaders()["X-Api-Key"],
 									'X-Developer-Id': util.getHeaders()["X-Developer-Id"],
-									'Time-Zone': 'West Asia Standard Time',
-									'Content-Type': params.userTimeZoneId
+									'Time-Zone': params.userTimeZoneId,
+									'Content-Type': 'application/json; charset=utf-8'
 							},
   			      url: apiCommonURL + '/api/v2.1/patients/appointments/' + params.appointmentId,
               method: 'GET'

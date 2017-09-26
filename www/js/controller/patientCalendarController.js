@@ -172,7 +172,7 @@ angular.module('starter.controllers')
             $rootScope.appointmentId = scheduledListData.appointmentId;
             $rootScope.appointPersonId = scheduledListData.participants[0].person.id
             $rootScope.appointmentsPatientDOB = $rootScope.PatientAge;
-            $rootScope.appointmentsPatientId = $rootScope.patientId;
+            $rootScope.appointmentsPatientId = scheduledListData.patientId;
             $rootScope.assignedDoctorId = scheduledListData.clinicianId; //$rootScope.scheduledListDatas.participants[0].person.id;
             $rootScope.appointmentsPatientGurdianName = htmlEscapeValue.getHtmlEscapeValue($rootScope.primaryPatientFullName);
 

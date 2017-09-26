@@ -7,7 +7,7 @@
     if (snap.hub && snap.hub.mainHub) {
         return;
     }
-  
+
     snap.namespace("snap.hub").use(["snap.hub.hubModel"])
         .define("mainHub", function($hubModel) {
 
@@ -53,7 +53,7 @@
             };
             var hubReconnctTimer = null;
             var numberofRetry = 0;
-            var notificationIsActive = false; 
+            var notificationIsActive = false;
 
             var onDisconnect = function() {
                 if (snap.isUnloading) {
@@ -74,7 +74,17 @@
 
                 //only show the message on consulation Page
                 if (wasConsultation) {
-                    global.snapInfo("Attempting to reconnect...."); //todo keep this up 
+                  //  global.snapInfo("Attempting to reconnect...."); //todo keep this up
+                      navigator.notification.alert(
+                          'No Internet Connection.', // message
+                          function() {
+                               location.href = snap.redirctPage;
+                              return;
+                          },
+                          snap.appName, // title
+                          'Done' // buttonName
+                      );
+                      return false;
                 }
                 if (hubReconnctTimer) {
                     clearInterval(hubReconnctTimer);
@@ -83,12 +93,24 @@
                 hubReconnctTimer = setInterval(function () {
                     numberofRetry++;
                     if (numberofRetry >= 5 && !notificationIsActive) {
-                        
+
                         notificationIsActive = true;
 
-                        var yesCall = function () {
+                        navigator.notification.alert(
+                            'Connection to the system is lost. Do you want to logged out the app', // message
+                            function() {
+                                 location.href = snap.redirctPage;
+                                return;
+                            },
+                            snap.appName, // title
+                            'Done' // buttonName
+                        );
+                        return false;
+
+                        /*var yesCall = function () {
                             snap.clearPage();
-                            window.location.reload(true);
+                             location.href = snap.redirctPage;
+                          //  window.location.reload(true);
                         };
 
                         var noCall = function () {
@@ -98,7 +120,7 @@
 
                         snap
                             .SnapNotification()
-                            .confirmationWithCallbacks("Connection to the system is lost. Do you want to refresh the page?", yesCall, noCall);
+                            .confirmationWithCallbacks("Connection to the system is lost. Do you want to logged out the app?", yesCall, noCall);*/
                     }
 
                     window.console.log("SignalR: Reconnection attempt");
@@ -124,7 +146,7 @@
                 }
                 var args = Array.prototype.slice.call(arguments, 1);
                 hub.init.apply(hub, args);
-                
+
                 if (hubs.indexOf(hub) === -1) {
                     hubs.push(hub);
                 }
@@ -138,7 +160,7 @@
                 numberofRetry = 0;
                 this.isManualStop = true;
                 $.connection.hub.stop();
-                
+
 
                 window.setTimeout(function () {
                     var option = {};
@@ -153,7 +175,7 @@
                         dfd.reject();
                     });
                 }, 100);
-                
+
                 return dfd.promise();
             };
 

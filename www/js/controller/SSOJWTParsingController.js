@@ -383,7 +383,8 @@ angular.module('starter.controllers')
       }
         var params = {
             patientId: $rootScope.primaryPatientId,
-            accessToken: $rootScope.accessToken,
+            accessToken: $rootScope.accessToken,            
+            userTimeZoneId: $rootScope.userTimeZoneId,
             success: function(data) {
                 if (data !== "") {
                     $scope.scheduledConsultationList = data.data;

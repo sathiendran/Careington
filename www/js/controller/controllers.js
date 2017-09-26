@@ -1242,12 +1242,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
         LoginService.getHospitalInfo(params);
     }
 
-    if ($stateParams.serviceUnavailableError === "yes") {
+    /*if ($stateParams.serviceUnavailableError === "yes") {
       $interval(function() {
           $stateParams.lastFunctionCall;
       }, 100);
     }
-
+*/
     $scope.doGetFacilitiesList = function() {
 
         var params = {
@@ -5658,6 +5658,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         var params = {
             patientId: $rootScope.primaryPatientId,
             accessToken: $rootScope.accessToken,
+            userTimeZoneId: $rootScope.userTimeZoneId,
             success: function(data) {
                 if (data !== "") {
                     $scope.scheduledConsultationList = data.data;

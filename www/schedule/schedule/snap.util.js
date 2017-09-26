@@ -32,7 +32,17 @@ $.extend(snap.util,
                location.href = snap.redirctPage;
             }
             if (!snap.userAborted(xhr) && xhr.status == 0 && xhr.readyState == 0) {
-                snapInfo("Internet connection lost.");
+              //  snapInfo("Internet connection lost.");
+                  navigator.notification.alert(
+                      'No Internet Connection.', // message
+                      function() {
+                           location.href = snap.redirctPage;
+                          return;
+                      },
+                      snap.appName, // title
+                      'Done' // buttonName
+                  );
+                  return false;
             }
         });
     },
