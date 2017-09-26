@@ -228,8 +228,10 @@
             $rootScope.authorised = relateDependentAuthorize;
             if (!angular.isUndefined(dependentDetails.birthdate) && dependentDetails.birthdate !== '') {
                 $scope.dob = " . " + dependentDetails.birthdate;
+                $scope.dobAge = dependentDetails.birthdate;
             } else {
                 $scope.dob = '';
+                 $scope.dobAge = '';
             }
             if (!angular.isUndefined(dependentDetails.relationship) && dependentDetails.relationship !== '') {
                 $scope.relationship = " . " + dependentDetails.relationship;
@@ -238,9 +240,12 @@
             }
             var getDrawImage = $rootScope.drawImage(dependentDetails.profileImagePath, dependentDetails.patientFirstName, dependentDetails.patientLastName);
             if ($rootScope.authorised === "F") {
+                //ageFilter.getAge();
+                $scope.userAge = ageFilter.getDateFilter($scope.dobAge);
+                
                 var myPopup = $ionicPopup.show({
 
-                    title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span></div> <div class='fontcolor'>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</div> ",
+                    title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span></div> <div class='fontcolor'>" + dependentDetails.gender + " . " + $scope.userAge + $scope.relationship + "</div> ",
                     templateUrl: 'templates/popupTemplate.html',
                     scope: $scope,
                     buttons: [{
@@ -258,9 +263,10 @@
                     }, ]
                 });
             } else {
+                $scope.userAge = ageFilter.getDateFilter($scope.dobAge);
                 var myPopup = $ionicPopup.show({
 
-                    title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span></div> <div class='fontcolor'>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</div> ",
+                    title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span></div> <div class='fontcolor'>" + dependentDetails.gender + " . " + $scope.userAge + $scope.relationship + "</div> ",
                     templateUrl: 'templates/unauthorizedpopup.html',
                     scope: $scope,
                     buttons: [{
@@ -686,18 +692,21 @@
         $rootScope.coUserArchieve = function(coUserDetails) {
             if (!angular.isUndefined(coUserDetails.dob) && coUserDetails.dob !== '') {
                 $scope.dob = " . " + coUserDetails.dob;
+                 $scope.dobAge = coUserDetails.dob;
+
             } else {
                 $scope.dob = '';
+                $scope.dobAge = '';
             }
             if (!angular.isUndefined(coUserDetails.relationship) && coUserDetails.relationship !== '') {
                 $scope.relationship = " . " + coUserDetails.relationship;
             } else {
                 $scope.relationship = '';
             }
-
+            $scope.userAge = ageFilter.getDateFilter($scope.dobAge);
             var confirmPopup = $ionicPopup.confirm({
                 title: "<a class='item-avatar popupaligned'>  <img src='" + coUserDetails.imagePath + "'><span><span class='popupname popupalign'><b>" + coUserDetails.name + "</b></span> <span class='sname'>" + coUserDetails.lastname + "</span></span></a> ",
-                subTitle: "<p class=' popupfont'>" + coUserDetails.gender + $scope.dob + $scope.relationship + "</p>",
+                subTitle: "<p class=' popupfont'>" + coUserDetails.gender + " . " + $scope.userAge + $scope.relationship + "</p>",
                 //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
                 templateUrl: 'templates/coUserTemplate.html',
                 buttons: [{
@@ -730,8 +739,10 @@
         $rootScope.coUserUnlink = function(coUserDetails) {
             if (!angular.isUndefined(coUserDetails.dob) && coUserDetails.dob !== '') {
                 $scope.dob = " . " + coUserDetails.dob;
+                $scope.dobAge = coUserDetails.dob;
             } else {
                 $scope.dob = '';
+                $scope.dobAge = '';
             }
             if (!angular.isUndefined(coUserDetails.relationship) && coUserDetails.relationship !== '') {
                 $scope.relationship = " . " + coUserDetails.relationship;
@@ -739,8 +750,9 @@
                 $scope.relationship = '';
             }
             var getDrawImage = $rootScope.drawImage(coUserDetails.imagePath, coUserDetails.name, coUserDetails.lastname);
+            $scope.userAge = ageFilter.getDateFilter($scope.dobAge);
             var confirmPopup = $ionicPopup.confirm({
-                title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + coUserDetails.name + "</b></span> <span class='sname'>" + coUserDetails.lastname + "</span></div> <div class='fontcolor'>" + coUserDetails.gender + $scope.dob + $scope.relationship + "</div> ",
+                title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + coUserDetails.name + "</b></span> <span class='sname'>" + coUserDetails.lastname + "</span></div> <div class='fontcolor'>" + coUserDetails.gender + " . " + $scope.userAge + $scope.relationship + "</div> ",
                 //subTitle: "<div class='fontcolor'>" + coUserDetails.gender + $scope.dob + $scope.relationship + "</div>",
                 //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
                 templateUrl: 'templates/coUserTemplate.html',
