@@ -36320,7 +36320,7 @@ only screen and (min-width: 541px) {
     }
 }
 .popup {
-    position: fixed;
+    position: relative;
     top: 0;
     bottom: 0;
     left: 0;
