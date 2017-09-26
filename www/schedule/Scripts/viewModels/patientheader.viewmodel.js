@@ -288,8 +288,8 @@ snap.namespace("snap.patient")
                 defaulWaitMessage();
                 return false;
             }
-            location.href = snap.patientLogin();
-
+          //  location.href = snap.patientLogin();
+           location.href = snap.redirctPage;
             this.closeNav();
             return false;
 

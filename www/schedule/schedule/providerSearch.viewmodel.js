@@ -347,6 +347,8 @@
             /***************** PUBLIC API *******************/
             this.load = function () {
                 this.isDataInit = true;
+                this.set("vm_isNotificationActive", true);
+                this.set("vm_isNotificationActive", false);
                 loadJQuery();
 
                 var that = this;
@@ -441,6 +443,7 @@
                 this.favoriteCliniciansDS.query({ filters: filters });
             };
             this.cleanup = function () { //For all that should be done on route change
+                this.set("vm_isNotificationActive", true);
                 this.set("vm_isNotificationActive", false);
             };
             /***************** MVVM BINDINGS *******************/
@@ -522,6 +525,7 @@ this.vm_patientsNameFilter = "";
             this.vm_isNotificationActive = false;
             this.vm_closeNotification = function () {
                 this.vm_isNotificationActive = false;
+                this.set("vm_isNotificationActive", true);
                 this.set("vm_isNotificationActive", false);
             };
             this.vm_goToCalendar = function () {

@@ -10,17 +10,22 @@
     snap.idleTime = 0;
     var getLoginPath = function () {
         var currentUrl = window.location.href.toLowerCase();
-        if ((currentUrl.indexOf('/public') != -1)) {
+      //   location.href = snap.redirctPage;
+      if ((currentUrl.indexOf('/public') != -1)) {
             return currentUrl;
         }
         else if ((currentUrl.indexOf('physician/') != -1)) {
-            return snap.clinicianLogin();
+          //  return snap.clinicianLogin();
+            return snap.redirctPage;
         } else if ((currentUrl.indexOf('/admin/') != -1)) {
-            return '/Admin/Login';
+            //return '/Admin/Login';
+              return snap.redirctPage;
         } else if ((currentUrl.indexOf('/snapmdadmin/') != -1)) {
-            return '/snapmdadmin/Login';
+            //return '/snapmdadmin/Login';
+              return snap.redirctPage;
         } else if ((currentUrl.indexOf('/customer/') != -1)) {
-            return snap.patientLogin();
+            //return snap.patientLogin();
+              return snap.redirctPage;
         } else {
           if (deploymentEnv == "Multiple") {
               return "#/tab/chooseEnvironment";

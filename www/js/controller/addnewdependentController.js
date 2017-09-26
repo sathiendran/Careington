@@ -737,6 +737,7 @@ angular.module('starter.controllers')
             success: function(data) {
               $('#dependentuserform')[0].reset();
               var updatepatientdetail = data.data;
+                $rootScope.addPatientidupdateList = [];
                 $rootScope.deppatientId = updatepatientdetail[0].patientId;
                 var depPatientSuccessPtId = updatepatientdetail[0].patientId;
                 var depPatientSecurityToken = updatepatientdetail[0].securityToken;

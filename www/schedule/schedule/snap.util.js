@@ -28,7 +28,8 @@ $.extend(snap.util,
             data: data ? JSON.stringify(data) : null,
         }).fail(function (xhr) {
             if (xhr.status == 401) {
-                window.location = snap.patientLogin();
+              //  window.location = snap.patientLogin();
+               location.href = snap.redirctPage;
             }
             if (!snap.userAborted(xhr) && xhr.status == 0 && xhr.readyState == 0) {
                 snapInfo("Internet connection lost.");

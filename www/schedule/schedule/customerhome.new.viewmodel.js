@@ -4466,7 +4466,8 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                     }).fail(function(xhr) {
                         if (xhr.status === 401) {
                             sessionStorage.setItem("snap_logoutError", "outside of Provider operating hours");
-                            window.location = snap.patientLogin();
+                          //  window.location = snap.patientLogin();
+                              location.href = snap.redirctPage;
                         } else {
                             $snapNotification.error(xhr.d);
                         }

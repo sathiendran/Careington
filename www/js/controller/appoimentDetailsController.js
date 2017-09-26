@@ -382,10 +382,10 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
 
                       $rootScope.time = new Date(getReplaceTime).getTime();
 
-                  /*    $timeout(function() {
+                   $timeout(function() {
                           document.getElementsByTagName('timer')[0].stop();
                           document.getElementsByTagName('timer')[0].start();
-                      }, 10);*/
+                      }, 10);
 
                       $scope.$on('timer-tick', function(event, args) {
                           if (args.days === 0) {
@@ -419,10 +419,20 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                       var d = new Date();
                     //  var currentUserHomeDate = CustomCalendar.getLocalTime(d);
                       var currentUserHomeDate = d;
-                      if (getReplaceTime < currentUserHomeDate) {
-                          $rootScope.timerCOlor = '#a2d28a';
-                          $('.AvailableIn').hide();
-                          $('.enterAppoinment').show();
+                      if($rootScope.scheduledListDatas.encounterTypeCode === 3) {
+                        if (getReplaceTime < currentUserHomeDate) {
+                            $rootScope.timerCOlor = '#a2d28a';
+                            $('.AvailableIn').hide();
+                            $('.enterAppoinment').show();
+                            $rootScope.timeNew = 'none';
+                            $rootScope.timeNew1 = 'block';
+                        } else {
+                            $rootScope.timeNew = 'block';
+                            $rootScope.timeNew1 = 'none';
+                            $('.AvailableIn').show();
+                            $('.enterAppoinment').hide();
+                            $rootScope.timerCOlor = '#FDD8C5';
+                        }
                       }
                   } else if ((new Date(getReplaceTime).getTime()) >= (new Date(d).getTime())) {
                       $rootScope.timerCOlor = 'transparent';
@@ -458,8 +468,9 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
 
     $scope.$on("callAppointmentConsultation", function(event, args) {
      // $scope.doGeAppointmentExistingConsulatation();
-      $scope.doGetExistingPatientName();
-      $rootScope.doGetDoctorDetails();
+    //  $scope.doGetExistingPatientName();
+    //  $rootScope.doGetDoctorDetails();
+        $state.go('tab.appoimentDetails');
     });
 
     $scope.doRefreshAccountdetails = function(curntAppointId) {
