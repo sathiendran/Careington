@@ -5371,7 +5371,8 @@ margin-right: 10px;
 .encounterappticon {
     background-color: #666;
     border-radius: 50%;
-    padding: 5px 6px 0px 5px;
+    //padding: 5px 6px 0px 5px;
+    padding: 0px 4px 0px 0px;
     color: white;
     margin-left: -26px;
     top: 33px !important;
@@ -5388,7 +5389,10 @@ margin-right: 10px;
      border-radius: 50%;
      padding: 0px 5px 0px 5px;
      color: white;
-     margin-left: -25px;
+     margin-left: -24px;
+     top: 6px;
+     position:relative;
+     border : 2px solid white;
     [class^="icon-"], [class*=" icon-"] {
         font-size: 9px;
     }
@@ -6151,4 +6155,10 @@ a.item.item-avatar.avatheight:first-child{
 
 .consult{
         padding-top: 10px !important;
+}
+
+.setIcon{
+    position : relative;
+    top : 3px !important;
+    left : 1px !important;
 }
