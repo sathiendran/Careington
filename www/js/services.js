@@ -484,7 +484,14 @@ angular.module('starter.services', [])
 
     this.getSelectedappoimentDetails = function (params) {
           var requestInfo = {
-              headers: util.getHeaders(params.accessToken),
+            //  headers: util.getHeaders(params.accessToken),
+							headers: {
+									'Authorization': 'Bearer ' +params.accessToken,
+									'X-Api-Key': util.getHeaders()["X-Api-Key"],
+									'X-Developer-Id': util.getHeaders()["X-Developer-Id"],
+									'Time-Zone': 'West Asia Standard Time',
+									'Content-Type': params.userTimeZoneId
+							},
   			      url: apiCommonURL + '/api/v2.1/patients/appointments/' + params.appointmentId,
               method: 'GET'
 

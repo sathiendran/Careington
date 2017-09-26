@@ -261,6 +261,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
       var params = {
           accessToken: $rootScope.accessToken,
           appointmentId: SSscheduledAppointmentId,
+          userTimeZoneId: $rootScope.userTimeZoneId,
           success: function(data) {
               $rootScope.scheduledListDatas = [];
             //  snap.hub.mainHub().stop();
