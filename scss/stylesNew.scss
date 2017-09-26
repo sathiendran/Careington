@@ -642,7 +642,7 @@ height: 80x !important;
     margin-top: 6px !important;
 }
 .appmarg {
-    margin-top: -5px;
+    margin-top: 20px;
 }
 .apptimage {
     float: left;
@@ -6146,7 +6146,7 @@ a.item.item-avatar.appitem:last-child{
   height: 72px !important;
 }
 a.item.item-avatar.avatheight{
-        min-height: 82px !important;
+        min-height: 67px !important;
 }
 
 a.item.item-avatar.avatheight:first-child{
@@ -6161,4 +6161,17 @@ a.item.item-avatar.avatheight:first-child{
     position : relative;
     top : 3px !important;
     left : 1px !important;
+}
+
+.appointScheduledMainDiv {
+    background-color: rgb(238,238,238);
+    height: 29px;
+    padding-top: 7px;
+    padding-left: 18px;
+}
+.appointInQueueTitle{
+     background-color: rgb(238,238,238);
+    height: 29px;
+    padding-top: 7px;
+    padding-left: 18px;   
 }
