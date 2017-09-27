@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
     .controller('ScheduleCtrl', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService, $window, $ionicBackdrop) {
-      //  var snap = snap || {};
+        //var snap = snap || {};
         snap.baseUrl  = apiCommonURL;
         snap.appName = $rootScope.alertMsgName;
         if (deploymentEnvLogout === "Multiple") {
@@ -92,41 +92,70 @@ angular.module('starter.controllers')
         this.initKendoUI();
 
         $scope.getDetails = function(userName) {
-            var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
-            var headerVM = snap.resolveObject("snap.patient.PatientHeaderViewModel");
+            if($('#searchTab').attr("class") != 'menu-toggle__navigation is-active') {
+                var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
+                var headerVM = snap.resolveObject("snap.patient.PatientHeaderViewModel");
 
-            if (userName === 'favorite') {
-                $("#allProvider").removeClass("is-active");
-                $("#myProvider").addClass("is-active");
-                /*  if (vm.favoriteCliniciansDS.data().length === 0) {
-                      $("#favoriteCliniciansDetailsDiv").css("display", "none");
-                      $("#favoriteCliniciansEmpty").css("display", "block");
-                  } else {
-                      $("#favoriteCliniciansEmpty").css("display", "none");
-                      $("#favoriteCliniciansDetailsDiv").css("display", "block");
-                  }*/
-                headerVM.set("subModuleTitle", "My provider");
-            } else if (userName === 'all') {
-                $("#myProvider").removeClass("is-active");
-                $("#allProvider").addClass("is-active");
-                /*  if (vm.allCliniciansDS.data().length === 0) {
-                      $("#allCliniciansDetailsDiv").css("display", "none");
-                      $("#allCliniciansEmpty").css("display", "block");
-                  } else {
-                      $("#allCliniciansEmpty").css("display", "none");
-                      $("#allCliniciansDetailsDiv").css("display", "block");
-                  }*/
-                headerVM.set("subModuleTitle", "All providers");
-            }
-          //  vm.vm_favoriteClinicianCardsList_onDataBound();
-            kendo.bind($("#scd-bdy"), vm);
-            var viewMode = userName; //$stateParams.viewMode; //"favorite";
+                if (userName === 'favorite') {
+                    headerVM.vm_isSearchBarActive = false;
+                    $("#searchFilter").removeClass("is-active");
+                    $("#searchTab").removeClass("is-active");
+                    $("#allProvider").removeClass("is-active");
+                    $("#myProvider").addClass("is-active");
+                    /*  if (vm.favoriteCliniciansDS.data().length === 0) {
+                          $("#favoriteCliniciansDetailsDiv").css("display", "none");
+                          $("#favoriteCliniciansEmpty").css("display", "block");
+                      } else {
+                          $("#favoriteCliniciansEmpty").css("display", "none");
+                          $("#favoriteCliniciansDetailsDiv").css("display", "block");
+                      }*/
+                    headerVM.set("subModuleTitle", "My provider");
+                } else if (userName === 'all') {
+                  headerVM.vm_isSearchBarActive = false;
+                  $("#searchFilter").removeClass("is-active");
+                    $("#searchTab").removeClass("is-active");
+                    $("#myProvider").removeClass("is-active");
+                    $("#allProvider").addClass("is-active");
+                    /*  if (vm.allCliniciansDS.data().length === 0) {
+                          $("#allCliniciansDetailsDiv").css("display", "none");
+                          $("#allCliniciansEmpty").css("display", "block");
+                      } else {
+                          $("#allCliniciansEmpty").css("display", "none");
+                          $("#allCliniciansDetailsDiv").css("display", "block");
+                      }*/
+                    headerVM.set("subModuleTitle", "All providers");
+                  }
+            //  vm.vm_favoriteClinicianCardsList_onDataBound();
+              kendo.bind($("#scd-bdy"), vm);
+              var viewMode = userName; //$stateParams.viewMode; //"favorite";
 
-            if (vm) {
-                if (!vm.isDataInit) {
-                    vm.load();
-                }
-                vm.setViewMode(viewMode);
-            }
+              if (vm) {
+                  if (!vm.isDataInit) {
+                      vm.load();
+                  }
+                  vm.setViewMode(viewMode);
+              }
+          } else {
+              if (userName === 'all') {
+                 $("#searchTab").removeClass("is-active");
+                 $("#myProvider").removeClass("is-active");
+                 $("#allProvider").addClass("is-active");
+               } else if (userName === 'favorite') {
+                 $("#searchTab").removeClass("is-active");
+                 $("#allProvider").removeClass("is-active");
+                 $("#myProvider").addClass("is-active");
+               }
+               var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
+               var headerVM = snap.resolveObject("snap.patient.PatientHeaderViewModel");
+                      // kendo.bind($("#scd-bdy"), vm);
+                 var viewMode = userName; //$stateParams.viewMode; //"favorite";
+
+                 if (vm) {
+                     if (!vm.isDataInit) {
+                         vm.load();
+                     }
+                     vm.setViewMode(viewMode);
+                 }
+          }
         }
     });
