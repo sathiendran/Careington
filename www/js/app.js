@@ -473,7 +473,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                       $rootScope.flagpopup=false;
                        var myPopup = $ionicPopup.show({
                            template: '<b>Please make sure that you have network connection.</b>',
-                           title: 'No Internet Connection B' ,
+                           title: 'No Internet Connection' ,
                            rootScope: $rootScope,
                            cssClass: 'my-custom-popup',
                            buttons: [{
@@ -577,7 +577,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                                    $rootScope.flagpopup=false;
                                     var myPopup = $ionicPopup.show({
                                         template: '<b>Please make sure that you have network connection.</b>',
-                                        title: 'No Internet Connection A',
+                                        title: 'No Internet Connection',
                                         rootScope: $rootScope,
                                         cssClass: 'my-custom-popup',
                                         buttons: [{
