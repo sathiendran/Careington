@@ -33,6 +33,7 @@
             $patientResponseAddressDialog,
             $dialogWindow,
             $utility) {
+
             var scope = this,
                 isFooterActive = true,
                 isContentActive = false;
@@ -266,6 +267,19 @@
             }/*
             /**************EVENT SUBSCRIPTIONS***************/
             $eventAggregator.subscriber("vm_toggleSearchAndFilter", function () {
+                if(scope.vm_isSearchBarActive == false) {
+                   $("#allProvider").removeClass("is-active");
+                    $("#myProvider").removeClass("is-active");
+                    $("#searchTab").addClass("is-active");
+                } else {
+                    if($('#allProvider').attr("class") == '' & $('#myProvider').attr("class") == '') {
+                      $("#searchTab").removeClass("is-active");                      
+                       $("#myProvider").removeClass("is-active");
+                       $("#allProvider").addClass("is-active");
+                    } else {
+                      $("#searchTab").removeClass("is-active");
+                    }
+                }
                 scope.set("vm_isSearchBarActive", !scope.vm_isSearchBarActive);
             });
 
@@ -417,6 +431,8 @@
 
             this.setViewMode = function (mode) {
                 this.set("clinicianListViewMode", mode);
+                if(mode == 'favorite' || mode =='all')
+                this.set("vm_isSearchBarActive", false);
 
                 this.trigger("change", {
                     field: "vm_isAllCliniciansMode"
@@ -1196,7 +1212,7 @@ this.vm_patientsNameFilter = "";
                         }
                     });
 
-                    isInitialized = true;
+                    isInitialized = false;
                 };
 
                 this.isEndlessScrollInitialized = function() {
@@ -1274,68 +1290,72 @@ this.vm_patientsNameFilter = "";
                     }
 
                     getCardsDfd = $selfSchedulingService.getCliniciansCards(apiPayload);
+                    var chkload = true;
 
                     return $.when(getSingleCardDfd, getCardsDfd).done(function (singlCardResult, listOfCardsResult) {
-                        var cards = listOfCardsResult[0].data[0].clinicians;
-                        var totals = listOfCardsResult[0].data[0].totals;
+                      if(chkload == true) {
+                        chkload = false;
+                          var cards = listOfCardsResult[0].data[0].clinicians;
+                          var totals = listOfCardsResult[0].data[0].totals;
 
-                        // If we provided 'userId' parameter we get concrete patient card which must be shown in list.
-                        if (singlCardResult) {
-                            var userId = singlCardResult[0].data[0].userId;
+                          // If we provided 'userId' parameter we get concrete patient card which must be shown in list.
+                          if (singlCardResult) {
+                              var userId = singlCardResult[0].data[0].userId;
 
-                            for (var i = 0; i < cards.length; i++) {
-                                if (cards[i].userId === userId) {
-                                    cards.splice(i, 1);
-                                    break;
-                                }
+                              for (var i = 0; i < cards.length; i++) {
+                                  if (cards[i].userId === userId) {
+                                      cards.splice(i, 1);
+                                      break;
+                                  }
+                              }
+
+                              var selectedClinicianCard = singlCardResult[0].data[0];
+                              selectedClinicianCard._isSelected = true; //Custom property, we use it in order to mark element in UI.
+
+                              cards.unshift(selectedClinicianCard);
+                          }
+
+                          $eventAggregator.published(dataSourceReadSuccessEvent, {
+                              mode: mode,
+                              data: totals,
+                              skip: apiPayload.skip,
+                              take: apiPayload.take
+                          });
+
+                          total = totals.total;
+
+                          var clinicians = cards.map(function (ap) {
+                              var c = kendo.observable(new Clinician(ap, scope));
+                              c.initApptsSlotTray();
+
+                              return c;
+                          });
+
+
+                          if(clinicians.length > 0 && (that.vm_allItems.length < total)) {
+                              // Add all new cards to providers list.
+                              // We use overrided by kendo push.apply in order to trigger change only once.
+                              that.vm_allItems.push.apply(that.vm_allItems, clinicians);
+
+                              // We put all slots in one colletction and monitor any changes (lock/unlock slot)
+                              providersSlotsLocator.setSlots(getSlotsFromDs(that.vm_allItems), $timeUtils.dateFromSnapDateString(apiPayload.date));
+
+                              // turn on Slick pugin for all cards.
+                              that.vm_allItems.forEach(function(card) {
+                                  card.slickFooter();
+                              });
+
+                              if(scope.vm_isListMode()) {
+                                  // Expand all new added cards, this is a card default state.
+                                  expandClinicanCards(clinicians);
+                              }
+
+                                // Callback for addition actions after data updated.
+                                options.onDataLoad();
                             }
 
-                            var selectedClinicianCard = singlCardResult[0].data[0];
-                            selectedClinicianCard._isSelected = true; //Custom property, we use it in order to mark element in UI.
-
-                            cards.unshift(selectedClinicianCard);
+                          that.set("vm_isItemsLoading", false);
                         }
-
-                        $eventAggregator.published(dataSourceReadSuccessEvent, {
-                            mode: mode,
-                            data: totals,
-                            skip: apiPayload.skip,
-                            take: apiPayload.take
-                        });
-
-                        total = totals.total;
-
-                        var clinicians = cards.map(function (ap) {
-                            var c = kendo.observable(new Clinician(ap, scope));
-                            c.initApptsSlotTray();
-
-                            return c;
-                        });
-
-
-                        if(clinicians.length > 0) {
-                            // Add all new cards to providers list.
-                            // We use overrided by kendo push.apply in order to trigger change only once.
-                            that.vm_allItems.push.apply(that.vm_allItems, clinicians);
-
-                            // We put all slots in one colletction and monitor any changes (lock/unlock slot)
-                            providersSlotsLocator.setSlots(getSlotsFromDs(that.vm_allItems), $timeUtils.dateFromSnapDateString(apiPayload.date));
-
-                            // turn on Slick pugin for all cards.
-                            that.vm_allItems.forEach(function(card) {
-                                card.slickFooter();
-                            });
-
-                            if(scope.vm_isListMode()) {
-                                // Expand all new added cards, this is a card default state.
-                                expandClinicanCards(clinicians);
-                            }
-                        }
-
-                        // Callback for addition actions after data updated.
-                        options.onDataLoad();
-
-                        that.set("vm_isItemsLoading", false);
                     }).fail(function (result) {
                         // Ignore 'abort' operation and do not show error.
                         // We abort requests in case if user send many requests (api slow and user change filters several times.)

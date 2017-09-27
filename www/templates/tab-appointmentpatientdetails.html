@@ -55,7 +55,7 @@
       </div>
    </ion-header-bar>
    <ion-view title="Appointment Details" ng-init="doRefreshApptDetails()">
-      <ion-content class="appiconcontent" ng-hide="addmore" >
+      <ion-content class="scroll-content ionic-scroll appiconcontent" ng-hide="addmore" >
          <div>
             <ion-refresher on-refresh="doRefreshApptDetails()"  >
             </ion-refresher>
@@ -104,7 +104,7 @@
 
                     <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)">
                     </div>
-                  
+
                   <p class="appmarg">
                      <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
                   </p>
@@ -133,7 +133,7 @@
             <timer end-time="time"  ></timer>
          </div>
       </ion-content>
-      <ion-content class="appiconcontent" ng-hide="healthhide">
+      <ion-content class="scroll-content ionic-scroll appiconcontent" ng-hide="healthhide">
       <div>
          <ion-refresher on-refresh="doRefreshApptDetails()"  >
          </ion-refresher>
@@ -144,7 +144,7 @@
             <div class="appointInQueueTitle">IN QUEUE</div>
             <a class="item item-avatar avatheight" ng-repeat="scheduledListData in getAllInQueueScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
                <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
-                 
+
                <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
                   <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
                </p>
@@ -177,7 +177,7 @@
           <div class="appointScheduledMainDiv" ng-if="getAllPatScheduleDetails.length > 0" >SCHEDULED</div>
          <a class="item item-avatar avatheight"  style="min-height: 73px !important;" ng-repeat="scheduledListData in getAllPatScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
             <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
-             
+
             <p class="appmarg">
                <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
             </p>

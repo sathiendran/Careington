@@ -12,7 +12,7 @@ var indexOf = [].indexOf || function(item) {
 var api_keys_env = '';
 var session = null;
 var publisher = null;
-
+var isSSProviderListLoaded = false;
 if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv === "QA") {
     var util = {
 
@@ -332,9 +332,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 .controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup)
 {
+   isSSProviderListLoaded = false;
     window.localStorage.setItem('isVideoCallProgress', "No");
     window.localStorage.setItem("isCustomerInWaitingRoom", "No");
     $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+    $('head script[src*="https://emerald.qa1.snapvcm.com/Scripts/slick.min.js"]').remove();
+    $('head script[src*="schedule/schedule/providerSearch.viewmodel.js"]').remove();
   //  $('script[src="schedule/schedule/providerSearch.viewmodel.js"]').remove();
   //  $('script[src*="schedule/schedule/providerSearch.viewmodel.js"]').remove();
   //  $('#ff1233').remove();
@@ -2901,11 +2904,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
     }
 
     $scope.goTOSchedule = function() {
-      /*$.when(
+    /*  var snap = {};
+      $.when(
           $.getScript( "https://emerald.qa1.snapvcm.com/Scripts/slick.min.js" ),
           $.getScript( "schedule/schedule/providerSearch.viewmodel.js" ),
-          $.getScript( "schedule/schedule/apptSlotsTray.viewmodel.js" ),
-          $.getScript( "schedule/schedule/timeUtils.js" ),
+        //  $.getScript( "schedule/schedule/apptSlotsTray.viewmodel.js" ),
+        //  $.getScript( "schedule/schedule/timeUtils.js" ),
           $.Deferred(function( deferred ){
               $( deferred.resolve );
           })
@@ -2920,14 +2924,28 @@ $rootScope.checkAndChangeMenuIcon = function() {
           $state.go('tab.providerSearch');
 
         });*/
+      /*  addLanguageScript = function(lang) {
+            var head = document.getElementsByTagName("head")[0],
+                script = document.createElement('script');
+                var v = Date.now().toString();
+            script.type = 'text/javascript'
+            script.src = lang + '.js?v='+ v;
+            head.appendChild(script);
+        };
 
-        $('<link/>', {
-            rel: 'stylesheet',
-            type: 'text/css',
-            href: 'css/styles.v3.less.dynamic.css'
-        }).appendTo('head');
-        //  $state.go('tab.providerSearch', { viewMode : 'all' });
-        $state.go('tab.providerSearch');
+        addLanguageScript('https://emerald.qa1.snapvcm.com/Scripts/slick.min');
+        addLanguageScript('schedule/schedule/providerSearch.viewmodel');*/
+
+      //  $timeout(function(){
+            $('<link/>', {
+                rel: 'stylesheet',
+                type: 'text/css',
+                href: 'css/styles.v3.less.dynamic.css'
+            }).appendTo('head');
+            //  $state.go('tab.providerSearch', { viewMode : 'all' });
+            $state.go('tab.providerSearch');
+      //}, 20000);
+
 
     }
 
@@ -4239,6 +4257,7 @@ $scope.EditHealth = {};
             }
             else{
           //  $('div.cardViewport').text($("option:selected", this).text());
+          $rootScope.editCardStyle = "block";
           var payValue = ($('option:selected', this).val()).split("@");
           $("div.cardViewport").empty();
           if(payValue[3] != "logoNone" )

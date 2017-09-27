@@ -52,7 +52,7 @@
                     <span class="insuranceedit" ng-click="editpaymentcard()" style="display: {{editcard}};">Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>-->
                     <h4 class="insurancelist">
                       <div class="selectInsurancelist">Select your Payment card
-                             <span class="insuranceedit" ng-if="userCardDetails != '' && userCardDetails != 'undefined'" ng-click="editpaymentcard('submitPay')" >Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>
+                             <span class="insuranceedit" ng-if="(userCardDetails != '' && userCardDetails != 'undefined') || editCardStyle == 'block'" ng-click="editpaymentcard('submitPay')" >Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>
                        </div>
                     </h4>
                   <div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}"  >
