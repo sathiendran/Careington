@@ -468,11 +468,12 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 $('.popup').addClass("ietpopup");
                 $('.popup-title').addClass("iettitle");
                 $('.popup-buttons').addClass("ietpopup-buttons");
+                $('.dialogbox--person-location').css("visibility", "hidden");
                 $rootScope.alertPopupA = function() {
                       $rootScope.flagpopup=false;
                        var myPopup = $ionicPopup.show({
                            template: '<b>Please make sure that you have network connection.</b>',
-                           title: 'No Internet Connection',
+                           title: 'No Internet Connection B' ,
                            rootScope: $rootScope,
                            cssClass: 'my-custom-popup',
                            buttons: [{
@@ -490,6 +491,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                        });
                        $rootScope.closepopup = function() {
                            myPopup.close();
+                           $('.dialogbox--person-location').css("visibility", "visible");
                            $rootScope.flagpopup = true;
                        }
                  }
@@ -575,7 +577,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                                    $rootScope.flagpopup=false;
                                     var myPopup = $ionicPopup.show({
                                         template: '<b>Please make sure that you have network connection.</b>',
-                                        title: 'No Internet Connection',
+                                        title: 'No Internet Connection A',
                                         rootScope: $rootScope,
                                         cssClass: 'my-custom-popup',
                                         buttons: [{
