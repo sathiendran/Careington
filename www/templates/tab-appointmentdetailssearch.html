@@ -73,7 +73,7 @@
                 <a class="item item-avatar avatheight"  ng-repeat="scheduledListData in filteredItems=(getIndividualInQueueScheduleDetails  | filter: data.searchProvider)"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
                    <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
                    <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'" >
-                      <span class="fontcolor regularfamily">In queue </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                      <span class="fontcolor regularfamily">View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                    </p>
                    <p class="appmarg"  ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
                       <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
@@ -82,7 +82,7 @@
                      <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
                    <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode != 3">
                      <i class="setIcon"  ng-bind-html="drawSVGCIcon('phone')"></i> </span>
-                   <h4 style="margin-top: -12px;"><span class="fname" style="margin-left: 2px;">{{scheduledListData.scheduledDate }}</span>
+                   <h4 style="margin-top: -14px;"><span class="fname" style="margin-left: 0px;">{{scheduledListData.scheduledDate }}</span>
                       <span class="fontsymbol"> @ </span>
                       <span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span>
                       <span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
@@ -91,7 +91,7 @@
                 <a class="item item-avatar appitem" ng-repeat="scheduledListData in filteredItems=(getIndividualInQueueScheduleDetails  | filter: data.searchProvider)" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
                    <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
                    <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
-                      <span class="fontcolor regularfamily" > In queue </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                      <span class="fontcolor regularfamily" > View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                    </p>
                    <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
                       <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
@@ -100,7 +100,7 @@
                      <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
                    <span class="encounterappticon" style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode != 3">
                      <i class="setIcon"  ng-bind-html="drawSVGCIcon('phone')"></i> </span>
-                   <h4 class="appalign" style="margin-top: -12px !important;"><span class="fname" style="margin-left: 2px;">{{scheduledListData.scheduledDate}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
+                   <h4 class="appalign" style="margin-top: -14px !important;"><span class="fname" style="margin-left: 0px;">{{scheduledListData.scheduledDate}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
                    </h4>
                 </a>
               </div>
@@ -111,7 +111,7 @@
                  <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
                 
                  <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'" >
-                    <span class="fontcolor regularfamily">In queue </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                    <span class="fontcolor regularfamily">View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                  </p>
                  <p class="appmarg"  ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
                     <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
@@ -120,7 +120,7 @@
                    <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
                  <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode != 3">
                    <i class="setIcon"  ng-bind-html="drawSVGCIcon('phone')"></i> </span>
-                 <h4 style="margin-top: -12px;"><span class="fname" style="margin-left: 2px;">{{scheduledListData.scheduledDate }}</span>
+                 <h4 style="margin-top: -14px;"><span class="fname" style="margin-left: 0px;">{{scheduledListData.scheduledDate }}</span>
                     <span class="fontsymbol"> @ </span>
                     <span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span>
                     <span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
@@ -129,7 +129,7 @@
               <a class="item item-avatar appitem scheduled" ng-repeat="scheduledListData in filteredItems=(getIndividualPatScheduleDetails  | filter: data.searchProvider)" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
                  <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
                  <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
-                    <span class="fontcolor regularfamily"> In queue </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                    <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                  </p>
                  <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
                     <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
@@ -138,7 +138,7 @@
                    <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
                  <span class="encounterappticon" style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode != 3">
                    <i class="setIcon"  ng-bind-html="drawSVGCIcon('phone')"></i> </span>
-                 <h4 class="appalign" style="margin-top: -12px !important;"><span class="fname" style="margin-left: 2px;">{{scheduledListData.scheduledDate}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
+                 <h4 class="appalign" style="margin-top: -14px !important;"><span class="fname" style="margin-left: 0px;">{{scheduledListData.scheduledDate}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
                  </h4>
               </a>
 
@@ -172,13 +172,13 @@
                      <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                   </p>
                   <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
-                     <span class="fontcolor regularfamily"> In queue</span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                     <span class="fontcolor regularfamily"> View Details</span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                   </p>
                   <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                     <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
                   <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode != 3">
                     <i class="setIcon"  ng-bind-html="drawSVGCIcon('phone')"></i> </span>
-                  <h4 style="margin-top: -12px;"><span class="fname" style="margin-left: 2px;">{{scheduledListData.scheduledDate }}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
+                  <h4 style="margin-top: -14px;"><span class="fname" style="margin-left: 0px;">{{scheduledListData.scheduledDate }}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
                </a>
                <a class="item item-avatar appitem" ng-repeat="scheduledListData in filteredItems=(getAllInQueueScheduleDetails  | filter: data.searchProvider)" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
                   <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
@@ -186,13 +186,13 @@
                      <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                   </p>
                   <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
-                     <span class="fontcolor regularfamily"> In queue </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                     <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                   </p>
                   <span class="encounterappticon " style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                     <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
                   <span class="encounterappticon " style="top: 28px !important;"  ng-if="scheduledListData.encounterTypeCode != 3">
                     <i class="setIcon"  ng-bind-html="drawSVGCIcon('phone')"></i> </span>
-                  <h4 class="appalign" style="margin-top: -12px !important;"><span class="fname" style="margin-left: 2px;">{{scheduledListData.scheduledDate }}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
+                  <h4 class="appalign" style="margin-top: -14px !important;"><span class="fname" style="margin-left: 0px;">{{scheduledListData.scheduledDate }}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
                   </h4>
                </a>
              </div>
@@ -204,13 +204,13 @@
                    <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                 </p>
                 <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
-                   <span class="fontcolor regularfamily"> In queue</span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                   <span class="fontcolor regularfamily"> View Details</span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                 </p>
                 <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                   <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
                 <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode != 3">
                   <i class="setIcon"  ng-bind-html="drawSVGCIcon('phone')"></i> </span>
-                <h4 style="margin-top: -12px;"><span class="fname" style="margin-left: 2px;">{{scheduledListData.scheduledDate }}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
+                <h4 style="margin-top: -14px;"><span class="fname" style="margin-left: 0px;">{{scheduledListData.scheduledDate }}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
              </a>
              <a class="item item-avatar appitem scheduled" ng-repeat="scheduledListData in filteredItems=(getAllPatScheduleDetails  | filter: data.searchProvider)" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
                 <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
@@ -218,13 +218,13 @@
                    <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                 </p>
                 <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
-                   <span class="fontcolor regularfamily"> In queue </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                   <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                 </p>
                 <span class="encounterappticon " style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                   <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
                 <span class="encounterappticon " style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode != 3">
                   <i class="setIcon"  ng-bind-html="drawSVGCIcon('phone')"></i> </span>
-                <h4 class="appalign" style="margin-top: -12px !important;"><span class="fname" style="margin-left: 2px;">{{scheduledListData.scheduledDate }}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
+                <h4 class="appalign" style="margin-top: -14px !important;"><span class="fname" style="margin-left: 0px;">{{scheduledListData.scheduledDate }}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
                 </h4>
              </a>
 

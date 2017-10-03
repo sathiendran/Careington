@@ -3780,10 +3780,11 @@ font-family: Glober SemiBold;
 .appiconcontent {
 margin-top: 212px;
 .fname {
-    font-size: 21px;
-    font-family: Glober GloberBold !important;
+    font-size: 25px;
+    font-family: GloberBold !important;
     color: rgba(0, 0, 0, 0.75);
-    font-size: 200% !important;
+    line-height: 30pt;
+    //font-size: 200% !important;
 }
 }
 .enterAppoint-IOS {
@@ -6166,14 +6167,14 @@ a.item.item-avatar.avatheight:first-child{
 }
 
 .appointScheduledMainDiv {
-    background-color: rgb(238,238,238);
-    height: 29px;
-    padding-top: 7px;
-    padding-left: 18px;
+    //background-color: rgb(238,238,238);
+    //height: 29px;
+    //padding-top: 5px;
+    //padding-left: 18px;
 }
 .appointInQueueTitle{
-     background-color: rgb(238,238,238);
-    height: 29px;
-    padding-top: 7px;
-    padding-left: 18px;   
+   // background-color: rgb(238,238,238);
+   // height: 29px;
+   // padding-top: 5px;
+   // padding-left: 18px;   
 }
