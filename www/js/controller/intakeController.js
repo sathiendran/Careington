@@ -629,11 +629,14 @@ $scope.locat=false;
     };
 
     $scope.backFromIntakeBornHisPage = function() {
-      if($rootScope.concentToTreatPreviousPage === 'tab.intakeBornHistory' && $rootScope.appointIntakePage === 0) {
-            $state.go('tab.appoimentDetails');
-      }else {
-            $state.go('tab.CurrentMedication');
-      }
+          if($rootScope.concentToTreatPreviousPage === 'tab.intakeBornHistory' && $rootScope.appointIntakePage === 0) {
+                $state.go('tab.appoimentDetails');
+          } else if($rootScope.concentToTreatPreviousPage === 'tab.userhome') {
+                $state.go('tab.userhome');
+          } else {
+               $state.go('tab.CurrentMedication');
+          }
+
     };
 
     $scope.data = {};
