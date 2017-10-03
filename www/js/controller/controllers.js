@@ -1742,18 +1742,24 @@ $rootScope.checkAndChangeMenuIcon = function() {
             documentType: 2,
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
-                  $rootScope.concentToTreatPreviousPage = CurrentPage;
+                  if(!$rootScope.SSPage) {
+                      $rootScope.concentToTreatPreviousPage = CurrentPage;
+                  }
                   $rootScope.editplan ="none";
                   $rootScope.concentToTreatContent = htmlEscapeValue.getHtmlEscapeValue(data.data[0].documentText);
                   if ($rootScope.appointmentsPage === true) {
                     if($rootScope.schedulePatAge === 0) {
                       $rootScope.birHistory = {};
                       $rootScope.appointIntakePage = 0;
-                      $rootScope.concentToTreatPreviousPage = "tab.intakeBornHistory";
+                      if(!$rootScope.SSPage) {
+                        $rootScope.concentToTreatPreviousPage = "tab.intakeBornHistory";
+                      }
                       $state.go('tab.intakeBornHistory');
                     } else {
                       $rootScope.appointIntakePage = '';
-                      $rootScope.concentToTreatPreviousPage = "tab.appoimentDetails";
+                      if(!$rootScope.SSPage) {
+                          $rootScope.concentToTreatPreviousPage = "tab.appoimentDetails";
+                      }
                       if($rootScope.Cttonscheduled === 'on'){
                           $state.go('tab.ConsentTreat');
                       } else if($rootScope.appointmentwaivefee == true) {
@@ -4345,9 +4351,9 @@ $scope.EditHealth = {};
     }
 
     $scope.backConsultCharge = function() {
-        if($stateParams.getPage === 'CTT') {
+      /*  if($stateParams.getPage === 'CTT') {
             $state.go('tab.userhome');
-        } else {
+        } else {*/
             if (($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode === 'on' && $rootScope.Cttonscheduled === 'on') || ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on' && $rootScope.Cttonscheduled === 'on')) {
                 $state.go('tab.ConsentTreat');
             } else if (($rootScope.healthPlanPage === "block" && $rootScope.Cttonscheduled === 'on') || ($rootScope.paymentBackPage === true && $rootScope.Cttonscheduled === 'on')) {
@@ -4366,7 +4372,7 @@ $scope.EditHealth = {};
             //  $rootScope.doGetIndividualScheduledConsulatation();
               $state.go('tab.userhome');
             }
-      }
+    //  }
     }
 
     $scope.goToNextPage = function() {
@@ -6194,10 +6200,14 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                         var ageDate = new Date(ageDifMs); // miliseconds from epoch
                         $scope.userAge = Math.abs(ageDate.getUTCFullYear() - 1970);
                         if ($scope.userAge === 0) {
-                            $rootScope.concentToTreatPreviousPage = "tab.intakeBornHistory";
+                            if(!$rootScope.SSPage) {
+                              $rootScope.concentToTreatPreviousPage = "tab.intakeBornHistory";
+                            }
                             $rootScope.userAgeForIntake = 8;
                         } else {
-                            $rootScope.concentToTreatPreviousPage = "tab.CurrentMedication";
+                            if(!$rootScope.SSPage) {
+                              $rootScope.concentToTreatPreviousPage = "tab.CurrentMedication";
+                            }
                             $rootScope.userAgeForIntake = 7;
                         }
                         if (patientId !== $rootScope.primaryPatientId) {
@@ -7389,7 +7399,11 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $scope.doGetWaitingRoom();
     }
     $scope.goBackFromConcernToTreat = function() {
-        $state.go($rootScope.concentToTreatPreviousPage);
+        /*if($stateParams.getPage === 'CTT') {
+           $state.go('tab.userhome');
+         } else {*/
+          $state.go($rootScope.concentToTreatPreviousPage);
+        //}
     }
 
     $scope.doGetOndemandAppointPaymentStatus = function() {

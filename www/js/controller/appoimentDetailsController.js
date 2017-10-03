@@ -122,7 +122,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
     if ($rootScope.appointmentDisplay === "test") {
         $("#appointNotes").html($rootScope.appointNotes);
 
-      /*  var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
+        var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
 
         var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
 
@@ -154,7 +154,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                 $('.AvailableIn').show();
                 $('.enterAppoinment').hide();
             }
-        });*/
+        });
 
     }
 
@@ -371,11 +371,12 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                      $rootScope.individualwithoutAppointmentDisplay = 'none';
                       $rootScope.accountStyle = "AppointNone" + $rootScope.deviceName;
                       $rootScope.userAccContent = "userAccContent" + $rootScope.deviceName;
-                      $rootScope.appointmentsPatientId = $rootScope.patientId;*/
+                      $rootScope.appointmentsPatientId = $rootScope.patientId;
                       var beforAppointmentTime = getReplaceTime;
-                      var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
+                      var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);*/
                       //if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {}
                 //  }
+                //var getReplaceTime = new Date(getReplaceTime1.setMinutes(getReplaceTime1.getMinutes() - 30));
                   var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
                   var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
                   var currentUserHomeDate = currentUserHomeDate;
