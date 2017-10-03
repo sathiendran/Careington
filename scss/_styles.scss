@@ -2970,7 +2970,8 @@ a {
     text-decoration: none;
 }
 .regularfamily {
-    font-family: Glober Regular;
+    font-family: GloberRegular;
+    line-height: 16pt;
 }
 .lnamefont {
     font-family: Glober Regular;
@@ -5215,9 +5216,13 @@ hr {
     color: #666666;
 }
 .fname {
-    font-size: 21px;
-    font-family: Glober Bold;
-    color: #666666;
+    //font-size: 21px;
+    //font-family: Glober Bold;
+    //color: #666666;
+    font-size: 25px;
+    font-family: GloberBold !important;
+    color: rgba(0, 0, 0, 0.75);
+    line-height: 30pt;
 }
 .sname {
     font-size: 21px !important;
@@ -5225,7 +5230,12 @@ hr {
     font-family: Glober Regular;
 }
 .fontsymbol {
-    color: #686868;
+    //color: #686868;
+    letter-spacing: 0.1pt;
+    font-size: 14px;
+    line-height: 20pt;
+    color: rgba(0, 0, 0, 0.38);
+    font-family: GloberRegular;
     top: -4px;
     position: relative;
 }
@@ -5681,23 +5691,32 @@ hr {
     padding-top: 2px;
 }
 .appointInQueueTitle {
-    font-family: Glober Regular;
-    font-size: 13pt;
+    font-family: GloberRegular;
+    font-size: 14pt;
+    letter-spacing: 0.1pt;
     color: #999999 !important;
     margin-top: 21px;
-    padding-left: 3%;
     padding-bottom: 5px;
+    background-color: rgb(238,238,238);
+    height: 29px;
+    padding-top: 5px;
+    padding-left: 18px; 
 }
 .appointInQueueMainDiv{
   padding-bottom: 15px;
 }
 .appointScheduledMainDiv {
-    font-family: Glober Regular;
-    font-size: 13pt;
+    font-family: GloberRegular;
+    font-size: 14pt;
+    letter-spacing: 0.1pt;
     color: #999999 !important;
     margin-top: -7px;
-    padding-left: 3%;
+    //padding-left: 3%;
     padding-bottom: 5px;
+    background-color: rgb(238,238,238);
+    height: 29px;
+    padding-top: 5px;
+    padding-left: 18px;
 }
 
 .UserHomeNextAppointment1 {

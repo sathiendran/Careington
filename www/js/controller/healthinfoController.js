@@ -195,7 +195,7 @@ angular.module('starter.controllers')
     var maxDay = maxYear + "-" + maxM + "-" + maxD;
     var mDate = maxDay;
     $scope.maxDate1 = mDate;
-    $scope.minimum = "1950-01-01";
+    $scope.minimum = "1800-01-01";
     $scope.hghtunit=false;
     $scope.hfeet=true;
     $scope.hinch=true;
