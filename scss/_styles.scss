@@ -1036,7 +1036,7 @@ body {
         content: "\f125";
         font-size: 19px;
         position: relative;
-        top: -2px;
+        top: 1px;
     }
 }
 .Appointment_heading {
@@ -5226,12 +5226,14 @@ hr {
 }
 .fontsymbol {
     color: #686868;
+    top: -4px;
+    position: relative;
 }
 .appalign {
     margin: 12px 0 0 0 !important;
 }
 .fonttime {
-    font-size: 14px;
+    font-size: 17px;
     color: #686868;
     font-family: Glober SemiBold;
 }
@@ -5693,7 +5695,7 @@ hr {
     font-family: Glober Regular;
     font-size: 13pt;
     color: #999999 !important;
-    margin-top: 21px;
+    margin-top: -7px;
     padding-left: 3%;
     padding-bottom: 5px;
 }
