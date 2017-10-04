@@ -411,7 +411,7 @@
                <hr class="dothr dotalign">
                <ul class="aligntext alvalue" ng-repeat="medicpt in PatientMedicalProfileList" >
                   <li  ng-repeat="medicationspt in patientmedications">{{$index + 1}}. {{medicationspt.description}}</li>
-                  <li ng-if="patientmedications == ''"  >N/A   </li>
+                  <!-- <li ng-if="patientmedications == ''"  >N/A   </li> -->
                </ul>
                <h4 class="h4align" ng-if="patientmedicationsallergies.length !== 0">
                   <div class="alignnexttext chronic"  >Medication Allergies</div>
@@ -425,7 +425,7 @@
                </h4>
                <hr class="dothr dotalign">
                <ul class="aligntext alvalue">
-                  <li ng-if="patientmedicationsallergies == ''"  >N/A</li>
+                  <!-- <li ng-if="patientmedicationsallergies == ''"  >N/A</li> -->
                   <li ng-repeat="allergies in patientmedicationsallergies"> {{$index + 1}}. {{allergies.description}}</li>
                </ul>
                <h4 class="h4align" ng-if="patientmedicalConditions.length !== 0">
@@ -438,7 +438,7 @@
                </h4>
                <hr class="dothr dotalign">
                <ul class="aligntext alvalue">
-                  <li ng-if="patientmedicalConditions==''"  >N/A</li>
+                  <!-- <li ng-if="patientmedicalConditions==''"  >N/A</li> -->
                   <li ng-repeat=" chronic in patientmedicalConditions" >{{$index + 1}}. {{chronic.description}}</li>
                </ul>
                <h4 class="h4align" ng-if="patientmedicalsurgeries.length !== 0">
@@ -453,7 +453,7 @@
                </h4>
                <hr class="dothr dotalign">
                <ul class="aligntext alvalue">
-                  <li  ng-if="patientmedicalsurgeries==''" >N/A </li>
+                  <!-- <li  ng-if="patientmedicalsurgeries==''" >N/A </li> -->
                   <li ng-repeat="surgeries in patientmedicalsurgeries">
                      {{$index + 1}}. <strong>{{surgeries.description}}</strong>
                      {{getMonthName(surgeries.month)}} {{surgeries.year}}

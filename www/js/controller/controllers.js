@@ -614,7 +614,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -4183,7 +4183,7 @@ $scope.EditHealth = {};
         var insplan = $('#addNewCard_submitPay').val();
       }
 
-      if( insplan !== 'Choose Your Card' && insplan !== 'Add a new card'){
+      if( insplan !== 'Choose Your Card'){
           $rootScope.editCardStyle ="block";
        } else{
          $rootScope.editCardStyle ="none";
@@ -4253,6 +4253,7 @@ $scope.EditHealth = {};
             $rootScope.submitPayBack = $rootScope.currState.$current.name;
            // $rootScope.userCardNumber = 'Choose Your Card';
             //$rootScope.cardPage = "submitPayment";
+             $rootScope.editCardStyle = "block";
             $state.go('tab.cardDetails');
         } else {
 
@@ -4333,7 +4334,12 @@ $scope.EditHealth = {};
           $rootScope.copayAmount = $rootScope.consultationAmount;
           $rootScope.healthPlanPage = "none";
           $rootScope.consultChargeNoPlanPage = "block";
-  		      $rootScope.editCardStyle = "none";
+  		  if($rootScope.userDefaultPaymentProfile == null)
+          {
+            $returnootScope.editCardStyle = "none";
+          }else {
+            $returnootScope.editCardStyle = "block";       
+          }
           $('option').filter(function() {
               return this.value.indexOf('?') >= 0;
           }).remove();
@@ -4709,7 +4715,7 @@ $scope.EditHealth = {};
                                 }else if(cardTypeStr.indexOf("discover") >= 0)
                                 {
                                     imgUrl = 'img/card-logo/Discover-dark.png';
-                                }else if(cardTypeStr.indexOf("dinners") >= 0)
+                                }else if(cardTypeStr.indexOf("diner") >= 0)
                                 {
                                     imgUrl = 'img/card-logo/DinersClub-dark.png';
                                 }else if(cardTypeStr.indexOf("jcb") >= 0)
@@ -4785,6 +4791,12 @@ $scope.EditHealth = {};
                                  $window.localStorage.setItem("CardText" + $rootScope.UserEmail, crdNum);
                                  $window.localStorage.setItem("CardLogo" + $rootScope.UserEmail, userCardType);
                                  $window.localStorage.setItem("hosNameforCard", $rootScope.hospitalName);
+                                 if($rootScope.userDefaultPaymentProfile == null)
+                                 {
+                                     $rootScope.editCardStyle ="none";
+                                 }else{
+                                     $rootScope.editCardStyle ="block";
+                                 }
                           }
 
                         if(typeof $rootScope.userCardDetails !== 'undefined' && $rootScope.userCardDetails !== '') {
@@ -4795,9 +4807,7 @@ $scope.EditHealth = {};
                               $rootScope.userCardType = $scope.userCrdType[0].cardLogo;
                               $rootScope.editCardStyle ="block";
                             }
-                        }
-
-                        if(typeof $rootScope.chkProfileIdForCrdType !== 'undefined' && $rootScope.chkProfileIdForCrdType !== '') {
+                        }else if(typeof $rootScope.chkProfileIdForCrdType !== 'undefined' && $rootScope.chkProfileIdForCrdType !== '') {
                           $scope.userCrdType = $filter('filter')($rootScope.PaymentProfile, {
                               profileID: $rootScope.chkProfileIdForCrdType
                           });
@@ -4931,7 +4941,7 @@ $scope.EditHealth = {};
 
 
 
-        $rootScope.editCardStyle ="none";
+        $rootScope.editCardStyle ="block";
         //$rootScope.profileid = proid;
         $rootScope.editPaymentProfile = [];
         angular.forEach($rootScope.PaymentProfile, function(index) {
