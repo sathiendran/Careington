@@ -75,8 +75,12 @@ var setUserVars = function() {
             return $http.get(snap.baseUrl + "/api/v2.1/patients/appointments/self-scheduling/clinicians", opt);
         };
 
-        this.getFamillyGroup = function() {
-            return $http.get(snap.baseUrl + "/api/v2.1/patients/authorized-patients");
+        this.getFamillyGroup = function(opt) {
+            return $http.get(snap.baseUrl + "/api/v2.1/patients/authorized-patients", opt);
+        };
+
+        this.getFamillyGroupPatient = function(patientId) {
+            return $http.get([snap.baseUrl + "/api/v2.1/patients/authorized-patients", patientId].join("/"));
         };
 
         this.getClinicianCard = function(userId, date) {
@@ -1970,7 +1974,7 @@ var setUserVars = function() {
                     var dfd = $.Deferred();
 
                     if (data.patientProfileId) {
-                        $selfSchedulingService.getFamillyGroup().done(function(resp) {
+                        $selfSchedulingService.getFamillyGroup(data.patientProfileId).done(function(resp) {
                             for (var i = 0; i < resp.data.length; i++) {
                                 var patient = resp.data[i];
                                 if (patient.patientId === data.patientProfileId) {
@@ -2211,11 +2215,14 @@ var setUserVars = function() {
 
                         },
                         // we need this in order to select current patient in dialog. Currently we do not have api which can return person record on clinician site.
-                        patientProfileId: snap.profileSession.profileId
+                        //patientProfileId: snap.profileSession.profileId
+                        // we need this in order to select current patient in dialog. Currently we do not have api which can return person record on clinician site.
+                        patientProfileId: dialogOpt.patientProfileId ? dialogOpt.patientProfileId : snap.profileSession.profileId
                     };
 
+                      var patId = dialogOpt.patientProfileId ? dialogOpt.patientProfileId : snap.profileSession.profileId;
 
-                    $selfSchedulingService.getFamillyGroup().done(function(resp) {
+                    $selfSchedulingService.getFamillyGroup(patId).done(function(resp) {
                         for (var i = 0; i < resp.data.length; i++) {
                             var patient = resp.data[i];
                             if (patient.patientId === snap.profileSession.profileId) {

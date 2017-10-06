@@ -1,0 +1,112 @@
+﻿
+<div class="dialogbox dialogbox--person-location">
+    <div class="dialogbox__titlebar">
+        <span>Confirm Current Location</span>
+    </div>
+    <div class="dialogbox__main">
+        <div class="drawer-card drawer-card--dialogbox" data-bind="css: {is-hidden: vm_isLocationAutocompleteFocused}">
+            <div class="drawer-card__container drawer-card__container--border-btm">
+                <div class="drawer-card__main">
+                    <div class="drawer-card__arrow"></div>
+                    <div class="drawer-card__card js-toggle-drawer-content">
+                        <div class="drawer-card__userpic">
+                            <button type="button" class="drawer-card__user-info js-toggle-content">
+                                <span class="icon_info"></span>
+                            </button>
+
+                            <div class="userpic userpic--drawer-card userpic--no-view-profile js-toggle-content">
+                                <img src="images/photo-girl.jpg" alt=""
+                                    data-bind="attr:{src: vm_patientProfileImg}"
+                                    onerror="this.onerror=null;this.src='images/default-user.jpg'">
+                            </div>
+
+                            <div class="drawer-card__chevron"></div>
+                        </div>
+
+                        <div class="drawer-card__info js-toggle-content">
+                            <div class="drawer-card__name" >
+                                <span data-bind="text: vm_fullName"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dialogbox-location dialogbox-location--person js-location-target"
+            data-bind="css: {is-search: isEditMode}">
+            <div class="dialogbox-location__block js-location-step-1">
+                <div class="dialogbox-location__box" data-bind="visible: vm_isSelfLocationDialog">
+                    Set your current location to find providers licensed to practice in the same area.
+                </div>
+                <div class="dialogbox-location__box" data-bind="invisible: vm_isSelfLocationDialog">
+                    Set this person’s current location to find providers licensed to practice in the same area.
+                </div>
+                <p>Last location:</p>
+                <div class="dialogbox-location__location">
+                    <i class="icon_location-pin"></i>
+                    <span data-bind="text: currentLocationText"></span>
+                </div>
+                <p data-bind="visible: vm_isSelfLocationDialog">Is this where you are now?</p>
+                <p data-bind="invisible: vm_isSelfLocationDialog">Is this where <span data-bind="text: vm_firstName"></span> is now?</p>
+            </div>
+
+            <div class="dialogbox-location__block dialogbox-location__block--search js-location-step-2">
+                <p>Set your current location</p>
+               <div class="dialogbox-location__form">
+                    <div class="search search--location" id="autocompleteCountry-wrap"
+                        data-bind="css: { is-error: vm_countryError, is-active:vm_isCountryFilled }">
+                         <input
+                            data-role="autocomplete"
+                            data-placeholder="Find Country"
+                            data-text-field="text"
+                            data-value-primitive = "true"
+                            data-bind="
+                                value: selectedCountry,
+                                source: countryCodes,
+                                events: {
+                                    change: vm_onCountryChange
+                                }"
+                            />
+                        <span class="icon_magnifying-glass"></span>
+                    </div>
+
+                    <div class="search search--location" id="autocompleteState-wrap" disabled
+                        data-bind="css: { is-error: vm_stateError, is-active:vm_isStateFilled }, visible: vm_isRegionsAutocompleteEnable">
+                         <input
+                            data-role="autocomplete"
+                            data-placeholder="Find state or region"
+                            data-text-field="text"
+                            data-value-primitive = "true"
+                            data-bind="
+                                enabled: vm_isRegionsAutocompleteEnable,
+                                value: selectedRegion,
+                                source: regions,
+                                events: {
+                                    change: vm_onRegionChange
+                                }"
+                            />
+                        <span class="icon_magnifying-glass"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="dialogbox__buttons" data-bind="invisible: isEditMode">
+        <button data-bind="events: {click: vm_onNoClick}" class="button button__gray js-location-search"><span>No</span></button>
+        <button data-bind="events: {click: vm_onYesClick}, css:{is-loading:vm_isLoading}" class="button button__green js-location-confirm"><span>Yes</span></button>
+    </div>
+
+    <div class="dialogbox__buttons" data-bind="visible: isEditMode">
+        <button data-bind="events: {click: vm_onCancelClick}" class="button button__gray js-location-search"><span>Cancel</span></button>
+        <button class="button button__green js-location-confirm"
+            data-bind="disabled:vm_isSaveDisabled,
+                events: {click: vm_onSaveClick},
+                css: { button__red: vm_isError, is-loading:vm_isLoading}">
+            <span data-bind="text: vm_saveButtonText"></span>
+        </button>
+    </div>
+</div>
+

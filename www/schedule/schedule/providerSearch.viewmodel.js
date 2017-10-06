@@ -7,7 +7,7 @@
         .use(["snapNotification", "snap.EventAggregator",
             "snap.service.selfSchedulingService",
             "snap.patient.schedule.appointmentDialog",
-            "snap.admin.schedule.TimeUtils",
+            "snap.common.TimeUtils",
             "snap.patient.schedule.apptsSlotsTray",
             "snap.patient.schedule.patientSelfSchedulingHub",
             "snap.service.userService",
@@ -16,7 +16,7 @@
             "snap.DataService.customerDataService",
             "snap.patient.patientResponseAddressDialog",
             "snap.common.dialogWindow",
-            "snap.common.utility"])
+			"snap.helper.locationHelper"])
         .extend(kendo.observable)
         .define("providerSearch", function (
             $snapNotification,
@@ -32,7 +32,7 @@
             $customerDataService,
             $patientResponseAddressDialog,
             $dialogWindow,
-            $utility) {
+          $locationHelper) {
 
             var scope = this,
                 isFooterActive = true,
@@ -273,7 +273,7 @@
                     $("#searchTab").addClass("is-active");
                 } else {
                     if($('#allProvider').attr("class") == '' & $('#myProvider').attr("class") == '') {
-                      $("#searchTab").removeClass("is-active");                      
+                      $("#searchTab").removeClass("is-active");
                        $("#myProvider").removeClass("is-active");
                        $("#allProvider").addClass("is-active");
                     } else {
@@ -319,7 +319,11 @@
                 scope.trigger("change", {
                     field: "vm_getPagingCount"
                 });
+                scope.trigger("change", {
+                    field: "vm_getPagingName"
+                });
             });
+
 
             $eventAggregator.subscriber(filterItemChangedEvent, function () {
                 scope._updateCliniciansList();
@@ -346,11 +350,12 @@
                 }
 
             });
- $eventAggregator.subscriber("patientResponseDialog_locationConfirmed", function(currentLocation) {
+ $eventAggregator.subscriber("patientResponseDialog_locationConfirmed", function(currentLocation, currentLocationText) {
                 if(scope.selectedPatient !== null) {
+scope.selectedPatient.currentLocationText = currentLocationText;
                     scope.selectedPatient.currentLocation = currentLocation;
-                     debugger;
-                    scope.set("vm_currentPatientLocation", currentLocation);
+
+                    scope.set("vm_currentPatientLocation", currentLocationText);
 
                     var filters = scope._getCliniciansFilters();
 
@@ -419,6 +424,15 @@
                         that._updateCliniciansList();
                     }
                 });
+                if(!this.allCliniciansDS.isEndlessScrollInitialized()) {
+                     this.allCliniciansDS.initEndlessScroll();
+                 }
+
+                 if(!this.favoriteCliniciansDS.isEndlessScrollInitialized()) {
+                     this.favoriteCliniciansDS.initEndlessScroll();
+                 }
+
+                 this._updateCliniciansList();
             };
 
             this._reloadPatientSelector = function() {
@@ -427,6 +441,7 @@
                 };
 
                 selector.filters(filters);
+				          selector.reload();
             };
 
             this.setViewMode = function (mode) {
@@ -442,22 +457,26 @@
                     field: "vm_isFavoriteCliniciansMode"
                 });
 
-                this.trigger("change", {
+                 this.trigger("change", {
                     field: "vm_getPagingCount"
                 });
- 				if(!this.allCliniciansDS.isEndlessScrollInitialized()) {
-                    this.allCliniciansDS.initEndlessScroll();
-                }
 
-                if(!this.favoriteCliniciansDS.isEndlessScrollInitialized()) {
-                    this.favoriteCliniciansDS.initEndlessScroll();
-                }
+                this.trigger("change", {
+                    field: "vm_getPagingName"
+                });
 
-                var filters = this._getCliniciansFilters();
 
-                this.allCliniciansDS.query({ filters: filters });
-                this.favoriteCliniciansDS.query({ filters: filters });
+                // Refresh slick plug-in for current view mode.
+                // Slick do not works with hided elements, so as far as we display current view mode we need re-init slick.
+                this._getCurrentClinicianListTimeSlots().refreshSlickPlugin();
             };
+
+
+
+
+
+
+
             this.cleanup = function () { //For all that should be done on route change
                 this.set("vm_isNotificationActive", true);
                 this.set("vm_isNotificationActive", false);
@@ -517,6 +536,7 @@ this.vm_patientsNameFilter = "";
 
                     dialog.open({
                         patientId: this.selectedPatient.id,
+						currentLocationText: this.selectedPatient.currentLocationText,
                         currentLocation: this.selectedPatient.currentLocation,
                         imageSource:  this.selectedPatient.imageSource,
                         fullName: this.selectedPatient.name,
@@ -569,13 +589,18 @@ this.vm_patientsNameFilter = "";
 
             this.vm_getPagingCount = function () {
                 var curCounts = this.clinicianListViewMode === listViewMode.all ? this.counts.all : this.counts.favorite;
-                 var txt =  curCounts.total + " Provider";
-                if(curCounts.total > 1) {
-                    txt+= "s";
+                return curCounts.total;
+            };
+
+            this.vm_getPagingName = function () {
+                var curCounts = this.clinicianListViewMode === listViewMode.all ? this.counts.all : this.counts.favorite;
+                var txt = " Provider";
+                if (curCounts.total > 1) {
+                    txt += "s";
                 }
 
                 return txt;
-            };
+            }
 
             this.vm_onDateForvard = function () {
                 var newDate = new Date(this.dateFilter);
@@ -681,13 +706,12 @@ this.vm_patientsNameFilter = "";
                 this._toogleAllFooters(!isFooterActive);
             };
 
-            this.vm_toogleAllContents = function () {
-                if(isFooterActive && this.vm_isGridMode()) {
+           this.vm_toogleAllContents = function () {
+                if(this.vm_isGridMode()) {
                     this._toogleAllFooters(false);
-                    this._toogleAllContents(true);
-                } else {
-                    this._toogleAllContents(!isContentActive);
                 }
+
+                this._toogleAllContents(!isContentActive);
             };
 
             this.vm_onDateFilterChange = function () {
@@ -785,20 +809,24 @@ this.vm_patientsNameFilter = "";
 
                 var that = this;
                 $customerDataService.getPatientProfileDetails(patient.id, "all").done(function (data) {
-                    var location = "";
-                    if(that.isResponseRuleActive) {
+                   var locationText = "";
+                   var addressLocation = "";
+                   if(that.isResponseRuleActive) {
+                       locationText = $locationHelper.getEncounterAddressTextFromPatientProfile(data.data[0]);
+                       addressLocation = $locationHelper.getEncounterAddressLocationFromPatientProfile(data.data[0]);
+                   } else if (that.isAddressRuleActive) {
+                       locationText = $locationHelper.getLocalAddressTextFromPatientProfile(data.data[0]);
+                       addressLocation = $locationHelper.getLocalAddressLocationFromPatientProfile(data.data[0]);
+                   }
 
-                        location = $utility.getEncounterAddressFromPatientProfile(data.data[0]);
-                    } else if (that.isAddressRuleActive) {
-                        location = $utility.getLocalAddressFromPatientProfile(data.data[0]);
-                    }
+                   that.set("vm_currentPatientLocation", locationText);
+                   that.set("vm_isPatinetLoactionInLoading", false);
 
-                    that.set("vm_currentPatientLocation", location);
-                    that.set("vm_isPatinetLoactionInLoading", false);
+                   that.selectedPatient.currentLocationText = locationText;
+                   that.selectedPatient.currentLocation = addressLocation;
+               });
+           };
 
-                    that.selectedPatient.currentLocation = location;
-                });
-            };
             this._setFilterDate = function (newDate) {
                 this.set("dateFilter", newDate);
                 this._updateCliniciansList();
@@ -896,26 +924,31 @@ this.vm_patientsNameFilter = "";
                 this.favoriteCliniciansDS.refreshViewMode();
             };
 
-            this._toogleAllFooters = function (isFActive) {
+           this._toogleAllFooters = function (isFActive) {
                 isFooterActive = isFActive;
 
-                var ds = this._getCurrentClinicianListTimeSlots();
-
-                ds.data().forEach(function (clinicianCard) {
+                this.allCliniciansDS.data().forEach(function (clinicianCard) {
+                    clinicianCard.toogleFoter(isFActive);
+                });
+                this.favoriteCliniciansDS.data().forEach(function (clinicianCard) {
                     clinicianCard.toogleFoter(isFActive);
                 });
 
                 this.trigger("change", { field: "vm_toogleAllCardsFooterIconText"});
             };
 
+
             this._toogleAllContents = function (isCActive) {
                 isContentActive = isCActive;
-                var ds = this._getCurrentClinicianListTimeSlots();
 
-                ds.data().forEach(function (clinicianCard) {
-                    clinicianCard.toogleContent(isContentActive);
+                this.allCliniciansDS.data().forEach(function (clinicianCard) {
+                    clinicianCard.toogleContent(isCActive);
                 });
- 				this.trigger("change", { field: "vm_toogleAllCardsContentIconText"});
+                this.favoriteCliniciansDS.data().forEach(function (clinicianCard) {
+                    clinicianCard.toogleContent(isCActive);
+                });
+
+                this.trigger("change", { field: "vm_toogleAllCardsContentIconText"});
             };
 
 
@@ -1032,29 +1065,31 @@ this.vm_patientsNameFilter = "";
 
                 this.slickFooter = function() {
 
-                    // Ticket 10105. Case #15: Next is not displayed in Time view.
-                    //
-                    // It is difficult to reproduce problems in case #12 and #15.
-                    // I reproduced it only once for case 12. And it was a problem with slick slider.
-                    // According to image in case 15 we have slots for another cards, so we have only problem with cards where we have only "Next" button.
-                    // This fact mean that fix for case 12 works everywhere except a case when we have only "Next" button.
-                    // But in this case ("Next" button only) we do not need slick slider at all.
-                    //
-                    // SO, IF THERE IS NO AVAILABLE SLOTS WE DO NOT INIT SLICK SLIDER BECAUSE WE DO NOT NEED IT.
-                    if(!this.apptsSlotsTray.vm_isEmpty()) {
-                        var footer = $("#card_" + this.vm_cardId).find('.js-footer-slider');
+                    // 1. Work with grid view.
+                    var footer = $("#card_" + this.vm_cardId).find('.js-footer-slider');
 
-                        footer.not('.slick-initialized').slick({
-                            infinite: false,
-                            variableWidth: true,
-                            slidesToShow: 1,
-                            slidesToScroll: 3,
-                            draggable: false,
-                            easing: 'ease',
-                            prevArrow: '<button type="button" class="slick-prev"><span class="icon_chevron-thin-left"></span></button>',
-                            nextArrow: '<button type="button" class="slick-next"><span class="icon_chevron-thin-right"></span></button>'
-                        });
+                    footer.not('.slick-initialized').slick({
+                        infinite: false,
+                        variableWidth: true,
+                        slidesToShow: 1,
+                        slidesToScroll: 3,
+                        draggable: false,
+                        easing: 'ease',
+                        prevArrow: '<button type="button" class="slick-prev"><span class="icon_chevron-thin-left"></span></button>',
+                        nextArrow: '<button type="button" class="slick-next"><span class="icon_chevron-thin-right"></span></button>'
+                    });
 
+                    // 2. Work with list view.
+
+                    // In some cases slick slider do not work well (elements hided at first, and there is not enough elements for slider)
+                    // SO, IF THERE IS NO ENOUGH AVAILABLE SLOTS WE DO NOT INIT SLICK SLIDER BECAUSE WE DO NOT NEED IT.
+                    var slotsCount=  this.apptsSlotsTray.getSlots().length;
+
+                    if(this.apptsSlotsTray.hasSlotForNextDate()) {
+                        slotsCount++;
+                    }
+
+                    if(slotsCount > 4) {
                         var secondFooter =  $("#card_" + this.vm_cardId).find('.js-flip-slider');
 
                         secondFooter.not('.slick-initialized').slick({
@@ -1090,11 +1125,15 @@ this.vm_patientsNameFilter = "";
                     this.set(prop, isActive);
                 };
 
-                 /*********** MVVM BINDINGS **************/
+
+
+
+
+			/*********** MVVM BINDINGS **************/
                 this.vm_onConnectNowClick = function() {
                     var slots = this.apptsSlotsTray.getSlots().filter(function(slot) {
                         return slot.isNow;
-                    })
+                    });
 
                     if(slots.length > 0) {
                         var slot = slots[0];
@@ -1247,7 +1286,11 @@ this.vm_patientsNameFilter = "";
                     });
                 };
 
-
+this.refreshSlickPlugin = function() {
+                    this.vm_allItems.forEach(function(item) {
+                        item.slickFooter();
+                    });
+                };
 
                 var getSingleCardDfd = $.Deferred();
                 var getCardsDfd = $.Deferred();
@@ -1289,73 +1332,69 @@ this.vm_patientsNameFilter = "";
                         getSingleCardDfd.resolve(null);
                     }
 
-                    getCardsDfd = $selfSchedulingService.getCliniciansCards(apiPayload);
-                    var chkload = true;
+                   getCardsDfd = $selfSchedulingService.getCliniciansCards(apiPayload);
 
                     return $.when(getSingleCardDfd, getCardsDfd).done(function (singlCardResult, listOfCardsResult) {
-                      if(chkload == true) {
-                        chkload = false;
-                          var cards = listOfCardsResult[0].data[0].clinicians;
-                          var totals = listOfCardsResult[0].data[0].totals;
+                        var cards = listOfCardsResult[0].data[0].clinicians;
+                        var totals = listOfCardsResult[0].data[0].totals;
 
-                          // If we provided 'userId' parameter we get concrete patient card which must be shown in list.
-                          if (singlCardResult) {
-                              var userId = singlCardResult[0].data[0].userId;
+                        // If we provided 'userId' parameter we get concrete patient card which must be shown in list.
+                        if (singlCardResult) {
+                            var userId = singlCardResult[0].data[0].userId;
 
-                              for (var i = 0; i < cards.length; i++) {
-                                  if (cards[i].userId === userId) {
-                                      cards.splice(i, 1);
-                                      break;
-                                  }
-                              }
-
-                              var selectedClinicianCard = singlCardResult[0].data[0];
-                              selectedClinicianCard._isSelected = true; //Custom property, we use it in order to mark element in UI.
-
-                              cards.unshift(selectedClinicianCard);
-                          }
-
-                          $eventAggregator.published(dataSourceReadSuccessEvent, {
-                              mode: mode,
-                              data: totals,
-                              skip: apiPayload.skip,
-                              take: apiPayload.take
-                          });
-
-                          total = totals.total;
-
-                          var clinicians = cards.map(function (ap) {
-                              var c = kendo.observable(new Clinician(ap, scope));
-                              c.initApptsSlotTray();
-
-                              return c;
-                          });
-
-
-                          if(clinicians.length > 0 && (that.vm_allItems.length < total)) {
-                              // Add all new cards to providers list.
-                              // We use overrided by kendo push.apply in order to trigger change only once.
-                              that.vm_allItems.push.apply(that.vm_allItems, clinicians);
-
-                              // We put all slots in one colletction and monitor any changes (lock/unlock slot)
-                              providersSlotsLocator.setSlots(getSlotsFromDs(that.vm_allItems), $timeUtils.dateFromSnapDateString(apiPayload.date));
-
-                              // turn on Slick pugin for all cards.
-                              that.vm_allItems.forEach(function(card) {
-                                  card.slickFooter();
-                              });
-
-                              if(scope.vm_isListMode()) {
-                                  // Expand all new added cards, this is a card default state.
-                                  expandClinicanCards(clinicians);
-                              }
-
-                                // Callback for addition actions after data updated.
-                                options.onDataLoad();
+                            for (var i = 0; i < cards.length; i++) {
+                                if (cards[i].userId === userId) {
+                                    cards.splice(i, 1);
+                                    break;
+                                }
                             }
 
-                          that.set("vm_isItemsLoading", false);
+                            var selectedClinicianCard = singlCardResult[0].data[0];
+                            selectedClinicianCard._isSelected = true; //Custom property, we use it in order to mark element in UI.
+
+                            cards.unshift(selectedClinicianCard);
                         }
+
+                        $eventAggregator.published(dataSourceReadSuccessEvent, {
+                            mode: mode,
+                            data: totals,
+                            skip: apiPayload.skip,
+                            take: apiPayload.take
+                        });
+
+                        total = totals.total;
+
+                        var clinicians = cards.map(function (ap) {
+                            var c = kendo.observable(new Clinician(ap, scope));
+                            c.initApptsSlotTray();
+
+                            return c;
+                        });
+
+
+                        if(clinicians.length > 0) {
+                            // Add all new cards to providers list.
+                            // We use overrided by kendo push.apply in order to trigger change only once.
+                            that.vm_allItems.push.apply(that.vm_allItems, clinicians);
+
+                            // We put all slots in one colletction and monitor any changes (lock/unlock slot)
+                            providersSlotsLocator.setSlots(getSlotsFromDs(that.vm_allItems), $timeUtils.dateFromSnapDateString(apiPayload.date));
+
+                            // turn on Slick plugin for all cards.
+                            that.vm_allItems.forEach(function(card) {
+                                card.slickFooter();
+                            });
+
+                            if(scope.vm_isListMode()) {
+                                // Expand all new added cards, this is a card default state.
+                                expandClinicanCards(clinicians);
+                            }
+                        }
+
+                        // Callback for addition actions after data updated.
+                        options.onDataLoad();
+
+                        that.set("vm_isItemsLoading", false);
                     }).fail(function (result) {
                         // Ignore 'abort' operation and do not show error.
                         // We abort requests in case if user send many requests (api slow and user change filters several times.)

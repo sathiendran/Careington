@@ -1,4 +1,5 @@
-﻿<div class="dialogbox dialogbox--person-location">
+﻿
+<div class="dialogbox dialogbox--person-location">
     <div class="dialogbox__titlebar">
         <span>Confirm Current Location</span>
     </div>
@@ -44,7 +45,7 @@
                 <p>Last location:</p>
                 <div class="dialogbox-location__location">
                     <i class="icon_location-pin"></i>
-                    <span data-bind="text: currentLocation"></span>
+                    <span data-bind="text: currentLocationText"></span>
                 </div>
                 <p data-bind="visible: vm_isSelfLocationDialog">Is this where you are now?</p>
                 <p data-bind="invisible: vm_isSelfLocationDialog">Is this where <span data-bind="text: vm_firstName"></span> is now?</p>
@@ -59,7 +60,6 @@
                             data-role="autocomplete"
                             data-placeholder="Find Country"
                             data-text-field="text"
-                            data-value-primitive = "true"
                             data-bind="
                                 value: selectedCountry,
                                 source: countryCodes,
@@ -76,7 +76,6 @@
                             data-role="autocomplete"
                             data-placeholder="Find state or region"
                             data-text-field="text"
-                            data-value-primitive = "true"
                             data-bind="
                                 enabled: vm_isRegionsAutocompleteEnable,
                                 value: selectedRegion,
@@ -108,3 +107,4 @@
         </button>
     </div>
 </div>
+
