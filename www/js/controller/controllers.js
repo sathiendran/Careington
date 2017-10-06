@@ -817,11 +817,15 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
 
     $rootScope.ClearRootScope = function() {
+      $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
       $rootScope.cuttlocations = ''
         $window.localStorage.setItem('tokenExpireTime', '');
         $(".ion-google-place-container").css({
             "display": "none"
         });
+        if($rootScope.chkSSPageEnter) {
+            $ionicSideMenuDelegate.toggleLeft();
+        }
         if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging' && cobrandApp !== 'MDAmerica') {
               $rootScope.hospitalId = singleHospitalId;
               apiCommonURL = 'https://connectedcare.md';
@@ -843,7 +847,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                 //$state.go('tab.singleTheme');
              }
         }
-
+        $rootScope.chkSSPageEnter = false;
         $ionicBackdrop.release();
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
@@ -1579,6 +1583,9 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
     if($stateParams.getPage === 'CTT'){
       $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+      if($rootScope.chkSSPageEnter) {
+          $ionicSideMenuDelegate.toggleLeft();
+      }
       $rootScope.patientId = JSON.parse(sessionStorage.getItem("appointPatId"));
       $rootScope.appointmentwaivefee = JSON.parse(sessionStorage.getItem("waivefee"));
       $rootScope.userhome = true;
@@ -4338,7 +4345,7 @@ $scope.EditHealth = {};
           {
             $rootScope.editCardStyle = "none";
           }else {
-            $rootScope.editCardStyle = "block";       
+            $rootScope.editCardStyle = "block";
           }
           $('option').filter(function() {
               return this.value.indexOf('?') >= 0;
@@ -4662,6 +4669,7 @@ $scope.EditHealth = {};
       $rootScope.PayAddCardDetails = '';
         var params = {
             accessToken: $rootScope.accessToken,
+            userTimeZoneId: $rootScope.userTimeZoneId,
             success: function(data, status) {
               $rootScope.PayAddCardDetails = [];
               $rootScope.addCardStatus = status;
@@ -4889,6 +4897,7 @@ $scope.EditHealth = {};
         var params = {
             accessToken: $rootScope.accessToken,
             profileID: profileID,
+            userTimeZoneId: $rootScope.userTimeZoneId,
             success: function(data, status) {
               $rootScope.chargifyPayUpdateCardDetails = [];
               $rootScope.chargifyUpdateCardStatus = status;
@@ -4914,12 +4923,12 @@ $scope.EditHealth = {};
     $scope.editpaymentcard = function(pageName){
         //  var proid = $("#addNewCard").val();
         $state.go('tab.cardeditDetails');
-        
+
 
         if (typeof $scope.cardPaymentId.addNewCard !== 'undefined') {
             if(pageName === 'consulCharge') {
               var insplanCrdVal = $('#addNewCard').val();
-              if($rootScope.userDefaultPaymentProfileText != null && typeof $rootScope.userDefaultPaymentProfileText != 'undefined') 
+              if($rootScope.userDefaultPaymentProfileText != null && typeof $rootScope.userDefaultPaymentProfileText != 'undefined')
               {
                     $rootScope.editCardStyle ="block";
                 } else {
@@ -4928,7 +4937,7 @@ $scope.EditHealth = {};
 
             } else if(pageName === 'addNewCard') {
               var insplanCrdVal = $('#addNewCard_addCard').val();
-              if($rootScope.userDefaultPaymentProfileText != null && typeof $rootScope.userDefaultPaymentProfileText != 'undefined') 
+              if($rootScope.userDefaultPaymentProfileText != null && typeof $rootScope.userDefaultPaymentProfileText != 'undefined')
               {
                     $rootScope.editCardStyle ="block";
                 } else {
@@ -4977,14 +4986,14 @@ $scope.EditHealth = {};
                    'cardLogo' : index.cardLogo,
                });
              }
-         });         
+         });
          $rootScope.doGetChargifyPayUpdateCardDetails($rootScope.editPaymentProfile[0].profileID);
-         
+
          var cardExpiration = $rootScope.editPaymentProfile[0].cardExpiration;
          $rootScope.cardExpirationSplitValue = cardExpiration.split('/');
          $rootScope.editbilling =  $rootScope.editPaymentProfile[0].billingAddress;
-          $rootScope.editcardNumber =  $rootScope.editPaymentProfile[0].cardNumber;  
-        
+          $rootScope.editcardNumber =  $rootScope.editPaymentProfile[0].cardNumber;
+
         /* $scope.editCardDetails.cardEditCity = $rootScope.editbilling.city;
             $scope.editCardDetails.cardEditState = $rootScope.editbilling.state;
             $scope.editCardDetails.cardEditCountry = $rootScope.editbilling.country;
@@ -5164,13 +5173,13 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
               $scope.ErrorMessage = "Zip can't be empty";
               $rootScope.Validation($scope.ErrorMessage);
 
-        }else if (!CreditCardValidations.validCreditCard($rootScope.editCardNumber)) {     
-            $scope.invalidZip = "";     
-            $scope.invalidMonth = "";       
-            $scope.invalidCVV = "";     
-            $scope.invalidCard = "border: 1px solid red;max-width:50%;";        
-            $scope.ErrorMessage = "Invalid Card Number";        
-            $rootScope.Validation($scope.ErrorMessage);     
+        }else if (!CreditCardValidations.validCreditCard($rootScope.editCardNumber)) {
+            $scope.invalidZip = "";
+            $scope.invalidMonth = "";
+            $scope.invalidCVV = "";
+            $scope.invalidCard = "border: 1px solid red;max-width:50%;";
+            $scope.ErrorMessage = "Invalid Card Number";
+            $rootScope.Validation($scope.ErrorMessage);
         } else if (EditexpiryDateCheck < currentTime) {
             $scope.invalidMonth = "border: 1px solid red;";
             $scope.ErrorMessage = "Invalid Expiry Month";
@@ -6589,11 +6598,11 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
               $rootScope.accountStyle = "";
               $rootScope.userAccContent = "";
               if ($rootScope.getIndividualScheduleDetails != '') {
-                  if($rootScope.getIndividualPatScheduleDetails != '') {
-                      var getReplaceTime = $rootScope.getIndividualPatScheduleDetails[0].scheduledTime;
-                  } else {
+                //  if($rootScope.getIndividualPatScheduleDetails != '') {
                       var getReplaceTime = $rootScope.getIndividualScheduleDetails[0].scheduledTime;
-                  }
+                /*  } else {
+                      var getReplaceTime = $rootScope.getIndividualScheduleDetails[0].scheduledTime;
+                  }*/
                   var currentUserHomeDate = currentUserHomeDate;
 
                   if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
@@ -6603,12 +6612,12 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                       $rootScope.accountStyle = "AppointNone" + $rootScope.deviceName;
                       $rootScope.userAccContent = "userAccContent" + $rootScope.deviceName;
                       $rootScope.appointmentsPatientId = $rootScope.patientId;
-                      var beforAppointmentTime = getReplaceTime;
+                    /*  var beforAppointmentTime = getReplaceTime;
                       var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
 
                       if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {
 
-                      }
+                      }*/
                   }
 
                   if($rootScope.getIndividualPatScheduleDetails != '') {

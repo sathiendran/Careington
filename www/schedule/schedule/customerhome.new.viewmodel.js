@@ -217,12 +217,13 @@ var setUserVars = function() {
                                         //$overlay.setSubTxt("Accept the consent to treat agreement to enter the waiting room.");
                                         $overlay.setSubTxt(" ");
                                     }
-
-                                    Snap.Patient.PatientHomeNewViewModel().goToSchedConsultInternal(data, function() {
-                                        window.setTimeout(function() {
-                                            $overlay.toggleOverlay();
-                                        }, 2000);
-                                    });
+                                    window.setTimeout(function() {
+                                        Snap.Patient.PatientHomeNewViewModel().goToSchedConsultInternal(data, function() {
+                                            window.setTimeout(function() {
+                                              //  $overlay.toggleOverlay();
+                                            }, 4000);
+                                        });
+                                    }, 2000);
 
                                 },
                                 error: function() {
@@ -4234,13 +4235,13 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
             "snap.service.availabilityBlockService", "snap.hub.mainHub", "snap.hub.consultationsListingHub", "snap.hub.creditHub", "snap.patient.PatientHeaderViewModel",
             "snap.hub.notificationService",
             "snap.clinician.patientQueue.reEnterConsultationDialog",
-            "snap.common.dialogWindow", "snap.common.timer", "snap.patient.patientResponseAddressDialog", "snap.common.utility"
+            "snap.common.dialogWindow", "snap.common.timer", "snap.patient.patientResponseAddressDialog", "snap.common.utility", "snap.common.overlay"
         ])
         .extend(kendo.observable)
         .define("PatientHomeNewViewModel", function($snapNotification, $snapHttp, $snapLoader, $eventAggregator, $service, $appointmentService, $availabilityBlockService,
             $mainHub, $consultationsListingHub, $creditHub, $patientHeaderVM, $notificationService,
             $reEnterConsultationDialog,
-            $dialogWindow, $timer, $patientResponseAddressDialog, $utility) {
+            $dialogWindow, $timer, $patientResponseAddressDialog, $utility, $overlay) {
             var $scope = this;
             var timer = null;
             var HOUR_LIMIT = 12; // How only new in 12 hours
@@ -4436,10 +4437,10 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
             };
             this.callOnDemand = function() {
                 if (kendo.support.mobileOS !== false) {
-                    snap.openMobileApp("", function() {
+                    //snap.openMobileApp("", function() {
                         $scope.startIntakeForm();
-                    });
-                    return;
+                  //  });
+                  return;
                 }
                 this.startIntakeForm();
             };
@@ -4672,6 +4673,9 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
 
                 if (data.encounterTypeCode === encounterTypeCode.Phone) {
                     // phone-type consultation is automatically created in api
+                    window.setTimeout(function() {
+                        $overlay.toggleOverlay();
+                    }, 2000);
 
                     if (callback && callback.call) {
                         callback.call();
@@ -4709,6 +4713,9 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                                             callback.call();
                                         }
                                       //  $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+                                      window.setTimeout(function() {
+                                          $overlay.toggleOverlay();
+                                      }, 2000);
                                         if (snap.hospitalSettings.showCTTOnScheduled) {
                                             //location.href = "/Customer/Intake/#/Confirmation";
                                             location.href = "#/tab/ConsentTreat/CTT/" +newConsultationId;
@@ -4720,11 +4727,11 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                                             location.href = "#/tab/consultCharge/CTT/" +newConsultationId;
                                         } else {
                                             if (kendo.support.mobileOS) {
-                                                snap.openMobileApp(parseInt(newConsultationId), function() {
+                                              //  snap.openMobileApp(parseInt(newConsultationId), function() {
                                                     sessionStorage.setItem("consultationinitaction", "1");
                                                     //location.href = "/Customer/Main/#/Waiting";
                                                     location.href = "#/tab/receipt/CTT/" +newConsultationId;
-                                                });
+                                              //  });
                                                 return;
                                             }
                                             sessionStorage.setItem("consultationinitaction", "1");

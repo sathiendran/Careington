@@ -144,7 +144,7 @@
                         return null;
                     }
 
-                    var minDate = new Date(Math.min.apply(null,dates)); 
+                    var minDate = new Date(Math.min.apply(null,dates));
                     minDate.setHours(0, 0, 0, 0);
 
                     return minDate;
@@ -186,10 +186,10 @@
                     var that = this;
                     if (this.isNow) {
                         if (kendo.support.mobileOS !== false) {
-                            snap.openMobileApp("", function () {
+                          //  snap.openMobileApp("", function () {
                                 slotClickCallback({ clinicianId: that.clinicianUserId, start: new Date(that.from), end: new Date(that.to), availabilityBlockId: that.availabilityBlockId, isNow: that.isNow });
                                 $eventAggregator.published("slotTray_slotClickCallback");
-                            });
+                          //  });
                             return;
                         }
 
@@ -213,7 +213,7 @@
                     this.set("vm_isInvisible", true);
 
                     if(refreshCardOnSlotLockUnlock) {
-                        refreshCardOnSlotLockUnlock();    
+                        refreshCardOnSlotLockUnlock();
                     }
                 };
 

@@ -1074,11 +1074,23 @@ this.getPatientMedicalProfile = function(params){
 	}
 
   this.getPayCardDetails = function (params) {
-      var requestInfo = {
+    /*  var requestInfo = {
           headers: util.getHeaders(params.accessToken),
           url: apiCommonURL + '/api/v2.1/payments/direct/add-card',
           method: 'GET'
-      };
+      };*/
+			var requestInfo = {
+				//	headers: util.getHeaders(params.accessToken),
+					headers: {
+							'Authorization': 'Bearer ' +params.accessToken,
+							'X-Api-Key': util.getHeaders()["X-Api-Key"],
+							'X-Developer-Id': util.getHeaders()["X-Developer-Id"],
+							'Time-Zone': params.userTimeZoneId,
+							'Content-Type': 'application/json; charset=utf-8'
+					},
+		      url: apiCommonURL + '/api/v2.1/payments/direct/add-card',
+					method: 'GET'
+			};
 
       $http(requestInfo).
               success(function (data, status, headers, config) {
@@ -1101,11 +1113,23 @@ this.getPatientMedicalProfile = function(params){
 
 
 			this.getPayUpdateCardDetails = function (params) {
-		      var requestInfo = {
+		    /*  var requestInfo = {
 		          headers: util.getHeaders(params.accessToken),
 		          url: apiCommonURL + '/api/v2.1/payments/direct/update-card?paymentProfileId=' + params.profileID,
 		          method: 'GET'
-		      };
+		      };*/
+					var requestInfo = {
+						//	headers: util.getHeaders(params.accessToken),
+							headers: {
+									'Authorization': 'Bearer ' +params.accessToken,
+									'X-Api-Key': util.getHeaders()["X-Api-Key"],
+									'X-Developer-Id': util.getHeaders()["X-Developer-Id"],
+									'Time-Zone': params.userTimeZoneId,
+									'Content-Type': 'application/json; charset=utf-8'
+							},
+				      url: apiCommonURL + '/api/v2.1/payments/direct/update-card?paymentProfileId=' + params.profileID,
+							method: 'GET'
+					};
 
 		      $http(requestInfo).
 		              success(function (data, status, headers, config) {

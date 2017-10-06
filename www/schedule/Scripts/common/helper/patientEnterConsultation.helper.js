@@ -90,10 +90,10 @@
                                                     location.href = "/patient/Intake/#/Payment";
                                                 } else {
                                                     if (kendo.support.mobileOS) {
-                                                        snap.openMobileApp(parseInt(newConsultationId), function() {
+                                                      //  snap.openMobileApp(parseInt(newConsultationId), function() {
                                                             sessionStorage.setItem("consultationinitaction", "1");
                                                             location.href = "/patient/Main/#/Waiting";
-                                                        });
+                                                      //  });
                                                     } else {
                                                         sessionStorage.setItem("consultationinitaction", "1");
                                                         location.href = "/patient/Main/#/Waiting";
@@ -112,7 +112,7 @@
                         }
                     }
                 }
-                
+
                 return dfd.promise();
             };
         });

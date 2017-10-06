@@ -27,13 +27,7 @@
             //return snap.patientLogin();
               return snap.redirctPage;
         } else {
-          if (deploymentEnv == "Multiple") {
-              return "#/tab/chooseEnvironment";
-          } else if (deploymentEnv == "Single") {
-            return "#/tab/singleTheme";
-          } else {
-              return "#/tab/login";
-          }
+            return snap.redirctPage;
         }
 
     };

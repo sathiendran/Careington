@@ -12,6 +12,39 @@ angular.module('starter.controllers')
         }else {
            snap.redirctPage = '#/tab/login';
         }
+        $rootScope.chkSSPageEnter = true;
+        var checkAndChangeMenuIcon;
+        $interval.cancel(checkAndChangeMenuIcon);
+
+        $rootScope.checkAndChangeMenuIcon = function() {
+                if (!$ionicSideMenuDelegate.isOpen(true)) {
+                    if ($('#BackButtonIcon').hasClass("ion-close")) {
+                        $('#BackButtonIcon').removeClass("ion-close");
+                        $('#BackButtonIcon').addClass("ion-navicon-round");
+                    }
+                } else {
+                    if ($('#BackButtonIcon').hasClass("ion-navicon-round")) {
+                        $('#BackButtonIcon').removeClass("ion-navicon-round");
+                        $('#BackButtonIcon').addClass("ion-close");
+                    }
+                }
+            }
+            $rootScope.changeptienthome=function(){
+              $rootScope.doGetPatientProfiles();
+              $state.go('tab.userhome');
+            }
+        $scope.toggleLeft = function() {
+            $ionicSideMenuDelegate.toggleLeft();
+            $rootScope.checkAndChangeMenuIcon();
+            if (checkAndChangeMenuIcon) {
+                $interval.cancel(checkAndChangeMenuIcon);
+            }
+            if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle") {
+                checkAndChangeMenuIcon = $interval(function() {
+                    $rootScope.checkAndChangeMenuIcon();
+                }, 300);
+            }
+        };
 
       $rootScope.doGetUserTimezone = function() {
           var params = {
@@ -47,10 +80,10 @@ angular.module('starter.controllers')
                                 $("#allProvider").addClass("is-active");
                                 if (vm) {
                                     //  vm.isDataInit = false;
-                                    if (!vm.isDataInit) {
+                                  //  if (!vm.isDataInit) {
                                         vm.load();
-                                        vm.setViewMode(viewMode);
-                                      }
+                                    //  }
+                                      vm.setViewMode(viewMode);
 
                                   // vm.vm_favoriteClinicianCardsList_onDataBound();
                                 }

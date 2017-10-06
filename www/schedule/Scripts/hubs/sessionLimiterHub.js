@@ -37,7 +37,7 @@
                     }
                     snap.profileSession.isLogouted = true;
                     snap.clearAllSnapSessions();
-                    $("body").prepend("<div class=\"overlay\"></div>");
+                  /*  $("body").prepend("<div class=\"overlay\"></div>");
 
                     $(".overlay").css({
                         "position": "absolute",
@@ -51,7 +51,19 @@
                     window.console.log("You have logged in on another device. IP: " + ip);
                     $('#btnAlertOk').click(function() {
                         window.location.href = loginPath;
-                    });
+                    });*/
+                    navigator.notification.alert(
+                        'You have logged in on another device.', // message
+                        function() {
+                            $overlay.toggleOverlay();
+                             location.href = snap.redirctPage;
+                            return;
+                        },
+                        snap.appName, // title
+                        'Done' // buttonName
+                    );
+                    return false;
+
                 };
 
                 sessionLimiterHub.client.warnLogout = function(ip) {

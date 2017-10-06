@@ -7,13 +7,13 @@
             "snap.service.availabilityBlockService", "snap.hub.mainHub", "snap.hub.consultationsListingHub", "snap.hub.creditHub",
              "snap.patient.schedule.patientSelfSchedulingHub","snap.hub.notificationService", "snap.patient.patientEnterConsultationHelper",
             "snap.patient.patientReEnterConsultationHelper", "snap.patient.appointmentInProgressDialog",
-            "snap.common.dialogWindow", "snap.common.timer", "snap.patient.patientResponseAddressDialog", "snap.helper.locationHelper"])
+            "snap.common.dialogWindow", "snap.common.timer", "snap.patient.patientResponseAddressDialog", "snap.helper.locationHelper", , "snap.common.overlay"])
         .extend(kendo.observable)
         .define("PatientHomeNewViewModel", function ($snapNotification, $timeUtils, $snapHttp, $snapLoader, $eventAggregator, $service, $appointmentService, $availabilityBlockService,
             $mainHub, $consultationsListingHub, $creditHub, $patientSelfSchedulingHub, $notificationService, $patientEnterConsultationHelper,
             $patientReEnterConsultationHelper, $appointmentInProgressDialog,
-            $dialogWindow, $timer, $patientResponseAddressDialog, 
-            $locationHelper) {
+            $dialogWindow, $timer, $patientResponseAddressDialog,
+            $locationHelper, $overlay) {
             var $scope = this;
             var timer = null;
             var HOUR_LIMIT = 12; // How only new in 12 hours
@@ -105,7 +105,7 @@
                 this.isVideoType = false;
                 this.isPhoneType = false;
                 this.isTextType = false;
-                this.isInPersonType = false;             
+                this.isInPersonType = false;
 
                 this._setEncounterType = function (typeCode) {
                     if (typeCode == encounterTypeCode.Video) {
@@ -248,9 +248,9 @@
             };
             this.callOnDemand = function () {
                 if (kendo.support.mobileOS !== false) {
-                    snap.openMobileApp("", function () {
+                  //  snap.openMobileApp("", function () {
                         $scope.startIntakeForm();
-                    });
+                    //});
                     return;
                 }
                 this.startIntakeForm();
@@ -358,8 +358,8 @@
                                     fullName: snap.profileSession.fullName,
                                     firstName: snap.profileSession.firstName
                                 }).done(function() {
-                                    // If the Window has no set dimensions and is centered before its content is loaded with Ajax, it is probably going to resize after the content is loaded. 
-                                    // This naturally changes the position of the widget on the screen and it is no longer centered. 
+                                    // If the Window has no set dimensions and is centered before its content is loaded with Ajax, it is probably going to resize after the content is loaded.
+                                    // This naturally changes the position of the widget on the screen and it is no longer centered.
                                     dialog.rCenter();
                                 });
                                 $eventAggregator.subscribe("patientResponseDialog_locationConfirmed", function(){
@@ -514,10 +514,10 @@
             this.enterSchedConsult = function (e) {
                 var that = this;
                 if (kendo.support.mobileOS !== false) {
-                    snap.openMobileApp("", function () {
+                  //  snap.openMobileApp("", function () {
                         that._goToSchedConsult(that.nextschedConsult);
-                    });
-                    return;
+                  //  });
+                   return;
                 }
                 else {
                     e.preventDefault();
@@ -551,9 +551,9 @@
                     } else {
                         consultationData = allConsultations[0];
                     }
-                    
+
                     this._stopTimer();
-                    
+
                     $service.getPatientProfileDetails(consultationData.patientId, "all").done(function (res) {
                         $scope._hasActiveConsultation = true;
                         $scope.activeConsultationId = consultationData.consultationId;
@@ -627,7 +627,7 @@
                                     $scope.set("patientObj", patientObj);
                                     $scope._startTimer();
                                 }
-                                
+
                             });
                         }
                         $scope.processAvailableToEnterConsultations();
@@ -644,7 +644,7 @@
             this.loadData = function () {
                 hubStart();
                 var that = this;
-                
+
                 function loadPageDetails() {
                     loadData();
                     that.isOpenForBusiness();
