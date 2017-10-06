@@ -1,8 +1,9 @@
 (function ($, snap) {
     "use strict";
 
-    snap.namespace("snap.patient.schedule").use(["snap.service.selfSchedulingService", "snap.common.timeUtils", "snap.common.overlay"])
-        .define("patientAppointmentService", function ($selfSchedulingService, $timeUtils, $overlay) {
+   snap.namespace("snap.patient.schedule").use(["snap.service.selfSchedulingService", "snap.common.timeUtils", "snap.common.overlay",
+        "snap.patient.patientEnterConsultationHelper"])
+        .define("patientAppointmentService", function ($selfSchedulingService, $timeUtils, $overlay, $patientEnterConsultationHelper) {
             var formatErrorMessage = function (error) {
                 if (typeof (error) === "undefined" || error === null) {
                     return "Unknown error";
@@ -35,7 +36,6 @@
 
                 return errorMessage;
             };
-
             function saveAppt(appt) {
                 var dfd = $.Deferred();
                 appt.startTime = $timeUtils.dateToString(appt.start);

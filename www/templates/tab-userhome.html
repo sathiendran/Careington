@@ -65,8 +65,8 @@
 	</a>
 			 <div style="display: none;"><timer end-time="time"></timer></div>
 
-			<div class="inside" ng-if="primaryAppointDetails != ''" style="display: {{primaryAppointDetails[0].nextAppointmentDisplay}};"></div>
-			<ion-item  class="UserHomeNextAppointment ItemList outside" ng-repeat="scheduledListData in primaryAppointDetails"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData, 'userHome')" ng-if="$first" style="background-color: {{scheduledListData.userHomeRecentAppointmentColor}}; border-top: none; display: {{scheduledListData.nextAppointmentDisplay}}; margin-bottom: 17px;" >
+			<div class="inside" ng-hide="data.searchQuery" ng-if="primaryAppointDetails != ''" style="display: {{primaryAppointDetails[0].nextAppointmentDisplay}};"></div>
+			<ion-item ng-hide="data.searchQuery"  class="UserHomeNextAppointment ItemList outside" ng-repeat="scheduledListData in primaryAppointDetails"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData, 'userHome')" ng-if="$first" style="background-color: {{scheduledListData.userHomeRecentAppointmentColor}}; border-top: none; display: {{scheduledListData.nextAppointmentDisplay}}; margin-bottom: 17px;" >
 				<a class="HrefListView"  >
 					 <h2>
 								<i ng-if="scheduledListData.encounterTypeCode == 3" ng-bind-html="drawSVGCIcon('video_camera')" class="ng-binding">

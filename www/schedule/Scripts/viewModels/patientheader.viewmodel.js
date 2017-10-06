@@ -1,7 +1,8 @@
 ﻿"use strict";
 snap.namespace("snap.patient")
-     .use(["eventaggregator", "snapNotification", "snapHttp"])
-    .extend(kendo.observable).define("PatientHeaderViewModel", function ($eventaggregator, $snapNotification, $snapHttp) {
+     .use(["eventaggregator", "snap.hub.notificationService", "snapNotification", "snapHttp", "snap.patient.patientReEnterConsultationHelper",])
+    .extend(kendo.observable).define("PatientHeaderViewModel", function ($eventaggregator, $notificationService, $snapNotification, $snapHttp,
+        $patientReEnterConsultationHelper) {
         var $scope = this;
 
         this.brandName = snap.hospitalSession.brandName;
@@ -17,41 +18,57 @@ snap.namespace("snap.patient")
         this.subModuleTitle = "";
         this.isHideSubHeader = false;
         this.isConsultHeader = false;
-        this.getCliniciansCards = function () {
-            var filters = {};
+        this.isSelfScheduleAvailable = false;
+        this.isMyFilesEnabled = snap.hospitalSettings.fileSharing;
 
-            filters.take = 0;
-            filters.skip = 0;
-            filters.onlyMyProviders = false;
-            filters.date = new Date();
-            filters.date.setHours(-24, 0, 0, 0);
-            filters.date.setHours(0, 0, 0, 0);
-            filters.date = SnapDateTimeShort(filters.date);
-            filters.applyVisibilityRules = true;
+        $notificationService.on("message", function(messageType, message) {
+            var data = +message;
+            if (messageType === "profileimage_deleted" && data !== snap.profileSession.userId) {
+                $snapNotification.info("Your profile image was deleted");
+                var defaultImage = getDefaultProfileImageForPatient(snap.profileSession.gender);
+                snap.updateSnapJsSession("snap_patientprofile_session", "profileImage", defaultImage);
+                snap.getPatientProfileSession();
+            } else if (messageType === "consultation_reenter") {
+                if (snap.ConsultationPage || snap.isWaitingRoom) {
+                    return;
+                }
+                $patientReEnterConsultationHelper.checkForReEntryConsultation();
+            }
+        });
+        
+        this.initVm = function() {
+            if (snap.hospitalSettings.providerSearch) {
+                $eventaggregator.subscriber("isProviderAvailable", function(isAvailable) {
+                    $scope.set("isSelfScheduleAvailable", isAvailable);
+                });
+            }
+        };
+        this.getCliniciansCards = function () {
+            var filterDate = new Date();
+            filterDate.setHours(0, 0, 0, 0);
+
+            var filters = {
+                take: 0,
+                onlyMyProviders: false,
+                date: SnapDateTimeShort(filterDate),
+                applyVisibilityRules: true,
+                availableOnly: false
+            };
             return $snapHttp.get("/api/v2.1/patients/appointments/self-scheduling/clinicians", filters);
         };
-        this.isSelfScheduleAvailable = false;
-        this.isProviderAvailable = function () {
-            var $def = $.Deferred();
+        this.isProviderAvailable = function() {
+            var dfd = $.Deferred();
             if (snap.hospitalSettings.providerSearch) {
-                $scope.getCliniciansCards().done(function (response) {
-                    if (response.total > 0) {
-                        $scope.set("isSelfScheduleAvailable", true);
-                    } else {
-                        $scope.set("isSelfScheduleAvailable", false);
-                    }
-                    $def.resolve($scope.isSelfScheduleAvailable);
-                }).fail(function () {
-                    if (!snap.isUnloading) { // workaround for FF specific issue (request is terminated with error when leaving the page)
-                        snapError("Self Scheduling not available.")
-                        $def.resolve();
-                    }
+                this.getCliniciansCards().done(function(response) {
+                    $scope.set("isSelfScheduleAvailable", response.total > 0);
+                }).always(function() {
+                    dfd.resolve();
                 });
             } else {
-                $scope.set("isSelfScheduleAvailable", false);
-                $def.resolve($scope.isSelfScheduleAvailable);
+                this.set("isSelfScheduleAvailable", false);
+                dfd.resolve();
             }
-            return $def.promise();
+            return dfd.promise();
         };
         this.toggleHeaderDD = function (e) {
             if (e && e.preventDefault) {
@@ -134,6 +151,9 @@ snap.namespace("snap.patient")
             }
             return false;
         };
+        this.isNavigationHidden = function() {
+            return isWaitingRoom() || isConsultationRoom();
+        };
         this.goToHome = function (e) {
             if (isWaitingRoom() || isConsultationRoom()) {
                 defaulWaitMessage();
@@ -150,7 +170,7 @@ snap.namespace("snap.patient")
                 defaulWaitMessage();
                 return false;
             }
-            location.href = "/Customer/PatientConsultations";
+            location.href = "/patient/PatientConsultations";
             this.closeNav();
             return false;
         };
@@ -160,7 +180,7 @@ snap.namespace("snap.patient")
                 defaulWaitMessage();
                 return false;
             }
-            location.href = "/Customer/Users";
+            location.href = "/patient/Users";
 
             this.closeNav();
             return false;
@@ -170,7 +190,7 @@ snap.namespace("snap.patient")
                 defaulWaitMessage();
                 return false;
             }
-            location.href = "/Customer/Dependents";
+            location.href = "/patient/Dependents";
 
             this.closeNav();
             return false;
@@ -190,7 +210,7 @@ snap.namespace("snap.patient")
                 defaulWaitMessage();
                 return false;
             }
-            location.href = "/Customer/PatientConsultations";
+            location.href = "/patient/PatientConsultations";
 
             this.closeNav();
             return false;
@@ -201,7 +221,7 @@ snap.namespace("snap.patient")
                 defaulWaitMessage();
                 return false;
             }
-            location.href = "/Customer/MyFiles";
+            location.href = "/patient/MyFiles";
 
             this.closeNav();
             return false;
@@ -223,7 +243,7 @@ snap.namespace("snap.patient")
                 defaulWaitMessage();
                 return false;
             }
-            location.href = "/Customer/AccountSettings";
+            location.href = "/patient/AccountSettings";
 
             this.closeNav();
             return false;
@@ -241,35 +261,26 @@ snap.namespace("snap.patient")
                 defaulWaitMessage();
                 return false;
             }
-            location.href = "/Customer/AddPaymentInformation";
+            location.href = "/patient/AddPaymentInformation";
 
             this.closeNav();
             return false;
         };
         this.isPaymentRequired = function () {
-            if (snap.hospitalSettings.eCommerce) {
-                return true;
-            }
-            else {
-                return false;
-            }
+            return snap.hospitalSettings.eCommerce && !snap.hospitalSettings.hidePaymentPageBeforeWaitingRoom;
         };
         this.gotoInsurance = function () {
             if (isWaitingRoom() || isConsultationRoom()) {
                 defaulWaitMessage();
                 return false;
             }
-            location.href = "/Customer/HealthPlan";
+            location.href = "/patient/HealthPlan";
 
             this.closeNav();
             return false;
         };
         this.isInsuranceRequired = function () {
-            if (snap.hospitalSettings.insuranceVerification) {
-                return true;
-            } else {
-                return false;
-            }
+             return snap.hospitalSettings.insuranceVerification ;
         };
         this.goToHelp = function () {
             if (isWaitingRoom() || isConsultationRoom()) {
@@ -288,7 +299,7 @@ snap.namespace("snap.patient")
                 defaulWaitMessage();
                 return false;
             }
-          //  location.href = snap.patientLogin();
+           //  location.href = snap.patientLogin();
            location.href = snap.redirctPage;
             this.closeNav();
             return false;

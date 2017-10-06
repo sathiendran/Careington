@@ -1,0 +1,329 @@
+﻿"use strict";
+snap.namespace("snap.patient")
+     .use(["eventaggregator", "snap.hub.notificationService", "snapNotification", "snapHttp", "snap.patient.patientReEnterConsultationHelper",])
+    .extend(kendo.observable).define("PatientHeaderViewModel", function ($eventaggregator, $notificationService, $snapNotification, $snapHttp,
+        $patientReEnterConsultationHelper) {
+        var $scope = this;
+
+        this.brandName = snap.hospitalSession.brandName;
+        this.clientName = snap.hospitalSession.clientName;
+        this.clientImage = snap.hospitalSession.hospitalLogo;
+        this.altImage = "";
+        this.profileName = "";
+        this.isChatVisible = false;
+        this.isActiveHeaderDD = false;
+        this.isFavoriteCliniciansMode = false;
+        this.isAllCliniciansMode = false;
+        this.moduleTitle = "";
+        this.subModuleTitle = "";
+        this.isHideSubHeader = true;
+        this.isConsultHeader = false;
+        this.isSelfScheduleAvailable = false;
+        this.isMyFilesEnabled = snap.hospitalSettings.fileSharing;
+
+        $notificationService.on("message", function(messageType, message) {
+            var data = +message;
+            if (messageType === "profileimage_deleted" && data !== snap.profileSession.userId) {
+                $snapNotification.info("Your profile image was deleted");
+                var defaultImage = getDefaultProfileImageForPatient(snap.profileSession.gender);
+                snap.updateSnapJsSession("snap_patientprofile_session", "profileImage", defaultImage);
+                snap.getPatientProfileSession();
+            } else if (messageType === "consultation_reenter") {
+                if (snap.ConsultationPage || snap.isWaitingRoom) {
+                    return;
+                }
+                $patientReEnterConsultationHelper.checkForReEntryConsultation();
+            }
+        });
+        
+        this.initVm = function() {
+            if (snap.hospitalSettings.providerSearch) {
+                $eventaggregator.subscriber("isProviderAvailable", function(isAvailable) {
+                    $scope.set("isSelfScheduleAvailable", isAvailable);
+                });
+            }
+        };
+        this.getCliniciansCards = function () {
+            var filterDate = new Date();
+            filterDate.setHours(0, 0, 0, 0);
+
+            var filters = {
+                take: 0,
+                onlyMyProviders: false,
+                date: SnapDateTimeShort(filterDate),
+                applyVisibilityRules: true,
+                availableOnly: false
+            };
+            return $snapHttp.get("/api/v2.1/patients/appointments/self-scheduling/clinicians", filters);
+        };
+        this.isProviderAvailable = function() {
+            var dfd = $.Deferred();
+            if (snap.hospitalSettings.providerSearch) {
+                this.getCliniciansCards().done(function(response) {
+                    $scope.set("isSelfScheduleAvailable", response.total > 0);
+                }).always(function() {
+                    dfd.resolve();
+                });
+            } else {
+                this.set("isSelfScheduleAvailable", false);
+                dfd.resolve();
+            }
+            return dfd.promise();
+        };
+        this.toggleHeaderDD = function (e) {
+            if (e && e.preventDefault) {
+                e.preventDefault();
+            }
+            this.set("isActiveHeaderDD", !this.isActiveHeaderDD);
+        }
+        this.menuSelect = function (e) {
+            if (e && e.preventDefault) {
+                e.preventDefault();
+            }
+            this.set("isActiveHeaderDD", !this.isActiveHeaderDD);
+        }
+
+        this.closeNav = function () {
+            setTimeout(function () {
+                $('body').toggleClass('is-main-nav');
+            }, 300);
+        };
+
+        if (snap.profileSession.profileImage) {
+            var profileUrl = snap.profileSession.profileImage;
+            if (profileUrl.indexOf("../") >= 0) {
+                profileUrl = profileUrl.replace("../", "/");
+                snap.profileSession.profileImage = profileUrl;
+            }
+        }
+        var defaulWaitMessage = function () {
+            $snapNotification.info("This function is not available during your consultation.");
+            $scope.closeNav();
+        };
+
+        this.setSubHeader = function (options) {
+            this.set("moduleTitle", options.module);
+            this.set("subModuleTitle", options.subModule);
+            this.set("isFavoriteCliniciansMode", options.viewMode === "favorite");
+            this.set("isAllCliniciansMode", options.viewMode === "all");
+        };
+
+        this.user = snap.profileSession;
+        $.extend(this.user, {
+            age: snap.getAgeString(this.user.dob)
+        });
+        this.fullName = function () {
+            return snap.profileSession.fullName;
+        };
+        this.gender = function () {
+            if (this.user.gender == "M") {
+                return "Male";
+            } else {
+                return "Female";
+            }
+        }
+        this.onNavClick = function (e) {
+            e.preventDefault();
+            $('body').toggleClass('is-main-nav');
+        };
+        this.closeNav = function (e) {
+            if (e) {
+                e.preventDefault();
+            }
+            if ($('body').hasClass('is-main-nav')) {
+                setTimeout(function () {
+                    $('body').toggleClass('is-main-nav');
+                }, 200);
+            } else {
+                this.set("isActiveHeaderDD", false);
+            }
+        };
+        var isWaitingRoom = function () {
+
+            if (location.hash.toLowerCase().indexOf("#/waiting") > -1) {
+                return true;
+            }
+            return false;
+        };
+        var isConsultationRoom = function () {
+            if (location.hash.toLowerCase().indexOf("#/consultation") > -1) {
+                return true;
+            }
+            return false;
+        };
+        this.isNavigationHidden = function() {
+            return isWaitingRoom() || isConsultationRoom();
+        };
+        this.goToHome = function (e) {
+            if (isWaitingRoom() || isConsultationRoom()) {
+                defaulWaitMessage();
+                return false;
+            }
+
+            location.href = snap.getPatientHome();
+
+            this.closeNav(e);
+            return false;
+        };
+        this.goToConsultHistory = function () {
+            if (isWaitingRoom() || isConsultationRoom()) {
+                defaulWaitMessage();
+                return false;
+            }
+            location.href = "/patient/PatientConsultations";
+            this.closeNav();
+            return false;
+        };
+
+        this.goToMyAccount = function () {
+            if (isWaitingRoom() || isConsultationRoom()) {
+                defaulWaitMessage();
+                return false;
+            }
+            location.href = "/patient/Users";
+
+            this.closeNav();
+            return false;
+        };
+        this.goToRelatedAccounts = function () {
+            if (isWaitingRoom() || isConsultationRoom()) {
+                defaulWaitMessage();
+                return false;
+            }
+            location.href = "/patient/Dependents";
+
+            this.closeNav();
+            return false;
+        };
+        this.goToselfScheduling = function () {
+            if (isWaitingRoom() || isConsultationRoom()) {
+                defaulWaitMessage();
+                return false;
+            }
+            location.href = "#/selfScheduling";
+
+            this.closeNav();
+            return false;
+        };
+        this.goToPastConsult = function () {
+            if (isWaitingRoom() || isConsultationRoom()) {
+                defaulWaitMessage();
+                return false;
+            }
+            location.href = "/patient/PatientConsultations";
+
+            this.closeNav();
+            return false;
+        };
+
+        this.goToFiles = function () {
+            if (isWaitingRoom() || isConsultationRoom()) {
+                defaulWaitMessage();
+                return false;
+            }
+            location.href = "/patient/MyFiles";
+
+            this.closeNav();
+            return false;
+        };
+
+        this.gotoProvider = function () {
+            if (isWaitingRoom() || isConsultationRoom()) {
+                defaulWaitMessage();
+
+                return false;
+            }
+            location.href = "#/selfScheduling";
+
+            this.closeNav();
+            return false;
+        };
+        this.gotoAccountSettings = function () {
+            if (isWaitingRoom() || isConsultationRoom()) {
+                defaulWaitMessage();
+                return false;
+            }
+            location.href = "/patient/AccountSettings";
+
+            this.closeNav();
+            return false;
+        };
+        this.gotToTC = function () {
+            if (isWaitingRoom() || isConsultationRoom()) {
+                defaulWaitMessage();
+                return false;
+            }
+            location.href = "#/t&C";
+            return false;
+        };
+        this.gotoPaymentInfo = function () {
+            if (isWaitingRoom() || isConsultationRoom()) {
+                defaulWaitMessage();
+                return false;
+            }
+            location.href = "/patient/AddPaymentInformation";
+
+            this.closeNav();
+            return false;
+        };
+        this.isPaymentRequired = function () {
+            return snap.hospitalSettings.eCommerce && !snap.hospitalSettings.hidePaymentPageBeforeWaitingRoom;
+        };
+        this.gotoInsurance = function () {
+            if (isWaitingRoom() || isConsultationRoom()) {
+                defaulWaitMessage();
+                return false;
+            }
+            location.href = "/patient/HealthPlan";
+
+            this.closeNav();
+            return false;
+        };
+        this.isInsuranceRequired = function () {
+             return snap.hospitalSettings.insuranceVerification ;
+        };
+        this.goToHelp = function () {
+            if (isWaitingRoom() || isConsultationRoom()) {
+                defaulWaitMessage();
+                return false;
+            }
+            snap.openHelp('patient');
+            return false;
+        };
+        this.openConnectivity = function () {
+            window.open('http://tokbox.com/tools/connectivity/');
+            return false;
+        };
+        this.logout = function () {
+            if (isWaitingRoom() || isConsultationRoom()) {
+                defaulWaitMessage();
+                return false;
+            }
+            location.href = snap.patientLogin();
+
+            this.closeNav();
+            return false;
+
+        };
+        this.preventDefaultAction = function () {
+            if (isWaitingRoom() || isConsultationRoom()) {
+                defaulWaitMessage();
+                return false;
+            }
+
+            return false;
+        };
+
+        this.terms = function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open('/public/#/userTerms', '_blank');
+            return false;
+        };
+
+
+        this.vm_toggleSearchAndFilter = function () {
+            $eventaggregator.published("vm_toggleSearchAndFilter");
+        };
+    }).singleton();

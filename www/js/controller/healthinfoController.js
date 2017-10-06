@@ -487,6 +487,7 @@ angular.module('starter.controllers')
         // console.log("value le :" + $scope.val.length);
         $scope.healthfoottab=false;
         $scope.healthfootsave=false;
+        $scope.updationListLength = 5;
           //  $rootScope.getPatientids();
       //  $scope.patientAuthorize = false;
       //$rootScope.patientUnAuthorize = true;
@@ -659,19 +660,41 @@ $scope.editDob=function(){
                   $scope.total_patients =  $rootScope.listOfPatientIdentifiers.length;
                   $scope.Patienuplist = $rootScope.PatientIdentifiers.length;
               } else if($rootScope.PatientIdentifiers.length ===  $rootScope.listOfPatientIdentifiers.length) {
-                    $scope.unique = function(arr) {
-                       var a = arr.concat();
-                       for(var i=0; i<a.length; ++i) {
-                           for(var j=i+1; j<a.length; ++j) {
-                               if(a[i] === a[j])
-                                   a.splice(j--, 1);
+                  if($scope.updationListLength != 0) {
+                        $scope.unique = function(arr) {
+                           var a = arr.concat();
+                           for(var i=0; i<a.length; ++i) {
+                               for(var j=i+1; j<a.length; ++j) {
+                                   if(a[i] === a[j])
+                                       a.splice(j--, 1);
+                               }
                            }
-                       }
-                       return a;
-                   };
-                   $rootScope.patSelectedIdentifier = $rootScope.listOfPatientIdentifiers;
-                   $rootScope.patAllIdentifier = $scope.unique($rootScope.PatientIdentifiers.concat($rootScope.patSelectedIdentifier));
-                    $scope.total_patients =  $rootScope.listOfPatientIdentifiers.length;
+                           return a;
+                       };
+                       $rootScope.patSelectedIdentifier = $rootScope.listOfPatientIdentifiers;
+                       $rootScope.patAllIdentifier = $scope.unique($rootScope.PatientIdentifiers.concat($rootScope.patSelectedIdentifier));
+                        $scope.total_patients =  $rootScope.listOfPatientIdentifiers.length;
+                    } else {
+                        $rootScope.PatientIdentifiers.forEach(function(item){
+                            var result = addEmpty(item);
+                              if(!result)
+                                item.value = null;
+
+                            });
+                // $rootScope.patAllIdentifier =   $rootScope.listOfPatientIdentifiers;
+                            function addEmpty(item){
+                              //var result = false;
+                              $rootScope.listOfPatientIdentifiers.forEach(function(item1){
+                                if(item1.identifierTypeCode === item.identifierTypeCode) {
+                                  result = false;
+                                }
+                            });
+                            return result;
+                          }
+                            $rootScope.patSelectedIdentifier = [];
+                            $rootScope.patAllIdentifier = $rootScope.PatientIdentifiers;
+                            $scope.total_patients =  0;
+                  }
               }else if($rootScope.PatientIdentifiers.length <  $rootScope.listOfPatientIdentifiers.length) {
 
                 $rootScope.patSelectedIdentifier =$rootScope.listOfPatientIdentifiers;
@@ -1910,11 +1933,13 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
          $rootScope.currentPatientsearchList = data.data;
           $rootScope.CurPatientidCount = $rootScope.currentPatientsearchList.length;
           $scope.data.searchProvider = '';
-          if($rootScope.PatidentifierCount == 0){
-                $scope.clearSelectionAndRebindpatSelectionList($rootScope.PatientidupdateList, $rootScope.currentPatientsearchList);
-            }else{
-                $scope.clearSelectionAndRebindpatapiSelectionList($rootScope.PatientIdentifiers, $rootScope.currentPatientsearchList);
-            }
+          if($scope.updationListLength != 0) {
+              if($rootScope.PatidentifierCount == 0){
+                    $scope.clearSelectionAndRebindpatSelectionList($rootScope.PatientidupdateList, $rootScope.currentPatientsearchList);
+              }else{
+                  $scope.clearSelectionAndRebindpatapiSelectionList($rootScope.PatientIdentifiers, $rootScope.currentPatientsearchList);
+              }
+           }
         if (typeof $rootScope.PatidentifierCount === 'undefined') {
             $rootScope.checkedpatientdet = 0;
         } else {
@@ -1989,6 +2014,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                     identifierTypeTitle: $scope.PatientsearchItem[i].identifierTypeTitle
                });
            }
+           $scope.updationListLength = $rootScope.PatientidupdateList.length;
         // $rootScope.PatientIdentifiers = $rootScope.PatientidupdateList;
 
            $scope.modal.remove();
@@ -2487,7 +2513,9 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         LoginService.deleteAccountCoUser(params);
     }
     $scope.removePatientIdmodal = function() {
-      $rootScope.PatientidupdateList = $rootScope.PatientIdentifiers;
+      if($scope.updationListLength != 0) {
+        $rootScope.PatientidupdateList = $rootScope.PatientIdentifiers;
+      }
         $scope.modal.remove();
         $scope.cancelshow = true;
     };

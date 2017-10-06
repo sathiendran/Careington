@@ -1,17 +1,17 @@
 ﻿//@ sourceURL=patientResponseAddressDialog.viewmodel.js
 
-(function ($, snap) {
+(function ($, snap, global) {
     "use strict";
 
     snap.namespace("snap.patient")
     .use([
-            "snapNotification",
+            "snapNotification", 
             "snap.EventAggregator",
             "snap.admin.patientRules.ruleService",
             "snap.DataService.customerDataService",
-            "snap.common.utility"
+            "snap.helper.locationHelper"
         ])
-        .define("patientResponseAddressDialog", function ($snapNotification, $eventAggregator, $ruleService, $customerDataService,  $utility) {
+        .define("patientResponseAddressDialog", function ($snapNotification, $eventAggregator, $ruleService, $customerDataService,  $locationHelper) {
             var dialog = null,
                 patientId = null;
 
@@ -21,22 +21,38 @@
         	this.countryCodes = [];
         	this.regions = [];
 
-            this.selectedCountry = "United States of America";
+            this.selectedCountry = null;
             this.selectedRegion = null;
+            this.currentLocationText = "";
             this.currentLocation = "";
+
+            this.vm_isLocationAutocompleteFocused = false;
+            this.vm_countryError = false;
+            this.vm_isCountryFilled = true;
+            this.vm_stateError = false;
+            this.vm_isStateFilled = false;
+            this.vm_isError = false;
+            this.vm_isLoading = false;
+
+            this.vm_patientProfileImg = global.getDefaultProfileImageForPatient();
+
+
+            /* Initialization */
 
             this.setOptions = function(opt) {
                 dialog = opt.dialog;
                 patientId = opt.opt.patientId;
 
-                this.set("currentLocation", opt.opt.currentLocation);
-                this.set("vm_patientProfileImg", opt.opt.imageSource);
+                this.set("currentLocationText", opt.opt.currentLocationText);
+                this.set("vm_patientProfileImg", opt.opt.imageSource || global.getDefaultProfileImageForPatient());
                 this.set("vm_fullName", opt.opt.fullName);
                 this.set("vm_firstName", opt.opt.firstName);
 
+                this.currentLocation = opt.opt.currentLocation;
+
                 var that = this;
-                this.loadCountries().done(function() {
-                    that.loadStatesForSelectedCountry();
+                this._loadCountries().done(function() {
+                    that._loadStatesForSelectedCountry();
                 });
 
                 this.set("isEditMode", false);
@@ -49,35 +65,52 @@
                 this.set("vm_isLoading", false);
 
                 this.trigger("change", { field: "vm_isSelfLocationDialog" });
+                this.trigger("change", { field: "vm_saveButtonText"});
+            };
+
+            this.loadNonMVVM = function () {
+                var that = this;
+
+                $('.search input').on('focus', function() {
+                    //that.set("vm_isLocationAutocompleteFocused", true);
+                });
+
+                $('.search input').on('blur', function(){
+                    //that.set("vm_isLocationAutocompleteFocused", false);
+					that.set("vm_isLocationAutocompleteFocused", true);
+                });
+            };
+
+
+            /* MVVM properties */
+
+            this.vm_saveButtonText = function() {
+                return this.vm_isError ? "Retry?" : "Save";
             };
 
             this.vm_isRegionsAutocompleteEnable = function() {
                 return this.regions.length > 0;
             };
 
-            this.vm_isLocationAutocompleteFocused = false;
-            this.vm_countryError = false;
-            this.vm_isCountryFilled = true;
-            this.vm_stateError = false;
-            this.vm_isStateFilled = false;
-            this.vm_isError = false;
-            this.vm_isLoading = false;
-            this.vm_saveButtonText = "Save";
-
-            this.vm_patientProfileImg = "";
-
             this.vm_isSelfLocationDialog = function() {
                 return patientId === snap.profileSession.profileId;
-            }
+            };
+
+
+            /* MVVM actions */
 
             this.vm_onYesClick = function() {
                 this.set("vm_isLoading", true);
 
                 var that = this;
-                $customerDataService.updatePatientResponseAddress(this.currentLocation, patientId).done(function() {
+
+                var locationEncoded = $locationHelper.encodeLocation(this.currentLocation);
+
+                $customerDataService.updatePatientResponseAddress(locationEncoded, patientId).done(function(response) {
                     that.set("vm_isLoading", false);
                     dialog.close();
-                    $eventAggregator.publish("patientResponseDialog_locationConfirmed", that.currentLocation);
+                    var addressText = response.data[0];
+                    $eventAggregator.publish("patientResponseDialog_locationConfirmed", that.currentLocation, addressText);
                 });
             };
 
@@ -89,74 +122,63 @@
             	this.set("isEditMode", false);
             };
 
-            this.vm_isSaveDisabled = true;
-
             this.vm_onSaveClick = function() {
                 if(!this._validate()) {
                     this.set("vm_isError", true);
-                    this.set("vm_saveButtonText", "Retry?");
+                    this.trigger("change", { field: "vm_saveButtonText"});
                     return false;
                 }
 
                 this.set("vm_isError", false);
-                this.set("vm_saveButtonText", "Save");
+                this.trigger("change", { field: "vm_saveButtonText"});
 
                 this.set("vm_isLoading", true);
 
-
-                var address = this.selectedCountry;
-                if(this.selectedRegion) {
-                    address = [this.selectedRegion, this.selectedCountry].join(", ");
-                }
+                var selectedLocation = {
+                    countryCode: this.selectedCountry.value,
+                    countryName: this.selectedCountry.text,
+                    regionCode: this.selectedRegion ? this.selectedRegion.value : null,
+                    regionName: this.selectedRegion ? this.selectedRegion.text : null
+                };
+                var locationEncoded = $locationHelper.encodeLocation(selectedLocation);
 
                 var that = this;
-                $customerDataService.updatePatientResponseAddress(address, patientId).done(function() {
+                $customerDataService.updatePatientResponseAddress(locationEncoded, patientId).done(function(response) {
                     that.set("vm_isLoading", false);
                     dialog.close();
-                    $eventAggregator.publish("patientResponseDialog_locationConfirmed", address);
+                    var addressText = response.data[0];
+                    $eventAggregator.publish("patientResponseDialog_locationConfirmed", selectedLocation, addressText);
                 });
             };
 
             this.vm_onCountryChange = function() {
-                this.loadStatesForSelectedCountry();
-
-                if (this.selectedCountry.length > 0) {
-                    this.set("vm_isCountryFilled", true);
-                } else {
-                    this.set("vm_isCountryFilled", false);
-                }
+                this._loadStatesForSelectedCountry();
             };
 
             this.vm_onRegionChange = function() {
-                var selectedRegion = searchByText(this.regions, this.selectedRegion) ;
+                this.set("vm_stateError", !this.selectedRegion || !this.selectedRegion.value);
+                this.set("vm_isError", this.vm_stateError);
+                this.trigger("change", { field: "vm_saveButtonText"});
 
-                this.set("vm_stateError", selectedRegion === null);
-
-                if(selectedRegion){
-                    this.set("vm_isSaveDisabled", false);
-                    this.set("vm_isStateFilled", true);
-                } else{
-                    this.set("vm_isSaveDisabled", true);
-                    this.set("vm_isStateFilled", false);
-                }
+                this.set("vm_isStateFilled", !this.vm_stateError);
             };
 
-            this.vm_onFocus = function() {
-                console.log("fff");
-            }
 
-            this.loadCountries = function() {
+
+            /* Private methods */
+
+            this._loadCountries = function() {
                 var that = this;
                 return $customerDataService.getProviderLicensePatientAddressMetaRule().done(function(data){
                     var d = data.data[0].countries.map(function(country) {
-                        var obj = {
+                        var obj = { 
                             text: $.trim(country.country),
                             value: $.trim(country.countryCode)
                         };
 
                         if(country.regions) {
                             obj.regions = country.regions.map(function(region) {
-                                return {
+                                return { 
                                     text: $.trim(region.region),
                                     value: $.trim(region.regionCode)
                                 };
@@ -167,41 +189,49 @@
                     }).sort(compareCodesByName);
 
                     that.set("countryCodes", d);
+
+                    // select current location country
+                    var selectedCountryCode = that.currentLocation.countryCode || "US";
+                    var defaultCountry = d.find(function(el) {
+                        return el.value === selectedCountryCode;
+                    });
+                    defaultCountry = defaultCountry || d[0];
+                    that.set("selectedCountry", defaultCountry);
                 });
             };
 
-            this.loadStatesForSelectedCountry = function() {
+            this._loadStatesForSelectedCountry = function() {
                 this.set("regions", []);
                 this.set("selectedRegion", null);
-
-                var selectedCountry = searchByText(this.countryCodes, this.selectedCountry);
-                if(selectedCountry !== null) {
+                this.set("vm_stateError", false);
+                this.set("vm_isStateFilled", false);
+                
+                if (this.selectedCountry && this.selectedCountry.value) {
                     this.set("vm_countryError", false);
+                    this.set("vm_isError", false);
 
-                    if(selectedCountry.regions) {
-                        this.set("regions", selectedCountry.regions);
-                        this.set("vm_isSaveDisabled", true);
-                    } else {
-                        this.set("vm_isSaveDisabled", false);
+                    if(this.selectedCountry.regions) {
+                        this.set("regions", this.selectedCountry.regions);
                     }
                 } else {
                     this.set("vm_countryError", true);
-                    this.set("vm_isSaveDisabled", true);
+                    this.set("vm_isError", true);
                 }
 
+                this.set("vm_isCountryFilled", !this.vm_countryError);
+
                 this.trigger("change", { field: "vm_isRegionsAutocompleteEnable" });
+                this.trigger("change", { field: "vm_saveButtonText"});
             };
 
             this._validate = function() {
-                var selectedCountry = searchByText(this.countryCodes, this.selectedCountry);
-                if(selectedCountry === null) {
+                if(!this.selectedCountry || !this.selectedCountry.value) {
                     this.set("vm_countryError", true);
                     return false;
                 }
 
                 if(this.vm_isRegionsAutocompleteEnable()) {
-                    var selectedRegion = searchByText(this.regions, this.selectedRegion);
-                    if(selectedRegion === null) {
+                    if(!this.selectedRegion || !this.selectedRegion.value) {
                         this.set("vm_stateError", true);
                         return false;
                     }
@@ -210,20 +240,6 @@
                 return true;
             };
 
-            function searchByText(arr, text) {
-                if(text) {
-                    for(var i = 0; i < arr.length; i++) {
-                        var country = $.trim(arr[i].text.toLowerCase());
-                        var input = $.trim(text.toLowerCase());
-
-                        if(country === input)
-                            return arr[i];
-                    }
-                }
-
-                return null;
-            }
-
 			function compareCodesByName(a, b) {
 	            if (a.text < b.text)
 	                return -1;
@@ -231,18 +247,5 @@
 	                return 1;
 	            return 0;
 	        }
-
-			this.loadNonMVVM = function () {
-                var that = this;
-
-			    $('.search input').on('focus', function() {
-                  //  that.set("vm_isLocationAutocompleteFocused", true);
-                });
-
-                $('.search input').on('blur', function(){
-                  //  that.set("vm_isLocationAutocompleteFocused", false);
-                  that.set("vm_isLocationAutocompleteFocused", true);
-                });
-            };
         }).singleton();
-}(jQuery, snap));
+}(jQuery, snap, window));
