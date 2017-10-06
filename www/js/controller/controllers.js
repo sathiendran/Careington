@@ -713,7 +713,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
             navigator.app.exitApp();
-        } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
+        } else if ($rootScope.currState.$current.name === "tab.cardDetails" || $rootScope.currState.$current.name === "tab.cardeditDetails") {
             var gSearchLength = $('.ion-google-place-container').length;
             if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block') {
                 $ionicBackdrop.release();
@@ -4183,11 +4183,11 @@ $scope.EditHealth = {};
         var insplan = $('#addNewCard_submitPay').val();
       }
 
-      if( insplan !== 'Choose Your Card'){
+     /* if( insplan !== 'Choose Your Card'){
           $rootScope.editCardStyle ="block";
        } else{
          $rootScope.editCardStyle ="none";
-       }
+       }*/
    }
 
     $("#addNewCard").change(function() {
@@ -4336,9 +4336,9 @@ $scope.EditHealth = {};
           $rootScope.consultChargeNoPlanPage = "block";
   		  if($rootScope.userDefaultPaymentProfile == null)
           {
-            $returnootScope.editCardStyle = "none";
+            $rootScope.editCardStyle = "none";
           }else {
-            $returnootScope.editCardStyle = "block";       
+            $rootScope.editCardStyle = "block";       
           }
           $('option').filter(function() {
               return this.value.indexOf('?') >= 0;
@@ -4910,14 +4910,30 @@ $scope.EditHealth = {};
         LoginService.getPayUpdateCardDetails(params);
     }
 
-    $rootScope.editcard={};
+    $scope.editCardDetails = {};
     $scope.editpaymentcard = function(pageName){
         //  var proid = $("#addNewCard").val();
+        $state.go('tab.cardeditDetails');
+        
+
         if (typeof $scope.cardPaymentId.addNewCard !== 'undefined') {
             if(pageName === 'consulCharge') {
               var insplanCrdVal = $('#addNewCard').val();
+              if($rootScope.userDefaultPaymentProfileText != null && typeof $rootScope.userDefaultPaymentProfileText != 'undefined') 
+              {
+                    $rootScope.editCardStyle ="block";
+                } else {
+                    $rootScope.editCardStyle ="none";
+                }
+
             } else if(pageName === 'addNewCard') {
               var insplanCrdVal = $('#addNewCard_addCard').val();
+              if($rootScope.userDefaultPaymentProfileText != null && typeof $rootScope.userDefaultPaymentProfileText != 'undefined') 
+              {
+                    $rootScope.editCardStyle ="block";
+                } else {
+                    $rootScope.editCardStyle ="none";
+                }
             } else if (pageName === 'submitPay') {
               var insplanCrdVal = $('#addNewCard_submitPay').val();
             }
@@ -4939,9 +4955,13 @@ $scope.EditHealth = {};
             }
         }
 
-
-
-        $rootScope.editCardStyle ="block";
+/*
+        if($rootScope.userDefaultPaymentProfileText == null)
+        {
+            $rootScope.editCardStyle ="none";
+        }else{
+            $rootScope.editCardStyle ="block";
+        }*/
         //$rootScope.profileid = proid;
         $rootScope.editPaymentProfile = [];
         angular.forEach($rootScope.PaymentProfile, function(index) {
@@ -4957,15 +4977,29 @@ $scope.EditHealth = {};
                    'cardLogo' : index.cardLogo,
                });
              }
-         });
+         });         
          $rootScope.doGetChargifyPayUpdateCardDetails($rootScope.editPaymentProfile[0].profileID);
+         
          var cardExpiration = $rootScope.editPaymentProfile[0].cardExpiration;
          $rootScope.cardExpirationSplitValue = cardExpiration.split('/');
          $rootScope.editbilling =  $rootScope.editPaymentProfile[0].billingAddress;
-          $rootScope.editcardNumber =  $rootScope.editPaymentProfile[0].cardNumber;
-            $rootScope.editcard.cardcountry = $rootScope.editbilling.country;
-            $("#editCountry").val($rootScope.editcard.cardcountry);
-         $state.go('tab.cardeditDetails');
+          $rootScope.editcardNumber =  $rootScope.editPaymentProfile[0].cardNumber;  
+        
+        /* $scope.editCardDetails.cardEditCity = $rootScope.editbilling.city;
+            $scope.editCardDetails.cardEditState = $rootScope.editbilling.state;
+            $scope.editCardDetails.cardEditCountry = $rootScope.editbilling.country;
+            $scope.editCardDetails.cardEditZip = $rootScope.editbilling.zip;
+            $("#editCity").val($scope.editCardDetails.cardEditCity);
+            $("#editState").val($scope.editCardDetails.cardEditState);
+            $("#editCountry").val($scope.editCardDetails.cardEditCountry);
+            $("#editZip").val($scope.editCardDetails.cardEditZip);*/
+    }
+
+    if($rootScope.currState.$current.name == 'tab.cardeditDetails') {
+         $scope.editCardDetails.cardEditCity = $rootScope.editbilling.city;
+            $scope.editCardDetails.cardEditState = $rootScope.editbilling.state;
+            $scope.editCardDetails.cardEditCountry = $rootScope.editbilling.country;
+            $scope.editCardDetails.cardEditZip = $rootScope.editbilling.zip;
     }
 
     $scope.doPostClearHealthPlan = function() {
@@ -5041,7 +5075,7 @@ $scope.EditHealth = {};
     $rootScope.cardDisplay = "inherit;";
     $rootScope.planverify = "inherit";
     $scope.getCardDetails = {};
-	$scope.editCard = {};
+	//$scope.editCardDetails = {};
     $scope.ccCvvLength = 3;
 	 $rootScope.editCvvLength = 3;
     $rootScope.editsecuritycode = $('#editcvv').val();
@@ -5102,36 +5136,59 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
               $scope.ErrorMessage = "Expiry Month can't be empty";
               $rootScope.Validation($scope.ErrorMessage);
 
-        }else if ($('#editExpyear').val() === '') {
+        } else if ($('#editExpyear').val() === '') {
               $scope.ErrorMessage = "Expiry can't be empty";
               $rootScope.Validation($scope.ErrorMessage);
 
+        }else if ($('#editcvv').val() === '') {
+              $scope.ErrorMessage = "security code can't be empty";
+              $rootScope.Validation($scope.ErrorMessage);
+
+        } else if ($('#editbillingAddress').val() === '') {
+              $scope.ErrorMessage = "BillingAddress can't be empty";
+              $rootScope.Validation($scope.ErrorMessage);
+
+        }else if ($('#editCity').val() === '') {
+              $scope.ErrorMessage = "City can't be empty";
+              $rootScope.Validation($scope.ErrorMessage);
+
+        }else if ($('#editState').val() === '') {
+              $scope.ErrorMessage = "State can't be empty";
+              $rootScope.Validation($scope.ErrorMessage);
+
+        }else if ($('#editCountry').val() === '') {
+              $scope.ErrorMessage = "Country can't be empty";
+              $rootScope.Validation($scope.ErrorMessage);
+
+        }else if ($('#editZip').val() === '') {
+              $scope.ErrorMessage = "Zip can't be empty";
+              $rootScope.Validation($scope.ErrorMessage);
+
+        }else if (!CreditCardValidations.validCreditCard($rootScope.editCardNumber)) {     
+            $scope.invalidZip = "";     
+            $scope.invalidMonth = "";       
+            $scope.invalidCVV = "";     
+            $scope.invalidCard = "border: 1px solid red;max-width:50%;";        
+            $scope.ErrorMessage = "Invalid Card Number";        
+            $rootScope.Validation($scope.ErrorMessage);     
         } else if (EditexpiryDateCheck < currentTime) {
             $scope.invalidMonth = "border: 1px solid red;";
             $scope.ErrorMessage = "Invalid Expiry Month";
 
             $rootScope.Validation($scope.ErrorMessage);
-        }else if ($('#editcvv').val() === '') {
-              $scope.ErrorMessage = "security code can't be empty";
-              $rootScope.Validation($scope.ErrorMessage);
-
-        } else if ($rootScope.editCvv.length !== $rootScope.editCvvLength) {
-            $scope.invalidZip = "";
-            $scope.invalidMonth = "";
-            $scope.invalidCard = "";
-            $scope.invalidCVV = "border: 1px solid red;";
-            $scope.ErrorMessage = "Security code must be " + $rootScope.editCvvLength + " numbers";
-            $rootScope.Validation($scope.ErrorMessage);
-        } else if ($('#editZip').val() === '') {
-              $scope.ErrorMessage = "Zip code can't be empty";
-              $rootScope.Validation($scope.ErrorMessage);
-
-        } else if (editzipCount <= 4) {
+        }else if (editzipCount <= 4) {
             $scope.invalidMonth = "";
             $scope.invalidCard = "";
             $scope.invalidCVV = "";
             $scope.invalidZip = "border: 1px solid red;";
             $scope.ErrorMessage = "Verify Zip";
+            $rootScope.Validation($scope.ErrorMessage);
+        }else if ($rootScope.editCvv.length !== $rootScope.editCvvLength) {
+            $scope.invalidZip = "";
+            $scope.invalidMonth = "";
+            $scope.invalidCard = "";
+            $scope.invalidCVV = "border: 1px solid red;";
+            $scope.ErrorMessage = "Security code must be " + $rootScope.editCvvLength + " numbers";
             $rootScope.Validation($scope.ErrorMessage);
         } else {
 
@@ -5297,13 +5354,13 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             $('#BillingAddress').val() === '' || $('#City').val() === '' || $('#State').val() === '' || $('#Zip').val() === '') {
             $scope.ErrorMessage = "Required fields can't be empty";
             $rootScope.Validation($scope.ErrorMessage);
-       /* } else if (!CreditCardValidations.validCreditCard($rootScope.CardNumber)) {
+        } else if (!CreditCardValidations.validCreditCard($rootScope.CardNumber)) {
             $scope.invalidZip = "";
             $scope.invalidMonth = "";
             $scope.invalidCVV = "";
             $scope.invalidCard = "border: 1px solid red;max-width:50%;";
             $scope.ErrorMessage = "Invalid Card Number";
-            $rootScope.Validation($scope.ErrorMessage);*/
+            $rootScope.Validation($scope.ErrorMessage);
         } else if (ExpiryDateCheck < currentTime) {
             $scope.invalidZip = "";
             $scope.invalidCard = "";
@@ -7546,6 +7603,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                       $('#addNewCard_addCard').val('Choose Your Card');
                       $('#addNewCard_submitPay').val('Choose Your Card');
                       $rootScope.userDefaultPaymentProfileText = null;
+                      $rootScope.editCardStyle = 'none';
                   } else {
                       $('#addNewCard').val($rootScope.userDefaultPaymentProfile);
                       $('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
@@ -7571,6 +7629,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                       $('#addNewCard_addCard').val('Choose Your Card');
                       $('#addNewCard_submitPay').val('Choose Your Card');
                       $rootScope.userDefaultPaymentProfileText = null;
+                      $rootScope.editCardStyle = 'none';
                   } else {
                       $('#addNewCard').val($rootScope.userDefaultPaymentProfile);
                       $('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
@@ -7649,6 +7708,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                           $('#addNewCard_addCard').val('Choose Your Card');
                           $('#addNewCard_submitPay').val('Choose Your Card');
                           $rootScope.userDefaultPaymentProfileText = null;
+                          $rootScope.editCardStyle = 'none';
                       } else {
                           $('#addNewCard').val($rootScope.userDefaultPaymentProfile);
                           $('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
@@ -7674,6 +7734,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                           $('#addNewCard_addCard').val('Choose Your Card');
                           $('#addNewCard_submitPay').val('Choose Your Card');
                           $rootScope.userDefaultPaymentProfileText = null;
+                          $rootScope.editCardStyle = 'none';
                       } else {
                           $('#addNewCard').val($rootScope.userDefaultPaymentProfile);
                           $('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);

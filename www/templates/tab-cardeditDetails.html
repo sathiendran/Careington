@@ -38,7 +38,7 @@
                <div class="item item-input ">
                   <span class="input-label cardfont" >Card Number</span>
                   <!--<input type="text"  placeholder="xxxx-xxxx-xxxx-{{editcardNumber}}" value="" name="CardNumber" id="editCardNumber" required>-->
-                  <input style="line-height: 20px; font-size: 18px; padding: 0px;" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="xxxx-xxxx-xxxx-{{editcardNumber}}" ng-model="getCardDetails.CardNumber" name="CardNumber" id="editCardNumber" maxlength="19" required/>
+                  <input style="line-height: 20px; font-size: 18px; padding: 0px; {{invalidCard}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="xxxx-xxxx-xxxx-{{editcardNumber}}" ng-model="editCardDetails.CardNumber" name="CardNumber" id="editCardNumber" maxlength="19" required/>
                </div>
                <div class="item item-input">
                   <span class="input-label cardfont">Expiration Date</span>
@@ -70,24 +70,26 @@
                </div>
                <div class="item item-input" >
                   <span class="input-label cardfont" >City</span>
-                      <input type="text" placeholder="Required"   value="{{editbilling.city}}"  name="City" id="editCity" required>
+                      <!--<input  type="text" placeholder="Required"   value="{{editbilling.city}}"  name="City" id="editCity" ng-model="editcard.editCity" required>-->
+                      <ion-google-place style="font-size: 18px !important;" placeholder="Required" ng-model="editCardDetails.cardEditCity" name="City" id="editCity" required/>
                </div>
                <div class="item item-input">
                   <span class="input-label cardfont" >State</span>
-                  <input type="text" placeholder="Required"    value="{{editbilling.state}}"  name="State" id="editState" required>
+                  <input type="text" ng-model="editCardDetails.cardEditState" placeholder="Required"   name="State" id="editState"  required>
                </div>
                <div class="item item-input" >
                   <span class="input-label cardfont" >Country</span>
-                <!-- ng-selected="{{editbilling.country}} == {{country.name}}" <input type="text" placeholder="Required" ng-model="getCardDetails.Country" value="{{editbilling.country}}"  name="Country" id="Country" required>-->
-                <select class="textdata optionselect"  name="healthInfoCountry" id="editCountry" ng-model="editcard.cardcountry" >
+                <!-- ng-selected="{{editbilling.country}} == {{country.name}}" <input type="text" placeholder="Required" ng-model="getCardDetails.Country" value="{{editbilling.country}}"  name="Country" id="Country" required>
+                <select  class="textdata optionselect"  name="healthInfoCountry" id="editCountry" ng-model="editcard.cardcountry" >
                    <option value="">Choose</option>
                    <option  ng-repeat="country in serviceCountries"  value="{{country.name}}" ><b>{{country.name}}</b></option>
-                </select>
+                </select>-->
+                   <input type="text" ng-model="editCardDetails.cardEditCountry" placeholder="Required"  name="healthInfoCountry" id="editCountry"  required>
                </div>
                <div class="item item-input" >
-                  <span class="input-label cardfont" >Zip</span>
-                  <!--<input type="number" placeholder="Required"  value="{{editbilling.zip}}"  maxlength="7" ng-model="editZip" name="Zip" id="editZip" required/>-->
-                  <input style="line-height: 20px; font-size: 18px; padding: 0px;" value="{{editbilling.zip}}"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" ng-model="editZip" name="editZip" id="editZip" maxlength="7" required/>
+                  <span class="input-label cardfont" >Zip</span>                  
+                  <!--<input  style="line-height: 20px; font-size: 18px; padding: 0px; {{invalidZip}}"   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" ng-model="editcard.editZip" name="editZip" id="editZip" maxlength="7" required/>-->
+                   <input type="text" style="line-height: 20px; font-size: 18px; padding: 0px; {{invalidZip}}"  placeholder="Required"  ng-model="editCardDetails.cardEditZip"  input-max-length-number maxlength="10" name="editZip" id="editZip" required/>
                </div>
             </div>
             <div class="planDetails" ng-if="addCardStatus !== 200"  style="opacity:{{planverify}};">
