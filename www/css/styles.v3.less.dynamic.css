@@ -21940,7 +21940,7 @@ only screen and (min-width: 541px) {
         text-align: center;
         font-size: 1.35em;
         float: left;
-        width: 50%
+       /* width: 50%*/
     }
     .header__nav {
         -webkit-transition: none;
@@ -26955,7 +26955,7 @@ only screen and (min-width: 541px) {
 .directory {
     position: fixed;
     width: 315px;
-    top: 44px;
+    top: 65px;
     bottom: 0;
     right: 0;
     display: -webkit-flex;
@@ -32551,7 +32551,7 @@ only screen and (min-width: 541px) {
 .left-col {
     overflow-y: auto;
     position: fixed;
-    top: 44px;
+    top: 65px;
     left: 100%;
     bottom: 58px;
     z-index: 4;
@@ -52020,7 +52020,8 @@ only screen and (min-width: 541px) {
     padding: 6px;
     z-index: 2;
     float: left;
-    box-sizing: border-box
+    box-sizing: border-box;
+    padding-top: 20px !important;
 }
 .dialogbox-master__buttons .button {
     width: 64px;
@@ -52180,7 +52181,7 @@ only screen and (min-width: 541px) {
 }
 .dialogbox-master__titlebar {
     width: 100%;
-    height: 44px;
+    height: 65px;
     background: #d8d8d8;
     padding: 0 15px;
     box-sizing: border-box;

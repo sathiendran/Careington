@@ -1,6 +1,5 @@
 angular.module('starter.controllers')
     .controller('consultationController', function($scope, $sanitize, $ionicSideMenuDelegate, $ionicPlatform, $interval, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $filter, htmlEscapeValue) {
-        $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
         $rootScope.couserdetails = false;
         $rootScope.dupcouser = false;
         $ionicPlatform.registerBackButtonAction(function() {
@@ -733,10 +732,10 @@ angular.module('starter.controllers')
 
                     $rootScope.reportMedicalCodeDetails = [];
 
-                    if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $rootScope.existingConsultationReport.medicalCodeDetails !== 'undefined') 
+                    if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $rootScope.existingConsultationReport.medicalCodeDetails !== 'undefined')
                     {
                         angular.forEach($rootScope.existingConsultationReport.medicalCodeDetails, function(index, item) {
-                         
+
                           var cptcode = index.shortDescription;
                          // var spcptcode = cptcode.split("-");
                           var spcptcode = cptcode.substr(0,cptcode.indexOf('-'));
@@ -746,7 +745,7 @@ angular.module('starter.controllers')
                           //var spicdcode = icdcode.split("-");
                           var spicdcode = icdcode.substr(0,icdcode.indexOf('-'));
                           var spicdcodeDesc =  icdcode.substr(icdcode.indexOf('-')+1);
-                          
+
 
                           var icd9code =   index.shortDescription;
                           //var spicd9code = icdcode.split("-");
@@ -912,13 +911,13 @@ angular.module('starter.controllers')
                     $rootScope.waitingRoomChatTranscript = [];
                     if (data.count !== 0) {
                      var chatdetails=data.data;
-                     
+
                         angular.forEach(chatdetails, function(index) {
-                             
+
                             $rootScope.waitingRoomChatTranscript.push({
                               'ChatMessage': index,
                             });
-                            
+
                         });
                     }
                 },

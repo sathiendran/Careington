@@ -1,8 +1,7 @@
 angular.module('starter.controllers')
 
 .controller('addnewdependentController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $timeout, $rootScope, $state, LoginService, $stateParams, $location, $cordovaFileTransfer, $ionicLoading, $ionicScrollDelegate, $ionicModal, $filter, $ionicPopup, $log, $window, $ionicBackdrop) {
-  $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-    $timeout(function() {
+      $timeout(function() {
         $('option').filter(function() {
             return this.value.indexOf('?') >= 0;
         }).remove();

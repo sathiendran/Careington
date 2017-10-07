@@ -335,15 +335,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
    isSSProviderListLoaded = false;
     window.localStorage.setItem('isVideoCallProgress', "No");
     window.localStorage.setItem("isCustomerInWaitingRoom", "No");
-    $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-    $('head script[src*="https://emerald.qa1.snapvcm.com/Scripts/slick.min.js"]').remove();
-    $('head script[src*="schedule/schedule/providerSearch.viewmodel.js"]').remove();
-  //  $('script[src="schedule/schedule/providerSearch.viewmodel.js"]').remove();
-  //  $('script[src*="schedule/schedule/providerSearch.viewmodel.js"]').remove();
-  //  $('#ff1233').remove();
-  /*  $('helloScript1').att('src').remove();
-    $('helloScript2').att('src').remove();
-    $('helloScript3').att('src').remove();*/
+   /* $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+    if($rootScope.chkSSPageEnter) {
+        $ionicSideMenuDelegate.toggleLeft();
+   }*/
     $rootScope.is_iPadDeviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     $rootScope.drawSVGCIcon = function(iconName) {
         return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
@@ -614,7 +609,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -833,7 +828,9 @@ $rootScope.checkAndChangeMenuIcon = function() {
               $rootScope.APICommonURL = 'https://connectedcare.md';
               $scope.doGetSingleHosInfoForiTunesStage('logOut');
         } else {
-            $window.location.reload();
+             $timeout(function() {
+                    $window.location.reload(true);
+                });
              if (deploymentEnvLogout === "Multiple") {
                  $state.go('tab.chooseEnvironment');
              } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
@@ -1585,6 +1582,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
       $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
       if($rootScope.chkSSPageEnter) {
           $ionicSideMenuDelegate.toggleLeft();
+          $rootScope.chkSSPageEnter = false;
       }
       $rootScope.patientId = JSON.parse(sessionStorage.getItem("appointPatId"));
       $rootScope.appointmentwaivefee = JSON.parse(sessionStorage.getItem("waivefee"));
