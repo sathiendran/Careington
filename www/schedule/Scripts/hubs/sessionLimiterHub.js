@@ -56,8 +56,11 @@
                         'You have logged in on another device.', // message
                         function() {
                             $overlay.toggleOverlay();
-                             location.href = snap.redirctPage;
-                            return;
+                             window.location.href = snap.redirctPage;
+                            // $timeout(function() {
+                                   window.location.reload(true);
+                              // });
+                            //return;
                         },
                         snap.appName, // title
                         'Done' // buttonName

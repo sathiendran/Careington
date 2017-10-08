@@ -82,9 +82,9 @@ angular.module('starter.controllers')
                                 $("#allProvider").addClass("is-active");
                                 if (vm) {
                                     //  vm.isDataInit = false;
-                                   if (!vm.isDataInit) {
+                                   //if (!vm.isDataInit) {  //If we enable this, scroll is not working.
                                         vm.load();
-                                      }
+                                    //  }
                                       vm.setViewMode(viewMode);
 
                                   // vm.vm_favoriteClinicianCardsList_onDataBound();

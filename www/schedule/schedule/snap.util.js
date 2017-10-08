@@ -29,15 +29,16 @@ $.extend(snap.util,
         }).fail(function (xhr) {
             if (xhr.status == 401) {
               //  window.location = snap.patientLogin();
-               location.href = snap.redirctPage;
+              window.location.href = snap.redirctPage;
+              window.location.reload(true);
             }
             if (!snap.userAborted(xhr) && xhr.status == 0 && xhr.readyState == 0) {
               //  snapInfo("Internet connection lost.");
                   navigator.notification.alert(
                       'No Internet Connection.', // message
                       function() {
-                           location.href = snap.redirctPage;
-                          return;
+                           window.location.href = snap.redirctPage;
+                           window.location.reload(true);
                       },
                       snap.appName, // title
                       'Done' // buttonName

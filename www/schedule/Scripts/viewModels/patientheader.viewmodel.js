@@ -35,7 +35,7 @@ snap.namespace("snap.patient")
                 $patientReEnterConsultationHelper.checkForReEntryConsultation();
             }
         });
-        
+
         this.initVm = function() {
             if (snap.hospitalSettings.providerSearch) {
                 $eventaggregator.subscriber("isProviderAvailable", function(isAvailable) {
@@ -300,9 +300,10 @@ snap.namespace("snap.patient")
                 return false;
             }
            //  location.href = snap.patientLogin();
-           location.href = snap.redirctPage;
-            this.closeNav();
-            return false;
+           this.closeNav();
+           window.location.href = snap.redirctPage;
+           window.location.reload(true);
+            //return false;
 
         };
         this.preventDefaultAction = function () {

@@ -21940,7 +21940,7 @@ only screen and (min-width: 541px) {
         text-align: center;
         font-size: 1.35em;
         float: left;
-       /* width: 50%*/
+        width: 50%;
     }
     .header__nav {
         -webkit-transition: none;

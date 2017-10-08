@@ -335,10 +335,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
    isSSProviderListLoaded = false;
     window.localStorage.setItem('isVideoCallProgress', "No");
     window.localStorage.setItem("isCustomerInWaitingRoom", "No");
-   /* $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+    $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
     if($rootScope.chkSSPageEnter) {
         $ionicSideMenuDelegate.toggleLeft();
-   }*/
+   }
     $rootScope.is_iPadDeviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     $rootScope.drawSVGCIcon = function(iconName) {
         return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
@@ -519,7 +519,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.sidemenuHome = "SidemenuHomeIOS";
         $rootScope.calendarTitle = "calendarTitleIOS";
         $rootScope.barsubheaderHomeUser = "bar-subheaderHomeUserIOS";
-        $rootScope.patient_subHeaderTopMove = "margin-top: 1px !important;";
+       // $rootScope.patient_subHeaderTopMove = "margin-top: 1px !important;";
         $rootScope.intakeTittle = "intakeTittleIOS";
         $rootScope.MenuInnerStyle = "top: 0px;";
         $rootScope.IntakeFormInnerStyleMedication = "margin-top: 0px;";
@@ -3705,8 +3705,10 @@ $rootScope.checkAndChangeMenuIcon = function() {
             success: function(data) {
                 if (data.data != 0) {
                     $rootScope.patientHealthPlanList = [];
+                    $rootScope.allPatientHealthPlanList = [];
+
                     angular.forEach(data.data, function(index, item) {
-                        $rootScope.patientHealthPlanList.push({
+                        $rootScope.allPatientHealthPlanList.push({
                             'id': index.$id,
                             'healthPlanId': index.healthPlanId,
                             'familyGroupId': index.familyGroupId,
@@ -3722,28 +3724,48 @@ $rootScope.checkAndChangeMenuIcon = function() {
                         });
                     });
 
-                    if ($rootScope.currState.$current.name === "tab.consultCharge") {
-                        $rootScope.enableAddHealthPlan = "block";
-                        $rootScope.disableAddHealthPlan = "none;";
-                    } else if ($rootScope.currState.$current.name === "tab.planDetails") {
-                        $rootScope.disableAddHealthPlan = "none";
-                        $rootScope.enableAddHealthPlan = "block";
-						$rootScope.editplan = "block";
-                        $rootScope.planchange();
-                        $state.go('tab.consultCharge');
-
-                    }  else if ($rootScope.currState.$current.name === "tab.planeditDetails") {
-                       $rootScope.disableAddHealthPlan = "none";
-                       $rootScope.enableAddHealthPlan = "block";
-                       $rootScope.editplan = "block";
-                       $rootScope.planchange();
-                       $state.go('tab.consultCharge');
-                     }  else if ($rootScope.currState.$current.name === "tab.ConsentTreat") {
-                        $rootScope.disableAddHealthPlan = "none";
-                        $rootScope.enableAddHealthPlan = "block";
-                        $rootScope.editplan = "none";
-                      //  $rootScope.planchange();
-                        $state.go('tab.consultCharge');
+                    $rootScope.patientHealthPlanList = $rootScope.allPatientHealthPlanList.filter(function(r) { var show = r.patientId == $rootScope.patientId; return show; });
+                    if($rootScope.patientHealthPlanList.length !== 0) {
+                         if ($rootScope.currState.$current.name === "tab.consultCharge") {
+                             $rootScope.enableAddHealthPlan = "block";
+                             $rootScope.disableAddHealthPlan = "none;";
+                         } else if ($rootScope.currState.$current.name === "tab.planDetails") {
+                             $rootScope.disableAddHealthPlan = "none";
+                             $rootScope.enableAddHealthPlan = "block";
+     						$rootScope.editplan = "block";
+                             $rootScope.planchange();
+                             $state.go('tab.consultCharge');
+                         }  else if ($rootScope.currState.$current.name === "tab.planeditDetails") {
+                            $rootScope.disableAddHealthPlan = "none";
+                            $rootScope.enableAddHealthPlan = "block";
+                            $rootScope.editplan = "block";
+                            $rootScope.planchange();
+                            $state.go('tab.consultCharge');
+                          }  else if ($rootScope.currState.$current.name === "tab.ConsentTreat") {
+                             $rootScope.disableAddHealthPlan = "none";
+                             $rootScope.enableAddHealthPlan = "block";
+                             $rootScope.editplan = "none";
+                           //  $rootScope.planchange();
+                             $state.go('tab.consultCharge');
+                         }
+                    } else {
+                         if ($rootScope.currState.$current.name === "tab.consultCharge") {
+                             $rootScope.enableAddHealthPlan = "none";
+                             $rootScope.disableAddHealthPlan = "block;";
+     						            $rootScope.editplan = "block";
+                         } else if ($rootScope.currState.$current.name === "tab.planDetails") {
+     						            $rootScope.planchange();
+                             $state.go('tab.consultCharge');
+     						            $rootScope.editplan = "block";
+                         } else if ($rootScope.currState.$current.name === "tab.planeditDetails") {
+                            $rootScope.planchange();
+                            $state.go('tab.consultCharge');
+                             $rootScope.editplan = "block";
+                         } else if ($rootScope.currState.$current.name === "tab.ConsentTreat") {
+                         //   $rootScope.planchange();
+                            $state.go('tab.consultCharge');
+                             $rootScope.editplan = "none";
+                        }
                     }
                 } else {
                     if ($rootScope.currState.$current.name === "tab.consultCharge") {
@@ -4200,7 +4222,11 @@ $scope.EditHealth = {};
             $rootScope.submitPayBack = $rootScope.currState.$current.name;
             $rootScope.cardPage = "consultCharge";
             $state.go('tab.cardDetails');
-			      $rootScope.editCardStyle ="none";
+            if($rootScope.userDefaultPaymentProfileText != null && typeof $rootScope.userDefaultPaymentProfileText != 'undefined' && $rootScope.userDefaultPaymentProfileText != 'undefined') {
+                 $rootScope.editCardStyle = "block";
+            } else {
+			 $rootScope.editCardStyle ="none";
+            }
         } else {
             if ($('option:selected', this).text() === 'Choose Your Card') {
               $rootScope.editCardStyle ="none";
@@ -4227,7 +4253,11 @@ $scope.EditHealth = {};
             $rootScope.submitPayBack = $rootScope.currState.$current.name;
             $rootScope.cardPage = "addCard";
             $state.go('tab.cardDetails');
-            $rootScope.editCardStyle ="none";
+            if($rootScope.userDefaultPaymentProfileText != null && typeof $rootScope.userDefaultPaymentProfileText != 'undefined' && $rootScope.userDefaultPaymentProfileText != 'undefined') {
+                 $rootScope.editCardStyle = "block";
+            } else {
+			 $rootScope.editCardStyle ="none";
+            }
         } else {
             //$('div.cardViewport').text($("option:selected", this).text());
             if ($('option:selected', this).text() === 'Choose Your Card') {

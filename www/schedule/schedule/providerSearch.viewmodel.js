@@ -365,7 +365,7 @@ scope.selectedPatient.currentLocationText = currentLocationText;
             });
             /***************** PUBLIC API *******************/
             this.load = function () {
-                this.isDataInit = true;
+                //this.isDataInit = true;
                 this.set("vm_isNotificationActive", true);
                 this.set("vm_isNotificationActive", false);
                 loadJQuery();
@@ -415,14 +415,14 @@ scope.selectedPatient.currentLocationText = currentLocationText;
                     // We need to set patient current location.
                     that._setPatientForSelfScheduling(defaultPatient);
 
-                    if(!selector.isSelectorLoaded()) {
+                    //if(!selector.isSelectorLoaded()) {
                         selector.load();
-                    } else {
+                    //} else {
 
-                        that._reloadPatientSelector();
-                        that.set("vm_isPatientSelectorActive", false);
-                        that._updateCliniciansList();
-                    }
+                        //that._reloadPatientSelector();
+                       // that.set("vm_isPatientSelectorActive", false);
+                        //that._updateCliniciansList();
+                    //}
                 });
                 if(!this.allCliniciansDS.isEndlessScrollInitialized()) {
                      this.allCliniciansDS.initEndlessScroll();
@@ -431,8 +431,10 @@ scope.selectedPatient.currentLocationText = currentLocationText;
                  if(!this.favoriteCliniciansDS.isEndlessScrollInitialized()) {
                      this.favoriteCliniciansDS.initEndlessScroll();
                  }
-
-                 this._updateCliniciansList();
+                 if(!this.isDataInit) {
+                      this.isDataInit = true;
+                      this._updateCliniciansList();
+                }
             };
 
             this._reloadPatientSelector = function() {

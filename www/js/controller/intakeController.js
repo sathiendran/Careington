@@ -1358,8 +1358,9 @@ $scope.locat=false;
             success: function(data) {
                 if (data.data != 0) {
                     $rootScope.patientHealthPlanList = [];
+                    $rootScope.allPatientHealthPlanList = [];
                     angular.forEach(data.data, function(index,item) {
-                        $rootScope.patientHealthPlanList.push({
+                        $rootScope.allPatientHealthPlanList.push({
                             'id': index.$id,
                             'healthPlanId': index.healthPlanId,
                             'familyGroupId': index.familyGroupId,
@@ -1374,16 +1375,24 @@ $scope.locat=false;
                             'policyNumber': index.policyNumber.substring(index.policyNumber.length - 4, index.policyNumber.length),
                         });
                     });
-
-                    if ($rootScope.currState.$current.name === "tab.consultCharge") {
-                        $rootScope.enableAddHealthPlan = "block";
-                        $rootScope.disableAddHealthPlan = "none;";
-                    } else if ($rootScope.currState.$current.name === "tab.planDetails") {
-                        $rootScope.disableAddHealthPlan = "none";
-                        $rootScope.enableAddHealthPlan = "block";
-                        $state.go('tab.consultCharge');
-
-                    }
+                    $rootScope.patientHealthPlanList = $rootScope.allPatientHealthPlanList.filter(function(r) { var show = r.patientId == $rootScope.patientId; return show; });
+                    if($rootScope.patientHealthPlanList.length !== 0) {
+                         if ($rootScope.currState.$current.name === "tab.consultCharge") {
+                             $rootScope.enableAddHealthPlan = "block";
+                             $rootScope.disableAddHealthPlan = "none;";
+                         } else if ($rootScope.currState.$current.name === "tab.planDetails") {
+                             $rootScope.disableAddHealthPlan = "none";
+                             $rootScope.enableAddHealthPlan = "block";
+                             $state.go('tab.consultCharge');
+                        }
+                   } else {
+                        if ($rootScope.currState.$current.name === "tab.consultCharge") {
+                           $rootScope.enableAddHealthPlan = "none";
+                           $rootScope.disableAddHealthPlan = "block;";
+                        } else if ($rootScope.currState.$current.name === "tab.planDetails") {
+                           $state.go('tab.consultCharge');
+                        }
+                   }
                 } else {
                     if ($rootScope.currState.$current.name === "tab.consultCharge") {
                         $rootScope.enableAddHealthPlan = "none";

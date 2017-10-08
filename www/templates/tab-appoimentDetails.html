@@ -95,7 +95,7 @@
                  <h2 class="fdate"><span class="fname ftime apponitmentftime-{{devicename}}">{{scheduledListDatas.scheduledTime | date: "hh:mm"}}{{scheduledListDatas.scheduledTime | date: "a"}}</span> </h2>
                    <p class="fday apponitmentfday-{{deviceName}}">{{scheduledListDatas.scheduledTime | date: "EEEE, MMMM dd, yyyy"}}</p>
                </div>
-               <div class="appointEdit" ng-if="scheduledListDatas.appointmentTypeCode === 3 && scheduledListDatas.encounterTypeCode == 3" >
+               <div class="appointEdit" ng-if="scheduledListDatas.appointmentTypeCode === 3 && scheduledListDatas.appointmentStatusCode != 'Waiting'" >
                  <button  ng-disabled="betDelay" ng-click="editAppointment(scheduledListDatas);delay();" style="border: none;padding: 0;background: none;" >
                    <!--<i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i>-->
                    Edit
