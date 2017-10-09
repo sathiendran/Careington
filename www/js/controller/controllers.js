@@ -335,10 +335,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
    isSSProviderListLoaded = false;
     window.localStorage.setItem('isVideoCallProgress', "No");
     window.localStorage.setItem("isCustomerInWaitingRoom", "No");
-    $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-    if($rootScope.chkSSPageEnter) {
-        $ionicSideMenuDelegate.toggleLeft();
-   }
     $rootScope.is_iPadDeviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     $rootScope.drawSVGCIcon = function(iconName) {
         return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
@@ -800,6 +796,11 @@ $rootScope.checkAndChangeMenuIcon = function() {
         }
     };
 
+    $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+     if($rootScope.chkSSPageEnter) {
+          $ionicSideMenuDelegate.toggleLeft();
+     }
+
     $scope.doRefreshUserHome = function() {
         $rootScope.doGetPatientProfiles();
         $rootScope.cuttlocations = "tab.ReportScreen";
@@ -812,10 +813,10 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
 
     $rootScope.ClearRootScope = function() {
-      if($rootScope.chkSSPageEnter) {
-          $ionicSideMenuDelegate.toggleLeft();
-      }
       $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+      if($rootScope.chkSSPageEnter) {
+            $ionicSideMenuDelegate.toggleLeft();
+        }
       $rootScope.cuttlocations = ''
         $window.localStorage.setItem('tokenExpireTime', '');
         $(".ion-google-place-container").css({
@@ -1580,7 +1581,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
     if($stateParams.getPage === 'CTT'){
       $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-      if($rootScope.chkSSPageEnter) {
+     if($rootScope.chkSSPageEnter) {
           $ionicSideMenuDelegate.toggleLeft();
           $rootScope.chkSSPageEnter = false;
       }
@@ -6351,7 +6352,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                       $rootScope.doCheckExistingConsulatationStatus('tab.userhome');
                     } else if(nextPage === '') {
                       $state.go('tab.appoimentDetails')
-                    }  else {
+                    }  else if(nextPage !='notNow'){
                       $state.go(nextPage);
                     }
                 }

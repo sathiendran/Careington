@@ -1,4 +1,3 @@
- <ion-view title="Appointment Details" ng-init="doRefreshApptDetails()">
 <ion-side-menus>
 <ion-side-menu-content>
    <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
@@ -55,7 +54,7 @@
          </div>
       </div>
    </ion-header-bar>
-
+   <ion-view title="Appointment Details" ng-init="doRefreshApptDetails()">
       <ion-content class="scroll-content ionic-scroll appiconcontent" ng-hide="addmore" >
          <div>
             <ion-refresher on-refresh="doRefreshApptDetails()"  >
@@ -207,7 +206,8 @@
       <ion-content>
       <div ng-controller="LoginCtrl">
       </div>
-
+</ion-view>
+<div class="hide-on-keyboard-open">
    <ion-tabs class=" tabs-icon-top tabs-dark">
       <a class="tab-item" ng-href="#/tab/relatedusers" >
       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i>
@@ -229,9 +229,8 @@
       </a>
       </a>
    </ion-tabs>
+  </div>
 </ion-side-menu-content>
-<ion-side-menus>
   <!--Side Menu File Include --->
   <div ng-controller="appoimentDetailsCtrl"></div>
   <div ng-include src="'templates/SideMenu.html'"></div>
-  </ion-view>
