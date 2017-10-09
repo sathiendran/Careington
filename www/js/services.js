@@ -628,11 +628,11 @@ this.getPatientMedicalProfile = function(params){
 					params.success(data);
 				}
 			}).
-			error(function (data, status, headers, config) {
-				if (typeof params.error != 'undefined') {
-					params.error(data,status);
-				}
-		});
+			catch(function (data, status, headers, config) {
+			  if (typeof params.error != 'undefined') {
+			    params.error(data,status);
+			  }
+		   });
 	}
 
 	this.postOnDemandConsultation = function(params) {

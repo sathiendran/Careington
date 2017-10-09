@@ -94,11 +94,16 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                 //  $scope.$root.$broadcast("callAppointmentConsultation");
               },
               error: function(data) {
-                  if (data === 'null') {
-                      $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                      $rootScope.Validation($scope.ErrorMessage);
+                  if(data.statusText.indexOf("has expired") != -1) {
+                       $scope.ErrorMessage = "This appointment has expired. Please create a new appointment if you still need care!";
+                       $rootScope.Validation($scope.ErrorMessage);
                   } else {
-                      $rootScope.serverErrorMessageValidation();
+                       if (data === 'null') {
+                           $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                           $rootScope.Validation($scope.ErrorMessage);
+                       } else {
+                           $rootScope.serverErrorMessageValidation();
+                       }
                   }
               }
           };
@@ -466,6 +471,10 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
 
     if($stateParams.getPage === 'webSSAppointUpdate'){
       $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+      if($rootScope.chkSSPageEnter) {
+          $ionicSideMenuDelegate.toggleLeft();
+          $rootScope.chkSSPageEnter = false;
+      }
       $scope.doGetSelectedappoimentDetails(sessionStorage.getItem("SSscheduledAppointmentId"));
     };
 
@@ -665,6 +674,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
             href: 'css/styles.v3.less.dynamic.css'
         }).appendTo('head');
         //  $state.go('tab.providerSearch', { viewMode : 'all' });
+        $rootScope.chkSSPageEnter = true;
         $state.go('tab.providerSearch');
             // $scope.isDisabled = false;
     }

@@ -205,7 +205,7 @@
                         return "NOW"
                     } else {
                         var time = kendo.toString(this.from, "t").split(" ");
-                        return time[0] + " <span class='drawer-card__timestamp'>"+ time[1] + "</span>"
+                        return time[0] + "<span class='drawer-card__timestamp'>"+ time[1] + "</span>"
                     }
                 };
 

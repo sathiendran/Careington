@@ -78,8 +78,8 @@
                       navigator.notification.alert(
                           'No Internet Connection.', // message
                           function() {
-                               location.href = snap.redirctPage;
-                              return;
+                               window.location.href = snap.redirctPage;
+                               window.location.reload(true);
                           },
                           snap.appName, // title
                           'Done' // buttonName
@@ -99,8 +99,8 @@
                         navigator.notification.alert(
                             'Connection to the system is lost. Do you want to logged out the app', // message
                             function() {
-                                 location.href = snap.redirctPage;
-                                return;
+                                 window.location.href = snap.redirctPage;
+                                window.location.reload(true);
                             },
                             snap.appName, // title
                             'Done' // buttonName

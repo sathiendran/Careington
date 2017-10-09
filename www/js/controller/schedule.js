@@ -1,6 +1,8 @@
 angular.module('starter.controllers')
     .controller('ScheduleCtrl', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService, $window, $ionicBackdrop) {
         //var snap = snap || {};
+        var vm = '';
+        var headerVM = '';
         snap.baseUrl  = apiCommonURL;
         snap.appName = $rootScope.alertMsgName;
         if (deploymentEnvLogout === "Multiple") {
@@ -80,7 +82,7 @@ angular.module('starter.controllers')
                                 $("#allProvider").addClass("is-active");
                                 if (vm) {
                                     //  vm.isDataInit = false;
-                                  //  if (!vm.isDataInit) {
+                                   //if (!vm.isDataInit) {  //If we enable this, scroll is not working.
                                         vm.load();
                                     //  }
                                       vm.setViewMode(viewMode);
