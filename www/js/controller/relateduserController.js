@@ -242,7 +242,7 @@
             if ($rootScope.authorised === "F") {
                 //ageFilter.getAge();
                 $scope.userAge = ageFilter.getDateFilter($scope.dobAge);
-                
+
                 var myPopup = $ionicPopup.show({
 
                     title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span></div> <div class='fontcolor'>" + dependentDetails.gender + " . " + $scope.userAge + $scope.relationship + "</div> ",
@@ -794,15 +794,22 @@
         };
 
         $scope.goTOSchedule = function() {
-            /* $("#style1").attr("disabled", "disabled");
-              $("#style2").attr("disabled", "disabled");*/
-            $('<link/>', {
-                rel: 'stylesheet',
-                type: 'text/css',
-                href: 'css/styles.v3.less.dynamic.css'
-            }).appendTo('head');
-            //  $state.go('tab.providerSearch', { viewMode : 'all' });
-            $state.go('tab.providerSearch');
+          if($rootScope.online) {
+              $('<link/>', {
+                  rel: 'stylesheet',
+                  type: 'text/css',
+                  href: 'css/styles.v3.less.dynamic.css'
+              }).appendTo('head');
+              //  $state.go('tab.providerSearch', { viewMode : 'all' });
+              $state.go('tab.providerSearch');
+            } else {
+                navigator.notification.alert(
+                    'Please make sure that you have network connection.',
+                    $rootScope.alertMsgName, // title
+                    'Done' // buttonName
+                );
+                return false;
+            }
         }
 
     });

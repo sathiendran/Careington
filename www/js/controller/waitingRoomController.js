@@ -1012,7 +1012,7 @@ angular.module('starter.controllers')
                    angular.element(this).attr('onclick', onClickLink);
                });
            }
-           
+
        function consultationEndedAlertDismissed() {
             $rootScope.doGetExistingConsulatationReport();
        }
@@ -1022,15 +1022,22 @@ angular.module('starter.controllers')
         $scope.doGetExistingConsulatation();
     }
     $scope.goTOSchedule = function() {
-        /* $("#style1").attr("disabled", "disabled");
-          $("#style2").attr("disabled", "disabled");*/
-        $('<link/>', {
-            rel: 'stylesheet',
-            type: 'text/css',
-            href: 'css/styles.v3.less.dynamic.css'
-        }).appendTo('head');
-        //  $state.go('tab.providerSearch', { viewMode : 'all' });
-        $state.go('tab.providerSearch');
+      if($rootScope.online) {
+          $('<link/>', {
+              rel: 'stylesheet',
+              type: 'text/css',
+              href: 'css/styles.v3.less.dynamic.css'
+          }).appendTo('head');
+          //  $state.go('tab.providerSearch', { viewMode : 'all' });
+          $state.go('tab.providerSearch');
+        } else {
+            navigator.notification.alert(
+                'Please make sure that you have network connection.',
+                $rootScope.alertMsgName, // title
+                'Done' // buttonName
+            );
+            return false;
+        }
     }
 
 })

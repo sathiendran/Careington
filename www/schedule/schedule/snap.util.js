@@ -37,8 +37,8 @@ $.extend(snap.util,
                   navigator.notification.alert(
                       'No Internet Connection.', // message
                       function() {
-                           window.location.href = snap.redirctPage;
-                           window.location.reload(true);
+                          // window.location.href = snap.redirctPage;
+                          // window.location.reload(true);
                       },
                       snap.appName, // title
                       'Done' // buttonName

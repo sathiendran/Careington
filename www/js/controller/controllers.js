@@ -498,7 +498,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     /******** Code to implement static brand color ends here **********/
 
     if ($rootScope.IOSDevice || $rootScope.isIPad) {
-
+        $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "IOS";
         $rootScope.appointCOntent = "margin-top: 175px; ";
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
@@ -606,6 +606,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
    } else if ($rootScope.AndroidDevice) {
+        $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -2916,49 +2917,22 @@ $rootScope.checkAndChangeMenuIcon = function() {
     }
 
     $scope.goTOSchedule = function() {
-    /*  var snap = {};
-      $.when(
-          $.getScript( "https://emerald.qa1.snapvcm.com/Scripts/slick.min.js" ),
-          $.getScript( "schedule/schedule/providerSearch.viewmodel.js" ),
-        //  $.getScript( "schedule/schedule/apptSlotsTray.viewmodel.js" ),
-        //  $.getScript( "schedule/schedule/timeUtils.js" ),
-          $.Deferred(function( deferred ){
-              $( deferred.resolve );
-          })
-        ).done(function(){
-
-          $('<link/>', {
-              rel: 'stylesheet',
-              type: 'text/css',
-              href: 'css/styles.v3.less.dynamic.css'
-          }).appendTo('head');
-          //  $state.go('tab.providerSearch', { viewMode : 'all' });
-          $state.go('tab.providerSearch');
-
-        });*/
-      /*  addLanguageScript = function(lang) {
-            var head = document.getElementsByTagName("head")[0],
-                script = document.createElement('script');
-                var v = Date.now().toString();
-            script.type = 'text/javascript'
-            script.src = lang + '.js?v='+ v;
-            head.appendChild(script);
-        };
-
-        addLanguageScript('https://emerald.qa1.snapvcm.com/Scripts/slick.min');
-        addLanguageScript('schedule/schedule/providerSearch.viewmodel');*/
-
-      //  $timeout(function(){
-            $('<link/>', {
-                rel: 'stylesheet',
-                type: 'text/css',
-                href: 'css/styles.v3.less.dynamic.css'
-            }).appendTo('head');
-            //  $state.go('tab.providerSearch', { viewMode : 'all' });
-            $state.go('tab.providerSearch');
-      //}, 20000);
-
-
+            if($rootScope.online) {
+                $('<link/>', {
+                    rel: 'stylesheet',
+                    type: 'text/css',
+                    href: 'css/styles.v3.less.dynamic.css'
+                }).appendTo('head');
+                //  $state.go('tab.providerSearch', { viewMode : 'all' });
+                $state.go('tab.providerSearch');
+              } else {
+                  navigator.notification.alert(
+                      'Please make sure that you have network connection.',
+                      $rootScope.alertMsgName, // title
+                      'Done' // buttonName
+                  );
+                  return false;
+              }
     }
 
     $rootScope.doGetRequiredPatientProfiles = function(patientId, chkPreviousPage, cutlocations, authen) {

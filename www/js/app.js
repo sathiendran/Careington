@@ -453,6 +453,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         $rootScope.flagpopup=true;
         var myPopup;
         function onOffline() {
+            $rootScope.online = navigator.onLine;
             if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
                 $rootScope.connAlertStatus = true;
                 $('#thumbVideos').remove();
@@ -507,6 +508,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
           console.log('Closing in controller!');
 
           $rootScope.connAlertStatus = false;
+          $rootScope.online = navigator.onLine;
             if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
                 $state.go('tab.videoLost', { retry : 2 });
             }else{
@@ -560,6 +562,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 $window.addEventListener("offline", function() {
                   $rootScope.$apply(function() {
                        if($rootScope.connAlertStatus !== true) {
+                             $rootScope.online = navigator.onLine;
                             if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
                                 console.log('gggg5');
                                $('#thumbVideos').remove();
@@ -615,6 +618,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 $window.addEventListener("online", function() {
                   $rootScope.$apply(function() {
                        console.log('Closing in controller!');
+                       $rootScope.online = navigator.onLine;
                        if($rootScope.connAlertStatus !== false) {
                              if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
                                   $rootScope.netConnectionStaus = true;
