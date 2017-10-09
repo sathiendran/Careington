@@ -817,15 +817,15 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
 
     $rootScope.ClearRootScope = function() {
+      if($rootScope.chkSSPageEnter) {
+          $ionicSideMenuDelegate.toggleLeft();
+      }
       $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
       $rootScope.cuttlocations = ''
         $window.localStorage.setItem('tokenExpireTime', '');
         $(".ion-google-place-container").css({
             "display": "none"
         });
-        if($rootScope.chkSSPageEnter) {
-            $ionicSideMenuDelegate.toggleLeft();
-        }
         if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging' && cobrandApp !== 'MDAmerica') {
               $rootScope.hospitalId = singleHospitalId;
               apiCommonURL = 'https://connectedcare.md';
