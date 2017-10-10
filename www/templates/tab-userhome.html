@@ -77,7 +77,7 @@
 								</i>
 							 <span style="top: -7px;position: relative;padding-left: 5px;">Appt @  <b>{{scheduledListData.scheduledTime | date: "hh:mm a" | lowercase}}</b></span>
 					</h2>
-				   <list class="ion-chevron-right ListLinkHref nextList" style="top: -7px !important; position: relative !important; font-size: 22px  !important;"></list>
+				   <list class="ion-chevron-right ListLinkHref nextList" style="top: -7px !important; position: relative !important; font-size: 21px  !important;"></list>
 				   <span ng-if="scheduledListData.appointmentStatusCode == 'Waiting'" class="DateFormateStyle AppointmentView" style="top: -5px; position: relative;">In queue</span>
 					 <span ng-if="scheduledListData.appointmentStatusCode != 'Waiting'" class="DateFormateStyle AppointmentView" style="top: -5px; position: relative;">View Details</span>
 
@@ -127,7 +127,7 @@
 						 </i>
 						<span style="top: -7px;position: relative;padding-left: 5px;">Appt @  <b>{{dependentDetails.appoint.scheduledTime | date: "hh:mm a" | lowercase}}</b></span>
 				 </h2>
-					<list class="ion-chevron-right ListLinkHref nextList" style="top: -13px !important; position: relative !important; font-size: 22px  !important;"></list>
+					<list class="ion-chevron-right ListLinkHref nextList" style="top: -13px !important; position: relative !important; font-size: 21px  !important;"></list>
 					<span ng-if="dependentDetails.appoint.appointmentStatusCode == 'Waiting'" class="DateFormateStyle AppointmentView" style="top: -10px; position: relative;">In queue</span>
 					<span ng-if="dependentDetails.appoint.appointmentStatusCode != 'Waiting'" class="DateFormateStyle AppointmentView" style="top: -10px; position: relative;">View Details</span>
 				 </a>

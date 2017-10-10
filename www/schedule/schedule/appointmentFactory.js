@@ -137,7 +137,7 @@ var isUnEditable = data.isReadOnly || false;
                     var clinicianPersonId = opt.clinicianPersonId ? opt.clinicianPersonId : clinicianID;
 
                     this.patientsSelector = this.isReadOnly ?
-                        $itemSelector.emptySelector({ 
+                        $itemSelector.emptySelector({
                             defaultItem: defaultPatient,
                             htmlContainerId: "#itemSelector_patientsList",
                             scrollableElementClass: ".itemSelector_scrollable"
@@ -269,7 +269,7 @@ scope = this;
                     });
                     this.trigger("change", {
 
-                        
+
                         field: "vm_dialogTitle"
                     });
 
@@ -369,7 +369,7 @@ scope = this;
                             } else {
                                 scope.set("dataSecondaryConcernList", codeSetsDs.getCodeSetDataSource("secondary", snap.hospitalSession.hospitalId));
                             }
-                            
+
                             scope.dataSecondaryConcernList.read().then(function () {
                                 scope._secondaryConcernsAvailable = scope.dataSecondaryConcernList.data().length > 0;
                                 scope.trigger("change", { field: "vm_isAddConcernButtonVisible" });
@@ -457,7 +457,7 @@ this._checkPatient = function(patient, data) {
                                 dfd.resolve();
                             }).fail(function(error) {
                                 dfd.reject(error);
-                            });    
+                            });
                         } else {
                             dfd.reject("Consultation is already paid by other user.");
                         }
@@ -472,16 +472,16 @@ this._checkPatient = function(patient, data) {
                         $customerDataService.checkPaymentStatus(this.consultationId).done(function (responsePayment) {
                             if (responsePayment.paidByUserId === snap.profileSession.userId)
                             {
-                                dfd.resolve(true);   
+                                dfd.resolve(true);
                             }
                             else {
-                                dfd.resolve(false);   
+                                dfd.resolve(false);
                             }
                         }).fail(function() {
-                            dfd.resolve(true);  
+                            dfd.resolve(true);
                         });
                     } else {
-                        dfd.resolve(true);   
+                        dfd.resolve(true);
                     }
 
                     return dfd;
@@ -580,7 +580,7 @@ this._checkPatient = function(patient, data) {
                     return dateFilter;
                 };
 
-               
+
 
 
 
@@ -601,9 +601,14 @@ this._checkPatient = function(patient, data) {
                 this.vm_saveBtnTxt = function () {
                     return this.vm_isNew() ? "Create" : "Save";
                 };
-               
+
                 this.vm_onSubmitClick = function () {
+                     //debugger;
                     var that = this;
+                    if(that.additionalNotes == ""){
+                         var addnotes = $(".consultation-note__textarea").val();
+                         that.additionalNotes = addnotes;
+                    }
                      this._dialogChanged = false;
                     if (!this.isLoading) {
                         this.set("isError", false);
