@@ -1446,10 +1446,10 @@ var setUserVars = function() {
                 this.vm_onSubmitClick = function() {
                      //debugger;
                     var that = this;
-                    if(that.additionalNotes == ""){
+                    //if(that.additionalNotes == ""){
                          var addnotes = $(".consultation-note__textarea").val();
                          that.additionalNotes = addnotes;
-                    }
+                    //}
 
                     //$patientSelfSchedulingHub.bookSlot(this.availabilityBlockId,  $timeUtils.dateToString(this.start), $timeUtils.dateToString(this.end));
                     if (!this.isLoading) {
