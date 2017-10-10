@@ -70,8 +70,8 @@
                   <p class="pathead">With</p>
                   <h2 class="appfname"><span >{{scheduledDoctorDetails[0].fullName}}</h2>
                   <span class="appfloat"><i class="icon ion-chevron-right " style="display: none;"></i></span>
-                  <span class="encountercalicon ">
-                    <i ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
+                  <span class="encounterappticon" style="top: 2px !important;">
+                    <i class="iconAlignment" ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
 
                   <p class="patage" style="margin-top:-22px !important;">{{scheduledDoctorDetails[0].gender}} <span> .</span> {{scheduledDoctorDetails[0].dob | ageFilter}}</p>
               </div>
@@ -83,8 +83,8 @@
                      <p class="pathead">With</p>
                      <h2 class="appfname"><span >{{scheduledDoctorDetails[0].fullName}}</h2>
                      <span class="appfloat"><i class="icon ion-chevron-right " style="display: none;"></i></span>
-                     <span class="encountercalicon " >
-                       <i ng-bind-html="drawSVGCIcon('phone')"></i> </span>
+                     <span class="encounterappticon" style="top: 2px !important;" >
+                       <i  class="iconAlignment" ng-bind-html="drawSVGCIcon('phone')"></i> </span>
                      <p class="patage" style="margin-top:-22px !important;">{{scheduledDoctorDetails[0].gender}} <span> .</span> {{scheduledDoctorDetails[0].dob | ageFilter}}</p>
                  </div>
               </a>
@@ -183,7 +183,7 @@
      <a style="text-align: center; width: 100%;  position: relative; top: 18px;" ng-click="enterWaitingRoom(appointmentsPatientImage,appointmentsPatientFirstName,appointmentsPatientLastName,appointmentsPatientDOB,appointmentsPatientGurdianName,appointmentId,appointPersonId)">
 
 				<h1 class="title enterAppoint-{{deviceName}}" id="centercolorforEnterAppointment" >     <span style="padding:4px;" >
-              <i ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>Enter Appointment</h1>
+              <i ng-bind-html="drawSVGCIcon('video_camera')"></i> </span> <span class="enterTextAppoint">Enter Appointment</span></h1>
 			</a>
 
 
