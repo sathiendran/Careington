@@ -3354,7 +3354,20 @@ $rootScope.checkAndChangeMenuIcon = function() {
             accessToken: $rootScope.accessToken,
             consultationId: $rootScope.videoWaitingConsultentDetails[0].consultationId,
             success: function(data) {
-                $scope.doGetlocationResponse();
+              if (ionic.Platform.is('browser') !== true) {
+                  navigator.notification.alert(
+                      'Consultation saved successfully!', // message
+                      function() {
+                          $scope.doGetlocationResponse();
+                          return;
+                      },
+                      $rootScope.alertMsgName, // title
+                      'Done' // buttonName
+                  );
+                  return false;
+                } else {
+                  $scope.doGetlocationResponse();
+                }
             },
             error: function(data, status) {
               if (status === 0) {
@@ -3364,7 +3377,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                 $scope.callServiceUnAvailableError();
               } else {
                   navigator.notification.alert(
-                      'Failed to save consultation.', // message
+                      'Failed to save consultation!', // message
                       function() {
                           $scope.doGetlocationResponse();
                           return;

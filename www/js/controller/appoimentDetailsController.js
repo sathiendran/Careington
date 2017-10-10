@@ -4,8 +4,7 @@ angular.module('starter.controllers')
 .controller('appoimentDetailsCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar) {
  // $('link[src="css/styles.v3.less.dynamic.css"]').remove();
   //     $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-  $("link[href*='css/styles.v3.less.dynamic.css']").prop('disabled', true);
-$("link[href*='css/styles.v3.less.dynamic.css']").remove();
+  $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
 
     $ionicPlatform.registerBackButtonAction(function() {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
@@ -469,13 +468,15 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
     };
 
 
-    if($stateParams.getPage === 'webSSAppointUpdate'){
-      $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-      if($rootScope.chkSSPageEnter) {
-          $ionicSideMenuDelegate.toggleLeft();
-          $rootScope.chkSSPageEnter = false;
+    if(typeof $stateParams.getPage != 'undefined'){
+      if($stateParams.getPage.indexOf("webSSAppointUpdate") > -1) {
+          $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+          if($rootScope.chkSSPageEnter) {
+              $ionicSideMenuDelegate.toggleLeft();
+              $rootScope.chkSSPageEnter = false;
+          }
+          $scope.doGetSelectedappoimentDetails(sessionStorage.getItem("SSscheduledAppointmentId"));
       }
-      $scope.doGetSelectedappoimentDetails(sessionStorage.getItem("SSscheduledAppointmentId"));
     };
 
     $scope.$on("callAppointmentConsultation", function(event, args) {

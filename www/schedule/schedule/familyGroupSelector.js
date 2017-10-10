@@ -389,8 +389,8 @@
                             // phone-type consultation is automatically created in api
                             var isHomePage = window.location.href.toLowerCase().indexOf(snap.getPatientHome().toLowerCase()) >= 0;
                             if (!isHomePage) {
-                                window.location.href = snap.getPatientHome();
-                                window.location.reload();
+                              //  window.location.href = snap.getPatientHome();
+                              //  window.location.reload();
                             }
                             dfd.resolve();
                         } else {

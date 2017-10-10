@@ -1312,9 +1312,10 @@ var setUserVars = function() {
                         if (!that.vm_isNew()) {
                             sessionStorage.setItem('ssAppointUpdate', 'yes');
                             $snapNotification.success(that._typeName + " updated successfully");
+                            var aa1 = (new Date).getTime();
                             setTimeout(function() {
-                            //  $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-                              location.href = "#/tab/appoimentDetails/webSSAppointUpdate";
+                              $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+                              location.href = "#/tab/appoimentDetails/webSSAppointUpdate"+ aa1;
                             }, 3000);
                         }
                         that.set("isError", false);
