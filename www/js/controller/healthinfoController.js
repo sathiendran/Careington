@@ -726,9 +726,11 @@ $scope.editDob=function(){
                 }
               } else {
                 $rootScope.patAllIdentifier =   $rootScope.listOfPatientIdentifiers;
+                $scope.total_patients =  $rootScope.listOfPatientIdentifiers.length;
               }
             } else {
               $rootScope.patAllIdentifier =   $rootScope.listOfPatientIdentifiers;
+              $scope.total_patients =  $rootScope.listOfPatientIdentifiers.length;
             }
 
 
@@ -1934,7 +1936,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
           $rootScope.CurPatientidCount = $rootScope.currentPatientsearchList.length;
           $scope.data.searchProvider = '';
           if($scope.updationListLength != 0) {
-              if($rootScope.PatidentifierCount == 0){
+              if($rootScope.PatidentifierCount == 0 || typeof $rootScope.PatidentifierCount == 'undefined'){
                     $scope.clearSelectionAndRebindpatSelectionList($rootScope.PatientidupdateList, $rootScope.currentPatientsearchList);
               }else{
                   $scope.clearSelectionAndRebindpatapiSelectionList($rootScope.PatientIdentifiers, $rootScope.currentPatientsearchList);
@@ -2513,14 +2515,14 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         LoginService.deleteAccountCoUser(params);
     }
     $scope.removePatientIdmodal = function() {
-      if($scope.updationListLength != 0) {
+      if($scope.updationListLength != 0 && $rootScope.PatientIdentifiers.length != 0) {
         $rootScope.PatientidupdateList = $rootScope.PatientIdentifiers;
       }
         $scope.modal.remove();
         $scope.cancelshow = true;
     };
     $scope.surgery = {};
-    $rootScope.surgeryYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
+    $rootScope.selectYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
     $scope.showSurgeryPopup = function() {
          //$scope.surgeryDisplayTrue = true;
         $ionicModal.fromTemplateUrl('templates/tab-surgeries.html', {

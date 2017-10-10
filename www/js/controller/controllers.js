@@ -3354,20 +3354,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
             accessToken: $rootScope.accessToken,
             consultationId: $rootScope.videoWaitingConsultentDetails[0].consultationId,
             success: function(data) {
-                  if (ionic.Platform.is('browser') !== true) {
-                      navigator.notification.alert(
-                          'Failed to save consultation.', // message
-                          function() {
-                              $scope.doGetlocationResponse();
-                              return;
-                          },
-                          $rootScope.alertMsgName, // title
-                          'Done' // buttonName
-                      );
-                      return false;
-                  } else {
-                      $scope.doGetlocationResponse();
-                  }
+                $scope.doGetlocationResponse();
             },
             error: function(data, status) {
               if (status === 0) {
@@ -3376,8 +3363,17 @@ $rootScope.checkAndChangeMenuIcon = function() {
               } else if(status === 503) {
                 $scope.callServiceUnAvailableError();
               } else {
-                    $rootScope.serverErrorMessageValidation();
-                }
+                  navigator.notification.alert(
+                      'Failed to save consultation.', // message
+                      function() {
+                          $scope.doGetlocationResponse();
+                          return;
+                      },
+                      $rootScope.alertMsgName, // title
+                      'Done' // buttonName
+                  );
+                  return false;
+              }
             }
         };
         LoginService.deleteWaitingConsultant(params);
@@ -3430,7 +3426,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                             text: '<b>No</b>',
                             onTap: function(e) {
                               //  $scope.showAlert();
-                                //return true;
+                                return true;
                             }
 
                         }, {
@@ -3448,12 +3444,15 @@ $rootScope.checkAndChangeMenuIcon = function() {
                         }, 1794000);
                     confirmPopup.then(function(res) {
                         if (res) {
+                            $rootScope.waitingPopupAvailable = false;
                              $scope.doDeleteWaitingConsultant();
                         } else {
+                          $rootScope.waitingPopupAvailable = true;
                           $scope.doGetWaitingConsultantPatientProfiles();
                         }
                     });
                 } else {
+                    $rootScope.waitingPopupAvailable = false;
                     $scope.doGetlocationResponse();
                 }
             },
@@ -3726,6 +3725,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
                              $rootScope.editplan = "none";
                            //  $rootScope.planchange();
                              $state.go('tab.consultCharge');
+                         } else {
+                             $rootScope.disableAddHealthPlan = "none";
+                             $rootScope.enableAddHealthPlan = "block";
+                             $rootScope.editplan = "none";
+                           //  $rootScope.planchange();
+                             $state.go('tab.consultCharge');
                          }
                     } else {
                          if ($rootScope.currState.$current.name === "tab.consultCharge") {
@@ -3744,6 +3749,9 @@ $rootScope.checkAndChangeMenuIcon = function() {
                          //   $rootScope.planchange();
                             $state.go('tab.consultCharge');
                              $rootScope.editplan = "none";
+                        } else {
+                          $state.go('tab.consultCharge');
+                           $rootScope.editplan = "none";
                         }
                     }
                 } else {
@@ -3761,6 +3769,9 @@ $rootScope.checkAndChangeMenuIcon = function() {
                         $rootScope.editplan = "block";
                     } else if ($rootScope.currState.$current.name === "tab.ConsentTreat") {
                     //   $rootScope.planchange();
+                       $state.go('tab.consultCharge');
+                        $rootScope.editplan = "none";
+                   } else {
                        $state.go('tab.consultCharge');
                         $rootScope.editplan = "none";
                    }
@@ -5576,7 +5587,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 $rootScope.CurrentMedicationList = $rootScope.currentMedicationsCodesList;
                 $rootScope.medicationAllergiesCodesList = angular.fromJson(data.data[2].codes);
                 $rootScope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
-                $rootScope.surgeryYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
+                $rootScope.selectYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
 
                 $rootScope.eyeHairEthnicityRelationCodeSets = [];
                 angular.forEach(data.data, function(index) {
@@ -6597,6 +6608,11 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $rootScope.appointmentsPatientId = '';
         $rootScope.getIndividualScheduledList = '';
         $rootScope.individualScheduledList = '';
+        $rootScope.individualNextAppointmentDisplay = 'none';
+        $rootScope.individualwithoutAppointmentDisplay = 'block';
+        $rootScope.accountClinicianFooter = 'block';
+        $rootScope.accountStyle = "";
+        $rootScope.userAccContent = "";
         $rootScope.getIndividualScheduleDetails = [];
         $rootScope.individualScheduledConsultationList = [];
         $rootScope.getIndividualInQueueScheduleDetails = [];
@@ -7968,15 +7984,26 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
     }
 
     $rootScope.EnableBackButton = function() {
-        var currentLocation = window.location;
-        var loc = currentLocation.href;
-        var newloc = loc.split("#");
-        var locat = newloc[1];
-        var sploc = locat.split("/");
-        $rootScope.cuttlocations = sploc[1] + "." + sploc[2];
-        $rootScope.doGetPatientProfiles();
-        //  $rootScope.doGetRelatedPatientProfiles('tab.userhome');
-        $state.go('tab.userhome');
+        if($rootScope.waitingPopupAvailable) {
+            $scope.doGetlocationResponse();
+            var currentLocation = window.location;
+            var loc = currentLocation.href;
+            var newloc = loc.split("#");
+            var locat = newloc[1];
+            var sploc = locat.split("/");
+            $rootScope.cuttlocations = sploc[1] + "." + sploc[2];
+          //  $rootScope.doGetPatientProfiles();
+            //$state.go('tab.userhome');
+          } else {
+            var currentLocation = window.location;
+            var loc = currentLocation.href;
+            var newloc = loc.split("#");
+            var locat = newloc[1];
+            var sploc = locat.split("/");
+            $rootScope.cuttlocations = sploc[1] + "." + sploc[2];
+            $rootScope.doGetPatientProfiles();
+            $state.go('tab.userhome');
+          }
     }
 
     $rootScope.doGetAttachmentURL = function(fileId) {

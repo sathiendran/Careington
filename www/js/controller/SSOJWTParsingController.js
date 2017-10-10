@@ -737,7 +737,7 @@ angular.module('starter.controllers')
                 $rootScope.CurrentMedicationList = $rootScope.currentMedicationsCodesList;
                 $rootScope.medicationAllergiesCodesList = angular.fromJson(data.data[2].codes);
                 $rootScope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
-                $rootScope.surgeryYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
+                $rootScope.selectYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
                 $rootScope.eyeHairEthnicityRelationCodeSets = [];
                 angular.forEach(data.data, function(index) {
                     $rootScope.eyeHairEthnicityRelationCodeSets.push({
