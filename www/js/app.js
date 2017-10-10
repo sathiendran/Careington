@@ -470,6 +470,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 $('.popup-title').addClass("iettitle");
                 $('.popup-buttons').addClass("ietpopup-buttons");
                 $('.dialogbox--person-location').css("visibility", "hidden");
+                $('#scd-bdy').css("visibility", "hidden");
                 $rootScope.alertPopupA = function() {
                       $rootScope.flagpopup=false;
                        var myPopup = $ionicPopup.show({
@@ -493,6 +494,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                        $rootScope.closepopup = function() {
                            myPopup.close();
                            $('.dialogbox--person-location').css("visibility", "visible");
+                           $('#scd-bdy').css("visibility", "visible");
                            $rootScope.flagpopup = true;
                        }
                  }
@@ -577,6 +579,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                                $('.popup-title').addClass("iettitle");
                                $('.popup-buttons').addClass("ietpopup-buttons");
                                $('.dialogbox--person-location').css("visibility", "hidden");
+                               $('#scd-bdy').css("visibility", "hidden");
                              $rootScope.alertPopupA = function() {
                                    $rootScope.flagpopup=false;
                                     var myPopup = $ionicPopup.show({
@@ -602,6 +605,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                                     $rootScope.closepopup = function() {
                                         myPopup.close();
                                          $('.dialogbox--person-location').css("visibility", "visible");
+                                         $('#scd-bdy').css("visibility", "visible");
                                         $rootScope.flagpopup = true;
                                     }
                               }

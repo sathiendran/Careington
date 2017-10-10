@@ -301,8 +301,8 @@ snap.namespace("snap.patient")
             }
            //  location.href = snap.patientLogin();
            this.closeNav();
-           window.location.href = snap.redirctPage;
-           window.location.reload(true);
+          // window.location.href = snap.redirctPage;
+          // window.location.reload(true);
             //return false;
 
         };

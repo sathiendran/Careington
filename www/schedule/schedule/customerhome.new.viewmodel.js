@@ -1149,6 +1149,9 @@ var setUserVars = function() {
 
                     this.patientsSelector.refresh();
                     this.patientsSelector.set("isSelectorLocked", this.isReadOnly);
+                    if(sessionStorage.getItem('chkSSAddOrEdit') === 'Edit') {
+                        this.patientsSelector.set("isSelectorLocked", 'true');
+                    }
                     this.set("vm_isAddNotesExpanded", !!this.additionalNotes.length);
 
                     this._updateProviderEventTime();

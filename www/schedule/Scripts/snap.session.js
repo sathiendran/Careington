@@ -87,21 +87,21 @@
 
                 $("#btn-sessionLogout").on("click", function () {
                     clearTimeout(timeout);
-                    window.location.href = snap.redirctPage;
-                    window.location.reload(true);
+                  //  window.location.href = snap.redirctPage;
+                  //  window.location.reload(true);
                 });
             }
         },
 
         redirectTimeout: function () {
             timeout = setTimeout(function () {
-                 window.location.href = snap.redirctPage;
-                window.location.reload(true);
+                // window.location.href = snap.redirctPage;
+              //  window.location.reload(true);
             }, 110000);
         },
         redirectToLogin: function () {
-             window.location.href = snap.redirctPage;
-             window.location.reload(true);
+            // window.location.href = snap.redirctPage;
+            // window.location.reload(true);
         },
 
         cancelTimeout: function () {

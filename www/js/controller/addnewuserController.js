@@ -150,22 +150,13 @@ angular.module('starter.controllers')
         }, 100);
 
         $scope.goTOSchedule = function() {
-          if($rootScope.online) {
-              $('<link/>', {
-                  rel: 'stylesheet',
-                  type: 'text/css',
-                  href: 'css/styles.v3.less.dynamic.css'
-              }).appendTo('head');
-              //  $state.go('tab.providerSearch', { viewMode : 'all' });
-              $state.go('tab.providerSearch');
-            } else {
-                navigator.notification.alert(
-                    'Please make sure that you have network connection.',
-                    $rootScope.alertMsgName, // title
-                    'Done' // buttonName
-                );
-                return false;
-            }
+          $('<link/>', {
+              rel: 'stylesheet',
+              type: 'text/css',
+              href: 'css/styles.v3.less.dynamic.css'
+          }).appendTo('head');
+          //  $state.go('tab.providerSearch', { viewMode : 'all' });
+          $state.go('tab.providerSearch');
         }
 
   });

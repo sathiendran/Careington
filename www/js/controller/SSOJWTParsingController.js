@@ -5,6 +5,7 @@ angular.module('starter.controllers')
         $rootScope.APICommonURL = apiCommonURL;
     }
     $window.localStorage.setItem('ChkVideoConferencePage', "");
+    $rootScope.online = navigator.onLine;
     $rootScope.is_iPadDeviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     $ionicPlatform.registerBackButtonAction(function() {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
@@ -383,7 +384,7 @@ angular.module('starter.controllers')
       }
         var params = {
             patientId: $rootScope.primaryPatientId,
-            accessToken: $rootScope.accessToken,            
+            accessToken: $rootScope.accessToken,
             userTimeZoneId: $rootScope.userTimeZoneId,
             success: function(data) {
                 if (data !== "") {

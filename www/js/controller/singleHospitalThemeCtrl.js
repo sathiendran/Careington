@@ -6,6 +6,7 @@ angular.module('starter.controllers')
         template: '<img src="img/puff.svg" alt="Loading" />'
     });
     $rootScope.customerSso = '';
+    $rootScope.online = navigator.onLine;
 
     if (deploymentEnvLogout === 'Single') {
         if (deploymentEnvForProduction === 'Production') {

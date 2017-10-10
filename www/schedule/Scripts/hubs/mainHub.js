@@ -97,10 +97,10 @@
                         notificationIsActive = true;
 
                         navigator.notification.alert(
-                            'Connection to the system is lost. Do you want to logged out the app', // message
+                            'Connection to the system is lost.', // message
                             function() {
-                                 window.location.href = snap.redirctPage;
-                                window.location.reload(true);
+                                // window.location.href = snap.redirctPage;
+                                //window.location.reload(true);
                             },
                             snap.appName, // title
                             'Done' // buttonName

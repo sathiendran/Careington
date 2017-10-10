@@ -194,9 +194,8 @@
                                         </div>
                                     </div>
                                     <div class="consultation-note__drop">
-                                        <textarea name="" id="" class="consultation-note__textarea js-autoresize-textarea" placeholder="Enter Additional Notes..." data-bind="value: additionalNotes, invisible: isReadOnly, events:{keyup: vm_onKeyUpAdditionalNotes}"></textarea>
-
-                                        <textarea disabled name="" id="" class="consultation-note__textarea js-autoresize-textarea" data-bind="html: additionalNotes, visible: isReadOnly"></textarea>
+                                      <textarea name="" id="" class="consultation-note__textarea js-autoresize-textarea" placeholder="Enter Additional Notes..." data-bind="value: additionalNotes, invisible: isReadOnly, events:{keyup: vm_onKeyUpAdditionalNotes}" style="overflow: hidden; word-wrap: break-word; height: 160px;"></textarea>
+                                      <textarea disabled="" name="" id="" class="consultation-note__textarea js-autoresize-textarea" data-bind="html: additionalNotes, visible: isReadOnly" style="overflow-x: hidden; word-wrap: break-word; overflow-y: visible; height: auto;"></textarea>
                                     </div>
                                 </div>
                             </div>
