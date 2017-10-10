@@ -102,14 +102,14 @@
                             case 2:
                                 snapSuccess('Your email has been changed and a confirmation email has sent to your email. Please check your email and confirm new changes.');
                                 setTimeout(function () {
-                                    window.location.href = snap.patientLogin();
+                                  //  window.location.href = snap.patientLogin();
                                 }, 10000);
                                 break;
                             case 0:
                                 snapError("Email Id already registered.");
                                 break;
                             case 1:
-                                window.location.reload();
+                              //  window.location.reload();
                                 break;
                             default:
                                 snapError("Unable to save your changes");
@@ -123,7 +123,7 @@
                 function (a) {
                     hideSpinner();
                     if (a.status === 401) {
-                        window.location.href = snap.patientLogin();
+                      //  window.location.href = snap.patientLogin();
                     } else if (a.status === 404) {
                         snapError("Patient profile associated with this account is not found");
                     } else {

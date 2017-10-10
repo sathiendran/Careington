@@ -75,7 +75,7 @@
                     global.snapInfo("You might have logged in on another device.");
                     window.console.log("You might have logged in on another device. IP: " + ip);
                     setTimeout(function() {
-                        window.location.href = loginPath;
+                      //  window.location.href = loginPath;
                     }, redirectingTimeInSeconds * 1000);
                 };
 
@@ -90,7 +90,7 @@
                     msg += "<b>You will be logged out in " + redirectingTimeInSeconds + " seconds.</b>";
                     global.snapAnnouncement(msg);
                     setTimeout(function() {
-                        window.location.href = loginPath;
+                        //window.location.href = loginPath;
                     }, redirectingTimeInSeconds * 1000);
                 };
 
