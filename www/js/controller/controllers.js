@@ -2917,7 +2917,6 @@ $rootScope.checkAndChangeMenuIcon = function() {
     }
 
     $scope.goTOSchedule = function() {
-            if($rootScope.online) {
                 $('<link/>', {
                     rel: 'stylesheet',
                     type: 'text/css',
@@ -2925,14 +2924,6 @@ $rootScope.checkAndChangeMenuIcon = function() {
                 }).appendTo('head');
                 //  $state.go('tab.providerSearch', { viewMode : 'all' });
                 $state.go('tab.providerSearch');
-              } else {
-                  navigator.notification.alert(
-                      'Please make sure that you have network connection.',
-                      $rootScope.alertMsgName, // title
-                      'Done' // buttonName
-                  );
-                  return false;
-              }
     }
 
     $rootScope.doGetRequiredPatientProfiles = function(patientId, chkPreviousPage, cutlocations, authen) {
@@ -3363,7 +3354,20 @@ $rootScope.checkAndChangeMenuIcon = function() {
             accessToken: $rootScope.accessToken,
             consultationId: $rootScope.videoWaitingConsultentDetails[0].consultationId,
             success: function(data) {
-                $scope.doGetlocationResponse();
+                  if (ionic.Platform.is('browser') !== true) {
+                      navigator.notification.alert(
+                          'Failed to save consultation.', // message
+                          function() {
+                              $scope.doGetlocationResponse();
+                              return;
+                          },
+                          $rootScope.alertMsgName, // title
+                          'Done' // buttonName
+                      );
+                      return false;
+                  } else {
+                      $scope.doGetlocationResponse();
+                  }
             },
             error: function(data, status) {
               if (status === 0) {
@@ -3425,10 +3429,10 @@ $rootScope.checkAndChangeMenuIcon = function() {
                         buttons: [{
                             text: '<b>No</b>',
                             onTap: function(e) {
-
-                                $scope.showAlert();
-                                return true;
+                              //  $scope.showAlert();
+                                //return true;
                             }
+
                         }, {
                             text: '<b>Yes</b>',
                             type: 'button-positive',
@@ -4200,7 +4204,7 @@ $scope.EditHealth = {};
             if($rootScope.userDefaultPaymentProfileText != null && typeof $rootScope.userDefaultPaymentProfileText != 'undefined' && $rootScope.userDefaultPaymentProfileText != 'undefined') {
                  $rootScope.editCardStyle = "block";
             } else {
-			 $rootScope.editCardStyle ="none";
+			           $rootScope.editCardStyle ="none";
             }
         } else {
             if ($('option:selected', this).text() === 'Choose Your Card') {
@@ -4310,6 +4314,7 @@ $scope.EditHealth = {};
     }
 
     $scope.showConsultChargeNoPlan = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Page) {
+      $rootScope.checkHealthSectionOn = true;
       if($rootScope.appointmentwaivefee == true) {
           $rootScope.enableInsuranceVerificationSuccess = "none";
           $rootScope.enablePaymentSuccess = "none";
@@ -4344,7 +4349,7 @@ $scope.EditHealth = {};
           $rootScope.copayAmount = $rootScope.consultationAmount;
           $rootScope.healthPlanPage = "none";
           $rootScope.consultChargeNoPlanPage = "block";
-  		  if($rootScope.userDefaultPaymentProfile == null)
+  		  if($rootScope.userDefaultPaymentProfile == null || ($('#addNewCard').val() == 'Choose Your Card'))
           {
             $rootScope.editCardStyle = "none";
           }else {
@@ -4396,9 +4401,25 @@ $scope.EditHealth = {};
     }
 
     $scope.goToPreviosPage = function() {
-        $rootScope.consultChargeNoPlanPage = "none";
-        $rootScope.healthPlanPage = "block";
-        $state.go('tab.' + $rootScope.cardPage);
+        if($rootScope.checkHealthSectionOn) {
+            $rootScope.consultChargeNoPlanPage = "none";
+            $rootScope.healthPlanPage = "block";
+            $state.go('tab.' + $rootScope.cardPage);
+        } else {
+          if (($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode === 'on' && $rootScope.Cttonscheduled === 'on') || ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on' && $rootScope.Cttonscheduled === 'on')) {
+              $state.go('tab.ConsentTreat');
+          } else if (($rootScope.healthPlanPage === "block" && $rootScope.Cttonscheduled === 'on') || ($rootScope.paymentBackPage === true && $rootScope.Cttonscheduled === 'on')) {
+              $state.go('tab.ConsentTreat');
+          } else if ($rootScope.Cttonscheduled !== 'on'){
+              if($rootScope.concentToTreatPreviousPage === "tab.CurrentMedication") {
+                  $state.go('tab.ConsentTreat');
+              } else {
+                  $state.go($rootScope.concentToTreatPreviousPage);
+              }
+          } else {
+            $state.go('tab.userhome');
+          }
+        }
     }
 
 
@@ -4930,6 +4951,7 @@ $scope.EditHealth = {};
 
         if (typeof $scope.cardPaymentId.addNewCard !== 'undefined') {
             if(pageName === 'consulCharge') {
+              $rootScope.cardPage = "consultCharge";
               var insplanCrdVal = $('#addNewCard').val();
               if($rootScope.userDefaultPaymentProfileText != null && typeof $rootScope.userDefaultPaymentProfileText != 'undefined')
               {
@@ -4939,6 +4961,7 @@ $scope.EditHealth = {};
                 }
 
             } else if(pageName === 'addNewCard') {
+                  $rootScope.cardPage = "addCard";
               var insplanCrdVal = $('#addNewCard_addCard').val();
               if($rootScope.userDefaultPaymentProfileText != null && typeof $rootScope.userDefaultPaymentProfileText != 'undefined')
               {

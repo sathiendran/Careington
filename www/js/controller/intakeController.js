@@ -819,6 +819,7 @@ $scope.locat=false;
             success: function(data) {
                 $rootScope.appointmentwaivefee = '';
                 $rootScope.OnDemandConsultationSaveResult = data.data[0];
+                $rootScope.checkHealthSectionOn = false;
                 $rootScope.consultationAmount = $rootScope.OnDemandConsultationSaveResult.consultationAmount;
                 $rootScope.copayAmount = $rootScope.OnDemandConsultationSaveResult.consultationAmount;
                 $rootScope.consultationId = $rootScope.OnDemandConsultationSaveResult.consultationId;
@@ -1532,12 +1533,14 @@ $scope.locat=false;
                           $('#addNewCard_addCard').val('Choose Your Card');
                           $('#addNewCard_submitPay').val('Choose Your Card');
                           $rootScope.userDefaultPaymentProfileText = null;
+                          $rootScope.editCardStyle ="none";
                       } else {
                           $('#addNewCard').val($rootScope.userDefaultPaymentProfile);
                           $('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
                           $('#addNewCard_submitPay').val($rootScope.userDefaultPaymentProfile);
                           $rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
                           $scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
+                          $rootScope.editCardStyle = "block";
                       }
                       $rootScope.doGetPatientPaymentProfiles();
                     }
@@ -1636,12 +1639,14 @@ $scope.locat=false;
                       $('#addNewCard_addCard').val('Choose Your Card');
                       $('#addNewCard_submitPay').val('Choose Your Card');
                       $rootScope.userDefaultPaymentProfileText = null;
+                      $rootScope.editCardStyle ="none";
                   } else {
                       $('#addNewCard').val($rootScope.userDefaultPaymentProfile);
                       $('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
                       $('#addNewCard_submitPay').val($rootScope.userDefaultPaymentProfile);
                       $rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
                       $scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
+                      $rootScope.editCardStyle = "block";
                   }
                   $rootScope.doGetPatientPaymentProfiles();
                 }
@@ -1792,22 +1797,13 @@ $scope.locat=false;
     };
 
     $scope.goTOSchedule = function() {
-      if($rootScope.online) {
-          $('<link/>', {
-              rel: 'stylesheet',
-              type: 'text/css',
-              href: 'css/styles.v3.less.dynamic.css'
-          }).appendTo('head');
-          //  $state.go('tab.providerSearch', { viewMode : 'all' });
-          $state.go('tab.providerSearch');
-        } else {
-            navigator.notification.alert(
-                'Please make sure that you have network connection.',
-                $rootScope.alertMsgName, // title
-                'Done' // buttonName
-            );
-            return false;
-        }
+        $('<link/>', {
+            rel: 'stylesheet',
+            type: 'text/css',
+            href: 'css/styles.v3.less.dynamic.css'
+        }).appendTo('head');
+        //  $state.go('tab.providerSearch', { viewMode : 'all' });
+        $state.go('tab.providerSearch');
     }
 
 
