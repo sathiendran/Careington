@@ -29,8 +29,8 @@ $.extend(snap.util,
         }).fail(function (xhr) {
             if (xhr.status == 401) {
               //  window.location = snap.patientLogin();
-              window.location.href = snap.redirctPage;
-              window.location.reload(true);
+            //  window.location.href = snap.redirctPage;
+            //  window.location.reload(true);
             }
             if (!snap.userAborted(xhr) && xhr.status == 0 && xhr.readyState == 0) {
               //  snapInfo("Internet connection lost.");

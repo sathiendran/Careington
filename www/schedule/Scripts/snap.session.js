@@ -27,7 +27,7 @@
             //return snap.patientLogin();
               return snap.redirctPage;
         } else {
-            return snap.redirctPage;
+          //  return snap.redirctPage;
         }
 
     };

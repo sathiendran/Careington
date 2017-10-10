@@ -41,7 +41,7 @@
                                  </select>
                                  /&nbsp;
                                  <select id="dateStringYear_{{$index}}" name="dateStringYear" class="surgeryYear" >
-                                    <option ng-repeat="surgeryYear in surgeryYearsList" value="{{surgeryYear.value}}" ng-selected="surgeryYear.text === surgery.year">
+                                    <option ng-repeat="surgeryYear in selectYearsList" value="{{surgeryYear.value}}" ng-selected="surgeryYear.text === surgery.year">
                                        <b><span class="priorValueDate">{{surgeryYear.text }}</span></b>
                                     </option>
                                  </select>
@@ -67,7 +67,7 @@
                           </select>
                           /&nbsp;
                           <select id="dateStringYear" name="dateStringYear" ng-model="surgery.dateStringYear" class="surgeryYear" >
-                             <option ng-repeat="surgeryYear in surgeryYearsList" value="{{surgeryYear.value}}">
+                             <option ng-repeat="surgeryYear in selectYearsList" value="{{surgeryYear.value}}">
                                 <b><span class="priorValueDate">{{surgeryYear.text }}</span></b>
                              </option>
                           </select>
