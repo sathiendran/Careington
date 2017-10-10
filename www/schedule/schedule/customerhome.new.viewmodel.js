@@ -1444,7 +1444,13 @@ var setUserVars = function() {
                     return this.vm_isNew() ? true : this.isReadOnly ? true : false;
                 };
                 this.vm_onSubmitClick = function() {
+                     //debugger;
                     var that = this;
+                    if(that.additionalNotes == ""){
+                         var addnotes = $(".consultation-note__textarea").val();
+                         that.additionalNotes = addnotes;
+                    }
+
                     //$patientSelfSchedulingHub.bookSlot(this.availabilityBlockId,  $timeUtils.dateToString(this.start), $timeUtils.dateToString(this.end));
                     if (!this.isLoading) {
                         this.set("isError", false);
