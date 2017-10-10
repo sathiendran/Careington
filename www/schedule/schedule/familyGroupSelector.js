@@ -1831,6 +1831,36 @@
                 this.setInitialFocus = function () {
                     $(".directory__opener").first().focus();
                 };
+								this._finishLoading = function () {
+									scope = this;
+									// 1 second timeout to prevent css issues
+									// so that all styles will apply and conrtols will render
+									window.setTimeout(function () {
+											scope.set("vm_isLoading", false);
+											scope.setInitialFocus();
+
+											scope.trigger("change", { field: "vm_primaryConsernId" });
+											scope.trigger("change", { field: "vm_secondaryConsernId" });
+									}, 1000);
+							};
+							this._checkCurrentTime = function() {
+									var dfd = $.Deferred();
+									if (!this.isReadOnly && !this.vm_isNew()) {
+											$userService.getUserCurrentTime().done(function(resp) {
+													var userTime = $timeUtils.dateFromSnapDateString(resp.data[0]);
+													scope.set("isReadOnly", scope.start < userTime);
+													scope.patientsSelector.set("isSelectorLocked", scope.patientsSelector.isSelectorLocked || scope.isReadOnly);
+													scope.trigger("change", {field: "vm_dialogTitle"});
+
+													var userDNATime = userTime.setMinutes(userTime.getMinutes() - 30);
+													scope.set("isFuture", userDNATime <= scope.end);
+													dfd.resolve();
+											});
+									} else {
+											dfd.resolve();
+									}
+									return dfd.promise();
+							}
                 this._finishLoading = function () {
                     scope = this;
                     // 1 second timeout to prevent css issues
@@ -1863,7 +1893,6 @@
                 }
                 this.load = function () {
                     scope = this;
-
                     this._checkCurrentTime().always(function() {
                         // autosize textarea after changing readonly property
                         global.autosize($('.js-autoresize-textarea'));

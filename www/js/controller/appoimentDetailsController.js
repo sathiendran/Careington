@@ -389,8 +389,8 @@ angular.module('starter.controllers')
                       $rootScope.time = new Date(getReplaceTime).getTime();
 
                    $timeout(function() {
-                          document.getElementsByTagName('timer')[0].stop();
-                          document.getElementsByTagName('timer')[0].start();
+                          //document.getElementsByTagName('timer')[0].stop();
+                        //  document.getElementsByTagName('timer')[0].start();
                       }, 10);
 
                       $scope.$on('timer-tick', function(event, args) {

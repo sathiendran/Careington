@@ -209,7 +209,7 @@
         </div>
 
         <div class="dialogbox-master__buttons" >
-            <div data-bind="invisible: isReadOnly">
+          <!--  <div data-bind="invisible: isReadOnly">-->
                 <button style="line-height: 30px;min-height: 30px;" class="button button__red button__red--cancel" tabindex="13" data-bind="
                         visible: vm_isCancelBtnVisible,
                         disabled: isDisabled,
@@ -220,7 +220,7 @@
                         disabled: isDisabled,
                         events: { click: vm_onSubmitClick },
                         css: { is-loading: isLoading, button__red: isError, error: isError, button__green: vm_isNotError, button__gray: isDisabled }"><span data-bind="text:vm_saveBtnTxt"></span></button>
-            </div>
+            <!--</div>-->
 
             <button style="min-height: 30px; line-height: 30px;" class="button button__cancel js-cancel" tabindex="12"  data-bind="events: { click: vm_onCloseClick }" ><span>Close</span></button>
         </div>
