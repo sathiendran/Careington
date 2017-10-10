@@ -2226,10 +2226,10 @@
                 this.vm_onSubmitClick = function () {
 				 //debugger;
                     var that = this;
-				if(that.additionalNotes == ""){
+				//if(that.additionalNotes == ""){
                          var addnotes = $(".consultation-note__textarea").val();
                          that.additionalNotes = addnotes;
-                    }
+                    //}
                     this._dialogChanged = false;
                     if (!this.isLoading) {
                         this.set("isError", false);
