@@ -398,7 +398,7 @@ angular.module('starter.controllers')
 
 var now = new Date();
             var duedate = new Date(now);
-            var stdate = duedate.setDate(now.getDate() - 365);
+            var stdate = duedate.setDate(now.getDate());
             var start = new Date(stdate);
             var day = start.getDate();
             var mnth = start.getMonth() + 1;
