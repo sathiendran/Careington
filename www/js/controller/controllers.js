@@ -1572,10 +1572,14 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
     $scope.goToStore = function() {
       if($rootScope.AndroidDevice) {
-         window.location.href = 'https://play.google.com/store/apps/details?id=com.snap.connectedcare.production';
+        var url = 'https://play.google.com/store/apps/details?id=com.snap.connectedcare.production';
+        // window.location.href = 'https://play.google.com/store/apps/details?id=com.snap.connectedcare.production';
       } else {
-         window.location.href = 'https://itunes.apple.com/us/app/virtual-care/id1035220141?ls=1&mt=8';
+        var url = 'https://itunes.apple.com/us/app/virtual-care/id1035220141?ls=1&mt=8';        
+         //window.location.href = 'https://itunes.apple.com/us/app/virtual-care/id1035220141?ls=1&mt=8';
       }
+        window.open(encodeURI(url), '_system', 'location=yes');
+        return false;
     }
 
 
