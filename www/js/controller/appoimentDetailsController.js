@@ -504,11 +504,11 @@ angular.module('starter.controllers')
 
     $scope.doGeAppointmentExistingConsulatation = function() {
         $rootScope.consultionInformation = '';
-        $rootScope.appointmentsPatientFirstName = '';
-        $rootScope.appointmentsPatientLastName = '';
-        $rootScope.appointmentsPatientDOB = '';
-        $rootScope.appointmentsPatientGurdianName = '';
-        $rootScope.appointmentsPatientImage = '';
+      //  $rootScope.appointmentsPatientFirstName = '';
+      //  $rootScope.appointmentsPatientLastName = '';
+      //  $rootScope.appointmentsPatientDOB = '';
+      //  $rootScope.appointmentsPatientGurdianName = '';
+      //  $rootScope.appointmentsPatientImage = '';
         var params = {
             consultationId: $rootScope.consultationId,
             accessToken: $rootScope.accessToken,
@@ -594,7 +594,7 @@ angular.module('starter.controllers')
       $rootScope.consultionInformation = '';
       $rootScope.appointmentsPatientFirstName = '';
       $rootScope.appointmentsPatientLastName = '';
-      $rootScope.appointmentsPatientDOB = '';
+    //  $rootScope.appointmentsPatientDOB = '';
       $rootScope.appointmentsPatientGurdianName = '';
       $rootScope.appointmentsPatientImage = '';
         var params = {
