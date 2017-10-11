@@ -1429,6 +1429,9 @@ $scope.locat=false;
         "concerns": []
     };
     $rootScope.doPutConsultationSave = function() {
+      if($rootScope.userAgeForIntake == 8  && typeof $rootScope.scheduledConsultSave != 'undefined') {
+        $scope.ConsultationSaveData.infantData = $rootScope.scheduledConsultSave.infantData;
+      }
         for (var i = 0; i < $rootScope.AllegiesCount; i++) {
             $scope.medFilter = $filter('filter')($scope.ConsultationSaveData.medicationAllergies, {
                 code: $rootScope.patinentMedicationAllergies[i].codeId
