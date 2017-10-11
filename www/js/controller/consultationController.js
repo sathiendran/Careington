@@ -643,13 +643,17 @@ angular.module('starter.controllers')
 
                     $rootScope.todayDateForReport = mnth+"/"+day+"/"+year;
 
-                    var usDOB = ageFilter.getDateFilter($rootScope.existingConsultationReport.dob);
-
-                    if (typeof usDOB !== 'undefined' && usDOB !== '') {
-                        $rootScope.userReportDOB = usDOB.search("y");
-                    } else {
-                        $rootScope.userReportDOB = 'None Reported';
+                    if($rootScope.existingConsultationReport.dob !== "" && !angular.isUndefined($rootScope.existingConsultationReport.dob)) {
+                      var ageDifMs = Date.now() - new Date($rootScope.existingConsultationReport.dob).getTime(); // parse string to date
+                      var ageDate = new Date(ageDifMs); // miliseconds from epoch
+                      $scope.userAge = Math.abs(ageDate.getUTCFullYear() - 1970);
+                      if($scope.userAge === 0) {
+                        $rootScope.userReportDOB = $scope.userAge;
+                      } else {
+                        $rootScope.userReportDOB = $scope.userAge;
+                      }
                     }
+                    
                     if (typeof data.data[0].details[0].hospitalImage !== 'undefined' && data.data[0].details[0].hospitalImage !== '') {
                         var hosImage = data.data[0].details[0].hospitalImage;
                         if (hosImage.indexOf(apiCommonURL) >= 0) {
