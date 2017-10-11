@@ -217,12 +217,19 @@ angular.module('starter.controllers')
           $scope.doGetUserTimezone();
         }
 
-        var opt = new snap.patient.schedule.appointmentDialog();
-        opt.openExistedAppointmentDialog(scheduledListData.appointmentId);
-      /*  if (!$mainHub.isHubStarted()) {
-            $mainHub.start();
-            snap.hub.mainHub().stop();
-        }  */
+        snap.resolveObject("snap.patient.schedule");
+        var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
+        var headerVM = snap.resolveObject("snap.patient.PatientHeaderViewModel");
+        kendo.bind($("#scd-bdy"), vm);
+        kendo.bind($(".header__patient-ss"), headerVM);
+
+        if (vm) {
+            var opt = new snap.patient.schedule.appointmentDialog();
+            opt.openExistedAppointmentDialog(scheduledListData.appointmentId);
+            kendo.bind($("#appointDialog"), opt);
+            vm.load();
+        }
+
          $scope.betDelay=false;
     }
 
