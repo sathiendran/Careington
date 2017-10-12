@@ -531,7 +531,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.waitingContentIos = "margin-top: 124px; ";
         $rootScope.BackBotton = "top: 7px; position: relative;";
         $rootScope.Appoinmentwaitcenter = "left: -27px;";
-        $rootScope.PaymentStyle = "top: 11px;";
+        $rootScope.PaymentStyle = "top: 15px;";
         $rootScope.HeadercardDetails = "height: 69px;";
         $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
         $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
@@ -547,7 +547,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.GoogleSearchContent = "top: 55px;";
         $rootScope.NextButtonReduce = "right: 5px;";
         $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 13px;";
-        $rootScope.IntakeFormInnerStyleTitle = "top: 3px;position: relative;";
+        $rootScope.IntakeFormInnerStyleTitle = "top: 18px;position: relative;";
         $rootScope.ContentOverlop = "margin: 147px 0 0 0;";
         $rootScope.ContentConsultCharge = "margin: 141px 0 0 0; padding-top: 43px;";
         $rootScope.usHomeCOntent = "margin: 75px 0 0 0 !important;";
@@ -559,6 +559,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
             $rootScope.PrimaryConcernPopupTitle = "margin-top: 7px; font-family: 'Glober SemiBold'; ";
             $rootScope.PrimaryConcernPopupDone = "margin-top: 10px; padding-right: 0px; padding-left: 0px;padding: 0px;";
+            $rootScope.surgeryConcernPopupDone = "padding-right: 0px; padding-left: 0px;padding: 0px;";
             $rootScope.PriorSurgeryPopupTitle = "margin-top: 16px;";
             $rootScope.PriorSurgeryPopupDone = "margin-top: 21px;";
             $rootScope.PriorSurgeryPopupCancel = "margin-top: 2px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
@@ -589,6 +590,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
             $rootScope.PrimaryConcernPopupTitle = "margin-top: 6px; font-family: 'Glober SemiBold'; ";
             $rootScope.PrimaryConcernPopupDone = "margin-top: 8px; padding-right: 0px; padding-left: 0px;padding: 0px;";
+            $rootScope.surgeryConcernPopupDone = "padding-right: 0px; padding-left: 0px;padding: 0px;";
             $rootScope.PriorSurgeryPopupTitle = "margin-top: 0px;";
             $rootScope.PriorSurgeryPopupDone = "margin-top: 6px;";
             $rootScope.PriorSurgeryPopupCancel = "margin-top: 2px; padding-right: 0px; padding-left: 0px;padding: 0px;";
@@ -1575,7 +1577,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
         var url = 'https://play.google.com/store/apps/details?id=com.snap.connectedcare.production';
         // window.location.href = 'https://play.google.com/store/apps/details?id=com.snap.connectedcare.production';
       } else {
-        var url = 'https://itunes.apple.com/us/app/virtual-care/id1035220141?ls=1&mt=8';        
+        var url = 'https://itunes.apple.com/us/app/virtual-care/id1035220141?ls=1&mt=8';
          //window.location.href = 'https://itunes.apple.com/us/app/virtual-care/id1035220141?ls=1&mt=8';
       }
         window.open(encodeURI(url), '_system', 'location=yes');
@@ -5849,7 +5851,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     var currentDate = new Date();
                     currentDate = $scope.addMinutes(currentDate, -60);
                     angular.forEach($scope.scheduledConsultationList, function(index) {
-                        if (currentDate < CustomCalendar.getLocalTime(index.startTime)) {
+                       // if (currentDate < CustomCalendar.getLocalTime(index.startTime)) {
                             $scope.paticipatingPatient = $filter('filter')(angular.fromJson(index.participants), {
                                 "participantTypeCode": "1"
                             })[0];
@@ -5932,7 +5934,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                                     'status': index.status
                                 });
                             })
-                        }
+                       // }
                     });
 
                     $rootScope.scheduledList = $filter('filter')($filter('orderBy')($rootScope.getScheduledList, "scheduledTime"), "a");

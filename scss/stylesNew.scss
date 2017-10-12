@@ -3,7 +3,7 @@
 margin: 33px 10px !important;
 box-shadow: 0 1px 3px rgba(0, 0, 0, 0) !important;
 }
-.useraddcontent { 
+.useraddcontent {
 margin-top: 125px !important;
 }
 .emailbackground{
@@ -64,7 +64,7 @@ margin-top: 125px !important;
     font-size: 24px !important;
 }
 .consultConMargin {
-    margin: 202px 0 0 0;
+    margin: 216px 0 0 0;
 }
 .passedDate-Android {
     margin-right: 10px;
@@ -84,7 +84,7 @@ margin-top: 125px !important;
     }
 }
 .passedImage-IOS {
-    width: 12% !important;
+    width: 24% !important;
 }
 .passedDate-IOS {
     width: 25% !important;
@@ -98,7 +98,7 @@ margin-top: 125px !important;
     margin-left: 5px !important;
 }
 .passedDetails-IOS {
-    width: 20% !important;
+    width: 22% !important;
     margin-left: 5px !important;
     color: #666666;
     font-family: Glober Regular;
@@ -3798,7 +3798,7 @@ position: relative !important;
 top: -10px !important;
 }
 .passedImage-IOS {
-width: 13%;
+width: 18%;
 margin-top: -15px;
 padding: 7px 0px;
 .consimg {
@@ -3829,7 +3829,7 @@ width: 19%;
 .passedDoc-IOS {
 width: 28%;
 margin-left: 10px;
-margin:3px;
+margin: 0px 3px;
 }
 .passedDoc-Android {
 width: 22%;
@@ -3841,7 +3841,7 @@ width: 17%;
 margin-left: 10px;
 color: #666666;
 font-family: Glober Regular;
-margin:3px;
+margin: 0px 3px;
 }
 .passedDetails-Android {
 width: 17%;
@@ -4483,6 +4483,7 @@ padding: 44px 10px;
 }
 .consultInsuranceTitle {
 border-bottom: 1px solid #C5C5C5;
+padding-top: 10px;
 .concentHealthPlan {}
 }
 .cardSkipPayment {

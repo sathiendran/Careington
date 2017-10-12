@@ -880,6 +880,7 @@ body {
 .calendar_subHeader_height {
     top: 65px !important;
     height: auto !important;
+    padding-bottom: 7px;
     .calendar_subHeader {
         margin: 3px 7px;
         .subHeader_image {
@@ -895,7 +896,7 @@ body {
             .subHeader_content_name {
                 font-size: 21px;
                 margin-left: 7px;
-                margin-top: 8px;
+                margin-top: 9px;
                 .patientName {
                     font-weight: bold;
                     font-family: Glober Bold !important;
@@ -916,7 +917,7 @@ body {
             .subHeader_content_name {
                 font-size: 22px;
                 margin-left: 7px;
-                margin-top: 8px;
+                margin-top: 9px;
                 .patientName {
                     font-weight: bold;
                     font-family: Glober Bold !important;
@@ -1281,13 +1282,13 @@ body {
         font-size: 26px;
         top: -8px;
         position: relative;
-        left: 10px;
+        left: 15px;
         font-family: $fontFamily_semibold;
         font-weight: normal;
     }
 }
 .consultConMargin {
-    margin: 182px 0 0 0;
+    margin: 198px 0 0 0;
 }
 .consultConPaymentMargin {
     margin: 139px 0 0 0;
@@ -2192,7 +2193,7 @@ select {
 }
 //Patient ConcernsContent
 .ConcernsContent {
-    margin-top: 118px !important;
+    margin-top: 129px !important;
     .PrimaryList {
         top: 3px;
         padding: 1px;
@@ -2713,7 +2714,7 @@ select {
     color: #888;
     float: right;
     margin-right: 15px;
-    margin-top:5px;
+    margin-top:20px;
     font-size: 16px;
 }
 .consentTitle {
@@ -2724,7 +2725,7 @@ select {
     padding-top: 7px;
 }
 .consentSubTitle {
-    margin-top: -8px;
+    margin-top: 22px;
     margin-left: 16px;
     padding-bottom: 0px;
     font-family: $fontFamily_semibold;
@@ -2735,7 +2736,7 @@ select {
     border-bottom: 1px solid #A9ABA7;
 }
 .ConsentContent {
-    margin-top: 177px !important;
+    margin-top: 195px !important;
     .ConsentMessageFirst {
         border-bottom: 1px solid #ddd;
         margin: 12px 10px 10px 10px;
@@ -3139,7 +3140,7 @@ a {
 .bar-subheaderHomeUser {
     height: 63%;
     top: 80px;
-    margin-top: -6px;
+    margin-top: -1px;
 }
 .TitleHomeUser_Sub {
     @include font($fontFamily_bold, bold, 23px);
@@ -4248,6 +4249,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
             font-size: 18px;
             border: none;
             color: #666666;
+            //color: transparent;
         }
 
         .consultHealthPlanDropDown {
@@ -4387,6 +4389,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
             height: 42px;
             font-size: 18px;
             border: none;
+           // color: transparent;
         }
         .consultHealthPlanDropDown {
             z-index: 2;
@@ -4398,7 +4401,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
             text-indent: 0.01px;
             text-overflow: "";
           //  border-radius: 7px;
-            margin-left: 8px;
+          //  margin-left: 8px;
             padding: 6px;
             border-bottom: 1px solid #666666! important;
             border-top: 1px solid #666666! important;
@@ -4441,7 +4444,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
         position: relative;
         height: 50px;
         text-align: center;
-        margin-left: 4px;
+        //margin-left: 4px;
         margin-right: 4px;
         //	margin-left: 50px;
     }
@@ -4933,7 +4936,7 @@ padding: 200px 7px 7px 7px;
     font-size: 145%;
     font-family: Glober Bold;
     .icon-video_camera {
-        font-size: 33px !important;  
+        font-size: 33px !important;
     }
     .enterTextAppoint {
         position: relative;
