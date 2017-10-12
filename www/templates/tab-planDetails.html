@@ -32,11 +32,11 @@
                <div class="planInformation"  style="{{SubDetailsPlanDetails}}; display:{{subdetailsdisplay}}">
                   Enter your health plan information
                </div>
-               <div class="provider planProviderText" style="opacity:{{planverify}};">Select your provider</div>
+               <div class="provider planProviderText" style="opacity:{{planverify}}; margin-left: 6% !important;">Select your provider</div>
                <div class="addHealthPlan_header noPlanContainer-{{deviceName}} planSelectedBox"  >
-                  <div  class="dropdownContainer" style="opacity:{{planverify}}; margin-left: 50px;">
-                     <div class="viewport1">Plan Provider</div>
-                     <select class="healthPlanDropDown" id="Provider" ng-model="AddHealth.Provider" style="border: none; width: 75%; padding-left: 12px;" required>
+                  <div  class="dropdownContainer" style="opacity:{{planverify}}; margin: 0px 5%;">
+                     <!--<div class="viewport1">Plan Provider</div>-->
+                     <select class="healthPlanDropDown" id="Provider" ng-model="AddHealth.Provider" style="border: none; padding-left: 12px;" required>
                         <option value=""><b>Plan Provider</b></option>
                         <option class="planDetailOption" ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}"><b>{{ProviderData.payerName}}</b></option>
                      </select>

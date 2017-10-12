@@ -94,6 +94,12 @@ angular.module('starter.controllers')
               },
               error: function(data) {
                   if(data.statusText.indexOf("has expired") != -1) {
+                       $rootScope.timeNew = 'none';
+                      $rootScope.timeNew1 = 'none';
+                      $('.AvailableIn').hide();
+                      $('.enterAppoinment').hide();
+                      $('.enterAppoinment2').show();
+                      $(".enterAppoinment2").css("display", "block");
                        $scope.ErrorMessage = "This appointment has expired. Please create a new appointment if you still need care!";
                        $rootScope.Validation($scope.ErrorMessage);
                   } else {
