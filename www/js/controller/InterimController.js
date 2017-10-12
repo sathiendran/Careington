@@ -578,6 +578,345 @@ angular.module('starter.controllers')
 
         LoginService.getPatientProfiles(params);
     };
+    $scope.doDeleteWaitingConsultant = function() {
+        var params = {
+            accessToken: $rootScope.accessToken,
+            consultationId: $rootScope.videoWaitingConsultentDetails[0].consultationId,
+            success: function(data) {
+              if (ionic.Platform.is('browser') !== true) {
+                  navigator.notification.alert(
+                      'Consultation saved successfully!', // message
+                      function() {
+                          $scope.doGetlocationResponse();
+                          return;
+                      },
+                      $rootScope.alertMsgName, // title
+                      'Done' // buttonName
+                  );
+                  return false;
+                } else {
+                  $scope.doGetlocationResponse();
+                }
+            },
+            error: function(data, status) {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
+                  navigator.notification.alert(
+                      'Failed to save consultation!', // message
+                      function() {
+                          $scope.doGetlocationResponse();
+                          return;
+                      },
+                      $rootScope.alertMsgName, // title
+                      'Done' // buttonName
+                  );
+                  return false;
+              }
+            }
+        };
+        LoginService.deleteWaitingConsultant(params);
+    }
+    $scope.doGetWaitingRoom = function() {
+        $state.go('tab.waitingRoom');
+    }
+    $scope.enterWaitingRoom = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
+        $rootScope.PatientImageSelectUser = P_img;
+        $rootScope.PatientFirstName = P_Fname;
+        $rootScope.PatientLastName = P_Lname;
+        $rootScope.PatientAge = P_Age;
+        $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
+        $scope.doGetWaitingRoom();
+    }
+    $scope.doGetWaitingConsultantPatientProfiles = function() {
+          var params = {
+              accessToken: $rootScope.accessToken,
+              patientId: $rootScope.videoWaitingConsultentDetails[0].patientId,
+              success: function(data) {
+                      $scope.selectedPatientDetails = [];
+                      angular.forEach(data.data, function(index) {
+                          $scope.selectedPatientDetails.push({
+                            'identifiers': angular.fromJson(index.identifiers),
+                              'account': angular.fromJson(index.account),
+                              'address': index.address,
+                              'addresses': angular.fromJson(index.addresses),
+                              'anatomy': angular.fromJson(index.anatomy),
+                              'countryCode': index.countryCode,
+                              'createDate': index.createDate,
+                              'fieldChangesTrackingDetails': angular.fromJson(index.fieldChangesTrackingDetails),
+                              'dependentRelation': angular.fromJson(index.dependentRelation),
+                              'dob': index.dob,
+                              'gender': index.gender,
+                              'homePhone': index.homePhone,
+                              'lastName': index.lastName,
+                              'location': index.location,
+                              'locationId': index.locationId,
+                              'medicalHistory': angular.fromJson(index.medicalHistory),
+                              'mobilePhone': index.mobilePhone,
+                              'organization': index.organization,
+                              'organizationId': index.organizationId,
+                              'patientName': index.patientName,
+                              'personId': index.personId,
+                              'pharmacyDetails': index.pharmacyDetails,
+                              'physicianDetails': index.physicianDetails,
+                              'schoolContact': index.schoolContact,
+                              'schoolName': index.schoolName
+                          });
+
+                      });
+                      $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
+                      $rootScope.cutaddress = $rootScope.currentPatientDetails[0].address;
+                      $rootScope.PatientIdentifiers = $rootScope.currentPatientDetails[0].identifiers;
+                      $rootScope.PatidentifierCount = $scope.PatientIdentifiers.length;
+                      var cutaddresses = $rootScope.cutaddress.split(",");
+                      $rootScope.stateaddresses = cutaddresses[0];
+                      var date = new Date($rootScope.currentPatientDetails[0].dob);
+                      $rootScope.userDOBDateFormat = date;
+                      $rootScope.userDOBDateForAuthorize = $filter('date')(date, "MM-dd-yyyy");
+                    //  $rootScope.userGender = $rootScope.currentPatientDetails[0].gender;
+                      if ($rootScope.currentPatientDetails[0].gender === 'M' || $rootScope.currentPatientDetails[0].gender === 'Male') {
+                          $rootScope.userGender = "Male";
+                      } else if ($rootScope.currentPatientDetails[0].gender === 'F' || $rootScope.currentPatientDetails[0].gender === 'Female') {
+                          $rootScope.userGender = "Female";
+                      }
+                      $rootScope.userDOB = $rootScope.currentPatientDetails[0].dob;
+                      if($rootScope.primaryPatientId != $rootScope.videoWaitingConsultentDetails[0].patientId) {
+                        $rootScope.patRelationShip = $rootScope.currentPatientDetails[0].dependentRelation.relationship;
+                      } else {
+                        $rootScope.patRelationShip = '';
+                      }
+
+                      $.getScript("lib/jquery.signalR-2.1.2.js", function(data, textStatus, jqxhr) {
+
+                      });
+                      setTimeout(function() {
+                        $scope.enterWaitingRoom($rootScope.currentPatientDetails[0].account.profileImage, $rootScope.currentPatientDetails[0].patientName, $rootScope.currentPatientDetails[0].lastName, $rootScope.currentPatientDetails[0].dob, $rootScope.primaryPatientName)
+                      }, 100);
+              },
+              error: function(data, status) {
+                if (status === 0) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503) {
+                  $scope.callServiceUnAvailableError();
+                } else if (status === 401) {
+                      $scope.ErrorMessage = "You are not authorized to view this account";
+                      $rootScope.Validation($scope.ErrorMessage);
+                  } else {
+                      $rootScope.serverErrorMessageValidation();
+                  }
+              }
+          };
+
+          LoginService.getSelectedPatientProfiles(params);
+      }
+
+    $scope.doGetWaitingConsultent = function() {
+      $rootScope.WaitingConsultentDetails = '';
+      $rootScope.videoWaitingConsultentDetails = '';
+      $rootScope.phoneWaitingConsultentDetails = '';
+        var params = {
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+                if (data.data.length !== 0) {
+                    $state.go('tab.userhome');
+                    $rootScope.WaitingConsultentDetails = [];
+                    angular.forEach(data.data, function(index, item) {
+                        $rootScope.WaitingConsultentDetails.push({
+                            'consultantUserId': index.consultantUserId,
+                            'consultationDateInfo': index.consultationDateInfo,
+                            'consultationId': index.consultationId,
+                            'createdDate': index.createdDate,
+                            'doctorStatus': index.doctorStatus,
+                            'encounterTypeCode': index.encounterTypeCode,
+                            'expireDate': index.expireDate,
+                            'expireDateInfo': index.expireDateInfo,
+                            'isTimeConverted': index.isTimeConverted,
+                            'meetingId': index.meetingId,
+                            'patientId': index.patientId,
+                            'patientStatus': index.patientStatus,
+                            'personId': index.personId,
+                            'status': index.status
+                        });
+                    });
+
+                    $rootScope.videoWaitingConsultentDetails = $rootScope.WaitingConsultentDetails.filter(function(r) { var show = r.encounterTypeCode == 3; return show; });
+                    $rootScope.phoneWaitingConsultentDetails = $rootScope.WaitingConsultentDetails.filter(function(r) { var show = r.encounterTypeCode == 2; return show; });
+                    $rootScope.consultationId = $rootScope.videoWaitingConsultentDetails[0].consultationId;
+                    $rootScope.patientId = $rootScope.videoWaitingConsultentDetails[0].patientId;
+                    deregisterBackButton = $ionicPlatform.registerBackButtonAction(function(e){}, 401);
+
+                    var confirmPopup = $ionicPopup.confirm({
+
+                        title: "<div class='locationtitle appointProgreeTitle'> Appointment in progress </div> ",
+
+                        templateUrl: 'templates/waitingConsultent.html',
+                        cssClass: 'locpopup',
+                        hardwareBackButtonClose: false,
+
+                        buttons: [{
+                            text: '<b>No</b>',
+                            onTap: function(e) {
+                              //  $scope.showAlert();
+                                return true;
+                            }
+
+                        }, {
+                            text: '<b>Yes</b>',
+                            type: 'button-positive',
+                            onTap: function(e) {
+                                //  return true;
+                                //$rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
+                            }
+                        }, ],
+
+                    });
+                    $timeout(function(){
+                     confirmPopup.close();
+                        }, 1794000);
+                    confirmPopup.then(function(res) {
+                        if (res) {
+                            $rootScope.waitingPopupAvailable = false;
+                             $scope.doDeleteWaitingConsultant();
+                        } else {
+                          $rootScope.waitingPopupAvailable = true;
+                          $scope.doGetWaitingConsultantPatientProfiles();
+                        }
+                    });
+                } else {
+                    $rootScope.waitingPopupAvailable = false;
+                    $scope.doGetlocationResponse();
+                }
+            },
+            error: function(data, status) {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              }
+            }
+        };
+
+        LoginService.getWaitingConsultent(params);
+    }
+    $scope.loction = {};
+    $scope.doGetCountryLocations = function() {
+        $rootScope.listOfCountries = '';
+        $rootScope.listOfCountry = '';
+
+        var params = {
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+                $rootScope.listOfCountries = [];
+                $rootScope.listOfCountry = [];
+
+                if (data.data[0] !== '') {
+                    angular.forEach(data.data, function(index) {
+                        $rootScope.listOfCountries.push({
+                            'conditionTypeId': index.conditionTypeId,
+                            'description': index.description,
+                            'createdDate': index.createdDate,
+                            'id': index.id,
+                            'country': angular.fromJson(index.countries)
+
+                        });
+                        angular.forEach(index.countries, function(index) {
+                            $rootScope.listOfCountry.push({
+                                'country': index.country,
+                                'countryCode': index.countryCode,
+                                'region': angular.fromJson(index.regions)
+                            });
+                        });
+
+                    });
+                }
+
+            },
+            error: function(data, status) {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+        LoginService.getListOfCountryLocation(params);
+    }
+    $scope.showAlert = function() {
+        $scope.doGetCountryLocations();
+        $state.go("tab.CurrentLocationlist");
+    };
+
+    var deregisterBackButton;
+    $scope.doGetlocationResponse = function() {
+      var params = {
+          accessToken: $rootScope.accessToken,
+          success: function(data) {
+              if (data.active == true) {
+                  $state.go('tab.userhome');
+
+                  deregisterBackButton = $ionicPlatform.registerBackButtonAction(function(e){}, 401);
+
+                  var confirmPopup = $ionicPopup.confirm({
+
+                      title: "<div class='locationtitle'> Confirm Current Location </div> ",
+
+                      templateUrl: 'templates/currentLocation.html',
+                      cssClass: 'locpopup',
+                      hardwareBackButtonClose: false,
+
+                      buttons: [{
+                          text: '<b>No</b>',
+                          onTap: function(e) {
+
+                              $scope.showAlert();
+                              return true;
+                          }
+                      }, {
+                          text: '<b>Yes</b>',
+                          type: 'button-positive',
+                          onTap: function(e) {
+                              //  return true;
+                              //$rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
+                          }
+                      }, ],
+
+                  });
+                  $timeout(function(){
+                   confirmPopup.close();
+                      }, 1794000);
+                  confirmPopup.then(function(res) {
+                      if (res) {
+                          deregisterBackButton();
+                      } else {
+                          $scope.updateYesCurrentLocation();
+                        //  $rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
+                      }
+                  });
+              } else {
+                  $state.go('tab.userhome');
+              }
+          },
+          error: function(data, status) {
+            if (status === 0) {
+                $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                $rootScope.Validation($scope.ErrorMessage);
+            } else if(status === 503) {
+              $scope.callServiceUnAvailableError();
+            }
+          }
+      };
+
+      LoginService.getLocationResponse(params);
+  }
+
     $scope.doGetRelatedPatientProfiles = function(redirectPage) {
       var params = {
             patientId: $rootScope.patientId,
@@ -621,7 +960,8 @@ angular.module('starter.controllers')
                 });
                 $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
                 if (redirectPage === 'tab.userhome') {
-                    $state.go('tab.userhome');
+                    $scope.doGetWaitingConsultent();
+                    //$state.go('tab.userhome');
                 } else {
                     $scope.doGetExistingConsulatation();
                 }
@@ -925,5 +1265,5 @@ angular.module('starter.controllers')
             $state.go('tab.login');
         }
     }
-    $scope.showAlert = function() {};
+
 })
