@@ -169,7 +169,9 @@ angular.module('starter.controllers')
             $rootScope.APICommonURL = 'https://connectedcare.md';
             $scope.doGetSingleHosInfoForiTunesStage();
       } else {
-        $window.location.reload();
+           $timeout(function() {
+                  $window.location.reload(true);
+              });
         if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
         } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {

@@ -538,7 +538,7 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
                           //var spicdcode = icdcode.split("-");
                           var spicdcode = icdcode.substr(0,icdcode.indexOf('-'));
                           var spicdcodeDesc =  icdcode.substr(icdcode.indexOf('-')+1);
-                          
+
 
                           var icd9code =   index.shortDescription;
                           //var spicd9code = icdcode.split("-");
@@ -620,7 +620,7 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
                           $rootScope.reportMediSnocode = spsnocode;
                           $rootScope.reportMediSnodescription = spsnocodeDes;
 
-                          
+
                         }
                     } else {
                         $rootScope.reportMedicalCodeDetails = 'None Reported';
@@ -852,7 +852,9 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
             "display": "none"
         });
         $ionicBackdrop.release();
-        $window.location.reload();        
+        $timeout(function() {
+               $window.location.reload(true);
+           });        
         if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
         } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {

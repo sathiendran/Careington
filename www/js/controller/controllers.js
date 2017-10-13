@@ -2887,6 +2887,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                     //  $rootScope.doGetRelatedPatientProfiles('tab.userhome');
                 } else {
                     $scope.doGetSingleHospitalRegistrationInformation();
+                     $rootScope.checkedpatientdet = '';
                     $rootScope.primaryPatientId = $rootScope.currentPatientDetails[0].profileId;
                     $state.go('tab.healthinfo');
                     $scope.chkPatientFillDetails = true;

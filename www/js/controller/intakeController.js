@@ -155,7 +155,9 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
             $rootScope.APICommonURL = 'https://connectedcare.md';
             $scope.doGetSingleHosInfoForiTunesStage();
       } else {
-        $window.location.reload();
+           $timeout(function() {
+                  $window.location.reload(true);
+              });
         if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
         } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
