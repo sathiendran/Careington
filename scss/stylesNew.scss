@@ -14,6 +14,17 @@ margin-top: 125px !important;
   font-size:21pz !important;
 }
 @media (max-width: 320px) and (min-width: 315px) {
+     .AppointmentView {
+          visibility: hidden;
+     }
+     .chkiPhoneView {
+          display: none;
+     }
+     .accountAppointview-IOS {
+          .appalignrighticon {
+               visibility: hidden;
+          }
+     }
 .usercontent-IOS {
     margin-top: 32% !important;
     #accountMngeProfile-IOS {

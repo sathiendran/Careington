@@ -54122,11 +54122,11 @@ only screen and (min-width: 541px) {
         height: 100vh
     }
     .dialogbox-master.is-visible {
-        -webkit-transform: translateY(-50%);
-        -moz-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        -o-transform: translateY(-50%);
-        transform: translateY(-50%)
+        -webkit-transform: translateY(30%);
+        -moz-transform: translateY(30%);
+        -ms-transform: translateY(30%);
+        -o-transform: translateY(30%);
+        transform: translateY(30%)
     }
     .dialogbox-master__buttons .button__red::after {
         height: 28px
