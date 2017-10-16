@@ -458,6 +458,7 @@ angular.module('starter.controllers')
     }
     $scope.edittext = function() {
            console.log("Patientlist" + $rootScope.PatientIdentifiers);
+           $rootScope.checkedpatientdet = '';
            if($rootScope.PatientIdentifiers == '' || $rootScope.PatientIdentifiers == 'undefined')
            {
              $rootScope.PatientidupdateList= [];
@@ -488,6 +489,7 @@ angular.module('starter.controllers')
         $scope.healthfoottab=false;
         $scope.healthfootsave=false;
         $scope.updationListLength = 5;
+        $rootScope.PatientidupdateList = [];
           //  $rootScope.getPatientids();
       //  $scope.patientAuthorize = false;
       //$rootScope.patientUnAuthorize = true;
@@ -1936,16 +1938,20 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
           $rootScope.CurPatientidCount = $rootScope.currentPatientsearchList.length;
           $scope.data.searchProvider = '';
           if($scope.updationListLength != 0) {
-              if($rootScope.PatidentifierCount == 0 || typeof $rootScope.PatidentifierCount == 'undefined'){
+              if($rootScope.PatidentifierCount == 0 || typeof $rootScope.PatidentifierCount == 'undefined' || $scope.updationListLength !== 5 || (typeof $rootScope.PatientidupdateList != 'undefined' && $rootScope.PatientidupdateList.length > 0)) {
                     $scope.clearSelectionAndRebindpatSelectionList($rootScope.PatientidupdateList, $rootScope.currentPatientsearchList);
               }else{
                   $scope.clearSelectionAndRebindpatapiSelectionList($rootScope.PatientIdentifiers, $rootScope.currentPatientsearchList);
               }
            }
-        if (typeof $rootScope.PatidentifierCount === 'undefined') {
+        if ((typeof $rootScope.PatidentifierCount === 'undefined' || $scope.updationListLength == 5) && typeof $rootScope.PatientidupdateList != 'undefined') {
             $rootScope.checkedpatientdet = 0;
         } else {
-            $rootScope.checkedpatientdet = $rootScope.PatidentifierCount;
+             if($scope.updationListLength === 5) {
+                  $rootScope.checkedpatientdet = $rootScope.PatidentifierCount;
+             } else {
+                  $rootScope.checkedpatientdet = $scope.updationListLength;
+             }
 
         }
           $ionicModal.fromTemplateUrl('templates/tab-addpatientid.html', {
@@ -2002,6 +2008,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
        $scope.PatientsearchItem = $filter('filter')($rootScope.currentPatientsearchList, {
            checked: true
        });
+       $rootScope.checkedpatientdet = $scope.PatientsearchItem.length;
        if ($scope.PatientsearchItem !== '') {
         // $rootScope.PatientIdentifiers = [];
            $rootScope.patientmedicationsSearch = $scope.PatientsearchItem;
@@ -2022,7 +2029,9 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
            $scope.modal.remove();
            $rootScope.viewpatapiDisplay = 'flex';
            $rootScope.viewpatmodalDisplay = 'none';
-       }
+      } else {
+           $scope.updationListLength = 0;
+      }
 
     }
     $scope.OnSelectPatientdet = function(currentpatientdet) {
@@ -2515,7 +2524,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         LoginService.deleteAccountCoUser(params);
     }
     $scope.removePatientIdmodal = function() {
-      if($scope.updationListLength != 0 && $rootScope.PatientIdentifiers.length != 0) {
+      if($scope.updationListLength === 0 && $rootScope.PatientIdentifiers.length != 0 && $rootScope.checkedpatientdet === '') {
         $rootScope.PatientidupdateList = $rootScope.PatientIdentifiers;
       }
         $scope.modal.remove();
