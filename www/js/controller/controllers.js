@@ -607,7 +607,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -3197,9 +3197,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
     $scope.updateYesCurrentLocation=function(){
       if(typeof $rootScope.patientEncounteraddress === 'undefined' && typeof $rootScope.patientParticularaddress !== 'undefined') {
-         $scope.upcountrystate = $rootScope.stateAddressesCode +","+$rootScope.countryAddressCode;
+      //   $scope.upcountrystate = $rootScope.stateAddressesCode +","+$rootScope.countryAddressCode;
+         $scope.countryRegion = $rootScope.stateAddressesCode;
+         $scope.upcountrystate = $rootScope.countryAddressCode;
       }else if($rootScope.patientEncounteraddress !=='' && typeof $rootScope.patientEncounteraddress !== 'undefined' && $rootScope.encounterstate !== ''){
-          $scope.upcountrystate = $rootScope.encounterStateCode+","+$rootScope.encounterCountryCode;
+          $scope.countryRegion = $rootScope.encounterStateCode;
+          $scope.upcountrystate = $rootScope.encounterCountryCode;
       } else if($rootScope.encountercountry !== '' && $rootScope.encounterstate === '') {
           $scope.upcountrystate = $rootScope.encounterCountryCode;
       } else if(typeof $rootScope.patientEncounteraddress === 'undefined' && typeof $rootScope.patientParticularaddress === 'undefined') {
@@ -3208,6 +3211,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
       var params = {
         accessToken: $rootScope.accessToken,
         countrystate: $scope.upcountrystate,
+        countryRegion: $scope.countryRegion,
         patientID:$rootScope.primaryPatientId,
         //state:  $scope.upstate,
 
@@ -6928,7 +6932,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             }
             angular.forEach($rootScope.listOfLocState[0].region, function(index) {
                 $rootScope.listOfSelectstate.push({
-                    'region': index.region
+                    'region': index.region,
+                    'regionCode': index.regionCode
                 });
                 $scope.currentstateview = true;
             });
@@ -6942,7 +6947,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
     //  $rootScope.upcountry=$( "#country option:selected" ).text();
         $rootScope.upcountry =$rootScope.listOfLocState[0].countryCode;
-      $rootScope.upstate=$( "#state option:selected" ).text();
+      $rootScope.upstate=$( "#state option:selected" ).val();
       $rootScope.statereg=$rootScope.listOfLocState;
       if($rootScope.upcountry == "Select your Country" &&  $rootScope.upstate == "Choose state" && $rootScope.listOfLocState == ""){
         $scope.ErrorMessage = "Please select country";
@@ -6958,13 +6963,15 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
     $scope.updateCurrentLocation = function() {
         if ($rootScope.upcountry != "" && $rootScope.upstate != "Choose state") {
-            $scope.upcountrystate = $rootScope.upcountry + "," + $rootScope.upstate;
+            $scope.upcountrystate = $rootScope.upcountry;
+            $scope.countryRegion = $rootScope.upstate;
         } else if ($rootScope.upcountry != "" && $rootScope.upstate == "Choose state") {
             $scope.upcountrystate = $rootScope.upcountry;
         }
         var params = {
             accessToken: $rootScope.accessToken,
             countrystate: $scope.upcountrystate,
+            countryRegion: $scope.countryRegion,
             patientID:$rootScope.primaryPatientId,
             //state:  $scope.upstate,
 
