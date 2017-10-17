@@ -689,6 +689,10 @@ angular.module('starter.controllers')
         $state.go('tab.providerSearch');
     }
 
+    $scope.goPreviousPageFromAppointDetails = function() {
+        $state.go($rootScope.appointPreviousPage);
+    }
+
     /*if ($rootScope.AppointScheduleTime !== '') {
         setTimeout(function() {
             $rootScope.timeNew = 'none';

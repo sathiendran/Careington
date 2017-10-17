@@ -2710,6 +2710,24 @@ select {
 #dependuserlist {
     margin-top: -2px !important;
 }
+.conTreatSubHead-Android {
+  .consentTitle {
+    margin-top: 136px !important;
+    font-size: 25px !important;
+    margin-left: 15px !important;
+    width: 100%;
+    padding-top: 32px;
+  }
+}
+.conTreatSubHead-IOS {
+  .consentTitle {
+      margin-top: 136px !important;
+      font-size: 25px !important;
+      margin-left: 15px !important;
+      width: 100%;
+      padding-top: 7px;
+  }
+}
 .ConsentSteps {
     color: #888;
     float: right;
@@ -2717,13 +2735,7 @@ select {
     margin-top:20px;
     font-size: 16px;
 }
-.consentTitle {
-    margin-top: 136px !important;
-    font-size: 25px !important;
-    margin-left: 15px !important;
-    width: 100%;
-    padding-top: 7px;
-}
+
 .consentSubTitle {
     margin-top: 22px;
     margin-left: 16px;

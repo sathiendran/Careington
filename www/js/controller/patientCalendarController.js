@@ -161,6 +161,7 @@ angular.module('starter.controllers')
             $rootScope.appointPersonId = '';
             $rootScope.AppointScheduleTime = '';
             $rootScope.scheduledListDatas = scheduledListData;
+            $rootScope.appointPreviousPage = 'tab.appointmentpatientdetails';
             $rootScope.appointmentwaivefee = scheduledListData.waiveFee;
             $rootScope.schedulemobile = scheduledListData.participants[1].person.phones[0].value;
             var currentTime = $rootScope.scheduledListDatas.scheduledTime;
