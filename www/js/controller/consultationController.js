@@ -556,8 +556,16 @@ angular.module('starter.controllers')
                     var DateString = xD.toString(); 
                     var dateSplit = DateString.split('(');
                     var rSpaceofString = dateSplit[1] .split(' ');
-                    var rLastofString = rSpaceofString[2].split(')');
-                    var SystemTimeZone = rSpaceofString[0].charAt(0)+rSpaceofString[1].charAt(0)+rLastofString[0].charAt(0)
+                    if(dateSplit[1].length > 5) 
+                        {
+                            var rLastofString = rSpaceofString[2].split(')');
+                            var SystemTimeZone = rSpaceofString[0].charAt(0)+rSpaceofString[1].charAt(0)+rLastofString[0].charAt(0)
+                        } 
+                        else {
+                            var rLastofString = rSpaceofString[0].split(')');
+                            var SystemTimeZone = rLastofString;
+                        }
+                  
                      $rootScope.sysTimeZone = SystemTimeZone;
                     // End Time Zone //
                     if ($rootScope.existingConsultationReport.consultationDuration !== 0 && typeof $rootScope.existingConsultationReport.consultationDuration !== 'undefined') {
