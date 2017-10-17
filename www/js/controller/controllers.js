@@ -2862,8 +2862,13 @@ $rootScope.checkAndChangeMenuIcon = function() {
                 $rootScope.hasRequiredFields = data.data[0].hasRequiredFields;
                 $rootScope.currentPatientDetails = data.data;;
                   // $rootScope.Country_cod =  $rootScope.currentPatientDetails[0].mobilePhone;
-                $rootScope.Country_codsplit = $rootScope.currentPatientDetails[0].mobilePhone.split('(');
-                $rootScope.countrycodevalue = $rootScope.Country_codsplit[0];
+                if(typeof $rootScope.currentPatientDetails[0].mobilePhone != 'undefined') {
+                  $rootScope.Country_codsplit = $rootScope.currentPatientDetails[0].mobilePhone.split('(');
+                  $rootScope.countrycodevalue = $rootScope.Country_codsplit[0];
+                } else {
+                  $rootScope.Country_codsplit = '';
+                  $rootScope.countrycodevalue = '';
+                }
                 var profileData = {};
                 profileData.firstName = data.data[0].firstName;
                 profileData.fullName = data.data[0].fullName;
@@ -2942,6 +2947,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                 //  $state.go('tab.providerSearch', { viewMode : 'all' });
                 $state.go('tab.providerSearch');
     }
+
 
     $rootScope.doGetRequiredPatientProfiles = function(patientId, chkPreviousPage, cutlocations, authen) {
         if(chkPreviousPage === true) {
@@ -5819,10 +5825,12 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
                      $rootScope.inqueueAppoint = true;
                      $rootScope.doGetScheduledConsulatation(redirectToPage);
+                     $rootScope.doGetScheduledActiveConsultation();
 
                 } else {
                    $rootScope.inqueueAppoint = false;
                    $rootScope.doGetScheduledConsulatation(redirectToPage);
+                   $rootScope.doGetScheduledActiveConsultation();
                 }
             },
             error: function(status) {
@@ -5971,6 +5979,29 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             }
         };
         LoginService.getScheduledConsulatation(params);
+        //LoginService.getScheduledNowPhoneConsulatation(params);
+    }
+
+    $rootScope.doGetScheduledActiveConsultation = function(redirectToPage) {
+        var params = {
+            patientId: $rootScope.primaryPatientId,
+            accessToken: $rootScope.accessToken,
+            userTimeZoneId: $rootScope.userTimeZoneId,
+            success: function(data) {
+
+            },
+            error: function(status) {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+        LoginService.getScheduledActiveConsultation(params);
         //LoginService.getScheduledNowPhoneConsulatation(params);
     }
 
