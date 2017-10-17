@@ -531,7 +531,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.waitingContentIos = "margin-top: 124px; ";
         $rootScope.BackBotton = "top: 7px; position: relative;";
         $rootScope.Appoinmentwaitcenter = "left: -27px;";
-        $rootScope.PaymentStyle = "top: 15px;";
+        $rootScope.PaymentStyle = "padding: 0px; margin-top: 132px;	background-color: #fff; top: 15px;";
         $rootScope.HeadercardDetails = "height: 69px;";
         $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
         $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
@@ -641,6 +641,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.waitingContentIos = "margin-top: 120px; ";
         $rootScope.providerItamMarginTop = "";
         $rootScope.appointCOntent = "margin-top:153px;";
+        $rootScope.PaymentStyle = "padding: 0px; margin-top: 148px;	background-color: #fff; top: 15px;";
     }
     $scope.showSearchInput = function() {
         var searchStyle = $('#divSearchInput').css('display');
@@ -832,20 +833,28 @@ $rootScope.checkAndChangeMenuIcon = function() {
               $rootScope.APICommonURL = 'https://connectedcare.md';
               $scope.doGetSingleHosInfoForiTunesStage('logOut');
         } else {
-             $timeout(function() {
-                    $window.location.reload(true);
-                });
              if (deploymentEnvLogout === "Multiple") {
                  $state.go('tab.chooseEnvironment');
+                 $timeout(function() {
+                        $window.location.reload(true);
+                    });
              } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
                       //$state.go('tab.login');
                       $state.go('tab.singleTheme');
+                      $timeout(function() {
+                             $window.location.reload(true);
+                         });
              }else if (cobrandApp !== 'MDAmerica' && deploymentEnvLogout === "Single") {
                  //$state.go('tab.loginSingle');
                  $state.go('tab.singleTheme');
+                 $timeout(function() {
+                        $window.location.reload(true);
+                    });
              }else {
                 $state.go('tab.login');
-                //$state.go('tab.singleTheme');
+                $timeout(function() {
+                       $window.location.reload(true);
+                   });
              }
         }
         $rootScope.chkSSPageEnter = false;
@@ -7948,11 +7957,13 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $rootScope.doGetScheduledNowPhoneConsulatation();
         $rootScope.doGetListOfCoUsers();
         $scope.getHealthHistoryDetails();
+
         if(fromPreviousPage === 'userHome') {
           $rootScope.userAgeForIntake = '';
           $rootScope.updatedPatientImagePath = '';
           $rootScope.newDependentImagePath = '';
           $rootScope.appointmentDisplay = '';
+          $rootScope.appointPreviousPage = 'tab.userhome';
           if($window.localStorage.getItem("hosNameforCard") === $rootScope.hospitalName) {
             $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
             $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
@@ -7969,6 +7980,9 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
           if($rootScope.patientId !== $rootScope.primaryPatientId) {
             $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
           }
+        }
+        if (fromPreviousPage == "userAccount") {
+            $rootScope.appointPreviousPage = 'tab.userAccount';
         }
         if (fromPreviousPage !== "AppointmentPage") {
             $rootScope.appointmentId = scheduledListData.appointmentId;

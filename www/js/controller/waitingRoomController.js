@@ -169,20 +169,27 @@ angular.module('starter.controllers')
             $rootScope.APICommonURL = 'https://connectedcare.md';
             $scope.doGetSingleHosInfoForiTunesStage();
       } else {
+
+        if (deploymentEnvLogout === "Multiple") {
+            $state.go('tab.chooseEnvironment');
+            $timeout(function() {
+                   $window.location.reload(true);
+               });
+        } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
+                 $state.go('tab.singleTheme');
+                 $timeout(function() {
+                        $window.location.reload(true);
+                    });
+        }else if (cobrandApp !== 'MDAmerica' && deploymentEnvLogout === "Single") {
+            $state.go('tab.singleTheme');
+            $timeout(function() {
+                   $window.location.reload(true);
+               });
+        }else {
+           $state.go('tab.login');
            $timeout(function() {
                   $window.location.reload(true);
               });
-        if (deploymentEnvLogout === "Multiple") {
-            $state.go('tab.chooseEnvironment');
-        } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
-                 //$state.go('tab.login');
-                 $state.go('tab.singleTheme');
-        }else if (cobrandApp !== 'MDAmerica' && deploymentEnvLogout === "Single") {
-            //$state.go('tab.loginSingle');
-            $state.go('tab.singleTheme');
-        }else {
-           $state.go('tab.login');
-           //$state.go('tab.singleTheme');
         }
       }
       $rootScope = $rootScope.$new(true);

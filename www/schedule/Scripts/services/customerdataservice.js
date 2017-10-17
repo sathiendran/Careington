@@ -91,7 +91,7 @@
         this.getPatientCredits = function (patientId) {
             return $.ajax({
                 type: "GET",
-                url: "/api/v2.1/patients/" + patientId + "/payments/credits",
+                url: snap.baseUrl + "/api/v2.1/patients/" + patientId + "/payments/credits",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
             });
@@ -99,7 +99,7 @@
         this.getActiveConsultations = function () {
             return $.ajax({
                 type: "GET",
-                url: "/api/v2/patients/consultations/activeconsultations",
+                url: snap.baseUrl + "/api/v2/patients/consultations/activeconsultations",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
             });
@@ -107,7 +107,7 @@
 
         this.markAppointmentAsFullfilled = function (consultationId) {
             return $.ajax({
-                url: "/api/v2.1/patients/consultations/" + consultationId + "/markasfullfill",
+                url: snap.baseUrl + "/api/v2.1/patients/consultations/" + consultationId + "/markasfullfill",
                 type: "POST",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
@@ -230,7 +230,7 @@
         this.updatePatientResponseAddress = function(address, patientId) {
             return $.ajax({
                 url: [snap.baseUrl, "/api/v2.1/patients/encounter/address?addressText=", address, "&patientId=", patientId].join(""),
-                type: "PUT",                
+                type: "PUT",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
             });
@@ -239,7 +239,7 @@
         this.getProviderLicensePatientAddressMetaRule = function() {
             return $.ajax({
                 url: [snap.baseUrl, "/api/v2.1/admin/rules/patient-provider-license-meta-rules"].join(""),
-                type: "GET",                
+                type: "GET",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
             });
