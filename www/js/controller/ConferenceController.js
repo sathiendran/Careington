@@ -132,6 +132,7 @@ angular.module('starter.controllers')
 
     $rootScope.doGetExistingConsulatationReport = function() {
         $state.go('tab.ReportScreen');
+        $rootScope.sysTimeZone = '';
         $rootScope.userReportDOB = "";
         var params = {
             consultationId: $rootScope.consultationId,
@@ -311,6 +312,17 @@ angular.module('starter.controllers')
                 var startTimeISOString = $rootScope.existingConsultationReport.consultationDate;
                 var startTime = new Date(startTimeISOString);
                 $rootScope.consultationDate = new Date(startTime.getTime() + (startTime.getTimezoneOffset() * 60000));
+
+                 // Add Sakthi //
+                 debugger;
+                 var xD = new Date(startTimeISOString);
+                 var DateString = xD.toString(); 
+                 var dateSplit = DateString.split('(');
+                 var rSpaceofString = dateSplit[1] .split(' ');
+                 var rLastofString = rSpaceofString[2].split(')');
+                 var SystemTimeZone = rSpaceofString[0].charAt(0)+rSpaceofString[1].charAt(0)+rLastofString[0].charAt(0)
+                  $rootScope.sysTimeZone = SystemTimeZone;
+                 // End Time Zone //
 
                 if ($rootScope.existingConsultationReport.consultationDuration !== 0 && typeof $rootScope.existingConsultationReport.consultationDuration !== 'undefined')
                 {

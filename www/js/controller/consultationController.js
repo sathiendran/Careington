@@ -363,6 +363,7 @@ angular.module('starter.controllers')
 
         $rootScope.doGetExistingConsulatationReport = function(consultation, nextPage) {
             $rootScope.consultationDate = '';
+            $rootScope.sysTimeZone = '';
             $rootScope.addNotes = '';
             $rootScope.existingConsultationReport = '';
             $state.go(nextPage);
@@ -549,6 +550,16 @@ angular.module('starter.controllers')
                     var startTime = new Date(startTimeISOString);
                     $rootScope.consultationDate = new Date(startTime.getTime() + (startTime.getTimezoneOffset() * 60000));
                     $rootScope.consultdate =  $rootScope.existingConsultationReport.consultationDate;
+                    // Add Sakthi //
+                    debugger;
+                    var xD = new Date(startTimeISOString);
+                    var DateString = xD.toString(); 
+                    var dateSplit = DateString.split('(');
+                    var rSpaceofString = dateSplit[1] .split(' ');
+                    var rLastofString = rSpaceofString[2].split(')');
+                    var SystemTimeZone = rSpaceofString[0].charAt(0)+rSpaceofString[1].charAt(0)+rLastofString[0].charAt(0)
+                     $rootScope.sysTimeZone = SystemTimeZone;
+                    // End Time Zone //
                     if ($rootScope.existingConsultationReport.consultationDuration !== 0 && typeof $rootScope.existingConsultationReport.consultationDuration !== 'undefined') {
                         $rootScope.displayCOnsultationDuration = "display";
                         var consultationMinutes = Math.floor($rootScope.existingConsultationReport.consultationDuration / 60);
