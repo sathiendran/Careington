@@ -316,17 +316,17 @@ angular.module('starter.controllers')
                  // Add Sakthi //
                  debugger;
                  var xD = new Date(startTimeISOString);
-                 var DateString = xD.toString(); 
+                 var DateString = xD.toString();
                  var dateSplit = DateString.split('(');
                  var rSpaceofString = dateSplit[1] .split(' ');
-                 if(dateSplit[1].length > 5) 
+                 if(dateSplit[1].length > 5)
                      {
                          var rLastofString = rSpaceofString[2].split(')');
                          var SystemTimeZone = rSpaceofString[0].charAt(0)+rSpaceofString[1].charAt(0)+rLastofString[0].charAt(0)
-                     } 
+                     }
                      else {
                          var rLastofString = rSpaceofString[0].split(')');
-                         var SystemTimeZone = rLastofString;
+                         var SystemTimeZone = rLastofString[0].replace(/\"/g, "");
                      }
                   $rootScope.sysTimeZone = SystemTimeZone;
                  // End Time Zone //
@@ -892,7 +892,7 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
            $state.go('tab.login');
            $timeout(function() {
                   $window.location.reload(true);
-              }); 
+              });
         }
     }
 
