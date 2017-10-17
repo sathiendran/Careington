@@ -2897,6 +2897,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                 } else {
                     $scope.doGetSingleHospitalRegistrationInformation();
                      $rootScope.checkedpatientdet = '';
+                     $rootScope.PatientidupdateList = [];
                     $rootScope.primaryPatientId = $rootScope.currentPatientDetails[0].profileId;
                     $state.go('tab.healthinfo');
                     $scope.chkPatientFillDetails = true;
@@ -8237,7 +8238,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
             yearString = "yrs";
             monthString = "m";
-            dayString = "days";
+            //dayString = "days";
+            dayString = "d";
 
             if (age.years === 0) {
                /* if (age.days <= 15) {

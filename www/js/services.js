@@ -2508,7 +2508,8 @@ this.getCountryDetails = function () {
 
 		 yearString = "yrs";
 		 monthString = "m";
-      dayString = "days";
+         //dayString = "days";
+         dayString = "d";
 
 	 if(age.years == 0 ) {
 			/*if(age.days <= 15) {
