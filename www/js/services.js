@@ -431,6 +431,33 @@ angular.module('starter.services', [])
 							});
 	}
 
+	this.getScheduledActiveConsultation = function (params) {
+			var requestInfo = {
+				//	headers: util.getHeaders(params.accessToken),
+					headers: {
+							'Authorization': 'Bearer ' +params.accessToken,
+							'X-Api-Key': util.getHeaders()["X-Api-Key"],
+							'X-Developer-Id': util.getHeaders()["X-Developer-Id"],
+							'Time-Zone': params.userTimeZoneId,
+							'Content-Type': 'application/json; charset=utf-8'
+					},
+		      url: apiCommonURL + '/api/v2/patients/consultations/activeconsultations',
+					method: 'GET'
+			};
+
+			$http(requestInfo).
+							success(function (data, status, headers, config) {
+									if (typeof params.success != 'undefined') {
+											params.success(data);
+									}
+							}).
+							error(function (data, status, headers, config) {
+									if (typeof params.error != 'undefined') {
+										 params.error(data,status);
+									}
+							});
+	}
+
 
 
     this.getScheduledConsulatation = function (params) {
@@ -2015,7 +2042,7 @@ this.getWaitingRoomChatTranscript = function (params) {
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
           //url: apiCommonURL + '/api/v2.1/patients/encounter/address?addressText='+ params.countrystate+'&patientID=' + params.patientID,
-						url: apiCommonURL + '/api/v2.1/patients/encounter/address?patientId='+ params.patientID +'&country='+ params.countrystate,
+						url: apiCommonURL + '/api/v2.1/patients/encounter/address?patientId='+ params.patientID +'&country='+ params.countrystate +'&region='+ params.countryRegion,
             method: 'PUT',
         };
         $http(requestInfo).
