@@ -641,7 +641,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.waitingContentIos = "margin-top: 120px; ";
         $rootScope.providerItamMarginTop = "";
         $rootScope.appointCOntent = "margin-top:153px;";
-        $rootScope.PaymentStyle = "padding: 0px; margin-top: 148px;	background-color: #fff; top: 15px;";
+        $rootScope.PaymentStyle = "padding: 0px; margin-top: 148px;	background-color: #fff; top: -2px;";
+        $rootScope.conChargeMargin = "margin: 206px 0 0 0;";
     }
     $scope.showSearchInput = function() {
         var searchStyle = $('#divSearchInput').css('display');
@@ -914,6 +915,43 @@ $rootScope.checkAndChangeMenuIcon = function() {
     $scope.$on("callServerErrorMessageValidation", function(event, args) {
         $rootScope.serverErrorMessageValidation();
     });
+
+    var getConferenceKeys = function() {
+        var params = {
+            accessToken: $rootScope.accessToken,
+            consultationId: $rootScope.consultationId,
+            success: function(data) {
+                $rootScope.videoSessionId = data.sessionId;
+                $rootScope.videoApiKey = data.apiKey;
+                $rootScope.videoToken = data.token;
+                if ($rootScope.videoSessionId !== "" && $rootScope.videoToken !== "") {
+                     if(typeof alive_waiting_room_pool !== 'undefined')
+                         clearInterval(alive_waiting_room_pool);
+                     window.localStorage.setItem("isCustomerInWaitingRoom", "No");
+                }
+
+            },
+            error: function(data,status) {
+              if(status===0 ){
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              }else{
+                $rootScope.serverErrorMessageValidation();
+              }
+            }
+        };
+        LoginService.getVideoConferenceKeys(params);
+    };
+
+  
+
+    WaitingRoomConHub.on("onConsultationEnded", function() {
+      isCallEndedByPhysician = true;
+      $('#videoCallSessionTimer').runner('stop');
+     // $scope.disconnectConference();
+   });
 
 
     $rootScope.serverErrorMessageValidation = function() {
@@ -3199,18 +3237,20 @@ $rootScope.checkAndChangeMenuIcon = function() {
       if(typeof $rootScope.patientEncounteraddress === 'undefined' && typeof $rootScope.patientParticularaddress !== 'undefined') {
       //   $scope.upcountrystate = $rootScope.stateAddressesCode +","+$rootScope.countryAddressCode;
          $scope.countryRegion = $rootScope.stateAddressesCode;
-         $scope.upcountrystate = $rootScope.countryAddressCode;
+         $scope.countryCode = $rootScope.countryAddressCode;
       }else if($rootScope.patientEncounteraddress !=='' && typeof $rootScope.patientEncounteraddress !== 'undefined' && $rootScope.encounterstate !== ''){
           $scope.countryRegion = $rootScope.encounterStateCode;
-          $scope.upcountrystate = $rootScope.encounterCountryCode;
+          $scope.countryCode = $rootScope.encounterCountryCode;
       } else if($rootScope.encountercountry !== '' && $rootScope.encounterstate === '') {
-          $scope.upcountrystate = $rootScope.encounterCountryCode;
+          $scope.countryCode = $rootScope.encounterCountryCode;
+          $scope.countryRegion = '';
       } else if(typeof $rootScope.patientEncounteraddress === 'undefined' && typeof $rootScope.patientParticularaddress === 'undefined') {
-          $scope.upcountrystate = $rootScope.primaryPatientDetails[0].address;
+          $scope.countryCode = $rootScope.primaryPatientDetails[0].address;
+          $scope.countryRegion = '';
       }
       var params = {
         accessToken: $rootScope.accessToken,
-        countrystate: $scope.upcountrystate,
+        countrystate: $scope.countryCode,
         countryRegion: $scope.countryRegion,
         patientID:$rootScope.primaryPatientId,
         //state:  $scope.upstate,
@@ -6946,8 +6986,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
  $scope.updatelocation=function(){
 
     //  $rootScope.upcountry=$( "#country option:selected" ).text();
-        $rootScope.upcountry =$rootScope.listOfLocState[0].countryCode;
-      $rootScope.upstate=$( "#state option:selected" ).val();
+      $rootScope.upcountry = $rootScope.listOfLocState[0].countryCode;
+      $rootScope.upstate = $( "#state option:selected" ).val();
       $rootScope.statereg=$rootScope.listOfLocState;
       if($rootScope.upcountry == "Select your Country" &&  $rootScope.upstate == "Choose state" && $rootScope.listOfLocState == ""){
         $scope.ErrorMessage = "Please select country";
@@ -6963,14 +7003,15 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
     $scope.updateCurrentLocation = function() {
         if ($rootScope.upcountry != "" && $rootScope.upstate != "Choose state") {
-            $scope.upcountrystate = $rootScope.upcountry;
+            $scope.countryCode = $rootScope.upcountry;
             $scope.countryRegion = $rootScope.upstate;
         } else if ($rootScope.upcountry != "" && $rootScope.upstate == "Choose state") {
-            $scope.upcountrystate = $rootScope.upcountry;
+            $scope.countryCode = $rootScope.upcountry;
+            $scope.countryRegion = '';
         }
         var params = {
             accessToken: $rootScope.accessToken,
-            countrystate: $scope.upcountrystate,
+            countrystate: $scope.countryCode,
             countryRegion: $scope.countryRegion,
             patientID:$rootScope.primaryPatientId,
             //state:  $scope.upstate,

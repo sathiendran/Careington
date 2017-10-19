@@ -441,7 +441,7 @@ angular.module('starter.services', [])
 							'Time-Zone': params.userTimeZoneId,
 							'Content-Type': 'application/json; charset=utf-8'
 					},
-		      url: apiCommonURL + '/api/v2/patients/consultations/activeconsultations',
+		      url: apiCommonURL + '/api/v2/patients/availableconsultations',
 					method: 'GET'
 			};
 
