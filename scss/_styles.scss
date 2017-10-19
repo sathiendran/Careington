@@ -1,5 +1,5 @@
 @import "variable";
-@font-face {
+@font-face {  
     font-family: 'Glober Black Italic';
     src: url("Glober Black Italic.otf");
 }
@@ -1987,6 +1987,7 @@ select {
     font-family: 'Glober Regular';
     z-index: 999;
     padding-top: 20px;
+    top: 0px;
     em {
         font-style: italic;
     }
@@ -5833,3 +5834,78 @@ hr {
     /* position: absolute; */
     top: 25px;
 }
+.reportBrandName{
+    margin-left: -35px !important;
+    font-size: 12px !important;
+    font-family: GloberBold !important;
+    font-color: #333333 !important;
+    text-align:right;
+}
+.guardianName{
+    font-size: 14px;
+    font-family: GloberRegular;
+    height: 20px;
+    color: #000000;
+}
+.guardian{
+    font-size: 14px;
+    font-family: GloberSemiBold;
+    height: 20px;
+    color: #000000;
+}
+
+.pc-report__sub-section-date {
+    float: right;
+    padding: 5px;
+    font-size: 8px !important;
+    //font-family: "Glober Bold","Helvetica Neue",Helvetica,Arial,Sans-Serif;
+}
+
+.pc-report__table-row span {
+    float: left;
+    line-height: 1;
+    display: block;
+    font-family: GloberBold !important;
+    color: #333;
+}
+
+.pc-report__sub-section-title{
+    font-size: 11px !important;
+    font-family: GloberBold !important;
+}
+
+.pc-report__sub-section-date{
+    font-size: 10px !important;
+}
+    .pc-report__table-row {
+    font-size: 13px;
+    font-family: "Glober Bold","Helvetica Neue",Helvetica,Arial,Sans-Serif;
+    line-height: 2;
+    color: #444;
+    padding-bottom: 22px !important;
+}
+
+
+.pc-report__sub-section-title {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font: inherit;
+    font-family: GloberBold !important;
+    font-size: 10px !important;
+    }
+
+    .reportTitle-Android {
+        top: 3px !important;
+    }
+    .reportTitle-IOS {
+        top: 5px !important;
+    }
+
+    .reportIconBack-Android {
+       top: 0px !important;
+    }
+    .reportIconBack-IOS {
+        top: 2px !important;
+    }

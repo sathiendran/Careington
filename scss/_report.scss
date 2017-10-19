@@ -51,3 +51,39 @@
 .pc-report__med-history div[data-template="surgeries-ul-template"]{
     min-height:auto !important;
 }
+
+.pc-report__sub-section-date {
+    float: right;
+    padding: 5px;
+    font-size: 8px !important;
+    //font-family: "Glober Bold","Helvetica Neue",Helvetica,Arial,Sans-Serif;
+}
+
+.pc-report__table-row span {
+    float: left;
+    line-height: 1;
+    display: block;
+    font-family: GloberBold !important;
+    color: #333;
+}
+
+.pc-report__sub-section-title{
+    font-size: 11px !important;
+    font-family: GloberBold !important;
+}
+
+.pc-report__sub-section-date{
+    font-size: 10px !important;
+}
+    .pc-report__table-row {
+    font-size: 13px;
+    font-family: "Glober Bold","Helvetica Neue",Helvetica,Arial,Sans-Serif;
+    line-height: 2;
+    color: #444;
+    padding-bottom: 22px !important;
+}
+
+
+.pc-report__table-row {
+    padding: 50px !important;
+}
