@@ -414,7 +414,8 @@ angular.module('starter.services', [])
 							'Time-Zone': params.userTimeZoneId,
 							'Content-Type': 'application/json; charset=utf-8'
 					},
-		      url: apiCommonURL + '/api/v2.1/patients/filtered-appointments?appointmentStatusCodes=2&appointmentTypeCodes=1&appointmentTypeCodes=3&patientIds=' + params.patientId +'&includePatientDependents=true&startDate=' + params.yesterdayDate,
+		    url: apiCommonURL + '/api/v2.1/patients/filtered-appointments?appointmentStatusCodes=2&appointmentTypeCodes=1&appointmentTypeCodes=3&patientIds=' + params.patientId +'&includePatientDependents=true&startDate=' + params.yesterdayDate,
+		//	 url: apiCommonURL + '/api/v2/patients/availableconsultations',
 					method: 'GET'
 			};
 
@@ -431,7 +432,7 @@ angular.module('starter.services', [])
 							});
 	}
 
-	this.getScheduledActiveConsultation = function (params) {
+	this.getScheduledAvailableConsultation = function (params) {
 			var requestInfo = {
 				//	headers: util.getHeaders(params.accessToken),
 					headers: {
