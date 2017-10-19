@@ -12,25 +12,20 @@
                 <div class="search__container">
                     <div class="search">
                         <span class="icon_magnifying-glass"></span>
-                        <input type="text" placeholder="Find providers by name"
-                            data-bind="events: { keyup: vm_onNameFilterChange }, value: nameFilter"
-                            data-value-update="keyup">
+                        <input type="text" placeholder="Find providers by name" data-bind="events: { keyup: vm_onNameFilterChange }, value: nameFilter" data-value-update="keyup">
                     </div>
                 </div>
             </div>
 
             <div class="provider-search-panel__wrap">
-                <div class="loader loader--grey loader--small" data-bind="css: {is-active: vm_isPatinetLoactionInLoading } " style="z-index: 100" ></div>
+                <div class="loader loader--grey loader--small" data-bind="css: {is-active: vm_isPatinetLoactionInLoading } " style="z-index: 100"></div>
+                <div class="loader loader--grey loader--small" id="providersearchBdy" data-bind="css: {is-active: vm_isItemsLoading } " style="z-index: 100"></div>
 
                 <div class="provider-search-panel__title js-sticky-header">DATE</div>
 
                 <div class="provider-search-panel__box">
                     <div class="provider-search-panel__datepicker">
-                        <input
-                            id="dateFilterPiker"
-                            data-role="datepicker"
-                            data-bind="value: dateFilter, events: { change: vm_onDateFilterChange, open: vm_onDateFilterOpen }, min: vm_currentDate"
-                        >
+                        <input id="dateFilterPiker" data-role="datepicker" data-bind="value: dateFilter, events: { change: vm_onDateFilterChange, open: vm_onDateFilterOpen }, min: vm_currentDate">
                     </div>
                 </div>
 
@@ -38,8 +33,7 @@
 
                 <div class="provider-search-panel__box">
                     <div class="provider-search-person">
-                        <div class="provider-search-person__box provider-search-person__box--person"
-                            data-bind="events: { click: vm_onSelectPersonClick}">
+                        <div class="provider-search-person__box provider-search-person__box--person" data-bind="events: { click: vm_onSelectPersonClick}">
                             <div class="provider-search-person__userpic">
                                 <div class="userpic userpic--person userpic--no-view-profile">
                                     <img data-bind="attr: { src: selectedPatient.imageSource }" onerror="this.onerror=null;this.src='images/default-user.jpg';" alt="">
@@ -52,8 +46,7 @@
                                 <span class="icon_chevron-right"></span>
                             </div>
                         </div>
-                        <div class="provider-search-person__box provider-search-person__box--location"
-                            data-bind="visible: vm_isRulesActive, events: { click: vm_onConfirmCurrentLocationClick }, css: {is-readonly: vm_isResponseRuleInactive}">
+                        <div class="provider-search-person__box provider-search-person__box--location" data-bind="visible: vm_isRulesActive, events: { click: vm_onConfirmCurrentLocationClick }, css: {is-readonly: vm_isResponseRuleInactive}">
 
                             <div class="provider-search-person__label">Current Location</div>
                             <div class="provider-search-person__location" data-bind="html: vm_currentPatientLocation"></div>
@@ -74,8 +67,7 @@
                     </div>
                 </div>
 
-                <div class="directory directory--selfscheduling"
-                    data-bind="css: {is-active: vm_isPatientSelectorActive}">
+                <div class="directory directory--selfscheduling" data-bind="css: {is-active: vm_isPatientSelectorActive}">
                     <div class="directory__titlebar">
                         <span>Related Users</span>
                         <button class="button directory__button" data-bind="events: {click: vm_closePatientSelection}">Done</button>
@@ -86,9 +78,7 @@
                             <div class="directory__search">
                                 <div class="search search--big">
                                     <span class="icon_magnifying-glass"></span>
-                                    <input type="text" placeholder="Find people by name"
-                                        data-bind="events: { keyup: vm_onPatientsNameFilterChange }, value: vm_patientsNameFilter"
-                                        data-value-update="keyup">
+                                    <input type="text" placeholder="Find people by name" data-bind="events: { keyup: vm_onPatientsNameFilterChange }, value: vm_patientsNameFilter" data-value-update="keyup">
                                 </div>
                             </div>
 
@@ -98,7 +88,7 @@
                             <div class="directory__items-wrap" id="selectFamilyMember">
                             </div>
 
-                            <div class="loader loader--grey loader--small is-active" style="z-index: 100" ></div>
+                            <div class="loader loader--grey loader--small is-active" style="z-index: 100"></div>
                         </div>
                     </div>
                 </div>
@@ -130,14 +120,11 @@
                     <div class="provider-search-header__search">
                         <div class="search">
                             <span class="icon_magnifying-glass"></span>
-                            <input type="text" placeholder="Find providers by name"
-                                data-bind="events: { keyup: vm_onNameFilterChange }, value: nameFilter"
-                                data-value-update="keyup">
+                            <input type="text" placeholder="Find providers by name" data-bind="events: { keyup: vm_onNameFilterChange }, value: nameFilter" data-value-update="keyup">
                         </div>
                     </div>
 
-                    <div class="provider-search-header__toggle-info"
-                        data-bind="events: { click : vm_toogleAllContents }">
+                    <div class="provider-search-header__toggle-info" data-bind="events: { click : vm_toogleAllContents }">
                         <button type="button">
                             <span class="provider-search-header__tooltip" style="z-index: 2"
                                 data-bind="html: vm_toogleAllCardsContentIconText">
@@ -146,8 +133,7 @@
                         </button>
                     </div>
 
-                    <div class="provider-search-header__time  js-toggle-all-content"
-                        data-bind="events: { click : vm_toogleAllFooters }">
+                    <div class="provider-search-header__time  js-toggle-all-content" data-bind="events: { click : vm_toogleAllFooters }">
                         <button type="button">
                         <span class="provider-search-header__tooltip" style="z-index: 2"
                             data-bind="html: vm_toogleAllCardsFooterIconText">
@@ -157,64 +143,59 @@
                     </div>
 
                     <div class="provider-search-header__view">
-                        <button type="button" class="js-set-horizontal"
-                            data-bind="css: {is-active: vm_isListMode}, events: { click: vm_onListModeClick}">
+                        <button type="button" class="js-set-horizontal" data-bind="css: {is-active: vm_isListMode}, events: { click: vm_onListModeClick}">
                             <span class="icon_list"></span>
                         </button>
 
-                        <button type="button" class="js-set-vertical"
-                            data-bind="css: {is-active: vm_isGridMode}, events: { click: vm_onGridModeClick}">
+                        <button type="button" class="js-set-vertical" data-bind="css: {is-active: vm_isGridMode}, events: { click: vm_onGridModeClick}">
                             <span class="icon_grid2"></span>
                         </button>
                     </div>
                 </div>
 
-                <div class="provider-search-page__content"
-                    data-bind="visible: vm_isFavoriteCliniciansMode,
+                <div class="provider-search-page__content" data-bind="visible: vm_isFavoriteCliniciansMode,
                         css: {provider-search-page__content--grid: vm_isGridMode}">
-                    <div
-                        data-bind="source: favoriteCliniciansDS"
-                        data-template="clinicianCardDSTemplate">
+                    <div data-bind="source: favoriteCliniciansDS" data-template="clinicianCardDSTemplate">
                     </div>
 
                     <div data-bind="visible: vm_isFavoriteCliniciansDSEmpty">
                         <div data-bind="invisible: vm_hasSearchConditions">
                             <div class="drawer-card drawer-card--provider drawer-card--empty">
 
-                                    <div class="drawer-card__container">
+                                <div class="drawer-card__container">
 
-                                        <div class="drawer-card__back js-toggle-content">
-                                            <div class="icon_reply"></div>
-                                        </div>
+                                    <div class="drawer-card__back js-toggle-content">
+                                        <div class="icon_reply"></div>
+                                    </div>
 
-                                        <div class="drawer-card__main">
-                                            <div class="drawer-card__card">
-                                                <div class="drawer-card__userpic">
+                                    <div class="drawer-card__main">
+                                        <div class="drawer-card__card">
+                                            <div class="drawer-card__userpic">
 
-                                                    <div class="userpic userpic--drawer-card userpic--is-empty">
-                                                        <img src="images/default-user.jpg" alt="">
-                                                    </div>
-
+                                                <div class="userpic userpic--drawer-card userpic--is-empty">
+                                                    <img src="images/default-user.jpg" alt="">
                                                 </div>
 
-                                                <button tyle="button" class="drawer-card__sub-action js-toggle-bookmark">
+                                            </div>
+
+                                            <button tyle="button" class="drawer-card__sub-action js-toggle-bookmark">
                                                     <div class="drawer-card__bookmark">
                                                         <div class="icon_star"></div>
                                                     </div>
                                                 </button>
 
-                                                <div class="drawer-card__info js-toggle-content">
-                                                    <div class="drawer-card__name"></div>
-                                                    <div class="drawer-card__secondary-info"></div>
-                                                </div>
+                                            <div class="drawer-card__info js-toggle-content">
+                                                <div class="drawer-card__name"></div>
+                                                <div class="drawer-card__secondary-info"></div>
                                             </div>
-
-
-                                            <footer class="drawer-card__footer">
-                                                <div class="drawer-card__footer-toggler js-toggle-footer"></div>
-                                            </footer>
                                         </div>
+
+
+                                        <footer class="drawer-card__footer">
+                                            <div class="drawer-card__footer-toggler js-toggle-footer"></div>
+                                        </footer>
                                     </div>
+                                </div>
                             </div>
 
                             <div class="drawer-card drawer-card--provider drawer-card--empty  is-active">
@@ -420,12 +401,9 @@
                     </div>
                 </div>
 
-                <div class="provider-search-page__content"
-                    data-bind="visible: vm_isAllCliniciansMode,
+                <div class="provider-search-page__content" data-bind="visible: vm_isAllCliniciansMode,
                            css:{provider-search-page__content--grid: vm_isGridMode}">
-                    <div
-                        data-bind="source: allCliniciansDS"
-                        data-template="clinicianCardDSTemplate">
+                    <div data-bind="source: allCliniciansDS" data-template="clinicianCardDSTemplate">
                     </div>
 
                     <div class="provider-search-empty" data-bind="visible: vm_isAllCliniciansDSEmpty">

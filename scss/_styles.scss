@@ -2719,6 +2719,14 @@ select {
     width: 100%;
     padding-top: 32px;
   }
+  .consentSubTitle {
+      margin-top: -10px;
+      margin-left: 16px;
+      padding-bottom: 0px;
+      font-family: $fontFamily_semibold;
+      color: #888888;
+      padding-right: 12%;
+  }
 }
 .conTreatSubHead-IOS {
   .consentTitle {
@@ -2728,6 +2736,14 @@ select {
       width: 100%;
       padding-top: 7px;
   }
+    .consentSubTitle {
+        margin-top: 22px;
+        margin-left: 16px;
+        padding-bottom: 0px;
+        font-family: $fontFamily_semibold;
+        color: #888888;
+        padding-right: 12%;
+    }
 }
 .ConsentSteps {
     color: #888;
@@ -2745,6 +2761,8 @@ select {
     color: #888888;
     padding-right: 12%;
 }
+
+
 .consentLine {
     border-bottom: 1px solid #A9ABA7;
 }
@@ -4249,12 +4267,12 @@ form.ng-submitted input.ng-valid + i.icon.error {
            -moz-appearance: none;
             background: #E6E6E6 url(../img/select-arrow.png) no-repeat 95% center;
       //      width: 102%;
-            width: 75%;
+           width: 100%;
             padding-right: 37px;
           //  text-indent: 0.01px;
           // text-overflow: "";
             border-radius: 7px;
-            margin-left: 8px;
+           // margin-left: 8px;
         //  padding: 6px;
             //border: 1px solid #666666! important;
             border: 1px solid #CDCACA !important;

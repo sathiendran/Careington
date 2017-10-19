@@ -25,14 +25,14 @@
       </div>
    </ion-header-bar>
    <ion-view title="Consult Charge">
-      <div class="consultInsuranceTitle" style="padding-top: 15px;" ng-if="healthPlanPage == 'block'">
+      <div class="consultInsuranceTitle-{{deviceName}}"  ng-if="healthPlanPage == 'block'">
          <h1 class="ChronicCondition concernsSubTit consentTitle" style="">Insurance Verification</h1>
          <p class="consentSubTitle concentHealthPlan" style="margin-top: -5px;">
             <span>Apply your insurance policy to this visit</span></br>
             <span style="font-family: Glober Regular;">Your charge will be adjusted to reflect your copay</span>
          </p>
       </div>
-      <ion-content class="consultCharge_content consultConMargin"  style="display: {{healthPlanPage}};" >
+      <ion-content class="consultCharge_content consultConMargin"  style="display: {{healthPlanPage}}; {{conChargeMargin}}" >
          <div class="password_home">
             <!--Add Health Plan Start-->
             <div class="animated slideInRight" >

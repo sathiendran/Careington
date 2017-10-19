@@ -129,44 +129,6 @@ angular.module('starter.controllers')
     $scope.doGetWaitingRoom = function() {
         $state.go('tab.waitingRoom');
     }
-    if ($rootScope.appointmentDisplay === "test") {
-        $("#appointNotes").html($rootScope.appointNotes);
-
-        var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
-
-        var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
-
-        $rootScope.time = new Date(getReplaceTime).getTime();
-
-        $scope.$on('timer-tick', function(event, args) {
-            //$timeout(function(){
-            if (args.days === 0) {
-                $rootScope.hourDisplay = 'initial';
-                $rootScope.daysDisplay = 'none';
-                $rootScope.dayDisplay = 'none';
-            } else if (args.days === 1) {
-                $rootScope.daysDisplay = 'none';
-                $rootScope.hourDisplay = 'none';
-                $rootScope.dayDisplay = 'initial';
-            } else if (args.days > 1) {
-                $rootScope.daysDisplay = 'initial';
-                $rootScope.hourDisplay = 'none';
-                $rootScope.dayDisplay = 'none';
-            }
-
-              //  if (args.millis < 600) {
-            if (args.minutes === 0 && args.seconds === 1) {
-                $rootScope.timeNew = 'none';
-                $rootScope.timeNew1 = 'block';
-                $('.AvailableIn').hide();
-                $('.enterAppoinment').show();
-            } else if (args.minutes >= 0 && args.seconds > 0) {
-                $('.AvailableIn').show();
-                $('.enterAppoinment').hide();
-            }
-        });
-
-    }
 
 
     $scope.showEnterWaitingRoomButton = function() {
@@ -402,8 +364,8 @@ angular.module('starter.controllers')
                       $rootScope.time = new Date(getReplaceTime).getTime();
 
                    $timeout(function() {
-                          //document.getElementsByTagName('timer')[0].stop();
-                        //  document.getElementsByTagName('timer')[0].start();
+                          document.getElementsByTagName('timer')[0].stop();
+                         document.getElementsByTagName('timer')[0].start();
                       }, 10);
 
                       $scope.$on('timer-tick', function(event, args) {
@@ -479,6 +441,45 @@ angular.module('starter.controllers')
       };
         LoginService.getSelectedappoimentDetails(params);
     };
+
+    if ($rootScope.appointmentDisplay === "test") {
+        $("#appointNotes").html($rootScope.appointNotes);
+
+        var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
+
+        var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
+
+        $rootScope.time = new Date(getReplaceTime).getTime();
+
+        $scope.$on('timer-tick', function(event, args) {
+            //$timeout(function(){
+            if (args.days === 0) {
+                $rootScope.hourDisplay = 'initial';
+                $rootScope.daysDisplay = 'none';
+                $rootScope.dayDisplay = 'none';
+            } else if (args.days === 1) {
+                $rootScope.daysDisplay = 'none';
+                $rootScope.hourDisplay = 'none';
+                $rootScope.dayDisplay = 'initial';
+            } else if (args.days > 1) {
+                $rootScope.daysDisplay = 'initial';
+                $rootScope.hourDisplay = 'none';
+                $rootScope.dayDisplay = 'none';
+            }
+
+              //  if (args.millis < 600) {
+            if (args.minutes === 0 && args.seconds === 1) {
+                $rootScope.timeNew = 'none';
+                $rootScope.timeNew1 = 'block';
+                $('.AvailableIn').hide();
+                $('.enterAppoinment').show();
+            } else if (args.minutes >= 0 && args.seconds > 0) {
+                $('.AvailableIn').show();
+                $('.enterAppoinment').hide();
+            }
+        });
+
+    }
 
 
     if(typeof $stateParams.getPage != 'undefined'){
