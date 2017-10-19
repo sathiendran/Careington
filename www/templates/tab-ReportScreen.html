@@ -7,10 +7,10 @@
 <ion-side-menu-content>
    <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};" >
       <div class="buttons">
-         <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
+         <span class="button icon button-clear {{menuiconIOS}}  reportIconBack-{{deviceName}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
       </div>
 
-      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} useracctheader accoTitle-{{deviceName}}" > <span class="headerfont _accountHeader-{{deviceName}}">Consult Report</span>
+      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} useracctheader reportTitle-{{deviceName}}" > <span class="headerfont _accountHeader-{{deviceName}}">Consult Report</span>
          <span> <a class="headerval _accountCancel-{{deviceName}}" ng-click="EnableBackButton();" >Done</a>
 
          </span>

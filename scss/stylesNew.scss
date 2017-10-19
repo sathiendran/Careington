@@ -1,5 +1,5 @@
 
-.newcard {
+.newcard { 
 margin: 33px 10px !important;
 box-shadow: 0 1px 3px rgba(0, 0, 0, 0) !important;
 }
@@ -6198,4 +6198,11 @@ a.item.item-avatar.avatheight:first-child{
    // height: 29px;
    // padding-top: 5px;
    // padding-left: 18px;
+}
+
+.pc-report__sub-section-date {
+    float: right;
+    padding: 5px;
+    font-size: 8px;
+   // font-family: "Glober Bold","Helvetica Neue",Helvetica,Arial,Sans-Serif;
 }
