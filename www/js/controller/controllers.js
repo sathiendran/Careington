@@ -916,44 +916,6 @@ $rootScope.checkAndChangeMenuIcon = function() {
         $rootScope.serverErrorMessageValidation();
     });
 
-    var getConferenceKeys = function() {
-        var params = {
-            accessToken: $rootScope.accessToken,
-            consultationId: $rootScope.consultationId,
-            success: function(data) {
-                $rootScope.videoSessionId = data.sessionId;
-                $rootScope.videoApiKey = data.apiKey;
-                $rootScope.videoToken = data.token;
-                if ($rootScope.videoSessionId !== "" && $rootScope.videoToken !== "") {
-                     if(typeof alive_waiting_room_pool !== 'undefined')
-                         clearInterval(alive_waiting_room_pool);
-                     window.localStorage.setItem("isCustomerInWaitingRoom", "No");
-                }
-
-            },
-            error: function(data,status) {
-              if(status===0 ){
-                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                   $rootScope.Validation($scope.ErrorMessage);
-              } else if(status === 503) {
-                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
-              }else{
-                $rootScope.serverErrorMessageValidation();
-              }
-            }
-        };
-        LoginService.getVideoConferenceKeys(params);
-    };
-
-  
-
-    WaitingRoomConHub.on("onConsultationEnded", function() {
-      isCallEndedByPhysician = true;
-      $('#videoCallSessionTimer').runner('stop');
-     // $scope.disconnectConference();
-   });
-
-
     $rootScope.serverErrorMessageValidation = function() {
         function refresh_close() {
             $('.close').click(function() {
@@ -3177,7 +3139,11 @@ $rootScope.checkAndChangeMenuIcon = function() {
                     } else {
                       var depRelationShip = '';
                     }
-                    var appoint = $rootScope.scheduledList.filter(function(r) { var show = r.patientId == index.patientId; return show; });
+                    if($rootScope.scheduledList != '') {
+                         var appoint = $rootScope.scheduledList.filter(function(r) { var show = r.patientId == index.patientId; return show; });
+                    } else {
+                         var appoint = '';
+                    }
                     $rootScope.RelatedPatientProfiles.push({
                         'id': index.$id,
                         'patientId': index.patientId,
@@ -5868,13 +5834,13 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                   //  $rootScope.primaryAppointDetails = $rootScope.scheduledList.filter(function(r) { var show = r.patientId == $rootScope.primaryPatientId; return show; });
 
                      $rootScope.inqueueAppoint = true;
-                     $rootScope.doGetScheduledConsulatation(redirectToPage);
-                     $rootScope.doGetScheduledActiveConsultation();
+                    // $rootScope.doGetScheduledConsulatation(redirectToPage);
+                     $rootScope.doGetScheduledAvailableConsultation(redirectToPage);
 
                 } else {
                    $rootScope.inqueueAppoint = false;
-                   $rootScope.doGetScheduledConsulatation(redirectToPage);
-                   $rootScope.doGetScheduledActiveConsultation();
+                  // $rootScope.doGetScheduledConsulatation(redirectToPage);
+                   $rootScope.doGetScheduledAvailableConsultation(redirectToPage);
                 }
             },
             error: function(status) {
@@ -5892,8 +5858,73 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         LoginService.getScheduledNowPhoneConsulatation(params);
     }
 
+    $rootScope.doGetScheduledAvailableConsultation = function(redirectToPage) {
+         if(!$rootScope.inqueueAppoint) {
+            $rootScope.scheduledConsultationList = '';
+            $rootScope.getScheduledList = [];
+            $rootScope.scheduleParticipants = [];
+            $rootScope.scheduledList = '';
+            $rootScope.scheduledConsultationList = [];
+         }
+        var params = {
+            patientId: $rootScope.primaryPatientId,
+            accessToken: $rootScope.accessToken,
+            userTimeZoneId: $rootScope.userTimeZoneId,
+            success: function(data) {
+                // $rootScope.inprogressConsultationList = [];
+                 if(data.total > 0) {
+                      if(!$rootScope.inqueueAppoint) {
+                          $rootScope.getScheduledList = [];
+                          $rootScope.scheduleParticipants = [];
+                      }
+                      angular.forEach(data.data, function(index) {
+                           if(index.status == 71) {
+                                   $rootScope.getScheduledList.push({
+                                        'consultantUserId': index.consultantUserId,
+                                        'scheduledTime': CustomCalendar.getLocalTime(index.consultationDateInfo),
+                                        'consultationId': index.consultationId,
+                                        'createdDate': index.createdDate,
+                                        'doctorStatus': index.doctorStatus,
+                                        'encounterTypeCode':index.encounterTypeCode,
+                                        'expireDate': index.expireDate,
+                                        'expireDateInfo': index.expireDateInfo,
+                                        'isTimeConverted': index.isTimeConverted,
+                                        'meetingId': index.meetingId,
+                                        'patFirstName': index.patientFirstName,
+                                        'patLastName': index.patientLastName,
+                                        'patientId': index.patientId,
+                                        'patientName': $scope.patientName,
+                                        'patientStatus': index.patientStatus,
+                                        'personId': index.personId,
+                                        'status': index.status,
+                                        'userHomeRecentAppointmentColor': '#a2d28a',
+                                        'nextAppointmentDisplay': 'block'
+                                   });
+                              }
+                      });
+                         $rootScope.activeInqueueAppoint = true;
+                         $rootScope.doGetScheduledConsulatation(redirectToPage);
+                    } else {
+                          $rootScope.activeInqueueAppoint = false;
+                         $rootScope.doGetScheduledConsulatation(redirectToPage);
+                    }
+            },
+            error: function(status) {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+        LoginService.getScheduledAvailableConsultation(params);
+    }
+
     $rootScope.doGetScheduledConsulatation = function(redirectToPage) {
-      if(!$rootScope.inqueueAppoint) {
+      if(!$rootScope.inqueueAppoint && !$rootScope.activeInqueueAppoint) {
           $rootScope.scheduledConsultationList = '';
           $rootScope.getScheduledList = [];
           $rootScope.scheduleParticipants = [];
@@ -5907,7 +5938,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             success: function(data) {
                 if (data !== "") {
                     $scope.scheduledConsultationList = data.data;
-                    if(!$rootScope.inqueueAppoint) {
+                    if(!$rootScope.inqueueAppoint && !$rootScope.activeInqueueAppoint) {
                         $rootScope.getScheduledList = [];
                         $rootScope.scheduleParticipants = [];
                     }
@@ -6026,28 +6057,118 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         //LoginService.getScheduledNowPhoneConsulatation(params);
     }
 
-    $rootScope.doGetScheduledActiveConsultation = function(redirectToPage) {
-        var params = {
-            patientId: $rootScope.primaryPatientId,
-            accessToken: $rootScope.accessToken,
-            userTimeZoneId: $rootScope.userTimeZoneId,
-            success: function(data) {
+    // var initWaitingRoomHub = function() {
+         var activeConsultConnection = $.hubConnection();
+         var activeRoomConHub = activeConsultConnection.createHubProxy('snapNotificationsHub');
+         activeConsultConnection.url = $rootScope.APICommonURL + "/api/signalR/";
+         activeConsultConnection.qs = {
+            "Bearer": $rootScope.accessToken,
+            "waitingroom": 1,
+            "isMobile": true,
+           // "Date":"2017-10-19T00:00",
+          // "TimeZone":"India Standard Time"
+         };
+         activeRoomConHub.on("onConsultationReview", function() {
+           // alert("The Provider is now reviewing the intake form.");
+            $scope.$digest();
+         });
+         activeRoomConHub.on("onCustomerDefaultWaitingInformation", function() {
+            $scope.$digest();
+         });
+         activeRoomConHub.on("onConsultationStarted", function() {
+            //$scope.postPollforCredit();
 
-            },
-            error: function(status) {
-              if (status === 0) {
-                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                  $rootScope.Validation($scope.ErrorMessage);
-              } else if(status === 503) {
-                $scope.callServiceUnAvailableError();
-              } else {
-                    $rootScope.serverErrorMessageValidation();
-                }
-            }
-        };
-        LoginService.getScheduledActiveConsultation(params);
-        //LoginService.getScheduledNowPhoneConsulatation(params);
-    }
+            //alert("Please wait123...");
+            $scope.$digest();
+            // $.connection.hub.stop();
+           // WaitingRoomConnection.stop();
+            // WaitingRoomConnection.qs = {};
+            // WaitingRoomConnection = null;
+            // WaitingRoomConHub = null;
+            //getConferenceKeys();
+         });
+         activeConsultConnection.logging = true;
+         window.whub = activeConsultConnection;
+         activeConsultConnection.start({
+            withCredentials: false
+         }).then(function() {
+            //  WaitingRoomConHub.invoke("joinCustomer").then(function() {});
+            //  alert("The Provider will be with you Shortly.");
+
+              activeConsultConnection.disconnected(function() {
+                  // console.log("hhhh");
+                setTimeout(function() {
+                     if(activeConsultConnection && activeConsultConnection.start){
+                         activeConsultConnection.start();
+                         //console.log("iiii");
+                     }
+                }, 5000);
+                });
+         });
+     //};
+     //initWaitingRoomHub();
+
+     activeRoomConHub.on("broadcastMessage", function(messageType, message) {
+        // alert("notificationService: broadcastMessage");
+        if(messageType == 'consultation_ended') {
+           //  alert('gg2');
+             navigator.notification.alert(
+                'Consultation is ended.', // message
+                 function() {
+                      activeConsultConnection.stop();
+                       activeConsultConnection.qs = {};
+                       activeConsultConnection = null;
+                       activeRoomConHub = null;
+                    $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                     return;
+                 },
+                 $rootScope.alertMsgName, // title
+                 'Ok' // buttonName
+             );
+             return false;
+        } else if(messageType == 'consultation_dropped') {
+           //  alert('gg');
+             navigator.notification.alert(
+               'The consultation expired..', // message
+                 function() {
+                      activeConsultConnection.stop();
+                       activeConsultConnection.qs = {};
+                       activeConsultConnection = null;
+                       activeRoomConHub = null;
+                   $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    return;
+                 },
+                 $rootScope.alertMsgName, // title
+                 'Ok' // buttonName
+             );
+             return false;
+        } else if(messageType == 'consultation_fulfilled') {
+           //  alert('gg1');
+             navigator.notification.alert(
+               'The Provider has marked your consultation as complete.', // message
+                 function() {
+                      activeConsultConnection.stop();
+                      activeConsultConnection.qs = {};
+                      activeConsultConnection = null;
+                      activeRoomConHub = null;
+                   $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    return;
+                 },
+                 $rootScope.alertMsgName, // title
+                 'Ok' // buttonName
+             );
+             return false;
+         } else {
+             // alert('gg4');
+             $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+         }
+     });
+
+
+    activeRoomConHub.on("onConsultationEnded", function() {
+     // alert('ended');
+     // $scope.disconnectConference();
+   });
 
     $scope.getScheduledDetails = function(patientId) {
         $rootScope.selectedPatientIdForDetails = patientId;
@@ -7996,84 +8117,86 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
     }
 
     $rootScope.GoToappoimentDetailsFromUserHome = function(scheduledListData, fromPreviousPage) {
-        $rootScope.AppointScheduleTime = '';
-        $rootScope.appointmentsPatientId = '';
-        $rootScope.schedulemobile = scheduledListData.participants[1].person.phones[0].value;
-       // $rootScope.schedulemobile = scheduledListData.where;
-        $rootScope.scheduledListDatas = scheduledListData;
-        $rootScope.appointmentwaivefee = scheduledListData.waiveFee;
-        var currentTime = $rootScope.scheduledListDatas.scheduledTime;
-        var getMinsExtraTime = $scope.addMinutes(currentTime, 30);
-        var getEnterTime = new Date();
-        var getMissedAppointmentExpiryTime = ((new Date(getMinsExtraTime).getTime()) - (getEnterTime.getTime()));
-        if (getMissedAppointmentExpiryTime > 0) {
-            $rootScope.AppointScheduleTime = getMissedAppointmentExpiryTime;
-        } else {
-            $rootScope.AppointScheduleTime = '';
-        }
-        $rootScope.appointPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[0].customCode.description);
-        $rootScope.appointSecondConcern = $rootScope.scheduledListDatas.intakeMetadata.concerns[1];
-        if ($rootScope.appointSecondConcern == '' || typeof $rootScope.appointSecondConcern === 'undefined') {
-            $rootScope.appointSecondConcern = 'None Reported';
-        } else {
-            $rootScope.appointSecondConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[1].customCode.description);
-        }
-        $rootScope.appointNotes = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.additionalNotes);
-        if ($rootScope.appointNotes == '' || typeof $rootScope.appointNotes == 'undefined') {
-            $rootScope.appointNotes = 'None Reported';
-        } else {
-            $rootScope.appointNotes = $rootScope.scheduledListDatas.intakeMetadata.additionalNotes;
-        }
-        if (!angular.isUndefined($rootScope.scheduledListDatas.patientId)) {
-            $rootScope.patientId = $rootScope.scheduledListDatas.patientId;
-        } else {
-            $rootScope.patientId = $rootScope.patientId;
-        }
-        $scope.doGetConutriesList();
-        $rootScope.doGetCreditDetails();
-        $rootScope.passededconsultants();
-        $rootScope.doGetLocations();
-        $rootScope.doGetonDemandAvailability();
-        $rootScope.doGetScheduledNowPhoneConsulatation();
-        $rootScope.doGetListOfCoUsers();
-        $scope.getHealthHistoryDetails();
+        if(scheduledListData.status != 71) {
+                  $rootScope.AppointScheduleTime = '';
+                  $rootScope.appointmentsPatientId = '';
+                  $rootScope.schedulemobile = scheduledListData.participants[1].person.phones[0].value;
+                 // $rootScope.schedulemobile = scheduledListData.where;
+                  $rootScope.scheduledListDatas = scheduledListData;
+                  $rootScope.appointmentwaivefee = scheduledListData.waiveFee;
+                  var currentTime = $rootScope.scheduledListDatas.scheduledTime;
+                  var getMinsExtraTime = $scope.addMinutes(currentTime, 30);
+                  var getEnterTime = new Date();
+                  var getMissedAppointmentExpiryTime = ((new Date(getMinsExtraTime).getTime()) - (getEnterTime.getTime()));
+                  if (getMissedAppointmentExpiryTime > 0) {
+                      $rootScope.AppointScheduleTime = getMissedAppointmentExpiryTime;
+                  } else {
+                      $rootScope.AppointScheduleTime = '';
+                  }
+                  $rootScope.appointPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[0].customCode.description);
+                  $rootScope.appointSecondConcern = $rootScope.scheduledListDatas.intakeMetadata.concerns[1];
+                  if ($rootScope.appointSecondConcern == '' || typeof $rootScope.appointSecondConcern === 'undefined') {
+                      $rootScope.appointSecondConcern = 'None Reported';
+                  } else {
+                      $rootScope.appointSecondConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[1].customCode.description);
+                  }
+                  $rootScope.appointNotes = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.additionalNotes);
+                  if ($rootScope.appointNotes == '' || typeof $rootScope.appointNotes == 'undefined') {
+                      $rootScope.appointNotes = 'None Reported';
+                  } else {
+                      $rootScope.appointNotes = $rootScope.scheduledListDatas.intakeMetadata.additionalNotes;
+                  }
+                  if (!angular.isUndefined($rootScope.scheduledListDatas.patientId)) {
+                      $rootScope.patientId = $rootScope.scheduledListDatas.patientId;
+                  } else {
+                      $rootScope.patientId = $rootScope.patientId;
+                  }
+                  $scope.doGetConutriesList();
+                  $rootScope.doGetCreditDetails();
+                  $rootScope.passededconsultants();
+                  $rootScope.doGetLocations();
+                  $rootScope.doGetonDemandAvailability();
+                  $rootScope.doGetScheduledNowPhoneConsulatation();
+                  $rootScope.doGetListOfCoUsers();
+                  $scope.getHealthHistoryDetails();
 
-        if(fromPreviousPage === 'userHome') {
-          $rootScope.userAgeForIntake = '';
-          $rootScope.updatedPatientImagePath = '';
-          $rootScope.newDependentImagePath = '';
-          $rootScope.appointmentDisplay = '';
-          $rootScope.appointPreviousPage = 'tab.userhome';
-          if($window.localStorage.getItem("hosNameforCard") === $rootScope.hospitalName) {
-            $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
-            $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
-            $rootScope.userDefaultPaymentLogo = $window.localStorage.getItem("CardLogo" + $rootScope.UserEmail);
-          } else {
-            $rootScope.userDefaultPaymentProfile = null;
+                  if(fromPreviousPage === 'userHome') {
+                    $rootScope.userAgeForIntake = '';
+                    $rootScope.updatedPatientImagePath = '';
+                    $rootScope.newDependentImagePath = '';
+                    $rootScope.appointmentDisplay = '';
+                    $rootScope.appointPreviousPage = 'tab.userhome';
+                    if($window.localStorage.getItem("hosNameforCard") === $rootScope.hospitalName) {
+                      $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
+                      $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+                      $rootScope.userDefaultPaymentLogo = $window.localStorage.getItem("CardLogo" + $rootScope.UserEmail);
+                    } else {
+                      $rootScope.userDefaultPaymentProfile = null;
+                    }
+                    $rootScope.PatientImageSelectUser = $rootScope.scheduledListDatas.patientImage;
+                    $rootScope.PatientFirstName = $rootScope.scheduledListDatas.patFirstName;
+                    $rootScope.PatientLastName = $rootScope.scheduledListDatas.patLastName;
+                  //  $rootScope.PatientAge = P_Age;
+                    $rootScope.SelectPatientAge = $rootScope.PatientAge;
+                    $rootScope.doGetSelectedPatientProfiles($rootScope.patientId, '', '');
+                    if($rootScope.patientId !== $rootScope.primaryPatientId) {
+                      $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
+                    }
+                  }
+                  if (fromPreviousPage == "userAccount") {
+                      $rootScope.appointPreviousPage = 'tab.userAccount';
+                  }
+                  if (fromPreviousPage !== "AppointmentPage") {
+                      $rootScope.appointmentId = scheduledListData.appointmentId;
+                      $rootScope.appointPersonId = scheduledListData.participants[0].person.id
+                      $rootScope.appointmentsPatientId = $rootScope.patientId;
+                      $rootScope.assignedDoctorId = scheduledListData.clinicianId; //$rootScope.scheduledListDatas.participants[0].person.id;
+                      $rootScope.appointmentsPatientGurdianName = htmlEscapeValue.getHtmlEscapeValue($rootScope.primaryPatientFullName);
+                      $rootScope.appointmentDisplay = "test";
+                      $scope.$root.$broadcast("callAppointmentConsultation");
+                    //  $rootScope.doGetConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');
+                  }
           }
-          $rootScope.PatientImageSelectUser = $rootScope.scheduledListDatas.patientImage;
-          $rootScope.PatientFirstName = $rootScope.scheduledListDatas.patFirstName;
-          $rootScope.PatientLastName = $rootScope.scheduledListDatas.patLastName;
-        //  $rootScope.PatientAge = P_Age;
-          $rootScope.SelectPatientAge = $rootScope.PatientAge;
-          $rootScope.doGetSelectedPatientProfiles($rootScope.patientId, '', '');
-          if($rootScope.patientId !== $rootScope.primaryPatientId) {
-            $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
-          }
-        }
-        if (fromPreviousPage == "userAccount") {
-            $rootScope.appointPreviousPage = 'tab.userAccount';
-        }
-        if (fromPreviousPage !== "AppointmentPage") {
-            $rootScope.appointmentId = scheduledListData.appointmentId;
-            $rootScope.appointPersonId = scheduledListData.participants[0].person.id
-            $rootScope.appointmentsPatientId = $rootScope.patientId;
-            $rootScope.assignedDoctorId = scheduledListData.clinicianId; //$rootScope.scheduledListDatas.participants[0].person.id;
-            $rootScope.appointmentsPatientGurdianName = htmlEscapeValue.getHtmlEscapeValue($rootScope.primaryPatientFullName);
-            $rootScope.appointmentDisplay = "test";
-            $scope.$root.$broadcast("callAppointmentConsultation");
-          //  $rootScope.doGetConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');
-        }
     };
     $scope.doGetWaitingRoom = function() {
 

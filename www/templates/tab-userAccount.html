@@ -153,8 +153,9 @@
                <span>Appointment @ {{scheduledListData.scheduledTime | date: "hh:mm"}}</span>
                <span style="text-transform: lowercase;">{{scheduledListData.scheduledTime | date: "a"}}</span>
                <span id="viewicon" class="accountAppointview-{{deviceName}}">
-               <a class="appalignrighticon" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">In queue</a>
-               <a class="appalignrighticon" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'"> View Details</a>
+               <a class="appalignrighticon" ng-if="scheduledListData.appointmentStatusCode == 'Waiting' && scheduledListData.status != 71">In queue</a>
+               <a class="appalignrighticon" ng-if="scheduledListData.appointmentStatusCode != 'Waiting' && scheduledListData.status != 71"> View Details</a>
+               <a class="appalignrighticon" ng-if="scheduledListData.status == 71">In progress</a>
                <span  class="aslignspan"><i class="accNextAppoint-{{deviceName}}" ng-bind-html="drawSVGCIcon('chevron-with-circle-right');"  ></i>
                </span>
                </span>

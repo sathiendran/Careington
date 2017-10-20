@@ -267,11 +267,11 @@ angular.module('starter.controllers')
                    $rootScope.primaryAppointDetails = $rootScope.scheduledList.filter(function(r) { var show = r.patientId == $rootScope.primaryPatientId; return show; });
 
                     $rootScope.inqueueAppoint = true;
-                    $scope.doGetScheduledConsulatation(redirectToPage);
+                    $scope.doGetScheduledAvailableConsultation(redirectToPage);
 
                } else {
                   $rootScope.inqueueAppoint = false;
-                  $scope.doGetScheduledConsulatation(redirectToPage);
+                  $scope.doGetScheduledAvailableConsultation(redirectToPage);
                }
            },
            error: function(status) {
@@ -288,9 +288,73 @@ angular.module('starter.controllers')
        //LoginService.getScheduledConsulatation(params);
        LoginService.getScheduledNowPhoneConsulatation(params);
    }
+   $scope.doGetScheduledAvailableConsultation = function(redirectToPage) {
+        if(!$rootScope.inqueueAppoint) {
+          $rootScope.scheduledConsultationList = '';
+          $rootScope.getScheduledList = [];
+          $rootScope.scheduleParticipants = [];
+          $rootScope.scheduledList = '';
+          $rootScope.scheduledConsultationList = [];
+        }
+       var params = {
+          patientId: $rootScope.primaryPatientId,
+          accessToken: $rootScope.accessToken,
+          userTimeZoneId: $rootScope.userTimeZoneId,
+          success: function(data) {
+               // $rootScope.inprogressConsultationList = [];
+               if(data.total > 0) {
+                     if(!$rootScope.inqueueAppoint) {
+                         $rootScope.getScheduledList = [];
+                         $rootScope.scheduleParticipants = [];
+                     }
+                     angular.forEach(data.data, function(index) {
+                          if(index.status == 71) {
+                                  $rootScope.getScheduledList.push({
+                                       'consultantUserId': index.consultantUserId,
+                                       'scheduledTime': CustomCalendar.getLocalTime(index.consultationDateInfo),
+                                       'consultationId': index.consultationId,
+                                       'createdDate': index.createdDate,
+                                       'doctorStatus': index.doctorStatus,
+                                       'encounterTypeCode':index.encounterTypeCode,
+                                       'expireDate': index.expireDate,
+                                       'expireDateInfo': index.expireDateInfo,
+                                       'isTimeConverted': index.isTimeConverted,
+                                       'meetingId': index.meetingId,
+                                       'patFirstName': index.patientFirstName,
+                                       'patLastName': index.patientLastName,
+                                       'patientId': index.patientId,
+                                       'patientName': $scope.patientName,
+                                       'patientStatus': index.patientStatus,
+                                       'personId': index.personId,
+                                       'status': index.status,
+                                       'userHomeRecentAppointmentColor': '#a2d28a',
+                                       'nextAppointmentDisplay': 'block'
+                                  });
+                             }
+                     });
+                        $rootScope.activeInqueueAppoint = true;
+                        $scope.doGetScheduledConsulatation(redirectToPage);
+                   } else {
+                         $rootScope.activeInqueueAppoint = false;
+                        $scope.doGetScheduledConsulatation(redirectToPage);
+                   }
+          },
+          error: function(status) {
+            if (status === 0) {
+                 $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                 $rootScope.Validation($scope.ErrorMessage);
+            } else if(status === 503) {
+               $scope.callServiceUnAvailableError();
+            } else {
+                   $rootScope.serverErrorMessageValidation();
+               }
+          }
+       };
+       LoginService.getScheduledAvailableConsultation(params);
+   }
 
     $scope.doGetScheduledConsulatation = function(redirectToPage) {
-      if(!$rootScope.inqueueAppoint) {
+      if(!$rootScope.inqueueAppoint && !$rootScope.activeInqueueAppoint) {
           $rootScope.scheduledConsultationList = '';
           $rootScope.getScheduledList = [];
           $rootScope.scheduleParticipants = [];
@@ -304,7 +368,7 @@ angular.module('starter.controllers')
             success: function(data) {
                 if (data !== "") {
                     $scope.scheduledConsultationList = data.data;
-                    if(!$rootScope.inqueueAppoint) {
+                    if(!$rootScope.inqueueAppoint && !$rootScope.activeInqueueAppoint) {
                         $rootScope.getScheduledList = [];
                         $rootScope.scheduleParticipants = [];
                     }

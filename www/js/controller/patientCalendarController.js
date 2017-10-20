@@ -157,46 +157,48 @@ angular.module('starter.controllers')
 
         $scope.GoToappoimentDetails = function(scheduledListData) {
             // debugger;
-            $rootScope.appointmentId = '';
-            $rootScope.appointPersonId = '';
-            $rootScope.AppointScheduleTime = '';
-            $rootScope.scheduledListDatas = scheduledListData;
-            $rootScope.appointPreviousPage = 'tab.appointmentpatientdetails';
-            $rootScope.appointmentwaivefee = scheduledListData.waiveFee;
-            $rootScope.schedulemobile = scheduledListData.participants[1].person.phones[0].value;
-            var currentTime = $rootScope.scheduledListDatas.scheduledTime;
-            var getMinsExtraTime = $scope.addMinutes(currentTime, 30);
-            var getEnterTime = new Date();
-            var getMissedAppointmentExpiryTime = ((new Date(getMinsExtraTime).getTime()) - (getEnterTime.getTime()));
-            if (getMissedAppointmentExpiryTime > 0) {
-                $rootScope.AppointScheduleTime = getMissedAppointmentExpiryTime;
-            } else {
-                $rootScope.AppointScheduleTime = '';
-            }
-            $rootScope.appointPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[0].customCode.description);
-            $rootScope.appointSecondConcern = $rootScope.scheduledListDatas.intakeMetadata.concerns[1];
-            if ($rootScope.appointSecondConcern === '' || typeof $rootScope.appointSecondConcern === 'undefined') {
-                $rootScope.appointSecondConcern = 'None Reported';
-            } else {
-                $rootScope.appointSecondConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[1].customCode.description);
-            }
-            $rootScope.appointNotes = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.additionalNotes);
-            if ($rootScope.appointNotes === '' || typeof $rootScope.appointNotes === 'undefined') {
-                $rootScope.appointNotes = 'None Reported';
-            } else {
-                $rootScope.appointNotes = $rootScope.scheduledListDatas.intakeMetadata.additionalNotes;
-            }
-            $rootScope.appointmentId = scheduledListData.appointmentId;
-            $rootScope.appointPersonId = scheduledListData.participants[0].person.id
-            $rootScope.appointmentsPatientDOB = $rootScope.PatientAge;
-            $rootScope.appointmentsPatientId = scheduledListData.patientId;
-            $rootScope.assignedDoctorId = scheduledListData.clinicianId; //$rootScope.scheduledListDatas.participants[0].person.id;
-            $rootScope.appointmentsPatientGurdianName = htmlEscapeValue.getHtmlEscapeValue($rootScope.primaryPatientFullName);
+           if(scheduledListData.status != 71) {
+                 $rootScope.appointmentId = '';
+                 $rootScope.appointPersonId = '';
+                 $rootScope.AppointScheduleTime = '';
+                 $rootScope.scheduledListDatas = scheduledListData;
+                 $rootScope.appointPreviousPage = 'tab.appointmentpatientdetails';
+                 $rootScope.appointmentwaivefee = scheduledListData.waiveFee;
+                 $rootScope.schedulemobile = scheduledListData.participants[1].person.phones[0].value;
+                 var currentTime = $rootScope.scheduledListDatas.scheduledTime;
+                 var getMinsExtraTime = $scope.addMinutes(currentTime, 30);
+                 var getEnterTime = new Date();
+                 var getMissedAppointmentExpiryTime = ((new Date(getMinsExtraTime).getTime()) - (getEnterTime.getTime()));
+                 if (getMissedAppointmentExpiryTime > 0) {
+                     $rootScope.AppointScheduleTime = getMissedAppointmentExpiryTime;
+                 } else {
+                     $rootScope.AppointScheduleTime = '';
+                 }
+                 $rootScope.appointPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[0].customCode.description);
+                 $rootScope.appointSecondConcern = $rootScope.scheduledListDatas.intakeMetadata.concerns[1];
+                 if ($rootScope.appointSecondConcern === '' || typeof $rootScope.appointSecondConcern === 'undefined') {
+                     $rootScope.appointSecondConcern = 'None Reported';
+                 } else {
+                     $rootScope.appointSecondConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[1].customCode.description);
+                 }
+                 $rootScope.appointNotes = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.additionalNotes);
+                 if ($rootScope.appointNotes === '' || typeof $rootScope.appointNotes === 'undefined') {
+                     $rootScope.appointNotes = 'None Reported';
+                 } else {
+                     $rootScope.appointNotes = $rootScope.scheduledListDatas.intakeMetadata.additionalNotes;
+                 }
+                 $rootScope.appointmentId = scheduledListData.appointmentId;
+                 $rootScope.appointPersonId = scheduledListData.participants[0].person.id
+                 $rootScope.appointmentsPatientDOB = $rootScope.PatientAge;
+                 $rootScope.appointmentsPatientId = scheduledListData.patientId;
+                 $rootScope.assignedDoctorId = scheduledListData.clinicianId; //$rootScope.scheduledListDatas.participants[0].person.id;
+                 $rootScope.appointmentsPatientGurdianName = htmlEscapeValue.getHtmlEscapeValue($rootScope.primaryPatientFullName);
 
-              $rootScope.appointmentDisplay = "test";
-              $scope.$root.$broadcast("callAppointmentConsultation");
+                   $rootScope.appointmentDisplay = "test";
+                   $scope.$root.$broadcast("callAppointmentConsultation");
 
-          //  $rootScope.doGetAppointmentConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');
+               //  $rootScope.doGetAppointmentConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');
+          }
         };
 
         $scope.addmore = false;
