@@ -5887,10 +5887,7 @@ hr {
     color: #333;
 }
 
-.pc-report__sub-section-title{
-    font-size: 11px !important;
-    font-family: GloberBold !important;
-}
+
 
 .pc-report__sub-section-date{
     font-size: 10px !important;
@@ -5910,8 +5907,9 @@ hr {
     border: 0;
     vertical-align: baseline;
     font: inherit;
-    font-family: GloberBold !important;
-    font-size: 10px !important;
+    font-family: Glober !important;
+    font-size: 11px !important;
+    font-weight: bold !important;
     }
 
     .reportTitle-Android {
@@ -5927,3 +5925,69 @@ hr {
     .reportIconBack-IOS {
         top: 2px !important;
     }
+
+
+
+.report__data-list-desc1{
+  font-size: 16px !important;
+
+}
+.pc-report__data-list-item{
+    flex-grow: 1 !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    order: 1 !important;
+    border: solid 1px #e6e6e6 !important;
+}
+
+.pc-report__name-details strong{
+
+  font-family: Glober !important;
+  font-size: 18px !important;
+  font-weight: bold !important;
+}
+
+.pc-report__name-details{
+
+    font-family: Glober !important;
+  font-size: 14px !important;
+
+}
+
+.pc-report__name--provider{
+        font-size: 25px !important;
+        line-height: 1.33 !important;
+        height: 37px;
+        color: #444;
+        margin-top: 2px;
+        padding-bottom: 5px;
+        font-family: Glober !important;
+        font-weight: bold !important;
+}
+
+
+.pc-report__med-list {
+    font-size: 10px !important;
+    font-family: Glober !important;
+    color: #444;
+    margin: 0;
+    padding: 0;
+    font-weight: 600 !important;
+}
+
+.pc-report__list-title {
+    color: #666;
+    margin-top: 5px;
+    line-height: 2;
+    font-size: 9px !important;
+    font-family: Glober !important;
+}
+
+.pc-report__table-title span{
+     color: #666;
+    margin-top: 5px;
+    line-height: 2;
+    font-size: 9px !important;
+    font-family: Glober !important;
+}
