@@ -15,7 +15,7 @@
 
          </span>
       </h1>
-      <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
+      <!--<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
          <div class="calendar_subHeader" >
             <div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
             <div class="subHeader_content-{{deviceName}} ellipsis" >
@@ -26,7 +26,7 @@
                <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"> . {{patRelationShip}}</span></div>
             </div>
          </div>
-      </div>
+      </div>-->
    </ion-header-bar>
    <ion-view title="Post Consult Report">
       <ion-content class="ReportContent">
@@ -166,8 +166,8 @@
                                 </div>
                                 <div class="pc-report__data-list-item pc-report__data-list-item--small" style="width: 23% !important">
                                     <span class="pc-report__data-list-title" style="margin-left: 1px;width: 26.333%;padding-left: 3px;">VIA</span>
-                                    <span class="pc-report__data-list-desc pc-report__data-list-desc--video" ng-if="encountercode == 3" style="width: 71.666%;">Video</span>
-                                    <span class="pc-report__data-list-desc pc-report__data-list-desc--phone" ng-if="encountercode != 3" style="width: 71.666%;">Phone</span>
+                                    <span class="pc-report__data-list-desc pc-report__data-list-desc--video" ng-if="encountercode == 3" style="width: 72.666%;">Video</span>
+                                    <span class="pc-report__data-list-desc pc-report__data-list-desc--phone" ng-if="encountercode != 3" style="width: 72.666%;">Phone</span>
                                       <!--<span class="pc-report__data-list-desc pc-report__data-list-desc--video">{{encountertype}}</span> -->
                                 </div>
                             </div>

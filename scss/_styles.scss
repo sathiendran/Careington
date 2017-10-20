@@ -1,5 +1,5 @@
 @import "variable";
-@font-face {  
+@font-face {
     font-family: 'Glober Black Italic';
     src: url("Glober Black Italic.otf");
 }
@@ -5908,9 +5908,9 @@ hr {
     vertical-align: baseline;
     font: inherit;
     font-family: Glober !important;
-    font-size: 11px !important;
+    font-size: 12px !important;
     font-weight: bold !important;
-    }
+}
 
     .reportTitle-Android {
         top: 3px !important;
@@ -5939,19 +5939,20 @@ hr {
     width: 100% !important;
     order: 1 !important;
     border: solid 1px #e6e6e6 !important;
+    font-family: GloberBold !important;
+    font-size: 14px !important;
 }
 
 .pc-report__name-details strong{
-
   font-family: Glober !important;
   font-size: 18px !important;
   font-weight: bold !important;
 }
 
 .pc-report__name-details{
-
-    font-family: Glober !important;
+  font-family: Glober !important;
   font-size: 14px !important;
+//  font-weight: bold !important;
 
 }
 
@@ -5990,4 +5991,8 @@ hr {
     line-height: 2;
     font-size: 9px !important;
     font-family: Glober !important;
+}
+.pc-report__data-list-desc1{
+  font-family: GloberBold !important;
+  font-size: 14px !important;
 }
