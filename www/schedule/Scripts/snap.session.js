@@ -73,7 +73,17 @@
                 }).data("kendoNotification");
             }
             if (notification) {
-                notification.show({
+                 navigator.notification.alert(
+                   'Your session timed out.', // message
+                   function() {
+                        window.location.href = snap.redirctPage;
+                        window.location.reload(true);
+                   },
+                   snap.appName, // title
+                   'Done' // buttonName
+               );
+               return false;
+               /* notification.show({
                     title: "Logout warning",
                     message: "Your session is about to expire. Please " + (isIdleTimeout ? "click continue button" : "refresh the page to continue") +
                         " or you will be automatically redirected to the login page."
@@ -89,7 +99,7 @@
                     clearTimeout(timeout);
                   //  window.location.href = snap.redirctPage;
                   //  window.location.reload(true);
-                });
+             });*/
             }
         },
 

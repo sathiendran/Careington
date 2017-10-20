@@ -5853,7 +5853,7 @@ hr {
     top: 25px;
 }
 .reportBrandName{
-    margin-left: -35px !important;
+    //margin-left: -35px !important;
     font-size: 12px !important;
     font-family: GloberBold !important;
     font-color: #333333 !important;
@@ -5866,7 +5866,7 @@ hr {
     color: #000000;
 }
 .guardian{
-    font-size: 14px;
+    font-size: 17px;
     font-family: GloberSemiBold;
     height: 20px;
     color: #000000;
@@ -5876,7 +5876,6 @@ hr {
     float: right;
     padding: 5px;
     font-size: 8px !important;
-    //font-family: "Glober Bold","Helvetica Neue",Helvetica,Arial,Sans-Serif;
 }
 
 .pc-report__table-row span {
@@ -5891,6 +5890,7 @@ hr {
 
 .pc-report__sub-section-date{
     font-size: 10px !important;
+     font-family: GloberRegular !important;
 }
     .pc-report__table-row {
     font-size: 13px;
@@ -5902,14 +5902,15 @@ hr {
 
 
 .pc-report__sub-section-title {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    vertical-align: baseline;
-    font: inherit;
-    font-family: Glober !important;
-    font-size: 11px !important;
-    font-weight: bold !important;
+         margin: 0;
+         padding: 0;
+         border: 0;
+         vertical-align: baseline;
+         font: inherit;
+         font-family: Glober !important;
+         font-size: 13px !important;
+         font-weight: bold !important;
+        margin-top: 4px !important;
     }
 
     .reportTitle-Android {
@@ -5944,15 +5945,16 @@ hr {
 
 .pc-report__name-details strong{
 
-  font-family: Glober !important;
-  font-size: 18px !important;
+  font-size: 17px !important;
   font-weight: bold !important;
+  font-family: GloberSemiBold !important;
 }
 
 .pc-report__name-details{
 
     font-family: Glober !important;
-  font-size: 14px !important;
+  font-size: 17px !important;
+  padding-top: 1px;
 
 }
 
@@ -5961,7 +5963,7 @@ hr {
         line-height: 1.33 !important;
         height: 37px;
         color: #444;
-        margin-top: 2px;
+        margin-top: -4px !important;
         padding-bottom: 5px;
         font-family: Glober !important;
         font-weight: bold !important;
@@ -5969,8 +5971,8 @@ hr {
 
 
 .pc-report__med-list {
-    font-size: 10px !important;
-    font-family: Glober !important;
+    font-size: 13px !important;
+   font-family: GloberSemiBold !important;
     color: #444;
     margin: 0;
     padding: 0;
@@ -5981,7 +5983,7 @@ hr {
     color: #666;
     margin-top: 5px;
     line-height: 2;
-    font-size: 9px !important;
+    font-size: 11px !important;
     font-family: Glober !important;
 }
 
@@ -5989,6 +5991,55 @@ hr {
      color: #666;
     margin-top: 5px;
     line-height: 2;
-    font-size: 9px !important;
+    font-size: 11px !important;
     font-family: Glober !important;
+}
+.pc-report__name--patient {
+     font-size: 31px !important;
+}
+.pc-report__data-list-desc {
+     font-size: 17px !important;
+     font-family: GloberSemiBold !important;
+     position: relative;
+    top: -2px;
+    border: none !important;
+    padding-top: 0px !important;
+}
+.pc-report__data-list-desc1 {
+     padding-left: 5px;
+     position: relative;
+     top: 4px;
+     font-size: 17px !important;
+}
+.pc-report__complaints li {
+     font-size: 14px !important;
+}
+.pc-report__add-notes strong {
+     font-size: 14px !important;
+}
+.pc-report__add-notes span {
+     font-size: 14px !important;
+}
+.pc-report__data-list-desc--successful {
+     top: 1px !important;
+     width: 74%;
+     padding-top: 3px;
+}
+.pc-report__data-list-title {
+     height: auto !important;
+}
+.enStatus {
+     width: 26.333% !important;
+}
+.pc-report__table-row span{
+     font-family: GloberSemiBold !important;
+}
+.pc-report__company-info h2 {
+     font-size: 12px !important;
+}
+.pc-report__company-info p {
+     font-size: 12px !important;
+}
+.pc-report {
+     padding: 0px 16px !important;
 }

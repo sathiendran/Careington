@@ -279,11 +279,11 @@ angular.module('starter.controllers')
                 if ($rootScope.existingConsultationReport.appointmentType !== '' && typeof $rootScope.existingConsultationReport.appointmentType !== 'undefined') {
                       $rootScope.appointmentcode =  $rootScope.existingConsultationReport.appointmentType;
                         if ($rootScope.appointmentcode == 1) {
-                            $rootScope.appointmenttype = "ClinicianScheduled";
+                            $rootScope.appointmenttype = "Provider Sche";
                         } else if ($rootScope.appointmentcode == 2) {
                             $rootScope.appointmenttype = "On-Demand";
                         }else if ($rootScope.appointmentcode == 3) {
-                            $rootScope.appointmenttype = "PatientScheduled";
+                            $rootScope.appointmenttype = "Patient Sched";
                         }
                     } else {
                         $rootScope.appointmenttype = 'None Reported';

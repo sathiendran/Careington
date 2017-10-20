@@ -55,7 +55,7 @@
                     navigator.notification.alert(
                         'You have logged in on another device.', // message
                         function() {
-                            $overlay.toggleOverlay();
+                           // $overlay.toggleOverlay();
                              window.location.href = snap.redirctPage;
                             // $timeout(function() {
                                    window.location.reload(true);
