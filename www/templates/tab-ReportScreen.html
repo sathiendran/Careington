@@ -10,7 +10,7 @@
          <span class="button icon button-clear {{menuiconIOS}}  reportIconBack-{{deviceName}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
     </div>-->
 
-      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} reportTitle-{{deviceName}}" > <span class="headerfont _accountHeader-{{deviceName}}">Post-Encounter Report</span>
+      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} reportscreenTitle-{{deviceName}}" > <span class="headerfont _accountHeader-{{deviceName}}">Post-Encounter Report</span>
          <span> <a class="headerval _accountCancel-{{deviceName}}" ng-click="EnableBackButton();" >Done</a>
 
          </span>
@@ -103,16 +103,16 @@
 
                             <div class="pc-report__data-list pc-report__data-list-item">
                                 <span class="pc-report__data-list-title">RACE</span>
-                                <span class="pc-report__data-list-desc">N/R</span>
+                                <span class="pc-report__data-list-desc1">N/R</span>
                             </div>
                                <div class="pc-report__data-list pc-report__data-list-item">
                                 <span class="pc-report__data-list-title" style="height: auto;">ETHNICITY</span>
-                                <span class="pc-report__data-list-desc" style="height: auto;">{{reportethnicity}}</span>
+                                <span class="pc-report__data-list-desc1" style="height: auto;">{{reportethnicity}}</span>
                             </div>
 
                             <div class="pc-report__data-list pc-report__data-list-item">
                                 <span class="pc-report__data-list-title">LANGUAGE</span>
-                                <span class="pc-report__data-list-desc">N/R</span>
+                                <span class="pc-report__data-list-desc1">N/R</span>
                             </div>
                             <!--// report chart -->
 
@@ -140,37 +140,37 @@
                             <!-- Report Chart -->
                             <div class="pc-report__data-list pc-report__data-list-item">
                                 <span class="pc-report__data-list-title enStatus">Status</span>
-                                <span ng-if="consultstatus == 72" class="pc-report__data-list-desc pc-report__data-list-desc--successful">{{reportStatus}}</span>
-                                <span ng-if="consultstatus == 79" class="pc-report__data-list-desc pc-report__data-list-desc--canceled">{{reportStatus}}</span>
-                                  <span ng-if="consultstatus == 81" class="pc-report__data-list-desc pc-report__data-list-desc--canceled">{{reportStatus}}</span>
+                                <span ng-if="consultstatus == 72" class="pc-report__data-list-desc1 pc-report__data-list-desc--successful">{{reportStatus}}</span>
+                                <span ng-if="consultstatus == 79" class="pc-report__data-list-desc1 pc-report__data-list-desc--canceled">{{reportStatus}}</span>
+                                  <span ng-if="consultstatus == 81" class="pc-report__data-list-desc1 pc-report__data-list-desc--canceled">{{reportStatus}}</span>
                             </div>
                                <div class="pc-report__data-list pc-report__data-list-item">
                                 <span class="pc-report__data-list-title enStatus">encounter</span>
-                                <span class="pc-report__data-list-desc">{{consultationDate | date: "MMM dd, yyyy"}}, {{consultationDate | date: "hh:mma" | lowercase}}  {{sysTimeZone}}</span>
+                                <span class="pc-report__data-list-desc1">{{consultationDate | date: "MMM dd, yyyy"}}, {{consultationDate | date: "hh:mma" | lowercase}}  {{sysTimeZone}}</span>
                             </div>
 
                             <div class="pc-report__data-list pc-report__data-list-item">
                                 <div class="pc-report__data-list-title enStatus">length</div>
-                                <div class="pc-report__data-list-desc" ng-if="displayCOnsultationDuration != 'none'">{{consultDurationMinutes}}:{{consultDurationSeconds}} <strong>min</strong></div>
+                                <div class="pc-report__data-list-desc1" ng-if="displayCOnsultationDuration != 'none'">{{consultDurationMinutes}}:{{consultDurationSeconds}} <strong>min</strong></div>
                             </div>
 
                             <div class="pc-report__data-list pc-report__data-list-item">
                                 <span class="pc-report__data-list-title enStatus">APPT. TYPE</span>
-                                <span class="pc-report__data-list-desc">{{reportservicetype}}</span>
+                                <span class="pc-report__data-list-desc1">{{reportservicetype}}</span>
                             </div>
 
                             <div class="pc-report__data-list">
-                                <div class="pc-report__data-list-item pc-report__data-list-item--small" style="width: 151% !important;">
-                                    <span class="pc-report__data-list-title" style="width: 27.333%;">class</span>
-                                    <span class="pc-report__data-list-desc" style="width: 67.666%;">{{appointmenttype}}</span>
-                                </div>
-                                <div class="pc-report__data-list-item pc-report__data-list-item--small" style="width: 23% !important">
-                                    <span class="pc-report__data-list-title" style="margin-left: 1px;width: 26.333%;padding-left: 3px;">VIA</span>
-                                    <span class="pc-report__data-list-desc pc-report__data-list-desc--video" ng-if="encountercode == 3" style="width: 72.666%;">Video</span>
-                                    <span class="pc-report__data-list-desc pc-report__data-list-desc--phone" ng-if="encountercode != 3" style="width: 72.666%;">Phone</span>
-                                      <!--<span class="pc-report__data-list-desc pc-report__data-list-desc--video">{{encountertype}}</span> -->
-                                </div>
-                            </div>
+                               <div class="pc-report__data-list-item pc-report__data-list-item--small" style="width: 151% !important;">
+                                   <span class="pc-report__data-list-title" style="width: 27.333%;">class</span>
+                                   <span class="pc-report__data-list-desc" style="width: 67.666%%;">{{appointmenttype}}</span>
+                               </div>
+                               <div class="pc-report__data-list-item pc-report__data-list-item--small" style="width: 23%">
+                                   <span class="pc-report__data-list-title" style="margin-left: 1px;width: 26.333%;padding-left: 3px;">VIA</span>
+                                   <span class="pc-report__data-list-desc pc-report__data-list-desc--video" ng-if="encountercode == 3" style="width: 72.666%;">Video</span>
+                                   <span class="pc-report__data-list-desc pc-report__data-list-desc--phone" ng-if="encountercode != 3" style="width: 72.666%;">Phone</span>
+                                     <!--<span class="pc-report__data-list-desc pc-report__data-list-desc--video">{{encountertype}}</span> -->
+                               </div>
+                          </div>
 
                             <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Other Attendees</div>
 

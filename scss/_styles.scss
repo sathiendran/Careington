@@ -5911,13 +5911,21 @@ hr {
          font-size: 13px !important;
          font-weight: bold !important;
         margin-top: 4px !important;
-    }
+    } 
 
     .reportTitle-Android {
         top: 3px !important;
     }
     .reportTitle-IOS {
         top: 20px !important;
+        margin-left: 23px !important;
+    }
+
+    .reportscreenTitle-Android {
+        top: 12px !important;
+    }
+    .reportscreenTitle-IOS {
+        top: 27px !important;
         margin-left: 23px !important;
     }
 
@@ -5941,7 +5949,7 @@ hr {
     width: 100% !important;
     order: 1 !important;
     border: solid 1px #e6e6e6 !important;
-    font-family: GloberBold !important;
+    font-family: GloberRegular !important;
     font-size: 14px !important;
 }
 
@@ -6001,16 +6009,16 @@ hr {
 }
 .pc-report__data-list-desc {
      font-size: 17px !important;
-     font-family: GloberSemiBold !important;
+     font-family: GloberBold !important;
      position: relative;
-    top: -2px;
+    top: 0px;
     border: none !important;
     padding-top: 0px !important;
 }
 .pc-report__data-list-desc1 {
      padding-left: 5px;
      position: relative;
-     top: 4px;
+     //top: 4px;
      font-size: 17px !important;
 }
 .pc-report__complaints li {
@@ -6025,7 +6033,7 @@ hr {
 .pc-report__data-list-desc--successful {
      top: 1px !important;
      width: 74%;
-     padding-top: 3px;
+     //padding-top: 3px;
 }
 .pc-report__data-list-title {
      height: auto !important;
@@ -6041,6 +6049,7 @@ hr {
 }
 .pc-report__company-info p {
      font-size: 12px !important;
+     padding-top: 2px;
 }
 .pc-report {
      padding: 0px 16px !important;
