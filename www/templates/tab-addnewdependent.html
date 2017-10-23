@@ -119,7 +119,7 @@
                   </div>
                   <div class="col col-50 depGreyLabel">
                      <div class="dependHeigh-{{deviceName}}">
-                        <input id="weight" class="usertext textdata" type="tel" value="" placeholder="Required"  name="weight" ng-keyup="weight1len()" >
+                        <input id="weight" class="usertext textdata" type="tel" value="" placeholder="Required" style="max-width: 200% !important;" name="weight" ng-keyup="weight1len()" >
                      </div>
                      <div class="dependHeighUnit-{{deviceName}}" style="width: 50%;">
                         <select class="optionselect textdata dependwetUnit-{{deviceName}}" name="weightunit" id="weightunit" ng-model="weightunits" >
@@ -274,14 +274,14 @@
                   </div>
                </div>
                <div><h3 class="healthpat"><div><span>Patient IDs</span></div></h3></div>
-               
+
                <div class="item item-input itemtab validated" ng-repeat="patientdisplay in addPatientidupdateList" style="display: {{viewAddpatapiDisplay}};">
-                  
+
                   <span class="input-label labelcolor"  id="pattext_{{ $index + 1 }}" style=" white-space: normal;" ><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('vcard')"></i><b class="formlabel labelfont">{{patientdisplay.display}}</b></span>
                   <span class="healthViewDetails" >
                    <input type="hidden" value="{{patientdisplay.identifierTypeCode+','+ patientdisplay.identifierTypeTitle +','+ patientdisplay.effectiveDate +','+ patientdisplay.statusCode}}" name="patIndentifierDetails[]" id="identifierTypeCode_{{ $index + 1 }}">
                    <input type="text" style="    height: 64px;" name="healthInfoEmail ellipsis" id="patval_{{ $index + 1 }}"   value="{{patientdisplay.value}}" class="textdata" placeholder="Required" >
-                  </span> 
+                  </span>
                </div>
                <div ng-click="doGetPatientIdList();">
                   <div class="PrimaryContent" style="text-align:center;margin-top:15px;">
