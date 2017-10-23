@@ -1047,6 +1047,7 @@ angular.module('starter.controllers')
 
            $scope.modal.remove();
            $rootScope.viewAddpatapiDisplay = 'flex';
+           $ionicScrollDelegate.$getByHandle('small').scrollTop();
        }
 
     }
