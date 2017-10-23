@@ -19,7 +19,8 @@
                <ion-checkbox ng-repeat="item in filteredItems = (MedicationAllegiesList | filter:data.searchProvider)"
                   ng-model="item.checked"
                   ng-checked="item.checked"  ng-change="OnSelectMedicationAllegies(item)" ng-disabled="checkedAllergies==limit && !item.checked"  >
-                  <span class="ng-binding concernListDetails">   {{ item.text }} </span>
+                  <p class="ng-binding concernListDetails" style="width: 13em; white-space: normal;">
+                    {{ item.text }} </p>
                </ion-checkbox>
             </ion-item>
             <ion-item  ng-show="(MedicationAllegiesList | filter:data.searchProvider).length==0" class="noResult" style="white-space: normal;">Sorry No Result Found!</ion-item>

@@ -236,6 +236,7 @@ angular.module('starter.controllers')
                 $scope.emailerror=true;
           }else if(typeof $scope.mobile === 'undefined' ||$scope.mobile === ''){
             $('.regstmobile').addClass("emailbackground");
+            $scope.mobileerror=false;
             $scope.mobilemanderror=true;
           }else if(typeof $scope.regCountry2 === 'undefined' || $scope.regCountry2 === '' || $scope.regCountry2 === 'Choose'){
               $('.regstCountry').addClass("emailbackground");

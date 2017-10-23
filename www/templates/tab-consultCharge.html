@@ -38,7 +38,7 @@
             <div class="animated slideInRight" >
                <div>
                   <div style="display: {{enableAddHealthPlan}}">
-                     <div class="healthPlan_header consultInsurance"  >
+                     <div class="healthPlan_header consultInsurance"  style="margin-top: 5  px;">
 						                 <!--<h4 class="insurancelist"> <div>select your health plan
                       <span class="insuranceedit" style="display: {{editplan}}"; ng-click="editinsurance()">Edit this plan <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span></div></h4>
                     <ion-item >
@@ -57,7 +57,7 @@
                       <!--<div class="healthPlan_text NoPlanText" >Select your Health Plan</div>
                         <span class="insuranceedit" style="display: {{editplan}}"; ng-click="editinsurance()">Edit this plan <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>-->
                         <h4 class="insurancelist">
-                           <div class="selectInsurancelist">select your health plan
+                           <div class="selectInsurancelist">select your health plan1
                              <span class="insuranceedit" style="display: {{editplan}}"; ng-click="editinsurance()">Edit this plan <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>
                            </div>
                         </h4>
@@ -66,7 +66,7 @@
                               <div style = "display: {{chooseHealthHide}};" class="viewport healthSelectedValue"><div class="insCHooseProviderName">Choose Your Health Plan</div></div>
                               <div style = "display: {{chooseHealthShow}};" class="viewport insuranceNameDisplayed healthSelectedValue">
                                 <!--<b>{{providerName +' '+ PolicyNo}}</b>-->
-                                <div class="insProviderName">{{providerName}}</div><div class="insSubscriberName">Subscriber ID:{{PolicyNo}}</div>
+                                <div class="insProviderName" style="width: 15em;white-space: normal;padding-left: 17px;">{{providerName}}</div><div class="insSubscriberName" style="padding-left: 17px;">Subscriber ID:{{PolicyNo}}</div>
 
                               </div>
                               <select class="consultHealthPlanDropDown" id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan"  style="border: none;">
@@ -106,11 +106,17 @@
                   <div style="display:{{disableAddHealthPlan}}">
                      <div class="healthPlan_header AddCardNoPlan"  >
                         <div class="healthPlan_text" style="margin-left:-17px;" >Select your health plan</div>
-                        <a ng-click="doGetHealthPlanProvider()" style="cursor: pointer;">
+                      <!--   <a ng-click="doGetHealthPlanProvider()" style="cursor: pointer;">
                            <div class="addHealthPlan_header AddCard" >
                               <i style="position: relative; top: -5px;text-align:center;color:#A3D38B;" 	 ng-bind-html="drawSVGCIcon('circle-with-plus')"></i><span class="addHealthPlan_text" >Add A Health Plan</span>
                            </div>
-                        </a>
+                        </a>-->
+                        <a ng-click="doGetHealthPlanProvider()" style="cursor: pointer;">
+                            <div class="addHealthPlan_header AddCard" >
+                               <i style="position: relative; top: -8px;" class="ion-plus-round"></i>
+                               <span class="addHealthPlan_text" >Add A Health Plan</span>
+                            </div>
+                         </a>
                      </div>
                      <div class="SkipToPayment" style="display: {{applyPlanMode}};" >
                         <button class="button button-block button-royal cardSkipPayment"  type="submit" ng-click="showConsultChargeNoPlan(PatientImageSelectUser, PatientFirstName, PatientLastName, PatientAge, PatientGuardian, 'tab.addHealthPlan')" style=" padding: 3px"  >
@@ -171,12 +177,20 @@
                <div style="display:{{disableSubmitpayment}}">
                   <div class="healthPlan_header AddCardNoPlan">
                      <div class="healthPlan_text" style="margin-left:-120px!important;">Pay Using</div>
-                     <a ng-click="goCardDetailsPage()">
+                       <!--<a ng-click="goCardDetailsPage()">
                         <div class="AddCard"  >
                            <i style="position: relative; top: -5px;text-align:center;color:#A3D38B;" ng-bind-html="drawSVGCIcon('circle-with-plus')"></i>
                            <span class="addHealthPlan_text" >Add A Payment Card</span>
                         </div>
+                     </a>-->
+
+                     <a ng-click="goCardDetailsPage()" >
+                        <div class="AddCard" >
+                           <i style="position: relative; top: -8px;" class="ion-plus-round"></i>
+                           <span class="addHealthPlan_text" >Add A Payment Card</span>
+                        </div>
                      </a>
+
                   </div>
                   <div class="SkipToPayment" style="padding-top: 68px;" >
                      <button class="button button-block button-royal cardSubmitPayment" style="padding: 3px;" >
