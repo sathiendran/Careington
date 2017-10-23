@@ -6057,7 +6057,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         //LoginService.getScheduledNowPhoneConsulatation(params);
     }
 
-    // var initWaitingRoomHub = function() {
+  if($rootScope.activeInqueueAppoint) {
          var activeConsultConnection = $.hubConnection();
          var activeRoomConHub = activeConsultConnection.createHubProxy('snapNotificationsHub');
          activeConsultConnection.url = $rootScope.APICommonURL + "/api/signalR/";
@@ -6065,8 +6065,6 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             "Bearer": $rootScope.accessToken,
             "waitingroom": 1,
             "isMobile": true,
-           // "Date":"2017-10-19T00:00",
-          // "TimeZone":"India Standard Time"
          };
          activeRoomConHub.on("onConsultationReview", function() {
            // alert("The Provider is now reviewing the intake form.");
@@ -6076,25 +6074,13 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             $scope.$digest();
          });
          activeRoomConHub.on("onConsultationStarted", function() {
-            //$scope.postPollforCredit();
-
-            //alert("Please wait123...");
             $scope.$digest();
-            // $.connection.hub.stop();
-           // WaitingRoomConnection.stop();
-            // WaitingRoomConnection.qs = {};
-            // WaitingRoomConnection = null;
-            // WaitingRoomConHub = null;
-            //getConferenceKeys();
          });
          activeConsultConnection.logging = true;
          window.whub = activeConsultConnection;
          activeConsultConnection.start({
             withCredentials: false
          }).then(function() {
-            //  WaitingRoomConHub.invoke("joinCustomer").then(function() {});
-            //  alert("The Provider will be with you Shortly.");
-
               activeConsultConnection.disconnected(function() {
                   // console.log("hhhh");
                 setTimeout(function() {
@@ -6105,70 +6091,69 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 }, 5000);
                 });
          });
-     //};
-     //initWaitingRoomHub();
 
-     activeRoomConHub.on("broadcastMessage", function(messageType, message) {
-        // alert("notificationService: broadcastMessage");
-        if(messageType == 'consultation_ended') {
-           //  alert('gg2');
-             navigator.notification.alert(
-                'Consultation is ended.', // message
-                 function() {
-                      activeConsultConnection.stop();
-                       activeConsultConnection.qs = {};
-                       activeConsultConnection = null;
-                       activeRoomConHub = null;
-                    $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-                     return;
-                 },
-                 $rootScope.alertMsgName, // title
-                 'Ok' // buttonName
-             );
-             return false;
-        } else if(messageType == 'consultation_dropped') {
-           //  alert('gg');
-             navigator.notification.alert(
-               'The consultation expired..', // message
-                 function() {
-                      activeConsultConnection.stop();
-                       activeConsultConnection.qs = {};
-                       activeConsultConnection = null;
-                       activeRoomConHub = null;
-                   $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-                    return;
-                 },
-                 $rootScope.alertMsgName, // title
-                 'Ok' // buttonName
-             );
-             return false;
-        } else if(messageType == 'consultation_fulfilled') {
-           //  alert('gg1');
-             navigator.notification.alert(
-               'The Provider has marked your consultation as complete.', // message
-                 function() {
-                      activeConsultConnection.stop();
-                      activeConsultConnection.qs = {};
-                      activeConsultConnection = null;
-                      activeRoomConHub = null;
-                   $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-                    return;
-                 },
-                 $rootScope.alertMsgName, // title
-                 'Ok' // buttonName
-             );
-             return false;
-         } else {
-             // alert('gg4');
-             $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-         }
+       activeRoomConHub.on("broadcastMessage", function(messageType, message) {
+          // alert("notificationService: broadcastMessage");
+          if(messageType == 'consultation_ended') {
+             //  alert('gg2');
+               navigator.notification.alert(
+                  'Consultation is ended.', // message
+                   function() {
+                        activeConsultConnection.stop();
+                         activeConsultConnection.qs = {};
+                         activeConsultConnection = null;
+                         activeRoomConHub = null;
+                      $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                       return;
+                   },
+                   $rootScope.alertMsgName, // title
+                   'Ok' // buttonName
+               );
+               return false;
+          } else if(messageType == 'consultation_dropped') {
+             //  alert('gg');
+               navigator.notification.alert(
+                 'The consultation expired..', // message
+                   function() {
+                        activeConsultConnection.stop();
+                         activeConsultConnection.qs = {};
+                         activeConsultConnection = null;
+                         activeRoomConHub = null;
+                     $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                      return;
+                   },
+                   $rootScope.alertMsgName, // title
+                   'Ok' // buttonName
+               );
+               return false;
+          } else if(messageType == 'consultation_fulfilled') {
+             //  alert('gg1');
+               navigator.notification.alert(
+                 'The Provider has marked your consultation as complete.', // message
+                   function() {
+                        activeConsultConnection.stop();
+                        activeConsultConnection.qs = {};
+                        activeConsultConnection = null;
+                        activeRoomConHub = null;
+                     $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                      return;
+                   },
+                   $rootScope.alertMsgName, // title
+                   'Ok' // buttonName
+               );
+               return false;
+           } else {
+               // alert('gg4');
+               $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+           }
+       });
+
+
+      activeRoomConHub.on("onConsultationEnded", function() {
+       // alert('ended');
+       // $scope.disconnectConference();
      });
-
-
-    activeRoomConHub.on("onConsultationEnded", function() {
-     // alert('ended');
-     // $scope.disconnectConference();
-   });
+   };
 
     $scope.getScheduledDetails = function(patientId) {
         $rootScope.selectedPatientIdForDetails = patientId;
@@ -8199,7 +8184,12 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
           }
     };
     $scope.doGetWaitingRoom = function() {
-
+      if($rootScope.activeInqueueAppoint) {
+       activeConsultConnection.stop();
+        activeConsultConnection.qs = {};
+        activeConsultConnection = null;
+        activeRoomConHub = null;
+      }
         $state.go('tab.waitingRoom');
     }
 

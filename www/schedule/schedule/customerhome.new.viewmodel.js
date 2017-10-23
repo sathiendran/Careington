@@ -1349,6 +1349,8 @@ var setUserVars = function() {
                             $snapNotification.success(that._typeName + " updated successfully");
                             var aa1 = (new Date).getTime();
                             setTimeout(function() {
+                              $.connection.hub.qs = {};
+                              var hubs = [];
                               $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                               location.href = "#/tab/appoimentDetails/webSSAppointUpdate"+ aa1;
                             }, 3000);
@@ -1547,6 +1549,8 @@ var setUserVars = function() {
                             $snapNotification.success("Appointment is unassigned successfully");
                           // $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                             setTimeout(function() {
+                              $.connection.hub.qs = {};
+                              var hubs = [];
                                 location.href = "#/tab/appointmentpatientdetails/webSSCancel";
                             }, 2000);
                         }).fail(function(error) {
@@ -4761,6 +4765,9 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                                       //  $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                                       window.setTimeout(function() {
                                           $overlay.toggleOverlay();
+                                          alert('hhh');
+                                          $.connection.hub.qs = {};
+                                          var hubs = [];
                                       }, 2000);
                                         if (snap.hospitalSettings.showCTTOnScheduled) {
                                             //location.href = "/Customer/Intake/#/Confirmation";

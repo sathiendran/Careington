@@ -203,7 +203,7 @@
                      transport: {
                          read: function (options) {
                              var filters = scope._getCliniciansFilters();
- 
+
                              filters.take = options.data.take;
                              filters.skip = options.data.skip;
                              filters.onlyMyProviders = mode === listViewMode.favorite;
@@ -213,28 +213,28 @@
                              if (options.data.userId) {
                                  dfd = $selfSchedulingService.getClinicianCard(options.data.userId, filters.date);
                              }
- 
+
                              $.when(dfd, $selfSchedulingService.getCliniciansCards(filters)).done(function (singlCardResult, listOfCardsResult) {
                                  var cards = listOfCardsResult[0].data[0].clinicians;
                                  var totals = listOfCardsResult[0].data[0].totals;
- 
- 
+
+
                                  if (singlCardResult) {
                                      var userId = singlCardResult[0].data[0].userId;
- 
+
                                      for (var i = 0; i < cards.length; i++) {
                                          if (cards[i].userId === userId) {
                                              cards.splice(i, 1);
                                              break;
                                          }
                                      }
- 
+
                                      var selectedClinicianCard = singlCardResult[0].data[0];
                                      selectedClinicianCard._isSelected = true; //Custom property, we use it in order to mark element in UI.
- 
+
                                      cards.unshift(selectedClinicianCard);
                                  }
- 
+
                                  $eventAggregator.published(dataSourceReadSuccessEvent, {
                                      mode: mode,
                                      data: totals,
@@ -259,7 +259,7 @@
                              var clinicians = response.data.map(function (ap) {
                                  return new Clinician(ap, scope);
                              });
- 
+
                              return clinicians;
                          }
                      }
@@ -570,6 +570,8 @@
                 this.vm_closeNotification();
                 window.setTimeout(function () {
                     sessionStorage.setItem("snap_tabName_ref", "Scheduled");
+                    $.connection.hub.qs = {};
+                    var hubs = [];
                     window.location.href = "#/tab/appointmentpatientdetails/webSS";
                     return false;
                 }, 300);
@@ -646,10 +648,10 @@
             /* this.vm_allClinicianCardsList_onDataBound = function () {
                  allProvidersSlotsLocator.setSlots(getSlotsFromDs(this.allCliniciansDS), this.dateFilter);
                  expandClinicanCards(this.allCliniciansDS);
- 
+
                  this.set("vm_isAllCliniciansDSEmpty", this.allCliniciansDS.data().length === 0);
              };
- 
+
              this.vm_favoriteClinicianCardsList_onDataBound = function () {
                  this.set("vm_isNotificationActive", false);
                  myProvidersSlotsLocator.setSlots(getSlotsFromDs(this.favoriteCliniciansDS), this.dateFilter);
@@ -657,9 +659,9 @@
                  this.trigger("change", { field: "vm_isFavoriteCliniciansDSEmpty" });
                  this.trigger("change", { field: "vm_hasSearchConditions" });
              };
- 
+
              function expandClinicanCards(clinicianCardsDS) {
- 
+
                  setTimeout(function () {
                      clinicianCardsDS.data().forEach(function (clinicianCard) {
                          clinicianCard.toogleFoter(true);
