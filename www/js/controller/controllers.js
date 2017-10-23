@@ -6057,7 +6057,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         //LoginService.getScheduledNowPhoneConsulatation(params);
     }
 
-  if($rootScope.activeInqueueAppoint) {
+  //if($rootScope.activeInqueueAppoint) {
          var activeConsultConnection = $.hubConnection();
          var activeRoomConHub = activeConsultConnection.createHubProxy('snapNotificationsHub');
          activeConsultConnection.url = $rootScope.APICommonURL + "/api/signalR/";
@@ -6092,7 +6092,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 });
          });
 
-       activeRoomConHub.on("broadcastMessage", function(messageType, message) {
+       activeRoomConHub.on("broadcastMessage", function(messageType, message) { 
           // alert("notificationService: broadcastMessage");
           if(messageType == 'consultation_ended') {
              //  alert('gg2');
@@ -6151,9 +6151,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
       activeRoomConHub.on("onConsultationEnded", function() {
        // alert('ended');
-       // $scope.disconnectConference();
      });
-   };
+   //};
 
     $scope.getScheduledDetails = function(patientId) {
         $rootScope.selectedPatientIdForDetails = patientId;
