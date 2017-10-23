@@ -57,7 +57,7 @@
                       <!--<div class="healthPlan_text NoPlanText" >Select your Health Plan</div>
                         <span class="insuranceedit" style="display: {{editplan}}"; ng-click="editinsurance()">Edit this plan <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>-->
                         <h4 class="insurancelist">
-                           <div class="selectInsurancelist">select your health plan
+                           <div class="selectInsurancelist">Select your Health Plan
                              <span class="insuranceedit" style="display: {{editplan}}"; ng-click="editinsurance()">Edit this plan <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>
                            </div>
                         </h4>
@@ -66,7 +66,7 @@
                               <div style = "display: {{chooseHealthHide}};" class="viewport healthSelectedValue"><div class="insCHooseProviderName">Choose Your Health Plan</div></div>
                               <div style = "display: {{chooseHealthShow}};" class="viewport insuranceNameDisplayed healthSelectedValue">
                                 <!--<b>{{providerName +' '+ PolicyNo}}</b>-->
-                                <div class="insProviderName">{{providerName}}</div><div class="insSubscriberName">Subscriber ID:{{PolicyNo}}</div>
+                                <div class="insProviderName ellipsis">{{providerName}}</div><div class="insSubscriberName ellipsis">Subscriber ID:{{PolicyNo}}</div>
 
                               </div>
                               <select class="consultHealthPlanDropDown" id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan"  style="border: none;">
