@@ -16,8 +16,8 @@
             if (status == 500) {
                 errorMsg = "Internal Server error";
             }
-            $notification.error(errorMsg);
-            this.reject(response);
+           // $notification.error(errorMsg);
+           // this.reject(response);
         };
 
         this.post = function () {
@@ -60,6 +60,3 @@
     }).singleton();
 
 }(jQuery, window.snap = window.snap || {}));
-
-
-

@@ -16,7 +16,7 @@
             "snap.DataService.customerDataService",
             "snap.patient.patientResponseAddressDialog",
             "snap.common.dialogWindow",
-			"snap.helper.locationHelper"])
+            "snap.helper.locationHelper"])
         .extend(kendo.observable)
         .define("providerSearch", function (
             $snapNotification,
@@ -32,7 +32,7 @@
             $customerDataService,
             $patientResponseAddressDialog,
             $dialogWindow,
-          $locationHelper) {
+            $locationHelper) {
 
             var scope = this,
                 isFooterActive = true,
@@ -52,7 +52,7 @@
             var filterItemChangedEvent = "fic_changed";
             var filerCathegoryDisplayChanged = "fcd_changed";
 
- var selector = $familyGroupSelector.createFamilyGroupSelectorSelector({
+            var selector = $familyGroupSelector.createFamilyGroupSelectorSelector({
                 isMultiselect: false,
                 htmlContainerId: "#selectFamilyMember",
                 scrollableElementClass: ".familyGroupSelector_scrollable",
@@ -82,11 +82,11 @@
                 }
             };
 
-           this.allCliniciansDS = kendo.observable(
+            this.allCliniciansDS = kendo.observable(
                 new BaseDynamicList({
                     mode: listViewMode.all,
                     htmlContainerId: "allCliniciansContainer",
-                    onDataLoad: function() {
+                    onDataLoad: function () {
                         scope.set("vm_isAllCliniciansDSEmpty", scope.allCliniciansDS.data().length === 0);
                     }
                 })
@@ -96,7 +96,7 @@
                 new BaseDynamicList({
                     mode: listViewMode.favorite,
                     htmlContainerId: "favoriteCliniciansContainer",
-                    onDataLoad: function() {
+                    onDataLoad: function () {
                         scope.trigger("change", { field: "vm_isFavoriteCliniciansDSEmpty" });
                         scope.trigger("change", { field: "vm_hasSearchConditions" });
                     }
@@ -116,7 +116,7 @@
             this.favoriteFilters = [];
             this.vm_isSearchBarActive = false;
 
-             this.cardDisplayMode = cardDisplayModeEnum.list;
+            this.cardDisplayMode = cardDisplayModeEnum.list;
 
             $providersSlotsLocator.setListeningDate(this.dateFilter);
 
@@ -159,125 +159,125 @@
                     checked: currentFilters.Availability.filters.Available,
                     showFilterQuantity: false,
                 }], currentFilters.Availability.isOpen)),
-                    kendo.observable(new Cathegory("Gender", [{
-                        name: "Male",
-                        quantity: filtersObject.genderMale,
-                        checked: currentFilters.Gender.filters.Male,
-                        showFilterQuantity: true,
-                    }, {
-                        name: "Female",
-                        quantity: filtersObject.genderFemale,
-                        checked: currentFilters.Gender.filters.Female,
-                        showFilterQuantity: true,
-                    }], currentFilters.Gender.isOpen)),
-                    kendo.observable(new Cathegory("Years of Practice", [{
-                        name: "0-5",
-                        quantity: filtersObject["yearsOfExperience0-5"],
-                        checked: currentFilters["Years of Practice"].filters["0-5"],
-                        showFilterQuantity: true,
-                    }, {
-                        name: "6-10",
-                        quantity: filtersObject["yearsOfExperience6-10"],
-                        checked: currentFilters["Years of Practice"].filters["6-10"],
-                        showFilterQuantity: true,
-                    }, {
-                        name: "11-15",
-                        quantity: filtersObject["yearsOfExperience11-15"],
-                        checked: currentFilters["Years of Practice"].filters["11-15"],
-                        showFilterQuantity: true,
-                    }, {
-                        name: "15+",
-                        quantity: filtersObject["yearsOfExperience15+"],
-                        checked: currentFilters["Years of Practice"].filters["15+"],
-                        showFilterQuantity: true,
-                    }], currentFilters["Years of Practice"].isOpen))
+                kendo.observable(new Cathegory("Gender", [{
+                    name: "Male",
+                    quantity: filtersObject.genderMale,
+                    checked: currentFilters.Gender.filters.Male,
+                    showFilterQuantity: true,
+                }, {
+                    name: "Female",
+                    quantity: filtersObject.genderFemale,
+                    checked: currentFilters.Gender.filters.Female,
+                    showFilterQuantity: true,
+                }], currentFilters.Gender.isOpen)),
+                kendo.observable(new Cathegory("Years of Practice", [{
+                    name: "0-5",
+                    quantity: filtersObject["yearsOfExperience0-5"],
+                    checked: currentFilters["Years of Practice"].filters["0-5"],
+                    showFilterQuantity: true,
+                }, {
+                    name: "6-10",
+                    quantity: filtersObject["yearsOfExperience6-10"],
+                    checked: currentFilters["Years of Practice"].filters["6-10"],
+                    showFilterQuantity: true,
+                }, {
+                    name: "11-15",
+                    quantity: filtersObject["yearsOfExperience11-15"],
+                    checked: currentFilters["Years of Practice"].filters["11-15"],
+                    showFilterQuantity: true,
+                }, {
+                    name: "15+",
+                    quantity: filtersObject["yearsOfExperience15+"],
+                    checked: currentFilters["Years of Practice"].filters["15+"],
+                    showFilterQuantity: true,
+                }], currentFilters["Years of Practice"].isOpen))
 
                 ];
             }
 
-           /* function createClinicianDS(mode) {
-                return new kendo.data.SchedulerDataSource({
-                    serverFiltering: true,
-                    serverPaging: true,
-                    pageSize: 10,
-                    transport: {
-                        read: function (options) {
-                            var filters = scope._getCliniciansFilters();
+            /* function createClinicianDS(mode) {
+                 return new kendo.data.SchedulerDataSource({
+                     serverFiltering: true,
+                     serverPaging: true,
+                     pageSize: 10,
+                     transport: {
+                         read: function (options) {
+                             var filters = scope._getCliniciansFilters();
 
-                            filters.take = options.data.take;
-                            filters.skip = options.data.skip;
-                            filters.onlyMyProviders = mode === listViewMode.favorite;
-                            filters.applyVisibilityRules = true;
-                            var dfd = $.Deferred();
-                            dfd.resolve(null);
-                            if (options.data.userId) {
-                                dfd = $selfSchedulingService.getClinicianCard(options.data.userId, filters.date);
-                            }
+                             filters.take = options.data.take;
+                             filters.skip = options.data.skip;
+                             filters.onlyMyProviders = mode === listViewMode.favorite;
+                             filters.applyVisibilityRules = true;
+                             var dfd = $.Deferred();
+                             dfd.resolve(null);
+                             if (options.data.userId) {
+                                 dfd = $selfSchedulingService.getClinicianCard(options.data.userId, filters.date);
+                             }
 
-                            $.when(dfd, $selfSchedulingService.getCliniciansCards(filters)).done(function (singlCardResult, listOfCardsResult) {
-                                var cards = listOfCardsResult[0].data[0].clinicians;
-                                var totals = listOfCardsResult[0].data[0].totals;
+                             $.when(dfd, $selfSchedulingService.getCliniciansCards(filters)).done(function (singlCardResult, listOfCardsResult) {
+                                 var cards = listOfCardsResult[0].data[0].clinicians;
+                                 var totals = listOfCardsResult[0].data[0].totals;
 
 
-                                if (singlCardResult) {
-                                    var userId = singlCardResult[0].data[0].userId;
+                                 if (singlCardResult) {
+                                     var userId = singlCardResult[0].data[0].userId;
 
-                                    for (var i = 0; i < cards.length; i++) {
-                                        if (cards[i].userId === userId) {
-                                            cards.splice(i, 1);
-                                            break;
-                                        }
-                                    }
+                                     for (var i = 0; i < cards.length; i++) {
+                                         if (cards[i].userId === userId) {
+                                             cards.splice(i, 1);
+                                             break;
+                                         }
+                                     }
 
-                                    var selectedClinicianCard = singlCardResult[0].data[0];
-                                    selectedClinicianCard._isSelected = true; //Custom property, we use it in order to mark element in UI.
+                                     var selectedClinicianCard = singlCardResult[0].data[0];
+                                     selectedClinicianCard._isSelected = true; //Custom property, we use it in order to mark element in UI.
 
-                                    cards.unshift(selectedClinicianCard);
-                                }
+                                     cards.unshift(selectedClinicianCard);
+                                 }
 
-                                $eventAggregator.published(dataSourceReadSuccessEvent, {
-                                    mode: mode,
-                                    data: totals,
-                                    skip: filters.skip,
-                                    take: filters.take
-                                });
-                                options.success({
-                                    data: cards,
-                                    total: listOfCardsResult[0].total
-                                });
-                            }).fail(function (result) {
-                                if (!snap.isUnloading) { //for FF. This prevents error handling from happening on aborted request when browser leaves the page.
-                                    $snapNotification.error(result);
-                                    options.error(result);
-                                }
-                            });
-                        }
-                    },
-                    schema: {
-                        total: "total",
-                        data: function (response) {
-                            var clinicians = response.data.map(function (ap) {
-                                return new Clinician(ap, scope);
-                            });
+                                 $eventAggregator.published(dataSourceReadSuccessEvent, {
+                                     mode: mode,
+                                     data: totals,
+                                     skip: filters.skip,
+                                     take: filters.take
+                                 });
+                                 options.success({
+                                     data: cards,
+                                     total: listOfCardsResult[0].total
+                                 });
+                             }).fail(function (result) {
+                                 if (!snap.isUnloading) { //for FF. This prevents error handling from happening on aborted request when browser leaves the page.
+                                     $snapNotification.error(result);
+                                     options.error(result);
+                                 }
+                             });
+                         }
+                     },
+                     schema: {
+                         total: "total",
+                         data: function (response) {
+                             var clinicians = response.data.map(function (ap) {
+                                 return new Clinician(ap, scope);
+                             });
 
-                            return clinicians;
-                        }
-                    }
-                });
-            }/*
-            /**************EVENT SUBSCRIPTIONS***************/
+                             return clinicians;
+                         }
+                     }
+                 });
+             }/*
+             /**************EVENT SUBSCRIPTIONS***************/
             $eventAggregator.subscriber("vm_toggleSearchAndFilter", function () {
-                if(scope.vm_isSearchBarActive == false) {
-                   $("#allProvider").removeClass("is-active");
+                if (scope.vm_isSearchBarActive == false) {
+                    $("#allProvider").removeClass("is-active");
                     $("#myProvider").removeClass("is-active");
                     $("#searchTab").addClass("is-active");
                 } else {
-                    if($('#allProvider').attr("class") == '' & $('#myProvider').attr("class") == '') {
-                      $("#searchTab").removeClass("is-active");
-                       $("#myProvider").removeClass("is-active");
-                       $("#allProvider").addClass("is-active");
+                    if ($('#allProvider').attr("class") == '' & $('#myProvider').attr("class") == '') {
+                        $("#searchTab").removeClass("is-active");
+                        $("#myProvider").removeClass("is-active");
+                        $("#allProvider").addClass("is-active");
                     } else {
-                      $("#searchTab").removeClass("is-active");
+                        $("#searchTab").removeClass("is-active");
                     }
                 }
                 scope.set("vm_isSearchBarActive", !scope.vm_isSearchBarActive);
@@ -327,16 +327,16 @@
 
             $eventAggregator.subscriber(filterItemChangedEvent, function () {
                 scope._updateCliniciansList();
-               /* scope.allCliniciansDS.query({
-                    page: 1,
-                    pageSize: 10
-                });
-                scope.favoriteCliniciansDS.query({
-                    page: 1,
-                    pageSize: 10
-                });
-                scope.trigger("change", { field: "allCliniciansDS" });
-                scope.trigger("change", { field: "favoriteCliniciansDS" });*/
+                /* scope.allCliniciansDS.query({
+                     page: 1,
+                     pageSize: 10
+                 });
+                 scope.favoriteCliniciansDS.query({
+                     page: 1,
+                     pageSize: 10
+                 });
+                 scope.trigger("change", { field: "allCliniciansDS" });
+                 scope.trigger("change", { field: "favoriteCliniciansDS" });*/
             });
 
             $eventAggregator.subscriber(filerCathegoryDisplayChanged, function (evt) {
@@ -350,9 +350,9 @@
                 }
 
             });
- $eventAggregator.subscriber("patientResponseDialog_locationConfirmed", function(currentLocation, currentLocationText) {
-                if(scope.selectedPatient !== null) {
-scope.selectedPatient.currentLocationText = currentLocationText;
+            $eventAggregator.subscriber("patientResponseDialog_locationConfirmed", function (currentLocation, currentLocationText) {
+                if (scope.selectedPatient !== null) {
+                    scope.selectedPatient.currentLocationText = currentLocationText;
                     scope.selectedPatient.currentLocation = currentLocation;
 
                     scope.set("vm_currentPatientLocation", currentLocationText);
@@ -386,7 +386,7 @@ scope.selectedPatient.currentLocationText = currentLocationText;
                         filters: scope._getCliniciansFilters(),
                         userId: obj.userId
                     });
-					that.trigger("change", { field: "vm_onDateBackVisible" });
+                    that.trigger("change", { field: "vm_onDateBackVisible" });
 
                     $(".provider-search-page__content").scrollTop(0);
                 });
@@ -405,7 +405,7 @@ scope.selectedPatient.currentLocationText = currentLocationText;
                         that._setFilterDate(currentUserTime);
                     }
                 });
- $customerDataService.getRulesStatus().done(function (status) {
+                $customerDataService.getRulesStatus().done(function (status) {
                     that.set("isResponseRuleActive", status.responseRuleActive);
                     that.set("isAddressRuleActive", status.addressRuleActive);
 
@@ -416,40 +416,40 @@ scope.selectedPatient.currentLocationText = currentLocationText;
                     that._setPatientForSelfScheduling(defaultPatient);
 
                     //if(!selector.isSelectorLoaded()) {
-                        selector.load();
+                    selector.load();
                     //} else {
 
-                        //that._reloadPatientSelector();
-                       // that.set("vm_isPatientSelectorActive", false);
-                        //that._updateCliniciansList();
+                    //that._reloadPatientSelector();
+                    // that.set("vm_isPatientSelectorActive", false);
+                    //that._updateCliniciansList();
                     //}
                 });
-                if(!this.allCliniciansDS.isEndlessScrollInitialized()) {
-                     this.allCliniciansDS.initEndlessScroll();
-                 }
+                if (!this.allCliniciansDS.isEndlessScrollInitialized()) {
+                    this.allCliniciansDS.initEndlessScroll();
+                }
 
-                 if(!this.favoriteCliniciansDS.isEndlessScrollInitialized()) {
-                     this.favoriteCliniciansDS.initEndlessScroll();
-                 }
-                 if(!this.isDataInit) {
-                      this.isDataInit = true;
-                      this._updateCliniciansList();
+                if (!this.favoriteCliniciansDS.isEndlessScrollInitialized()) {
+                    this.favoriteCliniciansDS.initEndlessScroll();
+                }
+                if (!this.isDataInit) {
+                    this.isDataInit = true;
+                    this._updateCliniciansList();
                 }
             };
 
-            this._reloadPatientSelector = function() {
+            this._reloadPatientSelector = function () {
                 var filters = {
                     search: this.vm_patientsNameFilter,
                 };
 
                 selector.filters(filters);
-				          selector.reload();
+                selector.reload();
             };
 
             this.setViewMode = function (mode) {
                 this.set("clinicianListViewMode", mode);
-                if(mode == 'favorite' || mode =='all')
-                this.set("vm_isSearchBarActive", false);
+                if (mode == 'favorite' || mode == 'all')
+                    this.set("vm_isSearchBarActive", false);
 
                 this.trigger("change", {
                     field: "vm_isAllCliniciansMode"
@@ -459,7 +459,7 @@ scope.selectedPatient.currentLocationText = currentLocationText;
                     field: "vm_isFavoriteCliniciansMode"
                 });
 
-                 this.trigger("change", {
+                this.trigger("change", {
                     field: "vm_getPagingCount"
                 });
 
@@ -484,27 +484,27 @@ scope.selectedPatient.currentLocationText = currentLocationText;
                 this.set("vm_isNotificationActive", false);
             };
             /***************** MVVM BINDINGS *******************/
-this.vm_patientsNameFilter = "";
+            this.vm_patientsNameFilter = "";
             this.vm_isPatientSelectorActive = false; // patient filter, show famaly group members.
 
             this.vm_isPatinetLoactionInLoading = true;
             this.vm_currentPatientLocation = "";
-            this.vm_onSelectPersonClick = function() {
+            this.vm_onSelectPersonClick = function () {
                 this.set("vm_isPatientSelectorActive", true);
 
                 selector.unselectAll();
 
-                if(this.selectedPatient) {
+                if (this.selectedPatient) {
                     selector.selectItem(this.selectedPatient);
                 }
             };
 
-            this.vm_closePatientSelection = function() {
+            this.vm_closePatientSelection = function () {
                 this.set("vm_isPatientSelectorActive", false);
 
                 var selectedItem = selector.getSelectedItems()[0];
 
-                if(selectedItem.id !== this.selectedPatient.id) {
+                if (selectedItem.id !== this.selectedPatient.id) {
                     this._setPatientForSelfScheduling(selectedItem);
                     this._updateCliniciansList();
                 }
@@ -518,16 +518,16 @@ this.vm_patientsNameFilter = "";
 
                 var that = this;
                 searchTimeout = setTimeout(function () {
-                    if(selector.filters().search !== that.vm_patientsNameFilter) {
+                    if (selector.filters().search !== that.vm_patientsNameFilter) {
                         that._reloadPatientSelector();
                     }
                 }, 500);
             };
 
             var dialog = null;
-            this.vm_onConfirmCurrentLocationClick = function() {
-                if(this.isResponseRuleActive === true) {
-                    if(dialog === null) {
+            this.vm_onConfirmCurrentLocationClick = function () {
+                if (this.isResponseRuleActive === true) {
+                    if (dialog === null) {
                         dialog = $dialogWindow.createNewDialog({
                             vm: $patientResponseAddressDialog,
                             container: "#changePatientAddressPopUpContainer",
@@ -538,26 +538,26 @@ this.vm_patientsNameFilter = "";
 
                     dialog.open({
                         patientId: this.selectedPatient.id,
-						currentLocationText: this.selectedPatient.currentLocationText,
+                        currentLocationText: this.selectedPatient.currentLocationText,
                         currentLocation: this.selectedPatient.currentLocation,
-                        imageSource:  this.selectedPatient.imageSource,
+                        imageSource: this.selectedPatient.imageSource,
                         fullName: this.selectedPatient.name,
                         firstName: this.selectedPatient.firstName
                     });
                 }
             };
 
-            this.vm_isRulesActive = function() {
+            this.vm_isRulesActive = function () {
                 return this.isResponseRuleActive || this.isAddressRuleActive;
             };
 
-            this.vm_isResponseRuleInactive = function() {
+            this.vm_isResponseRuleInactive = function () {
                 return !this.isResponseRuleActive;
             }
 
 
 
-			 this.vm_currentDate = new Date();
+            this.vm_currentDate = new Date();
             this.vm_currentDate.setHours(0, 0, 0, 0);
 
             this.vm_isNotificationActive = false;
@@ -570,6 +570,8 @@ this.vm_patientsNameFilter = "";
                 this.vm_closeNotification();
                 window.setTimeout(function () {
                     sessionStorage.setItem("snap_tabName_ref", "Scheduled");
+                    $.connection.hub.qs = {};
+                    var hubs = [];
                     window.location.href = "#/tab/appointmentpatientdetails/webSS";
                     return false;
                 }, 300);
@@ -643,31 +645,31 @@ this.vm_patientsNameFilter = "";
                 this._updateCliniciansList();
             };
 
-           /* this.vm_allClinicianCardsList_onDataBound = function () {
-                allProvidersSlotsLocator.setSlots(getSlotsFromDs(this.allCliniciansDS), this.dateFilter);
-                expandClinicanCards(this.allCliniciansDS);
+            /* this.vm_allClinicianCardsList_onDataBound = function () {
+                 allProvidersSlotsLocator.setSlots(getSlotsFromDs(this.allCliniciansDS), this.dateFilter);
+                 expandClinicanCards(this.allCliniciansDS);
 
-                this.set("vm_isAllCliniciansDSEmpty", this.allCliniciansDS.data().length === 0);
-            };
+                 this.set("vm_isAllCliniciansDSEmpty", this.allCliniciansDS.data().length === 0);
+             };
 
-            this.vm_favoriteClinicianCardsList_onDataBound = function () {
-                this.set("vm_isNotificationActive", false);
-                myProvidersSlotsLocator.setSlots(getSlotsFromDs(this.favoriteCliniciansDS), this.dateFilter);
-                expandClinicanCards(this.favoriteCliniciansDS);
-                this.trigger("change", { field: "vm_isFavoriteCliniciansDSEmpty" });
-                this.trigger("change", { field: "vm_hasSearchConditions" });
-            };
+             this.vm_favoriteClinicianCardsList_onDataBound = function () {
+                 this.set("vm_isNotificationActive", false);
+                 myProvidersSlotsLocator.setSlots(getSlotsFromDs(this.favoriteCliniciansDS), this.dateFilter);
+                 expandClinicanCards(this.favoriteCliniciansDS);
+                 this.trigger("change", { field: "vm_isFavoriteCliniciansDSEmpty" });
+                 this.trigger("change", { field: "vm_hasSearchConditions" });
+             };
 
-            function expandClinicanCards(clinicianCardsDS) {
+             function expandClinicanCards(clinicianCardsDS) {
 
-                setTimeout(function () {
-                    clinicianCardsDS.data().forEach(function (clinicianCard) {
-                        clinicianCard.toogleFoter(true);
-                    });
-                }, 100); // we need some delay in order to apply nested bindings. See this link for more details: http://www.telerik.com/forums/problem-with-databound-event-on-nested-list
-            }*/
+                 setTimeout(function () {
+                     clinicianCardsDS.data().forEach(function (clinicianCard) {
+                         clinicianCard.toogleFoter(true);
+                     });
+                 }, 100); // we need some delay in order to apply nested bindings. See this link for more details: http://www.telerik.com/forums/problem-with-databound-event-on-nested-list
+             }*/
             this.vm_isFavoriteCliniciansDSEmpty = function () {
-                return this.favoriteCliniciansDS.data().length === 0 ;
+                return this.favoriteCliniciansDS.data().length === 0;
             };
             this.vm_hasSearchConditions = function () {
                 /*** Check if search conditions are not default.
@@ -679,14 +681,14 @@ this.vm_patientsNameFilter = "";
                  ***  }
                  ***/
                 var filters = this._getCliniciansFilters();
-                for(var key in filters){
-                    if(filters.hasOwnProperty(key) &&
+                for (var key in filters) {
+                    if (filters.hasOwnProperty(key) &&
                         !(
                             key === "date" ||
                             key === "name" ||
                             key === "availableOnly" ||
                             key === "patientId"
-                        )){
+                        )) {
                         return true;
                     }
                 }
@@ -704,12 +706,12 @@ this.vm_patientsNameFilter = "";
                 return this.clinicianListViewMode === listViewMode.favorite;
             };
 
-             this.vm_toogleAllFooters = function () {
+            this.vm_toogleAllFooters = function () {
                 this._toogleAllFooters(!isFooterActive);
             };
 
-           this.vm_toogleAllContents = function () {
-                if(this.vm_isGridMode()) {
+            this.vm_toogleAllContents = function () {
+                if (this.vm_isGridMode()) {
                     this._toogleAllFooters(false);
                 }
 
@@ -735,7 +737,7 @@ this.vm_patientsNameFilter = "";
                 $("#dateFilterPiker_dateview .k-footer > a").html(date);
                 $("#dateFilterPiker_dateview .k-footer > a").attr("title", date);
 
-               // var that = this;
+                // var that = this;
                 // $("#dateFilterPiker_dateview .k-footer > a").one("click", function () {
                 //     that._setFilterDate(that.get("vm_currentDate"));
                 // });
@@ -762,18 +764,18 @@ this.vm_patientsNameFilter = "";
                 return kendo.toString(this.get("dateFilter"), "MMM dd, yyyy");
             };
 
-            this.vm_isGridMode = function() {
+            this.vm_isGridMode = function () {
                 return this.cardDisplayMode === cardDisplayModeEnum.grid;
             };
 
-            this.vm_isListMode = function() {
+            this.vm_isListMode = function () {
                 return this.cardDisplayMode === cardDisplayModeEnum.list;
             };
 
-            this.vm_onGridModeClick = function() {
+            this.vm_onGridModeClick = function () {
                 this.set("cardDisplayMode", cardDisplayModeEnum.grid);
-                this.trigger("change", { field: "vm_isGridMode"});
-                this.trigger("change", { field: "vm_isListMode"});
+                this.trigger("change", { field: "vm_isGridMode" });
+                this.trigger("change", { field: "vm_isListMode" });
 
                 this._toogleAllFooters(false);
                 this._refrechViewMode();
@@ -782,10 +784,10 @@ this.vm_patientsNameFilter = "";
                 $(window).resize();
             };
 
-            this.vm_onListModeClick = function() {
+            this.vm_onListModeClick = function () {
                 this.set("cardDisplayMode", cardDisplayModeEnum.list);
-                this.trigger("change", { field: "vm_isGridMode"});
-                this.trigger("change", { field: "vm_isListMode"});
+                this.trigger("change", { field: "vm_isGridMode" });
+                this.trigger("change", { field: "vm_isListMode" });
 
                 this._toogleAllFooters(true);
                 this._refrechViewMode();
@@ -794,16 +796,16 @@ this.vm_patientsNameFilter = "";
             };
 
 
-            this.vm_toogleAllCardsContentIconText = function() {
-                return (isContentActive ? "Hide" : "Show") +  " all provider details";
+            this.vm_toogleAllCardsContentIconText = function () {
+                return (isContentActive ? "Hide" : "Show") + " all provider details";
             };
 
-            this.vm_toogleAllCardsFooterIconText = function() {
-                return (isFooterActive ? "Hide" : "Show") +  " all available times";
+            this.vm_toogleAllCardsFooterIconText = function () {
+                return (isFooterActive ? "Hide" : "Show") + " all available times";
             };
 
             /***************** PRIVATE API *******************/
-            this._setPatientForSelfScheduling = function(patient) {
+            this._setPatientForSelfScheduling = function (patient) {
                 this.set("selectedPatient", patient);
 
                 this.set("vm_isPatinetLoactionInLoading", true);
@@ -811,23 +813,23 @@ this.vm_patientsNameFilter = "";
 
                 var that = this;
                 $customerDataService.getPatientProfileDetails(patient.id, "all").done(function (data) {
-                   var locationText = "";
-                   var addressLocation = "";
-                   if(that.isResponseRuleActive) {
-                       locationText = $locationHelper.getEncounterAddressTextFromPatientProfile(data.data[0]);
-                       addressLocation = $locationHelper.getEncounterAddressLocationFromPatientProfile(data.data[0]);
-                   } else if (that.isAddressRuleActive) {
-                       locationText = $locationHelper.getLocalAddressTextFromPatientProfile(data.data[0]);
-                       addressLocation = $locationHelper.getLocalAddressLocationFromPatientProfile(data.data[0]);
-                   }
+                    var locationText = "";
+                    var addressLocation = "";
+                    if (that.isResponseRuleActive) {
+                        locationText = $locationHelper.getEncounterAddressTextFromPatientProfile(data.data[0]);
+                        addressLocation = $locationHelper.getEncounterAddressLocationFromPatientProfile(data.data[0]);
+                    } else if (that.isAddressRuleActive) {
+                        locationText = $locationHelper.getLocalAddressTextFromPatientProfile(data.data[0]);
+                        addressLocation = $locationHelper.getLocalAddressLocationFromPatientProfile(data.data[0]);
+                    }
 
-                   that.set("vm_currentPatientLocation", locationText);
-                   that.set("vm_isPatinetLoactionInLoading", false);
+                    that.set("vm_currentPatientLocation", locationText);
+                    that.set("vm_isPatinetLoactionInLoading", false);
 
-                   that.selectedPatient.currentLocationText = locationText;
-                   that.selectedPatient.currentLocation = addressLocation;
-               });
-           };
+                    that.selectedPatient.currentLocationText = locationText;
+                    that.selectedPatient.currentLocation = addressLocation;
+                });
+            };
 
             this._setFilterDate = function (newDate) {
                 this.set("dateFilter", newDate);
@@ -846,7 +848,6 @@ this.vm_patientsNameFilter = "";
                 var param = {
                     filters: this._getCliniciansFilters()
                 };
-
                 this.allCliniciansDS.query(param);
                 this.favoriteCliniciansDS.query(param);
             };
@@ -866,8 +867,8 @@ this.vm_patientsNameFilter = "";
             this._getCliniciansFilters = function () {
                 var currentFilters = this._getCurrentFilters();
                 var filterValues = {
-                  date: $timeUtils.dateToString(this.dateFilter),
-                     name: this.nameFilter,
+                    date: $timeUtils.dateToString(this.dateFilter),
+                    name: this.nameFilter,
                     availableOnly: currentFilters.Availability.filters.Available,
                     patientId: this.selectedPatient.id
                 };
@@ -920,13 +921,13 @@ this.vm_patientsNameFilter = "";
                 return filterValues;
             };
 
-             //***************************** PRIVATE METHODS **********************************
-            this._refrechViewMode = function() {
+            //***************************** PRIVATE METHODS **********************************
+            this._refrechViewMode = function () {
                 this.allCliniciansDS.refreshViewMode();
                 this.favoriteCliniciansDS.refreshViewMode();
             };
 
-           this._toogleAllFooters = function (isFActive) {
+            this._toogleAllFooters = function (isFActive) {
                 isFooterActive = isFActive;
 
                 this.allCliniciansDS.data().forEach(function (clinicianCard) {
@@ -936,7 +937,7 @@ this.vm_patientsNameFilter = "";
                     clinicianCard.toogleFoter(isFActive);
                 });
 
-                this.trigger("change", { field: "vm_toogleAllCardsFooterIconText"});
+                this.trigger("change", { field: "vm_toogleAllCardsFooterIconText" });
             };
 
 
@@ -950,7 +951,7 @@ this.vm_patientsNameFilter = "";
                     clinicianCard.toogleContent(isCActive);
                 });
 
-                this.trigger("change", { field: "vm_toogleAllCardsContentIconText"});
+                this.trigger("change", { field: "vm_toogleAllCardsContentIconText" });
             };
 
 
@@ -1031,7 +1032,7 @@ this.vm_patientsNameFilter = "";
 
                 this.vm_cardId = cardCounter++;
 
-                function openScheduleAppointmentDialog (timeSlotOptions) {
+                function openScheduleAppointmentDialog(timeSlotOptions) {
                     if (!scope.hasOpenDialog) {
                         // Set current patient as default.
                         timeSlotOptions.patientProfileId = scope.selectedPatient.id;
@@ -1052,9 +1053,9 @@ this.vm_patientsNameFilter = "";
                 this.isContentActive = false;
 
                 /*********** PUBLIC METHODS *************/
-                this.initApptsSlotTray = function() {
+                this.initApptsSlotTray = function () {
                     var that = this;
-                    this.apptsSlotsTray = $apptsSlotsTray.createTimeSlotsTray(opt, scope.dateFilter, openScheduleAppointmentDialog, function() {
+                    this.apptsSlotsTray = $apptsSlotsTray.createTimeSlotsTray(opt, scope.dateFilter, openScheduleAppointmentDialog, function () {
                         that.trigger("change", { field: "apptsSlotsTray.vm_hasSlotsForRightNow" });
                     });
                 };
@@ -1065,7 +1066,7 @@ this.vm_patientsNameFilter = "";
                     this.slickFooter();
                 };
 
-                this.slickFooter = function() {
+                this.slickFooter = function () {
 
                     // 1. Work with grid view.
                     var footer = $("#card_" + this.vm_cardId).find('.js-footer-slider');
@@ -1085,14 +1086,14 @@ this.vm_patientsNameFilter = "";
 
                     // In some cases slick slider do not work well (elements hided at first, and there is not enough elements for slider)
                     // SO, IF THERE IS NO ENOUGH AVAILABLE SLOTS WE DO NOT INIT SLICK SLIDER BECAUSE WE DO NOT NEED IT.
-                    var slotsCount=  this.apptsSlotsTray.getSlots().length;
+                    var slotsCount = this.apptsSlotsTray.getSlots().length;
 
-                    if(this.apptsSlotsTray.hasSlotForNextDate()) {
+                    if (this.apptsSlotsTray.hasSlotForNextDate()) {
                         slotsCount++;
                     }
 
-                    if(slotsCount > 4) {
-                        var secondFooter =  $("#card_" + this.vm_cardId).find('.js-flip-slider');
+                    if (slotsCount > 4) {
+                        var secondFooter = $("#card_" + this.vm_cardId).find('.js-flip-slider');
 
                         secondFooter.not('.slick-initialized').slick({
                             vertical: true,
@@ -1131,13 +1132,13 @@ this.vm_patientsNameFilter = "";
 
 
 
-			/*********** MVVM BINDINGS **************/
-                this.vm_onConnectNowClick = function() {
-                    var slots = this.apptsSlotsTray.getSlots().filter(function(slot) {
+                /*********** MVVM BINDINGS **************/
+                this.vm_onConnectNowClick = function () {
+                    var slots = this.apptsSlotsTray.getSlots().filter(function (slot) {
                         return slot.isNow;
                     });
 
-                    if(slots.length > 0) {
+                    if (slots.length > 0) {
                         var slot = slots[0];
 
                         openScheduleAppointmentDialog({
@@ -1170,7 +1171,7 @@ this.vm_patientsNameFilter = "";
                     }
                 };
                 this.vm_getPracticingYears = function () {
-					if (!this.opt.practicingSince) {
+                    if (!this.opt.practicingSince) {
                         return "";
                     }
                     var yearsOfPractice = new Date().getFullYear() - this.opt.practicingSince;
@@ -1195,11 +1196,11 @@ this.vm_patientsNameFilter = "";
                 this.vm_toggleContent = function () {
                     this.toogleContent();
                 };
-				this.vm_isGridMode = function() {
+                this.vm_isGridMode = function () {
                     return scope.vm_isGridMode();
                 };
 
-                this.vm_isListMode = function() {
+                this.vm_isListMode = function () {
                     return scope.vm_isListMode();
                 };
             }
@@ -1221,22 +1222,22 @@ this.vm_patientsNameFilter = "";
                 this.vm_htmlContainerId = options.htmlContainerId;
                 this.vm_isItemsLoading = true;
 
-                this.initEndlessScroll = function() {
+                this.initEndlessScroll = function () {
                     var that = this;
 
                     var requestInProgress = false;
 
-                    var $container = $(htmlContainerId).closest( ".provider-search-page__content" );
-                    $container.scroll(function() {
+                    var $container = $(htmlContainerId).closest(".provider-search-page__content");
+                    $container.scroll(function () {
                         var elementHeight = Math.floor($container[0].scrollHeight / that.vm_allItems.length);
                         var loadAdditionItemHeight = Math.floor(pageSize / 3) * elementHeight;
 
-                        if ($container.scrollTop() + $container.innerHeight() >= $container[0].scrollHeight - loadAdditionItemHeight){
+                        if ($container.scrollTop() + $container.innerHeight() >= $container[0].scrollHeight - loadAdditionItemHeight) {
                             if (that.vm_allItems.length >= total) {
                                 return false;
                             }
 
-                            if(requestInProgress) {
+                            if (requestInProgress) {
                                 return false;
                             }
 
@@ -1247,7 +1248,7 @@ this.vm_patientsNameFilter = "";
                                 take: pageSize,
                                 skip: that.vm_allItems.length,
                                 filters: filters
-                            }).always(function() {
+                            }).always(function () {
                                 requestInProgress = false;
                             });
                         }
@@ -1256,18 +1257,18 @@ this.vm_patientsNameFilter = "";
                     isInitialized = false;
                 };
 
-                this.isEndlessScrollInitialized = function() {
+                this.isEndlessScrollInitialized = function () {
                     return isInitialized;
                 };
 
-                this.query = function(opt) {
+                this.query = function (opt) {
                     filters = opt.filters;
 
-                    if(typeof(opt.take) !== "number") {
+                    if (typeof (opt.take) !== "number") {
                         opt.take = pageSize;
                     }
 
-                    if(typeof(opt.skip) !== "number") {
+                    if (typeof (opt.skip) !== "number") {
                         opt.skip = 0;
                     }
 
@@ -1277,19 +1278,19 @@ this.vm_patientsNameFilter = "";
                     return this._load(opt);
                 };
 
-                this.data = function() {
+                this.data = function () {
                     return this.vm_allItems;
                 };
 
-                this.refreshViewMode  = function() {
-                    this.vm_allItems.forEach(function(item) {
-                        item.trigger("change", { field: "vm_isGridMode"});
-                        item.trigger("change", { field: "vm_isListMode"});
+                this.refreshViewMode = function () {
+                    this.vm_allItems.forEach(function (item) {
+                        item.trigger("change", { field: "vm_isGridMode" });
+                        item.trigger("change", { field: "vm_isListMode" });
                     });
                 };
 
-this.refreshSlickPlugin = function() {
-                    this.vm_allItems.forEach(function(item) {
+                this.refreshSlickPlugin = function () {
+                    this.vm_allItems.forEach(function (item) {
                         item.slickFooter();
                     });
                 };
@@ -1297,24 +1298,23 @@ this.refreshSlickPlugin = function() {
                 var getSingleCardDfd = $.Deferred();
                 var getCardsDfd = $.Deferred();
 
-                this._load  = function(opt) {
+                this._load = function (opt) {
                     // Abort any pending request before send new.
                     // We need this in order to avoid situation when API slow and user quickly change filters or something else.
                     // In such case without 'abort' user may see results of several requests at the same time.
                     var abortMessage = "_abort";
 
-                    if(getSingleCardDfd.abort) {
+                    if (getSingleCardDfd.abort) {
                         getSingleCardDfd.abort(abortMessage);
                     }
 
-                    if(getCardsDfd.abort) {
+                    if (getCardsDfd.abort) {
                         getCardsDfd.abort(abortMessage);
                     }
 
                     var that = this;
-
+                    kendo.bind($("#providersearchBdy"), this);
                     that.set("vm_isItemsLoading", true);
-
                     var apiPayload = $.extend({}, opt.filters);
 
                     apiPayload.take = opt.take;
@@ -1334,7 +1334,7 @@ this.refreshSlickPlugin = function() {
                         getSingleCardDfd.resolve(null);
                     }
 
-                   getCardsDfd = $selfSchedulingService.getCliniciansCards(apiPayload);
+                    getCardsDfd = $selfSchedulingService.getCliniciansCards(apiPayload);
 
                     return $.when(getSingleCardDfd, getCardsDfd).done(function (singlCardResult, listOfCardsResult) {
                         var cards = listOfCardsResult[0].data[0].clinicians;
@@ -1374,7 +1374,7 @@ this.refreshSlickPlugin = function() {
                         });
 
 
-                        if(clinicians.length > 0) {
+                        if (clinicians.length > 0) {
                             // Add all new cards to providers list.
                             // We use overrided by kendo push.apply in order to trigger change only once.
                             that.vm_allItems.push.apply(that.vm_allItems, clinicians);
@@ -1383,11 +1383,11 @@ this.refreshSlickPlugin = function() {
                             providersSlotsLocator.setSlots(getSlotsFromDs(that.vm_allItems), $timeUtils.dateFromSnapDateString(apiPayload.date));
 
                             // turn on Slick plugin for all cards.
-                            that.vm_allItems.forEach(function(card) {
+                            that.vm_allItems.forEach(function (card) {
                                 card.slickFooter();
                             });
 
-                            if(scope.vm_isListMode()) {
+                            if (scope.vm_isListMode()) {
                                 // Expand all new added cards, this is a card default state.
                                 expandClinicanCards(clinicians);
                             }
@@ -1400,7 +1400,7 @@ this.refreshSlickPlugin = function() {
                     }).fail(function (result) {
                         // Ignore 'abort' operation and do not show error.
                         // We abort requests in case if user send many requests (api slow and user change filters several times.)
-                        if(result.statusText && result.statusText === abortMessage) {
+                        if (result.statusText && result.statusText === abortMessage) {
                             return;
                         }
 

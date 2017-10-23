@@ -132,6 +132,7 @@ angular.module('starter.controllers')
 
     $rootScope.doGetExistingConsulatationReport = function() {
         $state.go('tab.ReportScreen');
+        $rootScope.sysTimeZone = '';
         $rootScope.userReportDOB = "";
         var params = {
             consultationId: $rootScope.consultationId,
@@ -278,11 +279,11 @@ angular.module('starter.controllers')
                 if ($rootScope.existingConsultationReport.appointmentType !== '' && typeof $rootScope.existingConsultationReport.appointmentType !== 'undefined') {
                       $rootScope.appointmentcode =  $rootScope.existingConsultationReport.appointmentType;
                         if ($rootScope.appointmentcode == 1) {
-                            $rootScope.appointmenttype = "ClinicianScheduled";
+                            $rootScope.appointmenttype = "Provider Sche";
                         } else if ($rootScope.appointmentcode == 2) {
                             $rootScope.appointmenttype = "On-Demand";
                         }else if ($rootScope.appointmentcode == 3) {
-                            $rootScope.appointmenttype = "PatientScheduled";
+                            $rootScope.appointmenttype = "Patient Sched";
                         }
                     } else {
                         $rootScope.appointmenttype = 'None Reported';
@@ -311,6 +312,24 @@ angular.module('starter.controllers')
                 var startTimeISOString = $rootScope.existingConsultationReport.consultationDate;
                 var startTime = new Date(startTimeISOString);
                 $rootScope.consultationDate = new Date(startTime.getTime() + (startTime.getTimezoneOffset() * 60000));
+
+                 // Add Sakthi //
+                 debugger;
+                 var xD = new Date(startTimeISOString);
+                 var DateString = xD.toString();
+                 var dateSplit = DateString.split('(');
+                 var rSpaceofString = dateSplit[1] .split(' ');
+                 if(dateSplit[1].length > 5)
+                     {
+                         var rLastofString = rSpaceofString[2].split(')');
+                         var SystemTimeZone = rSpaceofString[0].charAt(0)+rSpaceofString[1].charAt(0)+rLastofString[0].charAt(0)
+                     }
+                     else {
+                         var rLastofString = rSpaceofString[0].split(')');
+                         var SystemTimeZone = rLastofString[0].replace(/\"/g, "");
+                     }
+                  $rootScope.sysTimeZone = SystemTimeZone;
+                 // End Time Zone //
 
                 if ($rootScope.existingConsultationReport.consultationDuration !== 0 && typeof $rootScope.existingConsultationReport.consultationDuration !== 'undefined')
                 {
@@ -852,20 +871,28 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
             "display": "none"
         });
         $ionicBackdrop.release();
-        $timeout(function() {
-               $window.location.reload(true);
-           });        
         if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
+            $timeout(function() {
+                   $window.location.reload(true);
+               });
         } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
                  //$state.go('tab.login');
                  $state.go('tab.singleTheme');
+                 $timeout(function() {
+                        $window.location.reload(true);
+                    });
         }else if (cobrandApp !== 'MDAmerica' && deploymentEnvLogout === "Single") {
             //$state.go('tab.loginSingle');
             $state.go('tab.singleTheme');
+            $timeout(function() {
+                   $window.location.reload(true);
+               });
         }else {
            $state.go('tab.login');
-           //$state.go('tab.singleTheme');
+           $timeout(function() {
+                  $window.location.reload(true);
+              });
         }
     }
 

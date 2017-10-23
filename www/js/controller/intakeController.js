@@ -155,20 +155,26 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
             $rootScope.APICommonURL = 'https://connectedcare.md';
             $scope.doGetSingleHosInfoForiTunesStage();
       } else {
-           $timeout(function() {
-                  $window.location.reload(true);
-              });
         if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
+            $timeout(function() {
+                   $window.location.reload(true);
+               });
         } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
-                 //$state.go('tab.login');
                  $state.go('tab.singleTheme');
+                 $timeout(function() {
+                        $window.location.reload(true);
+                    });
         }else if (cobrandApp !== 'MDAmerica' && deploymentEnvLogout === "Single") {
-            //$state.go('tab.loginSingle');
             $state.go('tab.singleTheme');
+            $timeout(function() {
+                   $window.location.reload(true);
+               });
         }else {
            $state.go('tab.login');
-           //$state.go('tab.singleTheme');
+           $timeout(function() {
+                  $window.location.reload(true);
+              }); 
         }
       }
       $rootScope = $rootScope.$new(true);

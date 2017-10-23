@@ -36822,7 +36822,7 @@ only screen and (min-width: 541px) {
     }
 }
 .provider-search-panel {
-    height: 100%;
+    height: auto;
     position: relative
 }
 .provider-search-panel__date {

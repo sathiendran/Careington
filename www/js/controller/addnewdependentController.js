@@ -587,7 +587,7 @@ angular.module('starter.controllers')
                 $rootScope.Validation($scope.ErrorMessage);
             } else if(identifierTypeCode_ !== ''){
                if (identifierTypeCode_.indexOf("Driver's license number") != -1) {
-                   $scope.ErrorMessage = "Please enter Driver's licence number";
+                   $scope.ErrorMessage = "Please enter Driver's license number";
                 }else if(identifierTypeCode_.indexOf("Employee number") != -1) {
                    $scope.ErrorMessage = "Please enter Employee number";
                 }else if(identifierTypeCode_.indexOf("Patient Medicaid number") != -1) {

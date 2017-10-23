@@ -68,11 +68,14 @@
 
                        <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)">
                        </div>
-                     <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
+                     <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode == 'Waiting' && scheduledListData.status != 71">
                         <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                      </p>
-                     <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
+                     <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode != 'Waiting' && scheduledListData.status != 71">
                         <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                     </p>
+                     <p class="appmarg" ng-if="scheduledListData.status == 71">
+                        <span class="fontcolor regularfamily chkiPhoneView"> In progress</span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                      </p>
                      <span class="encounterappticon" style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                        <i class="setIcon" ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
@@ -82,11 +85,14 @@
                   </a>
                   <a class="item item-avatar appitem" ng-repeat="scheduledListData in getIndividualInQueueScheduleDetails" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
                      <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
-                     <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
+                     <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode == 'Waiting' && scheduledListData.status != 71">
                         <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                      </p>
-                     <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
+                     <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode != 'Waiting' && scheduledListData.status != 71">
                         <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                     </p>
+                     <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.status == 71">
+                        <span class="fontcolor regularfamily chkiPhoneView">In progress </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                      </p>
                      <span class="encounterappticon " style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                        <i class="setIcon" ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
@@ -105,8 +111,11 @@
                     <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)">
                     </div>
 
-                  <p class="appmarg">
+                  <p class="appmarg" ng-if="scheduledListData.status != 71">
                      <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                  </p>
+                  <p class="appmarg" ng-if="scheduledListData.status == 71">
+                    <span class="fontcolor regularfamily chkiPhoneView"> In progress </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                   </p>
                   <span class="encounterappticon" style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                     <i class="setIcon" ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
@@ -116,8 +125,11 @@
                </a>
                <a class="item item-avatar appitem" ng-repeat="scheduledListData in getIndividualPatScheduleDetails" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
                   <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
-                  <p class="appmarg" style="margin-top: 21px;">
+                  <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.status != 71">
                      <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                  </p>
+                  <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.status == 71">
+                     <span class="fontcolor regularfamily chkiPhoneView">In progress </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                   </p>
                   <span class="encounterappticon" style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                     <i class="setIcon" ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
@@ -145,11 +157,14 @@
             <a class="item item-avatar avatheight" ng-repeat="scheduledListData in getAllInQueueScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
                <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
 
-               <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
+               <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode != 'Waiting' && scheduledListData.status != 71">
                   <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                </p>
-               <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
+               <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode == 'Waiting' && scheduledListData.status != 71">
                   <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+               </p>
+               <p class="appmarg" ng-if="scheduledListData.status == 71">
+                  <span class="fontcolor regularfamily chkiPhoneView">In progress</span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                </p>
                <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                  <i class="setIcon" ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
@@ -160,11 +175,14 @@
             </a>
             <a class="item item-avatar appitem" ng-repeat="scheduledListData in getAllInQueueScheduleDetails" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
                <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
-               <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
+               <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode != 'Waiting' && scheduledListData.status != 71">
                   <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                </p>
-               <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
+               <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode == 'Waiting' && scheduledListData.status != 71">
                   <span class="fontcolor regularfamily chkiPhoneView">View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+               </p>
+               <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.status == 71">
+                  <span class="fontcolor regularfamily chkiPhoneView">In progress</span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                </p>
                <span class="encounterappticon " style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                  <i class="setIcon" ng-bind-html="drawSVGCIcon('video_camera')"></i>  </span>
@@ -178,9 +196,13 @@
          <a class="item item-avatar avatheight"  style="min-height: 73px !important;" ng-repeat="scheduledListData in getAllPatScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
             <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
 
-            <p class="appmarg">
+            <p class="appmarg" ng-if="scheduledListData.status != 71">
                <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
             </p>
+            <p class="appmarg" ng-if="scheduledListData.status == 71">
+              <span class="fontcolor regularfamily chkiPhoneView"> In Progress </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+          </p>
+
             <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
               <i class="setIcon" ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
               <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode != 3">
@@ -190,9 +212,12 @@
          </a>
          <a class="item item-avatar appitem scheduled" ng-repeat="scheduledListData in getAllPatScheduleDetails" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
             <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
-            <p class="appmarg" style="margin-top: 21px;">
+            <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.status != 71">
                <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
             </p>
+            <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.status == 71">
+              <span class="fontcolor regularfamily chkiPhoneView">In progress </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+           </p>
             <span class="encounterappticon" style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
               <i class="setIcon" ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
               <span class="encounterappticon " style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode != 3">

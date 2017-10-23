@@ -74,7 +74,7 @@
         this.getOnDemand = function () {
             return $.ajax({
                 type: "GET",
-                url: "/api/v2.1/patients/ondemand/availability",
+                url: snap.baseUrl + "/api/v2.1/patients/ondemand/availability",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
             });
@@ -91,7 +91,7 @@
         this.getPatientCredits = function (patientId) {
             return $.ajax({
                 type: "GET",
-                url: "/api/v2.1/patients/" + patientId + "/payments/credits",
+                url: snap.baseUrl + "/api/v2.1/patients/" + patientId + "/payments/credits",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
             });
@@ -99,7 +99,7 @@
         this.getActiveConsultations = function () {
             return $.ajax({
                 type: "GET",
-                url: "/api/v2/patients/consultations/activeconsultations",
+                url: snap.baseUrl + "/api/v2/patients/consultations/activeconsultations",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
             });
@@ -107,7 +107,7 @@
 
         this.markAppointmentAsFullfilled = function (consultationId) {
             return $.ajax({
-                url: "/api/v2.1/patients/consultations/" + consultationId + "/markasfullfill",
+                url: snap.baseUrl + "/api/v2.1/patients/consultations/" + consultationId + "/markasfullfill",
                 type: "POST",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
@@ -252,14 +252,14 @@
         };
 
         this.updatePatientResponseAddress = function(locationEncoded, patientId) {
-            var url = [snap.baseUrl, "/api/v2.1/patients/encounter/address?patientId=" + patientId, 
+            var url = [snap.baseUrl, "/api/v2.1/patients/encounter/address?patientId=" + patientId,
                 locationEncoded.addressText ? "&addressText=" + locationEncoded.addressText : "",
                 locationEncoded.country ? "&country=" + locationEncoded.country : "",
                 locationEncoded.region ? "&region=" + locationEncoded.region : ""].join("");
 
             return $.ajax({
                 url: url,
-                type: "PUT",                
+                type: "PUT",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
             });
@@ -268,27 +268,27 @@
         this.getProviderLicensePatientAddressMetaRule = function() {
             return $.ajax({
                 url: [snap.baseUrl, "/api/v2.1/admin/rules/patient-provider-license-meta-rules"].join(""),
-                type: "GET",                
+                type: "GET",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
             });
         };
 
         this.getCliniciansCards = function (opt) {
-            return $http.get("/api/v2.1/patients/appointments/self-scheduling/clinicians", opt);
+            return $http.get(snap.baseUrl + "/api/v2.1/patients/appointments/self-scheduling/clinicians", opt);
         };
 
         this.deleteProfileImage = function (patientId) {
             return $.ajax({
                 url: [snap.baseUrl, "/api/v2.1/patients/profile-images?patientId=" + patientId].join(""),
-                type: "DELETE",                
+                type: "DELETE",
                 contentType: "application/json; charset=utf-8"
             });
         };
 
         this.checkRegistrationRule = function(address) {
             return $http.get(
-                [snap.baseUrl, "/api/v2.1/admin/rules/registration-rule"].join(""), 
+                [snap.baseUrl, "/api/v2.1/admin/rules/registration-rule"].join(""),
                 {
                     address: address
                 });
@@ -311,14 +311,14 @@
         this.getAppointment = function (id) {
             return $http.get([snap.baseUrl, "/api/v2/providers/appointments/", id, '/all'].join(""));
         };
-       
+
         this.getAppointments = function (data) {
             return $http.get([snap.baseUrl, "/api/v2/admin/consultations"].join(""), data);
         };
         this.getVideoKey = function (id) {
             return $http.get([snap.baseUrl, "/api/v2/providers/appointments/", id, "/videokey"].join(""));
         };
-        
+
         this.saveSoapData = function (data) {
             var url = [snap.baseUrl, "/api/v2/providers/soapnotes"].join("");
             return $.ajax({
@@ -328,7 +328,7 @@
                 dataType: "json",
                 data: JSON.stringify(data)
             });
-           
+
         };
 
         this.getParticipants = function (consulationId,opt) {
@@ -349,7 +349,7 @@
                 dataType: "json",
                 data: JSON.stringify(data)
             });
-       
+
         };
 
         this.getConsultation = function(id) {
@@ -382,7 +382,7 @@
         };
 
         this.fullfillappointment = function(consultationId) {
-            return $http.post([snap.baseUrl, "/api/v2.1/clinicians/consultations/", consultationId, "/markasfullfill"].join(""));  
+            return $http.post([snap.baseUrl, "/api/v2.1/clinicians/consultations/", consultationId, "/markasfullfill"].join(""));
         };
 
         this.setAppointmentFlag = function(appointmentId, flag) {
@@ -406,7 +406,7 @@
                 data: JSON.stringify({ DismissReasonId: dismissReasonId })
             });
         };
-        
+
         this.updateConsultationStatus = function (consultationId, updateStatusId) {
             var url = [snap.baseUrl, "/api/v2.1/clinicians/consultations/", consultationId, "/status"].join("");
             return $.ajax({
@@ -463,7 +463,7 @@
             return $http.get([snap.baseUrl, "api/consultations", consulationId, "preconsultation-chat"].join("/"));
         };
         this.notifyProviders = function(appointmentId, request) {
-            var url = ["/api/v2.1/clinician/appointments/", appointmentId, "/notifications"].join("");
+            var url = [snap.baseUrl + "/api/v2.1/clinician/appointments/", appointmentId, "/notifications"].join("");
 
             return $.ajax({
                 url: url,
@@ -472,7 +472,7 @@
                 dataType: "json",
                 timeout: 60000,
                 data: JSON.stringify(request)
-            });  
+            });
         };
 
         this.loadSnapshots = function(consultationId) {
@@ -517,7 +517,7 @@
         .define("ScheduleCommon", function($snapNotification, $userTypes) {
 
             /************************ START Timezone ***************************/
-            //This functionality check that we have timeZoneSystemId. 
+            //This functionality check that we have timeZoneSystemId.
             //If not, then we get timeZoneSystemId from "/api/v2/admin/userstaffprofile" api.
             if (isEmpty(snap.userSession.timeZoneSystemId)) {
                 window.console.warn("snap.userSession.timeZoneSystemId is undefined.");
@@ -540,7 +540,7 @@
             this.findParticipant = function(participants, participantTypeCode) {
                 if (participants) {
                     for (var j = 0; j < participants.length; j++) {
-                        if (participants[j] && participants[j].participantTypeCode === participantTypeCode && (typeof participants[j].status === "undefined" || participants[j].status === 1)) { 
+                        if (participants[j] && participants[j].participantTypeCode === participantTypeCode && (typeof participants[j].status === "undefined" || participants[j].status === 1)) {
                             return participants[j];
                         }
                     }
@@ -662,7 +662,7 @@
                 fulfilled: "Fulfilled",
                 transferred: "Transferred"
             };
-           
+
             this.concernCodes = {
                 otherPrimary: -1,
                 otherSecondary: -2
@@ -842,9 +842,9 @@
                         dfd.resolve();
                     }
                 }).fail(function(xhr, status, error) {
-                    window.console.error("Consult API failure" + error);
-                    $snapNotification.error("Failed to check active consultations");
-                    dfd.resolve();
+                  //  window.console.error("Consult API failure" + error);
+                  //  $snapNotification.error("Failed to check active consultations");
+                  //  dfd.resolve();
                 });
                 return dfd.promise();
             };

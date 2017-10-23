@@ -5,13 +5,13 @@
    <div class="Error_Message ErrorMessageDiv" ></div>
    <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};" >
       <div class="buttons" >
-         <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
+         <span class="button icon button-clear {{menuiconIOS}} reportIconBack-{{deviceName}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
       </div>
-      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} useracctheader accoTitle-{{deviceName}}" > <span class="headerfont _accountHeader-{{deviceName}}">Consult Report</span>
+      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} reportTitle-{{deviceName}}" > <span class="headerfont _accountHeader-{{deviceName}}">Post-Encounter Report</span>
          <span> <a class="headerval _accountCancel-{{deviceName}}" ng-click="closeReportView();" >Done</a>
          </span>
       </h1>
-      <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
+   <!--    <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
          <div class="calendar_subHeader" >
             <div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
             <div class="subHeader_content-{{deviceName}} ellipsis" >
@@ -22,13 +22,10 @@
                <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"> . {{patRelationShip}}</span></div>
             </div>
          </div>
-      </div>
+      </div> -->
    </ion-header-bar>
    <ion-view title="Post Consult Report">
       <ion-content class="ReportContent">
-
-
-
         <div class="roundedCornersWindow">
             <div id="reportConsulationWin"
                  class="popup claim-area"
@@ -73,12 +70,12 @@
 
                     <div class="pc-report__company-info">
 
-                        <h2 style="width: 142px;">{{reportBrandName}}</h2>
+                        <h2 class="reportBrandName">{{reportBrandName}}</h2>
                         <hr>
-                        <h2 ng-if="OrganizationLocation === 'on'" style="color: #666;">Organization</h2>
+                        <h2 ng-if="OrganizationLocation === 'on'" >Organization</h2>
                         <p ng-if="OrganizationLocation === 'on'"> {{organization}}</p>
 
-                        <h2 ng-if="OrganizationLocation === 'on'" style="color: #666;">Location</h2>
+                        <h2 ng-if="OrganizationLocation === 'on'">Location</h2>
                         <p ng-if="OrganizationLocation === 'on'">{{location}}</p>
                     </div>
 
@@ -89,7 +86,7 @@
                         <div class="pc-report__patient-info">
                             <div class="pc-report__sub-section-title">Patient Information</div>
                             <div class="pc-report__name pc-report__name--patient">{{reportPatientName}} {{reportLastName}} </div>
-                            <div  ng-if="existingConsultationReport.guardianName !=undefined" class="pc-report__name-details"><strong>Guardian</strong>: {{reportGuardian}}</div>
+                            <div  ng-if="existingConsultationReport.guardianName !=undefined" class="pc-report__name-details guardianName"><span class="guardian">Guardian</span>: {{reportGuardian}}</div>
 
 
                             <!-- report chart -->
@@ -116,16 +113,16 @@
 
                             <div class="pc-report__data-list pc-report__data-list-item">
                                 <span class="pc-report__data-list-title">RACE</span>
-                                <span class="pc-report__data-list-desc">N/R</span>
+                                <span class="pc-report__data-list-desc1">N/R</span>
                             </div>
                                <div class="pc-report__data-list pc-report__data-list-item">
-                                <span class="pc-report__data-list-title">ETHNICITY</span>
-                                <span class="pc-report__data-list-desc">{{reportethnicity}}</span>
+                                <span class="pc-report__data-list-title" style="height: auto;">ETHNICITY</span>
+                                <span class="pc-report__data-list-desc1" style="    height: auto;">{{reportethnicity}}</span>
                             </div>
 
                             <div class="pc-report__data-list pc-report__data-list-item">
                                 <span class="pc-report__data-list-title">LANGUAGE</span>
-                                <span class="pc-report__data-list-desc">N/R</span>
+                                <span class="pc-report__data-list-desc1">N/R</span>
                             </div>
                             <!--// report chart -->
 
@@ -146,39 +143,39 @@
                         <div class="pc-report__encounter-info">
                             <div class="pc-report__sub-section-title">Encounter Information</div>
                             <div class="pc-report__name pc-report__name--provider">{{reportDoctorFirstName}} {{reportDoctorLastName}}</div>
-                            <div class="pc-report__name-details"><strong>Department</strong>:  {{providerDepartment}}</div>
+                            <div class="pc-report__name-details"><span class="guardian">Department</span>:  {{providerDepartment}}</div>
 
                             <!-- Report Chart -->
                             <div class="pc-report__data-list pc-report__data-list-item">
-                                <span class="pc-report__data-list-title">Status</span>
-                                <span ng-if="consultstatus == 72" class="pc-report__data-list-desc pc-report__data-list-desc--successful">{{reportStatus}}</span>
-                                <span ng-if="consultstatus == 79" class="pc-report__data-list-desc pc-report__data-list-desc--canceled">{{reportStatus}}</span>
-                                <span ng-if="consultstatus == 81" class="pc-report__data-list-desc pc-report__data-list-desc--canceled">{{reportStatus}}</span>
+                                <span class="pc-report__data-list-title enStatus">Status</span>
+                                <span ng-if="consultstatus == 72" class="pc-report__data-list-desc1 pc-report__data-list-desc--successful">{{reportStatus}}</span>
+                                <span ng-if="consultstatus == 79" class="pc-report__data-list-desc1 pc-report__data-list-desc--canceled">{{reportStatus}}</span>
+                                <span ng-if="consultstatus == 81" class="pc-report__data-list-desc1 pc-report__data-list-desc--canceled">{{reportStatus}}</span>
                             </div>
                                <div class="pc-report__data-list pc-report__data-list-item">
-                                <span class="pc-report__data-list-title">encounter</span>
-                                <span class="pc-report__data-list-desc">{{consultationDate | date: "MMM dd, yyyy"}}, {{consultationDate | date: "hh:mm a" | lowercase}}</span>
+                                <span class="pc-report__data-list-title enStatus">encounter</span>
+                                <span class="pc-report__data-list-desc1">{{consultationDate | date: "MMM dd, yyyy"}}, {{consultationDate | date: "hh:mma" | lowercase}} {{sysTimeZone}}</span>
                             </div>
 
                             <div class="pc-report__data-list pc-report__data-list-item">
-                                <div class="pc-report__data-list-title">length</div>
-                                <div class="pc-report__data-list-desc">{{consultDurationMinutes}}:{{consultDurationSeconds}} <strong>min</strong></div>
+                                <div class="pc-report__data-list-title enStatus">length</div>
+                                <div class="pc-report__data-list-desc1" ng-if="displayCOnsultationDuration != 'none'">{{consultDurationMinutes}}:{{consultDurationSeconds}} min</div>
                             </div>
 
                             <div class="pc-report__data-list pc-report__data-list-item">
-                                <span class="pc-report__data-list-title">APPT. TYPE</span>
-                                <span class="pc-report__data-list-desc">{{reportservicetype}}</span>
+                                <span class="pc-report__data-list-title enStatus">APPT. TYPE</span>
+                                <span class="pc-report__data-list-desc1">{{reportservicetype}}</span>
                             </div>
 
                             <div class="pc-report__data-list">
-                                <div class="pc-report__data-list-item pc-report__data-list-item--small">
-                                    <span class="pc-report__data-list-title">class</span>
-                                    <span class="pc-report__data-list-desc">{{appointmenttype}}</span>
+                                <div class="pc-report__data-list-item pc-report__data-list-item--small" style="width: 151% !important;">
+                                    <span class="pc-report__data-list-title" style="width: 27.333%;">class</span>
+                                    <span class="pc-report__data-list-desc" style="width: 67.666%%;">{{appointmenttype}}</span>
                                 </div>
                                 <div class="pc-report__data-list-item pc-report__data-list-item--small" style="width: 23%">
-                                    <span class="pc-report__data-list-title">VIA</span>
-                                    <span class="pc-report__data-list-desc pc-report__data-list-desc--video" ng-if="encountercode == 3">Video</span>
-                                    <span class="pc-report__data-list-desc pc-report__data-list-desc--phone" ng-if="encountercode != 3">Phone</span>
+                                    <span class="pc-report__data-list-title" style="margin-left: 1px;width: 26.333%;padding-left: 3px;">VIA</span>
+                                    <span class="pc-report__data-list-desc pc-report__data-list-desc--video" ng-if="encountercode == 3" style="width: 72.666%;">Video</span>
+                                    <span class="pc-report__data-list-desc pc-report__data-list-desc--phone" ng-if="encountercode != 3" style="width: 72.666%;">Phone</span>
                                       <!--<span class="pc-report__data-list-desc pc-report__data-list-desc--video">{{encountertype}}</span> -->
                                 </div>
                             </div>
@@ -329,7 +326,7 @@
 
                      <!-- provider notes -->
 
-                     <div class="pc-report__section-title">Provider notes</div>
+                     <div class="pc-report__section-title">Provider Notes</div>
 <!--
                      <div class="pc-report__complaints-block pc-report__complaints-block--width">
                          <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Chief Complaints</div>
@@ -434,13 +431,13 @@
                      <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Waiting Room</div>
                      <!-- <p class="pc-report__chat-transcript ">None Reported</p> -->
                      <p class="pc-report__chat-transcript" ng-if="waitingRoomChatTranscript.length">
-                     <li ng-repeat = "waitingRoomChatTranscript in waitingRoomChatTranscript" style="font-size: 12px;">{{waitingRoomChatTranscript.ChatMessage}}</li>
+                     <span ng-repeat = "waitingRoomChatTranscript in waitingRoomChatTranscript" style="font-size: 12px;">{{waitingRoomChatTranscript.ChatMessage}}</span>
                      </p>
                      <p class="pc-report__notes" ng-if="!waitingRoomChatTranscript.length">None Reported</p>
 
                      <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Consultation</div>
                      <p class="pc-report__chat-transcript" ng-if="chatTranscript.length">
-                     <li ng-repeat = "chatTranscript in chatTranscript" style="font-size: 12px;">{{chatTranscript.ChatMessage}}</li>
+                     <span ng-repeat = "chatTranscript in chatTranscript" style="font-size: 12px;">{{chatTranscript.ChatMessage}}</span>
                      </p>
                      <p class="pc-report__notes" ng-if="!chatTranscript.length">None Reported</p>
 
@@ -528,19 +525,19 @@
                        </div>
 
                        <div class="pc-report__table-row pc-report__table-title--50x50-qa" style="font-weight: bold;">
-                           <span>Child born at full term :</span>
+                           <span>Child born at full term ?</span>
                              <span>{{fullTerm}}</span>
                          </div>
                          <div class="pc-report__table-row pc-report__table-title--50x50-qa" style="font-weight: bold;">
-                         <span>Child born vaginally :</span>
+                         <span>Child born vaginally ?</span>
                                <span>{{vaginalBirth}}</span>
                            </div>
                            <div class="pc-report__table-row pc-report__table-title--50x50-qa" style="font-weight: bold;">
-                          <span>Child discharged with mother :</span>
+                          <span>Child discharged with mother ?</span>
                            <span>{{dischargedWithMother}}</span>
                              </div>
                              <div class="pc-report__table-row pc-report__table-title--50x50-qa" style="font-weight: bold;">
-                             <span>Child vaccinations up-to-date :</span>
+                             <span>Child vaccinations up-to-date ?</span>
                                    <span>{{vaccinationsCurrent}}</span>
                                </div>
                             </div>

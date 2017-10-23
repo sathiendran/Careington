@@ -363,6 +363,7 @@ angular.module('starter.controllers')
 
         $rootScope.doGetExistingConsulatationReport = function(consultation, nextPage) {
             $rootScope.consultationDate = '';
+            $rootScope.sysTimeZone = '';
             $rootScope.addNotes = '';
             $rootScope.existingConsultationReport = '';
             $state.go(nextPage);
@@ -513,11 +514,11 @@ angular.module('starter.controllers')
                     if ($rootScope.existingConsultationReport.appointmentType !== '' && typeof $rootScope.existingConsultationReport.appointmentType !== 'undefined') {
                       $rootScope.appointmentcode =  $rootScope.existingConsultationReport.appointmentType;
                         if ($rootScope.appointmentcode == 1) {
-                            $rootScope.appointmenttype = "ClinicianScheduled";
+                            $rootScope.appointmenttype = "Provider Sche";
                         } else if ($rootScope.appointmentcode == 2) {
                             $rootScope.appointmenttype = "On-Demand";
                         }else if ($rootScope.appointmentcode == 3) {
-                            $rootScope.appointmenttype = "PatientScheduled";
+                            $rootScope.appointmenttype = "Patient Sched";
                         }
                     } else {
                         $rootScope.appointmenttype = 'None Reported';
@@ -549,6 +550,24 @@ angular.module('starter.controllers')
                     var startTime = new Date(startTimeISOString);
                     $rootScope.consultationDate = new Date(startTime.getTime() + (startTime.getTimezoneOffset() * 60000));
                     $rootScope.consultdate =  $rootScope.existingConsultationReport.consultationDate;
+                    // Add Sakthi //
+                    debugger;
+                    var xD = new Date(startTimeISOString);
+                    var DateString = xD.toString();
+                    var dateSplit = DateString.split('(');
+                    var rSpaceofString = dateSplit[1] .split(' ');
+                    if(dateSplit[1].length > 5)
+                        {
+                            var rLastofString = rSpaceofString[2].split(')');
+                            var SystemTimeZone = rSpaceofString[0].charAt(0)+rSpaceofString[1].charAt(0)+rLastofString[0].charAt(0)
+                        }
+                        else {
+                            var rLastofString = rSpaceofString[0].split(')');
+                            var SystemTimeZone = rLastofString[0].replace(/\"/g, "");
+                        }
+
+                     $rootScope.sysTimeZone = SystemTimeZone;
+                    // End Time Zone //
                     if ($rootScope.existingConsultationReport.consultationDuration !== 0 && typeof $rootScope.existingConsultationReport.consultationDuration !== 'undefined') {
                         $rootScope.displayCOnsultationDuration = "display";
                         var consultationMinutes = Math.floor($rootScope.existingConsultationReport.consultationDuration / 60);
@@ -653,7 +672,7 @@ angular.module('starter.controllers')
                         $rootScope.userReportDOB = $scope.userAge;
                       }
                     }
-                    
+
                     if (typeof data.data[0].details[0].hospitalImage !== 'undefined' && data.data[0].details[0].hospitalImage !== '') {
                         var hosImage = data.data[0].details[0].hospitalImage;
                         if (hosImage.indexOf(apiCommonURL) >= 0) {

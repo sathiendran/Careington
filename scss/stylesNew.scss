@@ -1,5 +1,5 @@
 
-.newcard {
+.newcard {    
 margin: 33px 10px !important;
 box-shadow: 0 1px 3px rgba(0, 0, 0, 0) !important;
 }
@@ -75,7 +75,7 @@ margin-top: 125px !important;
     font-size: 24px !important;
 }
 .consultConMargin {
-    margin: 216px 0 0 0;
+    margin: 226px 0 0 0;
 }
 .passedDate-Android {
     margin-right: 10px;
@@ -4492,10 +4492,19 @@ padding: 44px 10px;
     padding: 40px 10px;
 }
 }
+.consultInsuranceTitle-IOS {
+     padding-top: 157px;
+     border-bottom: 1px solid #C5C5C5;
+}
+.consultInsuranceTitle-Android {
+    padding-top: 157px;
+    border-bottom: 1px solid #C5C5C5;
+}
+
 .consultInsuranceTitle {
-border-bottom: 1px solid #C5C5C5;
-padding-top: 10px;
-.concentHealthPlan {}
+    border-bottom: 1px solid #C5C5C5;
+    padding-top: 10px;
+    .concentHealthPlan {}
 }
 .cardSkipPayment {
 background-color: #fff !important;
@@ -6193,4 +6202,11 @@ a.item.item-avatar.avatheight:first-child{
    // height: 29px;
    // padding-top: 5px;
    // padding-left: 18px;
+}
+
+.pc-report__sub-section-date {
+    float: right;
+    padding: 5px;
+    font-size: 8px;
+   // font-family: "Glober Bold","Helvetica Neue",Helvetica,Arial,Sans-Serif;
 }

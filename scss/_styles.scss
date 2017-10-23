@@ -1288,7 +1288,7 @@ body {
     }
 }
 .consultConMargin {
-    margin: 198px 0 0 0;
+    margin: 206px 0 0 0;
 }
 .consultConPaymentMargin {
     margin: 139px 0 0 0;
@@ -1988,6 +1988,7 @@ select {
     font-family: 'Glober Regular';
     z-index: 999;
     padding-top: 20px;
+    top: 0px;
     em {
         font-style: italic;
     }
@@ -2711,6 +2712,40 @@ select {
 #dependuserlist {
     margin-top: -2px !important;
 }
+.conTreatSubHead-Android {
+  .consentTitle {
+    margin-top: 136px !important;
+    font-size: 25px !important;
+    margin-left: 15px !important;
+    width: 100%;
+    padding-top: 32px;
+  }
+  .consentSubTitle {
+      margin-top: -10px;
+      margin-left: 16px;
+      padding-bottom: 0px;
+      font-family: $fontFamily_semibold;
+      color: #888888;
+      padding-right: 12%;
+  }
+}
+.conTreatSubHead-IOS {
+  .consentTitle {
+      margin-top: 136px !important;
+      font-size: 25px !important;
+      margin-left: 15px !important;
+      width: 100%;
+      padding-top: 7px;
+  }
+    .consentSubTitle {
+        margin-top: 22px;
+        margin-left: 16px;
+        padding-bottom: 0px;
+        font-family: $fontFamily_semibold;
+        color: #888888;
+        padding-right: 12%;
+    }
+}
 .ConsentSteps {
     color: #888;
     float: right;
@@ -2718,13 +2753,7 @@ select {
     margin-top:20px;
     font-size: 16px;
 }
-.consentTitle {
-    margin-top: 136px !important;
-    font-size: 25px !important;
-    margin-left: 15px !important;
-    width: 100%;
-    padding-top: 7px;
-}
+
 .consentSubTitle {
     margin-top: 22px;
     margin-left: 16px;
@@ -2733,6 +2762,8 @@ select {
     color: #888888;
     padding-right: 12%;
 }
+
+
 .consentLine {
     border-bottom: 1px solid #A9ABA7;
 }
@@ -4237,12 +4268,12 @@ form.ng-submitted input.ng-valid + i.icon.error {
            -moz-appearance: none;
             background: #E6E6E6 url(../img/select-arrow.png) no-repeat 95% center;
       //      width: 102%;
-            width: 75%;
+           width: 100%;
             padding-right: 37px;
           //  text-indent: 0.01px;
           // text-overflow: "";
             border-radius: 7px;
-            margin-left: 8px;
+           // margin-left: 8px;
         //  padding: 6px;
             //border: 1px solid #666666! important;
             border: 1px solid #CDCACA !important;
@@ -5821,4 +5852,206 @@ hr {
     /* height: 50px; */
     /* position: absolute; */
     top: 25px;
+}
+.reportBrandName{
+    //margin-left: -35px !important;
+    font-size: 12px !important;
+    font-family: GloberBold !important;
+    font-color: #333333 !important;
+    text-align:right;
+}
+.guardianName{
+    font-size: 14px;
+    font-family: GloberRegular;
+    height: 20px;
+    color: #000000;
+}
+.guardian{
+    font-size: 17px;
+    font-family: GloberSemiBold;
+    height: 20px;
+    color: #000000;
+}
+
+.pc-report__sub-section-date {
+    float: right;
+    padding: 5px;
+    font-size: 8px !important;
+}
+
+.pc-report__table-row span {
+    float: left;
+    line-height: 1;
+    display: block;
+    font-family: GloberBold !important;
+    color: #333;
+}
+
+
+
+.pc-report__sub-section-date{
+    font-size: 10px !important;
+     font-family: GloberRegular !important;
+}
+    .pc-report__table-row {
+    font-size: 13px;
+    font-family: "Glober Bold","Helvetica Neue",Helvetica,Arial,Sans-Serif;
+    line-height: 2;
+    color: #444;
+    padding-bottom: 22px !important;
+}
+
+
+.pc-report__sub-section-title {
+         margin: 0;
+         padding: 0;
+         border: 0;
+         vertical-align: baseline;
+         font: inherit;
+         font-family: Glober !important;
+         font-size: 13px !important;
+         font-weight: bold !important;
+        margin-top: 4px !important;
+    } 
+
+    .reportTitle-Android {
+        top: 3px !important;
+    }
+    .reportTitle-IOS {
+        top: 20px !important;
+        margin-left: 23px !important;
+    }
+
+    .reportscreenTitle-Android {
+        top: 12px !important;
+    }
+    .reportscreenTitle-IOS {
+        top: 27px !important;
+        margin-left: 23px !important;
+    }
+
+    .reportIconBack-Android {
+       top: 0px !important;
+    }
+    .reportIconBack-IOS {
+         top: 9px !important;
+    }
+
+
+
+.report__data-list-desc1{
+  font-size: 16px !important;
+
+}
+.pc-report__data-list-item{
+    flex-grow: 1 !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    order: 1 !important;
+    border: solid 1px #e6e6e6 !important;
+    font-family: GloberRegular !important;
+    font-size: 14px !important;
+}
+
+.pc-report__name-details strong{
+
+  font-size: 17px !important;
+  font-weight: bold !important;
+  font-family: GloberSemiBold !important;
+}
+
+.pc-report__name-details{
+
+    font-family: Glober !important;
+  font-size: 17px !important;
+  padding-top: 1px;
+
+}
+
+.pc-report__name--provider{
+        font-size: 25px !important;
+        line-height: 1.33 !important;
+        height: 37px;
+        color: #444;
+        margin-top: -4px !important;
+        padding-bottom: 5px;
+        font-family: Glober !important;
+        font-weight: bold !important;
+}
+
+
+.pc-report__med-list {
+    font-size: 13px !important;
+   font-family: GloberSemiBold !important;
+    color: #444;
+    margin: 0;
+    padding: 0;
+    font-weight: 600 !important;
+}
+
+.pc-report__list-title {
+    color: #666;
+    margin-top: 5px;
+    line-height: 2;
+    font-size: 11px !important;
+    font-family: Glober !important;
+}
+
+.pc-report__table-title span{
+     color: #666;
+    margin-top: 5px;
+    line-height: 2;
+    font-size: 11px !important;
+    font-family: Glober !important;
+}
+.pc-report__name--patient {
+     font-size: 31px !important;
+}
+.pc-report__data-list-desc {
+     font-size: 17px !important;
+     font-family: GloberBold !important;
+     position: relative;
+    top: 0px;
+    border: none !important;
+    padding-top: 0px !important;
+}
+.pc-report__data-list-desc1 {
+     padding-left: 5px;
+     position: relative;
+     //top: 4px;
+     font-size: 17px !important;
+}
+.pc-report__complaints li {
+     font-size: 14px !important;
+}
+.pc-report__add-notes strong {
+     font-size: 14px !important;
+}
+.pc-report__add-notes span {
+     font-size: 14px !important;
+}
+.pc-report__data-list-desc--successful {
+     top: 1px !important;
+     width: 74%;
+     //padding-top: 3px;
+}
+.pc-report__data-list-title {
+     height: auto !important;
+}
+.enStatus {
+     width: 26.333% !important;
+}
+.pc-report__table-row span{
+     font-family: GloberSemiBold !important;
+}
+.pc-report__company-info h2 {
+     font-size: 12px !important;
+}
+.pc-report__company-info p {
+     font-size: 12px !important;
+     padding-top: 2px;
+}
+.pc-report {
+     padding: 0px 16px !important;
 }

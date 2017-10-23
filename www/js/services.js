@@ -414,7 +414,35 @@ angular.module('starter.services', [])
 							'Time-Zone': params.userTimeZoneId,
 							'Content-Type': 'application/json; charset=utf-8'
 					},
-		      url: apiCommonURL + '/api/v2.1/patients/filtered-appointments?appointmentStatusCodes=2&appointmentTypeCodes=1&appointmentTypeCodes=3&patientIds=' + params.patientId +'&includePatientDependents=true&startDate=' + params.yesterdayDate,
+		    url: apiCommonURL + '/api/v2.1/patients/filtered-appointments?appointmentStatusCodes=2&appointmentTypeCodes=1&appointmentTypeCodes=3&patientIds=' + params.patientId +'&includePatientDependents=true&startDate=' + params.yesterdayDate,
+		//	 url: apiCommonURL + '/api/v2/patients/availableconsultations',
+					method: 'GET'
+			};
+
+			$http(requestInfo).
+							success(function (data, status, headers, config) {
+									if (typeof params.success != 'undefined') {
+											params.success(data);
+									}
+							}).
+							error(function (data, status, headers, config) {
+									if (typeof params.error != 'undefined') {
+										 params.error(data,status);
+									}
+							});
+	}
+
+	this.getScheduledAvailableConsultation = function (params) {
+			var requestInfo = {
+				//	headers: util.getHeaders(params.accessToken),
+					headers: {
+							'Authorization': 'Bearer ' +params.accessToken,
+							'X-Api-Key': util.getHeaders()["X-Api-Key"],
+							'X-Developer-Id': util.getHeaders()["X-Developer-Id"],
+							'Time-Zone': params.userTimeZoneId,
+							'Content-Type': 'application/json; charset=utf-8'
+					},
+		      url: apiCommonURL + '/api/v2/patients/availableconsultations',
 					method: 'GET'
 			};
 
@@ -2014,7 +2042,8 @@ this.getWaitingRoomChatTranscript = function (params) {
      this.putListOfCountryLocation = function(params){
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/v2.1/patients/encounter/address?addressText='+ params.countrystate+'&patientID=' + params.patientID,
+          //url: apiCommonURL + '/api/v2.1/patients/encounter/address?addressText='+ params.countrystate+'&patientID=' + params.patientID,
+						url: apiCommonURL + '/api/v2.1/patients/encounter/address?patientId='+ params.patientID +'&country='+ params.countrystate +'&region='+ params.countryRegion,
             method: 'PUT',
         };
         $http(requestInfo).
@@ -2507,7 +2536,8 @@ this.getCountryDetails = function () {
 
 		 yearString = "yrs";
 		 monthString = "m";
-      dayString = "days";
+         //dayString = "days";
+         dayString = "d";
 
 	 if(age.years == 0 ) {
 			/*if(age.days <= 15) {
