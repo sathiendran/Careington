@@ -126,6 +126,7 @@ angular.module('starter.controllers')
             $rootScope.hospitalId = providerList.hospitalId;
             $rootScope.regStep1 = {};
             $scope.doGetSingleUserHospitalInformation();
+            $rootScope.regCountry2  = "";
         }
 
         $scope.doGetSingleUserHospitalInformation = function() {

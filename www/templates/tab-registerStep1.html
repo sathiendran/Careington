@@ -109,10 +109,11 @@
                   <div class="regContainer">
                      <label class="user-account__label">Country</label>
                      <div class="user-account__input regDropDownContainer">
-                        <div class="viewport">Choose</div>
+                        <div class="viewport" ng-if="regCountry2 == ''">Choose</div>
+                        <div class="viewport" ng-if="regCountry2 != ''">{{regCountry2}}</div>
                          <select class="ssooptionCountry textdata consultHealthPlanDropDown" id="regCountryCode" name="regCountryCode" ng-model="regStep1.regCountryCode"  ng-change="countryBlur()" >
                             <option value="Choose"><b>Choose</b></option>
-                            <option class="planlist" ng-repeat="country in serviceCountries" value="{{country.code}}"><b>{{formatIsdCode(country.code, "&nbsp;", 10 ) + country.name}}</b></option>
+                            <option class="planlist" ng-repeat="country in serviceCountries" ng-selected="country.code == regCountry2" value="{{country.code}}"><b>{{formatIsdCode(country.code, "&nbsp;", 10 ) + country.name}}</b></option>
                          </select>
                         <span class="user-account__error-message" ng-show="countryError">Please choose your country code</span>
                      </div>
@@ -280,10 +281,12 @@
                   <div class="regContainer">
                      <label class="user-account__label">Country</label>
                      <div class="user-account__input regDropDownContainer">
-                        <div class="viewport">Choose</div>
+                        <div class="viewport" ng-if="regCountry2 == ''">Choose</div>
+                        <div class="viewport" ng-if="regCountry2 != ''">{{regCountry2}}</div>
+
                          <select class="ssooptionCountry textdata consultHealthPlanDropDown" id="regCountryCode" name="regCountryCode" ng-model="regStep1.regCountryCode"  ng-change="countryBlur()" >
                             <option value="Choose"><b>Choose</b></option>
-                            <option class="planlist" ng-repeat="country in serviceCountries" value="{{country.code}}"><b>{{formatIsdCode(country.code, "&nbsp;", 10 ) + country.name}}</b></option>
+                            <option class="planlist" ng-repeat="country in serviceCountries" ng-selected="country.code == regCountry2" value="{{country.code}}"><b>{{formatIsdCode(country.code, "&nbsp;", 10 ) + country.name}}</b></option>
                          </select>
                         <span class="user-account__error-message" ng-show="countryError">Please choose your country code</span>
                      </div>

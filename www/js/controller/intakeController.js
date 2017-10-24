@@ -410,7 +410,7 @@ $scope.locat=false;
     $scope.openOtherPrimaryConcernView = function() {
         $scope.data = {}
         $ionicPopup.show({
-            template: '<div class="PopupError_Message ErrorMessageDiv" ></div><textarea name="comment" id="comment-textarea" ng-model="data.PrimaryConcernOther" maxlength="500" class="textAreaPop">',
+            template: '<div class="PopupError_Message ErrorMessageDiv" ></div><textarea name="comment" id="comment-textarea" ng-model="data.PrimaryConcernOther" class="textAreaPop">',
             title: 'Enter Primary Concern',
             subTitle: '',
             scope: $scope,
@@ -1322,7 +1322,7 @@ $scope.locat=false;
                  isSurgeryDateIsFuture = false;
              }
          }
-         if (($scope.surDescription === '' || $scope.surDescription === undefined) && $rootScope.showIntakeEditSurgery === true ) {
+         if (($scope.surDescription === '' || $scope.surDescription === undefined) && $scope.showIntakeEditSurgery === true ) {
              $scope.ErrorMessage = "Provide a short description of the surgical procedure";
               $rootScope.ValidationFunction1($scope.ErrorMessage);
         } else  if (($scope.dateStringMonth === '' || $scope.dateStringMonth === undefined || $scope.dateStringYear === '' || $scope.dateStringYear === undefined)) {
