@@ -113,7 +113,7 @@
                         <div class="viewport" ng-if="regCountry2 != ''">{{regCountry2}}</div>
                          <select class="ssooptionCountry textdata consultHealthPlanDropDown" id="regCountryCode" name="regCountryCode" ng-model="regStep1.regCountryCode"  ng-change="countryBlur()" >
                             <option value="Choose"><b>Choose</b></option>
-                            <option class="planlist" ng-repeat="country in serviceCountries" ng-selected="country.code == regCountry2" value="{{country.code}}"><b>{{formatIsdCode(country.code, "&nbsp;", 10 ) + country.name}}</b></option>
+                            <option class="planlist" ng-repeat="country in serviceCountries" ng-selected="country.code == regCountry2" value="{{country.code}}"><b>{{country.name}} ({{country.code}})</b></option>
                          </select>
                         <span class="user-account__error-message" ng-show="countryError">Please choose your country code</span>
                      </div>
@@ -286,7 +286,7 @@
 
                          <select class="ssooptionCountry textdata consultHealthPlanDropDown" id="regCountryCode" name="regCountryCode" ng-model="regStep1.regCountryCode"  ng-change="countryBlur()" >
                             <option value="Choose"><b>Choose</b></option>
-                            <option class="planlist" ng-repeat="country in serviceCountries" ng-selected="country.code == regCountry2" value="{{country.code}}"><b>{{formatIsdCode(country.code, "&nbsp;", 10 ) + country.name}}</b></option>
+                            <option class="planlist" ng-repeat="country in serviceCountries" ng-selected="country.code == regCountry2" value="{{country.code}}"><b>{{country.name}} ({{country.code}})</b></option>
                          </select>
                         <span class="user-account__error-message" ng-show="countryError">Please choose your country code</span>
                      </div>
