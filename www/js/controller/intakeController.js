@@ -1322,7 +1322,7 @@ $scope.locat=false;
                  isSurgeryDateIsFuture = false;
              }
          }
-         if (($scope.surDescription === '' || $scope.surDescription === undefined) && $rootScope.showIntakeEditSurgery === true ) {
+         if (($scope.surDescription === '' || $scope.surDescription === undefined) && $scope.showIntakeEditSurgery === true ) {
              $scope.ErrorMessage = "Provide a short description of the surgical procedure";
               $rootScope.ValidationFunction1($scope.ErrorMessage);
         } else  if (($scope.dateStringMonth === '' || $scope.dateStringMonth === undefined || $scope.dateStringYear === '' || $scope.dateStringYear === undefined)) {

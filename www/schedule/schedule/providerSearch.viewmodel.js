@@ -560,6 +560,11 @@
             this.vm_currentDate = new Date();
             this.vm_currentDate.setHours(0, 0, 0, 0);
 
+            $("#dateFilterPiker").kendoDatePicker({
+                    min: this.vm_currentDate
+                });
+
+            
             this.vm_isNotificationActive = false;
             this.vm_closeNotification = function () {
                 this.vm_isNotificationActive = false;
@@ -737,6 +742,9 @@
                 $("#dateFilterPiker_dateview .k-footer > a").html(date);
                 $("#dateFilterPiker_dateview .k-footer > a").attr("title", date);
 
+
+
+                //$("#dateFilterPiker").attr("data-bind", this.get("vm_currentDate"));
                 // var that = this;
                 // $("#dateFilterPiker_dateview .k-footer > a").one("click", function () {
                 //     that._setFilterDate(that.get("vm_currentDate"));
