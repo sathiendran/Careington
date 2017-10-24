@@ -410,7 +410,7 @@ $scope.locat=false;
     $scope.openOtherPrimaryConcernView = function() {
         $scope.data = {}
         $ionicPopup.show({
-            template: '<div class="PopupError_Message ErrorMessageDiv" ></div><textarea name="comment" id="comment-textarea" ng-model="data.PrimaryConcernOther" class="textAreaPop">',
+            template: '<div class="PopupError_Message ErrorMessageDiv" ></div><textarea name="comment" id="comment-textarea" ng-model="data.PrimaryConcernOther" maxlength="500" class="textAreaPop">',
             title: 'Enter Primary Concern',
             subTitle: '',
             scope: $scope,

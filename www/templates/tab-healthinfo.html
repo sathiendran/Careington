@@ -196,11 +196,11 @@
                <div class="list listprofile listprofileEdit" ng-hide="flag">
                   <div class="item item-input itemtab validated">
                     <span class="input-label labelcolor" style=" white-space: normal;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('user')"></i><b class="formlabel labelfont">First</b><i class="ion-asterisk"></i></span>
-                     <span class="healthViewDetails"><input type="text" name="healthInfoFirstName" id="healthInfoFirstName" value="{{currentPatientDetails[0].patientName}}" class="textdata" placeholder="Required"></span>
+                     <span class="healthViewDetails"><input type="text" name="healthInfoFirstName" id="healthInfoFirstName" value="{{currentPatientDetails[0].patientName}}" maxlength="24" class="textdata" placeholder="Required"></span>
                   </div>
                   <div class="item item-input itemtab validated">
                     <span class="input-label labelcolor" style=" white-space: normal;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('user')"></i><b class="formlabel labelfont">Last</b><i class="ion-asterisk"></i></span>
-                     <span class="healthViewDetails"><input type="text" name="healthInfoLastName" id="healthInfoLastName" value="{{currentPatientDetails[0].lastName}}" class="textdata" placeholder="Required"></span>
+                     <span class="healthViewDetails"><input type="text" name="healthInfoLastName" id="healthInfoLastName" value="{{currentPatientDetails[0].lastName}}" class="textdata" maxlength="24" placeholder="Required"></span>
                   </div>
                   <div class="item item-input itemtab validated">
                     <span class="input-label labelcolor" style=" white-space: normal;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel">D.O.B </b><i class="ion-asterisk"></i></span>
