@@ -489,6 +489,7 @@ angular.module('starter.controllers')
               $ionicSideMenuDelegate.toggleLeft();
               $rootScope.chkSSPageEnter = false;
           }
+            $(".overlay").css({"display": "none" });
           $scope.doGetSelectedappoimentDetails(sessionStorage.getItem("SSscheduledAppointmentId"));
       }
     };

@@ -340,8 +340,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
     };
 
-    $(".overlay").css({"display": "none" });
-
   //  $scope.formatIsdCode = (s,c,n) => (s.length<n) ? s+c.repeat(n-s.length): s;
 
     $rootScope.drawImage = function(imagePath, firstName, lastName) {
@@ -1610,6 +1608,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
       $rootScope.appointmentsPage = true;
       $rootScope.consultationId = $stateParams.getconsultId;
       $rootScope.P_isAuthorized = true;
+      $(".overlay").css({"display": "none" });
       $rootScope.concentToTreatPreviousPage = "tab.userhome";
       $rootScope.doGetpatDetailsForSS($rootScope.patientId,"Now");
     }
