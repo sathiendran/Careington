@@ -332,6 +332,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 .controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup)
 {
+  $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+  if($rootScope.chkSSPageEnter) {
+        $rootScope.chkSSPageEnter = false;
+        $ionicSideMenuDelegate.toggleLeft();
+    }
    isSSProviderListLoaded = false;
     window.localStorage.setItem('isVideoCallProgress', "No");
     window.localStorage.setItem("isCustomerInWaitingRoom", "No");
@@ -802,9 +807,9 @@ $rootScope.checkAndChangeMenuIcon = function() {
     };
 
     // // // $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-     if($rootScope.chkSSPageEnter) {
-          $ionicSideMenuDelegate.toggleLeft();
-     }
+    // if($rootScope.chkSSPageEnter) {
+      //    $ionicSideMenuDelegate.toggleLeft();
+    // }
 
     $scope.doRefreshUserHome = function() {
         $rootScope.doGetPatientProfiles();
@@ -819,10 +824,11 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
     $rootScope.ClearRootScope = function() {
       $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+      $(".overlay").css({"display": "none" });
       if($rootScope.chkSSPageEnter) {
+            $rootScope.chkSSPageEnter = false;
             $ionicSideMenuDelegate.toggleLeft();
         }
-      $(".overlay").css({"display": "none" });
       $rootScope.cuttlocations = ''
         $window.localStorage.setItem('tokenExpireTime', '');
         $(".ion-google-place-container").css({
@@ -1609,7 +1615,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
       $rootScope.appointmentsPage = true;
       $rootScope.consultationId = $stateParams.getconsultId;
       $rootScope.P_isAuthorized = true;
-      $(".overlay").css({"display": "none" });
+      //$(".overlay").css({"display": "none" });
       $rootScope.concentToTreatPreviousPage = "tab.userhome";
       $rootScope.doGetpatDetailsForSS($rootScope.patientId,"Now");
     }

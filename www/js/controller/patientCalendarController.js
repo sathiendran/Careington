@@ -3,6 +3,11 @@ angular.module('starter.controllers')
       /*  setTimeout(function() {
             document.getElementsByTagName('timer')[0].stop();
         }, 10);*/
+        $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+        if($rootScope.chkSSPageEnter) {
+            $ionicSideMenuDelegate.toggleLeft();
+            $rootScope.chkSSPageEnter = false;
+        }
 
         $ionicPlatform.registerBackButtonAction(function() {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
@@ -77,11 +82,7 @@ angular.module('starter.controllers')
             }
         };
 
-        $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-        if($rootScope.chkSSPageEnter) {
-            $ionicSideMenuDelegate.toggleLeft();
-            $rootScope.chkSSPageEnter = false;
-        }
+
 
         $scope.homepatient = function(){
           $rootScope.doGetPatientProfiles();

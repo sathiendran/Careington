@@ -153,6 +153,10 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
       $rootScope.cuttlocations = '';
       $window.localStorage.setItem('tokenExpireTime', '');
         $(".overlay").css({"display": "none" });
+        if($rootScope.chkSSPageEnter) {
+              $rootScope.chkSSPageEnter = false;
+              $ionicSideMenuDelegate.toggleLeft();
+          }
       if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging') {
             $rootScope.hospitalId = singleHospitalId;
             apiCommonURL = 'https://connectedcare.md';
