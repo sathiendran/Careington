@@ -4,10 +4,20 @@ angular.module('starter.controllers')
   $rootScope.drawSVGCIcon = function(iconName) {
     return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
   };
-     $scope.firsttimecall = 0;
+
+
+  $scope.fetchPatientDetails = function(){
+    $scope.firsttimecall = 0;
     $rootScope.patientAuthorize = true;
     $rootScope.patientUnAuthorize = false;
     $rootScope.patientAuthorizeValue = 'Y';
+    if($stateParams.getid != '')
+    {
+      var patId = $stateParams.getid;
+      $rootScope.doGetSelectedPatientProfilesSS(patId, true);
+    }
+  };
+    
     $scope.getOnlyNumbers = function(text) {
         var newStr = "";
         if (text) {

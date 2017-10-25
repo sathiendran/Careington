@@ -1,6 +1,6 @@
 <ion-side-menus>
 <ion-side-menu-content>
-   <form ng-submit="putUpdatePatientDetails()" name="HealthInfo Details">
+   <form ng-submit="putUpdatePatientDetails()" ng-init="fetchPatientDetails()" name="HealthInfo Details">
       <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
          <div class="buttons">
             <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
