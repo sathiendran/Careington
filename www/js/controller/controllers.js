@@ -801,7 +801,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
         }
     };
 
-    $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+    // // // $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
      if($rootScope.chkSSPageEnter) {
           $ionicSideMenuDelegate.toggleLeft();
      }
@@ -822,6 +822,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
       if($rootScope.chkSSPageEnter) {
             $ionicSideMenuDelegate.toggleLeft();
         }
+      $(".overlay").css({"display": "none" });
       $rootScope.cuttlocations = ''
         $window.localStorage.setItem('tokenExpireTime', '');
         $(".ion-google-place-container").css({
@@ -6085,15 +6086,15 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
               activeConsultConnection.disconnected(function() {
                   // console.log("hhhh");
                 setTimeout(function() {
-                     if(activeConsultConnection && activeConsultConnection.start){
-                         activeConsultConnection.start();
+                    // if(activeConsultConnection && activeConsultConnection.start){
+                      //   activeConsultConnection.start();
                          //console.log("iiii");
-                     }
+                  //   }
                 }, 5000);
                 });
          });
 
-       activeRoomConHub.on("broadcastMessage", function(messageType, message) { 
+       activeRoomConHub.on("broadcastMessage", function(messageType, message) {
           // alert("notificationService: broadcastMessage");
           if(messageType == 'consultation_ended') {
              //  alert('gg2');
@@ -8185,8 +8186,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
     };
     $scope.doGetWaitingRoom = function() {
       if($rootScope.activeInqueueAppoint) {
-       activeConsultConnection.stop();
-        activeConsultConnection.qs = {};
+       //activeConsultConnection.stop();
+      //  activeConsultConnection.qs = {};
         activeConsultConnection = null;
         activeRoomConHub = null;
       }
@@ -8323,7 +8324,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         LoginService.getRelatedPatientProfiles(params);
       };
 
-
+  // $(".overlay").css({"display": "none" });
 
 
     // Note

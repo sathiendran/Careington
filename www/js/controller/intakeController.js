@@ -37,6 +37,10 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
             navigator.app.backHistory();
         }
     }, 100);
+    // activeConsultConnection.stop();
+  //  activeConsultConnection.qs = {};
+   activeConsultConnection = null;
+   activeRoomConHub = null;
     $rootScope.currState = $state;
     $rootScope.monthsList = CustomCalendar.getMonthsList();
     $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
@@ -148,6 +152,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
     $rootScope.ClearRootScope = function() {
       $rootScope.cuttlocations = '';
       $window.localStorage.setItem('tokenExpireTime', '');
+        $(".overlay").css({"display": "none" });
       if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging') {
             $rootScope.hospitalId = singleHospitalId;
             apiCommonURL = 'https://connectedcare.md';
@@ -174,7 +179,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
            $state.go('tab.login');
            $timeout(function() {
                   $window.location.reload(true);
-              }); 
+              });
         }
       }
       $rootScope = $rootScope.$new(true);
@@ -1817,6 +1822,6 @@ $scope.locat=false;
         $state.go('tab.providerSearch');
     }
 
-
+  $(".overlay").css({"display": "none" });
 
 })

@@ -860,6 +860,7 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
     $rootScope.ClearRootScope = function() {
         $rootScope.cuttlocations = '';
         $window.localStorage.setItem('tokenExpireTime', '');
+          $(".overlay").css({"display": "none" });
 
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
