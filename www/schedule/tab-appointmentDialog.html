@@ -58,7 +58,8 @@
                                         <div class="consultation-type__title">Video</div>
                                     </div>
 
-                                    <div class="consultation-type__item js-toggle-type" data-bind="onEnterKey: setPhoneType, click:setPhoneType, css:{is-active:isPhone}">
+                                    <!--<div class="consultation-type__item js-toggle-type" data-bind="onEnterKey: setPhoneType, click:setPhoneType, css:{is-active:isPhone}">-->
+                                    <div class="consultation-type__item js-toggle-type" data-bind="onEnterKey: setPhoneType, click:setPhoneType, css:{is-active:isPhone, is-disabled: isPhoneConsultationDisabled}">
                                         <div class="consultation-type__icon" tabindex="4">
                                             <span class="icon_phone"></span>
                                         </div>

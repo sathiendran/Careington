@@ -1631,17 +1631,20 @@ var setUserVars = function() {
                     this.trigger("change", { field: "isText" });
                     this.trigger("change", { field: "isInPerson" });
                 };
-                var setEncounterType = function(encounterTypeCode) {
-                    scope.set("encounterTypeCode", encounterTypeCode);
-                    scope.refreshEncounterType();
-                    scope._onDataChange();
+                var setEncounterType = function (encounterTypeCode) {
+                        scope.set("encounterTypeCode", encounterTypeCode);
+                        scope.refreshEncounterType();
+                        scope._onDataChange();
                 };
-                this.setVideoType = function() {
+                this.setVideoType = function () {
                     setEncounterType(encounterTypeCodes.Video);
                 };
-                this.setPhoneType = function() {
+                this.setPhoneType = function () {
                     setEncounterType(encounterTypeCodes.Phone);
                 };
+                this.isPhoneConsultationDisabled = function () {
+                    return snap && snap.hospitalSettings.disablePhoneConsultation;
+                }
                 this.setTextType = function() {
                     setEncounterType(encounterTypeCodes.Text);
                 };
