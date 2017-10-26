@@ -1348,12 +1348,18 @@ var setUserVars = function() {
                             sessionStorage.setItem('ssAppointUpdate', 'yes');
                             $snapNotification.success(that._typeName + " updated successfully");
                             var aa1 = (new Date).getTime();
+
+                            $.connection.hub.qs = {};
+                              var hubs = [];
+                              $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+                              location.href = "#/tab/appoimentDetails/webSSAppointUpdate"+ aa1;
+                              /*
                             setTimeout(function() {
                               $.connection.hub.qs = {};
                               var hubs = [];
                               $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                               location.href = "#/tab/appoimentDetails/webSSAppointUpdate"+ aa1;
-                            }, 3000);
+                            }, 3000);*/
                         }
                         that.set("isError", false);
                     }).fail(function() {

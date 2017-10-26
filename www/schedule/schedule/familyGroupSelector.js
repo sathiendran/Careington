@@ -2085,7 +2085,7 @@
                 this.save = function () {
                     this.set("isLoading", true);
                     this.set("isError", false);
-
+                    
                     var that = this;
                     var promise = $appointmentService.saveAppointment(this.getOptions());
                     promise.done(function () {
