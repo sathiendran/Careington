@@ -5407,6 +5407,16 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                      return string;
              }
 
+              this.getPatientDetails = function (patId) {
+	            return $.ajax({
+	                type: "GET",
+	                url: [snap.baseUrl + "/api/v2.1/patients/appointments/self-scheduling/clinicians", clinicianUserId].join("/"),
+	                contentType: "application/json; charset=utf-8",
+	                dataType: "json",
+	                data: {date: date},
+	            });
+	        };
+
              this.formatErrorMessage = function(error) {
                 if (typeof(error) === "undefined" || error === null) {
                     return "Unknown error";
@@ -5455,15 +5465,17 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
 
                 $snapNotification.confirmationWithCallbacks(message, function () {
                     $customerDataService.getAccountUserProfiles().done(function(data) {
+
                         var isUserProfile = data.data.filter(function(profile) {
                             return profile.patientId === opt.patientId;
                         }).length > 0;
-
                         sessionStorage.setItem("snap_patientId_ref", opt.patientId);
                         if(isUserProfile) {
-                            window.location = snap.baseUrl +  "/patient/User";
+                            //window.location = snap.baseUrl +  "/patient/User";
+                            window.location.href = "#/tab/healthinfo/"+opt.patientId;
                         } else {
-                            window.location = snap.baseUrl +  "/patient/Dependent";
+                            //window.location = snap.baseUrl +  "/patient/Dependent";
+                             window.location.href = "#/tab/healthinfo/"+opt.patientId;
                         }
                     });
                 });

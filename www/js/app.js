@@ -1263,7 +1263,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         }
     })
     .state('tab.healthinfo', {
-        url: '/healthinfo',
+        url: '/healthinfo/:getid',
         views: {
             'tab-login': {
                 templateUrl: 'templates/tab-healthinfo.html',
