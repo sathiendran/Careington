@@ -8433,10 +8433,10 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 days: dateAge
             };
 
-            yearString = "yrs";
-            monthString = "m";
+            yearString = " yrs ";
+            monthString = " m ";
             //dayString = "days";
-            dayString = "d";
+            dayString = " d ";
 
             if (age.years === 0) {
                /* if (age.days <= 15) {
@@ -8450,7 +8450,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 var num_years = difdt1/31536000000;
                 var num_months = (difdt1 % 31536000000)/2628000000;
                 var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
-                return ageString = Math.floor(num_months) + monthString + '/' + Math.floor(num_days) + dayString ;
+                return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
             }
             if (age.years > 0) {
                 if (age.days <= 15) {
@@ -8459,7 +8459,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     var month = (age.months + 1) + monthString;;
                 }
                 if (age.months !== 0) {
-                    return ageString = age.years + yearString + '/' + month;
+                    return ageString = age.years + yearString +  month;
                 } else {
                     return ageString = age.years + yearString;
                 }
