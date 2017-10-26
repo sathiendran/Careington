@@ -4771,7 +4771,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                                       //  $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                                       window.setTimeout(function() {
                                           $overlay.toggleOverlay();
-                                          alert('hhh');
+                                          //alert('hhh');
                                           $.connection.hub.qs = {};
                                           var hubs = [];
                                       }, 2000);
