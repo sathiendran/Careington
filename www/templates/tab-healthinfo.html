@@ -9,7 +9,7 @@
             <div class="HealthTitle-{{deviceName}}" style="display: {{viewmyhealthDisplay}};"> My Health </div>
             <div class="HealthTitle-{{deviceName}}" style="display: {{viewhealthDisplay}};"> Health Info</div>
             <span ng-show="patientAuthorize && editshow" ng-if="patientAuthorizeValue = 'Y' && editOption !== 'None' && customerSso != 'Mandatory' && P_isAuthorized !== false" class="headerval healthLeft-{{deviceName}}" ng-click="edittext()" style="right: 10px;">Edit</span>
-            <!--<span class="headerval healthLeft-{{deviceName}}"  ng-show="cancelshow" ><a ng-href="#/tab/userAccount" class="headerval" >Cancel</a></span>-->
+            <span class="headerval healthLeft-{{deviceName}}"  ng-show="cancelshow" ><a ng-href="#/tab/userAccount" class="headerval" >Cancel</a></span>
             <button  type="submit" class="headerval healthLeft-{{deviceName}}"  ng-hide="doneshow" >
                Done</span>
          </h1>
@@ -69,7 +69,7 @@
          </div>
       </ion-header-bar>
       <ion-view title="Health Info Details" >
-         <ion-content class="ioncontentalign healthHeight" ng-hide="addmore">
+         <ion-content class="ioncontentalign healthHeight" delegate-handle="scrollTopView" ng-hide="addmore">
             <div >
                <h4 class="healthhead">Demographics</h4>
                <div class="list listprofile" ng-show="flag">
@@ -359,7 +359,7 @@
 
 
                   <div><h3 class="healthpat"><div><span>Patient IDs</span></div></h3></div>
-                  <div class="item item-input itemtab validated" ng-repeat="patientdisplay in PatientidupdateList" style="display: {{viewpatapiDisplay}};">
+                  <div class="item item-input itemtab validated" ng-repeat="patientdisplay in PatientidupdateList" style="display: {{viewpatapiDisplay}};" flex-shrink: 5;>
 
                      <span class="input-label labelcolor"  id="pattext_{{ $index + 1 }}" style=" white-space: normal;" ><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('vcard')"></i><b class="formlabel labelfont">{{patientdisplay.display}}</b></span>
                      <span class="healthViewDetails" >
