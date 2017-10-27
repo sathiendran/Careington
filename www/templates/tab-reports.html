@@ -88,7 +88,7 @@
                             <div class="pc-report__name pc-report__name--patient">{{reportPatientName}} {{reportLastName}} </div>
                             <div  ng-if="existingConsultationReport.guardianName !=undefined" class="pc-report__name-details guardianName"><span class="guardian">Guardian</span>: {{reportGuardian}}</div>
 
-
+ 
                             <!-- report chart -->
                             <div class="pc-report__data-list">
                                 <div class="pc-report__data-list-item pc-report__data-list-item--small">
@@ -97,7 +97,7 @@
                                 </div>
                                 <div class="pc-report__data-list-item pc-report__data-list-item--small">
                                     <span class="pc-report__data-list-title">AGE</span>
-                                    <span class="pc-report__data-list-desc">{{existingConsultationReport.dob  | ageFilter}}</span>
+                                    <span class="pc-report__data-list-desc">{{existingConsultationReport.dob  | ageFilterReport}}</span>
                                 </div>
                             </div>
                             <div class="pc-report__data-list">

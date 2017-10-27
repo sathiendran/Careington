@@ -458,6 +458,8 @@ this._checkPatient = function(patient, data) {
 
 
                 this.save = function () {
+                    
+                    
                     this.set("isLoading", true);
                     this.set("isError", false);
 
@@ -465,6 +467,7 @@ this._checkPatient = function(patient, data) {
                     var promise = $appointmentService.saveAppointment(this.getOptions());
                     promise.done(function () {
   if (!that.vm_isNew()) {
+
                             $snapNotification.success(that._typeName + " updated successfully");
                         }
                         that.set("isError", false);
@@ -633,6 +636,7 @@ this._checkPatient = function(patient, data) {
 
                 this.vm_onSubmitClick = function () {
                     // debugger;
+
                     var that = this;
                     //if(that.additionalNotes == ""){
                          var addnotes = $(".consultation-note__textarea").val();
@@ -659,6 +663,7 @@ this._checkPatient = function(patient, data) {
                             $eventAggregator.published(fact.savedEvent, that.getOptions());
                             that._clearDeactivationTimeout();
                             $patientSelfSchedulingHub.bookSlot(that.availabilityBlockId, that.start, that.end);
+
                         }).fail(function (error) {
                             if (error) {
                                 $snapNotification.error(error);
