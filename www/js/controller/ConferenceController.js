@@ -141,6 +141,7 @@ angular.module('starter.controllers')
                 $rootScope.attachmentLength = '';
                 $rootScope.existingConsultationReport = data.data[0].details[0];
                 $rootScope.existconsultationparticipants=data.data[0].participants;
+                $rootScope.existconsultationprescriptions = data.data[0].prescriptions;
 
                 /*if ($rootScope.existingConsultationReport.height !== '' && typeof $rootScope.existingConsultationReport.height !== 'undefined')
                 {
@@ -859,6 +860,7 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
     $rootScope.ClearRootScope = function() {
         $rootScope.cuttlocations = '';
         $window.localStorage.setItem('tokenExpireTime', '');
+          $(".overlay").css({"display": "none" });
 
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);

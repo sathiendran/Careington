@@ -332,6 +332,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 .controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, ageFilterReport, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup)
 {
+  $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+  if($rootScope.chkSSPageEnter) {
+        $rootScope.chkSSPageEnter = false;
+        $ionicSideMenuDelegate.toggleLeft();
+    }
    isSSProviderListLoaded = false;
     window.localStorage.setItem('isVideoCallProgress', "No");
     window.localStorage.setItem("isCustomerInWaitingRoom", "No");
@@ -801,10 +806,10 @@ $rootScope.checkAndChangeMenuIcon = function() {
         }
     };
 
-    $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-     if($rootScope.chkSSPageEnter) {
-          $ionicSideMenuDelegate.toggleLeft();
-     }
+    // // // $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+    // if($rootScope.chkSSPageEnter) {
+      //    $ionicSideMenuDelegate.toggleLeft();
+    // }
 
     $scope.doRefreshUserHome = function() {
         $rootScope.doGetPatientProfiles();
@@ -819,7 +824,9 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
     $rootScope.ClearRootScope = function() {
       $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+      $(".overlay").css({"display": "none" });
       if($rootScope.chkSSPageEnter) {
+            $rootScope.chkSSPageEnter = false;
             $ionicSideMenuDelegate.toggleLeft();
         }
       $rootScope.cuttlocations = ''
@@ -1540,6 +1547,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
       					hsettings.showCTTOnScheduled = $rootScope.getDetails.indexOf("ShowCTTOnScheduled") > -1;
 
       					hsettings.pPIsBloodTypeRequired = $rootScope.getDetails.indexOf("PPIsBloodTypeRequired") > -1;
+                hsettings.disablePhoneConsultation = $rootScope.getDetails.indexOf("DisablePhoneConsultation") > -1;
       					hsettings.pPIsHairColorRequired = $rootScope.getDetails.indexOf("PPIsHairColorRequired") > -1;
       					hsettings.pPIsEthnicityRequired = $rootScope.getDetails.indexOf("PPIsEthnicityRequired") > -1;
       					hsettings.pPIsEyeColorRequired = $rootScope.getDetails.indexOf("PPIsEyeColorRequired") > -1;
@@ -1608,6 +1616,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
       $rootScope.appointmentsPage = true;
       $rootScope.consultationId = $stateParams.getconsultId;
       $rootScope.P_isAuthorized = true;
+      //$(".overlay").css({"display": "none" });
       $rootScope.concentToTreatPreviousPage = "tab.userhome";
       $rootScope.doGetpatDetailsForSS($rootScope.patientId,"Now");
     }
@@ -6090,10 +6099,10 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
               activeConsultConnection.disconnected(function() {
                   // console.log("hhhh");
                 setTimeout(function() {
-                     if(activeConsultConnection && activeConsultConnection.start){
-                         activeConsultConnection.start();
+                    // if(activeConsultConnection && activeConsultConnection.start){
+                      //   activeConsultConnection.start();
                          //console.log("iiii");
-                     }
+                  //   }
                 }, 5000);
                 });
          });
@@ -8190,8 +8199,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
     };
     $scope.doGetWaitingRoom = function() {
       if($rootScope.activeInqueueAppoint) {
-       activeConsultConnection.stop();
-        activeConsultConnection.qs = {};
+       //activeConsultConnection.stop();
+      //  activeConsultConnection.qs = {};
         activeConsultConnection = null;
         activeRoomConHub = null;
       }
@@ -8328,7 +8337,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         LoginService.getRelatedPatientProfiles(params);
       };
 
-
+  // $(".overlay").css({"display": "none" });
 
 
     // Note
