@@ -2461,9 +2461,134 @@ this.getCountryDetails = function () {
 		}
 		return getProvider2char;
 	};
-})
+})       
 
 .service('ageFilter', function(){
+  //this.getAge = function(dateString) {
+//.filter('ageFilter', function() {
+    function getAge(dateString) {
+	  var now = new Date();
+	  var today = new Date(now.getYear(),now.getMonth(),now.getDate());
+
+	  var yearNow = now.getYear();
+	  var monthNow = now.getMonth();
+	  var dateNow = now.getDate();
+
+	  var dob = new Date(dateString.substring(6,10),
+						 dateString.substring(0,2)-1,
+						 dateString.substring(3,5)
+						 );
+
+	  var yearDob = dob.getYear();
+	  var monthDob = dob.getMonth();
+	  var dateDob = dob.getDate();
+	  var age = {};
+	  var ageString = "";
+	  var yearString = "";
+	  var monthString = "";
+	  var dayString = "";
+
+
+	  yearAge = yearNow - yearDob;
+
+	  if (monthNow >= monthDob)
+		var monthAge = monthNow - monthDob;
+	  else {
+		yearAge--;
+		var monthAge = 12 + monthNow -monthDob;
+	  }
+
+	  if (dateNow >= dateDob)
+		var dateAge = dateNow - dateDob;
+	  else {
+		monthAge--;
+		var dateAge = 31 + dateNow - dateDob;
+
+		if (monthAge < 0) {
+		  monthAge = 11;
+		  yearAge--;
+		}
+	  }
+
+	  age = {
+		  years: yearAge,
+		  months: monthAge,
+		  days: dateAge
+		  };
+
+	/*  if ( age.years > 1 ) yearString = " years";
+	  else yearString = " year";
+	  if ( age.months> 1 ) monthString = " months";
+	  else monthString = " month";
+	  if ( age.days > 1 ) dayString = " days";
+	  else dayString = " day";
+
+
+	   if(age.years == 0 ) {
+			if(age.days <= 15) {
+				return ageString = '0.' + age.months;
+			} else if (age.days > 15) {
+				 return ageString = '0.' + (age.months + 1);
+			}
+	   }
+		if (age.years > 0) { return ageString = age.years; }
+		*/
+
+		 yearString = "yrs";
+		 monthString = "m";
+         //dayString = "days";
+         dayString = "d";
+
+	 if(age.years == 0 ) {
+			/*if(age.days <= 15) {
+				return ageString = age.months + monthString;
+			} else if (age.days > 15) {
+				 return ageString = (age.months + 1) + monthString;
+			}*/
+       var dob1 = new Date(dateString);
+                var difdt1 = new Date(new Date() - dob1);
+                var num_years = difdt1/31536000000;
+                var num_months = (difdt1 % 31536000000)/2628000000;
+                var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
+                return ageString = Math.floor(num_months) + monthString + '/' + Math.floor(num_days) + dayString ;
+	   }
+		if (age.years > 0) {
+			if(age.days <= 15) {
+				 var month = age.months + monthString;
+			} else if (age.days > 15) {
+				  var month = (age.months + 1) + monthString;
+			}
+		//return ageString = age.years + yearString +'/'+ month;
+
+    if(age.months !== 0) {
+        return ageString = age.years + yearString +'/'+ month;
+    } else {
+        return ageString = age.years + yearString;
+    }
+
+  }
+
+
+
+	}
+	this.getDateFilter = function(birthdate) {
+     //return function(birthdate) {
+			var BirthDate = new Date(birthdate);
+
+			var year = BirthDate.getFullYear();
+			var month = BirthDate.getMonth() + 1;
+			if(month < 10) { month = '0' + month; } else { month = month; }
+			var date = BirthDate.getDate();
+			if(date < 10) { date = '0' + date; } else { date = date; }
+
+			var newDate = month + '/' + date + '/' + year;
+
+           var age = getAge(newDate);
+		   return age;
+     };
+})
+
+.service('ageFilterReport', function(){
   //this.getAge = function(dateString) {
 //.filter('ageFilter', function() {
     function getAge(dateString) {

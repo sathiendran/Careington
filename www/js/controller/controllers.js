@@ -325,12 +325,12 @@ if (deploymentEnv === "Sandbox") {
 } else if (deploymentEnv === "Staging") {
 
     apiCommonURL = 'https://emerald.stage.snapvcm.com';
-    api_keys_env = "Staging";
+    api_keys_env = "Staging"; 
 }
 
 angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', 'timer', 'ion-google-place', 'ngIOS9UIWebViewPatch', 'ngCordova', 'ngIdle'])
 
-.controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup)
+.controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, ageFilterReport, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup)
 {
    isSSProviderListLoaded = false;
     window.localStorage.setItem('isVideoCallProgress', "No");
@@ -607,7 +607,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -6600,228 +6600,6 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
     }
 
 
-
-
-$rootScope.doGetSelectedPatientProfilesSS = function(patientId, nextPage, seeADoc) {
-
-        var params = {
-            accessToken: $rootScope.accessToken,
-            patientId: patientId,
-            success: function(data) {
-                if (nextPage === 'tab.relatedusers') {
-                    $rootScope.selectedRelatedDependentDetails = [];
-                    angular.forEach(data.data, function(index) {
-                        $rootScope.selectedRelatedDependentDetails.push({
-                          'identifiers': angular.fromJson(index.identifiers),
-                            'account': angular.fromJson(index.account),
-                            'address': index.address,
-                            'addresses': angular.fromJson(index.addresses),
-                            'anatomy': angular.fromJson(index.anatomy),
-                            'countryCode': index.countryCode,
-                            'createDate': index.createDate,
-                            'dob': index.dob,
-                            'gender': index.gender,
-                            'homePhone': index.homePhone,
-                            'lastName': index.lastName,
-                            'mobilePhone': index.mobilePhone,
-                            'patientName': index.patientName,
-                            'pharmacyDetails': index.pharmacyDetails,
-                            'physicianDetails': index.physicianDetails,
-                            'schoolContact': index.schoolContact,
-                            'schoolName': index.schoolName,
-
-                        });
-                    });
-                    $rootScope.PatientIdentifiers = $rootScope.selectedRelatedDependentDetails[0].identifiers;
-                    var date = new Date($rootScope.selectedRelatedDependentDetails[0].dob);
-                    $rootScope.dependentDOB = $filter('date')(date, "yyyy-MM-dd");
-                    if ($rootScope.selectedRelatedDependentDetails[0].gender === 'M') {
-                        $rootScope.dependentGender = "Male";
-                        $rootScope.isCheckedMaleDependent = true;
-                    } else if ($rootScope.selectedRelatedDependentDetails[0].gender === 'F') {
-                        $rootScope.dependentGender = "Female";
-                        $rootScope.isCheckedMaleDependent = true;
-                    }
-                    $scope.getRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
-                        codeId: $rootScope.selectedRelatedDependentDetails[0].account.relationshipCodeId
-                    })
-                    if ($scope.getRelationShip.length !== 0) {
-                        $rootScope.dependentRelationShip = $scope.getRelationShip[0].text;
-                    } else {
-                        $rootScope.dependentRelationShip = '';
-                    }
-
-                    if ($rootScope.selectedRelatedDependentDetails.length !== 0) {
-                        $rootScope.dependentDOB = ageFilter.getDateFilter($rootScope.dependentDOB);
-                        if (!angular.isUndefined($rootScope.dependentDOB) && $rootScope.dependentDOB !== '') {
-                            $scope.dob = " . " + $rootScope.dependentDOB;
-                        } else {
-                            $scope.dob = '';
-                        }
-                        if (!angular.isUndefined($rootScope.dependentRelationShip) && $rootScope.dependentRelationShip !== '') {
-                            $scope.relationship = " . " + $rootScope.dependentRelationShip;
-                        } else {
-                            $scope.relationship = '';
-                        }
-                        var confirmPopup = $ionicPopup.confirm({
-
-                            title: "<a class='item-avatar'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='fname'><b>" + $rootScope.selectedRelatedDependentDetails[0].patientName + "</b></span> <span class='fname'><b>" + $rootScope.selectedRelatedDependentDetails[0].patientName + "</b></span></span></a> ",
-                            subTitle: "<p class='fontcolor'>" + $rootScope.dependentGender + $scope.dob + $scope.relationship + "</p>",
-                            templateUrl: 'templates/archiveTemplate.html',
-
-                            buttons: [{
-                                text: 'Cancel',
-                                onTap: function(e) {
-                                    return false;
-                                }
-                            }, {
-                                text: '<b>Archieve</b>',
-                                type: 'button-assertive',
-                                onTap: function(e) {
-                                    return true;
-                                }
-                            }, ],
-                        });
-                        confirmPopup.then(function(res) {
-                            if (res) {
-                                $rootScope.doDeleteAccountUser(patientId);
-                            } else {
-                                $scope.showdnewetails = false;
-                                $scope.allval = false;
-                            }
-
-
-                        });
-                    }
-
-                } else {
-                    $scope.selectedPatientDetails = [];
-                    angular.forEach(data.data, function(index) {
-                        $scope.selectedPatientDetails.push({
-                          'identifiers': angular.fromJson(index.identifiers),
-                            'account': angular.fromJson(index.account),
-                            'address': index.address,
-                            'addresses': angular.fromJson(index.addresses),
-                            'anatomy': angular.fromJson(index.anatomy),
-                            'countryCode': index.countryCode,
-                            'createDate': index.createDate,
-                            'fieldChangesTrackingDetails': angular.fromJson(index.fieldChangesTrackingDetails),
-                            'dob': index.dob,
-                            'gender': index.gender,
-                            'homePhone': index.homePhone,
-                            'lastName': index.lastName,
-                            'location': index.location,
-                            'locationId': index.locationId,
-                            'medicalHistory': angular.fromJson(index.medicalHistory),
-                            'mobilePhone': index.mobilePhone,
-                            'organization': index.organization,
-                            'organizationId': index.organizationId,
-                            'patientName': index.patientName,
-                            'personId': index.personId,
-                            'pharmacyDetails': index.pharmacyDetails,
-                            'physicianDetails': index.physicianDetails,
-                            'schoolContact': index.schoolContact,
-                            'schoolName': index.schoolName
-                        });
-
-                    });
-                    $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
-                    $rootScope.cutaddress = $rootScope.currentPatientDetails[0].address;
-                    $rootScope.PatientIdentifiers = $rootScope.currentPatientDetails[0].identifiers;
-                    $rootScope.PatidentifierCount = $scope.PatientIdentifiers.length;
-                    var cutaddresses = $rootScope.cutaddress.split(",");
-                    $rootScope.stateaddresses = cutaddresses[0];
-                    var date = new Date($rootScope.currentPatientDetails[0].dob);
-                    $rootScope.userDOBDateFormat = date;
-                    $rootScope.userDOBDateForAuthorize = $filter('date')(date, "MM-dd-yyyy");
-
-                    if (patientId == $rootScope.primaryPatientId) {
-                        $rootScope.P_isAuthorized = true;
-                    } else {
-                        if ($rootScope.currentPatientDetails[0].account.isAuthorized === "T" || $rootScope.currentPatientDetails[0].account.isAuthorized === true || $rootScope.currentPatientDetails[0].account.isAuthorized === "Y") {
-                            $rootScope.P_isAuthorized = true;
-                        } else {
-                            $rootScope.P_isAuthorized = false;
-                        }
-                    }
-                  //  $rootScope.accountClinicianFooter = 'ngLoadingSpinner';
-
-                    $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
-
-                    if ($rootScope.userDOB !== "" && !angular.isUndefined($rootScope.userDOB)) {
-                        var ageDifMs = Date.now() - new Date($rootScope.userDOB).getTime(); // parse string to date
-                        var ageDate = new Date(ageDifMs); // miliseconds from epoch
-                        $scope.userAge = Math.abs(ageDate.getUTCFullYear() - 1970);
-                        if ($scope.userAge === 0) {
-                            if(!$rootScope.SSPage) {
-                              $rootScope.concentToTreatPreviousPage = "tab.intakeBornHistory";
-                            }
-                            $rootScope.userAgeForIntake = 8;
-                        } else {
-                            if(!$rootScope.SSPage) {
-                              $rootScope.concentToTreatPreviousPage = "tab.CurrentMedication";
-                            }
-                            $rootScope.userAgeForIntake = 7;
-                        }
-                        if (patientId !== $rootScope.primaryPatientId) {
-                            if ($rootScope.userDOB.indexOf('T') === -1) {
-                                $rootScope.PatientAge = $rootScope.userDOB + "T00:00:00Z";
-                                $rootScope.SelectPatientAge = $rootScope.PatientAge;
-                            }
-                        }
-                    }
-                    if ($rootScope.currentPatientDetails[0].gender === 'M' || $rootScope.currentPatientDetails[0].gender === 'Male') {
-                        $rootScope.userGender = "Male";
-                        $rootScope.isCheckedMale = true;
-                    } else if ($rootScope.currentPatientDetails[0].gender === 'F' || $rootScope.currentPatientDetails[0].gender === 'Female') {
-                        $rootScope.userGender = "Female";
-                        $rootScope.isCheckedFemale = true;
-                    } else {
-                        $rootScope.userGender = '';
-                        $rootScope.isCheckedFemale = '';
-                    }
-
-                    if (patientId !== $rootScope.primaryPatientId) {
-                        if (!angular.isUndefined($rootScope.currentPatientDetails[0].account.relationship)) {
-                            $rootScope.patRelationShip = $rootScope.currentPatientDetails[0].account.relationship;
-                            if ($rootScope.patRelationShip === 'Choose') {
-                                $rootScope.patRelationShip = '';
-                            }
-                        } else {
-                            $rootScope.patRelationShip = '';
-                        }
-                    } else {
-                        $rootScope.patRelationShip = '';
-                    }
-                    $rootScope.individualmobile = $rootScope.currentPatientDetails[0].mobilePhone;
-
-                    $scope.checkEditOptionForCoUser($rootScope.currentPatientDetails[0].account.patientId);
-                    if(nextPage === 'SS') {
-                      $rootScope.doCheckExistingConsulatationStatus('tab.userhome');
-                    } else if(nextPage === '') {
-                      $state.go('tab.appoimentDetails')
-                    }  else if(nextPage !='notNow'){
-                      $state.go(nextPage);
-                    }
-                }
-            },
-            error: function(data, status) {
-              if (status === 0) {
-                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                  $rootScope.Validation($scope.ErrorMessage);
-              } else if(status === 503) {
-                $scope.callServiceUnAvailableError();
-              } else if (status === 401) {
-                    $scope.ErrorMessage = "You are not authorized to view this account";
-                    $rootScope.Validation($scope.ErrorMessage);
-                } else {
-                    $rootScope.serverErrorMessageValidation();
-                }
-            }
-        };
-
-        LoginService.getSelectedPatientProfiles(params);
-    }
     /*$rootScope.doGetIndividualScheduledConsulatation = function() {
         $scope.individualScheduledConsultationList = '';
         $rootScope.appointmentsPatientId = '';
@@ -8606,9 +8384,7 @@ $rootScope.doGetSelectedPatientProfilesSS = function(patientId, nextPage, seeADo
 })
 
 
-
-
-.filter('ageFilter', function() {
+.filter('ageFilterReport', function() {
         function getAge(dateString) {
             var now = new Date();
             var yearNow = now.getYear();
@@ -8681,7 +8457,108 @@ $rootScope.doGetSelectedPatientProfilesSS = function(patientId, nextPage, seeADo
                     var month = (age.months + 1) + monthString;;
                 }
                 if (age.months !== 0) {
-                    return ageString = age.years + yearString +  month;
+                    return ageString = age.years + yearString + month;
+                } else {
+                    return ageString = age.years + yearString;
+                }
+
+            }
+        }
+        return function(birthdate) {
+            var BirthDate = new Date(birthdate);
+            var year = BirthDate.getFullYear();
+            var month = BirthDate.getMonth() + 1;
+            if (month < 10) {
+                month = '0' + month;
+            } else {
+                month = month;
+            }
+            var date = BirthDate.getDate();
+            if (date < 10) {
+                date = '0' + date;
+            } else {
+                date = date;
+            }
+            var newDate = month + '/' + date + '/' + year;
+            var age = getAge(newDate);
+            return age;
+        };
+    })
+
+.filter('ageFilter', function() {
+        function getAge(dateString) {
+            var now = new Date();
+            var yearNow = now.getYear();
+            var monthNow = now.getMonth();
+            var dateNow = now.getDate();
+            var dob = new Date(dateString.substring(6, 10),
+                dateString.substring(0, 2) - 1,
+                dateString.substring(3, 5)
+            );
+
+            var yearDob = dob.getYear();
+            var monthDob = dob.getMonth();
+            var dateDob = dob.getDate();
+
+            var age = {};
+            var ageString = "";
+            var yearString = "";
+            var monthString = "";
+
+            yearAge = yearNow - yearDob;
+
+            if (monthNow >= monthDob)
+                var monthAge = monthNow - monthDob;
+            else {
+                yearAge--;
+                var monthAge = 12 + monthNow - monthDob;
+            }
+
+            if (dateNow >= dateDob)
+                var dateAge = dateNow - dateDob;
+            else {
+                monthAge--;
+                var dateAge = 31 + dateNow - dateDob;
+
+                if (monthAge < 0) {
+                    monthAge = 11;
+                    yearAge--;
+                }
+            }
+
+            age = {
+                years: yearAge,
+                months: monthAge,
+                days: dateAge
+            };
+
+            yearString = "yrs";
+            monthString = "m";
+            //dayString = "days";
+            dayString = "d";
+
+            if (age.years === 0) {
+               /* if (age.days <= 15) {
+                    return ageString = age.months + monthString;;
+                } else if (age.days > 15) {
+                    return ageString = (age.months + 1) + monthString;;
+                }*/
+                //var sdt = new Date('1993-10-20');
+                var dob1 = new Date(dateString);
+                var difdt1 = new Date(new Date() - dob1);
+                var num_years = difdt1/31536000000;
+                var num_months = (difdt1 % 31536000000)/2628000000;
+                var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
+                return ageString = Math.floor(num_months) + monthString + '/' + Math.floor(num_days) + dayString ;
+            }
+            if (age.years > 0) {
+                if (age.days <= 15) {
+                    var month = age.months + monthString;;
+                } else if (age.days > 15) {
+                    var month = (age.months + 1) + monthString;;
+                }
+                if (age.months !== 0) {
+                    return ageString = age.years + yearString + '/' + month;
                 } else {
                     return ageString = age.years + yearString;
                 }

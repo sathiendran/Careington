@@ -467,7 +467,7 @@ body {
 .continue {
     text-align: center;
     padding-top: 40px;
-    margin-bottom: 50px;
+    margin-bottom: 50px; 
 }
 .relationalign {
     margin-left: 51px !important;
@@ -480,6 +480,8 @@ body {
         white-space: nowrap;
         overflow: hidden;
         line-height: 24pt;
+        width: 9em;
+        white-space: normal;
     }
 }
 .item {}
@@ -3511,15 +3513,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
     display: flex;
     width: 100%;
 }
-.validated .input-label {
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 0 30%;
-    -moz-box-flex: 0;
-    -moz-flex: 0 0 30%;
-    -ms-flex: 0 0 30%;
-    flex: 0 0 30%;
-    max-width: 45%;
-}
+
 .validated input {
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 60%;
