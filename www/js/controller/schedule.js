@@ -179,4 +179,5 @@ angular.module('starter.controllers')
                  }
           }
         }
+        $rootScope.chkSSPageEnter = true;
     });

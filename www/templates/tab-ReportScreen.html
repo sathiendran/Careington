@@ -81,8 +81,13 @@
 
                             <!-- report chart -->
                             <div class="pc-report__data-list">
+<<<<<<< HEAD
                                 <div class="pc-report__data-list-item pc-report__data-list-item--small">
                                     <span class="pc-report__data-list-title localizejs">ID</span>
+=======
+                                <div class="pc-report__data-list-item pc-report__data-list-item--small" style="width: 63% !important;">
+                                    <span class="pc-report__data-list-title">ID</span>
+>>>>>>> 2445aa1055d0ae41f8294011f8ce6ddc6d7c457e
                                     <span class="pc-report__data-list-desc">{{reportpatientid}}</span>
                                 </div>
                                 <div class="pc-report__data-list-item pc-report__data-list-item--small">
@@ -91,9 +96,15 @@
                                 </div>
                             </div>
                             <div class="pc-report__data-list">
+<<<<<<< HEAD
                                 <div class="pc-report__data-list-item pc-report__data-list-item--small">
                                     <span class="pc-report__data-list-title localizejs">sex</span>
                                     <span class="pc-report__data-list-desc localizejs">{{gender}}</span>
+=======
+                                <div class="pc-report__data-list-item pc-report__data-list-item--small" style="width: 63% !important;">
+                                    <span class="pc-report__data-list-title">sex</span>
+                                    <span class="pc-report__data-list-desc">{{gender}}</span>
+>>>>>>> 2445aa1055d0ae41f8294011f8ce6ddc6d7c457e
                                 </div>
                                 <div class="pc-report__data-list-item pc-report__data-list-item--small">
                                     <span class="pc-report__data-list-title localizejs">DOB</span>
@@ -393,13 +404,25 @@
                      <div class="pc-report__section-title localizejs">Prescriptions</div>
 
                      <div class="pc-report__prescriptions">
+<<<<<<< HEAD
                          <div class="pc-report__table-title pc-report__table-title--50x50">
                          </div>
                          <div class="pc-report__notes localizejs">
+=======
+                         <div class="pc-report__table-title pc-report__table-title--50x50" ng-if="existconsultationprescriptions != '' && existconsultationprescriptions != null">
+                                <span>Name</span>
+                               <span>Dosage</span>
+                           </div>
+
+                          <div class="pc-report__notes" ng-if="!existconsultationprescriptions.length">
+>>>>>>> 2445aa1055d0ae41f8294011f8ce6ddc6d7c457e
                             <p>None Reported</p>
                           </div>
 
-
+                         <div class="pc-report__table-row pc-report__table-row--50x50" ng-repeat="prescriptions in existconsultationprescriptions">
+                               <span>{{prescriptions.drugName}}</span>
+                               <span>{{prescriptions.drugDosage}}</span>
+                           </div>
                      </div>
                      <!--// Prescription -->
 

@@ -375,6 +375,7 @@ angular.module('starter.controllers')
                     $rootScope.attachmentLength = '';
                     $rootScope.existingConsultationReport = data.data[0].details[0];
                     $rootScope.existconsultationparticipants = data.data[0].participants;
+                    $rootScope.existconsultationprescriptions = data.data[0].prescriptions;
                     if ($rootScope.existingConsultationReport.height !== '' && typeof $rootScope.existingConsultationReport.height !== 'undefined') {
                         if ($rootScope.existingConsultationReport.heightUnit !== '' && typeof $rootScope.existingConsultationReport.heightUnit !== 'undefined') {
                             $rootScope.reportHeight = $rootScope.existingConsultationReport.height + " " + $rootScope.existingConsultationReport.heightUnit;

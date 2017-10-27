@@ -162,6 +162,7 @@ angular.module('starter.controllers')
       });
       $ionicBackdrop.release();
       $window.localStorage.setItem('tokenExpireTime', '');
+        $(".overlay").css({"display": "none" });
       if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging') {
             $rootScope.hospitalId = singleHospitalId;
             apiCommonURL = 'https://connectedcare.md';
