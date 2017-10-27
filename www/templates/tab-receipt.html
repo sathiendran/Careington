@@ -6,25 +6,25 @@
          <div class="healthPlan_header"  style="padding-top: 50px;" >
             <img ng-src="img/SuccessBadge.svg" style="width: 150px; height: 148px;">
          </div>
-         <div class="PaymentSuccess" style="display: {{enablePaymentSuccess}}">
+         <div class="PaymentSuccess localizejs" style="display: {{enablePaymentSuccess}}">
             Payment Successful!
             <div class="PaymentConfirmation" >
-               Confirmation #{{paymentConfirmationNumber}}
-               <div class="ConfirmationReceipt">
+              <span class="localizejs" Confirmation</span> #{{paymentConfirmationNumber}}
+               <div class="ConfirmationReceipt localizejs">
                   A receipt has been sent to you via email
                </div>
             </div>
          </div>
          <div class="PaymentSuccess" style="display: {{enableInsuranceVerificationSuccess}}">
-            <div class="PaymentConfirmation">
+            <div class="PaymentConfirmation localizejs">
                Your plan has been verified
             </div>
          </div>
          <div class="CreditSuccess" style="display: {{enableCreditVerification}}">
-            <div class="PaymentConfirmation">
+            <div class="PaymentConfirmation localizejs">
                Credit Used
                <div class="ConfirmationReceipt">
-                  <span>{{getReceiptCreditCount}}</span> On-Demand Credits Remaining
+                  <span class="localizejs">{{getReceiptCreditCount}}</span> <span class="localizejs"> On-Demand Credits Remaining</span>
                </div>
             </div>
          </div>
@@ -38,10 +38,10 @@
          </div>-->
          <div class="EnterWaitingRoom">
             <button type="submit" on-touch ='doGetWaitingRoom()' class="button button-block button-balanced">
-            <span>Enter the Waiting Room</span>
+            <span class="localizejs">Enter the Waiting Room</span>
             </button>
          </div>
-         <div class="ReceiptRedirect">
+         <div class="ReceiptRedirect localizejs">
             You will be moved to the waiting room in
             <b>
                <timer end-time="ReceiptTime"  >{{seconds}} Sec</timer>

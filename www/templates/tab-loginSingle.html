@@ -9,7 +9,7 @@
       <form ng-submit="checkSingleHospitalLogin()">
          <div class="card loginEmail" id="loginEmail" >
             <div class="regcontent">
-               <h2 class="newSingLogText">Login</h2>
+               <h2 class="newSingLogText localizejs">Login</h2>
             </div>
             <div class="item-input-inset">
                <label class="item-input-wrapper place loginPlace">
@@ -19,12 +19,12 @@
             <div class="checkbox" ng-if="chkedchkbox == true">
                <input type="checkbox" name="remember" id="squaredCheckbox" class="isRemChecked" ng-click="rememberMe()" checked="true">
                <span for="squaredCheckbox" class="checkbox__control"></span>
-               <span class="remember">Remember my email</span>
+               <span class="remember localizejs">Remember my email</span>
             </div>
             <div class="checkbox" ng-if="chkedchkbox != true">
                <input type="checkbox" name="remember" id="squaredCheckbox" class="isRemChecked" ng-click="rememberMe()" >
                <span for="squaredCheckbox" class="checkbox__control"></span>
-               <span class="remember">Remember my email</span>
+               <span class="remember localizejs">Remember my email</span>
             </div>
             <div class="item-input-inset logSinglePwd">
                <label class="item-input-wrapper place loginPlace singEmail">
@@ -33,26 +33,26 @@
                </label>
             </div>
             <div class="btn1 newLogBut">
-               <button type="button" class="button" ng-click="checkSingleHospitalLogin()">
+               <button type="button" class="button localizejs" ng-click="checkSingleHospitalLogin()">
                Continue
                </button>
             </div>
          </div>
       </form>
-      <div class="forgot_password_textSingle"> <a ng-click="doPostSendPasswordResetEmail()" >Forgot your password?</a></div>
+      <div class="forgot_password_textSingle localizejs"> <a ng-click="doPostSendPasswordResetEmail()" >Forgot your password?</a></div>
       <div class="acinfo1-{{deviceName}}" ng-if="isSSORegisterAvailable != '' ||  customerSso != 'Mandatory'" >
-         <h4>Need an account?</h4>
+         <h4 class="localizejs">Need an account?</h4>
       </div>
       <div class="acinfo1-{{deviceName}}">
-         <h4 class="singLogRegClass-{{deviceName}}" ng-if="isSSORegisterAvailable != '' || customerSso != 'Mandatory' " ><span ng-click="goToSearchProvider('loginSingle');">Register Here.</span></h4>
+         <h4 class="singLogRegClass-{{deviceName}}" ng-if="isSSORegisterAvailable != '' || customerSso != 'Mandatory' " ><span class="localizejs" ng-click="goToSearchProvider('loginSingle');">Register Here.</span></h4>
       </div>
    </ion-content>
    <!-- Footer Start-->
    <!--<div class="hide-on-keyboard-open">-->
       <ion-footer-bar class="footer"  hide-on-keyboard="true" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
          <div class="terms" >
-            <a ng-if="deploymentEnv == 'Multiple'" class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/chooseEnvironment"><span>Back</span></a>
-            <a ng-if="deploymentEnv != 'Multiple'" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.loginSingle');" _ng-href="#/tab/singleTerms"><b>Terms & Conditions</b></a>
+            <a ng-if="deploymentEnv == 'Multiple'" class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/chooseEnvironment"><span class="localizejs">Back</span></a>
+            <a ng-if="deploymentEnv != 'Multiple'" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.loginSingle');" _ng-href="#/tab/singleTerms"><b class="localizejs">Terms & Conditions</b></a>
          </div>
          <div class="powerdBySnapMD">
             <a><b>v8.0.2<b></a>

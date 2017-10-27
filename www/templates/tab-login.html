@@ -15,8 +15,8 @@
          <div class="card" id="loginEmail" style="display: block;">
             <div class="regcontent newLogPageCont">
                <h2><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i></h2>
-               <p class="enterEmailText newLogEmai">Enter Your Email Address</p>
-               <p class="enterEmailTextStart newLogEmai">To Get Started</p>
+               <p class="enterEmailText newLogEmai localizejs">Enter Your Email Address</p>
+               <p class="enterEmailTextStart newLogEmai localizejs">To Get Started</p>
             </div>
             <div class="item-input-inset">
                <label class="item-input-wrapper place loginPlace">
@@ -32,20 +32,20 @@
                   <input type="checkbox" name="remember" id="squaredCheckbox" ng-click="rememberMe()"  >
                   <label for="squaredCheckbox"></label>
                </div>
-               <div class="remember"> Remember my email</div>
+               <div class="remember localizejs"> Remember my email</div>
             </div>
             <div class="checkbox" ng-if="chkedchkbox == true">
                <input type="checkbox" name="remember" id="squaredCheckbox" class="isRemChecked" ng-click="rememberMe()" checked="true">
                <span for="squaredCheckbox" class="checkbox__control"></span>
-               <span class="remember">Remember my email</span>
+               <span class="remember localizejs">Remember my email</span>
             </div>
             <div class="checkbox" ng-if="chkedchkbox != true">
                <input type="checkbox" name="remember" id="squaredCheckbox" class="isRemChecked" ng-click="rememberMe()" >
                <span for="squaredCheckbox" class="checkbox__control"></span>
-               <span class="remember">Remember my email</span>
+               <span class="remember localizejs">Remember my email</span>
             </div>
             <div class="btn1 newLogBut">
-               <button type="submit" class="button" ng-click="LoginFunction()">
+               <button type="submit" class="button localizejs" ng-click="LoginFunction()">
                Continue
                </button>
             </div>
@@ -54,7 +54,7 @@
       <div class="card" id="verifyEmail" style="display: none;">
          <div class="regcontent newLogPageCont">
             <h2><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i></h2>
-            <p class="newLogVerify">Verifying</p>
+            <p class="newLogVerify localizejs">Verifying</p>
          </div>
          <div class="newVerifyEmailId">
             {{userLogin.UserEmail}}
@@ -65,10 +65,10 @@
          </div>
       </div>
       <div class="acinfo1-{{deviceName}}" ng-if="(deploymentEnv == 'Multiple' || deploymentEnv == 'Single') && cobrandApp_New != 'MDAmerica'">
-         <h4>Need an account?</h4>
+         <h4 class="localizejs">Need an account?</h4>
       </div>
       <div class="acinfo1-{{deviceName}} newLogProviderSecDiv-{{deviceName}}" ng-if="(deploymentEnv == 'Multiple' || deploymentEnv == 'Single') && cobrandApp_New != 'MDAmerica'">
-         <h4><span ng-click="goToSearchProvider('login');">Click here to find your provider.</span></h4>
+         <h4><span class="localizejs" ng-click="goToSearchProvider('login');">Click here to find your provider.</span></h4>
       </div>
    </ion-content>
 
@@ -77,9 +77,9 @@
    <!-- <div class="hide-on-keyboard-open"> -->
       <ion-footer-bar class="footer"  hide-on-keyboard="true" style="background-color: {{backColor}} !important; border-color: {{backColor}} !important">
          <div class="terms" >
-            <a ng-if="deploymentEnv == 'Multiple'" class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/chooseEnvironment"><span>Back</span></a>
-            <a ng-if="deploymentEnv != 'Multiple' && cobrandApp_New !== 'MDAmerica'" ng-href="#/tab/terms"><b>Terms & Conditions</b></a>
-           <a ng-if="deploymentEnv != 'Multiple' && cobrandApp_New === 'MDAmerica'" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.login');"><b>Terms & Conditions</b></a>
+            <a ng-if="deploymentEnv == 'Multiple'" class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/chooseEnvironment"><span class="localizejs">Back</span></a>
+            <a ng-if="deploymentEnv != 'Multiple' && cobrandApp_New !== 'MDAmerica'" ng-href="#/tab/terms"><b class="localizejs">Terms & Conditions</b></a>
+           <a ng-if="deploymentEnv != 'Multiple' && cobrandApp_New === 'MDAmerica'" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.login');"><b class="localizejs">Terms & Conditions</b></a>
         </div>
          <div class="powerdBySnapMD">
             <a><b>v8.0.3<b></a>

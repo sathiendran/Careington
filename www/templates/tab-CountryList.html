@@ -1,7 +1,7 @@
 <div class="modal">
    <header class="bar bar-header bar-dark concernListHeader" >
-      <h1 class="title concernListTitle">Countries</h1>
-      <button class="button button-clear concernListDone" ng-click="closeCountryList()" >Done</button>
+      <h1 class="title concernListTitle localizejs">Countries</h1>
+      <button class="button button-clear concernListDone localizejs" ng-click="closeCountryList()" >Done</button>
    </header>
    <ion-content has-header="true" class="concernListContent">
       <ion-list>
@@ -14,7 +14,7 @@
             </div>
             <ion-checkbox ng-repeat="Countries in CountryLists.Countries.Results | arrayContries | orderBy:'Name' | filter: data.searchCountry"
                ng-model="Countries.checked" ng-checked="Countries.checked" ng-click="OnSelectContryData(CountryLists.Countries.Results, Countries)" ng-disabled="checked" >
-               <span class="ng-binding concernListDetails" >{{ Countries.Name}} </span>
+               <span class="ng-binding concernListDetails localizejs" >{{ Countries.Name}} </span>
             </ion-checkbox>
          </ion-item>
       </ion-list>

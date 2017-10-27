@@ -1,16 +1,16 @@
 <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}}">
    <div class="buttons" id="BackButtonIcon" >
    </div>
-   <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}" style="margin-left: -14px !important;" >Receipt</h1>
+   <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} localizejs" style="margin-left: -14px !important;" >Receipt</h1>
    <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patientsubHeaderInnerStyle}}" >
       <div class="calendar_subHeader" >
          <div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
          <div class="subHeader_content-{{deviceName}} ellipsis" >
             <div class="subHeader_content_name ellipsis" >
-               <span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
+               <span class="PatintHeaderFontStyle patientName ellipsis ">{{PatientFirstName}}</span>
                <span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
             </div>
-            <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"> . {{patRelationShip}}</span></div>
+            <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span ng-if="userGender != ''" class="localizejs">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId" class="localizejs"> . {{patRelationShip}}</span></div>
          </div>
       </div>
    </div>

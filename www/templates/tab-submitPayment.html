@@ -13,7 +13,7 @@
          <div class="buttons" >
             <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
          </div>
-         <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"  style="{{PatientTitle}}" >Patient</h1>
+         <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} localizejs"  style="{{PatientTitle}}" >Patient</h1>
          <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
             <div class="calendar_subHeader paymentSubHeader" >
                <div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
@@ -22,27 +22,27 @@
                      <span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
                      <span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
                   </div>
-                  <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"> . {{patRelationShip}}</span></div>
+                  <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span class="localizejs" ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"><span class="localizejs"> . {{patRelationShip}}</span></span></div>
                </div>
             </div>
          </div>
          <div class="bar consultCharge_subHeader PatintHeaderFontStyle" style="padding: 0px; margin-top: 133px;	background-color: #fff;">
-            <span>Payment</span>
+            <span class="localizejs">Payment</span>
          </div>
       </ion-header-bar>
       <ion-content class="consultCharge_contentPayment consultConPaymentMargin paymentConSecton" _style="{{ContentConsultCharge}}" >
          <form>
             <div style="padding-right: 10%;">
                <div ng-if="cardPage != 'consultCharge'" class="consultation_head RegularFontStyle consultChargeNoPlanText" >
-                  <div class="consultTittle">Consultation Charge</div>
+                  <div class="consultTittle localizejs">Consultation Charge</div>
                   <div class="consultation_number"> <span>${{consultationAmount}}*</span></div>
                </div>
                <div ng-if="cardPage != 'consultCharge'" class="consultation_head RegularFontStyle consultChargeNoPlanText" >
-                  <div class="consultTittleCopay">Your Copay</div>
+                  <div class="consultTittleCopay localizejs">Your Copay</div>
                   <div class="consultation_numberCopay"> <span>${{copayAmount}}*</span></div>
                </div>
                <div ng-if="cardPage == 'consultCharge'" class="consultation_head RegularFontStyle consultChargeNoPlanText" >
-                  <div class="consultTittleCharge">Consultation Charge</div>
+                  <div class="consultTittleCharge localizejs">Consultation Charge</div>
                   <div class="consultation_number"> ${{consultationAmount}}*</div>
                </div>
             </div>
@@ -51,8 +51,8 @@
                   <!--<div class="healthPlan_text NoPlanText payCardText"  >Select your payment card</div>
                     <span class="insuranceedit" ng-click="editpaymentcard()" style="display: {{editcard}};">Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>-->
                     <h4 class="insurancelist">
-                      <div class="selectInsurancelist">Select your Payment card
-                             <span class="insuranceedit" ng-if=" editCardStyle == 'block'" ng-click="editpaymentcard('submitPay')" >Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>
+                      <div class="selectInsurancelist localizejs">Select your Payment card
+                             <span class="insuranceedit localizejs" ng-if=" editCardStyle == 'block'" ng-click="editpaymentcard('submitPay')" >Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>
                        </div>
                     </h4>
                   <div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}"  >
@@ -68,25 +68,25 @@
                             <div class="insCardNumber">{{userCardNumber}}</div>
                           </div> -->
                         <select class="consultHealthPlanDropDown" id="addNewCard_submitPay" name="addNewCard_submitPay" ng-model="cardPaymentId.addNewCard" ng-change="cardchange('submitPay')" style="border: none;">
-                           <option value="Choose Your Card"><b>Choose Your Card</b></option>
+                           <option value="Choose Your Card"><b class="localizejs">Choose Your Card</b></option>
                            <option  ng-repeat="getPayment in PaymentProfile" value="{{getPayment.profileID + '@' + getPayment.cardType + '@' + getPayment.cardNumber + '@' + getPayment.cardLogo}}" ng-selected="userCardDetails == getPayment.profileID"><b>
-                              <span>{{getPayment.cardType + '       '}}</span>  <span >{{ + '             ' +  'XXXX-XXXX-XXXX-'+getPayment.cardNumber}}</span></b></option>
-                           <option value="Add a new card" ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
+                              <span class="localizejs">{{getPayment.cardType + '       '}}</span>  <span >{{ + '             ' +  'XXXX-XXXX-XXXX-'+getPayment.cardNumber}}</span></b></option>
+                           <option value="Add a new card" ng-if="totalPaymentCard != 10"><b class="localizejs">Add a new card</b></option>
                         </select>
                      </div>
                   </div>
                </div>
                <div class="SkipToPayment" style="display: {{enableSubmitpaymentAddCard}}; padding-top: 23%;">
                   <button type="submit" ng-click='doPostCoPayDetails()'  class="button button-block button-balanced" style="padding: 3px;">
-                  <span>Submit Payment</span>
+                  <span class="localizejs">Submit Payment</span>
                   </button>
                </div>
                <div class="scheduled_appointments_text NoPlanBottomText" style="display: {{textAddCard}}">
-                  <p>*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed.</p>
+                  <p class="localizejs">*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed.</p>
                </div>
                <div class="SkipToPayment" style="padding-top: 133px; display: {{continueAddCard}}">
                   <button type="submit" ng-click='doGetReceipt()'  class="button button-block button-balanced">
-                  <span>Continue</span>
+                  <span class="localizejs">Continue</span>
                   </button>
                </div>
             </div>
@@ -99,10 +99,10 @@
                   <a ng-if="cardPage == 'consultCharge'" class="button_new icon ion-chevron-left" ng-click="goToPreviosPage()" ><span> Back</span></a>
                </div>
                <div ng-if="cardPage == 'consultCharge'" class="ConsultChargeCancel"  >
-                  <a class="button_new icon" ng-click="cancelConsultation()" >Cancel</a>
+                  <a class="button_new icon localizejs" ng-click="cancelConsultation()" >Cancel</a>
                </div>
                <div ng-if="cardPage != 'consultCharge'" class="ConsultChargeCancel" style="width: 100%;" >
-                  <a class="button_new icon" ng-click="cancelConsultation()" >Cancel</a>
+                  <a class="button_new icon localizejs" ng-click="cancelConsultation()" >Cancel</a>
                </div>
             </div>
          </ion-footer-bar>

@@ -5,10 +5,10 @@
                 <form>
               <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
                  <div class="ErrorMessage ErrorMessageDiv"  ></div>
-                 <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};font-size: 18px !important;" ng-click="hideSurgeryPopup()">Done</button>
-                 <h1 class="title {{concernListTitleStyle}}" style="{{PrimaryConcernPopupTitle}}; ">Prior Surgeries</h1>
-                 <button ng-show="showNewSurgeryAdd" class="button button-clear surgeryTopAddButton {{concernListDoneStyle}}" style="{{surgeryConcernPopupDone}};font-size: 20px !important;" ng-click="closeSurgeryPopup()" >Add</button>
-                 <button ng-show="showEditSurgery" class="button button-clear surgeryTopAddButton {{concernListDoneStyle}}" style="{{surgeryConcernPopupDone}};font-size: 18px !important;" ng-click="EditSurgeryItem()"  >Save</button>
+                 <button class="button button-clear {{concernListDoneStyle}} localizejs" style="{{PriorSurgeryPopupCancel}};font-size: 18px !important;" ng-click="hideSurgeryPopup()">Done</button>
+                 <h1 class="title {{concernListTitleStyle}} localizejs" style="{{PrimaryConcernPopupTitle}}; ">Prior Surgeries</h1>
+                 <button ng-show="showNewSurgeryAdd" class="button button-clear surgeryTopAddButton {{concernListDoneStyle}} localizejs" style="{{surgeryConcernPopupDone}};font-size: 20px !important;" ng-click="closeSurgeryPopup()" >Add</button>
+                 <button ng-show="showEditSurgery" class="button button-clear surgeryTopAddButton {{concernListDoneStyle}} localizejs" style="{{surgeryConcernPopupDone}};font-size: 18px !important;" ng-click="EditSurgeryItem()"  >Save</button>
               </header>
               <ion-content has-header="true" class="concernListContent">
                  <div class="list" style="margin-top: 10px;" >
@@ -20,7 +20,7 @@
                     <div class="item item-button-right" href="#" ng-repeat="surgery in patientmedicalsurgeries" ng-if="patientmedicalsurgeries.length > 0" style="overflow: inherit; padding: 0px; border: none;">
                          <div class="surDisplay surgeryDisplay-{{$index}}" >
                             <div class="surDescription">
-                                 <h2 class="regularfamily">{{surgery.description}}</h2>
+                                 <h2 class="regularfamily localizejs">{{surgery.description}}</h2>
                                  <p>{{getMonthName(surgery.month)}} {{surgery.year}}</p>
                           </div>
                          <a class="button surEditIcon" ng-click="openEditSurgeryItem({{$index}}, surgery);" ><i class="currentedit" ng-bind-html="drawSVGCIcon('pencil')"></i></a>
@@ -28,21 +28,21 @@
 
                          <div class="surgeryEdit-{{$index}} animated slideInRight" style="display: none">
                               <div class="item item-input validated" style="border-left: none; border-right: none;">
-                                   <span class="input-label priorTag">Procedure</span>
+                                   <span class="input-label priorTag localizejs">Procedure</span>
                                    <input type="text"  name="surDescription" id="surDescription_{{$index}}" value="{{surgery.description}}"  placeholder="Short description" class="priorValue" >
                                    <a class="surgeryCloseIcon" ng-click="removeSurgeryItem({{$index}});" ><i class="ion-trash-b" ></i></a>
                               </div>
                               <div class="item item-input validated" style="border-left: none; border-right: none;">
-                                 <span class="input-label priorTag">Date</span>
+                                 <span class="input-label priorTag localizejs">Date</span>
                                  <select id="surDateStringMonth_{{$index}}" name="surDateStringMonth" class="surgeryMonth" >
                                     <option ng-repeat="month in EditSurgerymonthsList" value="{{month.value}}" ng-selected="month.value == surgery.month">
-                                       <b><span class="priorValueDate">{{month.text}}</span></b>
+                                       <b><span class="priorValueDate localizejs">{{month.text}}</span></b>
                                     </option>
                                  </select>
                                  /&nbsp;
                                  <select id="dateStringYear_{{$index}}" name="dateStringYear" class="surgeryYear" >
                                     <option ng-repeat="surgeryYear in selectYearsList" value="{{surgeryYear.value}}" ng-selected="surgeryYear.text === surgery.year">
-                                       <b><span class="priorValueDate">{{surgeryYear.text }}</span></b>
+                                       <b><span class="priorValueDate localizejs">{{surgeryYear.text }}</span></b>
                                     </option>
                                  </select>
                               </div>
@@ -53,37 +53,37 @@
                     <div ng-show="showNewSurgeryAdd" class="list" style="padding-bottom: 0px !important; {{PriorSurgeryPopupTextBox}}">
                        <!--<h5 class="surname">Add New Surgery</h5>-->
                        <div class="item item-input validated">
-                            <span class="input-label priorTag">Procedure</span>
+                            <span class="input-label priorTag localizejs">Procedure</span>
                             <input type="text" value=""  placeholder="Short description" ng-model="surgery.name" name="name" class="priorValue" id="name">
                            <!-- <a class="surgeryCloseIcon" ng-click="backtoSurgeryView();"><i class="ion-close" ></i></a>-->
                            <a class="surCloseIcon" ng-click="backtoSurgeryView();" ><i style="font-size: 24px;" ng-bind-html="drawSVGCIcon('cross');"></i></a>
                          </div>
                        <div class="item item-input validated">
-                          <span class="input-label priorTag">Date</span>
+                          <span class="input-label priorTag localizejs">Date</span>
                           <select id="dateStringMonth" name="dateStringMonth" ng-model="surgery.dateStringMonth" class="surgeryMonth" >
                              <option ng-repeat="month in monthsList" value="{{month.value}}" ng-selected="{{month.selected}}">
-                                <b><span class="priorValueDate">{{month.text}}</span></b>
+                                <b><span class="priorValueDate localizejs">{{month.text}}</span></b>
                              </option>
                           </select>
                           /&nbsp;
                           <select id="dateStringYear" name="dateStringYear" ng-model="surgery.dateStringYear" class="surgeryYear" >
                              <option ng-repeat="surgeryYear in selectYearsList" value="{{surgeryYear.value}}">
-                                <b><span class="priorValueDate">{{surgeryYear.text }}</span></b>
+                                <b><span class="priorValueDate localizejs">{{surgeryYear.text }}</span></b>
                              </option>
                           </select>
                        </div>
                     </div>
                  </ion-list>
                  <div class="noSurgeryText" ng-if="patientmedicalsurgeries.length == 3" style="padding-top: 30px;">
-                   <p>You can include up to three surgeries in your health history.</p>
+                   <p class="localizejs">You can include up to three surgeries in your health history.</p>
                  </div>
                  <div class="noSurgeryText" ng-if="patientmedicalsurgeries.length == 0" ng-hide="showNewSurgeryAdd">
-                   <p>No surgeries are included in your health history.</p>
+                   <p class="localizejs">No surgeries are included in your health history.</p>
                  </div>
               </ion-content>
 
               <ion-footer-bar  class="bar bar-footer footer healthSurgeryBottom" hide-on-keyboard="true" >
-                   <button ng-if="patientmedicalsurgeries.length < 3" type="submit" class="button surgeryAddButton" ng-click="showNewSurgeryAddScreen();" ng-hide="showNewSurgeryAdd || showEditSurgery" >
+                   <button ng-if="patientmedicalsurgeries.length < 3" type="submit" class="button surgeryAddButton localizejs" ng-click="showNewSurgeryAddScreen();" ng-hide="showNewSurgeryAdd || showEditSurgery" >
                    Add a surgery
                    </button>
             </ion-footer-bar>

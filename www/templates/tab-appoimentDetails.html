@@ -9,10 +9,10 @@
  </div>
  <div class="Server_Error ErrorMessageDiv" ></div>
  <div id="Error_Message"></div>
- <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">Appointment Details <span >
+ <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} localizejs">Appointment Details <span >
       <!--  <site-header-ios ng-if="IOSDevice == true" back="Done"></site-header-ios>
 			<site-header1 ng-if="AndroidDevice == true" back="Done"></site-header1>-->
-      <a class="headerval" ng-click="goPreviousPageFromAppointDetails();"><span style="margin-left: 3px;">Done</span></a>
+      <a class="headerval localizejs" ng-click="goPreviousPageFromAppointDetails();"><span style="margin-left: 3px;">Done</span></a>
        </span>
  </h1>
 
@@ -21,8 +21,8 @@
    <div class="row">
     <h1 class="headertitle">
      <div class="ellipsis subHeader_content_name" >
-       <span class="PatintHeaderFontStyle patientName ellipsis fnamefont"> {{appointmentsPatientFirstName}}</span>
-       <span class="patientLastName ellipsis lnamefont" >{{appointmentsPatientLastName}}</span>
+       <span class="PatintHeaderFontStyle patientName ellipsis fnamefont localizejs"> {{appointmentsPatientFirstName}}</span>
+       <span class="patientLastName ellipsis lnamefont localizejs" >{{appointmentsPatientLastName}}</span>
     </div>
    </h1>
   </div>
@@ -36,7 +36,7 @@
              </div>
           </div>
           <div>
-             <p class="hometext">Account Home</p>
+             <p class="hometext localizejs">Account Home</p>
           </div>
        </a>
     </div>
@@ -48,7 +48,7 @@
            	<span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
           </div>
         </div>
-        <p class="grouptext">Change Patient</p>
+        <p class="grouptext localizejs">Change Patient</p>
       </a>
     </div>
   </div>
@@ -70,25 +70,25 @@
              <!--<img ng-src="{{scheduledDoctorDetails[0].profileImagePath}}" class="patimage">-->
              <div class="docAppointImage" ng-bind-html="drawImage(scheduledDoctorDetails[0].profileImagePath,scheduledDoctorDetails[0].firstName,scheduledDoctorDetails[0].lastName)"></div>
               <div>
-                  <p class="pathead">With</p>
+                  <p class="pathead localizejs">With</p>
                   <h2 class="appfname"><span >{{scheduledDoctorDetails[0].fullName}}</h2>
                   <span class="appfloat"><i class="icon ion-chevron-right " style="display: none;"></i></span>
                   <span class="encounterappticon" style="top: 2px !important;">
                     <i class="iconAlignment" ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
 
-                  <p class="patage" style="margin-top:-22px !important;">{{scheduledDoctorDetails[0].gender}} <span> .</span> {{scheduledDoctorDetails[0].dob | ageFilter}}</p>
+                  <p class="patage localizejs" style="margin-top:-22px !important;">{{scheduledDoctorDetails[0].gender}} <span> .</span> {{scheduledDoctorDetails[0].dob | ageFilter}}</p>
               </div>
            </a>
            <a class="item item-avatar patavatar" ng-if="scheduledListDatas.encounterTypeCode != 3">
                 <!--<img ng-src="{{scheduledDoctorDetails[0].profileImagePath}}" class="patimage">-->
                 <div class="docAppointImage" ng-bind-html="drawImage(scheduledDoctorDetails[0].profileImagePath,scheduledDoctorDetails[0].firstName,scheduledDoctorDetails[0].lastName)"></div>
                  <div>
-                     <p class="pathead">With</p>
+                     <p class="pathead localizejs">With</p>
                      <h2 class="appfname"><span >{{scheduledDoctorDetails[0].fullName}}</h2>
                      <span class="appfloat"><i class="icon ion-chevron-right " style="display: none;"></i></span>
                      <span class="encounterappticon" style="top: 2px !important;" >
                        <i  class="iconAlignment" ng-bind-html="drawSVGCIcon('phone')"></i> </span>
-                     <p class="patage" style="margin-top:-22px !important;">{{scheduledDoctorDetails[0].gender}} <span> .</span> {{scheduledDoctorDetails[0].dob | ageFilter}}</p>
+                     <p class="patage localizejs" style="margin-top:-22px !important;">{{scheduledDoctorDetails[0].gender}} <span> .</span> {{scheduledDoctorDetails[0].dob | ageFilter}}</p>
                  </div>
               </a>
 
@@ -99,7 +99,7 @@
                    <p class="fday apponitmentfday-{{deviceName}}">{{scheduledListDatas.scheduledTime | date: "EEEE, MMMM dd, yyyy"}}</p>
                </div>
 
-               <div class="appointEdit" ng-if="scheduledListDatas.appointmentTypeCode === 3 && scheduledListDatas.appointmentStatusCode != 'Waiting'" >
+               <div class="appointEdit localizejs" ng-if="scheduledListDatas.appointmentTypeCode === 3 && scheduledListDatas.appointmentStatusCode != 'Waiting'" >
                  <button  ng-disabled="betDelay" ng-click="editAppointment(scheduledListDatas);delay();" style="border: none;padding: 0;background: none;" >
                    <!--<i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i>-->
                    Edit
@@ -113,8 +113,8 @@
         <div class="row seccontent" >
           <div class="col col-10 patcol10">1</div>
             <div class="col col-90 ">
-                <p class="parafont"><b>Primary Concern</b></p>
-                <p class="pfontsize">{{appointPrimaryConcern}}</p>
+                <p class="parafont"><b class="localizejs">Primary Concern</b></p>
+                <p class="pfontsize localizejs">{{appointPrimaryConcern}}</p>
             </div>
        </div>
           <br>
@@ -122,8 +122,8 @@
        <div class="row seccontentone">
           <div class="col col-10 patcol10">2</div>
             <div class="col col-90 ">
-                <p class="parafont"><b>Secondary Concern</b></p>
-                <p class="pfontsize">{{appointSecondConcern}}</p>
+                <p class="parafont"><b class="localizejs">Secondary Concern</b></p>
+                <p class="pfontsize localizejs">{{appointSecondConcern}}</p>
             </div>
        </div>
           <br>
@@ -131,7 +131,7 @@
       <div class="row seccontentone" style="padding-bottom: 75px;" >
         <div class="col col-10 patcol10">a</div>
          <div class="col col-90 ">
-           <p class="parafont"><b>Notes</b></p>
+           <p class="parafont"><b class="localizejs">Notes</b></p>
 		  <p class="pfontsize" style="position: relative; top: 8px;" id="appointNotes" > </p>
          </div>
        </div>
@@ -143,7 +143,7 @@
 <ion-footer-bar ng-if="scheduledListDatas.encounterTypeCode == '3'"  align-title="left" class="bar-assertive AvailableIn" style="height: 73px; display: {{timeNew}}" >
 		<div>
 			<div class="title availableImage" >
-				<div class="AvailableText">
+				<div class="AvailableText localizejs">
 					<i class="ion-clock" style=" font-size: 18px; padding-right: 7px;"></i> Can enter in:
 				</div>
 				<div class="AvailableTimer" style="display: {{hourDisplay}}" >
@@ -187,17 +187,17 @@
      <a style="text-align: center; width: 100%;  position: relative; top: 18px;" ng-click="enterWaitingRoom(appointmentsPatientImage,appointmentsPatientFirstName,appointmentsPatientLastName,appointmentsPatientDOB,appointmentsPatientGurdianName,appointmentId,appointPersonId)">
 
 				<h1 class="title enterAppoint-{{deviceName}}" id="centercolorforEnterAppointment" >     <span style="padding:4px;" >
-              <i ng-bind-html="drawSVGCIcon('video_camera')"></i> </span> <span class="enterTextAppoint">Enter Appointment</span></h1>
+              <i ng-bind-html="drawSVGCIcon('video_camera')"></i> </span> <span class="enterTextAppoint localizejs">Enter Appointment</span></h1>
 			</a>
 
 
 </ion-footer-bar>
 <ion-footer-bar ng-if="scheduledListDatas.encounterTypeCode != '3'" class="bar bar-footer footheight" style="background-color:#FFC60B !important; height: 73px; display: block" >
-				<h1 class="title enterAppoint-{{deviceName}}" id="centercolor" > <p style="color:#666666 !important; margin-top:-11px;"> Your Provider will call you at</p>
+				<h1 class="title enterAppoint-{{deviceName}} localizejs" id="centercolor" > <p style="color:#666666 !important; margin-top:-11px;"> Your Provider will call you at</p>
            <p style="color:#444444 !important; margin-top:-30px;">{{schedulemobile  |  tel}} </p> </h1>
 </ion-footer-bar>
 <ion-footer-bar class="bar bar-footer  footer-color footheight enterAppoinment2"  >
-    				<h1 class="enterAppoint-{{deviceName}}" id="centercolor" >This Appointment has Expired. Please Re-schedule.</h1>
+    				<h1 class="enterAppoint-{{deviceName}} localizejs" id="centercolor" >This Appointment has Expired. Please Re-schedule.</h1>
 </ion-footer-bar>
 </ion-view>
 </ion-side-menu-content>

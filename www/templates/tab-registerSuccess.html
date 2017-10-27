@@ -2,27 +2,27 @@
    <ion-content class="register" style="background-color: {{brandColor}}">
       <div class="epassbg logSingCOntent-{{deviceName}}">
          <img ng-src="{{logo}}" />
-         <h2>{{selectedSearchProviderList.brandName}} <br><span>Registration</span></h2>
+         <h2>{{selectedSearchProviderList.brandName}} <br><span class="localizejs">Registration</span></h2>
       </div>
       <div class="card">
          <div class="regcontent">
-            <h2>You’re all set <br>{{step1RegDetails[0].FName}}</h2>
-            <p class="lineheight rlpad">We’ve sent a verification email to the address you  provided. Just be sure to verify your account  within 24 hours to ensure uninterrupted access</p>
+            <h2 class="localizejs">You’re all set <br>{{step1RegDetails[0].FName}}</h2>
+            <p class="lineheight rlpad localizejs">We’ve sent a verification email to the address you  provided. Just be sure to verify your account  within 24 hours to ensure uninterrupted access</p>
          </div>
          <div class="btn1 btnpad">
-            <a ng-click="getTokenDetailsForRegisterdUsers();" ><button type="submit" class="button">
+            <a ng-click="getTokenDetailsForRegisterdUsers();" ><button type="submit" class="button localizejs">
             Enter Now
             </button></a>
          </div>
       </div>
       <div class="acinfo1-{{deviceName}}">
-         <h4>Already have an account? <span ng-click="backtoPreviousPage();">Login</span></h4>
+         <h4 class="localizejs">Already have an account? <span class="localizejs" ng-click="backtoPreviousPage();">Login</span></h4>
       </div>
    </ion-content>
    <ion-footer-bar  class="footer" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
       <div class="ConcernsFooter">
       <div class="FooterLeft" style="width: 100%;">
-         <a class="button_new icon" style="font-size: 9px;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerSuccess');">Terms & Conditions</a>
+         <a class="button_new icon localizejs" style="font-size: 9px;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerSuccess');">Terms & Conditions</a>
       </div>
       <div>
    </ion-footer-bar>

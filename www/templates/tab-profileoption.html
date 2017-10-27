@@ -5,7 +5,7 @@
          <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
       </div>
       <h1 class= "{{title_patient}} {{HeaderList}} {{intakeTittle}}">
-         <span style="margin-left: 34px;">Profile Options</span> <span><a class="headerval" ng-click="canceloption()" >Cancel</a></span>
+         <span class="localizejs" style="margin-left: 34px;">Profile Options</span> <span><a class="headerval localizejs" ng-click="canceloption()" >Cancel</a></span>
       </h1>
       <div class="bar bar-subheader bar-dark usersubheader">
          <div class="row">
@@ -25,7 +25,7 @@
                      </div>
                   </div>
                   <div>
-                     <p>Account Home</p>
+                     <p class="localizejs">Account Home</p>
                   </div>
                </a>
             </div>
@@ -37,7 +37,7 @@
                         <span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
                      </div>
                   </div>
-                  <p>Change Patient</p>
+                  <p class="localizejs">Change Patient</p>
                </a>
             </div>
          </div>
@@ -47,16 +47,16 @@
    <ion-content class="profilecontent">
       <div class="list">
          <a class="item item-icon-left item-icon-right" ng-href="#/tab/relatedusers">
-         <i class="icon iconsize fontcolor" ng-bind-html="drawSVGCIcon('users')"></i> <span class="fontcolorfamily">  Users </span> <i class="icon ion-chevron-right fontcolor"></i>
+         <i class="icon iconsize fontcolor" ng-bind-html="drawSVGCIcon('users')"></i> <span class="fontcolorfamily localizejs">  Users </span> <i class="icon ion-chevron-right fontcolor"></i>
          </a>
          <a class="item item-icon-left item-icon-right" ng-href="#/tab/consultations">
-         <i class="icon iconsize fontcolor" ng-bind-html="drawSVGCIcon('health_card')"></i> <span class="fontcolorfamily">  Consultations </span> <i class="icon ion-chevron-right fontcolor"></i>
+         <i class="icon iconsize fontcolor" ng-bind-html="drawSVGCIcon('health_card')"></i> <span class="fontcolorfamily localizejs">  Consultations </span> <i class="icon ion-chevron-right fontcolor"></i>
          </a>
          <a class="item item-icon-left item-icon-right" ng-href="#/tab/healthinfo">
          <i class="icon iconsize fontcolor" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="fontcolorfamily"> My Health </span><i class="icon ion-chevron-right fontcolor"></i>
          </a>
          <a class="item item-icon-left item-icon-right"  ng-href="#/tab/appointmentpatientdetails/">
-         <i class="icon iconsize fontcolor" ng-bind-html="drawSVGCIcon('calendar')"></i> <span class="fontcolorfamily"> Appointments </span> <i class="icon ion-chevron-right fontcolor"></i>
+         <i class="icon iconsize fontcolor" ng-bind-html="drawSVGCIcon('calendar')"></i> <span class="fontcolorfamily localizejs"> Appointments </span> <i class="icon ion-chevron-right fontcolor"></i>
          </a>
       </div>
    </ion-content>
@@ -67,21 +67,21 @@
       <ion-tabs class=" tabs-icon-top tabs-dark">
          <a class="tab-item" ng-href="#/tab/relatedusers" >
          <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i>
-         <span class="tabcolor"> Users</span>
+         <span class="tabcolor localizejs"> Users</span>
          </a>
          <a class="tab-item" ng-href="#/tab/consultations" ng-click="passededconsultants()">
          <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i>
-         <span class="tabcolor">Consultations</span>
+         <span class="tabcolor localizejs">Consultations</span>
          </a>
          <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId == patientId">
-         <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">My Health</span>
+         <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor localizejs">My Health</span>
          </a>
          <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId != patientId">
-         <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">Health Info</span>
+         <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor localizejs">Health Info</span>
          </a>
          <a class="tab-item" ng-href="#/tab/appointmentpatientdetails">
          <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
-         <span class="tabcolor">Appointments</span>
+         <span class="tabcolor localizejs">Appointments</span>
          </a>
       </ion-tabs>
    </div>

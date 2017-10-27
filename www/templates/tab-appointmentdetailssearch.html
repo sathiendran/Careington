@@ -4,7 +4,7 @@
       <div class="buttons">
          <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
       </div>
-      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Appointments <span ><a class="headerval searchIcon-{{deviceName}}" ng-href="#/tab/appointmentpatientdetails/" ><i class="icon ion-search" ></i></a></span></h1>
+      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} localizejs"> Appointments <span ><a class="headerval searchIcon-{{deviceName}}" ng-href="#/tab/appointmentpatientdetails/" ><i class="icon ion-search" ></i></a></span></h1>
       <div class="bar bar-subheader bar-dark subheaderheight" >
          <div class="row">
             <h1 class="headertitle">
@@ -23,7 +23,7 @@
                      </div>
                   </div>
                   <div>
-                     <p class="hometext">Account Home</p>
+                     <p class="hometext localizejs">Account Home</p>
                   </div>
                </a>
             </div>
@@ -35,7 +35,7 @@
                         <span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
                      </div>
                   </div>
-                  <p class="grouptext">Change Patient</p>
+                  <p class="grouptext localizejs">Change Patient</p>
                </a>
             </div>
          </div>
@@ -44,8 +44,8 @@
                <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">	</button>
             </div>
             <div class=" button-bar">
-               <label class="button button-small btcolor btn-first btnclass"  id="userssearch" ng-click="usersearch()"> This Patient</label>
-               <label class="button button-small btnextcolor btn-first tabcontent btnclass" id="alluserssearch" ng-click="allusersearch()">All</label>
+               <label class="button button-small btcolor btn-first btnclass localizejs"  id="userssearch" ng-click="usersearch()"> This Patient</label>
+               <label class="button button-small btnextcolor btn-first tabcontent btnclass localizejs" id="alluserssearch" ng-click="allusersearch()">All</label>
             </div>
             <div class="buttons backbtn">
                <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">	 </button>
@@ -69,14 +69,14 @@
          </div>
          <div class="list listfirst allsearch-{{deviceName}}">
             <div class="appointInQueueMainDiv" ng-if="getIndividualInQueueScheduleDetails.length > 0" ng-hide="(getIndividualScheduleDetails | filter:data.searchProvider).length==0">
-                <div class="appointInQueueTitle">IN QUEUE</div>
+                <div class="appointInQueueTitle localizejs">IN QUEUE</div>
                 <a class="item item-avatar avatheight"  ng-repeat="scheduledListData in filteredItems=(getIndividualInQueueScheduleDetails  | filter: data.searchProvider)"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
                    <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
                    <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'" >
-                      <span class="fontcolor regularfamily chkiPhoneView">View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                      <span class="fontcolor regularfamily chkiPhoneView localizejs">View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                    </p>
                    <p class="appmarg"  ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
-                      <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                      <span class="fontcolor regularfamily chkiPhoneView localizejs"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                    </p>
                    <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                      <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
@@ -91,10 +91,10 @@
                 <a class="item item-avatar appitem" ng-repeat="scheduledListData in filteredItems=(getIndividualInQueueScheduleDetails  | filter: data.searchProvider)" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
                    <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
                    <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
-                      <span class="fontcolor regularfamily chkiPhoneView" > View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                      <span class="fontcolor regularfamily chkiPhoneView localizejs" > View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                    </p>
                    <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
-                      <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                      <span class="fontcolor regularfamily chkiPhoneView localizejs"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                    </p>
                    <span class="encounterappticon" style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                      <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
@@ -105,16 +105,16 @@
                 </a>
               </div>
 
-              <div class="appointScheduledMainDiv" ng-if="getIndividualPatScheduleDetails.length > 0" ng-hide="(getIndividualScheduleDetails | filter:data.searchProvider).length==0" >SCHEDULED</div>
+              <div class="appointScheduledMainDiv localizejs" ng-if="getIndividualPatScheduleDetails.length > 0" ng-hide="(getIndividualScheduleDetails | filter:data.searchProvider).length==0" >SCHEDULED</div>
               <a class="item item-avatar avatheight"  style="
   min-height: 73px !important; "  ng-repeat="scheduledListData in filteredItems=(getIndividualPatScheduleDetails  | filter: data.searchProvider)"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
                  <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
 
                  <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'" >
-                    <span class="fontcolor regularfamily chkiPhoneView">View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                    <span class="fontcolor regularfamily chkiPhoneView localizejs">View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                  </p>
                  <p class="appmarg"  ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
-                    <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                    <span class="fontcolor regularfamily chkiPhoneView localizejs"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                  </p>
                  <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                    <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
@@ -129,7 +129,7 @@
               <a class="item item-avatar appitem scheduled" ng-repeat="scheduledListData in filteredItems=(getIndividualPatScheduleDetails  | filter: data.searchProvider)" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
                  <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
                  <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
-                    <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                    <span class="fontcolor regularfamily chkiPhoneView localizejs"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                  </p>
                  <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
                     <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
@@ -142,9 +142,9 @@
                  </h4>
               </a>
 
-            <ion-item  class="noapptResult" ng-if="!getIndividualScheduleDetails.length" style="white-space: normal;" >There are no appointments found!</ion-item>
+            <ion-item  class="noapptResult localizejs" ng-if="!getIndividualScheduleDetails.length" style="white-space: normal;" >There are no appointments found!</ion-item>
          </div>
-         <div  ng-if="getIndividualScheduleDetails.length"  class="searchdata noapptResult" style="white-space: normal;" ng-show="(getIndividualScheduleDetails | filter:data.searchProvider).length==0">No Search Results Found!</div>
+         <div  ng-if="getIndividualScheduleDetails.length"  class="searchdata noapptResult localizejs" style="white-space: normal;" ng-show="(getIndividualScheduleDetails | filter:data.searchProvider).length==0">No Search Results Found!</div>
          <div style="display: none;">
             <timer end-time="time"  ></timer>
          </div>
@@ -164,15 +164,15 @@
          </div>
          <div class="list listall allsearch-{{deviceName}}">
            <div class="appointInQueueMainDiv" ng-if="getAllInQueueScheduleDetails.length > 0" ng-hide="(scheduledList | filter:data.searchProvider).length==0">
-               <div class="appointInQueueTitle">IN QUEUE</div>
+               <div class="appointInQueueTitle localizejs">IN QUEUE</div>
                <a class="item item-avatar avatheight " ng-repeat="scheduledListData in filteredItems=(getAllInQueueScheduleDetails  | filter: data.searchProvider)"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
                   <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
 
                   <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
-                     <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                     <span class="fontcolor regularfamily chkiPhoneView localizejs"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                   </p>
                   <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
-                     <span class="fontcolor regularfamily chkiPhoneView"> View Details</span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                     <span class="fontcolor regularfamily chkiPhoneView localizejs"> View Details</span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                   </p>
                   <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                     <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
@@ -183,10 +183,10 @@
                <a class="item item-avatar appitem" ng-repeat="scheduledListData in filteredItems=(getAllInQueueScheduleDetails  | filter: data.searchProvider)" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
                   <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
                   <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
-                     <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                     <span class="fontcolor regularfamily chkiPhoneView localizejs"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                   </p>
                   <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
-                     <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                     <span class="fontcolor regularfamily chkiPhoneView localizejs"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                   </p>
                   <span class="encounterappticon " style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                     <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
@@ -201,10 +201,10 @@
   min-height: 73px !important; " ng-repeat="scheduledListData in filteredItems=(getAllPatScheduleDetails  | filter: data.searchProvider)"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
                 <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
                 <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
-                   <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                   <span class="fontcolor regularfamily chkiPhoneView localizejs"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                 </p>
                 <p class="appmarg" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
-                   <span class="fontcolor regularfamily chkiPhoneView"> View Details</span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                   <span class="fontcolor regularfamily chkiPhoneView localizejs"> View Details</span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                 </p>
                 <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                   <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
@@ -215,10 +215,10 @@
              <a class="item item-avatar appitem scheduled" ng-repeat="scheduledListData in filteredItems=(getAllPatScheduleDetails  | filter: data.searchProvider)" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
                 <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
                 <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode != 'Waiting'">
-                   <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                   <span class="fontcolor regularfamily chkiPhoneView localizejs"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                 </p>
                 <p class="appmarg" style="margin-top: 21px;" ng-if="scheduledListData.appointmentStatusCode == 'Waiting'">
-                   <span class="fontcolor regularfamily chkiPhoneView"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
+                   <span class="fontcolor regularfamily chkiPhoneView localizejs"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:0px;"></i></span>
                 </p>
                 <span class="encounterappticon " style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                   <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
@@ -228,9 +228,9 @@
                 </h4>
              </a>
 
-            <ion-item  class="noapptResult" ng-if="!scheduledList.length" style="white-space: normal;" >There are no appointments found!</ion-item>
+            <ion-item  class="noapptResult localizejs" ng-if="!scheduledList.length" style="white-space: normal;" >There are no appointments found!</ion-item>
          </div>
-         <div  ng-if="scheduledList.length"  class="searchdata noapptResult" style="white-space: normal;" ng-show="(scheduledList | filter:data.searchProvider).length==0">No Search Results Found!</div>
+         <div  ng-if="scheduledList.length"  class="searchdata noapptResult localizejs" style="white-space: normal;" ng-show="(scheduledList | filter:data.searchProvider).length==0">No Search Results Found!</div>
       </ion-content>
       <div ng-controller="LoginCtrl">
       </div>
@@ -239,21 +239,21 @@
       <ion-tabs class=" tabs-icon-top tabs-dark">
          <a class="tab-item" ng-href="#/tab/relatedusers" >
          <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i>
-         <span class="tabcolor">Users</span>
+         <span class="tabcolor localizejs">Users</span>
          </a>
          <a class="tab-item" ng-href="#/tab/consultations">
          <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i>
-         <span class="tabcolor">Consultations</span>
+         <span class="tabcolor localizejs">Consultations</span>
          </a>
          <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId == patientId">
-         <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">My Health</span>
+         <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor localizejs">My Health</span>
          </a>
          <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId != patientId">
          <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">Health Info</span>
          </a>
          <a class="tab-item active" ng-href="#/tab/appointmentpatientdetails/">
          <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
-         <span class="tabcolor">Appointments</span>
+         <span class="tabcolor localizejs">Appointments</span>
          </a>
       </ion-tabs>
    </div>

@@ -1,9 +1,9 @@
 <div class="modal">
    <ion-view  title="Medication AllegiesList">
       <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}};background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-         <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="RemoveSurgeryPopup()" >Cancel</button>
-         <h1 class="title {{concernListTitleStyle}}" style="{{PrimaryConcernPopupTitle}};">Current Medication</h1>
-         <button class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="closeCurrentMedication()" >Done</button>
+         <button class="button button-clear {{concernListDoneStyle}} localizejs" style="{{PriorSurgeryPopupCancel}};" ng-click="RemoveSurgeryPopup()" >Cancel</button>
+         <h1 class="title {{concernListTitleStyle}} localizejs" style="{{PrimaryConcernPopupTitle}};">Current Medication</h1>
+         <button class="button button-clear {{concernListDoneStyle}} localizejs" style="{{PrimaryConcernPopupDone}};" ng-click="closeCurrentMedication()" >Done</button>
       </header>
       <!-- End Header -->
       <!-- Start Content -->
@@ -21,10 +21,10 @@
                <ion-checkbox ng-repeat="item in filteredItems = (CurrentMedicationList | filter:data.searchProvider)"
                   ng-model="item.checked"
                   ng-checked="item.checked" ng-change="OnSelectCurrentMedication(item)" ng-disabled="checkedMedication==limit && !item.checked"  checkbox-group>
-                  <span class="ng-binding concernListDetails">   {{ item.text }} </span>
+                  <span class="ng-binding concernListDetails localizejs">   {{ item.text }} </span>
                </ion-checkbox>
             </ion-item>
-            <ion-item  ng-show="(CurrentMedicationList | filter:data.searchProvider).length==0" class="noResult" style="white-space: normal;">Sorry No Result Found!</ion-item>
+            <ion-item  ng-show="(CurrentMedicationList | filter:data.searchProvider).length==0" class="noResult localizejs" style="white-space: normal;">Sorry No Result Found!</ion-item>
          </ion-list>
       </ion-content>
       <!-- End Content -->

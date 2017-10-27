@@ -5,7 +5,7 @@
          <div class="buttons" >
             <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
          </div>
-         <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">
+         <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} localizejs">
             Appointment Details
             <span >
                <site-header-ios ng-if="IOSDevice == true" back="Done"></site-header-ios>
@@ -16,7 +16,7 @@
             <div class="row">
                <h1 class="headertitle">
                   <div class="ellipsis subHeader_content_name" >
-                     <span class="PatintHeaderFontStyle patientName ellipsis fnamefont"> {{missedAppointDetails.missedPatFirstName}}</span>
+                     <span class="PatintHeaderFontStyle patientName ellipsis fnamefont "> {{missedAppointDetails.missedPatFirstName}}</span>
                      <span class="patientLastName ellipsis lnamefont" >{{missedAppointDetails.missedPatLastName}}</span>
                   </div>
                </h1>
@@ -30,7 +30,7 @@
                         </div>
                      </div>
                      <div>
-                        <p class="hometext">Account Home</p>
+                        <p class="hometext localizejs">Account Home</p>
                      </div>
                   </a>
                </div>
@@ -42,7 +42,7 @@
                            <span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
                         </div>
                      </div>
-                     <p class="grouptext">Change Patient</p>
+                     <p class="grouptext localizejs">Change Patient</p>
                   </a>
                </div>
             </div>
@@ -54,10 +54,10 @@
                <a class="item item-avatar patavatar">
                   <div class="docAppointImage" ng-bind-html="drawImage(missedAppointDocDetails[0].profileImagePath,missedAppointDocDetails[0].firstName,missedAppointDocDetails[0].lastName)"></div>
                   <div>
-                     <p class="pathead">With</p>
+                     <p class="pathead localizejs">With</p>
                      <h2 class="appfname"><span >{{missedAppointDocDetails[0].fullName}}</h2>
                      <span class="appfloat"><i class="icon ion-chevron-right " style="display: none;"></i></span>
-                     <p class="patage">{{missedAppointDocDetails[0].gender}} <span> .</span> {{missedAppointDocDetails[0].dob | ageFilter}}</p>
+                     <p class="patage localizejs">{{missedAppointDocDetails[0].gender}} <span> .</span> {{missedAppointDocDetails[0].dob | ageFilter}}</p>
                   </div>
                </a>
                <ion-item class="ionitem contalign" style="text-align:center;" >
@@ -72,23 +72,23 @@
                   <div class="row seccontent" >
                      <div class="col col-10 patcol10">1</div>
                      <div class="col col-90 ">
-                        <p class="parafont"><b>Primary Concern</b></p>
-                        <p class="pfontsize">{{missedAppointDetails.priConcern}}</p>
+                        <p class="parafont"><b class="localizejs">Primary Concern</b></p>
+                        <p class="pfontsize localizejs">{{missedAppointDetails.priConcern}}</p>
                      </div>
                   </div>
                   <br>
                   <div class="row seccontentone">
                      <div class="col col-10 patcol10">2</div>
                      <div class="col col-90 ">
-                        <p class="parafont"><b>Secondary Concern</b></p>
-                        <p class="pfontsize">{{missedAppointDetails.secConcern}}</p>
+                        <p class="parafont"><b class="localizejs">Secondary Concern</b></p>
+                        <p class="pfontsize localizejs">{{missedAppointDetails.secConcern}}</p>
                      </div>
                   </div>
                   <br>
                   <div id="appointmentNote" class="row seccontentone" style="padding-bottom: 50px;" >
                      <div class="col col-10 patcol10">a</div>
                      <div class="col col-90 ">
-                        <p class="parafont"><b>Notes</b></p>
+                        <p class="parafont"><b class="localizejs">Notes</b></p>
                         <p class="pfontsize" style="position: relative; top: 8px;" id="appointNotes" > </p>
                      </div>
                   </div>

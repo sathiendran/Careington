@@ -5,8 +5,8 @@
          <div class="buttons" >
             <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
          </div>
-         <h1 class="chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}">Appointment Details <span >
-            <a class="headerval" ng-href="#/tab/appointmentpatientdetails/"  >Done</a>
+         <h1 class="chronic {{title_patient}} {{HeaderList}} {{intakeTittle}} localizejs">Appointment Details <span >
+            <a class="headerval localizejs" ng-href="#/tab/appointmentpatientdetails/"  >Done</a>
             </span>
          </h1>
          <div class="bar bar-subheader bar-dark subheaderheight" >
@@ -21,14 +21,14 @@
             <div class="item item-image-icon" >
                <a class="lefthome">
                   <span class="subHeadIcons"><i class="icon ion-home headerlefticons"></i></span>
-                  <p class="homecontent">Account Home</p>
+                  <p class="homecontent localizejs">Account Home</p>
                </a>
                <a class="item-avatar itemhead">
                   <p><img src="img\patient.png" class="topimage"></p>
                </a>
                <a class="rightpatient">
                   <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>
-                  <p class="patientcontent"  >Change Patient</p>
+                  <p class="patientcontent localizejs"  >Change Patient</p>
                </a>
             </div>
          </div>
@@ -38,11 +38,11 @@
             <div class="list">
                <a class="item item-avatar patavatar">
                   <img src="img\patient.png" class="patimage">
-                  <p class="pathead">With</p>
+                  <p class="pathead localizejs">With</p>
                   <h2 class="appfname"><span >Dr.McGrath</h2>
                   <span class="appfloat"><i class="icon ion-chevron-right "></i></span>
                   </p>
-                  <p class="patage">Female <span> .</span> 36yrs</p>
+                  <p class="patage localizejs">Female <span> .</span> 36yrs</p>
                </a>
                <ion-item class="ionitem contalign" >
                   <div class="item item-text-wrap textwrap">
@@ -56,16 +56,16 @@
                   <div class="row seccontent" >
                      <div class="col col-10 patcol10">1</div>
                      <div class="col col-90 ">
-                        <p class="parafont"><b>Primary Concern</b></p>
-                        <p class="pfontsize">This is the primary reason for visit</p>
+                        <p class="parafont"><b class="localizejs">Primary Concern</b></p>
+                        <p class="pfontsize localizejs">This is the primary reason for visit</p>
                      </div>
                   </div>
                   <br>
                   <div class="row seccontentone">
                      <div class="col col-10 patcol10">2</div>
                      <div class="col col-90 ">
-                        <p class="parafont"><b>Secondary Concern</b></p>
-                        <p class="pfontsize">This is the Secondary reason for this
+                        <p class="parafont"><b class="localizejs">Secondary Concern</b></p>
+                        <p class="pfontsize localizejs">This is the Secondary reason for this
                            visit. It may be significantly longer
                            than normal if it is a cunstom entry
                         </p>
@@ -76,7 +76,7 @@
                      <div class="col col-10 patcol10">a</div>
                      <div class="col col-90 ">
                         <p class="parafont"><b>Notes</b></p>
-                        <p class="pfontsize">This is the Secondary reason for this
+                        <p class="pfontsize localizejs">This is the Secondary reason for this
                            visit. It may be significantly longer
                            than normal if it is a cunstom entry
                            This is the Secondary reason for this
@@ -91,6 +91,6 @@
    </ion-side-menu-content>
    </ion-view>
    <ion-footer-bar class="bar bar-footer  footer-color footheight">
-      <h1 class="title" id="centercolor" >Enter Appointment</h1>
+      <h1 class="title localizejs" id="centercolor" >Enter Appointment</h1>
    </ion-footer-bar>
 </div>
