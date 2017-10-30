@@ -1,6 +1,22 @@
-﻿
+﻿<style>
+    .inputtexbox {
+    height: 47px;
+    border: 1px solid #ccc;
+    border-radius: 4px !important;
+    box-sizing: border-box;
+    padding: 3px 45px 3px 5px !important;
+}
+.dialogbox-location__form .search {
+     margin-bottom: 12px; 
+}
+</style>
 <div class="dialogbox dialogbox--person-location">
     <div class="dialogbox__titlebar">
+
+
+
+
+
         <span>Confirm Current Location</span>
     </div>
     <div class="dialogbox__main">
@@ -65,9 +81,10 @@
                                 source: countryCodes,
                                 events: {
                                     change: vm_onCountryChange
-                                }"
+                                }"  
+                                class="inputtexbox"
                             />
-                        <span class="icon_magnifying-glass"></span>
+                        <span class="icon_magnifying-glass" style=" margin-top: 3px;"></span>
                     </div>
 
                     <div class="search search--location" id="autocompleteState-wrap" disabled
@@ -82,7 +99,8 @@
                                 source: regions,
                                 events: {
                                     change: vm_onRegionChange
-                                }"
+                                }" 
+                                class="inputtexbox"
                             />
                         <span class="icon_magnifying-glass"></span>
                     </div>

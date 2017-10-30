@@ -2,7 +2,7 @@
    <div class="buttons" >
       <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
    </div>
-    <h1 class="{{title_patient}} calendarTitle" style="{{PatientTitle}}" >Intake Form</h1>
+    <h1 class="{{title_patient}} calendarTitle localizejs" style="{{PatientTitle}}" >Intake Form</h1>
    <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
       <div class="calendar_subHeader paymentSubHeader" >
          <div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
@@ -11,7 +11,7 @@
                <span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
                <span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
             </div>
-            <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"> . {{patRelationShip}}</span></div>
+            <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span ng-if="userGender != ''" class="localizejs">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId" class="localizejs"> . {{patRelationShip}}</span></div>
          </div>
       </div>
    </div>

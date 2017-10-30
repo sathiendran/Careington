@@ -1,8 +1,8 @@
 <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
    <div class="buttons" style="{{ReportScreen}};">
-      <button class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="closeMissedView()">Done</button>
+      <button class="button button-clear {{concernListDoneStyle}} localizejs" style="{{PrimaryConcernPopupDone}};" ng-click="closeMissedView()">Done</button>
    </div>
-   <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} ReportTittle" style="{{reportTitletop}};">Consult Report</h1>
+   <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} ReportTittle localizejs" style="{{reportTitletop}};">Consult Report</h1>
    <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}">
       <div class="calendar_subHeader">
          <div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
@@ -11,7 +11,7 @@
                <span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
                <span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
             </div>
-            <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"> . {{patRelationShip}}</span></div>
+            <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span class="localizejs" ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span class="localizejs" ng-if="primaryPatientId != patientId"> . {{patRelationShip}}</span></div>
          </div>
       </div>
    </div>
@@ -21,11 +21,11 @@
       <div class="list">
          <a class="item item-avatar patavatar">
             <img ng-src="{{profileImagePath}}" class="patimage">
-            <p class="pathead">With</p>
+            <p class="pathead localizejs">With</p>
             <h2 class="appfname"><span >{{reportDoctorFirstName}}</h2>
             <span class="appfloat"><i class="icon ion-chevron-right "></i></span>
             </p>
-            <p class="patage">{{gender}} </p>
+            <p class="patage localizejs">{{gender}} </p>
          </a>
          <ion-item class="ionitem contalign" >
             <div class="item item-text-wrap textwrap">
@@ -39,23 +39,23 @@
             <div class="row seccontent" >
                <div class="col col-10 patcol10">1</div>
                <div class="col col-90 ">
-                  <p class="parafont"><b>Primary Concern</b></p>
-                  <p class="pfontsize">{{reportScreenPrimaryConcern}}</p>
+                  <p class="parafont"><b class="localizejs">Primary Concern</b></p>
+                  <p class="pfontsize localizejs">{{reportScreenPrimaryConcern}}</p>
                </div>
             </div>
             <br>
             <div class="row seccontentone">
                <div class="col col-10 patcol10">2</div>
                <div class="col col-90 ">
-                  <p class="parafont"><b>Secondary Concern</b></p>
-                  <p class="pfontsize">{{reportScreenSecondaryConcern}}</p>
+                  <p class="parafont"><b class="localizejs">Secondary Concern</b></p>
+                  <p class="pfontsize localizejs">{{reportScreenSecondaryConcern}}</p>
                </div>
             </div>
             <br>
             <div class="row seccontentone" >
                <div class="col col-10 patcol10">a</div>
                <div class="col col-90 ">
-                  <p class="parafont"><b>Notes</b></p>
+                  <p class="parafont"><b class="localizejs">Notes</b></p>
                   <p class="pfontsize" style="position: relative; top: 8px;" id="appointNotes" > </p>
                </div>
             </div>

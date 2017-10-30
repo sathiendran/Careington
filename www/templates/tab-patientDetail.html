@@ -4,10 +4,10 @@
    <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
       <div class="buttons" style="{{BackBotton}}">
          <a class="button_new icon ion-chevron-left calendarBack" style="{{calendarBackStyle}}" ng-href="#/tab/userhome"  >
-         <span>Back</span>
+         <span class="localizejs">Back</span>
          </a>
       </div>
-      <h1 class="{{title_patient}} calendarTitle" style="{{PatientTitle}}">Patient</h1>
+      <h1 class="{{title_patient}} calendarTitle" style="{{PatientTitle}} localizejs">Patient</h1>
       <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patientsubHeaderInnerStyle}}">
          <div class="calendar_subHeader subheaderTitle"  >
             <div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
@@ -16,12 +16,12 @@
                   <span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
                   <span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
                </div>
-               <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span ng-if="userGender != ''">{{userGender}} .</span {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"> . {{patRelationShip}}</span></div>
+               <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis localizejs"><span ng-if="userGender != ''">{{userGender}} .</span {{userDOB | ageFilter}} <span class="localizejs" ng-if="primaryPatientId != patientId"> . {{patRelationShip}}</span></div>
             </div>
          </div>
       </div>
       <div class="bar patientDo-{{deviceName}}" >
-         <div class="TitleHomeUser_Sub patient_Do_sub-{{deviceName}}">What would you like to do?</div>
+         <div class="TitleHomeUser_Sub patient_Do_sub-{{deviceName}} localizejs">What would you like to do?</div>
       </div>
    </ion-header-bar>
    <div style="display: none;">
@@ -30,20 +30,20 @@
    <ion-content class="patient_content" style="padding-top: 23px; padding-left:0px; margin-top: 131px;">
       <div class="PatientDetailsHome">
       <div style="border: 1px #EFEFED solid;background-color:#EFEFED; padding:30px;border-radius: 7px;">
-         <h4 style="text-align: center;margin-top: -14px;color:#616462; font-size:19px;" class="PatientDetailsYor"><b>Your Calendar</b></h4>
+         <h4 style="text-align: center;margin-top: -14px;color:#616462; font-size:19px;" class="PatientDetailsYor"><b class="localizejs">Your Calendar</b></h4>
          <button class="button button-block button-energized" ng-click="getScheduledDetails(patientId)" style="padding: 3px;top: -3px;">
-         <span> View Appointments </span>
+         <span class="localizejs"> View Appointments </span>
          </button>
-         <div class="scheduled_appointments_text" style="margin-bottom: -14px;margin-top: 10px;">
+         <div class="scheduled_appointments_text localizejs" style="margin-bottom: -14px;margin-top: 10px;">
             Access all current and future scheduled visits.
          </div>
       </div>
       <div ng-if="onDemandMode == 'on' && onDemandAvailability > 0" class="PatientNextAvailable" style="border: 1px #EFEFED solid;margin-bottom: -14px;margin-top: 16px; background-color:#EFEFED; padding:30px;border-radius: 7px;">
-         <h4 style="text-align: center;margin-top: -14px;color:#616462;font-size:19px;" class="PatientDetailsYor"><b>Walk-in Visit</b></h4>
+         <h4 style="text-align: center;margin-top: -14px;color:#616462;font-size:19px;" class="PatientDetailsYor"><b class="localizejs">Walk-in Visit</b></h4>
          <button type="submit" ng-click="doGetCodesSet(PatientImageSelectUser,PatientFirstName,PatientLastName,PatientAge,PatientGuardian,patientId)" class="button button-block button-balanced" style="padding: 3px;top: -3px;" >
-         <span>See Next Provider</span>
+         <span class="localizejs">See Next Provider</span>
          </button>
-         <div class="scheduled_appointments_text" style="margin-bottom: -27px;margin-top: 10px;">
+         <div class="scheduled_appointments_text localizejs" style="margin-bottom: -27px;margin-top: 10px;">
             Don't have an appointment? <br/>
             See the next available provider.
          </div>

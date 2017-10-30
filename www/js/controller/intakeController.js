@@ -1,195 +1,204 @@
 angular.module('starter.controllers')
-    .controller('IntakeFormsCtrl', function ($scope, $ionicPlatform, $window, $ionicBackdrop, htmlEscapeValue, $interval, $ionicSideMenuDelegate, replaceCardNumber, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $timeout, CustomCalendar, CustomCalendarMonth) {
-        $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-        $ionicPlatform.registerBackButtonAction(function () {
-            if (($rootScope.currState.$current.name === "tab.userhome") ||
-                ($rootScope.currState.$current.name === "tab.addCard") ||
-                ($rootScope.currState.$current.name === "tab.submitPayment") ||
-                ($rootScope.currState.$current.name === "tab.waitingRoom") ||
-                ($rootScope.currState.$current.name === "tab.receipt") ||
-                ($rootScope.currState.$current.name === "tab.videoConference") ||
-                ($rootScope.currState.$current.name === "tab.connectionLost") ||
-                ($rootScope.currState.$current.name === "tab.ReportScreen")
-            ) {
-                // H/W BACK button is disabled for these states (these views)
-                // Do not go to the previous state (or view) for these states.
-                // Do nothing here to disable H/W back button.
-            } else if ($rootScope.currState.$current.name === "tab.login") {
-                navigator.app.exitApp();
-            } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
-                navigator.app.exitApp();
-            } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
-                navigator.app.exitApp();
-            } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
-                var gSearchLength = $('.ion-google-place-container').length;
-                if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block') {
-                    $ionicBackdrop.release();
-                    $(".ion-google-place-container").css({
-                        "display": "none"
-                    });
-                } else {
-                    $(".ion-google-place-container").css({
-                        "display": "none"
-                    });
-                    navigator.app.backHistory();
-                }
+.controller('IntakeFormsCtrl', function($scope, $ionicPlatform, $window, $ionicBackdrop,  htmlEscapeValue, $interval, $ionicSideMenuDelegate, replaceCardNumber, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $timeout, CustomCalendar, CustomCalendarMonth) {
+$("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+    $ionicPlatform.registerBackButtonAction(function() {
+        if (($rootScope.currState.$current.name === "tab.userhome") ||
+            ($rootScope.currState.$current.name === "tab.addCard") ||
+            ($rootScope.currState.$current.name === "tab.submitPayment") ||
+            ($rootScope.currState.$current.name === "tab.waitingRoom") ||
+            ($rootScope.currState.$current.name === "tab.receipt") ||
+            ($rootScope.currState.$current.name === "tab.videoConference") ||
+            ($rootScope.currState.$current.name === "tab.connectionLost") ||
+            ($rootScope.currState.$current.name === "tab.ReportScreen")
+        ) {
+            // H/W BACK button is disabled for these states (these views)
+            // Do not go to the previous state (or view) for these states.
+            // Do nothing here to disable H/W back button.
+        } else if ($rootScope.currState.$current.name === "tab.login") {
+            navigator.app.exitApp();
+        } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
+            navigator.app.exitApp();
+        } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
+            navigator.app.exitApp();
+        } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
+            var gSearchLength = $('.ion-google-place-container').length;
+            if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block') {
+                $ionicBackdrop.release();
+                $(".ion-google-place-container").css({
+                    "display": "none"
+                });
             } else {
+                $(".ion-google-place-container").css({
+                    "display": "none"
+                });
                 navigator.app.backHistory();
             }
-        }, 100);
-        $rootScope.currState = $state;
-        $rootScope.monthsList = CustomCalendar.getMonthsList();
-        $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
-        $rootScope.limit = 4;
-        $rootScope.Concernlimit = 1;
-        $rootScope.checkedPrimary = 0;
-        $scope.doGetSingleHosInfoForiTunesStage = function () {
-            $rootScope.paymentMode = '';
-            $rootScope.insuranceMode = '';
-            $rootScope.onDemandMode = '';
-            $rootScope.OrganizationLocation = '';
-            $rootScope.PPIsBloodTypeRequired = '';
-            $rootScope.PPIsHairColorRequired = '';
-            $rootScope.PPIsEthnicityRequired = '';
-            $rootScope.PPIsEyeColorRequired = '';
-            $rootScope.InsVerificationDummy = '';
-            $rootScope.InsuranceBeforeWaiting = '';
-            $rootScope.HidePaymentPageBeforeWaitingRoom = '';
-            var params = {
-                hospitalId: $rootScope.hospitalId,
-                success: function (data) {
-                    $rootScope.getDetails = data.data[0].enabledModules;
-                    $rootScope.ssopatienttoken = data.data[0].patientTokenApi;
-                    $rootScope.ssopatientregister = data.data[0].patientRegistrationApi;
-                    $rootScope.ssopatientforgetpwd = data.data[0].patientForgotPasswordApi;
-                    if ($rootScope.getDetails !== '') {
-                        for (var i = 0; i < $rootScope.getDetails.length; i++) {
-                            if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
-                                $rootScope.insuranceMode = 'on';
-                            }
-                            if ($rootScope.getDetails[i] === 'InsuranceBeforeWaiting' || $rootScope.getDetails[i] === 'mInsuranceBeforeWaiting') {
-                                $rootScope.InsuranceBeforeWaiting = 'on';
-                            }
-                            if ($rootScope.getDetails[i] === 'HidePaymentPageBeforeWaitingRoom' || $rootScope.getDetails[i] === 'mHidePaymentPageBeforeWaitingRoom') {
-                                $rootScope.HidePaymentPageBeforeWaitingRoom = 'on';
-                            }
-                            if ($rootScope.getDetails[i] === 'InsVerificationDummy' || $rootScope.getDetails[i] === 'mInsVerificationDummy') {
-                                $rootScope.InsVerificationDummy = 'on';
-                            }
-                            if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
-                                $rootScope.paymentMode = 'on';
-                            }
-                            if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
-                                $rootScope.onDemandMode = 'on';
-                            }
-                            if ($rootScope.getDetails[i] === 'OrganizationLocation' || $rootScope.getDetails[i] === 'mOrganizationLocation') {
-                                $rootScope.OrganizationLocation = 'on';
-                            }
-                            if ($rootScope.getDetails[i] === 'PPIsBloodTypeRequired') {
-                                $rootScope.PPIsBloodTypeRequired = 'on';
-                            }
-                            if ($rootScope.getDetails[i] === 'PPIsHairColorRequired') {
-                                $rootScope.PPIsHairColorRequired = 'on';
-                            }
-                            if ($rootScope.getDetails[i] === 'PPIsEthnicityRequired') {
-                                $rootScope.PPIsEthnicityRequired = 'on';
-                            }
-                            if ($rootScope.getDetails[i] === 'PPIsEyeColorRequired') {
-                                $rootScope.PPIsEyeColorRequired = 'on';
-                            }
+        } else {
+            navigator.app.backHistory();
+        }
+    }, 100);
+    // activeConsultConnection.stop();
+  //  activeConsultConnection.qs = {};
+   activeConsultConnection = null;
+   activeRoomConHub = null;
+    $rootScope.currState = $state;
+    $rootScope.monthsList = CustomCalendar.getMonthsList();
+    $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
+    $rootScope.limit = 4;
+    $rootScope.Concernlimit = 1;
+    $rootScope.checkedPrimary = 0;
+    $scope.doGetSingleHosInfoForiTunesStage = function() {
+        $rootScope.paymentMode = '';
+        $rootScope.insuranceMode = '';
+        $rootScope.onDemandMode = '';
+        $rootScope.OrganizationLocation = '';
+        $rootScope.PPIsBloodTypeRequired = '';
+        $rootScope.PPIsHairColorRequired = '';
+        $rootScope.PPIsEthnicityRequired = '';
+        $rootScope.PPIsEyeColorRequired = '';
+        $rootScope.InsVerificationDummy = '';
+        $rootScope.InsuranceBeforeWaiting = '';
+        $rootScope.HidePaymentPageBeforeWaitingRoom = '';
+        var params = {
+            hospitalId: $rootScope.hospitalId,
+            success: function(data) {
+                $rootScope.getDetails = data.data[0].enabledModules;
+                $rootScope.ssopatienttoken = data.data[0].patientTokenApi;
+                $rootScope.ssopatientregister = data.data[0].patientRegistrationApi;
+                $rootScope.ssopatientforgetpwd = data.data[0].patientForgotPasswordApi;
+                if ($rootScope.getDetails !== '') {
+                    for (var i = 0; i < $rootScope.getDetails.length; i++) {
+                        if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
+                            $rootScope.insuranceMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'InsuranceBeforeWaiting' || $rootScope.getDetails[i] === 'mInsuranceBeforeWaiting') {
+                            $rootScope.InsuranceBeforeWaiting = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'HidePaymentPageBeforeWaitingRoom' || $rootScope.getDetails[i] === 'mHidePaymentPageBeforeWaitingRoom') {
+                            $rootScope.HidePaymentPageBeforeWaitingRoom = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'InsVerificationDummy' || $rootScope.getDetails[i] === 'mInsVerificationDummy') {
+                            $rootScope.InsVerificationDummy = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
+                            $rootScope.paymentMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
+                            $rootScope.onDemandMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'OrganizationLocation' || $rootScope.getDetails[i] === 'mOrganizationLocation') {
+                            $rootScope.OrganizationLocation = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'PPIsBloodTypeRequired') {
+                            $rootScope.PPIsBloodTypeRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'PPIsHairColorRequired') {
+                            $rootScope.PPIsHairColorRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'PPIsEthnicityRequired') {
+                            $rootScope.PPIsEthnicityRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'PPIsEyeColorRequired') {
+                            $rootScope.PPIsEyeColorRequired = 'on';
                         }
                     }
-                    $rootScope.brandColor = data.data[0].brandColor;
-                    $rootScope.logo = data.data[0].hospitalImage;
-                    $rootScope.Hospital = data.data[0].brandName;
-                    if (deploymentEnvLogout === 'Multiple') {
-                        $rootScope.alertMsgName = 'Virtual Care';
-                        $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
-                    } else {
-                        $rootScope.alertMsgName = $rootScope.Hospital;
-                        $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
-                    }
-                    $rootScope.HospitalTag = data.data[0].brandTitle;
-                    $rootScope.contactNumber = data.data[0].contactNumber;
-                    $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
-                    $rootScope.clientName = data.data[0].hospitalName;
-                    if (!angular.isUndefined(data.data[0].customerSso) && data.data[0].customerSso === "Mandatory") {
-                        $rootScope.customerSso = "Mandatory";
-                        ssoURL = data.data[0].patientLogin;
-                    } else {
-                        $rootScope.customerSso = '';
-                    }
-                    if (!angular.isUndefined(data.data[0].patientRegistrationApi) && data.data[0].patientRegistrationApi !== "") {
-                        $rootScope.isSSORegisterAvailable = data.data[0].patientRegistrationApi;
-                    } else {
-                        $rootScope.isSSORegisterAvailable = '';
-                    }
-                    $window.location.reload();
-                    if (deploymentEnvLogout === "Multiple") {
-                        $state.go('tab.chooseEnvironment');
-                    } else if (deploymentEnvLogout === "Single") {
-                        //$state.go('tab.loginSingle');
-                        $state.go('tab.singleTheme');
-                    } else {
-                        $state.go('tab.login');
-                    }
-                },
-                error: function (data, status) {
-                    if (status === 503) {
-                        $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
-                    } else {
-                        $rootScope.serverErrorMessageValidation();
-                    }
                 }
-            };
-            LoginService.getHospitalInfo(params);
-        }
-
-        $rootScope.ClearRootScope = function () {
-            $rootScope.cuttlocations = '';
-            $window.localStorage.setItem('tokenExpireTime', '');
-            if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging') {
-                $rootScope.hospitalId = singleHospitalId;
-                apiCommonURL = 'https://connectedcare.md';
-                api_keys_env = 'Production';
-                $rootScope.APICommonURL = 'https://connectedcare.md';
-                $scope.doGetSingleHosInfoForiTunesStage();
-            } else {
+                $rootScope.brandColor = data.data[0].brandColor;
+                $rootScope.logo = data.data[0].hospitalImage;
+                $rootScope.Hospital = data.data[0].brandName;
+                if (deploymentEnvLogout === 'Multiple') {
+                    $rootScope.alertMsgName = 'Virtual Care';
+                    $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
+                } else {
+                    $rootScope.alertMsgName = $rootScope.Hospital;
+                    $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
+                }
+                $rootScope.HospitalTag = data.data[0].brandTitle;
+                $rootScope.contactNumber = data.data[0].contactNumber;
+                $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
+                $rootScope.clientName = data.data[0].hospitalName;
+                if (!angular.isUndefined(data.data[0].customerSso) && data.data[0].customerSso === "Mandatory") {
+                    $rootScope.customerSso = "Mandatory";
+                    ssoURL = data.data[0].patientLogin;
+                } else {
+                    $rootScope.customerSso = '';
+                }
+                if (!angular.isUndefined(data.data[0].patientRegistrationApi) && data.data[0].patientRegistrationApi !== "") {
+                    $rootScope.isSSORegisterAvailable = data.data[0].patientRegistrationApi;
+                } else {
+                    $rootScope.isSSORegisterAvailable = '';
+                }
+                $window.location.reload();
                 if (deploymentEnvLogout === "Multiple") {
                     $state.go('tab.chooseEnvironment');
-                    $timeout(function () {
-                        $window.location.reload(true);
-                    });
-                } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
-                    $state.go('tab.singleTheme');
-                    $timeout(function () {
-                        $window.location.reload(true);
-                    });
-                } else if (cobrandApp !== 'MDAmerica' && deploymentEnvLogout === "Single") {
-                    $state.go('tab.singleTheme');
-                    $timeout(function () {
-                        $window.location.reload(true);
-                    });
+                } else if (deploymentEnvLogout === "Single") {
+                    //$state.go('tab.loginSingle');
+                      $state.go('tab.singleTheme');
                 } else {
                     $state.go('tab.login');
-                    $timeout(function () {
+                }
+            },
+            error: function(data,status) {
+              if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else {
+                $rootScope.serverErrorMessageValidation();
+              }
+            }
+        };
+        LoginService.getHospitalInfo(params);
+    }
+
+    $rootScope.ClearRootScope = function() {
+      $rootScope.cuttlocations = '';
+      $window.localStorage.setItem('tokenExpireTime', '');
+        $(".overlay").css({"display": "none" });
+        if($rootScope.chkSSPageEnter) {
+              $rootScope.chkSSPageEnter = false;
+              $ionicSideMenuDelegate.toggleLeft();
+          }
+      if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging') {
+            $rootScope.hospitalId = singleHospitalId;
+            apiCommonURL = 'https://connectedcare.md';
+            api_keys_env = 'Production';
+            $rootScope.APICommonURL = 'https://connectedcare.md';
+            $scope.doGetSingleHosInfoForiTunesStage();
+      } else {
+        if (deploymentEnvLogout === "Multiple") {
+            $state.go('tab.chooseEnvironment');
+            $timeout(function() {
+                   $window.location.reload(true);
+               });
+        } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
+                 $state.go('tab.singleTheme');
+                 $timeout(function() {
                         $window.location.reload(true);
                     });
-                }
-            }
-            $rootScope = $rootScope.$new(true);
-            $scope = $scope.$new(true);
-            for (var prop in $rootScope) {
-                if (prop.substring(0, 1) !== '$') {
-                    delete $rootScope[prop];
-                }
-            }
-            $(".ion-google-place-container").css({
-                "display": "none"
-            });
-
-            $ionicBackdrop.release();
+        }else if (cobrandApp !== 'MDAmerica' && deploymentEnvLogout === "Single") {
+            $state.go('tab.singleTheme');
+            $timeout(function() {
+                   $window.location.reload(true);
+               });
+        }else {
+           $state.go('tab.login');
+           $timeout(function() {
+                  $window.location.reload(true);
+              });
         }
+      }
+      $rootScope = $rootScope.$new(true);
+      $scope = $scope.$new(true);
+      for (var prop in $rootScope) {
+          if (prop.substring(0,1) !== '$') {
+              delete $rootScope[prop];
+          }
+      }
+      $(".ion-google-place-container").css({
+          "display": "none"
+      });
+
+      $ionicBackdrop.release();
+    }
         $rootScope.checkPreLoadDataAndSelectionAndRebindSelectionList = function (selectedListItem, mainListItem) {
             angular.forEach(mainListItem, function (item) {
                 item.checked = false;
@@ -410,7 +419,7 @@ angular.module('starter.controllers')
         $scope.openOtherPrimaryConcernView = function () {
             $scope.data = {}
             $ionicPopup.show({
-                template: '<div class="PopupError_Message ErrorMessageDiv" ></div><textarea name="comment" id="comment-textarea" ng-model="data.PrimaryConcernOther" class="textAreaPop">',
+                template: '<div class="PopupError_Message ErrorMessageDiv" ></div><textarea name="comment" id="comment-textarea" maxlength="500" ng-model="data.PrimaryConcernOther" class="textAreaPop">',
                 title: 'Enter Primary Concern',
                 subTitle: '',
                 scope: $scope,
@@ -1912,6 +1921,6 @@ angular.module('starter.controllers')
             $state.go('tab.providerSearch');
         }
 
-
+  $(".overlay").css({"display": "none" });
 
     })

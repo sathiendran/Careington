@@ -5,7 +5,7 @@
          <div class="Server_Error ErrorMessageDiv" ></div>
          <div class="buttons" style="width: 50%; display: {{PlanDisplay}}; {{HeadercardDetailsBack}}">
             <a class="button_new icon PlanCancel" ng-click="backToEdiORAddPlan();" >
-            <span>Cancel</span>
+            <span class="localizejs">Cancel</span>
             </a>
          </div>
          <div class="buttons" style="width: 50%; display: {{PlaneditDisplay}}" >
@@ -22,17 +22,17 @@
       </ion-header-bar>
       <ion-content class="planDetails_content"  >
          <div>
-            <div class="healthPlan_text" style="display: {{PlanDisplay}}; {{PlanDetails}}">
+            <div class="healthPlan_text localizejs" style="display: {{PlanDisplay}}; {{PlanDetails}}">
                Health Plan
             </div>
-            <div class="healthPlan_text verifyPlanHeading" style="display: {{verifyPlanDisplay}}">
+            <div class="healthPlan_text verifyPlanHeading localizejs" style="display: {{verifyPlanDisplay}}">
                Verifying Plan
             </div>
             <div class="healthPlan_header" style="{{PlanDetails}};"  >
-               <div class="planInformation"  style="{{SubDetailsPlanDetails}}; display:{{subdetailsdisplay}}">
+               <div class="planInformation localizejs"  style="{{SubDetailsPlanDetails}}; display:{{subdetailsdisplay}}">
                   Edit your health plan information
                </div>
-               <div class="provider planProviderText" style="opacity:{{planverify}}; margin-left: 14% !important;">Select your provider</div>
+               <div class="provider planProviderText localizejs" style="opacity:{{planverify}}; margin-left: 14% !important;">Select your provider</div>
                <div class="addHealthPlan_header noPlanContainer-{{deviceName}} planSelectedBox"  >
 
                 <div  class="dropdownContainer" style="opacity:{{planverify}}; margin: 0px 13%;">
@@ -55,19 +55,19 @@
             </div>
             <div class="list addhealthplan" style="opacity:{{planverify}};">
                <div class="item item-input" >
-                  <span class="input-label cardfont">First Name</span>
+                  <span class="input-label cardfont localizejs">First Name</span>
                   <input  type="text" placeholder="Required" value="{{insuranceList.subscriberFirstName}}"   name="firstName" id="editfirstName" required>
                </div>
                <div class="item item-input" >
-                  <span class="input-label cardfont">Last Name</span>
+                  <span class="input-label cardfont localizejs">Last Name</span>
                   <input type="text" placeholder="Required" value="{{insuranceList.subscriberLastName}}"  name="lastName" id="editlastName" required >
                </div>
                <div class="item item-input">
-                  <span class="input-label cardfont">Policy Number</span>
+                  <span class="input-label cardfont localizejs">Policy Number</span>
                   <input type="text" placeholder="Required"  value="{{insuranceList.policyNumber}}"  id="editpolicyNumber" name="editpolicyNumber" required>
                </div>
                <div class="item item-input">
-                  <span class="input-label cardfont">Date of Birth <div style="font-size: 10px;">for the policy holder</div></span>
+                  <span class="input-label cardfont localizejs">Date of Birth <div class="localizejs" style="font-size: 10px;">for the policy holder</div></span>
                   <input type="date"  id="editdate"  ng-model="editinsDOB" placeholder="Required" style="font-size: 19px;line-height: normal;">
                </div>
 
@@ -95,9 +95,9 @@
             </label-->
             </div>
             <div class="planDetails"  style="opacity:{{planverify}};">
-               <p>When you add a health plan, information about your plan will be sent to your provider for verification.</p>
+               <p class="localizejs">When you add a health plan, information about your plan will be sent to your provider for verification.</p>
             </div>
-            <div class="privacy" style="opacity:{{planverify}};"><a class="hospitalDynamicLink"  ng-click="hospitallink()" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">About {{Hospital}} Privacy</a></div>
+            <div class="privacy localizejs" style="opacity:{{planverify}};"><a class="hospitalDynamicLink"  ng-click="hospitallink()" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">About {{Hospital}} Privacy</a></div>
          </div>
       </ion-content>
    </form>

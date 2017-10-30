@@ -5,12 +5,12 @@
          <div class="Server_Error ErrorMessageDiv" ></div>
          <div class="buttons" style="width: 50%; display: {{PlanDisplay}}; {{HeadercardDetailsBack}}">
             <a class="button_new icon PlanCancel" ng-click="backToEdiORAddPlan();" >
-            <span>Cancel</span>
+            <span class="localizejs">Cancel</span>
             </a>
          </div>
          <div class="buttons" style="width: 50%; display: {{PlanDisplay}}" >
             <div style="width: 100%; text-align: right;" ng-if="HealthForm.$invalid">
-               <button type="submit" class="button_new icon PlanNext" style="color:#999;{{CardDetailsNextButton}};"  ng-disabled="HealthForm.$invalid" >
+               <button type="submit" class="button_new icon PlanNext localizejs" style="color:#999;{{CardDetailsNextButton}};"  ng-disabled="HealthForm.$invalid" >
                Next
                </button>
             </div>
@@ -22,61 +22,61 @@
       </ion-header-bar>
       <ion-content class="planDetails_content"  >
          <div>
-            <div class="healthPlan_text" style="display: {{PlanDisplay}}; {{PlanDetails}}">
+            <div class="healthPlan_text localizejs" style="display: {{PlanDisplay}}; {{PlanDetails}}">
                Health Plan
             </div>
-            <div class="healthPlan_text verifyPlanHeading" style="display: {{verifyPlanDisplay}}">
+            <div class="healthPlan_text verifyPlanHeading localizejs" style="display: {{verifyPlanDisplay}}">
                Verifying Plan
             </div>
             <div class="healthPlan_header" style="{{PlanDetails}};"  >
-               <div class="planInformation"  style="{{SubDetailsPlanDetails}}; display:{{subdetailsdisplay}}">
+               <div class="planInformation localizejs"  style="{{SubDetailsPlanDetails}}; display:{{subdetailsdisplay}}">
                   Enter your health plan information
                </div>
-               <div class="provider planProviderText" style="opacity:{{planverify}}; margin-left: 14% !important;">Select your provider</div>
+               <div class="provider planProviderText localizejs" style="opacity:{{planverify}}; margin-left: 14% !important;">Select your provider</div>
                <div class="addHealthPlan_header noPlanContainer-{{deviceName}} planSelectedBox"  >
                   <div  class="dropdownContainer" style="opacity:{{planverify}}; margin: 0px 13%;">
                      <!--<div class="viewport1">Plan Provider</div>-->
                      <select class="healthPlanDropDown" id="Provider" ng-model="AddHealth.Provider" style="border: none; padding-left: 12px;" required>
-                        <option value=""><b>Plan Provider</b></option>
-                        <option class="planDetailOption" ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}"><b>{{ProviderData.payerName}}</b></option>
+                        <option value=""><b class="localizejs">Plan Provider</b></option>
+                        <option class="planDetailOption" ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}"><b class="localizejs">{{ProviderData.payerName}}</b></option>
                      </select>
                   </div>
                </div>
             </div>
             <div class="list addhealthplan" style="opacity:{{planverify}};">
                <div class="item item-input" >
-                  <span class="input-label cardfont">First Name</span>
+                  <span class="input-label cardfont localizejs">First Name</span>
                   <input  type="text" placeholder="Required" ng-model="AddHealth.firstName" name="firstName" id="firstName" required>
                </div>
                <div class="item item-input" >
-                  <span class="input-label cardfont">Last Name</span>
+                  <span class="input-label cardfont localizejs">Last Name</span>
                   <input type="text" placeholder="Required" ng-model="AddHealth.lastName" name="lastName" id="lastName" required >
                </div>
                <div class="item item-input">
-                  <span class="input-label cardfont">Policy Number</span>
+                  <span class="input-label cardfont localizejs">Policy Number</span>
                   <input type="text" placeholder="Required"  ng-model="AddHealth.policyNumber" id="policyNumber" name="policyNumber" required>
                </div>
                <label ng-if="deviceName == 'IOS'" class="item item-input datePlaceholder" >
-                  <span class="input-label cardfont" style="padding: 5px 10px 3px 0px;">
+                  <span class="input-label cardfont localizejs" style="padding: 5px 10px 3px 0px;">
                      Date of Birth
                      <div style="font-size: 10px;">for the policy holder</div>
                   </span>
-                  <div class="dobRequired" ng-if="!AddHealth.dateBirth">Required</div>
+                  <div class="dobRequired localizejs" ng-if="!AddHealth.dateBirth">Required</div>
                   <input class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth"  id="date"  required>
                </label>
                <label ng-if="deviceName != 'IOS'" class="item item-input datePlaceholder" >
-                  <span class="input-label cardfont" style="padding: 5px 10px 3px 0px;"  >
+                  <span class="input-label cardfont localizejs" style="padding: 5px 10px 3px 0px;"  >
                      Date of Birth
-                     <div style="font-size: 10px;">for the policy holder</div>
+                     <div class="localizejs" style="font-size: 10px;">for the policy holder</div>
                   </span>
-                  <div class="dobRequired" ng-if="!AddHealth.dateBirth">Required</div>
+                  <div class="dobRequired localizejs" ng-if="!AddHealth.dateBirth">Required</div>
                   <input class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth" value="{{PreviousDate}}"   id="date"  required>
                </label>
             </div>
-            <div class="planDetails"  style="opacity:{{planverify}};">
+            <div class="planDetails localizejs"  style="opacity:{{planverify}};">
                <p>When you add a health plan, information about your plan will be sent to your provider for verification.</p>
             </div>
-            <div class="privacy" style="opacity:{{planverify}};"><a class="hospitalDynamicLink"  ng-click="hospitallink()" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">About {{Hospital}} Privacy</a></div>
+            <div class="privacy localizejs" style="opacity:{{planverify}};"><a class="hospitalDynamicLink"  ng-click="hospitallink()" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">About {{Hospital}} Privacy</a></div>
          </div>
       </ion-content>
    </form>

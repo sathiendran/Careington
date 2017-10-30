@@ -23,7 +23,7 @@
                      </div>
                   </div>
                   <div>
-                     <p class="hometext">Account Home</p>
+                     <p class="hometext localizejs">Account Home</p>
                   </div>
                </a>
             </div>
@@ -35,7 +35,7 @@
                         <span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
                      </div>
                   </div>
-                  <p class="grouptext">Change Patient</p>
+                  <p class="grouptext localizejs">Change Patient</p>
                </a>
             </div>
          </div>
@@ -44,9 +44,9 @@
                <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">	</button>
             </div>
             <div class=" button-bar">
-               <label class="button button-small btcolor btn-first " id="passed" ng-click="passedconsult()"> <span class="tabheading">Past</span></label>
-               <label class="button button-small btn-first btnextcolor" id="missed" ng-click="missedconsult()"><span class="tabheading">Missed</span></label>
-               <label class="button button-small btn-first btnextcolor" id="dropped" ng-click="droppedconsult()"><span class="tabheading">Dropped</span></label>
+               <label class="button button-small btcolor btn-first " id="passed" ng-click="passedconsult()"> <span class="tabheading localizejs">Past</span></label>
+               <label class="button button-small btn-first btnextcolor" id="missed" ng-click="missedconsult()"><span class="tabheading localizejs">Missed</span></label>
+               <label class="button button-small btn-first btnextcolor" id="dropped" ng-click="droppedconsult()"><span class="tabheading localizejs">Dropped</span></label>
             </div>
             <div class="buttons backbtn">
                <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">	 </button>
@@ -59,9 +59,9 @@
          <div>
             <div class="row rheader">
                <div class="col col-15"><span></span></div>
-               <div class="col col-20"><span class="topfont">Date</span></div>
-               <div class="col col-15"><span class="timetopfont">Time</span></div>
-               <div class="col col-30"><span class="providertopfont">Provider</span></div>
+               <div class="col col-20"><span class="topfont localizejs">Date</span></div>
+               <div class="col col-15"><span class="timetopfont localizejs">Time</span></div>
+               <div class="col col-30"><span class="providertopfont localizejs">Provider</span></div>
                <div class="col col-15 "><span class="topfont"></span></div>
             </div>
             <hr style="margin-top:-12px;">
@@ -77,7 +77,7 @@
                       </a>   <span class="encountericon">  <i ng-bind-html="drawSVGCIcon('phone')"></i> </span>
                      </div>
                      <div class="passedDate-{{deviceName}}">
-                        <p class="colfamily consult"> {{passedData.consultationDate}}</p>
+                        <p class="colfamily consult localizejs"> {{passedData.consultationDate}}</p>
                      </div>
                      <div class="passedTime-{{deviceName}}">
                         <p class="colfamily consult">{{passedData.consultationTime}}</p>
@@ -95,7 +95,7 @@
                   </div>
                   <hr class="dotedhr">
                </div>
-               <ion-item ng-if="!Passedconsultations.length" class="noapptviewResult" style="white-space: normal;">There are no consultations found!</ion-item>
+               <ion-item ng-if="!Passedconsultations.length" class="noapptviewResult localizejs" style="white-space: normal;">There are no consultations found!</ion-item>
             </div>
          </div>
       </ion-content>
@@ -104,9 +104,9 @@
          <div>
             <div class="row rheader">
                <div class="col col-15"><span></span></div>
-               <div class="col col-20"><span class="topfont">Date</span></div>
-               <div class="col col-15"><span class="timetopfont">Time</span></div>
-               <div class="col col-30"><span class="providertopfont">Provider</span></div>
+               <div class="col col-20"><span class="topfont localizejs">Date</span></div>
+               <div class="col col-15"><span class="timetopfont localizejs">Time</span></div>
+               <div class="col col-30"><span class="providertopfont localizejs">Provider</span></div>
                <div class="col col-15 "><span class="topfont"></span></div>
             </div>
             <hr style="margin-top:-12px;">
@@ -129,20 +129,20 @@
                      </div>
                      <div class="ellipsis passedDoc-{{deviceName}}">
                         <p class="ellipsis consult">
-                           <a class="colfamily" ng-if="!misseddata.docname">N/A
+                           <a class="colfamily localizejs" ng-if="!misseddata.docname">N/A
                            </a>
                            <a class="colfamily" ng-if="misseddata.docname">{{misseddata.docname}}
                            </a>
                         </p>
                      </div>
                      <div class="passedDetails-{{deviceName}} consult">
-                        <span ng-click="showMissedDetailsView({{misseddata}},'tab.missedConsultAppoint');">Details
+                        <span  class="localizejs" ng-click="showMissedDetailsView({{misseddata}},'tab.missedConsultAppoint');">Details
                         <span><i class="icon ion-chevron-right "></i></span></span>
                      </div>
                   </div>
                   <hr class="dotedhr">
                </div>
-               <ion-item ng-if="!missedlist.length" class="noapptviewResult" style="white-space: normal;">There are no consultations found!</ion-item>
+               <ion-item ng-if="!missedlist.length" class="noapptviewResult localizejs" style="white-space: normal;">There are no consultations found!</ion-item>
             </div>
          </div>
       </ion-content>
@@ -151,10 +151,10 @@
          <div>
             <div class="row rheader">
                <div class="col col-15"><span></span></div>
-               <div class="col col-20"><span class="topfont">Date</span></div>
-               <div class="col col-15"><span class="timetopfont">Time</span></div>
-               <div class="col col-30"><span class="providertopfont">Provider</span></div>
-               <div class="col col-15 "><span class="topfont"></span></div>
+               <div class="col col-20"><span class="topfont localizejs">Date</span></div>
+               <div class="col col-15"><span class="timetopfont localizejs">Time</span></div>
+               <div class="col col-30"><span class="providertopfont localizejs">Provider</span></div>
+               <div class="col col-15 "><span class="topfont localizejs"></span></div>
             </div>
             <hr style="margin-top:-12px;">
             <div class="list listfirst">
@@ -176,18 +176,18 @@
                      </div>
                      <div class="ellipsis passedDoc-{{deviceName}}">
                         <p class="ellipsis consult">
-                           <a class="colfamily" ng-if="!droppedData.assignedDoctorName">N/A</a>
+                           <a class="colfamily localizejs" ng-if="!droppedData.assignedDoctorName">N/A</a>
                            <a class="colfamily" ng-if="droppedData.assignedDoctorName">{{droppedData.assignedDoctorName}}</a>
                         </p>
                      </div>
                      <div class="passedDetails-{{deviceName}} consult">
-                        <span ng-click="showReportView({{droppedData}},'tab.reports');">Report
+                        <span class="localizejs" ng-click="showReportView({{droppedData}},'tab.reports');">Report
                         <span><i class="icon ion-chevron-right "></i></span></span>
                      </div>
                   </div>
                   <hr class="dotedhr">
                </div>
-               <ion-item ng-if="!Droppedconsultations.length" class="noapptviewResult" style="white-space: normal;">There are no consultations found!</ion-item>
+               <ion-item ng-if="!Droppedconsultations.length" class="noapptviewResult localizejs" style="white-space: normal;">There are no consultations found!</ion-item>
             </div>
          </div>
       </ion-content>
@@ -198,21 +198,21 @@
    <ion-tabs class=" tabs-icon-top tabs-dark">
       <a class="tab-item" ng-href="#/tab/relatedusers" >
       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i>
-      <span class="tabcolor"> Users </span>
+      <span class="tabcolor localizejs"> Users </span>
       </a>
       <a class="tab-item active" ng-href="#/tab/consultations">
       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i>
-      <span class="tabcolor">Consultations </span>
+      <span class="tabcolor localizejs">Consultations </span>
       </a>
       <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId == patientId">
-      <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">My Health</span>
+      <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor localizejs">My Health</span>
       </a>
       <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId != patientId">
-      <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">Health Info</span>
+      <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor localizejs">Health Info</span>
       </a>
       <a class="tab-item" ng-href="#/tab/appointmentpatientdetails/">
       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
-      <span class="tabcolor">Appointments</span>
+      <span class="tabcolor localizejs">Appointments</span>
       </a>
    </ion-tabs>
 </ion-side-menu-content>

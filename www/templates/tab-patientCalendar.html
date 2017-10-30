@@ -3,10 +3,10 @@
    <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};">
       <div class="buttons" style="{{BackBotton}}" >
          <a class="button_new icon ion-chevron-left calendarBack" style="{{calendarBackStyle}}" ng-href="#/tab/patientDetail">
-         <span>Back</span>
+         <span class="localizejs">Back</span>
          </a>
       </div>
-      <h1 class="{{title_patient}} calendarTitle" style="{{PatientTitle}}">Patient</h1>
+      <h1 class="{{title_patient}} calendarTitle localizejs" style="{{PatientTitle}}">Patient</h1>
       <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="border-bottom: 1px solid #000; {{PatientCalentarInnerStyle}}" >
          <div class="calendar_subHeader" >
             <div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
@@ -15,14 +15,14 @@
                   <span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
                   <span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
                </div>
-               <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">{{userGender}} . {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"> . {{patRelationShip}}</span></div>
+               <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis localizejs">{{userGender}} . {{userDOB | ageFilter}} <span class="localizejs" ng-if="primaryPatientId != patientId"> . {{patRelationShip}}</span></div>
             </div>
          </div>
       </div>
    </ion-header-bar>
    <div class="patientCalendar_subHeader" style="{{PatientCalentarSchedule}}" >
       <div class="patientCalendar_watch" ><i class="ion-android-time"></i></i></div>
-      <div class="patientCalendar_text" >Scheduled Appointments</div>
+      <div class="patientCalendar_text localizejs" >Scheduled Appointments</div>
    </div>
    <div style="display: none;">
       <timer end-time="time"  ></timer>
@@ -35,10 +35,10 @@
          </div>
          <a class="item" style=" background-color: {{timerCOlor}};"  ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
             <div class="patient_appointment" >
-               <div class="appointment_text">Next Appointment:</div>
+               <div class="appointment_text localizejs">Next Appointment:</div>
                <div class="appointment_text_time" >{{scheduledListData.scheduledTime | date: "MMM dd"}} <span style="top: 3px;position: relative;"><sup>@</sup></span> {{scheduledListData.scheduledTime | date: "hh:mm"}}<span  style="font-size: 15px;">{{scheduledListData.scheduledTime | date: "a"}}</span></div>
             </div>
-            <div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
+            <div class="BackPatientViewDetails localizejs">View Details<i class="icon ion-chevron-right"></i></div>
          </a>
          <a class="item" ng-repeat="scheduledListData in getIndividualScheduleDetails" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
             <div class="patient_appointment">
@@ -47,9 +47,9 @@
                   {{scheduledListData.scheduledTime | date: "hh:mm"}}<span  style="font-size: 15px;">{{scheduledListData.scheduledTime | date: "a"}}</span>
                </div>
             </div>
-            <div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
+            <div class="BackPatientViewDetails localizejs">View Details<i class="icon ion-chevron-right"></i></div>
          </a>
-         <ion-item ng-if="!getIndividualScheduleDetails.length" class="noResult" style="white-space: normal;" >There is no Scheduled Consultations!</ion-item>
+         <ion-item ng-if="!getIndividualScheduleDetails.length" class="noResult localizejs" style="white-space: normal;" >There is no Scheduled Consultations!</ion-item>
          <div ng-controller="appoimentDetailsCtrl">
          </div>
       </div>

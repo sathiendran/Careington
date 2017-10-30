@@ -135,6 +135,10 @@ angular.module('starter.controllers')
                         $rootScope.alertMsgName = $rootScope.Hospital;
                         $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
                     }
+                    if(cobrandApp === 'MDAmerica' && deploymentEnv === "Single"){
+                         $rootScope.cobrandApp_New = 'MDAmerica';
+                         $rootScope.deploymentEnv_New = deploymentEnv;
+                    }
                     $rootScope.HospitalTag = data.data[0].brandTitle;
                     $rootScope.contactNumber = data.data[0].contactNumber;
                     $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
@@ -196,6 +200,7 @@ angular.module('starter.controllers')
           					hsettings.showCTTOnScheduled = $rootScope.getDetails.indexOf("ShowCTTOnScheduled") > -1;
 
           					hsettings.pPIsBloodTypeRequired = $rootScope.getDetails.indexOf("PPIsBloodTypeRequired") > -1;
+                    hsettings.disablePhoneConsultation = $rootScope.getDetails.indexOf("DisablePhoneConsultation") > -1
           					hsettings.pPIsHairColorRequired = $rootScope.getDetails.indexOf("PPIsHairColorRequired") > -1;
           					hsettings.pPIsEthnicityRequired = $rootScope.getDetails.indexOf("PPIsEthnicityRequired") > -1;
           					hsettings.pPIsEyeColorRequired = $rootScope.getDetails.indexOf("PPIsEyeColorRequired") > -1;

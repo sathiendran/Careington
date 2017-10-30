@@ -11,10 +11,10 @@
          </span>
       </div>
       <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} accoTitle-{{deviceName}}" >
-         <span class="headerfont accountHeader-{{deviceName}}">User</span>
+         <span class="headerfont accountHeader-{{deviceName}} localizejs">User</span>
          <div class="Server_Error ErrorMessageDiv" ></div>
          <div id="Error_Message"></div>
-         <span> <a class="headerval accountCancel-{{deviceName}}" ng-href="#/tab/userhome" >Cancel</a>
+         <span> <a class="headerval accountCancel-{{deviceName}} localizejs" ng-href="#/tab/userhome" >Cancel</a>
          </span>
       </h1>
       <div class="bar bar-subheader bar-dark subheaderheight" >
@@ -35,7 +35,7 @@
                      </div>
                   </div>
                   <div>
-                     <p class="hometext">Account Home</p>
+                     <p class="hometext localizejs">Account Home</p>
                   </div>
                </a>
             </div>
@@ -47,7 +47,7 @@
                         <span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
                      </div>
                   </div>
-                  <p class="grouptext">Change Patient</p>
+                  <p class="grouptext localizejs">Change Patient</p>
                </a>
             </div>
          </div>
@@ -63,10 +63,10 @@
                      <div class="item-text-wrap itemtextwap" style="text-align: center;">
                         <h2 class="title alignchronic ChronicCondition" >
                            <span class="profileSpan"> <i class="profileicon profileperson" ng-bind-html="drawSVGCIcon('user')"></i> </span>
-                           <span class="content content-{{deviceName}}" ng-if="primaryPatientId == patientId">
+                           <span class="content content-{{deviceName}} localizejs" ng-if="primaryPatientId == patientId">
                            Manage Your Profile
                            </span>
-                           <span class="content content-{{deviceName}}" ng-if="primaryPatientId != patientId">
+                           <span class="content content-{{deviceName}} localizejs" ng-if="primaryPatientId != patientId">
                            Manage Profile
                            </span>
                         </h2>
@@ -78,10 +78,10 @@
                      <div class="item-text-wrap itemtextwap" style="text-align: center;">
                         <h2 class="title alignchronic ChronicCondition accSecAppoint" >
                            <span class="profileSpan"><i class="profileicon iconalign-{{deviceName}} profilecalendar usrAppointIcon-{{deviceName}}" ng-bind-html="drawSVGCIcon('calendar')"></i></span>
-                           <span class="content contentAppoint-{{deviceName}}" ng-if="primaryPatientId == patientId">
+                           <span class="content contentAppoint-{{deviceName}} localizejs" ng-if="primaryPatientId == patientId">
                            View Your Appointments
                            </span>
-                           <span class="content contentAppoint-{{deviceName}}" ng-if="primaryPatientId != patientId">
+                           <span class="content contentAppoint-{{deviceName}} localizejs" ng-if="primaryPatientId != patientId">
                            View Appointments
                            </span>
                         </h2>
@@ -102,10 +102,10 @@
                      <div class="item-text-wrap itemtextwap" style="text-align: center;">
                         <h2 class="title alignchronic ChronicCondition" >
                            <span class="profileSpan"> <i class="profileicon profileperson" ng-bind-html="drawSVGCIcon('user')"></i> </span>
-                           <span class="content content-{{deviceName}}" ng-if="primaryPatientId == patientId" >
+                           <span class="content content-{{deviceName}} localizejs" ng-if="primaryPatientId == patientId" >
                            Manage Your Profile
                            </span>
-                           <span class="content content-{{deviceName}}" ng-if="primaryPatientId != patientId" >
+                           <span class="content content-{{deviceName}} localizejs" ng-if="primaryPatientId != patientId" >
                            Manage Profile
                            </span>
                         </h2>
@@ -117,10 +117,10 @@
                      <div class="item-text-wrap itemtextwap" style="text-align: center;">
                         <h2 class="title alignchronic ChronicCondition accSecAppoint" >
                            <span class="profileSpan"><i class="profileicon iconalign-{{deviceName}} profilecalendar usrAppointIcon-{{deviceName}}" ng-bind-html="drawSVGCIcon('calendar')"></i></span>
-                           <span class="content contentAppoint-{{deviceName}}" ng-if="primaryPatientId == patientId">
+                           <span class="content contentAppoint-{{deviceName}} localizejs" ng-if="primaryPatientId == patientId">
                            View Your Appointments
                            </span>
-                           <span class="content contentAppoint-{{deviceName}}" ng-if="primaryPatientId != patientId">
+                           <span class="content contentAppoint-{{deviceName}} localizejs" ng-if="primaryPatientId != patientId">
                            View Appointments</span>
                         </h2>
                      </div>
@@ -132,13 +132,13 @@
    </ion-view>
    <ion-footer-bar ng-if="onDemandAvailability > 0 && P_isAuthorized && providerAvailability == true" style="display: {{accountClinicianFooter}}" class="bar bar-footer  footer-color footerstyle" ng-click="goToPatientConcerns(currentPatientDetails)" >
       <div ng-if="getIndividualPatientCreditCount != 0 && paymentMode == 'on'" class="title CreditClinician" id="centercolor" >
-         <div class="creditSeeaCLinician" >
+         <div class="creditSeeaCLinician localizejs" >
             See A Provider Now
          </div>
          <div>
             <span class="creditCount">
             <span ng-if="getIndividualPatientCreditCount < 10" class="creditCountNo">{{getIndividualPatientCreditCount}}</span>
-            <span ng-if="getIndividualPatientCreditCount > 9" class="creditCountNoTwoDigit">{{getIndividualPatientCreditCount}}</span> Credits
+            <span ng-if="getIndividualPatientCreditCount > 9" class="creditCountNoTwoDigit">{{getIndividualPatientCreditCount}}</span> <span class="localizejs">Credits</span>
             </span>
          </div>
       </div>

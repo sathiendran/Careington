@@ -10,30 +10,30 @@
    <ion-side-menu-content>
       <div ng-include src="'templates/intakeHeader.html'"></div>
       <div class="consultCharge_subHeader PatintHeaderFontStyle" style="{{PaymentStyle}}"  >
-         <span>Payment</span>
+         <span class="localizejs">Payment</span>
       </div>
       <ion-content class="consultChargeNoPlanContent" style="{{ContentConsultCharge}}" >
          <div class="password_home">
             <div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
-               <div class="consultTittle">Consultation Charge</div>
+               <div class="consultTittle localizejs">Consultation Charge</div>
                <div class="consultation_number"> ${{consultationAmount}}*</div>
             </div>
             <div class="healthPlan_header" >
-               <div class="healthPlan_text NoPlanText" >Select Health Plan</div>
+               <div class="healthPlan_text NoPlanText localizejs" >Select Health Plan</div>
                <div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}" >
                   <div  class="dropdownContainer">
-                     <div style = "display: {{chooseHealthHide}};" class="viewport">Choose Your Health Plan</div>
-                     <div style = "display: {{chooseHealthShow}};" class="viewport">{{providerName +' '+ PolicyNo}}</div>
+                     <div style = "display: {{chooseHealthHide}};" class="viewport localizejs">Choose Your Health Plan</div>
+                     <div style = "display: {{chooseHealthShow}};" class="viewport localizejs">{{providerName +' '+ PolicyNo}}</div>
                      <select class="healthPlanDropDown" id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;">
-                        <option  ng-repeat="GetHealthPlan in patientHealthPlanList" value="{{GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumberLong + '@' + GetHealthPlan.healthPlanId}}" ng-selected="providerName + '@' + PolicyNo + '@' + healthPlanID == GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumberLong + '@' + GetHealthPlan.healthPlanId"><b><span>{{GetHealthPlan.insuranceCompany + ' ' + GetHealthPlan.policyNumberLong}}</span></b></option>
-                        <option value=""><b>Add a new health plan</b></option>
+                        <option  ng-repeat="GetHealthPlan in patientHealthPlanList" value="{{GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumberLong + '@' + GetHealthPlan.healthPlanId}}" ng-selected="providerName + '@' + PolicyNo + '@' + healthPlanID == GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumberLong + '@' + GetHealthPlan.healthPlanId"><b><span class="localizejs">{{GetHealthPlan.insuranceCompany + ' ' + GetHealthPlan.policyNumberLong}}</span></b></option>
+                        <option value=""><b class="localizejs">Add a new health plan</b></option>
                      </select>
                   </div>
                </div>
             </div>
             <div class="SkipToPayment">
                <button type="submit" ng-click="doPostApplyHealthPlan()" class="button button-block button-balanced" style="padding: 3px;">
-               <span>Apply Plan</span>
+               <span class="localizejs">Apply Plan</span>
                </button>
             </div>
          </div>
@@ -45,11 +45,11 @@
       <ion-footer-bar align-title="left" class="footer" hide-on-keyboard="true">
          <div class="ConsultChargeFooter">
             <div class="ConsultChargeBack" >
-               <a class="button_new icon ion-chevron-left" href="#/tab/consultCharge" ><span> Back</span></a>
+               <a class="button_new icon ion-chevron-left" href="#/tab/consultCharge" ><span class="localizejs"> Back</span></a>
                <!-- <site-header back="Back"></site-header>-->
             </div>
             <div class="ConsultChargeCancel" >
-               <a class="button_new icon" href="#/tab/userhome" >Cancel</a>
+               <a class="button_new icon localizejs" href="#/tab/userhome" >Cancel</a>
             </div>
          </div>
       </ion-footer-bar>

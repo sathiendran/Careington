@@ -2,14 +2,14 @@
    <ion-view>
       <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
          <div class="ErrorMessage ErrorMessageDiv"  ></div>
-         <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="removemodal()" >Cancel</button>
-         <h1 class="title {{concernListTitleStyle}}" style="{{PrimaryConcernPopupTitle}}; ">My Health</h1>
-         <button class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="chronicdone()" >Done</button>
+         <button class="button button-clear {{concernListDoneStyle}} localizejs" style="{{PriorSurgeryPopupCancel}};" ng-click="removemodal()" >Cancel</button>
+         <h1 class="title {{concernListTitleStyle}} localizejs" style="{{PrimaryConcernPopupTitle}}; ">My Health</h1>
+         <button class="button button-clear {{concernListDoneStyle}} localizejs" style="{{PrimaryConcernPopupDone}};" ng-click="chronicdone()" >Done</button>
       </header>
       <ion-content has-header="true" class="concernListContent">
          <ion-list>
             <ion-item class="search_home  concernListSearch">
-               <h2 class="subname subName-{{deviceName}}">Chronic Conditions</h2>
+               <h2 class="subname subName-{{deviceName}} localizejs">Chronic Conditions</h2>
                <div class=" searchbox" style="margin-top: 0px!important;">
                   <div class="item-input-inset" style="margin-top: 0px!important;margin-bottom: 0px!important;">
                      <label class="item-input-wrapper">
@@ -23,7 +23,7 @@
                      <ion-checkbox ng-repeat="chronic in chronicConditionsearchList | filter: data.searchProvider"
                         ng-model="chronic.checked"
                         ng-checked="chronic.checked" ng-change="OnSelectChronicCondition(chronic)"  ng-disabled="checkedChronic==limit && !chronic.checked">
-                        <span class="ng-binding concernListDetails">   {{ chronic.text }} </span>
+                        <span class="ng-binding concernListDetails localizejs">   {{ chronic.text }} </span>
                      </ion-checkbox>
                   </div>
                </div>

@@ -287,7 +287,7 @@
                 scope._updateCliniciansList();
                 setTimeout(function () {
                     scope.set("vm_isNotificationActive", true);
-                }, 1000);
+                }, 900); //1000);
 
             });
 

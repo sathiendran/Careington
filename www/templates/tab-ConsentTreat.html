@@ -5,7 +5,7 @@
         <div class="buttons" >
            <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
         </div>
-         <h1 class="{{title_patient}} calendarTitle" style="{{PatientTitle}}" >Intake Form</h1>
+         <h1 class="{{title_patient}} calendarTitle localizejs" style="{{PatientTitle}}" >Intake Form</h1>
         <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
            <div class="calendar_subHeader paymentSubHeader" >
               <div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
@@ -14,20 +14,20 @@
                     <span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
                     <span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
                  </div>
-                 <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"> . {{patRelationShip}}</span></div>
+                 <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis localizejs"><span ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"> . {{patRelationShip}}</span></div>
               </div>
            </div>
         </div>
      </ion-header-bar>
    <ion-view title="Appointment Details">
       <div class="conTreatSubHead-{{deviceName}}">
-         <div ng-if="userAgeForIntake == 7" class="ConsentSteps" style="{{IntakeFormInnerStyle}}" >Step <b style="color:#535353;">6</b> of <b style="color:#535353;">7</b></div>
-         <div ng-if="userAgeForIntake != 7" class="ConsentSteps" style="{{IntakeFormInnerStyle}}" >Step <b style="color:#535353;">7</b> of <b style="color:#535353;">8</b></div>
+         <div ng-if="userAgeForIntake == 7" class="ConsentSteps localizejs" style="{{IntakeFormInnerStyle}}" >Step <b style="color:#535353;">6</b> of <b style="color:#535353;">7</b></div>
+         <div ng-if="userAgeForIntake != 7" class="ConsentSteps localizejs" style="{{IntakeFormInnerStyle}}" >Step <b style="color:#535353;">7</b> of <b style="color:#535353;">8</b></div>
          <div>
-            <h1 class="ChronicCondition concernsSubTit consentTitle" style="{{IntakeFormInnerStyleTitle}}">Consent to Treat</h1>
-            <p class="consentSubTitle patientConternFontStyle">Read, Acknowledge, and Agree
+            <h1 class="ChronicCondition concernsSubTit consentTitle localizejs" style="{{IntakeFormInnerStyleTitle}}">Consent to Treat</h1>
+            <p class="consentSubTitle patientConternFontStyle localizejs">Read, Acknowledge, and Agree
                <br/>
-               <span class="patientConternFontStyleSubTitle">Scroll to the bottom</span>
+               <span class="patientConternFontStyleSubTitle localizejs">Scroll to the bottom</span>
             </p>
          </div>
       </div>
@@ -35,19 +35,19 @@
          <div style="padding: 0 5%;">
             <div class="ConsentMessageFirst" >
                <p  class="PragraphContent"> <b>
-                  I, {{PatientFirstName}} {{PatientLastName}} or guardian,give/s permission to <b style="font-family: Glober xBold; {{ConstantTreat}}" class="ConstanttreetFont">{{clientName}}</b> to perform the medical service that the provider and other non-providers and assistants may deem to be necessary. In addition, I, or guardian authorize/s <b style="font-family: Glober xBold; {{ConstantTreat}}" class="ConstanttreetFont">{{clientName}}</b> to release any information obtained during the course of my examination and/or treatment to my health care insurer or other payer.
+                  <span class="localizejs">I</span>, {{PatientFirstName}} {{PatientLastName}} <span class="localizejs">or guardian,give/s permission to</span> <b style="font-family: Glober xBold; {{ConstantTreat}}" class="ConstanttreetFont">{{clientName}}</b> <span class="localizejs">to perform the medical service that the provider and other non-providers and assistants may deem to be necessary. In addition, I, or guardian authorize/s</span> <b style="font-family: Glober xBold; {{ConstantTreat}}" class="ConstanttreetFont">{{clientName}}</b> <span class="localizjs">to release any information obtained during the course of my examination and/or treatment to my health care insurer or other payer.</span>
                   </b>
                </p>
             </div>
             <div style="border-bottom: 1px solid #ddd; margin: 12px 10px 10px 10px;" ng-bind-html="concentToTreatContent | sanitize"></div>
             <div class="ConsentMessageAgreeText">
-               <p  class="PragraphContent" style="color: #545454;">
+               <p  class="PragraphContent localizejs" style="color: #545454;">
                   By clicking "I Agree", I acknowledge and agree to the Terms and Conditions and Consent To treatment as stated above.
                </p>
             </div>
             <div  class="ConsentMessageAgree" >
                <button class="button button-block button-balanced" ng-click="GoToConsultCharge(PatientImageSelectUser,PatientFirstName,PatientLastName,PatientAge,PatientGuardian)" style="padding: 3px;">
-               <span class="consentIAgree">I Agree</span>
+               <span class="consentIAgree localizejs">I Agree</span>
                </button>
             </div>
          </div>
@@ -58,10 +58,10 @@
    <ion-footer-bar  class="footer">
       <span class="ConcernsFooter">
          <div class="FooterLeft">
-            <a class="button_new icon ion-chevron-left" ng-click="goBackFromConcernToTreat()" ><span> Back</span></a>
+            <a class="button_new icon ion-chevron-left" ng-click="goBackFromConcernToTreat()" ><span class="localizejs"> Back</span></a>
          </div>
          <div class="FooterCenter" ng-click="cancelConsultation()">
-            <a class="button_new icon"  >Cancel</a>
+            <a class="button_new icon localizejs"  >Cancel</a>
          </div>
       </span>
    </ion-footer-bar>

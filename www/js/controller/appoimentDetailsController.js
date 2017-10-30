@@ -124,6 +124,7 @@ angular.module('starter.controllers')
         $rootScope.schedulePatAge = getAge($scope.schedulePatAgeChange);
         $rootScope.appointPatientGuardian = P_Guardian;
         $rootScope.appointmentsPage = true;
+        $(".overlay").css({"display": "none" });
         $rootScope.doGetAppointmentConsultationId(appointmentId,appointPersonId);
     }
     $scope.doGetWaitingRoom = function() {

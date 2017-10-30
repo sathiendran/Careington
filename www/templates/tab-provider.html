@@ -5,7 +5,7 @@
       <h2 ng-if="cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'"><span>Virtual Care</span></h2>
       <h2 ng-if="cobrandApp_New == 'MDAmerica' && deploymentEnv_New == 'Single'" style="margin-top: -15px;"><span>{{singleHospital}}</span></h2>
       <div class="bar bar-subheader-provider searchbox searchAccount newProviderSub">
-         <h3 class="logProvider">Select your provider</h3>
+         <h3 class="logProvider localizejs">Select your provider</h3>
       </div>
    </ion-header-bar>
    <ion-content class="content-height newProContent">
@@ -26,10 +26,10 @@
    <ion-footer-bar align-title="left" class="footer">
       <div class="ConcernsFooter">
          <div class="FooterLeft">
-            <a class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/login"><span>Back</span></a>
+            <a class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/login"><span class="localizejs">Back</span></a>
          </div>
          <div class="FooterCenter">
-            <a class="button_new icon" ng-href="#/tab/login" style="font-size: 18px;">Cancel</a>
+            <a class="button_new icon localizejs" ng-href="#/tab/login" style="font-size: 18px;">Cancel</a>
          </div>
       </div>
    </ion-footer-bar>
