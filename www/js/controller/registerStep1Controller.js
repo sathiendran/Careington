@@ -301,16 +301,16 @@ angular.module('starter.controllers')
                    $scope.contactmail=$scope.email;
                         var myPopup = $ionicPopup.show({
 
-                            title      :"<div class=''><p class='fname emailext' ><b>Account Already Exists</b></p> </div> ",
+                            title      :"<div class=''><p class='fname emailext localizejs' ><b>Account Already Exists</b></p> </div> ",
                             templateUrl: 'templates/emailpopup.html',
                             scope: $scope,
                             buttons: [{
-                                text: '<b class="fonttype">Edit Email</b>',
+                                text: '<b class="fonttype localizejs">Edit Email</b>',
                                 onTap: function(e) {
                                     return false;
                                 }
                             }, {
-                                text: '<b class="fonttype">Go to Login</b>',
+                                text: '<b class="fonttype localizejs">Go to Login</b>',
                                 type: 'button-positive',
                                 onTap: function(e) {
                                     return true;
@@ -416,16 +416,16 @@ angular.module('starter.controllers')
                     $scope.contactmail=$scope.email;
                   var myPopup = $ionicPopup.show({
 
-                      title      :"<div class=''><p class='fname emailext' ><b>Account Already Exists</b></p> </div> ",
+                      title      :"<div class=''><p class='fname emailext localizejs' ><b>Account Already Exists</b></p> </div> ",
                       templateUrl: 'templates/emailpopup.html',
                       scope: $scope,
                       buttons: [{
-                          text: '<b class="fonttype">Edit Email</b>',
+                          text: '<b class="fonttype localizejs">Edit Email</b>',
                           onTap: function(e) {
                               return false;
                           }
                       }, {
-                          text: '<b class="fonttype">Go to Login</b>',
+                          text: '<b class="fonttype localizejs">Go to Login</b>',
                           type: 'button-positive',
                           onTap: function(e) {
                               return true;
