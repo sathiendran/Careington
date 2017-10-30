@@ -89,7 +89,7 @@
                             <div class="consultation-phone js-phone-target" data-bind="css: {is-error: vm_phoneNumberError, is-active:vm_isPhoneNumberFilled}">
                                 <div class="consultation-phone__number">
                                     <div class="consultation-phone__icon"><span class="icon_phone"></span></div>
-                                    <input id="ffff" type="tel" data-value-update="keyup" data-bind="events: { keyup: vm_onPhoneNumberChange }, value: phoneNumber, disabled: isReadOnly" class="consultation-phone__input js-phone-input" placeholder="Enter a phone number…" tabindex="5">
+                                    <input id="ffff" type="tel" data-value-update="keyup" data-bind="events: { keyup: vm_onPhoneNumberChange }, value: phoneNumber, disabled: isReadOnly" class="consultation-phone__input js-phone-input localizejs" placeholder="Enter a phone number…" tabindex="5">
                                 </div>
                                 <div class="consultation-phone__type js-phone-wrap">
                                     <input type="text" data-bind="value: phoneType, source: phoneTypeDs, events: {change: vm_onPhoneTypeChange}, disabled: isReadOnly" data-role="dropdownlist" data-value-primitive="true" data-text-field="text" data-value-field="value" class="consultation-phone__dropdown js-dropdown-phone">
@@ -195,7 +195,7 @@
                                         </div>
                                     </div>
                                     <div class="consultation-note__drop" style="height: 400px !important;">
-                                      <textarea name="" id="" class="consultation-note__textarea js-autoresize-textarea" placeholder="Enter Additional Notes..." data-bind="value: additionalNotes, invisible: isReadOnly, events:{keyup: vm_onKeyUpAdditionalNotes}" style="overflow: hidden; word-wrap: break-word; height: 160px;"></textarea>
+                                      <textarea name="" id="" class="consultation-note__textarea js-autoresize-textarea localizejs" placeholder="Enter Additional Notes..." data-bind="value: additionalNotes, invisible: isReadOnly, events:{keyup: vm_onKeyUpAdditionalNotes}" style="overflow: hidden; word-wrap: break-word; height: 160px;"></textarea>
                                       <textarea disabled="" name="" id="" class="consultation-note__textarea js-autoresize-textarea" data-bind="html: additionalNotes, visible: isReadOnly" style="overflow-x: hidden; word-wrap: break-word; overflow-y: visible; height: auto;"></textarea>
                                     </div>
                                 </div>
