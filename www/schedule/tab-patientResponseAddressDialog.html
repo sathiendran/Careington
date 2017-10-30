@@ -8,7 +8,7 @@
     <div class="dialogbox dialogbox--location" data-bind="css:{is-hidden: isEditMode}">
         <!-- <div class="loader loader--grey loader--big" data-bind="css: { is-active: vm_isLoading }"></div> -->
         <div class="dialogbox__titlebar">
-            <span>Confirm Current Location</span>
+            <span class="localizejs">Confirm Current Location</span>
         </div>
         <div class="dialogbox__main">
             <div class="dialogbox-location">
@@ -33,12 +33,12 @@
 
     <div class="dialogbox dialogbox--location-search" data-bind="css:{is-active:isEditMode}">
         <div class="dialogbox__titlebar">
-            <span>Current Location</span>
+            <span class="localizejs">Current Location</span>
         </div>
         <div class="dialogbox__main">
             <div class="dialogbox-location is-search">
                 <div class="dialogbox-location__block dialogbox-location__block--search js-location-step-2">
-                    <p>Set your current location</p>
+                    <p class="localizejs">Set your current location</p>
                     <div class="dialogbox-location__form">
                         <div class="search search--location" id="autocompleteCountry-wrap"
                             data-bind="css: { is-error: vm_countryError }">

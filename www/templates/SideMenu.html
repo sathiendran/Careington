@@ -86,7 +86,7 @@
        </a>
 
        <ul class="main-nav__list" >
-           <li><a ng-href="#/tab/userhome"><span> <i ng-bind-html="drawSVGCIcon('users')"></i></span>Patient List</a></li>
+           <li><a ng-href="#/tab/userhome"><span> <i ng-bind-html="drawSVGCIcon('users')"></i></span><span class="localizejs">Patient List</span></a></li>
            <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')" ><a><span> <i ng-bind-html="drawSVGCIcon('clipboard')"></i></span><Span class="localizejs">My Health</span></a></li>
            <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClickApoointments')"><a><span><i ng-bind-html="drawSVGCIcon('calendar')"></i></span><span class="localizejs">My Appointments</span></a></li>
            <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'tab.consultations')"><a><span><i ng-bind-html="drawSVGCIcon('health_card')"></i></span><span class="localizejs">My Consultations</span></a></li>

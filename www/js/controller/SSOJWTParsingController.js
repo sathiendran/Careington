@@ -1016,21 +1016,21 @@ angular.module('starter.controllers')
 
                       var confirmPopup = $ionicPopup.confirm({
 
-                          title: "<div class='locationtitle'> Confirm Current Location </div> ",
+                          title: "<div class='locationtitle localizejs'> Confirm Current Location </div> ",
 
                           templateUrl: 'templates/currentLocation.html',
                           cssClass: 'locpopup',
                           hardwareBackButtonClose: false,
 
                           buttons: [{
-                              text: '<b>No</b>',
+                              text: '<b class="localizejs">No</b>',
                               onTap: function(e) {
 
                                   $scope.showAlert();
                                   return true;
                               }
                           }, {
-                              text: '<b>Yes</b>',
+                              text: '<b class="localizejs">Yes</b>',
                               type: 'button-positive',
                               onTap: function(e) {
                                   //  return true;

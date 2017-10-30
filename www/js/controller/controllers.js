@@ -612,7 +612,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -931,7 +931,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
         }
         refresh_close();
 
-        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Unable to connect to the server. Please try again later! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled localizejs" style="font-size: 22px;"></i> Unable to connect to the server. Please try again later! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         $("#notifications-top-center").remove();
         $(".Server_Error").append(top);
         refresh_close();
@@ -3263,21 +3263,21 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
                     var confirmPopup = $ionicPopup.confirm({
 
-                        title: "<div class='locationtitle'> Confirm Current Location </div> ",
+                        title: "<div class='locationtitle localizejs'> Confirm Current Location </div> ",
 
                         templateUrl: 'templates/currentLocation.html',
                         cssClass: 'locpopup',
                         hardwareBackButtonClose: false,
 
                         buttons: [{
-                            text: '<b>No</b>',
+                            text: '<b class="localizejs">No</b>',
                             onTap: function(e) {
 
                                 $scope.showAlert();
                                 return true;
                             }
                         }, {
-                            text: '<b>Yes</b>',
+                            text: '<b class="localizejs">Yes</b>',
                             type: 'button-positive',
                             onTap: function(e) {
                                 //  return true;
@@ -7476,7 +7476,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
                             var confirmPopup = $ionicPopup.confirm({
 
-                                title: "<div class='locationtitle'> Confirm Current Location </div> ",
+                                title: "<div class='locationtitle localizejs'> Confirm Current Location </div> ",
 
                                 templateUrl: 'templates/currentLocation.html',
                                 cssClass: 'locpopup',
@@ -7488,7 +7488,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                                         return true;
                                     }
                                 }, {
-                                    text: '<b>Yes</b>',
+                                    text: '<b class="localizejs">Yes</b>',
                                     type: 'button-positive',
                                     onTap: function(e) {
 

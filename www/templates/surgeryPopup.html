@@ -2,7 +2,7 @@
    <ion-view  title="Prior Surgery" cache-view="false">
        <form>
         <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-           <div class="ErrorMessage ErrorMessageDiv"  ></div>
+           <div class="ErrorMessage ErrorMessageDiv localizejs"  ></div>
            <button class="button button-clear {{concernListDoneStyle}} localizejs" style="{{PriorSurgeryPopupCancel}};font-size: 18px !important;" ng-click="RemoveSurgeryPopup()">Done</button>
            <h1 class="title {{concernListTitleStyle}} localizejs" style="{{PrimaryConcernPopupTitle}}; ">Prior Surgeries</h1>
            <button type="submit" ng-show="showIntakeNewSurgeryAdd" class="button button-clear surgeryTopAddButton {{concernListDoneStyle}} localizejs" style="{{surgeryConcernPopupDone}};font-size: 18px !important;" ng-click="closeSurgeryPopup()" >Add</button>
@@ -22,7 +22,7 @@
                      <div class="surgeryEdit-{{$index}} animated slideInRight" style="display: none;">
                           <div class="item item-input validated" style="border-left: none; border-right: none;">
                                <span class="input-label priorTag localizejs">Procedure</span>
-                               <input type="text"  name="surDescription[]" id="surDescription_{{$index}}"  value="{{surgery.Name}}"  placeholder="Short description" class="priorValue" >
+                               <input type="text"  name="surDescription[]" id="surDescription_{{$index}}"  value="{{surgery.Name}}"  placeholder="Short description" class="priorValue localizejs" >
                                <a class="surgeryCloseIcon" ng-click="removeSurgeryItem({{$index}});" ><i class="ion-trash-b" ></i></a>
                           </div>
                           <div class="item item-input validated" style="border-left: none; border-right: none;">
@@ -47,7 +47,7 @@
                    <!--<h5 class="surname">Add New Surgery</h5>-->
                    <div class="item item-input validated">
                         <span class="input-label priorTag localizejs">Procedure</span>
-                        <input type="text" value=""  placeholder="Short description" ng-model="surgery.name" name="name" id="name" class="priorValue">
+                        <input type="text" value=""  placeholder="Short description" ng-model="surgery.name" name="name" id="name" class="priorValue localizejs">
                        <!-- <a class="surgeryCloseIcon" ng-click="backtoSurgeryView();"><i class="ion-close" ></i></a>-->
                        <a class="surCloseIcon" ng-click="backtoSurgeryView();" ><i style="font-size: 24px;"  ng-bind-html="drawSVGCIcon('cross');"></i></a>
                      </div>

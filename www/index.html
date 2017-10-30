@@ -401,29 +401,29 @@
                     <div class="drawer-info-panel">
 
                         <div class="drawer-info-panel__cell drawer-info-panel__cell--practicing">
-                            <div class="drawer-info-panel__header">Practicing</div>
+                            <div class="drawer-info-panel__header localizejs">Practicing</div>
                             <div class="drawer-info-panel__content"  data-bind="text: vm_getPracticingYears">
-                                <b>14</b><span>Years</span>
+                                <b>14</b><span class="localizejs">Years</span>
                             </div>
                         </div>
 
                         <div class="drawer-info-panel__cell drawer-info-panel__cell--gender">
-                            <div class="drawer-info-panel__header">Gender</div>
-                            <div class="drawer-info-panel__content"><span data-bind="text: vm_getGenderText">Female</span></div>
+                            <div class="drawer-info-panel__header localizejs">Gender</div>
+                            <div class="drawer-info-panel__content"><span data-bind="text: vm_getGenderText" class="localizejs">Female</span></div>
                         </div>
 
                         <div class="drawer-info-panel__cell drawer-info-panel__cell--age">
-                            <div class="drawer-info-panel__header">Age</div>
+                            <div class="drawer-info-panel__header localizejs">Age</div>
                             <div class="drawer-info-panel__content"><span  data-bind="ageString: dob"></span></div>
                         </div>
 
                         <div class="drawer-info-panel__cell drawer-info-panel__cell--states">
-                            <div class="drawer-info-panel__header">States Licensed</div>
+                            <div class="drawer-info-panel__header localizejs">States Licensed</div>
                             <div class="drawer-info-panel__content drawer-info-panel__country-container" data-template="country-template" data-role="listview" data-bind="source: statesLicensed"></div>
                         </div>
 
                         <div class="drawer-info-panel__cell drawer-info-panel__cell--address">
-                            <div class="drawer-info-panel__header">Address</div>
+                            <div class="drawer-info-panel__header localizejs">Address</div>
                             <div class="drawer-info-panel__content"><span data-bind="text: address">121 Lexington Ave Glendale, CA 91203</span></div>
                         </div>
                     </div>
@@ -434,13 +434,13 @@
                         class="drawer-card__footer-toggler"
                         data-bind = "events: { click: vm_toogleFooter }">
 
-                        <span data-bind="invisible: apptsSlotsTray.vm_isEmpty">Available Times</span>
-                        <span data-bind="visible: apptsSlotsTray.vm_isEmpty, html: apptsSlotsTray.vm_getNextApptSlotInfo"></span>
+                        <span data-bind="invisible: apptsSlotsTray.vm_isEmpty" class="localizejs">Available Times</span>
+                        <span data-bind="visible: apptsSlotsTray.vm_isEmpty, html: apptsSlotsTray.vm_getNextApptSlotInfo" class="localizejs"></span>
                     </div>
 
                     <button type="button" class="drawer-card__action"
                         data-bind="visible: apptsSlotsTray.vm_hasSlotsForRightNow, events: { click: vm_onConnectNowClick}">
-                        <div>Connect Now</div>
+                        <div class="localizejs">Connect Now</div>
                     </button>
 
                     <div class="drawer-card__footer-content"
@@ -464,7 +464,7 @@
                     data-bind="text: speciality"></span>
             </div>
 
-            <div class="drawer-card__footer-flip-label">
+            <div class="drawer-card__footer-flip-label localizejs">
                 Select a Time
             </div>
 
@@ -505,7 +505,7 @@
         <div
             class="panel-filter__title #if(data.isCathegoryOpen) {# is-open #}#"
             data-bind="events: {click: vm_onCathegoryToogle}, css: {is-open: isCathegoryOpen}">
-            <span data-bind="text: cathegoryName"> </span>
+            <span data-bind="text: cathegoryName" class="localizejs"> </span>
             <div type="button" class="panel-filter__arrow">
                 <span class="icon_chevron-small-down"></span>
             </div>
@@ -518,14 +518,14 @@
 </script>
 <script type="text/x-kendi-template" id="filterTemplate">
     <label class="panel-filter__item" data-bind="visible: vm_showFilter">
-        <div class="panel-filter__caption">
-           <span data-bind="text: filterName"></span>
+        <div class="panel-filter__caption localizejs">
+           <span data-bind="text: filterName" class="localizejs"></span>
            <span data-bind="text: vm_getFilterQuantity, visible: vm_showFilterQuantity"></span>
         </div>
         <div class="panel-filter__checkbox">
             <div class="checkbox">
                 <input type="checkbox" tabindex="3" id="myCheck" indeterminate="false" data-bind="checked: isFilterChecked, events: {click: vm_onCheckedStateChange}" abindex="3">
-                <span class="checkbox__control"></span>
+                <span class="checkbox__control" class="localizejs"></span>
             </div>
         </div>
     </label>
@@ -581,8 +581,8 @@
 
         <div class="directory directory--consultation" data-bind="invisible: isSelectorLocked, css: {is-active: isItemsSelectorVisible, is-loading: vm_isItemsLoading}">
             <div class="directory__titlebar">
-                <span data-bind="text: vm_userTrayHeaderText">Directory</span>
-                <button class="button directory__button js-toggle-dir" data-bind="events: {click: vm_hideItemsSelector}" style="min-height: auto; line-height: 30px;">Done</button>
+                <span data-bind="text: vm_userTrayHeaderText" class="localizejs">Directory</span>
+                <button class="button directory__button js-toggle-dir localizejs" data-bind="events: {click: vm_hideItemsSelector}" style="min-height: auto; line-height: 30px;">Done</button>
             </div>
 
             <div class="directory__main">
