@@ -161,10 +161,11 @@
                <h4 class="localizejs">Already have an account? <a ng-click="backtoPreviousPage();"><span class="localizejs">Login</span></a></h4>
             </div>
             <div ng-if="deploymentEnv !== 'Single'" class="acinfoRegister1Back-{{deviceName}} newLogProviderSecDiv-{{deviceName}}" >
-               <h4 class="localizejs">Wrong Provider? <span ng-click="registerStpe1BackToSearchProvider();">Go Back to Search</span></h4>
+               <h4 class="localizejs"><span class="localizejs">Wrong Provider?</span> <span ng-click="registerStpe1BackToSearchProvider();">Go Back to Search</span></h4>
             </div>
             <div class="acinfoRegisterBottomAcceptText-{{deviceName}}"  >
-               <p class="localizejs">By clicking below I understand that I am accepting the <span class="localizejs" style="text-decoration: underline;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</span> <span class="localizejs">as well as the </span><span style="text-decoration: underline;"><a class="hospitalDynamicLink localizejs" ng-click="hospitallink()" >Privacy Policy</a></span> <span class="localizejs">associated with the use of this service.</span></p>
+               <p class="localizejs"><span class="localizejs">By clicking below I understand that I am accepting the </span><span class="localizejs" style="text-decoration: underline;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</span> <span class="localizejs">as well as the </span><span style="text-decoration: underline;"><a class="hospitalDynamicLink localizejs" ng-click="hospitallink()" >Privacy Policy</a></span>
+                 <span class="localizejs">associated with the use of this service.</span></p>
             </div>
             <div ng-controller="LoginCtrl">
             </div>
