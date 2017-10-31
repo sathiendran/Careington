@@ -97,7 +97,7 @@
                                 </div>
                                 <div class="pc-report__data-list-item pc-report__data-list-item--small">
                                     <span class="pc-report__data-list-title localizejs">AGE</span>
-                                    <span class="pc-report__data-list-des localizejsc">{{existingConsultationReport.dob  | ageFilterReport}}</span>
+                                    <span class="pc-report__data-list-desc localizejs">{{existingConsultationReport.dob  | ageFilterReport}}</span>
                                 </div>
                             </div>
                             <div class="pc-report__data-list">
@@ -503,7 +503,7 @@
 
                                    <div class="pc-report__table-row pc-report__table-row--50x50" ng-repeat="getSurgeryList in ReportSurgeries">
                                        <span class="localizejs">{{getSurgeryList.description}}</span>
-                                       <span>{{getSurgeryList.month}} / {{getSurgeryList.year}}</span>
+                                       <span>{{getSurgeryList.month | date:'MMM'}}. {{getSurgeryList.year}}</span>
                                    </div>
                                  <!--   <div class="pc-report__table-row pc-report__table-row--50x50"  ng-if="intake.surgeries == ''">
                                        None Reported
