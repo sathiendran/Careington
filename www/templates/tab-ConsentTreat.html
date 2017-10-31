@@ -14,14 +14,14 @@
                     <span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
                     <span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
                  </div>
-                 <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis localizejs"><span ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"> . {{patRelationShip}}</span></div>
+                 <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis localizejs"><span ng-if="userGender != ''" class="localizejs">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId" class="localizejs"> . {{patRelationShip}}</span></div>
               </div>
            </div>
         </div>
      </ion-header-bar>
    <ion-view title="Appointment Details">
       <div class="conTreatSubHead-{{deviceName}}">
-         <div ng-if="userAgeForIntake == 7" class="ConsentSteps localizejs" style="{{IntakeFormInnerStyle}}" >Step <b style="color:#535353;">6</b> of <b style="color:#535353;">7</b></div>
+         <div ng-if="userAgeForIntake == 7" class="ConsentSteps localizejs" style="{{IntakeFormInnerStyle}}" ><span class="localizejs">Step</span> <b style="color:#535353;">6</b> <span class="localizejs">of</span> <b style="color:#535353;">7</b></div>
          <div ng-if="userAgeForIntake != 7" class="ConsentSteps localizejs" style="{{IntakeFormInnerStyle}}" >Step <b style="color:#535353;">7</b> of <b style="color:#535353;">8</b></div>
          <div>
             <h1 class="ChronicCondition concernsSubTit consentTitle localizejs" style="{{IntakeFormInnerStyleTitle}}">Consent to Treat</h1>
@@ -35,7 +35,7 @@
          <div style="padding: 0 5%;">
             <div class="ConsentMessageFirst" >
                <p  class="PragraphContent"> <b>
-                  <span class="localizejs">I</span>, {{PatientFirstName}} {{PatientLastName}} <span class="localizejs">or guardian,give/s permission to</span> <b style="font-family: Glober xBold; {{ConstantTreat}}" class="ConstanttreetFont">{{clientName}}</b> <span class="localizejs">to perform the medical service that the provider and other non-providers and assistants may deem to be necessary. In addition, I, or guardian authorize/s</span> <b style="font-family: Glober xBold; {{ConstantTreat}}" class="ConstanttreetFont">{{clientName}}</b> <span class="localizjs">to release any information obtained during the course of my examination and/or treatment to my health care insurer or other payer.</span>
+                  <span class="localizejs">I</span>, {{PatientFirstName}} {{PatientLastName}} <span class="localizejs">or guardian,give/s permission to</span> <b style="font-family: Glober xBold; {{ConstantTreat}}" class="ConstanttreetFont">{{clientName}}</b> <span class="localizejs">to perform the medical service that the provider and other non-providers and assistants may deem to be necessary. In addition, I, or guardian authorize/s</span> <b style="font-family: Glober xBold; {{ConstantTreat}}" class="ConstanttreetFont">{{clientName}}</b> <span class="localizejs">to release any information obtained during the course of my examination and/or treatment to my health care insurer or other payer.</span>
                   </b>
                </p>
             </div>

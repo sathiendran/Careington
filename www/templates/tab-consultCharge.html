@@ -16,7 +16,7 @@
                   <span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
                   <span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
                </div>
-               <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span class="localizejs" ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"> . {{patRelationShip}}</span></div>
+               <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span class="localizejs" ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId" class="localizejs"> . {{patRelationShip}}</span></div>
             </div>
          </div>
       </div>
@@ -69,7 +69,7 @@
                                 <div class="insProviderName" style="width: 15em;padding-left: 17px;">{{providerName}}</div><div class="insSubscriberName" style="padding-left: 17px;"><span class ="localizejs">Subscriber ID:</span>{{PolicyNo}}</div>
 
                               </div>
-                              <select class="consultHealthPlanDropDown" id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan"  style="border: none;">
+                              <select class="consultHealthPlanDropDown localizejs" id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan"  style="border: none;">
                                  <option value="Choose Your Health Plan"><b class="localizejs">Choose Your Health Plan</b></option>
                                  <option class="planlist" ng-repeat="GetPlanList in patientHealthPlanList" value="{{GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumberLong + '@' + GetPlanList.healthPlanId}}" ng-selected="GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumberLong + '@' + GetPlanList.healthPlanId == providerName + '@' + PolicyNo + '@' + healthPlanID"><b>
                                     <span >{{GetPlanList.insuranceCompany + ' ' + GetPlanList.policyNumberLong}}</span></b>
