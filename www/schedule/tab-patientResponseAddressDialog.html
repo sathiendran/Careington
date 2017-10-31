@@ -8,7 +8,7 @@
     <div class="dialogbox dialogbox--location" data-bind="css:{is-hidden: isEditMode}">
         <!-- <div class="loader loader--grey loader--big" data-bind="css: { is-active: vm_isLoading }"></div> -->
         <div class="dialogbox__titlebar">
-            <span>Confirm Current Location</span>
+            <span class="localizejs">Confirm Current Location</span>
         </div>
         <div class="dialogbox__main">
             <div class="dialogbox-location">
@@ -23,7 +23,7 @@
                     </div>
                     <p>Is this where you are now?</p>
                 </div>
-            </div>   
+            </div>
         </div>
         <div class="dialogbox__buttons">
             <button data-bind="events: {click: vm_onNoClick}" class="button button__gray js-location-search"><span>No</span></button>
@@ -33,16 +33,16 @@
 
     <div class="dialogbox dialogbox--location-search" data-bind="css:{is-active:isEditMode}">
         <div class="dialogbox__titlebar">
-            <span>Current Location</span>
+            <span class="localizejs">Current Location</span>
         </div>
         <div class="dialogbox__main">
             <div class="dialogbox-location is-search">
                 <div class="dialogbox-location__block dialogbox-location__block--search js-location-step-2">
-                    <p>Set your current location</p>
+                    <p class="localizejs">Set your current location</p>
                     <div class="dialogbox-location__form">
-                        <div class="search search--location" id="autocompleteCountry-wrap" 
+                        <div class="search search--location" id="autocompleteCountry-wrap"
                             data-bind="css: { is-error: vm_countryError }">
-                            <input 
+                            <input class="localizejs"
                                 data-role="autocomplete"
                                 data-placeholder="Find Country"
                                 data-text-field="text"
@@ -59,7 +59,7 @@
 
                         <div class="search search--location" id="autocompleteState-wrap" disabled
                             data-bind="css: { is-error: vm_stateError }, visible: vm_isRegionsAutocompleteEnable">
-                            <input 
+                            <input class="localizejs"
                                 data-role="autocomplete"
                                 data-placeholder="Find state or region"
                                 data-text-field="text"
@@ -82,11 +82,10 @@
             <button data-bind="events: {click: vm_onCancelClick}" class="button button__gray js-location-search"><span>Cancel</span></button>
             <button class="button button__green js-location-confirm"
                 data-bind="disabled:vm_isSaveDisabled,
-                    events: {click: vm_onSaveClick}, 
+                    events: {click: vm_onSaveClick},
                     css: { button__red: vm_isError, is-loading:vm_isLoading}">
-                <span data-bind="text: vm_saveButtonText"></span>
+                <span class="localizejs">data-bind="text: vm_saveButtonText"></span>
             </button>
         </div>
     </div>
- </div>                 
-
+ </div>

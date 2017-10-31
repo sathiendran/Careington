@@ -14,7 +14,7 @@
                   <div class="item-input-inset" style="margin-top: 0px!important;margin-bottom: 0px!important;">
                      <label class="item-input-wrapper">
                      <i style="display: {{iconDisplay}}" ng-bind-html="drawSVGCIcon('magnifying-glass')" class="inputsearchtext"></i>
-                     <input type="search" class="inputsearchtext" placeholder="Search" ng-model="data.searchProvider">
+                     <input type="search" class="inputsearchtext localizejs" placeholder="Search" ng-model="data.searchProvider">
                      </label>
                   </div>
                </div>
@@ -31,7 +31,7 @@
             <ion-item  ng-show="(currentPatientsearchList | filter:data.searchProvider).length==0" class="noResult" style="white-space: normal;">Sorry No Result Found!</ion-item>
          </ion-list>
          <ul class="alpha_sidebar" ng-show="(currentPatientsearchList | filter:data.searchProvider).length!=0" id="nav">
-            <li ng-click="gotopatList('index_{{letter}}')" ng-repeat="letter in alphabet" id="lettertest" class="localizejs">
+            <li ng-click="gotopatList('index_{{letter}}')" ng-repeat="letter in alphabet" id="lettertest">
                {{letter}}
             </li>
          </ul>

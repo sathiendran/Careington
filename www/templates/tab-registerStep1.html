@@ -5,7 +5,7 @@
 </style>
 <form name="userRegister" id="userRegister" ng-submit="postRegisterStep1()" >
 <ion-view>
-   <div id="Error_Message" ></div>
+   <div id="Error_Message" class="localizejs" ></div>
    <div class="registerContent__registerCard" ng-if="is_iPadDeviceWidth < 768">
    <ion-content class="register registerContent" >
       <div class="epassbg registerContent__registerHeading" style="background-color: {{brandColor}}">
@@ -26,7 +26,7 @@
                   <div>
                      <label class="user-account__label localizejs">First Name</label>
                      <div class="user-account__input ">
-                        <input ng-model="regStep1.FName" name="regFName" id="regFName" type="text" placeholder="type here..." ng-keyup="fnameBlur()" >
+                        <input ng-model="regStep1.FName" name="regFName" id="regFName" type="text" class="localizejs" placeholder="type here..." ng-keyup="fnameBlur()" >
                         <span class="user-account__error-message localizejs" ng-show="fnameerror">Please enter your first name</span>
                      </div>
                   </div>
@@ -38,8 +38,8 @@
                   <div>
                      <label class="user-account__label localizejs">Last Name</label>
                      <div class="user-account__input">
-                        <input type="text" placeholder="type here..."  ng-model="regStep1.LName" name="regLName" id="regLName" ng-keyup="lnameBlur()">
-                        <span class="user-account__error-message" ng-show="lnameerror localizejs">Please enter your last name</span>
+                        <input type="text" class="localizejs" placeholder="type here..."  ng-model="regStep1.LName" name="regLName" id="regLName" ng-keyup="lnameBlur()">
+                        <span class="user-account__error-message localizejs" ng-show="lnameerror">Please enter your last name</span>
                      </div>
                   </div>
                </div>
@@ -50,8 +50,8 @@
                   <div>
                      <label class="user-account__label localizejs">Gender</label>
                      <div class="user-account__input">
-                       <select class="ssooption textdata" ng-model="regStep1.regGender" name="regGender" id="regGender" ng-change="genderBlur()" >
-                          <option value=""><b class="localizejs">Choose</b></option>
+                       <select class="ssooption textdata localizejs" ng-model="regStep1.regGender" name="regGender" id="regGender" ng-change="genderBlur()" >
+                          <option value=""><b>Choose</b></option>
                           <option value="M" >Male</option>
                           <option value="F" >Female</option>
                        </select>
@@ -65,9 +65,9 @@
                <div class="user-account__fieldIcon" style="float:left;"><i ng-bind-html="drawSVGCIcon('calendar');"></i></div>
                <div class="user-account__fieldset regstdob" >
                   <div>
-                     <label class="user-account__label">D.O.B</label>
+                     <label class="user-account__label localizejs">D.O.B</label>
                      <div class="user-account__input">
-                        <input type="date" placeholder="type here..." ng-model="regStep1.regDOB" name="regDOB" id="regDOB"  ng-change="regdobs()" >
+                        <input type="date" class="localizejs" placeholder="type here..." ng-model="regStep1.regDOB" name="regDOB" id="regDOB"  ng-change="regdobs()" >
                         <span class="user-account__error-message localizejs" ng-show="dobmanderror">Please select your DOB</span>
                           <span class="user-account__error-message localizejs" ng-show="dobfuture">DOB can not be in Future</span>
                           <span class="user-account__error-message localizejs" ng-show="doberror">You should be atleast 12 years old to register</span>
@@ -82,10 +82,10 @@
                      <label class="user-account__label localizejs">Full Home Address</label>
                      <div class="user-account__input" >
                         <!--<input type="text" placeholder="type here..."  ng-model="regStep1.regAddress" name="regAddress" id="regAddress" required>-->
-                         <ion-google-place class="ssoaddress" placeholder="type here..." ng-model="regStep1.homeadd" id="regaddress" ng-change="addressBlur()"  />
+                         <ion-google-place class="ssoaddress localizejs" placeholder="type here..." ng-model="regStep1.homeadd" id="regaddress" ng-change="addressBlur()"  />
 
                      </div>
-                     <span class="user-account__error-message" ng-show="adderror">Please Select your address</span>
+                     <span class="user-account__error-message localizejs" ng-show="adderror">Please Select your address</span>
                   </div>
                </div>
             </div>
@@ -95,10 +95,10 @@
                   <div class="">
                      <label class="user-account__label localizejs">Email Address</label>
                      <div class="user-account__input " ng-keyup="emailBlur()">
-                        <input type="email" placeholder="type here..." ng-model="regStep1.regEmail" name="regEmail" id="regEmail"  >
-                        <span class="user-account__error-message" ng-show="emailmanderror localizejs">Please enter your email id</span>
-                        <span class="user-account__error-message" ng-show="emailerror localizejs">Please enter valid email id</span>
-                        <span class="user-account__error-message" ng-show="emailexisterror localizejs">An account with this email already exist.</span>
+                        <input type="email" class="localizejs" placeholder="type here..." ng-model="regStep1.regEmail" name="regEmail" id="regEmail"  >
+                        <span class="user-account__error-message localizejs" ng-show="emailmanderror">Please enter your email id</span>
+                        <span class="user-account__error-message localizejs" ng-show="emailerror">Please enter valid email id</span>
+                        <span class="user-account__error-message localizejs" ng-show="emailexisterror">An account with this email already exist.</span>
                      </div>
                   </div>
                </div>
@@ -109,11 +109,10 @@
                   <div class="regContainer">
                      <label class="user-account__label localizejs">Country</label>
                      <div class="user-account__input regDropDownContainer">
-                        <div class="viewport localizejs" ng-if="regCountry2 == ''">Choose</div>
-                        <div class="viewport" ng-if="regCountry2 != ''">{{regCountry2}}</div>
-                         <select class="ssooptionCountry textdata consultHealthPlanDropDown" id="regCountryCode" name="regCountryCode" ng-model="regStep1.regCountryCode"  ng-change="countryBlur()" >
-                            <option value="Choose"><b class="localizejs">Choose</b></option>
-                            <option class="planlist" ng-repeat="country in serviceCountries" ng-selected="country.code == regCountry2" value="{{country.code}}"><b class="localizejs">{{country.name}} ({{country.code}})</b></option>
+                        <div class="viewport localizejs">Choose</div>
+                         <select class="ssooptionCountry textdata consultHealthPlanDropDown localizejs" id="regCountryCode" name="regCountryCode" ng-model="regStep1.regCountryCode"  ng-change="countryBlur()" >
+                            <option value="Choose" class="localizejs"><b class="localizejs">Choose</b></option>
+                            <option class="planlist" ng-repeat="country in serviceCountries" value="{{country.code}}"><b>{{formatIsdCode(country.code, "&nbsp;", 10 ) + country.name}}</b></option>
                          </select>
                         <span class="user-account__error-message localizejs" ng-show="countryError">Please choose your country code</span>
                      </div>
@@ -123,7 +122,7 @@
                   <div style="position: relative; left: -20px;">
                      <label class="user-account__label localizejs">Mobile</label>
                      <div class="user-account__input">
-                        <input type="tel" placeholder="type here..." ng-model="regStep1.regMobile" name="regMobile" id="regMobile" ng-keyup="moblieBlur()"  phone-input>
+                        <input type="tel" class="localizejs" placeholder="type here..." ng-model="regStep1.regMobile" name="regMobile" id="regMobile" ng-keyup="moblieBlur()"  phone-input>
                         <span class="user-account__error-message localizejs" ng-show="mobilemanderror" >Please enter a mobile number</span>
                         <span class="user-account__error-message localizejs" ng-show="mobileerror" >Please enter a valid mobile number</span>
                      </div>
@@ -136,9 +135,9 @@
                   <div>
                      <label class="user-account__label localizejs">Password</label>
                      <div class="user-account__input">
-                        <input type="password" placeholder="type here..." ng-model="regStep1.regPassword" name="regPassword" id="regPassword"  ng-keyup="pwdBlur()" >
-                        <span class="user-account__error-message localizejs" ng-show="pwdmanderror">Please enter your password</span>
-                        <span class="user-account__error-message localizejs" ng-show="pwderror">Your Password must be between 8 and 20 characters. It must contain at least one upper and lower case letter and at least one number</span>
+                        <input type="password" class="localizejs" placeholder="type here..." ng-model="regStep1.regPassword" name="regPassword" id="regPassword"  ng-keyup="pwdBlur()" >
+                        <span class="user-account__error-message localizejs" ng-show="pwdmanderror ">Please enter your password</span>
+                        <span class="user-account__error-message localizejs" ng-show="pwderror ">Your Password must be between 8 and 20 characters. It must contain at least one upper and lower case letter and at least one number</span>
                         <span class="user-account__error-message localizejs" ng-show="pwdspaceerror">Password must not contain white spaces</span>
                       </div>
                   </div>
@@ -150,21 +149,28 @@
                   <div>
                      <label class="user-account__label localizejs">Confirm Password</label>
                      <div class="user-account__input">
-                        <input  type="password" placeholder="type here..." ng-model="regStep1.regConfrmPassword" name="regConfrmPassword" id="regConfrmPassword"  ng-keyup="confirmpwdBlur()" >
+                        <input  type="password"  class="localizejs" placeholder="type here..." ng-model="regStep1.regConfrmPassword" name="regConfrmPassword" id="regConfrmPassword"  ng-keyup="confirmpwdBlur()" >
                         <span class="user-account__error-message localizejs" ng-show="confirmpwdmanderror">Please enter your confirm password</span>
                         <span class="user-account__error-message localizejs" ng-show="cnfrmpwderror">Password Mismatch</span>
                      </div>
                   </div>
                </div>
             </div>
-            <div class="acinfoRegister1-{{deviceName}}">
-               <h4 class="localizejs">Already have an account? <a ng-click="backtoPreviousPage();"><span class="localizejs">Login</span></a></h4>
+            <div class="acinfoRegister1-{{deviceName}} localizejs">
+               <h4><span class="localizejs"> Already have an account?</span><a ng-click="backtoPreviousPage();"><span class="localizejs">Login</span></a></h4>
             </div>
             <div ng-if="deploymentEnv !== 'Single'" class="acinfoRegister1Back-{{deviceName}} newLogProviderSecDiv-{{deviceName}}" >
-               <h4 class="localizejs">Wrong Provider? <span ng-click="registerStpe1BackToSearchProvider();">Go Back to Search</span></h4>
+               <h4 class="localizejs"><span class="localizejs">Wrong Provider?</span> <span ng-click="registerStpe1BackToSearchProvider();" class="localizejs">Go Back to Search</span></h4>
             </div>
-            <div class="acinfoRegisterBottomAcceptText-{{deviceName}}"  >
-               <p class="localizejs">By clicking below I understand that I am accepting the <span class="localizejs" style="text-decoration: underline;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</span> <span class="localizejs">as well as the </span><span style="text-decoration: underline;"><a class="hospitalDynamicLink localizejs" ng-click="hospitallink()" >Privacy Policy</a></span> <span class="localizejs">associated with the use of this service.</span></p>
+            <div class="acinfoRegisterBottomAcceptText-{{deviceName}} localizejs"  >
+               <p><span class="localizejs">By clicking below I understand that I am accepting the</span>
+                 <span class="localizejs" style="text-decoration: underline;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">
+                   Terms & Conditions</span>
+                 <span class="localizejs"> as well as the </span>
+                 <span style="text-decoration: underline;">
+                   <a class="hospitalDynamicLink" ng-click="hospitallink()" >
+                     <span class="localizejs">Privacy Policy</span></a></span>
+                      <span class="localizejs">associated with the use of this service.</span></p>
             </div>
             <div ng-controller="LoginCtrl">
             </div>
@@ -173,7 +179,7 @@
                <ion-footer-bar  class="bar bar-footer footer  footer-color regFooter"  hide-on-keyboard="true" >
                   <div class="regFooter__regConcernsFooter">
                      <button type="submit" class="button localizejs">
-                     Agree & Create Account
+                    <span class="localizejs">Agree & Create Account</span>
                      </button>
                   </div>
                </ion-footer-bar>
@@ -199,7 +205,7 @@
                   <div>
                      <label class="user-account__label localizejs">First Name</label>
                      <div class="user-account__input ">
-                        <input ng-model="regStep1.FName" name="regFName" id="regFName" type="text" placeholder="type here..." ng-keyup="fnameBlur()" >
+                        <input ng-model="regStep1.FName" class="localizejs" name="regFName" id="regFName" type="text" placeholder="type here..." ng-keyup="fnameBlur()" >
                         <span class="user-account__error-message localizejs" ng-show="fnameerror">Please enter your first name</span>
                      </div>
                   </div>
@@ -222,11 +228,11 @@
                <div class="user-account__fieldset regstgender">
                   <div>
                      <label class="user-account__label localizejs">Gender</label>
-                     <div class="user-account__input">
-                       <select class="ssooption textdata" ng-model="regStep1.regGender" name="regGender" id="regGender" ng-change="genderBlur()" >
+                     <div class="user-account__input localizejs">
+                       <select class="localizejs ssooption textdata" ng-model="regStep1.regGender" name="regGender" id="regGender" ng-change="genderBlur()" >
                           <option value=""><b class="localizejs">Choose</b></option>
-                          <option value="M" >Male</option>
-                          <option value="F" >Female</option>
+                          <option value="M" class="localizejs">Male</option>
+                          <option value="F" class="localizejs">Female</option>
                        </select>
 
                         <span class="user-account__error-message localizejs" ng-show="gendererror">Please choose your gender</span>
@@ -238,12 +244,12 @@
                <div class="user-account__fieldIcon" style="float:left;"><i ng-bind-html="drawSVGCIcon('calendar');"></i></div>
                <div class="user-account__fieldset regstdob" >
                   <div>
-                     <label class="user-account__label">D.O.B</label>
+                     <label class="user-account__label localizejs">D.O.B</label>
                      <div class="user-account__input">
-                        <input type="date" placeholder="type here..." ng-model="regStep1.regDOB" name="regDOB" id="regDOB"  ng-change="regdobs()" >
-                        <span class="user-account__error-message" ng-show="dobmanderror localizejs">Please select your DOB</span>
-                          <span class="user-account__error-message" ng-show="dobfuture localizejs">DOB can not be in Future</span>
-                          <span class="user-account__error-message" ng-show="doberror localizejs">You should be atleast 12 years old to register</span>
+                        <input type="date" class="localizejs" placeholder="type here..." ng-model="regStep1.regDOB" name="regDOB" id="regDOB"  ng-change="regdobs()" >
+                        <span class="user-account__error-message localizejs" ng-show="dobmanderror">Please select your DOB</span>
+                          <span class="user-account__error-message localizejs" ng-show="dobfuture">DOB can not be in Future</span>
+                          <span class="user-account__error-message localizejs" ng-show="doberror">You should be atleast 12 years old to register</span>
                      </div>
                   </div>
                </div>
@@ -254,7 +260,7 @@
                   <div>
                      <label class="user-account__label localizejs">Full Home Address</label>
                      <div class="user-account__input" >
-                        <ion-google-place class="ssoaddress" placeholder="type here..." ng-model="regStep1.homeadd" id="regaddress" ng-change="addressBlur()"  />
+                        <ion-google-place class="ssoaddress localizejs" placeholder="type here..." ng-model="regStep1.homeadd" id="regaddress" ng-change="addressBlur()"  />
 
                      </div>
                      <span class="user-account__error-message localizejs" ng-show="adderror">Please Select your address</span>
@@ -267,10 +273,10 @@
                   <div class="">
                      <label class="user-account__label localizejs">Email Address</label>
                      <div class="user-account__input " ng-keyup="emailBlur()">
-                        <input type="email" placeholder="type here..." ng-model="regStep1.regEmail" name="regEmail" id="regEmail"  >
-                        <span class="user-account__error-message" ng-show="emailmanderror localizejs">Please enter your email id</span>
-                        <span class="user-account__error-message" ng-show="emailerror localizejs">Please enter valid email id</span>
-                        <span class="user-account__error-message" ng-show="emailexisterror localizejs">An account with this email already exist.</span>
+                        <input type="email" class="localizejs" placeholder="type here..." ng-model="regStep1.regEmail" name="regEmail" id="regEmail"  >
+                        <span class="user-account__error-message localizejs" ng-show="emailmanderror">Please enter your email id</span>
+                        <span class="user-account__error-message localizejs" ng-show="emailerror">Please enter valid email id</span>
+                        <span class="user-account__error-message localizejs" ng-show="emailexisterror">An account with this email already exist.</span>
                      </div>
                   </div>
                </div>
@@ -281,12 +287,10 @@
                   <div class="regContainer">
                      <label class="user-account__label localizejs">Country</label>
                      <div class="user-account__input regDropDownContainer">
-                        <div class="viewport localizejs" ng-if="regCountry2 == ''">Choose</div>
-                        <div class="viewport localizejs" ng-if="regCountry2 != ''">{{regCountry2}}</div>
-
+                        <div class="viewport localizejs">Choose</div>
                          <select class="ssooptionCountry textdata consultHealthPlanDropDown" id="regCountryCode" name="regCountryCode" ng-model="regStep1.regCountryCode"  ng-change="countryBlur()" >
-                            <option value="Choose"><b class="localizejs">Choose</b></option>
-                            <option class="planlist" ng-repeat="country in serviceCountries" ng-selected="country.code == regCountry2" value="{{country.code}}"><b class="localizejs">{{country.name}} ({{country.code}})</b></option>
+                            <option class="localizejs" value="Choose"><b class="localizejs">Choose</b></option>
+                            <option class="planlist" ng-repeat="country in serviceCountries" value="{{country.code}}"><b>{{formatIsdCode(country.code, "&nbsp;", 10 ) + country.name}}</b></option>
                          </select>
                         <span class="user-account__error-message localizejs" ng-show="countryError">Please choose your country code</span>
                      </div>
@@ -309,7 +313,7 @@
                   <div>
                      <label class="user-account__label localizejs">Password</label>
                      <div class="user-account__input">
-                        <input type="password" placeholder="type here..." ng-model="regStep1.regPassword" name="regPassword" id="regPassword"  ng-keyup="pwdBlur()" >
+                        <input type="password" class="localizejs" placeholder="type here..." ng-model="regStep1.regPassword" name="regPassword" id="regPassword"  ng-keyup="pwdBlur()" >
                         <span class="user-account__error-message localizejs" ng-show="pwdmanderror">Please enter your password</span>
                         <span class="user-account__error-message localizejs" ng-show="pwderror">Your Password must be between 8 and 20 characters. It must contain at least one upper and lower case letter and at least one number</span>
                         <span class="user-account__error-message localizejs" ng-show="pwdspaceerror">Password must not contain white spaces</span>
@@ -323,7 +327,7 @@
                   <div>
                      <label class="user-account__label localizejs">Confirm Password</label>
                      <div class="user-account__input">
-                        <input  type="password" placeholder="type here..." ng-model="regStep1.regConfrmPassword" name="regConfrmPassword" id="regConfrmPassword"  ng-keyup="confirmpwdBlur()" >
+                        <input  type="password" class="localizejs" placeholder="type here..." ng-model="regStep1.regConfrmPassword" name="regConfrmPassword" id="regConfrmPassword"  ng-keyup="confirmpwdBlur()" >
                         <span class="user-account__error-message localizejs" ng-show="confirmpwdmanderror">Please enter your confirm password</span>
                         <span class="user-account__error-message localizejs" ng-show="cnfrmpwderror">Password Mismatch</span>
                      </div>
@@ -331,28 +335,32 @@
                </div>
             </div>
             <div class="acinfoRegister1-{{deviceName}}">
-               <h4 class="localizejs">Already have an account? <a ng-click="backtoPreviousPage();"><span class="localizejs">Login</span></a></h4>
+               <h4><span class="localizejs">Already have an account? </span><a ng-click="backtoPreviousPage();"><span class="localizejs">Login</span></a></h4>
             </div>
             <div ng-if="deploymentEnv !== 'Single'" class="acinfoRegister1Back-{{deviceName}} newLogProviderSecDiv-{{deviceName}}" >
-               <h4 class="localizejs">Wrong Provider? <span class="localizejs" ng-click="registerStpe1BackToSearchProvider();">Go Back to Search</span></h4>
+               <h4><span class="localizejs">Wrong Provider?</span>
+                  <span class="localizejs" ng-click="registerStpe1BackToSearchProvider();">Go Back to Search</span></h4>
             </div>
             <div class="acinfoRegisterBottomAcceptText-{{deviceName}}"  >
-               <p ng-if="deploymentEnv == 'Multiple'">By clicking below I understand that I am accepting the
-                    <span style="text-decoration: underline;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</span> as well as the <span style="text-decoration: underline;"><a class="hospitalDynamicLink" ng-click="hospitallink()" >Privacy Policy </a></span> associated with the use of this service.
+               <p ng-if="deploymentEnv == 'Multiple'" class="localizejs"><span class="localizejs">By clicking below I understand that I am accepting the</span>
+                    <span style="text-decoration: underline;" class="localizejs" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</span> <span class="localizejs">as well as the </span><span style="text-decoration: underline;"><a class="hospitalDynamicLink" ng-click="hospitallink()" ><span class="localizejs"> Privacy Policy </span></a></span>
+                    <span class="localizejs">associated with the use of this service.</span>
                </p>
-               <p class="localizejs" ng-if="deploymentEnv != 'Multiple'">By clicking below I understand that I am accepting the
-                    <span class="localizejs" style="text-decoration: underline;" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.registerStep1');">Terms & Conditions</span> <span class="localizejs" >as well as the </span><span style="text-decoration: underline;"><a class="hospitalDynamicLink localizejs" ng-click="hospitallink()" >Privacy Policy </a></span> <span class="localizejs" >associated with the use of this service.</span>
+               <p ng-if="deploymentEnv != 'Multiple'" class="localizejs"><span class="localizejs">By clicking below I understand that I am accepting the</span>
+                    <span class="localizejs" style="text-decoration: underline;" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.registerStep1');">Terms & Conditions</span><span class="localizejs"> as well as the</span> <span style="text-decoration: underline;"><a class="hospitalDynamicLink" ng-click="hospitallink()" ><span class="localizejs">Privacy Policy</span> </a></span>
+                    <span class="localizejs">associated with the use of this service.</span>
                </p>
-               <p ng-if="deploymentEnv != 'Multiple' &&  cobrandApp == 'LatchOn'" class="localizejs">By clicking below I understand that I am accepting the
-                    <span class="localizejs" style="text-decoration: underline;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</span> <span class="localizejs">as well as the </span><span style="text-decoration: underline;"><a class="hospitalDynamicLink" ng-click="hospitallink()" >Privacy Policy </a></span> <span class="localizejs">associated with the use of this service.</span>
+               <p ng-if="deploymentEnv != 'Multiple' &&  cobrandApp == 'LatchOn'" class="localizejs"><span class="localizejs">By clicking below I understand that I am accepting the</span>
+                    <span class="localizejs" style="text-decoration: underline;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</span> <span class="localizejs">as well as the</span> <span style="text-decoration: underline;"><a class="hospitalDynamicLink" ng-click="hospitallink()" ><span class="localizejs">Privacy Policy</span> </a></span>
+                    <span class="localizejs">associated with the use of this service.</span>
                </p>
             </div>
             <!-- <div class="hide-on-keyboard-open"> -->
 
               <ion-footer-bar  class="bar bar-footer footer  footer-color regFooter" hide-on-keyboard="true" >
                  <div class="regFooter__regConcernsFooter">
-                    <button type="submit" class="button localizejs" >
-                    Agree & Create Account
+                    <button type="submit" class="button localizejs">
+                <span class="localizejs">Agree</span> &amp; <span class="localizejs">Create Account</span>
                     </button>
                  </div>
               </ion-footer-bar>

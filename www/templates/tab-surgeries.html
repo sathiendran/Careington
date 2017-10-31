@@ -29,7 +29,7 @@
                          <div class="surgeryEdit-{{$index}} animated slideInRight" style="display: none">
                               <div class="item item-input validated" style="border-left: none; border-right: none;">
                                    <span class="input-label priorTag localizejs">Procedure</span>
-                                   <input type="text"  name="surDescription" id="surDescription_{{$index}}" value="{{surgery.description}}"  placeholder="Short description" class="priorValue" >
+                                   <input type="text"  name="surDescription" id="surDescription_{{$index}}" value="{{surgery.description}}"  placeholder="Short description" class="priorValue localizejs" >
                                    <a class="surgeryCloseIcon" ng-click="removeSurgeryItem(0, surgery);" ><i class="ion-trash-b" ></i></a>
                               </div>
                               <div class="item item-input validated" style="border-left: none; border-right: none;">
@@ -54,7 +54,7 @@
                        <!--<h5 class="surname">Add New Surgery</h5>-->
                        <div class="item item-input validated">
                             <span class="input-label priorTag localizejs">Procedure</span>
-                            <input type="text" value=""  placeholder="Short description" ng-model="surgery.name" name="name" class="priorValue" id="name">
+                            <input type="text" value=""  placeholder="Short description" ng-model="surgery.name" name="name" class="priorValue localizejs" id="name">
                            <!-- <a class="surgeryCloseIcon" ng-click="backtoSurgeryView();"><i class="ion-close" ></i></a>-->
                            <a class="surCloseIcon" ng-click="backtoSurgeryView();" ><i style="font-size: 24px;" ng-bind-html="drawSVGCIcon('cross');"></i></a>
                          </div>

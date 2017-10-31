@@ -13,13 +13,13 @@
 		<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} userhomePlusIcon">
 			<div class="Server_Error ErrorMessageDiv" ></div>
 	 		<div id="Error_Message"></div>
-			<span> Patient list </span>
+			<span class="localizejs"> Patient list </span>
 	</h1>
 		<a ng-if="cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'" class="add-user-icon add-user-icon-{{deviceName}}" ng-if="customerSso != 'Mandatory'" ng-click = "GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" ><i class="icon ion-plus"></i></a>
 
 
 			<div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds">
-				<div class="TitleHomeUser_Sub" id="WhoNeeds">Who Needs Care Today?</div>
+				<div class="TitleHomeUser_Sub localizejs" id="WhoNeeds">Who Needs Care Today?</div>
 
 					<div class="SearchImage" ng-click="showSearchInput();">
 						<i class="ion-search" style="float: right; font-size: 23px;color: #666666;"></i>
@@ -36,7 +36,7 @@
 <div id="divSearchInput" class="UserHme userSearch-{{deviceName}}" style="display: none;">
 	<div  class="UserHmeSub-{{deviceName}}">
         <label class="item-input"  ><i style="display: {{homeMagnifyDisplay}}" class="iconfontSVG userhmeSeach" ng-bind-html="drawSVGCIcon('magnifying-glass')"></i>
-            <input type="search" placeholder="Search" id="searchQuery" ng-model="data.searchQuery"  >
+            <input type="search" class="localizejs" placeholder="Search" id="searchQuery" ng-model="data.searchQuery"  >
         </label>
 	</div>
 </div>
@@ -56,7 +56,7 @@
 					<div class="userHomeImageMainPat" ng-bind-html="drawImage(PatientImage,primaryPatientName,primaryPatientLastName)"></div>
 					<div class= "ListTextTitle ellipsis userHomeFullName" > <b class="ng-binding firstname">{{primaryPatientName}} </b><span class="SubTitleSpan ellipsis"> {{primaryPatientLastName}}</span></div>
 					<!--<p class="ListText listTitle" style="font-size: 24px;overflow: auto;"><b>Login Details Welcome</b> <span class="SubTitleSpan">Sathiendran <span></p> -->
-					<p class="ListHomeUser_pTitle DateFormateStyle"><span ng-if="primaryPatGender != ''">{{primaryPatGender}} . </span>{{dob | ageFilter}} <!--<span ng-if="primaryPatientGuardianName"> | Guardain : {{primaryPatientGuardianName}}</span>--></p>
+					<p class="ListHomeUser_pTitle DateFormateStyle"><span ng-if="primaryPatGender != ''" class="localizejs">{{primaryPatGender}} . </span>{{dob | ageFilter}} <!--<span ng-if="primaryPatientGuardianName"> | Guardain : {{primaryPatientGuardianName}}</span>--></p>
 					<!--<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>-->
 					<i class="iconfontSVG ListLinkHref UserHomeIcon" ng-bind-html="drawSVGCIcon('chevron-right')"></i>
 				</div>
@@ -108,7 +108,7 @@
 					<!--	<img ng-src="{{dependentDetails.profileImagePath}}" src="{{dependentDetails.profileImagePath}}" class="UserHmelistImgView">-->
 				<div class="userHomeImage" ng-bind-html="drawImage(dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName)"></div>
 					<div class= "ListTextTitle ellipsis userHomeFullName" ><b>{{dependentDetails.patientFirstName}} </b> <span class="SubTitleSpan">{{dependentDetails.patientLastName}}</span></div>
-					<p class="ListHomeUser_pTitle DateFormateStyle"><span ng-if="dependentDetails.gender != ''">{{dependentDetails.gender}} .</span> {{dependentDetails.birthdate | ageFilter}} <span ng-if="dependentDetails.depRelationShip != ''">. {{dependentDetails.depRelationShip}} </span><!--<span ng-if="primaryPatientId != dependentDetails.patientId">| Guardian : {{dependentDetails.guardianName}}</span>--></p>
+					<p class="ListHomeUser_pTitle DateFormateStyle"><span ng-if="dependentDetails.gender != ''" class="localizejs">{{dependentDetails.gender}} .</span> {{dependentDetails.birthdate | ageFilter}} <span ng-if="dependentDetails.depRelationShip != ''" class="localizejs">. {{dependentDetails.depRelationShip}} </span><!--<span ng-if="primaryPatientId != dependentDetails.patientId">| Guardian : {{dependentDetails.guardianName}}</span>--></p>
 					<!--<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>-->
 						<i class="iconfontSVG ListLinkHref UserHomeIcon" ng-bind-html="drawSVGCIcon('chevron-right')"></i>
 				</div>

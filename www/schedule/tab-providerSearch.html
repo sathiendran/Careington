@@ -74,21 +74,21 @@
                 <span class="user-info__fname">{{primaryPatientName}} </span> <span class="user-info__lname">{{primaryPatientLastName}} </span>
             </div>
             <div class="user-info__info">
-                <span>{{primaryPatGender}}</span> • <span>{{dob | ageFilter}}</span> • <span>{{mobilePhone}}</span>
+                <span class="localizejs">{{primaryPatGender}}</span> • <span>{{dob | ageFilter}}</span> • <span>{{mobilePhone}}</span>
             </div>
         </div>
     </a>
 
     <ul class="main-nav__list" >
-        <li><a ng-href="#/tab/userhome"><span> <i ng-bind-html="drawSVGCIcon('users')"></i></span>Patient List</a></li>
-        <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')" ><a><span> <i ng-bind-html="drawSVGCIcon('clipboard')"></i></span>My Health</a></li>
-        <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClickApoointments')"><a><span><i ng-bind-html="drawSVGCIcon('calendar')"></i></span>My Appointments</a></li>
-        <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'tab.consultations')"><a><span><i ng-bind-html="drawSVGCIcon('health_card')"></i></span>My Consultations</a></li>
-        <li ng-if="onSSAvailability == 'on'" ng-click="goTOSchedule()"><a><span class="icon_search-users"></span>Self Schedule</a></li>
-        <li ng-click="ClearRootScope()" style="font-size: 1.0em;" ><a><span class="ion-power" style="font-size: 1.4em; padding-right: 20px;"></span>Logout</a></li>
+        <li><a ng-href="#/tab/userhome"><span> <i ng-bind-html="drawSVGCIcon('users')"></i></span><span class="localizejs">Patient List</span></a></li>
+        <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')" ><a><span> <i ng-bind-html="drawSVGCIcon('clipboard')"></i></span><span class="localizejs">My Health</span></a></li>
+        <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClickApoointments')"><a><span><i ng-bind-html="drawSVGCIcon('calendar')"></i></span><span class="localizejs">My Appointments</span></a></li>
+        <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'tab.consultations')"><a><span><i ng-bind-html="drawSVGCIcon('health_card')"></i></span><span class="localizejs">My Consultations</span></a></li>
+        <li ng-if="onSSAvailability == 'on'" ng-click="goTOSchedule()"><a><span class="icon_search-users"></span><span class="localizejs">Self Schedule</span></a></li>
+        <li ng-click="ClearRootScope()" style="font-size: 1.0em;" ><a><span class="ion-power" style="font-size: 1.4em; padding-right: 20px;"></span><span class="localizejs">Logout</span></a></li>
     </ul>
     <div class="main-nav__bottom-aligner main-nav__bottom-aligner--patient"></div>
-    <a  class="main-nav__toc"  ng-click="sideMenuHospitallink()"  _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">Terms &amp; Conditions</a>
+    <a  class="main-nav__toc localizejs"  ng-click="sideMenuHospitallink()"  _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">Terms &amp; Conditions</a>
 </nav>
 
 <div class="wrapper page" >
@@ -112,10 +112,10 @@
           <div class="header-bar">
               <ul class="page-toggle hide-mobile">
                   <li>
-                      <h1 data-bind="text: moduleTitle">Provider</h1>
+                      <h1 class="localizejs" data-bind="text: moduleTitle">Provider</h1>
                   </li>
                   <li class="page-toggle__module">
-                      <h1 data-bind="text: subModuleTitle">All providers</h1>
+                      <h1 class="localizejs" data-bind="text: subModuleTitle">All providers</h1>
                   </li>
               </ul>
 
@@ -125,11 +125,11 @@
                   </li>
 
                   <li id="myProvider" data-bind="css:{is-active: isFavoriteCliniciansMode}">
-                      <a ng-click="getDetails('favorite')" _href="#/tab/providerSearch/favorite">My Providers</a>
+                      <a ng-click="getDetails('favorite')" _href="#/tab/providerSearch/favorite" class="localizejs">My Providers</a>
                   </li>
 
                   <li id="allProvider" data-bind="css:{is-active: isAllCliniciansMode}" class="is-active">
-                      <a ng-click="getDetails('all')" _href="#/tab/providerSearch/all">All Providers</a>
+                      <a ng-click="getDetails('all')" _href="#/tab/providerSearch/all" class="localizejs">All Providers</a>
                   </li>
               </ul>
           </div>

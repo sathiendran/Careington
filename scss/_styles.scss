@@ -467,7 +467,7 @@ body {
 .continue {
     text-align: center;
     padding-top: 40px;
-    margin-bottom: 50px; 
+    margin-bottom: 50px;
 }
 .relationalign {
     margin-left: 51px !important;
@@ -2367,6 +2367,9 @@ select {
             content: "\f125";
             font-size: 22px !important;
             margin-top: -2px;
+            position: absolute;
+            top: -4px;
+            right: 18px;
         }
         text-align:right;
         float:left;
@@ -3555,7 +3558,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .textAreaPop {
     margin: -5px -13.609375px 0px 0px;
     width: 380px;
-    height: 80px;  
+    height: 80px;
     margin-left: 0px;
 }
 .popup-container .popup {
@@ -6060,4 +6063,4 @@ hr {
     position: relative;
     top: -2px;
     left: -2px;
-} 
+}

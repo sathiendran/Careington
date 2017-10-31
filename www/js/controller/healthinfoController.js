@@ -1,28 +1,46 @@
 angular.module('starter.controllers')
-    .controller('healthinfoController', function ($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService, $window, $ionicBackdrop) {
-        $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-        $rootScope.drawSVGCIcon = function (iconName) {
-            return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
-        };
+.controller('healthinfoController', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService,$window,$ionicBackdrop) {
+  $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+  $rootScope.drawSVGCIcon = function(iconName) {
+    return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
+  };
 
 
-        $scope.fetchPatientDetails = function () {
-            $scope.firsttimecall = 0;
-            $rootScope.patientAuthorize = true;
-            $rootScope.patientUnAuthorize = false;
-            $rootScope.patientAuthorizeValue = 'Y';
-            if ($stateParams.getid != '') {
-                var patId = $stateParams.getid;
-                $rootScope.doGetSelectedPatientProfilesSS(patId, true);
-            }
-        };
+  $scope.fetchPatientDetails = function(){
+    $scope.firsttimecall = 0;
+    $rootScope.patientAuthorize = true;
+    $rootScope.patientUnAuthorize = false;
+    $rootScope.patientAuthorizeValue = 'Y';
+    if($stateParams.getid != '')
+    {
+      var patId = $stateParams.getid;
+      $rootScope.doGetSelectedPatientProfilesSS(patId, true);
+    }
+  };
 
-        $scope.getOnlyNumbers = function (text) {
-            var newStr = "";
-            if (text) {
-                newStr = text.replace(/[^0-9.]/g, "");
-            }
-            return newStr;
+    $scope.getOnlyNumbers = function(text) {
+        var newStr = "";
+        if (text) {
+            newStr = text.replace(/[^0-9.]/g, "");
+        }
+        return newStr;
+    }
+    $timeout(function() {
+          $('option').filter(function() {
+              return this.value.indexOf('?') >= 0;
+          }).remove();
+      }, 100);
+    $rootScope.getPhoneNumberWithoutCountryCode = function(phoneNumber) {
+        var phoneNumberWithoutCountryCode = "";
+        if (phoneNumber)
+            phoneNumberWithoutCountryCode = phoneNumber.substring(phoneNumber.length - 10, phoneNumber.length);
+        return phoneNumberWithoutCountryCode;
+    };
+    $rootScope.reformatHeight = function(heightVal, index) {
+        var newHeight = "0";
+        if (heightVal) {
+            var newHeightVal = heightVal.split('|');
+            newHeight = newHeightVal[index];
         }
         $timeout(function () {
             $('option').filter(function () {
@@ -1526,6 +1544,39 @@ angular.module('starter.controllers')
                     }
                 }
             };
+            LoginService.sendCoUserEmailInvitation(params);
+        }
+    }
+
+    $scope.doDependentToUnauthorized = function(currentPatientDetails) {
+        if (!angular.isUndefined($rootScope.userDOBDateFormat) && $rootScope.userDOBDateFormat !== '') {
+            $scope.dob = " . " + ageFilter.getDateFilter($rootScope.userDOBDateFormat);
+        } else {
+            $scope.dob = '';
+        }
+        if (!angular.isUndefined(currentPatientDetails.account.relationship) && currentPatientDetails.account.relationship !== '') {
+            $scope.relationship = " . " + currentPatientDetails.account.relationship;
+        } else {
+            $scope.relationship = '';
+        }
+        var getDrawImage = $rootScope.drawImage($rootScope.PatientImageSelectUser,currentPatientDetails.patientName,currentPatientDetails.lastName);
+        var myPopup = $ionicPopup.show({
+             title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname'>" + currentPatientDetails.lastName + "</span></div> <div class='fontcolor'>" + $rootScope.userGender + $scope.dob + $scope.relationship + "</div>",
+            templateUrl: 'templates/healthUnauthorizedPopup.html',
+            scope: $scope,
+            buttons: [{
+                text: '<b class="fonttype localizejs">Cancel</b>',
+                onTap: function(e) {
+                    return false;
+                }
+            }, {
+                text: '<b class="fonttype localizejs">Confirm</b>',
+                type: 'button-positive',
+                onTap: function(e) {
+                    return true;
+                }
+            }, ]
+        });
 
             LoginService.putProfileUpdation(params);
         }
@@ -1553,6 +1604,25 @@ angular.module('starter.controllers')
                 LoginService.sendCoUserEmailInvitation(params);
             }
         }
+
+        var getDrawImage = $rootScope.drawImage($rootScope.PatientImageSelectUser,currentPatientDetails.patientName,currentPatientDetails.lastName);
+        var myPopup = $ionicPopup.show({
+            title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname'>" + currentPatientDetails.lastName + "</span></div> <div class='fontcolor'>" + $rootScope.userGender + $scope.dob + $scope.relationship + "</div>",
+            templateUrl: 'templates/unauthorizedpopup.html',
+            scope: $scope,
+            buttons: [{
+                text: '<b class="fonttype localizejs">Cancel</b>',
+                onTap: function(e) {
+                    return false;
+                }
+            }, {
+                text: '<b class="fonttype localizejs">Confirm</b>',
+                type: 'button-positive',
+                onTap: function(e) {
+                    return true;
+                }
+            }, ]
+        });
 
         $scope.doDependentToUnauthorized = function (currentPatientDetails) {
             if (!angular.isUndefined($rootScope.userDOBDateFormat) && $rootScope.userDOBDateFormat !== '') {

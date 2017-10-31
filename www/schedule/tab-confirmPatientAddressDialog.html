@@ -7,7 +7,7 @@
     padding: 3px 45px 3px 5px !important;
 }
 .dialogbox-location__form .search {
-     margin-bottom: 12px; 
+     margin-bottom: 12px;
 }
 </style>
 <div class="dialogbox dialogbox--person-location">
@@ -17,7 +17,7 @@
 
 
 
-        <span>Confirm Current Location</span>
+        <span class="localizejs">Confirm Current Location</span>
     </div>
     <div class="dialogbox__main">
         <div class="drawer-card drawer-card--dialogbox" data-bind="css: {is-hidden: vm_isLocationAutocompleteFocused}">
@@ -52,23 +52,23 @@
         <div class="dialogbox-location dialogbox-location--person js-location-target"
             data-bind="css: {is-search: isEditMode}">
             <div class="dialogbox-location__block js-location-step-1">
-                <div class="dialogbox-location__box" data-bind="visible: vm_isSelfLocationDialog">
+                <div class="dialogbox-location__box localizejs" data-bind="visible: vm_isSelfLocationDialog">
                     Set your current location to find providers licensed to practice in the same area.
                 </div>
-                <div class="dialogbox-location__box" data-bind="invisible: vm_isSelfLocationDialog">
+                <div class="dialogbox-location__box localizejs" data-bind="invisible: vm_isSelfLocationDialog">
                     Set this person’s current location to find providers licensed to practice in the same area.
                 </div>
-                <p>Last location:</p>
+                <p class="localizejs">Last location:</p>
                 <div class="dialogbox-location__location">
                     <i class="icon_location-pin"></i>
                     <span data-bind="text: currentLocationText"></span>
                 </div>
-                <p data-bind="visible: vm_isSelfLocationDialog">Is this where you are now?</p>
-                <p data-bind="invisible: vm_isSelfLocationDialog">Is this where <span data-bind="text: vm_firstName"></span> is now?</p>
+                <p data-bind="visible: vm_isSelfLocationDialog" class="localizejs">Is this where you are now?</p>
+                <p data-bind="invisible: vm_isSelfLocationDialog" class="localizejs"><span class="localizejs">Is this where </span><span data-bind="text: vm_firstName"></span> <span class="localizejs">is now?</span></p>
             </div>
 
             <div class="dialogbox-location__block dialogbox-location__block--search js-location-step-2">
-                <p>Set your current location</p>
+                <p class="localizejs">Set your current location</p>
                <div class="dialogbox-location__form">
                     <div class="search search--location" id="autocompleteCountry-wrap"
                         data-bind="css: { is-error: vm_countryError, is-active:vm_isCountryFilled }">
@@ -81,8 +81,8 @@
                                 source: countryCodes,
                                 events: {
                                     change: vm_onCountryChange
-                                }"  
-                                class="inputtexbox"
+                                }"
+                                class="inputtexbox localizejs"
                             />
                         <span class="icon_magnifying-glass" style=" margin-top: 3px;"></span>
                     </div>
@@ -99,8 +99,8 @@
                                 source: regions,
                                 events: {
                                     change: vm_onRegionChange
-                                }" 
-                                class="inputtexbox"
+                                }"
+                                class="inputtexbox localizejs"
                             />
                         <span class="icon_magnifying-glass"></span>
                     </div>
@@ -111,18 +111,17 @@
 
     </div>
     <div class="dialogbox__buttons" data-bind="invisible: isEditMode">
-        <button data-bind="events: {click: vm_onNoClick}" class="button button__gray js-location-search"><span>No</span></button>
-        <button data-bind="events: {click: vm_onYesClick}, css:{is-loading:vm_isLoading}" class="button button__green js-location-confirm"><span>Yes</span></button>
+        <button data-bind="events: {click: vm_onNoClick}" class="button button__gray js-location-search"><span class="localizejs">No</span></button>
+        <button data-bind="events: {click: vm_onYesClick}, css:{is-loading:vm_isLoading}" class="button button__green js-location-confirm"><span class="localizejs">Yes</span></button>
     </div>
 
     <div class="dialogbox__buttons" data-bind="visible: isEditMode">
-        <button data-bind="events: {click: vm_onCancelClick}" class="button button__gray js-location-search"><span>Cancel</span></button>
+        <button data-bind="events: {click: vm_onCancelClick}" class="button button__gray js-location-search"><span class="localizejs">Cancel</span></button>
         <button class="button button__green js-location-confirm"
             data-bind="disabled:vm_isSaveDisabled,
                 events: {click: vm_onSaveClick},
                 css: { button__red: vm_isError, is-loading:vm_isLoading}">
-            <span data-bind="text: vm_saveButtonText"></span>
+            <span class="localizejs">data-bind="text: vm_saveButtonText"></span>
         </button>
     </div>
 </div>
-
