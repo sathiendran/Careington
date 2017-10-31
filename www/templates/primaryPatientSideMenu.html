@@ -88,14 +88,14 @@
        </a>
 
        <ul class="main-nav__list" >
-           <li><a ng-href="#/tab/userhome"><span> <i ng-bind-html="drawSVGCIcon('users')"></i></span class="localizejs">Patient List</a></li>
+           <li><a ng-href="#/tab/userhome"><span> <i ng-bind-html="drawSVGCIcon('users')"></i></span><span class="localizejs">Patient List</span></a></li>
            <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')" ><a><span> <i ng-bind-html="drawSVGCIcon('clipboard')"></i></span><span class="localizejs">My Health</span></a></li>
            <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClickApoointments')"><a><span><i ng-bind-html="drawSVGCIcon('calendar')"></i></span><span class="localizejs">My Appointments</span></a></li>
            <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'tab.consultations')"><a><span><i ng-bind-html="drawSVGCIcon('health_card')"></i></span><span class="localizejs">My Consultations</span></a></li>
-           <li ng-if="online == true && onSSAvailability == 'on'" ng-click="goTOSchedule()"><a><span class="icon_search-users localizejs"></span>Self Schedule</a></li>
-           <li ng-click="ClearRootScope()" style="font-size: 1.0em;" ><a><span class="ion-power localizejs" style="font-size: 1.4em; padding-right: 20px;"></span>Logout</a></li>
+           <li ng-if="online == true && onSSAvailability == 'on'" ng-click="goTOSchedule()"><a><span class="icon_search-users localizejs"></span><span class="localizejs">Self Schedule</span></a></li>
+           <li ng-click="ClearRootScope()" style="font-size: 1.0em;" ><a><span class="ion-power localizejs" style="font-size: 1.4em; padding-right: 20px;"></span><span class="localizejs">Logout</span></a></li>
        </ul>
        <div class="main-nav__bottom-aligner main-nav__bottom-aligner--patient"></div>
-       <a  class="main-nav__toc localizejs"  ng-click="sideMenuHospitallink()"  _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">Terms &amp; Conditions</a>
+       <a  class="main-nav__toc localizejs"  ng-click="sideMenuHospitallink()"  _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;"><span class="localizejs">Terms &amp; Conditions</span></a>
    </nav>
 </ion-side-menu>

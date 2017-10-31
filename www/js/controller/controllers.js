@@ -325,7 +325,7 @@ if (deploymentEnv === "Sandbox") {
 } else if (deploymentEnv === "Staging") {
 
     apiCommonURL = 'https://emerald.stage.snapvcm.com';
-    api_keys_env = "Staging"; 
+    api_keys_env = "Staging";
 }
 
 angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', 'timer', 'ion-google-place', 'ngIOS9UIWebViewPatch', 'ngCordova', 'ngIdle'])
@@ -612,7 +612,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -911,7 +911,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
             });
         }
         refresh_close();
-        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         $("#notifications-top-center").remove();
         $("#Error_Message").append(top);
         refresh_close();
@@ -931,7 +931,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
         }
         refresh_close();
 
-        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Unable to connect to the server. Please try again later! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled localizejs" style="font-size: 22px;"></i> Unable to connect to the server. Please try again later! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         $("#notifications-top-center").remove();
         $(".Server_Error").append(top);
         refresh_close();
@@ -945,7 +945,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
             });
         }
         refresh_close();
-        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Invalid card details. Please correct and try again.! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Invalid card details. Please correct and try again.! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         $("#notifications-top-center").remove();
         $(".Server_Error").append(top);
         refresh_close();
@@ -959,7 +959,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
             });
         }
         refresh_close();
-        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Health Plan Enquiry failed! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Health Plan Enquiry failed! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         $("#notifications-top-center").remove();
         $(".Server_Error").append(top);
         refresh_close();
@@ -974,7 +974,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
         }
         refresh_close();
 
-        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Unable to verify health plan. Please correct and try again.! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Unable to verify health plan. Please correct and try again.! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         $("#notifications-top-center").remove();
         $(".Server_Error").append(top);
 
@@ -2465,7 +2465,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
         } else {
             $rootScope.regCountry2 =  $rootScope.regCountry2;
         }
-       
+
         debugger;
         if (deploymentEnvLogout === 'Single') {
             if (deploymentEnvForProduction === 'Production') {
@@ -3263,21 +3263,21 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
                     var confirmPopup = $ionicPopup.confirm({
 
-                        title: "<div class='locationtitle'> Confirm Current Location </div> ",
+                        title: "<div class='locationtitle localizejs'> Confirm Current Location </div> ",
 
                         templateUrl: 'templates/currentLocation.html',
                         cssClass: 'locpopup',
                         hardwareBackButtonClose: false,
 
                         buttons: [{
-                            text: '<b>No</b>',
+                            text: '<b class="localizejs">No</b>',
                             onTap: function(e) {
 
                                 $scope.showAlert();
                                 return true;
                             }
                         }, {
-                            text: '<b>Yes</b>',
+                            text: '<b class="localizejs">Yes</b>',
                             type: 'button-positive',
                             onTap: function(e) {
                                 //  return true;
@@ -6107,7 +6107,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 });
          });
 
-       activeRoomConHub.on("broadcastMessage", function(messageType, message) { 
+       activeRoomConHub.on("broadcastMessage", function(messageType, message) {
           // alert("notificationService: broadcastMessage");
           if(messageType == 'consultation_ended') {
              //  alert('gg2');
@@ -6258,7 +6258,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             });
         }
         refresh_close();
-        var top = '<div id="notifications-top-center" class="notificationError" ><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i>' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
+        var top = '<div id="notifications-top-center" class="notificationError" ><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i>' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
         $("#notifications-top-center").remove();
         $(".Error_Message").append(top);
         refresh_close();
@@ -6610,7 +6610,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
 
     $rootScope.doGetSelectedPatientProfilesSS = function(patientId, nextPage, seeADoc) {
- 
+
      var params = {
          accessToken: $rootScope.accessToken,
          patientId: patientId,
@@ -6636,7 +6636,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                          'physicianDetails': index.physicianDetails,
                          'schoolContact': index.schoolContact,
                          'schoolName': index.schoolName,
- 
+
                      });
                  });
                  $rootScope.PatientIdentifiers = $rootScope.selectedRelatedDependentDetails[0].identifiers;
@@ -6657,7 +6657,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                  } else {
                      $rootScope.dependentRelationShip = '';
                  }
- 
+
                  if ($rootScope.selectedRelatedDependentDetails.length !== 0) {
                      $rootScope.dependentDOB = ageFilter.getDateFilter($rootScope.dependentDOB);
                      if (!angular.isUndefined($rootScope.dependentDOB) && $rootScope.dependentDOB !== '') {
@@ -6671,11 +6671,11 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                          $scope.relationship = '';
                      }
                      var confirmPopup = $ionicPopup.confirm({
- 
+
                          title: "<a class='item-avatar'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='fname'><b>" + $rootScope.selectedRelatedDependentDetails[0].patientName + "</b></span> <span class='fname'><b>" + $rootScope.selectedRelatedDependentDetails[0].patientName + "</b></span></span></a> ",
                          subTitle: "<p class='fontcolor'>" + $rootScope.dependentGender + $scope.dob + $scope.relationship + "</p>",
                          templateUrl: 'templates/archiveTemplate.html',
- 
+
                          buttons: [{
                              text: 'Cancel',
                              onTap: function(e) {
@@ -6696,11 +6696,11 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                              $scope.showdnewetails = false;
                              $scope.allval = false;
                          }
- 
- 
+
+
                      });
                  }
- 
+
              } else {
                  $scope.selectedPatientDetails = [];
                  angular.forEach(data.data, function(index) {
@@ -6730,7 +6730,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                          'schoolContact': index.schoolContact,
                          'schoolName': index.schoolName
                      });
- 
+
                  });
                  $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
                  $rootScope.cutaddress = $rootScope.currentPatientDetails[0].address;
@@ -6741,7 +6741,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                  var date = new Date($rootScope.currentPatientDetails[0].dob);
                  $rootScope.userDOBDateFormat = date;
                  $rootScope.userDOBDateForAuthorize = $filter('date')(date, "MM-dd-yyyy");
- 
+
                  if (patientId == $rootScope.primaryPatientId) {
                      $rootScope.P_isAuthorized = true;
                  } else {
@@ -6752,9 +6752,9 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                      }
                  }
                //  $rootScope.accountClinicianFooter = 'ngLoadingSpinner';
- 
+
                  $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
- 
+
                  if ($rootScope.userDOB !== "" && !angular.isUndefined($rootScope.userDOB)) {
                      var ageDifMs = Date.now() - new Date($rootScope.userDOB).getTime(); // parse string to date
                      var ageDate = new Date(ageDifMs); // miliseconds from epoch
@@ -6787,7 +6787,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                      $rootScope.userGender = '';
                      $rootScope.isCheckedFemale = '';
                  }
- 
+
                  if (patientId !== $rootScope.primaryPatientId) {
                      if (!angular.isUndefined($rootScope.currentPatientDetails[0].account.relationship)) {
                          $rootScope.patRelationShip = $rootScope.currentPatientDetails[0].account.relationship;
@@ -6801,7 +6801,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                      $rootScope.patRelationShip = '';
                  }
                      $rootScope.individualmobile = $rootScope.currentPatientDetails[0].mobilePhone;
- 
+
                      $scope.checkEditOptionForCoUser($rootScope.currentPatientDetails[0].account.patientId);
                      if(nextPage === 'SS') {
                        $rootScope.doCheckExistingConsulatationStatus('tab.userhome');
@@ -6826,7 +6826,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                  }
              }
          };
- 
+
          LoginService.getSelectedPatientProfiles(params);
      }
 
@@ -7476,7 +7476,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
                             var confirmPopup = $ionicPopup.confirm({
 
-                                title: "<div class='locationtitle'> Confirm Current Location </div> ",
+                                title: "<div class='locationtitle localizejs'> Confirm Current Location </div> ",
 
                                 templateUrl: 'templates/currentLocation.html',
                                 cssClass: 'locpopup',
@@ -7488,7 +7488,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                                         return true;
                                     }
                                 }, {
-                                    text: '<b>Yes</b>',
+                                    text: '<b class="localizejs">Yes</b>',
                                     type: 'button-positive',
                                     onTap: function(e) {
 

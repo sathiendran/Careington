@@ -17,7 +17,7 @@ angular.module('starter.controllers')
       $rootScope.doGetSelectedPatientProfilesSS(patId, true);
     }
   };
-    
+
     $scope.getOnlyNumbers = function(text) {
         var newStr = "";
         if (text) {
@@ -284,7 +284,7 @@ angular.module('starter.controllers')
             });
         }
         refresh_close();
-        var top = '<div id="notifications-top-center" class="notificationError" ><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i>' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
+        var top = '<div id="notifications-top-center" class="notificationError" ><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i>' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
         $("#notifications-top-center").remove();
         $(".Error_Message").append(top);
         refresh_close();
@@ -297,7 +297,7 @@ angular.module('starter.controllers')
             });
         }
         refresh_close();
-        var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
+        var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
 
         $(".notifications-top-center").remove();
         $(".ErrorMessage").append(top);
