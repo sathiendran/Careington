@@ -9,7 +9,7 @@
          <div class="buttons" style="width: 50%; " >
 
             <div style="width: 100%; text-align: right; display: {{cardDisplay}};">
-               <button type="submit" class="button_new icon PlanNext"  style="width: 100%; text-align: right; {{CardDetailsNextButton}}">Save</button>
+               <button type="submit" class="button_new icon PlanNex localizejs"  style="width: 100%; text-align: right; {{CardDetailsNextButton}}">Save</button>
             </div>
          </div>
       </ion-header-bar>
@@ -95,7 +95,7 @@
             <div class="planDetails" ng-if="addCardStatus !== 200"  style="opacity:{{planverify}};">
                <p class="carddetails localizejs">When you add a credit card, information about your card, will be sent to Authorize.net and your card issuer.</p>
             </div>
-            <div class="privacy" style="opacity:{{planverify}};"><a class="hospitalDynamicLink" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">About {{Hospital}} Privacy</a></div>
+            <div class="privacy" style="opacity:{{planverify}};"><a class="hospitalDynamicLink" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;"><span class="localizejs">About </span>{{Hospital}} <span class="localizejs">Privacy</span></a></div>
          </div>
       </ion-content>
    </form>

@@ -76,7 +76,7 @@
                   <span class="encounterappticon" style="top: 2px !important;">
                     <i class="iconAlignment" ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
 
-                  <p class="patage localizejs" style="margin-top:-22px !important;">{{scheduledDoctorDetails[0].gender}} <span> .</span> {{scheduledDoctorDetails[0].dob | ageFilter}}</p>
+                  <p class="patage localizejs" style="margin-top:-22px !important;"><span class="localizejs">{{scheduledDoctorDetails[0].gender}} </span><span> .</span> {{scheduledDoctorDetails[0].dob | ageFilter}}</p>
               </div>
            </a>
            <a class="item item-avatar patavatar" ng-if="scheduledListDatas.encounterTypeCode != 3">
@@ -132,7 +132,7 @@
         <div class="col col-10 patcol10">a</div>
          <div class="col col-90 ">
            <p class="parafont"><b class="localizejs">Notes</b></p>
-		  <p class="pfontsize" style="position: relative; top: 8px;" id="appointNotes" > </p>
+		  <p class="pfontsize localizejs" style="position: relative; top: 8px;" id="appointNotes" > </p>
          </div>
        </div>
    </a>
@@ -144,7 +144,7 @@
 		<div>
 			<div class="title availableImage" >
 				<div class="AvailableText localizejs">
-					<i class="ion-clock" style=" font-size: 18px; padding-right: 7px;"></i> Can enter in:
+					<i class="ion-clock" style=" font-size: 18px; padding-right: 7px;"></i><span class="localizejs"> Can enter in:</span>
 				</div>
 				<div class="AvailableTimer" style="display: {{hourDisplay}}" >
 					<b><timer end-time="time">  {{hhours}}:{{mminutes}}:{{sseconds}}</timer></b>

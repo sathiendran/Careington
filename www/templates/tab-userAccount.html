@@ -143,19 +143,19 @@
          </div>
       </div>
       <div ng-if="getIndividualPatientCreditCount == 0 ||  paymentMode != 'on'">
-         <h1 class="title" id="centercolor" >See A Provider Now</h1>
+         <h1 class="title" id="centercolor" ><span class="localizejs">See A Provider Now</span></h1>
       </div>
    </ion-footer-bar>
    <ion-item ng-if="appointmentsPatientId == patientId" class="apptdetails accountAppointHeight" style="display: {{individualNextAppointmentDisplay}}; " ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData, 'userAccount')" ng-show="$first">
       <div>
          <div class="appth3">
             <div class="appointment">
-               <span>Appointment @ {{scheduledListData.scheduledTime | date: "hh:mm"}}</span>
+               <span><span class="localizejs">Appointment</span> @ {{scheduledListData.scheduledTime | date: "hh:mm"}}</span>
                <span style="text-transform: lowercase;">{{scheduledListData.scheduledTime | date: "a"}}</span>
                <span id="viewicon" class="accountAppointview-{{deviceName}}">
-               <a class="appalignrighticon" ng-if="scheduledListData.appointmentStatusCode == 'Waiting' && scheduledListData.status != 71">In queue</a>
-               <a class="appalignrighticon" ng-if="scheduledListData.appointmentStatusCode != 'Waiting' && scheduledListData.status != 71"> View Details</a>
-               <a class="appalignrighticon" ng-if="scheduledListData.status == 71">In progress</a>
+               <a class="appalignrighticon localizejs" ng-if="scheduledListData.appointmentStatusCode == 'Waiting' && scheduledListData.status != 71">In queue</a>
+               <a class="appalignrighticon localizejs" ng-if="scheduledListData.appointmentStatusCode != 'Waiting' && scheduledListData.status != 71"> View Details</a>
+               <a class="appalignrighticon localizejs" ng-if="scheduledListData.status == 71">In progress</a>
                <span  class="aslignspan"><i class="accNextAppoint-{{deviceName}}" ng-bind-html="drawSVGCIcon('chevron-with-circle-right');"  ></i>
                </span>
                </span>
@@ -165,18 +165,18 @@
    </ion-item>
    <ion-footer-bar ng-if="appointmentsPatientId == patientId && P_isAuthorized && providerAvailability == true" style="display: {{individualNextAppointmentDisplay}}" class="bar bar-footer  footer-color userappheight" ng-click="goToPatientConcerns(currentPatientDetails)" >
       <div ng-if="getIndividualPatientCreditCount != 0 && paymentMode == 'on'" class="title CreditClinician userappfootcontent"  >
-         <div class="creditSeeaCLinician" >
+         <div class="creditSeeaCLinician localizejs" >
             See A Provider Now
          </div>
          <div>
             <span class="creditCount">
             <span ng-if="getIndividualPatientCreditCount < 10" class="creditCountNo">{{getIndividualPatientCreditCount}}</span>
-            <span ng-if="getIndividualPatientCreditCount > 9" class="creditCountNoTwoDigit">{{getIndividualPatientCreditCount}}</span> Credits
+            <span ng-if="getIndividualPatientCreditCount > 9" class="creditCountNoTwoDigit">{{getIndividualPatientCreditCount}}</span> <span class="localizejs">Credits</span>
             </span>
          </div>
       </div>
       <div ng-if="getIndividualPatientCreditCount == 0 ||  paymentMode != 'on'">
-         <h1 class="title userappfootcontent" >See A Provider Now</h1>
+         <h1 class="title userappfootcontent localizejs" >See A Provider Now</h1>
       </div>
    </ion-footer-bar>
    <div ng-controller="LoginCtrl"></div>
