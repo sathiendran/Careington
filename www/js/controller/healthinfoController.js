@@ -2013,7 +2013,6 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
     $scope.patientdone = function(){
     //  $rootScope.oldPatientIdentifiersDetails = $rootScope.PatientIdentifiers;
 
-
     //  $rootScope.PatientidupdateList = [];
        $scope.PatientsearchItem = $filter('filter')($rootScope.currentPatientsearchList, {
            checked: true
@@ -2024,31 +2023,20 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
            $rootScope.patientmedicationsSearch = $scope.PatientsearchItem;
            $rootScope.PatientsdetCount = $scope.PatientsearchItem.length;
            
-           console.log("PatientsdetCount length is== "+$rootScope.PatientsdetCount);
-              if ($rootScope.PatientsdetCount == 0) {
-                 console.log("PatientidupdateList clear ");
-                    $rootScope.PatientidupdateList = [];
-                }else{
-
-                }
+          if ($rootScope.PatientsdetCount == 0) {
+                $rootScope.PatientidupdateList = [];
+            }
 
          for (var k = 0; k < $rootScope.PatientsdetCount; k++) {
-               var status2="New";
-             //  var displayVal1=$scope.PatientsearchItem[k].display;
-                  //alert("get val is ="+displayVal1);
+               var status2="New";      
             for (var l = 0; l < $rootScope.PatientidupdateList.length; l++) {
-                //  var displayVal2=$scope.PatientidupdateList[l].display;
-                    if($scope.PatientsearchItem[k].display == $scope.PatientidupdateList[l].display){
-                   //     alert("Already Exit");
+                     if($scope.PatientsearchItem[k].display == $scope.PatientidupdateList[l].display){                
                         status2="Exit";
-                      }else{
-                     //     alert("New");            
                       }
                     }
-             //     alert("status "+status);
+             
             if(status2=="New"){
-                //  alert("status is new so add data is"+$scope.PatientsearchItem[i].display);
-             $rootScope.PatientidupdateList.push({
+               $rootScope.PatientidupdateList.push({
                                identifierTypeCode: $scope.PatientsearchItem[k].identifierTypeCode,
                                display: $scope.PatientsearchItem[k].display,
                                value:$scope.PatientsearchItem[k].value,
@@ -2056,41 +2044,22 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                                statusCode:$scope.PatientsearchItem[k].statusCode,
                                identifierTypeTitle: $scope.PatientsearchItem[k].identifierTypeTitle
                            });
-               }else{
-           //   alert("status is Exit so no add");
                }
             
            }
-             
-
-        for (var i = 0; i < $rootScope.PatientidupdateList.length; i++) {
-        // var displayVal3 = $scope.PatientidupdateList[i].display;
-            console.log("displayVal3 == "+$scope.PatientidupdateList[i].display);
-            var status1="New";
+            
+         for (var i = 0; i < $rootScope.PatientidupdateList.length; i++) {     
+                var status1="New";
            for (var j = 0; j < $rootScope.PatientsdetCount; j++) {
-           // var displayVal4 = $scope.PatientsearchItem[j].display;
-          
-            console.log("displayVal4 == "+$scope.PatientsearchItem[j].display);
-          
-                    if($scope.PatientidupdateList[i].display == $scope.PatientsearchItem[j].display){
-                       // console.log("Already Exit");
+              if($scope.PatientidupdateList[i].display == $scope.PatientsearchItem[j].display){                    
                          status1="Exit";
-                      }else{
-                     //     console.log("remove ");
-                          }
+                      }
                     }
                       if(status1=="New"){
-                         console.log("its new so remove ");
-
-                          $rootScope.PatientidupdateList.splice(i,1);
+                         $rootScope.PatientidupdateList.splice(i,1);
                           i = i-1;
-                      }else{
-                        //  console.log("Alredy available no change ");
                       }
-
                 }
-
-              
 
            $scope.updationListLength = $rootScope.PatientidupdateList.length;
         // $rootScope.PatientIdentifiers = $rootScope.PatientidupdateList;
