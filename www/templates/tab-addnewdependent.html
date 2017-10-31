@@ -62,7 +62,7 @@
                <div class="item item-input validated">
                   <div class="col col-50">
                      <span class="input-label labelcolor">
-                     <i class="iconsize" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel localizejs">Date of Birth</b><i class="ion-asterisk"></i></span>
+                     <i class="iconsize" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel localizejs" style="white-space: normal;">Date of Birth</b><i class="ion-asterisk"></i></span>
                   </div>
                   <div class="col col-50 depGreyLabel">
                      <input class="usertext dobDependent-{{deviceName}}"  id="dob" type="date"  placeholder="Required"   name="dob" ng-blur="ngBlur()">
@@ -83,7 +83,7 @@
                <div class="item item-input validated" style="display: {{emailDisplay}};">
                   <div class="col col-50">
                      <span class="input-label labelcolor">
-                     <i class="iconsize" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel localizejs">Email</b></span>
+                     <i class="iconsize" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel localizejs" style="white-space: normal;">Email</b></span>
                   </div>
                   <div class="col col-50 depGreyLabel">
                      <input class="usertext" id="email"  type="email" value="" placeholder="Optional" ng-model="email"  name="email" ng-blur="emailBlur()" ng-keyup="depemail()">
@@ -154,7 +154,7 @@
                <div class="item item-input validated">
                   <div class="col col-50">
                      <span class="input-label labelcolor">
-                     <i class="iconsize" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel localizejs">Home Phone</b></span>
+                     <i class="iconsize" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel localizejs" style="white-space: normal;">Home Phone</b></span>
                   </div>
                   <div class="col col-50 depGreyLabel">
                      <input  class="textdata" id="homephone" type="tel" value=""  placeholder="Optional" ng-model="phone"   name="phone" phone-input ng-blur="phoneBlur()">
@@ -185,7 +185,7 @@
                <div class="item item-input validated">
                   <div class="col col-50">
                      <span class="input-label labelcolor" >
-                     <i class="iconsize" style="left: -5px; position: relative;" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel localizejs" style="margin-left: -4px;">Home Address</b><i class="ion-asterisk"></i></span>
+                     <i class="iconsize" style="left: -5px; position: relative;" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel localizejs" style="margin-left: -4px; white-space: normal;">Home Address</b><i class="ion-asterisk"></i></span>
                   </div>
                   <div class="col col-50 depGreyLabel">
                      <ion-google-place class="coUserAddress-{{deviceName}}" placeholder="Full Address" ng-model="addNewDependent.homeadd" style="fon-size:18px !important;font-family: Glober Regular;" />
