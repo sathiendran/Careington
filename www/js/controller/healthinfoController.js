@@ -1582,12 +1582,12 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             templateUrl: 'templates/healthUnauthorizedPopup.html',
             scope: $scope,
             buttons: [{
-                text: '<b class="fonttype">Cancel</b>',
+                text: '<b class="fonttype localizejs">Cancel</b>',
                 onTap: function(e) {
                     return false;
                 }
             }, {
-                text: '<b class="fonttype">Confirm</b>',
+                text: '<b class="fonttype localizejs">Confirm</b>',
                 type: 'button-positive',
                 onTap: function(e) {
                     return true;
@@ -1623,12 +1623,12 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             templateUrl: 'templates/unauthorizedpopup.html',
             scope: $scope,
             buttons: [{
-                text: '<b class="fonttype">Cancel</b>',
+                text: '<b class="fonttype localizejs">Cancel</b>',
                 onTap: function(e) {
                     return false;
                 }
             }, {
-                text: '<b class="fonttype">Confirm</b>',
+                text: '<b class="fonttype localizejs">Confirm</b>',
                 type: 'button-positive',
                 onTap: function(e) {
                     return true;
@@ -2172,7 +2172,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
     $scope.openOtherCurrentMedicationView = function() {
         $scope.data = {}
         $ionicPopup.show({
-            template: '<textarea name="comment" id="comment-textarea" ng-model="data.CurrentMedicationOther" class="textAreaPop">',
+            template: '<textarea name="comment" id="comment-textarea" ng-model="data.CurrentMedicationOther" class="textAreaPop localizejs">',
             title: 'Enter Current Medication',
             subTitle: '',
             scope: $scope,
@@ -2187,7 +2187,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                     $rootScope.checkedMedication--;
                 }
             }, {
-                text: '<b>Done</b>',
+                text: '<b class="localizejs">Done</b>',
                 type: 'button-positive',
                 onTap: function(e) {
                     if (!$scope.data.CurrentMedicationOther) {

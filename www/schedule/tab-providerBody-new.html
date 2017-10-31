@@ -199,7 +199,7 @@
                             </div>
                         </div>
 
-                        <div class="drawer-card drawer-card--provider drawer-card--empty  is-active">
+                        <div class="drawer-card drawer-card--provider drawer-card--empty  is-active localizejs">
 
                             <div class="drawer-card__container">
 
@@ -275,7 +275,7 @@
                             </div>
                         </div>
 
-                        <div class="drawer-card drawer-card--provider drawer-card--empty">
+                        <div class="localizejs drawer-card drawer-card--provider drawer-card--empty">
 
                             <div class="drawer-card__container">
 
@@ -313,7 +313,7 @@
                             </div>
                         </div>
 
-                        <div class="drawer-card drawer-card--provider drawer-card--empty">
+                        <div class=" localizejs drawer-card drawer-card--provider drawer-card--empty">
 
                             <div class="drawer-card__container">
 
@@ -351,7 +351,7 @@
                             </div>
                         </div>
 
-                        <div class="drawer-card drawer-card--provider drawer-card--empty">
+                        <div class=" localizejs drawer-card drawer-card--provider drawer-card--empty">
 
                             <div class="drawer-card__container">
 
@@ -553,7 +553,7 @@
                     <div class="drawer-card__footer-toggler" data-bind="events: { click: vm_toogleFooter }">
 
                         <span data-bind="invisible: apptsSlotsTray.vm_isEmpty">Available Times</span>
-                        <span data-bind="visible: apptsSlotsTray.vm_isEmpty, html: apptsSlotsTray.vm_getNextApptSlotInfo"></span>
+                        <span data-bind="visible: apptsSlotsTray.vm_isEmpty, html: apptsSlotsTray.vm_getNextApptSlotInfo" class="localizejs"></span>
                     </div>
 
                     <button type="button" class="drawer-card__action" data-bind="visible: apptsSlotsTray.vm_hasSlotsForRightNow, events: { click: vm_onConnectNowClick}">
@@ -602,7 +602,7 @@
 
 <script id="apptSlotTemplate" type="text/x-kendo-template">
     <div data-bind="css: { is-selected : vm_isInvisible }">
-        <button type="button" class="drawer-card__appointment-action" data-bind="events: {click: vm_onSlotClick }, html: formatedTime"></button>
+        <button type="button" class="drawer-card__appointment-action localizejs" data-bind="events: {click: vm_onSlotClick }, html: formatedTime"></button>
     </div>
 </script>
 
