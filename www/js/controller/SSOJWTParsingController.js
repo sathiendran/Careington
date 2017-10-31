@@ -901,21 +901,21 @@ angular.module('starter.controllers')
 
                     var confirmPopup = $ionicPopup.confirm({
 
-                        title: "<div class='locationtitle appointProgreeTitle'> Appointment in progress </div> ",
+                        title: "<div class='locationtitle appointProgreeTitle localizejs'> Appointment in progress </div> ",
 
                         templateUrl: 'templates/waitingConsultent.html',
                         cssClass: 'locpopup',
                         hardwareBackButtonClose: false,
 
                         buttons: [{
-                            text: '<b>No</b>',
+                            text: '<b class="localizejs">No</b>',
                             onTap: function(e) {
                               //  $scope.showAlert();
                                 return true;
                             }
 
                         }, {
-                            text: '<b>Yes</b>',
+                            text: '<b class="localizejs">Yes</b>',
                             type: 'button-positive',
                             onTap: function(e) {
                                 //  return true;

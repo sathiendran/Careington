@@ -112,7 +112,7 @@
                         <div class="viewport localizejs">Choose</div>
                          <select class="ssooptionCountry textdata consultHealthPlanDropDown localizejs" id="regCountryCode" name="regCountryCode" ng-model="regStep1.regCountryCode"  ng-change="countryBlur()" >
                             <option value="Choose" class="localizejs"><b class="localizejs">Choose</b></option>
-                            <option class="planlist" ng-repeat="country in serviceCountries" value="{{country.code}}"><b>{{formatIsdCode(country.code, "&nbsp;", 10 ) + country.name}}</b></option>
+                            <option class="planlist" ng-repeat="country in serviceCountries" value="{{country.code}}"><b>{{country.name}} ({{country.code}})</b></option>
                          </select>
                         <span class="user-account__error-message localizejs" ng-show="countryError">Please choose your country code</span>
                      </div>
@@ -290,7 +290,7 @@
                         <div class="viewport localizejs">Choose</div>
                          <select class="ssooptionCountry textdata consultHealthPlanDropDown" id="regCountryCode" name="regCountryCode" ng-model="regStep1.regCountryCode"  ng-change="countryBlur()" >
                             <option class="localizejs" value="Choose"><b class="localizejs">Choose</b></option>
-                            <option class="planlist" ng-repeat="country in serviceCountries" value="{{country.code}}"><b>{{formatIsdCode(country.code, "&nbsp;", 10 ) + country.name}}</b></option>
+                            <option class="planlist" ng-repeat="country in serviceCountries" value="{{country.code}}"><b>{{country.name}} ({{country.code}})</b></option>
                          </select>
                         <span class="user-account__error-message localizejs" ng-show="countryError">Please choose your country code</span>
                      </div>
