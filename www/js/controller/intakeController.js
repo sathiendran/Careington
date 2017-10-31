@@ -1278,32 +1278,57 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
             $rootScope.IsToPriorCount--;
         }
         $scope.removeSurgeryItem = function (index, item) {
-            $rootScope.patientSurgeriess.splice(index, 1);
-            var indexPos = $rootScope.patientSurgeriess.indexOf(item);
+            var iIndex = $rootScope.patientSurgeriess.indexOf(item);
+            $rootScope.patientSurgeriess.splice(iIndex, 1);
+            //var indexPos = $rootScope.patientSurgeriess.indexOf(item);
             $rootScope.IsToPriorCount--;
             $rootScope.showIntakeNewSurgeryAdd = false;
             $scope.showIntakeEditSurgery = false;
             if ($rootScope.patientSurgeriess.length === 3)
                 $scope.modal.remove();
-            $rootScope.arrofSurgeryItemIndex = [];
+            //$rootScope.arrofSurgeryItemIndex = [];
+            //$rootScope.arrofSurgeryItemIndex.splice($rootScope.arrofSurgeryItemIndex.indexOf(index),1);
+            //console.log($rootScope.patientSurgeriess);
+            
         };
 
-        $scope.openEditSurgeryItem = function (index, surgery) {
-            //    if($scope.showIntakeEditSurgery !== true && $rootScope.showIntakeNewSurgeryAdd !== true) {
-            $rootScope.showIntakeNewSurgeryAdd = false;
-            $scope.showIntakeEditSurgery = true;
-            $scope.editItemIndex = index;
-            $(".surgeryDisplay-" + index).css("display", "none");
-            $(".surgeryEdit-" + index).css("display", "block");
-            $scope.editSurgeryArray = surgery;
-
-            // }
-
-            $rootScope.arrofSurgeryItemIndex.push({ indexRow: index })
-
+        $scope.openEditSurgeryItem = function (index1, surgery) {
+            // if($scope.showIntakeEditSurgery !== true && $rootScope.showIntakeNewSurgeryAdd !== true) {
             // $rootScope.showIntakeNewSurgeryAdd = false;
             // $scope.showIntakeEditSurgery = true;
             // $scope.editItemIndex = index;
+            // $(".surgeryDisplay-" + index).css("display", "none");
+            // $(".surgeryEdit-" + index).css("display", "block");
+            // $scope.editSurgeryArray = surgery;
+            // }
+
+            // $rootScope.arrofSurgeryItemIndex.push({ indexRow: index })
+            var index = $rootScope.patientSurgeriess.indexOf(surgery);
+            $rootScope.patientSurgeriess  
+            $rootScope.showIntakeNewSurgeryAdd = false;
+            $scope.showIntakeEditSurgery = true;
+            $scope.editItemIndex = index;
+
+            angular.forEach( $rootScope.patientSurgeriess, function (value, key) {
+            if(index == $rootScope.patientSurgeriess.indexOf(value)) {
+                $(".surgeryDisplay-"+key).css("display", "none");
+                $(".surgeryEdit-"+key).css("display", "block");
+                // $scope.month.text = $('#surDateStringMonth_' +key).val();
+                // $scope.month.text = $('#dateStringYear_' +key).val();
+            } else {
+                $(".surgeryDisplay-"+key).css("display", "block");
+                $(".surgeryEdit-"+key).css("display", "none");
+    
+                $(".surgeryDisplay-"+key).css("display", "block");
+                $(".surgeryEdit-"+key).css("display", "none");
+            }
+    
+                // $scope.surgery.name = $('#surDescription_' +0).val();
+                // $scope.month.text = $('#surDateStringMonth_' + 0).val();
+                // $scope.month.text = $('#dateStringYear_' + 0).val();
+    
+             });
+
             // if(index == 0) {
             // $(".surgeryDisplay-"+0).css("display", "none");
             // $(".surgeryEdit-"+0).css("display", "block");
@@ -1313,6 +1338,11 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
 
             // $(".surgeryDisplay-"+2).css("display", "block");
             // $(".surgeryEdit-"+2).css("display", "none");
+
+            // // $scope.surgery.name = $('#surDescription_' +0).val();
+            // // $scope.month.text = $('#surDateStringMonth_' + 0).val();
+            // // $scope.month.text = $('#dateStringYear_' + 0).val();
+
             // }
             // if(index == 1) {
             // $(".surgeryDisplay-"+1).css("display", "none");
@@ -1323,6 +1353,8 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
 
             // $(".surgeryDisplay-"+2).css("display", "block");
             // $(".surgeryEdit-"+2).css("display", "none");
+
+          
             // }
             // if(index == 2) {
             // $(".surgeryDisplay-"+2).css("display", "none");
@@ -1333,7 +1365,10 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
 
             // $(".surgeryDisplay-"+1).css("display", "block");
             // $(".surgeryEdit-"+1).css("display", "none");
+
             // }
+
+            $rootScope.arrofSurgeryItemIndex.push({ indexRow: index })
 
             $scope.editSurgeryArray = surgery;
 

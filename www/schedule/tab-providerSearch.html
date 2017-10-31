@@ -1,3 +1,38 @@
+<style>
+ .main-nav__toggle ins{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 20px;
+    height: 2.5px;
+    background-color: white !important;
+    transition: all .3s ease;
+}
+
+.main-nav__toggle ins:nth-of-type(1) {
+    top: 0px !important;
+}
+
+.main-nav__toggle ins:nth-of-type(2) {
+    top: 6px;
+}
+
+.main-nav__toggle ins:nth-of-type(3) {
+    top: 12px !important;
+} 
+
+.is-main-nav .main-nav__toggle ins:nth-of-type(1) {
+    top: -2px !important;
+    left: -2px;
+    transform: rotate(45deg);
+}
+.header__brand {
+    margin-top: -7px;
+}
+
+</style>
+
 <!--
 <nav class="main-nav" >
     <a href="#" class="user-info user-info--main-nav">
