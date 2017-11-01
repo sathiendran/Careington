@@ -166,8 +166,8 @@
                                </div>
                                <div class="pc-report__data-list-item pc-report__data-list-item--small" style="width: 23%">
                                    <span class="pc-report__data-list-title localizejs" style="margin-left: 1px;width: 26.333%;padding-left: 3px;">VIA</span>
-                                   <span class="pc-report__data-list-desc pc-report__data-list-desc--video" ng-if="encountercode == 3" style="width: 72.666%;">Video</span>
-                                   <span class="pc-report__data-list-desc pc-report__data-list-desc--phone" ng-if="encountercode != 3" style="width: 72.666%;">Phone</span>
+                                   <span class="pc-report__data-list-desc pc-report__data-list-desc--video localizejs" ng-if="encountercode == 3" style="width: 72.666%;">Video</span>
+                                   <span class="pc-report__data-list-desc pc-report__data-list-desc--phone localizejs" ng-if="encountercode != 3" style="width: 72.666%;">Phone</span>
                                      <!--<span class="pc-report__data-list-desc pc-report__data-list-desc--video">{{encountertype}}</span> -->
                                </div>
                           </div>
@@ -394,17 +394,17 @@
 
                      <div class="pc-report__prescriptions">
                          <div class="pc-report__table-title pc-report__table-title--50x50" ng-if="existconsultationprescriptions != '' && existconsultationprescriptions != null">
-                                <span>Name</span>
-                               <span>Dosage</span>
+                                <span class="localizejs">Name</span>
+                               <span class="localizejs">Dosage</span>
                            </div>
 
                           <div class="pc-report__notes" ng-if="!existconsultationprescriptions.length">
-                            <p>None Reported</p>
+                            <p class="localizejs">None Reported</p>
                           </div>
 
                          <div class="pc-report__table-row pc-report__table-row--50x50" ng-repeat="prescriptions in existconsultationprescriptions">
-                               <span>{{prescriptions.drugName}}</span>
-                               <span>{{prescriptions.drugDosage}}</span>
+                               <span class="localizejs">{{prescriptions.drugName}}</span>
+                               <span class="localizejs">{{prescriptions.drugDosage}}</span>
                            </div>
                      </div>
                      <!--// Prescription -->
@@ -451,7 +451,7 @@
 
 
 
-                             <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width">Medication Allergies<span class="pc-report__sub-section-date">As of {{todayDateForReport}}</span></div>
+                             <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width localizejs">Medication Allergies<span class="pc-report__sub-section-date">As of {{todayDateForReport}}</span></div>
                              <div ng-if="intake.medicationAllergies != ''" class="pc-report__list-title localizejs">Name</div>
                              <ul class="pc-report__med-list localizejs" ng-repeat="getAllergyList in ReportMedicationAllergies">
                                  <li class="localizejs">{{getAllergyList.description}}</li>
@@ -465,7 +465,7 @@
                          </div>
 
                          <div class="pc-report__med-history-right">
-                             <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width">Chronic Conditions</div>
+                             <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width localizejs">Chronic Conditions</div>
 
                              <div ng-if="intake.medicalConditions != ''" class="pc-report__list-title localizejs">Name</div>
                              <ul class="pc-report__med-list localizejs" ng-repeat="getmedicalConditionsList in ReportMedicalConditions">
