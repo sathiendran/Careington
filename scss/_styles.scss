@@ -547,7 +547,7 @@ body {
         top: -2px;
         position: relative;
         font-size: 17px;
-        padding-left: 41px;
+        padding-left: 3px;
     }
 }
 .provider_item {
@@ -2331,10 +2331,10 @@ select {
         top: -10px;
         left: 10px;
         span {
-            top: -23px;
-            position: relative;
-            // position:absolute;
-            // top:3px;
+            // top: -2px;
+            // position: relative;
+            position:absolute;
+            top:3px;
             font-weight: bold;
         }
         a {
