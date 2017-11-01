@@ -95,7 +95,7 @@
                   </label>
                   <label class="item item-input itemtab validated" ng-if="primaryPatientId != currentPatientDetails[0].account.patientId && editOption !== 'None'">
                     <span class="input-label labelcolor" style=" white-space: normal;"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('users')"></i><b class="formlabel labelfont localizejs">Relationship</b></span>
-                     <div class="healthViewDetails ellipsis">{{currentPatientDetails[0].account.relationship}}</div>
+                     <div class="healthViewDetails ellipsis localizejs">{{currentPatientDetails[0].account.relationship}}</div>
                   </label>
                   <label class="item item-input itemtab validated" style="display: {{viewemailDisplay}};">
                     <span class="input-label labelcolor" style=" white-space: normal;"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel labelfont localizejs">Email</b></span>
@@ -457,7 +457,7 @@
                   <!-- <li  ng-if="patientmedicalsurgeries==''" >N/A </li> -->
                   <li ng-repeat="surgeries in patientmedicalsurgeries">
                      {{$index + 1}}. <strong><span class="localizejs">{{surgeries.description}}</span></strong>
-                     {{getMonthName(surgeries.month)}} {{surgeries.year}}
+                     <span class="localizejs">{{getMonthName(surgeries.month)}}</span> {{surgeries.year}}
                   </li>
                </ul>
             </div>
