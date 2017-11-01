@@ -64,8 +64,8 @@
                      <span class="input-label labelcolor">
                      <i class="iconsize" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel localizejs" style="white-space: normal;">Date of Birth</b><i class="ion-asterisk"></i></span>
                   </div>
-                  <div class="col col-50 depGreyLabel">
-                     <input class="usertext dobDependent-{{deviceName}}"  id="dob" type="date"  placeholder="Required"   name="dob" ng-blur="ngBlur()">
+                  <div class="col col-50 depGreyLabel inputlabelclass">
+                     <input class="usertext dobDependent-{{deviceName}} inputlabelval"  id="dob" type="date"  placeholder="Required"   name="dob" ng-blur="ngBlur()">
                   </div>
                </div>
                <div class="item item-input validated">
@@ -156,8 +156,8 @@
                      <span class="input-label labelcolor">
                      <i class="iconsize" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel localizejs" style="white-space: normal;">Home Phone</b></span>
                   </div>
-                  <div class="col col-50 depGreyLabel">
-                     <input  class="textdata" id="homephone" type="tel" value=""  placeholder="Optional" ng-model="phone"   name="phone" phone-input ng-blur="phoneBlur()">
+                  <div class="col col-50 depGreyLabel inputlabelclass">
+                     <input  class="textdata inputlabelval" id="homephone" type="tel" value=""  placeholder="Optional" ng-model="phone"   name="phone" phone-input ng-blur="phoneBlur()">
                      <span class="error localizejs" id="erphone" ng-show="myForm.phone.$error.pattern">Not a valid number!</span>
                   </div>
                </div>
@@ -187,8 +187,8 @@
                      <span class="input-label labelcolor" >
                      <i class="iconsize" style="left: -5px; position: relative;" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel localizejs" style="margin-left: -4px; white-space: normal;">Home Address</b><i class="ion-asterisk"></i></span>
                   </div>
-                  <div class="col col-50 depGreyLabel">
-                     <ion-google-place class="coUserAddress-{{deviceName}}" placeholder="Full Address" ng-model="addNewDependent.homeadd" style="fon-size:18px !important;font-family: Glober Regular;" />
+                  <div class="col col-50 depGreyLabel inputlabelclass">
+                     <ion-google-place class="coUserAddress-{{deviceName}} inputlabelval" placeholder="Full Address" ng-model="addNewDependent.homeadd" style="fon-size:18px !important;font-family: Glober Regular;" />
                   </div>
                </div>
                <div class="item item-input validated" ng-if="OrganizationLocation === 'on'">
