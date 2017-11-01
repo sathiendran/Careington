@@ -1,6 +1,3 @@
-
-
-
 var indexOf = [].indexOf || function(item) {
         for (var i = 0, l = this.length; i < l; i++) {
             if (i in this && this[i] === item) return i;
@@ -813,7 +810,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
     $scope.doRefreshUserHome = function() {
         $rootScope.doGetPatientProfiles();
-        $rootScope.cuttlocations = "tab.ReportScreen";
+      //  $rootScope.cuttlocations = "tab.ReportScreen";
           //$rootScope.doGetRelatedPatientProfiles('tab.userhome');
         $timeout(function() {
             $scope.$broadcast('scroll.refreshComplete');
@@ -834,7 +831,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
         $(".ion-google-place-container").css({
             "display": "none"
         });
-        if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging' && cobrandApp !== 'MDAmerica') {
+      //  if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging' && cobrandApp !== 'MDAmerica') {
+        if ((deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && api_keys_env === 'Staging' && cobrandApp !== 'MDAmerica') && (appStoreTestUserEmail === 'itunesmobiletester@gmail.com' || appStoreTestUserEmail2 == 'snap.rinsoft.qaapptester@gmail.com')) {
               $rootScope.hospitalId = singleHospitalId;
               apiCommonURL = 'https://connectedcare.md';
               api_keys_env = 'Production';
@@ -1050,7 +1048,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
             $rootScope.chkedchkbox = false;
         }
         if (deploymentEnv === "Production") {
-            if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
+            //if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
+             if ((appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) || (appStoreTestUserEmail2 !== '' && $("#UserEmail").val() === appStoreTestUserEmail2)) {
                 apiCommonURL = 'https://emerald.stage.snapvcm.com';
                 api_keys_env = 'Staging';
                 $rootScope.APICommonURL = 'https://emerald.stage.snapvcm.com';
@@ -1112,8 +1111,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
     $scope.GetSingleLoginDetailsFOrCheckingMic = function() {
         if (deploymentEnvLogout === 'Single') {
             if (deploymentEnvForProduction === 'Production') {
-                if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
-
+              //  if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
+              if ((appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) || (appStoreTestUserEmail2 !== '' && $("#UserEmail").val() === appStoreTestUserEmail2)) {
                     $rootScope.hospitalId = singleStagingHospitalId;
                     apiCommonURL = 'https://emerald.stage.snapvcm.com';
                     api_keys_env = 'Staging';
@@ -1148,7 +1147,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
             $window.localStorage.setItem('username', "");
             $rootScope.chkedchkbox = false;
         }
-        if(appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging') {
+      //  if(appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging') {
+       if((appStoreTestUserEmail === 'itunesmobiletester@gmail.com' || appStoreTestUserEmail2 === 'snap.rinsoft.qaapptester@gmail.com') && api_keys_env === 'Staging') {
             $scope.doGetToken();
         } else {
           $scope.doGetSingleHosInfoForiTunesStage('HosInfoForCoBrand');
@@ -1244,6 +1244,83 @@ $rootScope.checkAndChangeMenuIcon = function() {
                 $rootScope.contactNumber = data.data[0].contactNumber;
                 $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
                 $rootScope.clientName = data.data[0].hospitalName;
+
+                var hospitaData = {};
+      					hospitaData.hospitalId = $rootScope.hospitalId;
+      					hospitaData.brandName = data.data[0].brandName;
+      					hospitaData.subBrandName = data.data[0].brandTitle;
+      					hospitaData.clientName = data.data[0].hospitalName;
+      					hospitaData.brandColor = data.data[0].brandColor;
+      					hospitaData.hospitalLogo = data.data[0].hospitalImage;
+      					hospitaData.address = data.data[0].address;
+      					hospitaData.locale = data.data[0].locale;
+
+      					hospitaData.patientLogin = data.data[0].patientLogin;
+      					hospitaData.patientConsultEndUrl = data.data[0].patientConsultEndUrl;
+
+      					hospitaData.customerSSO = data.data[0].customerSso;
+      					hospitaData.customerSSOButtonText = data.data[0].customerSsoLinkText;
+
+      					hospitaData.clinicianConsultEndUrl = data.data[0].clinicianConsultEndUrl;
+      					hospitaData.clinicianLogin = data.data[0].clinicianLogin;
+
+      					hospitaData.clinicianSSO = data.data[0].clinicianSso;
+      					hospitaData.clinicianSSOButtonText = data.data[0].clinicianSsoLinkText;
+
+      					hospitaData.contactNumber = data.data[0].contactNumber;
+      					hospitaData.email = data.data[0].email;
+      					var hosJsonData = JSON.stringify(hospitaData);
+      					$window.localStorage.setItem('snap_hospital_session', hosJsonData);
+
+      					var hsettings = {};
+
+      					hsettings.eCommerce = $rootScope.getDetails.indexOf("ECommerce") > -1;
+      					hsettings.onDemand = $rootScope.getDetails.indexOf("OnDemand") > -1;
+      					hsettings.cPTCodes = $rootScope.getDetails.indexOf("CPTCodes") > -1;
+      					hsettings.messaging = $rootScope.getDetails.indexOf("Messaging") > -1;
+
+      					hsettings.insuranceVerification = $rootScope.getDetails.indexOf("InsuranceVerification") > -1;
+      					hsettings.ePrescriptions = $rootScope.getDetails.indexOf("EPrescriptions") > -1;
+      					hsettings.ePrescriptions_EPSchedule = $rootScope.getDetails.indexOf("EPrescriptions_EPSchedule") > -1;
+      					hsettings.intakeForm = $rootScope.getDetails.indexOf("IntakeForm") > -1;
+      					hsettings.intakeForm_OnDemand = $rootScope.getDetails.indexOf("IntakeForm_OnDemand") > -1;
+      					hsettings.intakeForm_Scheduled = $rootScope.getDetails.indexOf("IntakeForm_Scheduled") > -1;
+      					hsettings.providerSearch = $rootScope.getDetails.indexOf("ClinicianSearch") > -1;
+      					hsettings.rxNTEHR = $rootScope.getDetails.indexOf("RxNTEHR") > -1;
+      					hsettings.rxNTPM = $rootScope.getDetails.indexOf("RxNTPM") > -1;
+      					hsettings.hidePaymentPageBeforeWaitingRoom = $rootScope.getDetails.indexOf("HidePaymentPageBeforeWaitingRoom") > -1;
+      					hsettings.fileSharing = $rootScope.getDetails.indexOf("FileSharing") > -1;
+      					hsettings.insuranceBeforeWaiting = $rootScope.getDetails.indexOf("InsuranceBeforeWaiting") > -1;
+      					hsettings.ePerscriptions = $rootScope.getDetails.indexOf("EPerscriptions") > -1;
+      					hsettings.ePSchedule1 = $rootScope.getDetails.indexOf("EPSchedule1") > -1;
+
+      					hsettings.iCD9Codes = $rootScope.getDetails.indexOf("ICD9Codes") > -1;
+      					hsettings.textMessaging = $rootScope.getDetails.indexOf("TextMessaging") > -1;
+      					hsettings.insVerificationDummy = $rootScope.getDetails.indexOf("InsVerificationDummy") > -1;
+      					hsettings.videoBeta = $rootScope.getDetails.indexOf("VideoBeta") > -1;
+      					hsettings.hidePaymentBeforeWaiting = $rootScope.getDetails.indexOf("HidePaymentBeforeWaiting") > -1;
+      					hsettings.showCTTOnScheduled = $rootScope.getDetails.indexOf("ShowCTTOnScheduled") > -1;
+
+      					hsettings.pPIsBloodTypeRequired = $rootScope.getDetails.indexOf("PPIsBloodTypeRequired") > -1;
+                hsettings.disablePhoneConsultation = $rootScope.getDetails.indexOf("DisablePhoneConsultation") > -1;
+      					hsettings.pPIsHairColorRequired = $rootScope.getDetails.indexOf("PPIsHairColorRequired") > -1;
+      					hsettings.pPIsEthnicityRequired = $rootScope.getDetails.indexOf("PPIsEthnicityRequired") > -1;
+      					hsettings.pPIsEyeColorRequired = $rootScope.getDetails.indexOf("PPIsEyeColorRequired") > -1;
+      					hsettings.organizationLocation = $rootScope.getDetails.indexOf("OrganizationLocation") > -1;
+
+      					hsettings.AddressValidation = $rootScope.getDetails.indexOf("AddressValidation") > -1;
+
+      					hsettings.hideOpenConsultation = $rootScope.getDetails.indexOf("HideOpenConsultation") > -1;
+      					hsettings.hideDrToDrChat = $rootScope.getDetails.indexOf("HideDrToDrChat") > -1;
+      					hsettings.drToDrChatInAdmin = false; //data.indexOf("DrToDrChatInAdmin") > -1;
+      					//alert(data.indexOf("HideDrToDrChat"));
+      					//Addd Public facing Hospital Setting
+      					if (data.data[0]['settings']) {
+      						$.extend(hsettings, data.data[0]['settings']);
+      					}
+      					var hsettingsJsonData = JSON.stringify(hsettings);
+      					$window.localStorage.setItem('snap_hospital_settings', hsettingsJsonData);
+
                 if(HosForCoBrand === 'HosInfoForCoBrand') {
                   $scope.doGetTokenSSO();
                 } else {
@@ -2037,6 +2114,83 @@ $rootScope.checkAndChangeMenuIcon = function() {
                 $rootScope.contactNumber = data.data[0].contactNumber;
                 $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
                 $rootScope.clientName = data.data[0].hospitalName;
+
+                var hospitaData = {};
+      					hospitaData.hospitalId = $rootScope.hospitalId;
+      					hospitaData.brandName = data.data[0].brandName;
+      					hospitaData.subBrandName = data.data[0].brandTitle;
+      					hospitaData.clientName = data.data[0].hospitalName;
+      					hospitaData.brandColor = data.data[0].brandColor;
+      					hospitaData.hospitalLogo = data.data[0].hospitalImage;
+      					hospitaData.address = data.data[0].address;
+      					hospitaData.locale = data.data[0].locale;
+
+      					hospitaData.patientLogin = data.data[0].patientLogin;
+      					hospitaData.patientConsultEndUrl = data.data[0].patientConsultEndUrl;
+
+      					hospitaData.customerSSO = data.data[0].customerSso;
+      					hospitaData.customerSSOButtonText = data.data[0].customerSsoLinkText;
+
+      					hospitaData.clinicianConsultEndUrl = data.data[0].clinicianConsultEndUrl;
+      					hospitaData.clinicianLogin = data.data[0].clinicianLogin;
+
+      					hospitaData.clinicianSSO = data.data[0].clinicianSso;
+      					hospitaData.clinicianSSOButtonText = data.data[0].clinicianSsoLinkText;
+
+      					hospitaData.contactNumber = data.data[0].contactNumber;
+      					hospitaData.email = data.data[0].email;
+      					var hosJsonData = JSON.stringify(hospitaData);
+      					$window.localStorage.setItem('snap_hospital_session', hosJsonData);
+
+      					var hsettings = {};
+
+      					hsettings.eCommerce = $rootScope.getDetails.indexOf("ECommerce") > -1;
+      					hsettings.onDemand = $rootScope.getDetails.indexOf("OnDemand") > -1;
+      					hsettings.cPTCodes = $rootScope.getDetails.indexOf("CPTCodes") > -1;
+      					hsettings.messaging = $rootScope.getDetails.indexOf("Messaging") > -1;
+
+      					hsettings.insuranceVerification = $rootScope.getDetails.indexOf("InsuranceVerification") > -1;
+      					hsettings.ePrescriptions = $rootScope.getDetails.indexOf("EPrescriptions") > -1;
+      					hsettings.ePrescriptions_EPSchedule = $rootScope.getDetails.indexOf("EPrescriptions_EPSchedule") > -1;
+      					hsettings.intakeForm = $rootScope.getDetails.indexOf("IntakeForm") > -1;
+      					hsettings.intakeForm_OnDemand = $rootScope.getDetails.indexOf("IntakeForm_OnDemand") > -1;
+      					hsettings.intakeForm_Scheduled = $rootScope.getDetails.indexOf("IntakeForm_Scheduled") > -1;
+      					hsettings.providerSearch = $rootScope.getDetails.indexOf("ClinicianSearch") > -1;
+      					hsettings.rxNTEHR = $rootScope.getDetails.indexOf("RxNTEHR") > -1;
+      					hsettings.rxNTPM = $rootScope.getDetails.indexOf("RxNTPM") > -1;
+      					hsettings.hidePaymentPageBeforeWaitingRoom = $rootScope.getDetails.indexOf("HidePaymentPageBeforeWaitingRoom") > -1;
+      					hsettings.fileSharing = $rootScope.getDetails.indexOf("FileSharing") > -1;
+      					hsettings.insuranceBeforeWaiting = $rootScope.getDetails.indexOf("InsuranceBeforeWaiting") > -1;
+      					hsettings.ePerscriptions = $rootScope.getDetails.indexOf("EPerscriptions") > -1;
+      					hsettings.ePSchedule1 = $rootScope.getDetails.indexOf("EPSchedule1") > -1;
+
+      					hsettings.iCD9Codes = $rootScope.getDetails.indexOf("ICD9Codes") > -1;
+      					hsettings.textMessaging = $rootScope.getDetails.indexOf("TextMessaging") > -1;
+      					hsettings.insVerificationDummy = $rootScope.getDetails.indexOf("InsVerificationDummy") > -1;
+      					hsettings.videoBeta = $rootScope.getDetails.indexOf("VideoBeta") > -1;
+      					hsettings.hidePaymentBeforeWaiting = $rootScope.getDetails.indexOf("HidePaymentBeforeWaiting") > -1;
+      					hsettings.showCTTOnScheduled = $rootScope.getDetails.indexOf("ShowCTTOnScheduled") > -1;
+
+      					hsettings.pPIsBloodTypeRequired = $rootScope.getDetails.indexOf("PPIsBloodTypeRequired") > -1;
+                hsettings.disablePhoneConsultation = $rootScope.getDetails.indexOf("DisablePhoneConsultation") > -1;
+      					hsettings.pPIsHairColorRequired = $rootScope.getDetails.indexOf("PPIsHairColorRequired") > -1;
+      					hsettings.pPIsEthnicityRequired = $rootScope.getDetails.indexOf("PPIsEthnicityRequired") > -1;
+      					hsettings.pPIsEyeColorRequired = $rootScope.getDetails.indexOf("PPIsEyeColorRequired") > -1;
+      					hsettings.organizationLocation = $rootScope.getDetails.indexOf("OrganizationLocation") > -1;
+
+      					hsettings.AddressValidation = $rootScope.getDetails.indexOf("AddressValidation") > -1;
+
+      					hsettings.hideOpenConsultation = $rootScope.getDetails.indexOf("HideOpenConsultation") > -1;
+      					hsettings.hideDrToDrChat = $rootScope.getDetails.indexOf("HideDrToDrChat") > -1;
+      					hsettings.drToDrChatInAdmin = false; //data.indexOf("DrToDrChatInAdmin") > -1;
+      					//alert(data.indexOf("HideDrToDrChat"));
+      					//Addd Public facing Hospital Setting
+      					if (data.data[0]['settings']) {
+      						$.extend(hsettings, data.data[0]['settings']);
+      					}
+      					var hsettingsJsonData = JSON.stringify(hsettings);
+      					$window.localStorage.setItem('snap_hospital_settings', hsettingsJsonData);
+
                 if (!angular.isUndefined(data.data[0].customerSso) && data.data[0].customerSso === "Mandatory") {
                     $rootScope.customerSso = "Mandatory";
                     ssoURL = data.data[0].patientLogin;
@@ -2049,11 +2203,14 @@ $rootScope.checkAndChangeMenuIcon = function() {
                     $rootScope.isSSORegisterAvailable = '';
                 }
 
-                if( $rootScope.cuttlocations != "tab.ReportScreen" && (!$rootScope.passwordPreviousPage || $rootScope.passwordPreviousPage == '')){
-                  $scope.doGetlocationResponse();
+                if ($rootScope.cuttlocations == "tab.ReportScreen" && (!$rootScope.passwordPreviousPage || $rootScope.passwordPreviousPage == '')) {
+                    $state.go('tab.userhome');
+                } else {
+                    $rootScope.cuttlocations = "tab.ReportScreen";
+                    $rootScope.passwordPreviousPage = false;
+                    $scope.doGetWaitingConsultent();
                 }
 
-                $state.go('tab.userhome');
             },
             error: function(data, status) {
               if (status === 0) {
@@ -2351,7 +2508,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
               if (deploymentEnv === "Single" && cobrandApp !== 'MDAmerica') {
                    if (deploymentEnvLogout === 'Single') {
                        if (deploymentEnvForProduction === 'Production') {
-                           if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
+                        //   if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
+                         if ((appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) || (appStoreTestUserEmail2 !== '' && $("#UserEmail").val() === appStoreTestUserEmail2)) {
                                $rootScope.hospitalId = singleStagingHospitalId;
                                apiCommonURL = 'https://snap-stage.com';
                                api_keys_env = 'Staging';
@@ -2469,8 +2627,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
         debugger;
         if (deploymentEnvLogout === 'Single') {
             if (deploymentEnvForProduction === 'Production') {
-                if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
-
+            //    if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
+            if ((appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) || (appStoreTestUserEmail2 !== '' && $("#UserEmail").val() === appStoreTestUserEmail2)) {
                     $rootScope.hospitalId = singleStagingHospitalId;
                     apiCommonURL = 'https://emerald.stage.snapvcm.com';
                     api_keys_env = 'Staging';
@@ -3190,6 +3348,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                       /*  }  else if ($rootScope.cuttlocations == undefined) {
                           $scope.doGetlocationResponse();*/
                         } else {
+                            $rootScope.cuttlocations = "tab.ReportScreen";
                             $rootScope.passwordPreviousPage = false;
                             $scope.doGetWaitingConsultent();
                             //$scope.doGetlocationResponse();
