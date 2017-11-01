@@ -163,7 +163,8 @@ angular.module('starter.controllers')
       $ionicBackdrop.release();
       $window.localStorage.setItem('tokenExpireTime', '');
         $(".overlay").css({"display": "none" });
-      if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging') {
+    //  if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging') {
+    if ((deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && api_keys_env === 'Staging' && cobrandApp !== 'MDAmerica') && (appStoreTestUserEmail === 'itunesmobiletester@gmail.com' || appStoreTestUserEmail2 == 'snap.rinsoft.qaapptester@gmail.com')) {
             $rootScope.hospitalId = singleHospitalId;
             apiCommonURL = 'https://connectedcare.md';
             api_keys_env = 'Production';

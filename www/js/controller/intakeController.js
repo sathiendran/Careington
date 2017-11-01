@@ -157,7 +157,8 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
               $rootScope.chkSSPageEnter = false;
               $ionicSideMenuDelegate.toggleLeft();
           }
-      if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging') {
+    //  if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging') {
+    if ((deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && api_keys_env === 'Staging' && cobrandApp !== 'MDAmerica') && (appStoreTestUserEmail === 'itunesmobiletester@gmail.com' || appStoreTestUserEmail2 == 'snap.rinsoft.qaapptester@gmail.com')) {
             $rootScope.hospitalId = singleHospitalId;
             apiCommonURL = 'https://connectedcare.md';
             api_keys_env = 'Production';
@@ -1289,7 +1290,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
             //$rootScope.arrofSurgeryItemIndex = [];
             //$rootScope.arrofSurgeryItemIndex.splice($rootScope.arrofSurgeryItemIndex.indexOf(index),1);
             //console.log($rootScope.patientSurgeriess);
-            
+
         };
 
         $scope.openEditSurgeryItem = function (index1, surgery) {
@@ -1304,7 +1305,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
 
             // $rootScope.arrofSurgeryItemIndex.push({ indexRow: index })
             var index = $rootScope.patientSurgeriess.indexOf(surgery);
-            $rootScope.patientSurgeriess  
+            $rootScope.patientSurgeriess
             $rootScope.showIntakeNewSurgeryAdd = false;
             $scope.showIntakeEditSurgery = true;
             $scope.editItemIndex = index;
@@ -1318,15 +1319,15 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
             } else {
                 $(".surgeryDisplay-"+key).css("display", "block");
                 $(".surgeryEdit-"+key).css("display", "none");
-    
+
                 $(".surgeryDisplay-"+key).css("display", "block");
                 $(".surgeryEdit-"+key).css("display", "none");
             }
-    
+
                 // $scope.surgery.name = $('#surDescription_' +0).val();
                 // $scope.month.text = $('#surDateStringMonth_' + 0).val();
                 // $scope.month.text = $('#dateStringYear_' + 0).val();
-    
+
              });
 
             // if(index == 0) {
@@ -1354,7 +1355,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
             // $(".surgeryDisplay-"+2).css("display", "block");
             // $(".surgeryEdit-"+2).css("display", "none");
 
-          
+
             // }
             // if(index == 2) {
             // $(".surgeryDisplay-"+2).css("display", "none");

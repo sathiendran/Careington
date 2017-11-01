@@ -15,6 +15,7 @@
 var deploymentEnv = 'Multiple'; //Production //Multiple //Multiple //Single //Demo
 var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProduction = 'Production';
 var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
+var appStoreTestUserEmail2 = 'snap.rinsoft.qaapptester@gmail.com';
 var deploymentEnvForProduction = ''; //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
 var loginPageEnv = 'Single';
 var appVersion = 8.1;
