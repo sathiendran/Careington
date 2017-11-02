@@ -612,7 +612,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -7971,7 +7971,15 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         /*if($stateParams.getPage === 'CTT') {
            $state.go('tab.userhome');
          } else {*/
-          $state.go($rootScope.concentToTreatPreviousPage);
+            var ageDifMs = Date.now() - new Date($rootScope.userDOB).getTime(); // parse string to date
+            var ageDate = new Date(ageDifMs); // miliseconds from epoch
+            $scope.userAge = Math.abs(ageDate.getUTCFullYear() - 1970);
+            if($scope.userAge == 0) {
+                $state.go("tab.intakeBornHistory");
+            }  else {
+                $state.go($rootScope.concentToTreatPreviousPage);
+            }
+          
         //}
     }
 
