@@ -609,7 +609,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -3636,21 +3636,21 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
                     var confirmPopup = $ionicPopup.confirm({
 
-                        title: "<div class='locationtitle appointProgreeTitle'> Appointment in progress </div> ",
+                        title: "<div class='locationtitle appointProgreeTitle localizejs'> Appointment in progress </div> ",
 
                         templateUrl: 'templates/waitingConsultent.html',
                         cssClass: 'locpopup',
                         hardwareBackButtonClose: false,
 
                         buttons: [{
-                            text: '<b>No</b>',
+                            text: '<b class="localizejs">No</b>',
                             onTap: function(e) {
                               //  $scope.showAlert();
                                 return true;
                             }
 
                         }, {
-                            text: '<b>Yes</b>',
+                            text: '<b class="localizejs">Yes</b>',
                             type: 'button-positive',
                             onTap: function(e) {
                                 //  return true;
@@ -8130,7 +8130,15 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         /*if($stateParams.getPage === 'CTT') {
            $state.go('tab.userhome');
          } else {*/
-          $state.go($rootScope.concentToTreatPreviousPage);
+            var ageDifMs = Date.now() - new Date($rootScope.userDOB).getTime(); // parse string to date
+            var ageDate = new Date(ageDifMs); // miliseconds from epoch
+            $scope.userAge = Math.abs(ageDate.getUTCFullYear() - 1970);
+            if($scope.userAge == 0) {
+                $state.go("tab.intakeBornHistory");
+            }  else {
+                $state.go($rootScope.concentToTreatPreviousPage);
+            }
+          
         //}
     }
 

@@ -50,7 +50,7 @@
                <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;"> </button>
             </div>
             <div class=" button-bar">
-               <label class="button button-small btcolor btn-first" ng-click="userslist()" id="users"> Co-Users</label>
+               <label class="button button-small btcolor btn-first localizejs" ng-click="userslist()" id="users"> Co-Users</label>
                <label class="button button-small btnextcolor btn-first tabcontent localizejs" ng-click="dependentslist()" id="dependents">Dependents</label>
             </div>
             <div class="buttons backbtn">
@@ -70,7 +70,7 @@
                      <span class="fname sfont localizejs">{{getCoUserDetails.name}}</span> <span class="sname">{{getCoUserDetails.lastname}}</span>
                      <i class="icon ion-chevron-right avataricon" ></i>
                   </h2>
-                  <p class="relatediconfontforCoUser">{{getCoUserDetails.gender}} .<span ng-if="getCoUserDetails.dob != ''"> {{getCoUserDetails.dob}}</span> <span class="localizejs" ng-if="getCoUserDetails.relationship != ''">. {{getCoUserDetails.relationship}}</span> </p>
+                  <p class="relatediconfontforCoUser"><span class="localizejs">{{getCoUserDetails.gender}}</span> .<span ng-if="getCoUserDetails.dob != ''"> {{getCoUserDetails.dob}}</span> <span class="localizejs" ng-if="getCoUserDetails.relationship != ''">.{{getCoUserDetails.relationship}}</span> </p>
                </a>
                <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)">
                </ion-delete-button>
@@ -92,7 +92,7 @@
                      <div class="docAppointImage" ng-bind-html="drawImage(getDependentDetails.profileImagePath,getDependentDetails.patientFirstName,getDependentDetails.patientLastName)"></div>
                      <span ng-click="showtab(getDependentDetails.tabPatientId)">
                         <h2  class="relatedhead"><span class="sfont fname ">{{getDependentDetails.patientFirstName}}</span> <span class="sname">{{getDependentDetails.patientLastName}}</span> </h2>
-                        <p class="relatediconfont localizejs">{{getDependentDetails.gender}} .<span ng-if="getDependentDetails.modifiedBirthdate != ''">  {{getDependentDetails.modifiedBirthdate}}</span> <span class="localizejs" ng-if="getDependentDetails.relationship != ''"> . {{getDependentDetails.relationship}} </span></p>
+                        <p class="relatediconfont localizejs"><span class="localizejs">{{getDependentDetails.gender}}</span> .<span ng-if="getDependentDetails.modifiedBirthdate != ''">  {{getDependentDetails.modifiedBirthdate}}</span> <span class="localizejs" ng-if="getDependentDetails.relationship != ''"> . {{getDependentDetails.relationship}} </span></p>
                      </span>
                   </a>
                   <div class="row dotrow authorizePatient-{{deviceName}}" ng-if="getDependentDetails.tabPatientId == tabWithPatientId" ng-show="tabView">

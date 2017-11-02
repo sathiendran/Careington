@@ -5,8 +5,8 @@
             <div class="buttons" >
                <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
             </div>
-            <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span class="newUserTitle-{{deviceName}}"> Related Users </span> <span style="float:right;">
-               <a class="headerval" style="cursor: pointer;" ng-click="goToUserPageFromAddUser();">Cancel</a></span>
+            <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} localizejs"><span class="newUserTitle-{{deviceName}} localizejs"> Related Users </span> <span style="float:right;">
+               <a class="headerval localizejs" style="cursor: pointer;" ng-click="goToUserPageFromAddUser();">Cancel</a></span>
             </h1>
             <div class="bar bar-subheader bar-dark subheaderheight" >
                <div class="row">
@@ -26,7 +26,7 @@
                            </div>
                         </div>
                         <div>
-                           <p class="hometext">Account Home</p>
+                           <p class="hometext localizejs">Account Home</p>
                         </div>
                      </a>
                   </div>
@@ -38,7 +38,7 @@
                               <span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
                            </div>
                         </div>
-                        <p class="grouptext">Change Patient</p>
+                        <p class="grouptext localizejs">Change Patient</p>
                      </a>
                   </div>
                </div>
@@ -51,8 +51,8 @@
                      <p class="newuserp"><i class="fontcolor icon" ng-bind-html="drawSVGCIcon('user-add')" style="font-size:50px;"></i></p>
                      <div class="newusertopcontent">
                         <h2 class="newusertoph2">
-                           <p class="usertopfont">Add A New User</p>
-                           <p class="topp regularfamily">Select a user type to add</p>
+                           <p class="usertopfont localizejs">Add A New User</p>
+                           <p class="topp regularfamily localizejs">Select a user type to add</p>
                         </h2>
                      </div>
                   </ion-item>
@@ -60,7 +60,7 @@
                      <div class="card" style="box-shadow:none !important;margin:0px !important;background:none;">
                         <div class="item-text-wrap itemtextwap">
                            <h2 class="title alignchronic ChronicCondition" >
-                              <span class="content addUser-{{deviceName}}">
+                              <span class="content addUser-{{deviceName}} localizejs">
                               Invite A Co-User
                               </span>
                            </h2>
@@ -71,7 +71,7 @@
                      <div class="card" style="box-shadow:none !important;margin:0px !important;background:none;">
                         <div class="item-text-wrap itemtextwap">
                            <h2 class="title alignchronic ChronicCondition" >
-                              <span class="content addUser-{{deviceName}}">
+                              <span class="content addUser-{{deviceName}} localizejs">
                               Add A Dependent
                               </span>
                            </h2>
@@ -81,7 +81,7 @@
                </ion-list>
             </ion-content>
             <div class="bar bar-footer addheight" style="background-color:#444444;">
-               <h1 class="title" id="addusercancel"  style="" ><a ng-href="#/tab/userhome" style="padding: 10px;">Cancel</a></h1>
+               <h1 class="title localizejs" id="addusercancel"  style="" ><a ng-href="#/tab/userhome" style="padding: 10px;">Cancel</a></h1>
             </div>
       </ion-side-menu-content>
       <!--Side Menu File Include --->

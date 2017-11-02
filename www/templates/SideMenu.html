@@ -1,3 +1,9 @@
+<style>
+        .disabledSchedule {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+    </style>
 <!--<ion-side-menu side="left" style="background-color: #464644;">
    <div class="sideMenu">
       <a ng-href="#/tab/userhome" class="sidemenuContent1" >
@@ -90,7 +96,10 @@
            <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')" ><a><span> <i ng-bind-html="drawSVGCIcon('clipboard')"></i></span><Span class="localizejs">My Health</span></a></li>
            <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClickApoointments')"><a><span><i ng-bind-html="drawSVGCIcon('calendar')"></i></span><span class="localizejs">My Appointments</span></a></li>
            <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'tab.consultations')"><a><span><i ng-bind-html="drawSVGCIcon('health_card')"></i></span><span class="localizejs">My Consultations</span></a></li>
-           <li ng-if="online == true && onSSAvailability == 'on'" ng-click="goTOSchedule()"><a><span class="icon_search-users"></span><span class="localizejs">Self Schedule</span></a></li>
+           
+           <!-- <li ng-if="online == true && onSSAvailability == 'on'" ng-click="goTOSchedule()"><a><span class="icon_search-users"></span><span class="localizejs">Self Schedule</span></a></li> -->
+           <li ng-if="online == true && onSSAvailability == 'on'" ng-click="goTOSchedule()"><a><span class="icon_search-users localizejs"></span><span class="localizejs">Self Schedule</span></a></li>
+           <li ng-if="online != true && onSSAvailability != 'on'" class="disabledSchedule"  ng-click="goTOSchedule()"><a><span class="icon_search-users localizejs"></span><span class="localizejs">Self Schedule</span></a></li>
            <li ng-click="ClearRootScope()" style="font-size: 1.0em;" ><a><span class="ion-power" style="font-size: 1.4em; padding-right: 20px;"></span><span class="localizejs">Logout</span></a></li>
        </ul>
        <div class="main-nav__bottom-aligner main-nav__bottom-aligner--patient"></div>
