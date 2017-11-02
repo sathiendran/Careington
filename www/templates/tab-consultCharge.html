@@ -157,7 +157,7 @@
                               <div class="insCardNumber">{{ 'XXXX-XXXX-XXXX-'+userDefaultPaymentProfileText}}</div>
                            </div>
 
-                      <select class="consultHealthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-change="cardchange('consulCharge')">
+                      <select class="consultHealthPlanDropDown localizejs" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-change="cardchange('consulCharge')">
                               <option><b class="localizejs">Choose Your Card</b></option>
                               <option  ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value="{{PaymentProfile.profileID + '@' + PaymentProfile.cardType + '@' + PaymentProfile.cardNumber + '@' + PaymentProfile.cardLogo}}"><b>
                                <span class="localizejs">{{PaymentProfile.cardType + '       '}}</span>  <span >{{  + '             ' +  'XXXX-XXXX-XXXX-'+PaymentProfile.cardNumber}}</span></b></option>
