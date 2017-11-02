@@ -296,7 +296,7 @@ angular.module('starter.controllers')
                 });
             }
             refresh_close();
-            var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
+            var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
 
             $(".notifications-top-center").remove();
             $(".ErrorMessage").append(top);
@@ -611,7 +611,7 @@ angular.module('starter.controllers')
                     $scope.ErrorMessage = "Please enter valid Home Phone Number";
                     $rootScope.Validation($scope.ErrorMessage);
                 }
-    
+
             }
         }*/
         $scope.ValidateEmail = function (email) {
@@ -1905,9 +1905,9 @@ angular.module('starter.controllers')
         $scope.getCodesSetsForHospital();
         /*  $rootScope.getPatientids = function() {
               var params = {
-      
+
                   accessToken: $rootScope.accessToken,
-      
+
                   success: function(data) {
                  $rootScope.currentPatientsearchList = data.data;
                   $rootScope.currentPatientsidsList = data.data;
@@ -2010,16 +2010,16 @@ angular.module('starter.controllers')
           // $rootScope.PatientIdentifiers = [];
              $rootScope.patientmedicationsSearch = $scope.PatientsearchItem;
              $rootScope.PatientsdetCount = $scope.PatientsearchItem.length;
-             
+
             if ($rootScope.PatientsdetCount == 0) {
                   $rootScope.PatientidupdateList = [];
               }
 
            for (var k = 0; k < $rootScope.PatientsdetCount; k++) {
 
-                 var status2="New";      
+                 var status2="New";
               for (var l = 0; l < $rootScope.PatientidupdateList.length; l++) {
-                       if($scope.PatientsearchItem[k].display == $scope.PatientidupdateList[l].display){                
+                       if($scope.PatientsearchItem[k].display == $scope.PatientidupdateList[l].display){
                           status2="Exit";
                         }
                       }
@@ -2033,13 +2033,13 @@ angular.module('starter.controllers')
                                  identifierTypeTitle: $scope.PatientsearchItem[k].identifierTypeTitle
                              });
                  }
-              
+
              }
-              
-           for (var i = 0; i < $rootScope.PatientidupdateList.length; i++) {     
+
+           for (var i = 0; i < $rootScope.PatientidupdateList.length; i++) {
                   var status1="New";
              for (var j = 0; j < $rootScope.PatientsdetCount; j++) {
-                if($scope.PatientidupdateList[i].display == $scope.PatientsearchItem[j].display){                    
+                if($scope.PatientidupdateList[i].display == $scope.PatientsearchItem[j].display){
                            status1="Exit";
                         }
                       }

@@ -1026,7 +1026,13 @@ angular.module('starter.controllers')
     };
 
     $scope.patientdone = function(){
-      $rootScope.addPatientidupdateList = [];
+      
+     
+      if($rootScope.addPatientidupdateList.length == 0){
+        //console.log(" Length is 0 =");
+        $rootScope.addPatientidupdateList = [];
+      }
+
        $scope.PatientsearchItem = $filter('filter')($rootScope.currentPatientIDlist, {
            checked: true
        });
@@ -1034,15 +1040,46 @@ angular.module('starter.controllers')
         // $rootScope.PatientIdentifiers = [];
            $rootScope.patientmedicationsSearch = $scope.PatientsearchItem;
            $rootScope.PatientsdetCount = $scope.PatientsearchItem.length;
+
+              if ($rootScope.PatientsdetCount == 0) {
+                  $rootScope.addPatientidupdateList = [];
+              }
+
            for (var i = 0; i < $rootScope.PatientsdetCount; i++) {
-               $rootScope.addPatientidupdateList.push({
-                   identifierTypeCode: $scope.PatientsearchItem[i].identifierTypeCode,
-                   display: $scope.PatientsearchItem[i].display,
-                   value:$scope.PatientsearchItem[i].value,
-                   createdDate:$scope.PatientsearchItem[i].createdDate,
-                   statusCode:$scope.PatientsearchItem[i].statusCode
+
+                 var status1="New";      
+              for (var j = 0; j < $rootScope.addPatientidupdateList.length; j++) {
+                       if($scope.PatientsearchItem[i].display == $scope.addPatientidupdateList[j].display){                
+                          status1="Exit";
+                        }
+                      }
+                if(status1=="New"){
+                     $rootScope.addPatientidupdateList.push({
+                       identifierTypeCode: $scope.PatientsearchItem[i].identifierTypeCode,
+                       display: $scope.PatientsearchItem[i].display,
+                       value:$scope.PatientsearchItem[i].value,
+                       createdDate:$scope.PatientsearchItem[i].createdDate,
+                       statusCode:$scope.PatientsearchItem[i].statusCode
                });
-           }
+                 }
+              
+             }
+              
+           for (var k = 0; k < $rootScope.addPatientidupdateList.length; k++) {     
+                  var status2="New";
+             for (var l = 0; l < $rootScope.PatientsdetCount; l++) {
+                if($scope.addPatientidupdateList[k].display == $scope.PatientsearchItem[l].display){                    
+                           status2="Exit";
+                        }
+                      }
+                        if(status2=="New"){
+                           $rootScope.addPatientidupdateList.splice(k,1);
+                            k = k-1;
+                        }
+                  }
+
+         
+
         // $rootScope.PatientIdentifiers = $rootScope.PatientidupdateList;
 
            $scope.modal.remove();
