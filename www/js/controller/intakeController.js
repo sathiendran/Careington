@@ -421,18 +421,18 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
             $scope.data = {}
             $ionicPopup.show({
                 template: '<div class="PopupError_Message ErrorMessageDiv" ></div><textarea name="comment" id="comment-textarea" maxlength="500" ng-model="data.PrimaryConcernOther" class="textAreaPop">',
-                title: 'Enter Primary Concern',
+                title: '<span class="localizejs">Enter Primary Concern</span>',
                 subTitle: '',
                 scope: $scope,
                 buttons: [{
-                    text: 'Cancel',
+                    text: '<span class="localizejs">Cancel</span>',
                     onTap: function (e) {
                         angular.forEach($scope.primaryConcernList, function (item) {
                             item.checked = false;
                         });
                     }
                 }, {
-                    text: '<b>Done</b>',
+                    text: '<b class="localizejs">Done</b>',
                     type: 'button-positive',
                     onTap: function (e) {
                         if (!$scope.data.PrimaryConcernOther) {
