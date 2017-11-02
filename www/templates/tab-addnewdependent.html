@@ -62,7 +62,7 @@
                <div class="item item-input validated">
                   <div class="col col-50">
                      <span class="input-label labelcolor">
-                     <i class="iconsize" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel localizejs" style="white-space: normal;">Date of Birth</b><i class="ion-asterisk"></i></span>
+                     <i class="iconsize" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel localizejs" style="white-space: normal;">DOB</b><i class="ion-asterisk"></i></span>
                   </div>
                   <div class="col col-50 depGreyLabel inputlabelclass">
                      <input class="usertext dobDependent-{{deviceName}} inputlabelval localizejs"  id="dob" type="date"  placeholder="Required"   name="dob" ng-blur="ngBlur()">
@@ -179,7 +179,8 @@
                      </select>-->
                      <input style="padding-left: 2px; background-color: #e9e9e9;" type="text" readonly="readonly" class="textdata optionselect"  name="healthInfoCountryCode" id="healthInfoCountryCode" ng-model="addNewDependent.healthInfoCountryCode"  >
                    </div>
-                    <input type="tel" class="code6 localizejs" style="position: relative; color: #7c7c7c;min-width: 15%;max-width: 70%; padding-right: 0px; line-height: 45px;" class=" textdata" placeholder="Required" ng-model="dependmobile" id="mobile"  name="mobile" phone-input>
+                    <input type="tel" class="code6 localizejs" style="position: relative; color: #7c7c7c;min-width: 15%;max-width: 70%; padding-right: 0px; line-height: 45px;" placeholder="Required" ng-model="dependmobile" id="mobile"  name="mobile" phone-input>
+
                   </span>
                </div>
                <div class="item item-input validated">
