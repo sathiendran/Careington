@@ -2621,7 +2621,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
         if($rootScope.regCountry2 == "") {
             $rootScope.regCountry2 =  $('#regCountryCode').val();
         } else {
-            $rootScope.regCountry2 =  $rootScope.regCountry2;
+             $rootScope.regCountry2 =  $('#regCountryCode').val();
         }
 
         debugger;
