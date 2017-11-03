@@ -33,7 +33,7 @@
                <div class="item item-input itemtab validated row">
                   <span class="input-label labelcolor"><b class="formlabel labelfont localizejs">Unit</b></span>
                   <div class="healthinfoChoose-{{deviceName}} heightChoose-{{deviceName}}">
-                     <select class=" optionselect textdata healthchoose" name="heightunit" id="heightunitval" ng-model="heightunit"  ng-change="unitchange()"  >
+                     <select class=" optionselect textdata healthchoose localizejs" name="heightunit" id="heightunitval" ng-model="heightunit"  ng-change="unitchange()"  >
                         <option ng-repeat="getHeightunit in listOfHeightunit[0].codes" value="{{getHeightunit.codeId + '@' + getHeightunit.text}}" ><b class="localizejs">{{getHeightunit.text}}</b></option>
                      </select>
                   </div>
