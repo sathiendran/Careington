@@ -18,7 +18,7 @@
 		<a ng-if="cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'" class="add-user-icon add-user-icon-{{deviceName}}" ng-if="customerSso != 'Mandatory'" ng-click = "GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" ><i class="icon ion-plus"></i></a>
 
 
-			<div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds">
+			<div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds" style="height: auto;">
 				<div class="TitleHomeUser_Sub localizejs" id="WhoNeeds">Who Needs Care Today?</div>
 
 					<div class="SearchImage" ng-click="showSearchInput();">
@@ -49,7 +49,7 @@
     </ion-refresher></div>
 
 	<a ng-if="primaryPatientName != ''" class="UserHomePatient"  ng-click = "GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'patientClick')">
-		<ion-item class="UserHomeHeader" ng-hide="data.searchQuery" style="border: none; top: -2px;border-bottom: 1px solid #9D9E9C;">
+		<ion-item class="UserHomeHeader" ng-hide="data.searchQuery" style="border: none;border-bottom: 1px solid #9D9E9C;">
 			 <div class="HrefListView">
 				<div class="UserhmePatientDetails">
 				<!--	<img ng-src="{{PatientImage}}" src="{{PatientImage}}" class="UserHmelistImgView">-->
