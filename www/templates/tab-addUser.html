@@ -12,15 +12,15 @@
          </div>
          <div class="Server_Error ErrorMessageDiv" ></div>
          <div id="Error_Message" class="depenErrorMsg-{{deviceName}}"></div>
-         <h1 class= "{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span class="newUserTitle-{{deviceName}}"> New User </span> <span >
-            <a  ng-click="cancelcouser()" class="headerval"  >Cancel</a></span>
+         <h1 class= "{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span class="newUserTitle-{{deviceName}} localizejs"> New User </span> <span >
+            <a  ng-click="cancelcouser()" class="headerval localizejs"  >Cancel</a></span>
          </h1>
          <div class="bar bar-subheader bar-dark subheaderheight patAccoSubHeadHeight">
             <div class="row">
                <h1 class="headertitle">
                   <div class="ellipsis subHeader_content_name" >
-                     <span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >New </span>
-                     <span class="patientLastName ellipsis lnamefont" >Co-User</span>
+                     <span class="PatintHeaderFontStyle patientName ellipsis fnamefont localizejs" >New </span>
+                     <span class="patientLastName ellipsis lnamefont localizejs" >Co-User</span>
                   </div>
                </h1>
             </div>
@@ -29,32 +29,32 @@
                   <a class="circlecanh">
                   <i class="icon ion-camera circlecam"></i>
                   </a>
-                  <span class="circletext" > Add a Picture</span>
+                  <span class="circletext localizejs" > Add a Picture</span>
                </div>
             </div>
          </div>
       </ion-header-bar>
       <ion-view title="">
          <ion-content class="userdeptcontent">
-            <h4 class="userhead"><b>User Details</b></h4>
+            <h4 class="userhead"><b class="localizejs">User Details</b></h4>
             <div class="list deptlist" >
                <div class="item item-input validated">
                   <div class="col col-50">
                      <span class="input-label labelcolor">
-                     <i class="iconsize" ng-bind-html="drawSVGCIcon('user')"></i><b class="formlabel">Name</b><i class="ion-asterisk"></i></span>
+                     <i class="iconsize" ng-bind-html="drawSVGCIcon('user')"></i><b class="formlabel localizejs">Name</b><i class="ion-asterisk"></i></span>
                   </div>
                   <div class="col col-50 depGreyLabel">
-                     <input class="usertext" id="userfirstname" type="text" ng-model="firstname" name="firstname" placeholder="Required" maxlength="24">
+                     <input class="usertext localizejs" id="userfirstname" type="text" ng-model="firstname" name="firstname" placeholder="Required" maxlength="24">
                   </div>
                </div>
                <div class="item item-input validated">
                   <div class="col col-50">
                      <span class="input-label labelcolor">
-                     <i class="iconsize" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel">Email</b><i class="ion-asterisk"></i></span>
+                     <i class="iconsize" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel localizejs">Email</b><i class="ion-asterisk"></i></span>
                   </div>
                   <div class="col col-50 depGreyLabel">
-                     <input class="usertext" id="useremail"  type="email" value="" placeholder="Required" ng-model="email"  name="email">
-                     <span class="error"  ng-show="myForm.email.$error.email"> Not a valid email! </span>
+                     <input class="usertext localizejs" id="useremail"  type="email" value="" placeholder="Required" ng-model="email"  name="email">
+                     <span class="error localizejs"  ng-show="myForm.email.$error.email"> Not a valid email! </span>
                   </div>
                </div>
             </div>
@@ -65,7 +65,7 @@
          <!-- <div class="hide-on-keyboard-open"> -->
             <ion-footer-bar class="bar-footer footer footer-color footerrsheight " hide-on-keyboard="true" style="position:fixed;left:0;right:0;" ng-click="buttonClicked = true" >
                <button  type="submit" class="submitbutton" >
-                  <h1 class="title" id="centercolor">Send Invitation</h1>
+                  <h1 class="title localizejs" id="centercolor">Send Invitation</h1>
                </button>
             </ion-footer-bar>
          <!-- </div> -->

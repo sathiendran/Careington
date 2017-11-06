@@ -76,14 +76,23 @@
                <span class="localizejs">Continue</span>
                </button>
             </div>
-            <div class="healthPlan_header AddCardDetails" style="padding-top: 60px; display:{{disableSubmitpaymentAddCard}}" >
+              <div class="healthPlan_header AddCardDetails" style="padding-top: 60px; display:{{disableSubmitpaymentAddCard}}" >
                <div class="healthPlan_text localizejs"  >Pay Using</div>
-               <a ng-click="goCardDetailsPageFromAddCard()" >
+               <!--<a ng-click="goCardDetailsPageFromAddCard()" >
                   <div class="AddCard" >
                      <i style="position: relative; top: -8px;"  class="ion-plus-round"></i>
                      <span class="addHealthPlan_text localizejs" >Add A Payment Card</span>
                   </div>
-               </a>
+               </a>-->
+
+                <a ng-click="goCardDetailsPageFromAddCard()">
+                        <div class="AddCard"  >
+                           <i style="position: relative; top: -8px;text-align:center;color:#A3D38B;" ng-bind-html="drawSVGCIcon('circle-with-plus')"></i>
+                           <span class="addHealthPlan_text" >Add A Payment Card</span>
+                        </div>
+                     </a>
+
+
             </div>
             <div class="SkipToPayment" style="display: {{disableSubmitpaymentAddCard}}; padding-top: 23%;">
                <button class="button button-block button-royal cardSubmitPayment">

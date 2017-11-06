@@ -1567,16 +1567,16 @@ angular.module('starter.controllers')
             }
             var getDrawImage = $rootScope.drawImage($rootScope.PatientImageSelectUser, currentPatientDetails.patientName, currentPatientDetails.lastName);
             var myPopup = $ionicPopup.show({
-                title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname'>" + currentPatientDetails.lastName + "</span></div> <div class='fontcolor'>" + $rootScope.userGender + $scope.dob + $scope.relationship + "</div>",
+                title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname'>" + currentPatientDetails.lastName + "</span></div> <div class='fontcolor'>" + "<span class='localizejs'>" + $rootScope.userGender+ "</span>" + $scope.dob +"<span class='localizejs'>" + $scope.relationship + "</span></div>",
                 templateUrl: 'templates/healthUnauthorizedPopup.html',
                 scope: $scope,
                 buttons: [{
-                    text: '<b class="fonttype">Cancel</b>',
+                    text: '<b class="fonttype localizejs">Cancel</b>',
                     onTap: function (e) {
                         return false;
                     }
                 }, {
-                    text: '<b class="fonttype">Confirm</b>',
+                    text: '<b class="fonttype localizejs">Confirm</b>',
                     type: 'button-positive',
                     onTap: function (e) {
                         return true;

@@ -3321,7 +3321,7 @@ left: -28px;
 position: relative;
 }
 .HealthTitle-Android {
-left: -28px;
+left: -34px;
 position: relative;
 }
 .healthLeft-IOS {
@@ -3382,7 +3382,7 @@ position: relative;
 font-size: 18px;
 }
 .newUserTitle-Android {
-margin-left: 34px;
+margin-left: 21px;
 }
 .coUserAddress-IOS {
 line-height: 25px !important;
@@ -3882,7 +3882,7 @@ text-align: right;
 }
 }
 .dependHeigh-IOS {
-width: 47%;
+width: 67%;
 padding-right: 6px;
 float: left;
 input {
@@ -3962,7 +3962,7 @@ margin-left: -10px;
 float: left;
 }
 .dependHeigh-Android {
-width: 68%;
+width: 75%;
 float: left; //margin-left: -5px;padding-right: 10px;
 }
 .dependwetUnit-Android {
@@ -4569,7 +4569,7 @@ font-size: 20px;
 font-weight: bold;
 left: 7px;
 position: relative;
-top: -11px;
+top: -13px;
 color: #666666;
 }
 .CreditClinician {
@@ -5039,7 +5039,8 @@ margin-right: 10px;
     margin-right: 10px;
 }
 .coUserLinkName {
-    margin-top: 11px;
+    // margin-top: 11px;
+    margin-top: 0;
 }
 }
 .regStep2Con {
@@ -5899,6 +5900,8 @@ margin-right: 10px;
     white-space: nowrap;
     overflow: hidden;
     line-height: normal;
+    font-weight: bold;
+    font-family: GloberBold;
 }
 .insCardName {
   font-family: GloberBold !important;

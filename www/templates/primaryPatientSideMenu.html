@@ -1,3 +1,10 @@
+<style>
+    .disabledSchedule {
+        pointer-events: none;
+        opacity: 0.6;
+    }
+</style>
+
 <!--<ion-side-menu side="left" style="background-color: #d8d8d8; top: -25px; height: 76px;
   background: #444;
   padding: 15px;">
@@ -71,31 +78,36 @@
 </ion-side-menu>
 -->
 <ion-side-menu side="left">
-   <nav class="main-nav" >
-       <a href="#" class="user-info user-info--main-nav">
-           <div ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')" class="userpic userpic--white-border userpic--main-nav" ng-bind-html="drawImageSS(PatientImage,primaryPatientName,primaryPatientLastName)" style="border: 2px #fff solid;">
+    <nav class="main-nav">
+        <a href="#" class="user-info user-info--main-nav">
+            <div ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')"
+                class="userpic userpic--white-border userpic--main-nav" ng-bind-html="drawImageSS(PatientImage,primaryPatientName,primaryPatientLastName)"
+                style="border: 2px #fff solid;">
 
-           </div>
+            </div>
 
-           <div class="user-info__text">
-               <div class="user-info__name">
-                   <span class="user-info__fname">{{primaryPatientName}} </span> <span class="user-info__lname">{{primaryPatientLastName}} </span>
-               </div>
-               <div class="user-info__info">
-                   <span class="localizejs">{{primaryPatGender}}</span> • <span>{{dob | ageFilter}}</span> • <span>{{mobilePhone}}</span>
-               </div>
-           </div>
-       </a>
+            <div class="user-info__text">
+                <div class="user-info__name">
+                    <span class="user-info__fname">{{primaryPatientName}} </span> <span class="user-info__lname">{{primaryPatientLastName}} </span>
+                </div>
+                <div class="user-info__info">
+                    <span class="localizejs">{{primaryPatGender}}</span> • <span>{{dob | ageFilter}}</span> • <span>{{mobilePhone}}</span>
+                </div>
+            </div>
+        </a>
 
-       <ul class="main-nav__list" >
-           <li><a ng-href="#/tab/userhome"><span> <i ng-bind-html="drawSVGCIcon('users')"></i></span><span class="localizejs">Patient List</span></a></li>
-           <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')" ><a><span> <i ng-bind-html="drawSVGCIcon('clipboard')"></i></span><span class="localizejs">My Health</span></a></li>
-           <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClickApoointments')"><a><span><i ng-bind-html="drawSVGCIcon('calendar')"></i></span><span class="localizejs">My Appointments</span></a></li>
-           <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'tab.consultations')"><a><span><i ng-bind-html="drawSVGCIcon('health_card')"></i></span><span class="localizejs">My Consultations</span></a></li>
-           <li ng-if="online == true && onSSAvailability == 'on'" ng-click="goTOSchedule()"><a><span class="icon_search-users localizejs"></span><span class="localizejs">Self Schedule</span></a></li>
-           <li ng-click="ClearRootScope()" style="font-size: 1.0em;" ><a><span class="ion-power localizejs" style="font-size: 1.4em; padding-right: 20px;"></span><span class="localizejs">Logout</span></a></li>
-       </ul>
-       <div class="main-nav__bottom-aligner main-nav__bottom-aligner--patient"></div>
-       <a  class="main-nav__toc localizejs"  ng-click="sideMenuHospitallink()"  _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;"><span class="localizejs">Terms &amp; Conditions</span></a>
-   </nav>
+        <ul class="main-nav__list">
+            <li><a ng-href="#/tab/userhome"><span> <i ng-bind-html="drawSVGCIcon('users')"></i></span><span class="localizejs">Patient List</span></a></li>
+            <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')"><a><span> <i ng-bind-html="drawSVGCIcon('clipboard')"></i></span><span class="localizejs">My Health</span></a></li>
+            <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClickApoointments')"><a><span><i ng-bind-html="drawSVGCIcon('calendar')"></i></span><span class="localizejs">My Appointments</span></a></li>
+            <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'tab.consultations')"><a><span><i ng-bind-html="drawSVGCIcon('health_card')"></i></span><span class="localizejs">My Consultations</span></a></li>
+           
+           <!-- <li  ng-if="online == true && onSSAvailability == 'on'" ng-click="goTOSchedule()"><a><span class="icon_search-users localizejs"></span><span class="localizejs">Self Schedule</span></a></li> -->
+            <li ng-if="online == true && onSSAvailability == 'on'"  ng-click="goTOSchedule()"><a><span class="icon_search-users localizejs"></span><span class="localizejs">Self Schedule</span></a></li>
+            <li  ng-if="online == false && onSSAvailability == 'on'"><a><span class="icon_search-users localizejs"></span><span class="localizejs">Self Schedule</span></a></li>
+            <li ng-click="ClearRootScope()" style="font-size: 1.0em;"><a><span class="ion-power localizejs" style="font-size: 1.4em; padding-right: 20px;"></span><span class="localizejs">Logout</span></a></li>
+        </ul>
+        <div class="main-nav__bottom-aligner main-nav__bottom-aligner--patient"></div>
+        <a class="main-nav__toc localizejs" ng-click="sideMenuHospitallink()" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;"><span class="localizejs">Terms &amp; Conditions</span></a>
+    </nav>
 </ion-side-menu>
