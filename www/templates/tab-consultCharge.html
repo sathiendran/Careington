@@ -106,17 +106,17 @@
                   <div style="display:{{disableAddHealthPlan}}">
                      <div class="healthPlan_header AddCardNoPlan"  >
                         <div class="healthPlan_text localizejs" style="margin-left:-17px;" >Select your health plan</div>
-                      <!--   <a ng-click="doGetHealthPlanProvider()" style="cursor: pointer;">
+                         <a ng-click="doGetHealthPlanProvider()" style="cursor: pointer;">
                            <div class="addHealthPlan_header AddCard" >
                               <i style="position: relative; top: -5px;text-align:center;color:#A3D38B;" 	 ng-bind-html="drawSVGCIcon('circle-with-plus')"></i><span class="addHealthPlan_text" >Add A Health Plan</span>
                            </div>
-                        </a>-->
-                        <a ng-click="doGetHealthPlanProvider()" style="cursor: pointer;">
+                        </a>
+                       <!-- <a ng-click="doGetHealthPlanProvider()" style="cursor: pointer;">
                             <div class="addHealthPlan_header AddCard" >
                                <i style="position: relative; top: -8px;" class="ion-plus-round"></i>
                                <span class="addHealthPlan_text localizejs" >Add A Health Plan</span>
                             </div>
-                         </a>
+                         </a>-->
                      </div>
                      <div class="SkipToPayment" style="display: {{applyPlanMode}};" >
                         <button class="button button-block button-royal cardSkipPayment"  type="submit" ng-click="showConsultChargeNoPlan(PatientImageSelectUser, PatientFirstName, PatientLastName, PatientAge, PatientGuardian, 'tab.addHealthPlan')" style=" padding: 3px"  >
@@ -143,7 +143,7 @@
                      <h4 class="insurancelist">
                        <div class="selectInsurancelist localizejs">Select your Payment card
                               <!--<span class="insuranceedit" style="display: {{editCardStyle}};" ng-click="editpaymentcard('consulCharge')" >Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>-->
-                              <span ng-if="editCardStyle == 'block'" class="insuranceedit localizejs"  ng-click="editpaymentcard('consulCharge')" ><span class="localizejs">Edit this card</span> <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>
+                              <span ng-if="editCardStyle == 'block'" class="insuranceedit"  ng-click="editpaymentcard('consulCharge')" >Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>
                         </div>
                      </h4>
                      <div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}">
@@ -157,7 +157,7 @@
                               <div class="insCardNumber">{{ 'XXXX-XXXX-XXXX-'+userDefaultPaymentProfileText}}</div>
                            </div>
 
-                      <select class="consultHealthPlanDropDown localizejs" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-change="cardchange('consulCharge')">
+                      <select class="consultHealthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-change="cardchange('consulCharge')">
                               <option><b class="localizejs">Choose Your Card</b></option>
                               <option  ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value="{{PaymentProfile.profileID + '@' + PaymentProfile.cardType + '@' + PaymentProfile.cardNumber + '@' + PaymentProfile.cardLogo}}"><b>
                                <span class="localizejs">{{PaymentProfile.cardType + '       '}}</span>  <span >{{  + '             ' +  'XXXX-XXXX-XXXX-'+PaymentProfile.cardNumber}}</span></b></option>
@@ -177,19 +177,18 @@
                <div style="display:{{disableSubmitpayment}}">
                   <div class="healthPlan_header AddCardNoPlan">
                      <div class="healthPlan_text localizejs" style="margin-left:-120px!important;">Pay Using</div>
-                       <!--<a ng-click="goCardDetailsPage()">
-                        <div class="AddCard"  >
-                           <i style="position: relative; top: -5px;text-align:center;color:#A3D38B;" ng-bind-html="drawSVGCIcon('circle-with-plus')"></i>
-                           <span class="addHealthPlan_text" >Add A Payment Card</span>
-                        </div>
-                     </a>-->
+                        <a ng-click="doGetHealthPlanProvider()" style="cursor: pointer;">
+                           <div class="addHealthPlan_header AddCard" >
+                              <i style="position: relative; top: -5px;text-align:center;color:#A3D38B;"    ng-bind-html="drawSVGCIcon('circle-with-plus')"></i><span class="addHealthPlan_text" >Add A Health Plan</span>
+                           </div>
+                        </a>  
 
-                     <a ng-click="goCardDetailsPage()" >
+                   <!--  <a ng-click="goCardDetailsPage()" >
                         <div class="AddCard" >
                            <i style="position: relative; top: -8px;" class="ion-plus-round"></i>
                            <span class="addHealthPlan_text localizejs" >Add A Payment Card</span>
                         </div>
-                     </a>
+                     </a>-->
 
                   </div>
                   <div class="SkipToPayment" style="padding-top: 68px;" >
