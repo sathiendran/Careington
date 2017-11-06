@@ -93,6 +93,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                             $rootScope.PPIsBloodTypeRequired = 'on';
                         }
                         if ($rootScope.getDetails[i] === 'PPIsHairColorRequired') {
+
                             $rootScope.PPIsHairColorRequired = 'on';
                         }
                         if ($rootScope.getDetails[i] === 'PPIsEthnicityRequired') {
@@ -1693,6 +1694,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                                     $scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
                                     $rootScope.editCardStyle = "block";
                                 }
+
                                 $rootScope.doGetPatientPaymentProfiles();
                             }
                             $scope.doGetPatientHealthPlansList();
@@ -1800,7 +1802,9 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                                 $rootScope.editCardStyle = "block";
                             }
                             $rootScope.doGetPatientPaymentProfiles();
+
                         }
+
                         $scope.doGetPatientHealthPlansList();
                         $state.go('tab.consultCharge');
                     } else if ($rootScope.insuranceMode === 'on' && (($rootScope.paymentMode === 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on') || ($rootScope.paymentMode !== 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on'))) {
@@ -1946,7 +1950,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                 }, 300);
             }
         };
-
+  $("#localize-widget").hide();
         $scope.goTOSchedule = function () {
             $('<link/>', {
                 rel: 'stylesheet',
