@@ -3,8 +3,8 @@
       <ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" style="background-color:{{brandColor}};border-color:{{brandColor}}; {{backgroundimage}}; {{HeadercardDetails}}" >
          <div id="Error_Message" class="ErrorMessageDiv" ></div>
          <div class="Server_Error ErrorMessageDiv" ></div>
-         <div class="buttons" style="width: 50%; display: {{cardDisplay}}; {{HeadercardDetailsBack}}" >
-            <site-header2 back="Cancel"></site-header2>
+         <div class="buttons localizejs" style="width: 50%; display: {{cardDisplay}}; {{HeadercardDetailsBack}}" >
+            <site-header2 class="localizejs" back="Cancel"></site-header2>
          </div>
          <div class="buttons" style="width: 50%; " >
 
@@ -29,16 +29,16 @@
             <div class="list" style="opacity:{{planverify}};">
                <div class="item item-input" >
                   <span class="input-label cardfont localizejs" >First Name</span>
-                  <input type="text" placeholder="Required" name="FirstName" id="editFirstName" value="{{editbilling.first}}" required>
+                  <input type="text" class="localizejs" placeholder="Required" name="FirstName" id="editFirstName" value="{{editbilling.first}}" required>
                </div>
                <div class="item item-input cards" >
                   <span class="input-label cardfont localizejs" >Last Name</span>
-                  <input type="text" placeholder="Required"  name="LastName" value="{{editbilling.last}}" id="editLastName" required>
+                  <input type="text" class="localizejs" placeholder="Required"  name="LastName" value="{{editbilling.last}}" id="editLastName" required>
                </div>
                <div class="item item-input ">
                   <span class="input-label cardfont localizejs" >Card Number</span>
                   <!--<input type="text"  placeholder="xxxx-xxxx-xxxx-{{editcardNumber}}" value="" name="CardNumber" id="editCardNumber" required>-->
-                  <input style="line-height: 20px; font-size: 18px; padding: 0px; {{invalidCard}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="xxxx-xxxx-xxxx-{{editcardNumber}}" ng-model="editCardDetails.CardNumber" name="CardNumber" id="editCardNumber" maxlength="19" required/>
+                  <input style="line-height: 20px; font-size: 18px; padding: 0px; {{invalidCard}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type = "tel" class="localizejs" placeholder="xxxx-xxxx-xxxx-{{editcardNumber}}" ng-model="editCardDetails.CardNumber" name="CardNumber" id="editCardNumber" maxlength="19" required/>
                </div>
                <div class="item item-input">
                   <span class="input-label cardfont localizejs">Expiration Date</span>
@@ -57,12 +57,12 @@
                <div class="item item-input" ng-if="AndroidDevice !== true" >
                   <span class="input-label cardfont localizejs" >Security Code</span>
                   <!--<input type="password" pattern="[0-9]*"  inputmode="numeric" id="editcvv" style="{{invalidCVV}}" placeholder="XXX" maxlength="{{editCvvLength}}"   name="Cvv"  required> -->
-                  <input style="-webkit-text-security: disc; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type="password" pattern="[0-9]*" inputmode="numeric"  placeholder="Required" maxlength="4"  name="editcvv" id="editcvv" required/>
+                  <input class="localizejs" style="-webkit-text-security: disc; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type="password" pattern="[0-9]*" inputmode="numeric"  placeholder="Required" maxlength="4"  name="editcvv" id="editcvv" required/>
                </div>
                <div class="item item-input" ng-if="AndroidDevice === true" >
                   <span class="input-label cardfont localizejs" >Security Code</span>
                   <!--<input type="password" pattern="[0-9]*"  inputmode="numeric" id="editcvv" style="{{invalidCVV}}" placeholder="XXX" maxlength="{{editCvvLength}}"   name="Cvv"  required> -->
-                  <input style="-webkit-text-security: disc; font-size: 18px; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" maxlength="4"   name="editcvv" id="editcvv" required/>
+                  <input style="-webkit-text-security: disc; font-size: 18px; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  class="localizejs" type = "tel"  placeholder="Required" maxlength="4"   name="editcvv" id="editcvv" required/>
                </div>
                <div class="item item-input" >
                   <span class="input-label cardfont localizejs" >Billing Address</span>
@@ -71,11 +71,11 @@
                <div class="item item-input" >
                   <span class="input-label cardfont localizejs" >City</span>
                       <!--<input  type="text" placeholder="Required"   value="{{editbilling.city}}"  name="City" id="editCity" ng-model="editcard.editCity" required>-->
-                      <ion-google-place style="font-size: 18px !important;" placeholder="Required" ng-model="editCardDetails.cardEditCity" name="City" id="editCity" required/>
+                      <ion-google-place class ="localizejs" style="font-size: 18px !important;" placeholder="Required" ng-model="editCardDetails.cardEditCity" name="City" id="editCity" required/>
                </div>
                <div class="item item-input">
                   <span class="input-label cardfont localizejs" >State</span>
-                  <input type="text" ng-model="editCardDetails.cardEditState" placeholder="Required"   name="State" id="editState"  required>
+                  <input type="text" class="localizejs" ng-model="editCardDetails.cardEditState" placeholder="Required"   name="State" id="editState"  required>
                </div>
                <div class="item item-input" >
                   <span class="input-label cardfont localizejs" >Country</span>
@@ -84,12 +84,12 @@
                    <option value="">Choose</option>
                    <option  ng-repeat="country in serviceCountries"  value="{{country.name}}" ><b>{{country.name}}</b></option>
                 </select>-->
-                   <input type="text" ng-model="editCardDetails.cardEditCountry" placeholder="Required"  name="healthInfoCountry" id="editCountry"  required>
+                   <input type="text" class="localizejs" ng-model="editCardDetails.cardEditCountry" placeholder="Required"  name="healthInfoCountry" id="editCountry"  required>
                </div>
                <div class="item item-input" >
                   <span class="input-label cardfont localizejs" >Zip</span>
                   <!--<input  style="line-height: 20px; font-size: 18px; padding: 0px; {{invalidZip}}"   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" ng-model="editcard.editZip" name="editZip" id="editZip" maxlength="7" required/>-->
-                   <input type="text" style="line-height: 20px; font-size: 18px; padding: 0px; {{invalidZip}}"  placeholder="Required"  ng-model="editCardDetails.cardEditZip"  input-max-length-number maxlength="10" name="editZip" id="editZip" required/>
+                   <input type="text" class="localizejs" style="line-height: 20px; font-size: 18px; padding: 0px; {{invalidZip}}"  placeholder="Required"  ng-model="editCardDetails.cardEditZip"  input-max-length-number maxlength="10" name="editZip" id="editZip" required/>
                </div>
             </div>
             <div class="planDetails" ng-if="addCardStatus !== 200"  style="opacity:{{planverify}};">
