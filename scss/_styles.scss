@@ -1594,7 +1594,7 @@ body {
             font-weight: bold;
             left: 7px;
             position: relative;
-            top: -11px;
+            top: -13px;
             color: #666666;
         }
     }
@@ -3935,9 +3935,9 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .UserHomePatient {
     cursor: pointer;
     .UserHomeHeader {
-        top: 5px;
+        top: 8px;
         padding: 11px;
-        height: 80px;
+        // height: 80px;
         margin-bottom: -28px;
         .UserhmePatientDetails {
             margin-left: 0px;

@@ -57,10 +57,10 @@
                           <div class="insCardName" ng-if="userDefaultPaymentLogo == 'logoNone'" ><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('credit-card')"></i></div>
                           <div class="insCardNumber localizejs">{{ 'XXXX-XXXX-XXXX-'+userDefaultPaymentProfileText}}</div>
                         </div>
-                        <select class="consultHealthPlanDropDown localizejs" id="addNewCard_addCard" name="addNewCard_addCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-change="cardchange('addNewCard')">
+                        <select class="consultHealthPlanDropDown" id="addNewCard_addCard" name="addNewCard_addCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-change="cardchange('addNewCard')">
                            <option class="localizejs" ><b class="localizejs">Choose Your Card</b></option>
-                           <option  class="localizejs" ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value="{{PaymentProfile.profileID + '@' + PaymentProfile.cardType</span> + '@' + PaymentProfile.cardNumber + '@' + PaymentProfile.cardLogo}}" ><b>
-                             <span class="localizejs">{{PaymentProfile.cardType + '       '}}{{  + '             ' +  'XXXX-XXXX-XXXX-'+PaymentProfile.cardNumber}}</span></b></option>
+                           <option  ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value="{{PaymentProfile.profileID + '@' + <span class="localizejs">PaymentProfile.cardType</span> + '@' + PaymentProfile.cardNumber + '@' + PaymentProfile.cardLogo}}" ><b>
+                             <span class="localizejs">{{PaymentProfile.cardType + '       '}}</span>  <span >{{  + '             ' +  'XXXX-XXXX-XXXX-'+PaymentProfile.cardNumber}}</span></b></option>
                            <option ng-if="totalPaymentCard != 10"><b class="localizejs">Add a new card</b></option>
                         </select>
                      </div>
@@ -76,14 +76,23 @@
                <span class="localizejs">Continue</span>
                </button>
             </div>
-            <div class="healthPlan_header AddCardDetails" style="padding-top: 60px; display:{{disableSubmitpaymentAddCard}}" >
+              <div class="healthPlan_header AddCardDetails" style="padding-top: 60px; display:{{disableSubmitpaymentAddCard}}" >
                <div class="healthPlan_text localizejs"  >Pay Using</div>
-               <a ng-click="goCardDetailsPageFromAddCard()" >
+               <!--<a ng-click="goCardDetailsPageFromAddCard()" >
                   <div class="AddCard" >
                      <i style="position: relative; top: -8px;"  class="ion-plus-round"></i>
                      <span class="addHealthPlan_text localizejs" >Add A Payment Card</span>
                   </div>
-               </a>
+               </a>-->
+
+                <a ng-click="goCardDetailsPageFromAddCard()">
+                        <div class="AddCard"  >
+                           <i style="position: relative; top: -8px;text-align:center;color:#A3D38B;" ng-bind-html="drawSVGCIcon('circle-with-plus')"></i>
+                           <span class="addHealthPlan_text" >Add A Payment Card</span>
+                        </div>
+                     </a>
+
+
             </div>
             <div class="SkipToPayment" style="display: {{disableSubmitpaymentAddCard}}; padding-top: 23%;">
                <button class="button button-block button-royal cardSubmitPayment">

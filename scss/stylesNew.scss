@@ -4564,12 +4564,12 @@ margin-left: 0px !important;
 }
 }
 .editheight {}
-.addHealthPlan_text {
+.addHealthPlan_text { 
 font-size: 20px;
 font-weight: bold;
 left: 7px;
 position: relative;
-top: -11px;
+top: -13px;
 color: #666666;
 }
 .CreditClinician {
@@ -5900,6 +5900,8 @@ margin-right: 10px;
     white-space: nowrap;
     overflow: hidden;
     line-height: normal;
+    font-weight: bold;
+    font-family: GloberBold;
 }
 .insCardName {
   font-family: GloberBold !important;
