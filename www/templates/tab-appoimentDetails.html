@@ -1,3 +1,4 @@
+
 <div class="animated slideInRight" ng-init="doGetSelectedappoimentDetails(scheduledListDatas.appointmentId)">
  <ion-side-menus>
    <ion-side-menu-content>
@@ -56,7 +57,13 @@
 </div>
 
 </ion-header-bar>
-
+<style>
+  .iconAlignment {
+    position: relative;
+    left: 1.5px !important;
+    top: 2.5px !important;
+  }
+  </style>
 
 <ion-view title="Appointment Details">
  <ion-content class="scroll-content ionic-scroll  has-header aptpaticoncontent" style="{{appointCOntent}}">

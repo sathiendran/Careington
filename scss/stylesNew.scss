@@ -613,7 +613,7 @@ margin-top: 218px;
   //  height: 100%;
     border-radius: 50%;
     font-size: 15px;
-    border: 2px solid #fff;
+    border: 2px solid #fff !important;
     span {
         top: 8px;
     }
@@ -665,14 +665,14 @@ height: 80x !important;
         height: 44px;
         font-size: 20px;
         margin-top: 7px;
-        border: 2px solid #fff;
+        border: 2px solid #fff !important;
     }
     .patProfileImage {
         width: 42px;
         height: 42px;
         font-size: 20px;
         margin-top: 4px;
-        border: 2px solid #fff;
+        border: 2px solid #fff !important;
         span {
             top: 13px;
         }
@@ -693,14 +693,14 @@ height: 73px !important;
         height: 44px;
         font-size: 20px;
         margin-top: 7px;
-        border: 2px solid #fff;
+        border: 2px solid #fff !important;
     }
     .patProfileImage {
         width: 42px;
         height: 42px;
         font-size: 20px;
         margin-top: 7px;
-        border: 2px solid #fff;
+        border: 2px solid #fff !important;
         span {
             top: 13px;
         }
@@ -3382,7 +3382,7 @@ position: relative;
 font-size: 18px;
 }
 .newUserTitle-Android {
-margin-left: 34px;
+margin-left: 21px;
 }
 .coUserAddress-IOS {
 line-height: 25px !important;
@@ -4564,7 +4564,7 @@ margin-left: 0px !important;
 }
 }
 .editheight {}
-.addHealthPlan_text { 
+.addHealthPlan_text {
 font-size: 20px;
 font-weight: bold;
 left: 7px;
@@ -4834,7 +4834,7 @@ border: 2px solid #999999;
 span {
     position: relative;
     top: 24px;
-    color: #fff;
+    color: #fff !important;
 }
 }
 
@@ -4845,7 +4845,7 @@ span {
     text-align: center;
     font-family: Glober XBold;
     font-size: 29px;
-    border: 2px solid #999999;
+    border: 2px solid #fff !important;
     margin-top: -3px;
     span {
         position: relative;
@@ -4860,7 +4860,7 @@ span {
   text-align: center;
   font-family: Glober XBold;
   font-size: 26px;
-  border: 2px solid #fff;
+  border: 2px solid #fff !important;
   position: relative;
   left: -5px;
   top: -5px;
@@ -4945,7 +4945,7 @@ a {
     font-size: 50px;
     margin-left: auto;
     margin-right: auto;
-    border: 2px solid #fff;
+    border: 2px solid #fff !important;
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.50);
     -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.50);
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.50);
@@ -6233,4 +6233,13 @@ a.item.item-avatar.avatheight:first-child{
 }
 .inputlabelval{
   padding: 0px 0px 25px 5px;
+}
+.patProfileImage {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    font-family: Glober XBold;
+    font-size: 31px;
+    border: 2px solid #fff !important;
 }
