@@ -249,12 +249,12 @@
                     templateUrl: 'templates/popupTemplate.html',
                     scope: $scope,
                     buttons: [{
-                        text: '<b class="fonttype">Cancel</b>',
+                        text: '<b class="fonttype localizejs">Cancel</b>',
                         onTap: function(e) {
                             return false;
                         }
                     }, {
-                        text: '<b class="fonttype">Confirm</b>',
+                        text: '<b class="fonttype localizejs">Confirm</b>',
                         type: 'button-positive',
                         onTap: function(e) {
                             return true;
@@ -270,12 +270,12 @@
                     templateUrl: 'templates/unauthorizedpopup.html',
                     scope: $scope,
                     buttons: [{
-                        text: '<b class="fonttype">Cancel</b>',
+                        text: '<b class="fonttype localizejs">Cancel</b>',
                         onTap: function(e) {
                             return false;
                         }
                     }, {
-                        text: '<b class="fonttype">Confirm</b>',
+                        text: '<b class="fonttype localizejs">Confirm</b>',
                         type: 'button-positive',
                         onTap: function(e) {
                             return true;
