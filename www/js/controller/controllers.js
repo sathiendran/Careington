@@ -2389,7 +2389,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
         if ($('#password').val() === '') {
             $scope.ErrorMessage = "Please enter your password";
             $rootScope.Validation($scope.ErrorMessage);
-        } else { 
+        } else {
             $sessionStorage.SessionMessage = [];
             $sessionStorage.SessionMessage.push($rootScope.UserEmail);
             alert($sessionStorage.SessionMessage)
@@ -3029,6 +3029,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
     }
 
     $scope.chkPatientFilledAllRequirements = function() {
+      $rootScope.primaryPatSSDetails = '';
       $scope.doGetConutriesList();
       $rootScope.doGetLocations();
 
@@ -3048,22 +3049,35 @@ $rootScope.checkAndChangeMenuIcon = function() {
                 var profileData = {};
                 profileData.firstName = data.data[0].firstName;
                 profileData.fullName = data.data[0].fullName;
+                profileData.name = data.data[0].fullName;
                 profileData.gender = data.data[0].gender;
                 profileData.lastName = data.data[0].lastName;
                 profileData.profileId = data.data[0].profileId;
+                profileData.id = data.data[0].profileId;
                 profileData.userId = data.data[0].userId;
+                profileData.personId = data.data[0].userId;
                 profileData.timeZone = data.data[0].timeZone;
                 profileData.timeZoneId = data.data[0].timeZoneId;
                 profileData.hasRequiredFields = data.data[0].hasRequiredFields;
                 profileData.contactNumber = data.data[0].mobilePhone;
+                profileData.info = data.data[0].mobilePhone;
                 profileData.dob = data.data[0].dob;
                 profileData.isLogouted = false;
 
                 /*  profileData.profileImage = data.data[0].profileImagePath
                       || getDefaultProfileImageForPatient(data.data[0].gender);*/
-                profileData.profileImage = data.data[0].profileImagePath
+
+
+                if (data.data[0].profileImage.indexOf("api") <= 0) {
+                    profileData.profileImage = 'images/default-user.jpg';
+                    profileData.imageSource = 'images/default-user.jpg';
+                } else {
+                    profileData.profileImage = data.data[0].profileImage;
+                    profileData.imageSource = data.data[0].profileImage;
+                }
 
                 var userProfileJsonData = JSON.stringify(profileData);
+                $rootScope.primaryPatSSDetails = userProfileJsonData;
                 $window.localStorage.setItem('snap_patientprofile_session', userProfileJsonData);
                 $rootScope.passwordPreviousPage = false;
 
@@ -3115,6 +3129,9 @@ $rootScope.checkAndChangeMenuIcon = function() {
     }
 
     $scope.goTOSchedule = function() {
+        if ($rootScope.currState.$current.name == "tab.userhome") {
+            $window.localStorage.setItem('snap_patientprofile_session', $rootScope.primaryPatSSDetails );
+        }
                 $('<link/>', {
                     rel: 'stylesheet',
                     type: 'text/css',
@@ -6741,6 +6758,37 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                         $rootScope.patRelationShip = '';
                     }
                     $rootScope.individualmobile = $rootScope.currentPatientDetails[0].mobilePhone;
+
+                  if(data.data[0].account.patientId != $rootScope.primaryPatientId) {
+                        var profileData = {};
+                        profileData.firstName = data.data[0].patientName;
+                        profileData.fullName = data.data[0].patientName + ' '+ data.data[0].lastName;
+                        profileData.name = data.data[0].patientName + ' '+ data.data[0].lastName;
+                        profileData.gender = data.data[0].gender;
+                        profileData.lastName = data.data[0].lastName;
+                        profileData.profileId = data.data[0].account.patientId;
+                        profileData.id = data.data[0].account.patientId;
+                        profileData.userId = data.data[0].personId;
+                        profileData.personId = data.data[0].personId;
+                    //    profileData.timeZone = data.data[0].timeZone;
+                        profileData.timeZoneId = data.data[0].account.timeZoneId;
+                        profileData.hasRequiredFields = true;
+                        profileData.contactNumber = data.data[0].mobilePhone;
+                        profileData.info = data.data[0].mobilePhone;
+                        profileData.dob = data.data[0].dob;
+                        profileData.isLogouted = false;
+
+                        if (data.data[0].account.profileImage.indexOf("api") <= 0) {
+                            profileData.profileImage = 'images/default-user.jpg';
+                            profileData.imageSource = 'images/default-user.jpg';
+                        } else {
+                            profileData.profileImage = data.data[0].account.profileImage;
+                            profileData.imageSource = data.data[0].account.profileImage;
+                        }
+
+                        var userProfileJsonData = JSON.stringify(profileData);
+                        $window.localStorage.setItem('snap_patientprofile_session', userProfileJsonData);
+                    }
 
                     $scope.checkEditOptionForCoUser($rootScope.currentPatientDetails[0].account.patientId);
                     if(nextPage === 'SS') {

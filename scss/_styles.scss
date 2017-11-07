@@ -734,6 +734,7 @@ body {
     margin: 0 0 0 10px;
     text-decoration: none;
     cursor: pointer;
+    margin-right: 16px;
 }
 .ion-chevron-left::before {
     color: #fff;
@@ -1391,20 +1392,22 @@ body {
         margin-right: 17px;
         font-family: $fontFamily_semibold;
         color: #666666;
-        text-align: right;
+        text-align: left;
         span {
             text-decoration: line-through; //color: red;
+            margin-left: 11px;
         }
     }
     .consultation_numberCopay {
         //margin-right: 17px;
         font-family: $fontFamily_semibold;
         color: #666666;
-        text-align: right;
+        text-align: left;
         padding-right: 16px;
         span {
             color: red;
             font-size: 22px;
+            margin-left: 11px;
         }
     }
     .consultTittleCharge {
