@@ -2389,7 +2389,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
         if ($('#password').val() === '') {
             $scope.ErrorMessage = "Please enter your password";
             $rootScope.Validation($scope.ErrorMessage);
-        } else { 
+        } else {
             $sessionStorage.SessionMessage = [];
             $sessionStorage.SessionMessage.push($rootScope.UserEmail);
             alert($sessionStorage.SessionMessage)
@@ -3068,12 +3068,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
                       || getDefaultProfileImageForPatient(data.data[0].gender);*/
 
 
-                if (data.data[0].profileImagePath.indexOf("api") <= 0) {
+                if (data.data[0].profileImage.indexOf("api") <= 0) {
                     profileData.profileImage = 'images/default-user.jpg';
                     profileData.imageSource = 'images/default-user.jpg';
                 } else {
-                    profileData.profileImage = data.data[0].profileImagePath;
-                    profileData.imageSource = data.data[0].profileImagePath;
+                    profileData.profileImage = data.data[0].profileImage;
+                    profileData.imageSource = data.data[0].profileImage;
                 }
 
                 var userProfileJsonData = JSON.stringify(profileData);
