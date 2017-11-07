@@ -245,7 +245,7 @@
 
                 var myPopup = $ionicPopup.show({
 
-                    title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span></div> <div class='fontcolor'>" + dependentDetails.gender + " . " + $scope.userAge + $scope.relationship + "</div> ",
+                    title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span></div> <div class='fontcolor'>" + "<span class='localizejs'>" + dependentDetails.gender +  "</span>"+ " . " + $scope.userAge + "<span class='localizejs'>" + $scope.relationship + "</span></div> ",
                     templateUrl: 'templates/popupTemplate.html',
                     scope: $scope,
                     buttons: [{
@@ -266,7 +266,7 @@
                 $scope.userAge = ageFilter.getDateFilter($scope.dobAge);
                 var myPopup = $ionicPopup.show({
 
-                    title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span></div> <div class='fontcolor'>" + dependentDetails.gender + " . " + $scope.userAge + $scope.relationship + "</div> ",
+                    title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span></div> <div class='fontcolor'>" + "<span class='localizes'>" + dependentDetails.gender + "</span>"  + " . " + $scope.userAge + "<span class='localizejs'>" + $scope.relationship + "</span></div> ",
                     templateUrl: 'templates/unauthorizedpopup.html',
                     scope: $scope,
                     buttons: [{
@@ -752,7 +752,7 @@
             var getDrawImage = $rootScope.drawImage(coUserDetails.imagePath, coUserDetails.name, coUserDetails.lastname);
             $scope.userAge = ageFilter.getDateFilter($scope.dobAge);
             var confirmPopup = $ionicPopup.confirm({
-                title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + coUserDetails.name + "</b></span> <span class='sname'>" + coUserDetails.lastname + "</span></div> <div class='fontcolor'>" + coUserDetails.gender + " . " + $scope.userAge + $scope.relationship + "</div> ",
+                title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + coUserDetails.name + "</b></span> <span class='sname'>" + coUserDetails.lastname + "</span></div> <div class='fontcolor'>" + "<span class='localizejs'>" + coUserDetails.gender +"</span>" + " . " + $scope.userAge + "<span class='localizejs'>" + $scope.relationship + "</span></div> ",
                 //subTitle: "<div class='fontcolor'>" + coUserDetails.gender + $scope.dob + $scope.relationship + "</div>",
                 //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
                 templateUrl: 'templates/coUserTemplate.html',
