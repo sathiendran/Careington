@@ -3,10 +3,12 @@
    <ion-content class="waitingRoomImage" style="{{waitingContentIos}}" >
       <div>
          <div class="WaitingContent">
-            <div class="WaitingMessage" >
-               <div class="ClinicianMessage localizejs">{{waitingMsg}}.</div>
+            <div class="WaitingMessage">
+               <div class="ClinicianMessage localizejs">{{waitingMsg}}...</div>
+              <!-- <div class="ClinicianMessage" ng-if="waitingMsg=='The Provider will be with you Shortly' ">{{waitingMsg}}..</div>
+               <div class="ClinicianMessage" ng-if="waitingMsg=='Please Wait' ">{{waitingMsg}}...</div> -->
                <div class="ThankyouMessage localizejs">Thank you for your patience.</div>
-               <div class="localizejs" tyle="padding-top: 50px; font-size: 16px; line-height: 1.5; text-align: center; padding-left: 20px; padding-right: 20px;">Please do not close this app or lock your device until your consultation is completed.</div>
+               <div class="localizejs" style="padding-top: 50px; font-size: 16px; line-height: 1.5; text-align: center; padding-left: 20px; padding-right: 20px;">Please do not close this app or lock your device until your consultation is completed.</div>
             </div>
          </div>
       </div>
