@@ -3423,6 +3423,8 @@ a {
 .disable-pointer-events {
     margin-left: -47px;
     pointer-events: none;
+    width:17em;
+    white-space: normal;
 }
 .ContentSearchHomeUser {
     @extend .login_content;
@@ -6056,7 +6058,7 @@ hr {
 }
 
 .bg h2 {
-      margin-top: -55px !important;
+      margin-top: -15px !important;
     }
 .bg {
       height: 150px !important;

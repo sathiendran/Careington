@@ -8950,17 +8950,23 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 return ageString = Math.floor(num_months) + monthString + '/' + Math.floor(num_days) + dayString ;
             }
             if (age.years > 0) {
+              var monthTotal = 0;
                 if (age.days <= 15) {
+                    monthTotal = age.months;
                     var month = age.months + monthString;;
                 } else if (age.days > 15) {
+                    monthTotal = age.months+1;
                     var month = (age.months + 1) + monthString;;
                 }
-                if (age.months !== 0) {
-                    return ageString = age.years + yearString + '/' + month;
-                } else {
-                    return ageString = age.years + yearString;
-                }
-
+                if(monthTotal === 12){
+                      return ageString = (age.years + 1) + yearString;
+                }else{
+                    if (age.months !== 0) {
+                        return ageString = age.years + yearString + '/' + month;
+                    } else {
+                        return ageString = age.years + yearString;
+                    }
+                  }
             }
         }
         return function(birthdate) {
