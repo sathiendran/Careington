@@ -6,7 +6,29 @@
          <div class="healthPlan_header"  style="padding-top: 50px;" >
             <img ng-src="img/SuccessBadge.svg" style="width: 150px; height: 148px;">
          </div>
-         
+
+         <div class="PaymentSuccess localizejs" style="display: {{enablePaymentSuccess}}">
+            Payment Successful!
+            <div class="PaymentConfirmation localizejs" >
+               Confirmation #{{paymentConfirmationNumber}}
+               <div class="ConfirmationReceipt localizejs">
+                  A receipt has been sent to you via email
+               </div>
+            </div>
+         </div>
+         <div class="PaymentSuccess" style="display: {{enableInsuranceVerificationSuccess}}">
+            <div class="PaymentConfirmation localizejs">
+               Your plan has been verified
+            </div>
+         </div>
+         <div class="CreditSuccess" style="display: {{enableCreditVerification}}">
+            <div class="PaymentConfirmation localizejs">
+               Credit Used
+               <div class="ConfirmationReceipt localizejs">
+                  <span>{{getReceiptCreditCount}}</span> On-Demand Credits Remaining
+               </div>
+            </div>
+         </div>
         <!-- <div class="CreditSuccess" style="display: {{enableWaivefeeVerification}}">
             <div class="PaymentConfirmation">
 

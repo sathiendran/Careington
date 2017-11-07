@@ -149,8 +149,8 @@
                             <div class="pc-report__data-list pc-report__data-list-item">
                                 <span class="pc-report__data-list-title enStatus localizejs">Status</span>
                                 <span ng-if="consultstatus == 72" class="pc-report__data-list-desc1 pc-report__data-list-desc--successful localizejs">{{reportStatus}}</span>
-                                <span ng-if="consultstatus == 79" class="pc-report__data-list-desc1 pc-report__data-list-desc--canceled">{{reportStatus}}</span>
-                                <span ng-if="consultstatus == 81" class="pc-report__data-list-desc1 pc-report__data-list-desc--canceled">{{reportStatus}}</span>
+                                <span ng-if="consultstatus == 79" class="pc-report__data-list-desc1 pc-report__data-list-desc--canceled localizejs">{{reportStatus}}</span>
+                                <span ng-if="consultstatus == 81" class="pc-report__data-list-desc1 pc-report__data-list-desc--canceled localizejs">{{reportStatus}}</span>
                             </div>
                                <div class="pc-report__data-list pc-report__data-list-item">
                                 <span class="pc-report__data-list-title enStatus localizejs">encounter</span>
@@ -340,16 +340,16 @@
                     </div> -->
 
                     <div class="pc-report__sub-section-title pc-report__sub-section-title--border-solid pc-report__sub-section-title--margin localizejs">Subjective</div>
-                     <div ng-if="reportSubjective != 'None Reported'" id="reportSubjective" class="pc-report__notes"></div>
+                     <div ng-if="reportSubjective != 'None Reported'" id="reportSubjective" class="pc-report__notes localizejs"></div>
                       <div ng-if="reportSubjective == 'None Reported'" class="pc-report__notes localizejs">{{reportSubjective}}</div>
 
                      <div class="pc-report__sub-section-title pc-report__sub-section-title--border-solid pc-report__sub-section-title--margin localizejs">Objective</div>
-                     <div ng-if="reportObjective != 'None Reported'" id="reportObjective" class="pc-report__notes"></div>
+                     <div ng-if="reportObjective != 'None Reported'" id="reportObjective" class=" localizejs"></div>
                      <div ng-if="reportObjective == 'None Reported'" id="reportObjective" class="pc-report__notes localizejs">{{reportObjective}}</div>
 
                      <div class="pc-report__sub-section-title pc-report__sub-section-title--border-solid pc-report__sub-section-title--margin localizejs">Assessment</div>
                      <div class="pc-report__notes"  ng-if="reportAssessment != 'None Reported'" id="reportAssessment"> </div>
-                     <div class="pc-report__notes"  ng-if="reportAssessment == 'None Reported'" >{{reportAssessment}} </div>
+                     <div class="pc-report__notes localizejs"  ng-if="reportAssessment == 'None Reported'" >{{reportAssessment}} </div>
 
                      <div class="pc-report__sub-section-title pc-report__sub-section-title--border-solid pc-report__sub-section-title--margin localizejs">Plan</div>
                      <div ng-if="reportPlan != 'None Reported'" id="reportPlan" class="pc-report__notes"></div>
@@ -412,7 +412,7 @@
                            </div> -->
 
                               <div class="pc-report__notes" ng-if="!existconsultationprescriptions.length">
-                                <p>None Reported</p>
+                                <p class="localizejs">None Reported</p>
                               </div>
 
                          <div class="pc-report__table-row pc-report__table-row--50x50" ng-repeat="prescriptions in existconsultationprescriptions">
@@ -433,7 +433,7 @@
                      <p class="pc-report__chat-transcript" ng-if="waitingRoomChatTranscript.length">
                      <span ng-repeat = "waitingRoomChatTranscript in waitingRoomChatTranscript" style="font-size: 12px;">{{waitingRoomChatTranscript.ChatMessage}}</span>
                      </p>
-                     <p class="pc-report__notes" ng-if="!waitingRoomChatTranscript.length">None Reported</p>
+                     <p class="pc-report__notes localizejs" ng-if="!waitingRoomChatTranscript.length">None Reported</p>
 
                      <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin localizejs">Consultation</div>
                      <p class="pc-report__chat-transcript" ng-if="chatTranscript.length">
@@ -517,7 +517,7 @@
 
 
                   <div ng-if="userReportDOB <= 1">
-                     <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin localizejs">Birth Info <span class="pc-report__sub-section-child">(Child < 1yr)</span></div>
+                     <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin localizejs"><span class="localizejs">Birth Info </span><span class="pc-report__sub-section-child"><span class="localizejs">(Child < 1yr)</span></span></div>
 
                      <div class="pc-report__table-title pc-report__table-title--50x50-qa">
                          <span class="localizejs">Question</span>

@@ -109,6 +109,7 @@
             this.oldDateFilter = this.dateFilter;
             this.nameFilter = "";
             this.isDataInit = false;
+          //  that.isDataInit = false;
             this.hasOpenDialog = false;
 
 
@@ -405,25 +406,34 @@
                         that._setFilterDate(currentUserTime);
                     }
                 });
+                that.isDataInit = this.isDataInit;
                 $customerDataService.getRulesStatus().done(function (status) {
-                    that.set("isResponseRuleActive", status.responseRuleActive);
-                    that.set("isAddressRuleActive", status.addressRuleActive);
+                      that.set("isResponseRuleActive", status.responseRuleActive);
+                      that.set("isAddressRuleActive", status.addressRuleActive);
 
-                    that.trigger("change", { field: "vm_isRulesActive" });
-                    that.trigger("change", { field: "vm_isResponseRuleInactive" });
+                      that.trigger("change", { field: "vm_isRulesActive" });
+                      that.trigger("change", { field: "vm_isResponseRuleInactive" });
 
-                    // We need to set patient current location.
-                    that._setPatientForSelfScheduling(defaultPatient);
+                      var selectedItem = snap.profileSession;
+                      if(typeof that.selectedPatient != 'undefined') {
+                        //  if (selectedItem.profileId !== that.selectedPatient.id) {
+                              that.set("vm_isPatientSelectorActive", false);
+                              that._setPatientForSelfScheduling(selectedItem);
+                              that._updateCliniciansList();
+                              selector.load();
+                        /* } else {
+                              that._setPatientForSelfScheduling(defaultPatient);
+                              selector.load();
+                          }*/
+                      } else {
+                          that._setPatientForSelfScheduling(defaultPatient);
+                          selector.load();
+                      }
 
-                    //if(!selector.isSelectorLoaded()) {
-                    selector.load();
-                    //} else {
+                  });
 
-                    //that._reloadPatientSelector();
-                    // that.set("vm_isPatientSelectorActive", false);
-                    //that._updateCliniciansList();
-                    //}
-                });
+
+
                 if (!this.allCliniciansDS.isEndlessScrollInitialized()) {
                     this.allCliniciansDS.initEndlessScroll();
                 }
@@ -564,7 +574,7 @@
                     min: this.vm_currentDate
                 });
 
-            
+
             this.vm_isNotificationActive = false;
             this.vm_closeNotification = function () {
                 this.vm_isNotificationActive = false;
