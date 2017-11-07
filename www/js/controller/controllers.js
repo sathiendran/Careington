@@ -325,9 +325,9 @@ if (deploymentEnv === "Sandbox") {
     api_keys_env = "Staging";
 }
 
-angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', 'timer', 'ion-google-place', 'ngIOS9UIWebViewPatch', 'ngCordova', 'ngIdle'])
+angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', 'timer', 'ion-google-place', 'ngIOS9UIWebViewPatch', 'ngCordova', 'ngIdle', 'ngStorage'])
 
-.controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, ageFilterReport, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup)
+.controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, ageFilterReport, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup, $sessionStorage)
 {
   $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
   if($rootScope.chkSSPageEnter) {
@@ -2389,7 +2389,10 @@ $rootScope.checkAndChangeMenuIcon = function() {
         if ($('#password').val() === '') {
             $scope.ErrorMessage = "Please enter your password";
             $rootScope.Validation($scope.ErrorMessage);
-        } else {
+        } else { 
+            $sessionStorage.SessionMessage = [];
+            $sessionStorage.SessionMessage.push($rootScope.UserEmail);
+            alert($sessionStorage.SessionMessage)
             $('#loginPwd').hide();
             $('#loginPwdVerify').show();
 
@@ -8998,17 +9001,23 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 return ageString = Math.floor(num_months) + monthString + '/' + Math.floor(num_days) + dayString ;
             }
             if (age.years > 0) {
+              var monthTotal = 0;
                 if (age.days <= 15) {
+                    monthTotal = age.months;
                     var month = age.months + monthString;;
                 } else if (age.days > 15) {
+                    monthTotal = age.months+1;
                     var month = (age.months + 1) + monthString;;
                 }
-                if (age.months !== 0) {
-                    return ageString = age.years + yearString + '/' + month;
-                } else {
-                    return ageString = age.years + yearString;
-                }
-
+                if(monthTotal === 12){
+                      return ageString = (age.years + 1) + yearString;
+                }else{
+                    if (age.months !== 0) {
+                        return ageString = age.years + yearString + '/' + month;
+                    } else {
+                        return ageString = age.years + yearString;
+                    }
+                  }
             }
         }
         return function(birthdate) {

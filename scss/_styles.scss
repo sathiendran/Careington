@@ -908,7 +908,7 @@ body {
                 }
             }
             .subHeader_content_age {
-                font-size: 12px;
+                font-size: 13px;
                 font-weight: bold;
                 margin-left: 10px;
                 margin-top: 1px;
@@ -3423,6 +3423,8 @@ a {
 .disable-pointer-events {
     margin-left: -47px;
     pointer-events: none;
+    width:17em;
+    white-space: normal;
 }
 .ContentSearchHomeUser {
     @extend .login_content;
@@ -6056,7 +6058,7 @@ hr {
 }
 
 .bg h2 {
-      margin-top: -55px !important;
+      margin-top: -15px !important;
     }
 .bg {
       height: 150px !important;
