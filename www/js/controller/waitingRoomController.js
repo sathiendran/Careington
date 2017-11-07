@@ -205,7 +205,7 @@ angular.module('starter.controllers')
 
 
     $scope.isPhysicianStartedConsultaion = false;
-    $scope.waitingMsg = "The Provider will be with you Shortly.";
+    $scope.waitingMsg = "The Provider will be with you shortly";
     var initWaitingRoomHub = function() {
         var WaitingRoomConnection = $.hubConnection();
         var WaitingRoomConHub = WaitingRoomConnection.createHubProxy('consultationHub');
@@ -221,7 +221,7 @@ angular.module('starter.controllers')
             "isMobile": true
         };
         WaitingRoomConHub.on("onConsultationReview", function() {
-            $scope.waitingMsg = "The Provider is now reviewing the intake form.";
+            $scope.waitingMsg = "The Provider is now reviewing the intake form";
             $scope.$digest();
         });
         WaitingRoomConHub.on("onCustomerDefaultWaitingInformation", function() {
@@ -232,7 +232,7 @@ angular.module('starter.controllers')
              window.localStorage.setItem("isCustomerInWaitingRoom", "Yes");
              window.localStorage.setItem('accessToken', $rootScope.accessToken);
              window.localStorage.setItem("waitingRoomConsultationId", +$rootScope.consultationId);
-            $scope.waitingMsg = "Please Wait....";
+            $scope.waitingMsg = "Please Wait";
             $scope.postPollforCredit();
             $scope.$digest();
         });
@@ -240,7 +240,7 @@ angular.module('starter.controllers')
              window.localStorage.setItem("isCustomerInWaitingRoom", "No");
              if(typeof alive_waiting_room_pool !== 'undefined')
                  clearInterval(alive_waiting_room_pool);
-            $scope.waitingMsg = "Please wait...";
+            $scope.waitingMsg = "Please wait";
             $scope.$digest();
            // $.connection.hub.stop();
            WaitingRoomConnection.stop();
@@ -254,7 +254,7 @@ angular.module('starter.controllers')
         WaitingRoomConnection.start({
             withCredentials: false
         }).then(function() {
-            $scope.waitingMsg = "The Provider will be with you Shortly.";
+            $scope.waitingMsg = "The Provider will be with you shortly";
             $scope.$digest();
             WaitingRoomConnection.disconnected(function() {
                setTimeout(function() {
