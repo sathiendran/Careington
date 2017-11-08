@@ -71,28 +71,28 @@
                   <input style="font-size: 18px; -webkit-text-security: disc; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "number" id="password pattern="[0-9]*" inputmode="numeric"  placeholder="Required" class= "localizejs" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>
                </div>
                <div class="item item-input" >
-                  <span class="input-label cardfont" >Billing Address</span>
+                  <span class="input-label cardfont localizejs" >Billing Address</span>
                   <input type="text" class="localizejs" placeholder="Required" ng-model="getCardDetails.BillingAddress"  name="BillingAddress" id="BillingAddress" required>
                </div>
                <div class="item item-input" >
-                  <span class="input-label cardfont" >City</span>
+                  <span class="input-label cardfont localizejs" >City</span>
                   <ion-google-place style="font-size: 18px !important;" placeholder="Required" class="localizejs" ng-model="getCardDetails.City" required/>
                </div>
                <div class="item item-input">
-                  <span class="input-label cardfont" >State</span>
+                  <span class="input-label cardfont localizejs" >State</span>
                   <input type="text" class="localizejs" placeholder="Required"  ng-model="getCardDetails.State"  name="State" id="State" required>
                </div>
                <div class="item item-input" >
-                  <span class="input-label cardfont" >Country</span>
+                  <span class="input-label cardfont localizejs" >Country</span>
                   <input type="text" class="localizejs" placeholder="Required" ng-model="getCardDetails.Country"  name="Country" id="Country" required>
                </div>
                <div class="item item-input" >
-                  <span class="input-label cardfont" >Zip</span>
+                  <span class="input-label cardfont localizejs" >Zip</span>
                   <input type="text" style="{{invalidZip}}" placeholder="Required"  ng-model="getCardDetails.CardZipCode"  class="localizejs" input-max-length-number maxlength="10" name="Zip" id="Zip" required/>
                </div>
             </div>
             <div class="planDetails" ng-if="addCardStatus !== 200" style="opacity:{{planverify}};">
-               <p class="carddetails">When you add a credit card, information about your card, will be sent to Authorize.net and your card issuer.</p>
+               <p class="carddetails localizejs">When you add a credit card, information about your card, will be sent to Authorize.net and your card issuer.</p>
             </div>
             <div class="privacy" style="opacity:{{planverify}};"><a class="hospitalDynamicLink" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;"><span class="localizejs">About</span> {{Hospital}} <span class="loclizejs">Privacy</span></a></div>
          </div>

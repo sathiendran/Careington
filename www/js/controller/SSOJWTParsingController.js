@@ -61,6 +61,7 @@ angular.module('starter.controllers')
          window.location.href = 'https://itunes.apple.com/us/app/virtual-care/id1035220141?ls=1&mt=8';
       }
     }
+    $("#localize-widget").show();
     $scope.doGetSingleUserHospitalInformation = function() {
         $rootScope.paymentMode = '';
         $rootScope.insuranceMode = '';

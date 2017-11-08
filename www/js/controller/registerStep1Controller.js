@@ -493,7 +493,7 @@ angular.module('starter.controllers')
 
           LoginService.chkAddressForReg(params);
         }
-
+$("#localize-widget").show();
         $scope.registerStpe1BackToSearchProvider = function() {
             if ($rootScope.providerSearchKey !== '' && typeof $rootScope.providerSearchKey !== 'undefined') {
                 $rootScope.backProviderSearchKey = $rootScope.providerSearchKey;
