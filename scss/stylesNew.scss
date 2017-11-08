@@ -6243,3 +6243,9 @@ a.item.item-avatar.avatheight:first-child{
     font-size: 31px;
     border: 2px solid #fff !important;
 }
+
+@media (min-width: 320px) and (max-width: 568px) {
+  #viewicon {
+      margin-top: -6px !important;
+  }
+}
