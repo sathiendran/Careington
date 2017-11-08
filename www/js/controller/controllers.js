@@ -327,7 +327,7 @@ if (deploymentEnv === "Sandbox") {
 
 angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', 'timer', 'ion-google-place', 'ngIOS9UIWebViewPatch', 'ngCordova', 'ngIdle', 'ngStorage'])
 
-.controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, ageFilterReport, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup, $sessionStorage)
+.controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, ageFilterReport, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup)
 {
   $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
   if($rootScope.chkSSPageEnter) {
@@ -2390,9 +2390,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
             $scope.ErrorMessage = "Please enter your password";
             $rootScope.Validation($scope.ErrorMessage);
         } else {
-            $sessionStorage.SessionMessage = [];
-            $sessionStorage.SessionMessage.push($rootScope.UserEmail);
-            alert($sessionStorage.SessionMessage)
+          
             $('#loginPwd').hide();
             $('#loginPwdVerify').show();
 
