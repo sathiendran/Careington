@@ -493,6 +493,11 @@ angular.module('starter.controllers')
 
           LoginService.chkAddressForReg(params);
         }
+        $scope.change = function()
+        {
+          var isVisible = $cordovaKeyboard.isVisible();
+          
+        }
 $("#localize-widget").show();
         $scope.registerStpe1BackToSearchProvider = function() {
             if ($rootScope.providerSearchKey !== '' && typeof $rootScope.providerSearchKey !== 'undefined') {
