@@ -5,7 +5,7 @@ angular.module('starter.controllers')
  // $('link[src="css/styles.v3.less.dynamic.css"]').remove();
   //     $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
   $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-
+$("#localize-widget").show();
     $ionicPlatform.registerBackButtonAction(function() {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||

@@ -8,6 +8,7 @@ angular.module('starter.controllers')
     $.getScript( "https://snap-qa.com/api/signalR/hubs", function( data, textStatus, jqxhr ) {
 
     });*/
+    $("#localize-widget").show();
     window.plugins.insomnia.keepAwake();
     $rootScope.currState = $state;
     window.localStorage.setItem('videoCallPtImage', $rootScope.PatientImageSelectUser);

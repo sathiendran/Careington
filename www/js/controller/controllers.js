@@ -237,7 +237,7 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
         }
     }
 }
-
+$("#localize-widget").show();
 var REVIEW_CONSULTATION_EVENT_CODE = 116;
 var STARTED_CONSULTATION_EVENT_CODE = 117;
 var STOPPED_CONSULTATION_EVENT_CODE = 118;
@@ -2390,7 +2390,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
             $scope.ErrorMessage = "Please enter your password";
             $rootScope.Validation($scope.ErrorMessage);
         } else {
-          
+
             $('#loginPwd').hide();
             $('#loginPwdVerify').show();
 

@@ -40,7 +40,7 @@ angular.module('starter.controllers')
                 navigator.app.backHistory();
             }
         }, 100);
-
+       $("#localize-widget").show();
         var checkAndChangeMenuIcon;
         $interval.cancel(checkAndChangeMenuIcon);
         $rootScope.checkAndChangeMenuIcon = function() {

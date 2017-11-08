@@ -39,7 +39,7 @@ angular.module('starter.controllers')
                 navigator.app.backHistory();
             }
         }, 100);
-
+$("#localize-widget").show();
         $scope.data = {};
         $scope.$watch('data.searchProvider', function(searchKey) {
             $rootScope.providerSearchKey = searchKey;

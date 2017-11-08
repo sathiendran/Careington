@@ -6,6 +6,7 @@ angular.module('starter.controllers')
             return this.value.indexOf('?') >= 0;
         }).remove();
     }, 100);
+    $("#localize-widget").show();
     $ionicPlatform.registerBackButtonAction(function() {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -1026,8 +1027,8 @@ angular.module('starter.controllers')
     };
 
     $scope.patientdone = function(){
-      
-     
+
+
       if($rootScope.addPatientidupdateList.length == 0){
         //console.log(" Length is 0 =");
         $rootScope.addPatientidupdateList = [];
@@ -1047,9 +1048,9 @@ angular.module('starter.controllers')
 
            for (var i = 0; i < $rootScope.PatientsdetCount; i++) {
 
-                 var status1="New";      
+                 var status1="New";
               for (var j = 0; j < $rootScope.addPatientidupdateList.length; j++) {
-                       if($scope.PatientsearchItem[i].display == $scope.addPatientidupdateList[j].display){                
+                       if($scope.PatientsearchItem[i].display == $scope.addPatientidupdateList[j].display){
                           status1="Exit";
                         }
                       }
@@ -1062,13 +1063,13 @@ angular.module('starter.controllers')
                        statusCode:$scope.PatientsearchItem[i].statusCode
                });
                  }
-              
+
              }
-              
-           for (var k = 0; k < $rootScope.addPatientidupdateList.length; k++) {     
+
+           for (var k = 0; k < $rootScope.addPatientidupdateList.length; k++) {
                   var status2="New";
              for (var l = 0; l < $rootScope.PatientsdetCount; l++) {
-                if($scope.addPatientidupdateList[k].display == $scope.PatientsearchItem[l].display){                    
+                if($scope.addPatientidupdateList[k].display == $scope.PatientsearchItem[l].display){
                            status2="Exit";
                         }
                       }
@@ -1078,7 +1079,7 @@ angular.module('starter.controllers')
                         }
                   }
 
-         
+
 
         // $rootScope.PatientIdentifiers = $rootScope.PatientidupdateList;
 

@@ -16,7 +16,7 @@ angular.module('starter.controllers')
                 $rootScope.doGetSelectedPatientProfilesSS(patId, true);
             }
         };
-
+$("#localize-widget").show();
         $scope.getOnlyNumbers = function (text) {
             var newStr = "";
             if (text) {
