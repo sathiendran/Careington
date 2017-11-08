@@ -8,6 +8,7 @@ angular.module('starter.controllers')
               timeoutValue = 0;
               window.localStorage.setItem('InActiveSince', timeoutValue);
          }
+         $("#localize-widget").show();
       $rootScope.consultationId = window.localStorage.getItem('ConferenceCallConsultationId');
       $rootScope.accessToken = window.localStorage.getItem('accessToken');
       $rootScope.videoSessionId = window.localStorage.getItem('videoSessionId');

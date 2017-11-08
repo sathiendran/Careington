@@ -39,3 +39,4 @@ angular.module('starter.controllers')
             }
         }, 100);
     })
+$("#localize-widget").show();

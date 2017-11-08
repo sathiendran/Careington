@@ -25,7 +25,7 @@ angular.module('starter.controllers')
          }, 60000);
     };
 
-
+$("#localize-widget").show();
     function clearSessionLogoutTimer(){
        if(typeof appIdleInterval !== "undefined"){
           $interval.cancel(appIdleInterval);

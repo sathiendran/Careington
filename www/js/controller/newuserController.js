@@ -38,6 +38,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
             navigator.app.backHistory();
         }
     }, 100);
+    $("#localize-widget").show();
     var checkAndChangeMenuIcon;
     $interval.cancel(checkAndChangeMenuIcon);
     $rootScope.checkAndChangeMenuIcon = function() {
