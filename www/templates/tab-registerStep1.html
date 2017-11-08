@@ -206,7 +206,7 @@
                   <div>
                      <label class="user-account__label localizejs">First Name</label>
                      <div class="user-account__input ">
-                        <input ng-model="regStep1.FName" class="localizejs" name="regFName" id="regFName" type="text" placeholder="type here..." ng-keyup="fnameBlur()" >
+                        <input ng-model="regStep1.FName" ng-change="change()"class="localizejs" name="regFName" id="regFName" type="text" placeholder="type here..." ng-keyup="fnameBlur()" >
                         <span class="user-account__error-message localizejs" ng-show="fnameerror">Please enter your first name</span>
                      </div>
                   </div>
