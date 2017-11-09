@@ -2625,8 +2625,10 @@ $rootScope.checkAndChangeMenuIcon = function() {
     }
 
     $rootScope.doGetTermsandCondition = function(registerRedirectPage, registerCurrentPage) {
-        if($rootScope.regCountry2 == "") {
+        if($rootScope.regCountry2 == "" || $rootScope.regCountry2  == 'Choose') {
             $rootScope.regCountry2 =  $('#regCountryCode').val();
+        } else if ($rootScope.regCountry2 != "") {
+            $rootScope.regCountry2 = $rootScope.regCountry2;
         } else {
              $rootScope.regCountry2 =  $('#regCountryCode').val();
         }
