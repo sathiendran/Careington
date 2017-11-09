@@ -1950,7 +1950,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                 }, 300);
             }
         };
-  // $("#localize-widget").hide();
+  $("#localize-widget").hide();
         $scope.goTOSchedule = function () {
             $('<link/>', {
                 rel: 'stylesheet',
