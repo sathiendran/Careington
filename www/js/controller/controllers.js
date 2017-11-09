@@ -237,7 +237,7 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
         }
     }
 }
-$("#localize-widget").show();
+
 var REVIEW_CONSULTATION_EVENT_CODE = 116;
 var STARTED_CONSULTATION_EVENT_CODE = 117;
 var STOPPED_CONSULTATION_EVENT_CODE = 118;
@@ -584,7 +584,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.reportDone = "padding-top: 26px;";
             $rootScope.reportTitletop = "top: 14px !important; left: -8px !important;";
             $rootScope.resetContent = "margin: -46px 0 0 0;";
-            $rootScope.ConcernFooterNextIOS = "margin-left: -46px !important; left: -16px !important;";
+            $rootScope.ConcernFooterNextIOS = "margin-left: -46px !important; left: -18px !important;";
             $rootScope.providerItamMarginTop = "top: 5px;";
         }
         if ($rootScope.isIPad) {
@@ -601,6 +601,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.FootNextButtonRight = "margin-left: -87px !important;";
             $rootScope.FootNextButton = "left: 22px;";
             $rootScope.FootNextButtonPatient = "left: 3px;";
+            $rootScope.IpadInsurncepageCenter1 = "margin-top: 113px;";
+            $rootScope.IpadInsurncepageCenter = "margin-top: 30px;";
+            $rootScope.IpadInsurncepageYourCopy = "margin-left: -7% !important;"
+            $rootScope.IpadInsurncepageCenterAddcard = "margin-top: 80px;";
+            $rootScope.IpadInsurncepageCenterAddcardButton = "padding-top: 10% !important;"
+            $rootScope.IpadInsurncepageContsultation = "margin-left: 230px !important;margin-top: 70px !important";
         }
         $rootScope.PriorSurgeryContant = "margin-top: 53px;";
         $rootScope.CardDetailYear = "padding-left: 11px;";
@@ -609,7 +615,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -638,7 +644,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.concernListTitleStyle = "concernListTitle";
         $rootScope.concernListDoneStyle = "concernListDone";
         $rootScope.PrimaryMarginTop = "margin-top: -16px";
-        $rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -34px !important;";
+        $rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -18px !important;";
         $rootScope.appointContent = "margin: 76px 0 0 0;";
         $rootScope.waitingContentIos = "margin-top: 120px; ";
         $rootScope.providerItamMarginTop = "";
@@ -2619,8 +2625,10 @@ $rootScope.checkAndChangeMenuIcon = function() {
     }
 
     $rootScope.doGetTermsandCondition = function(registerRedirectPage, registerCurrentPage) {
-        if($rootScope.regCountry2 == "") {
+        if($rootScope.regCountry2 == "" || $rootScope.regCountry2  == 'Choose') {
             $rootScope.regCountry2 =  $('#regCountryCode').val();
+        } else if ($rootScope.regCountry2 != "") {
+            $rootScope.regCountry2 = $rootScope.regCountry2;
         } else {
              $rootScope.regCountry2 =  $('#regCountryCode').val();
         }

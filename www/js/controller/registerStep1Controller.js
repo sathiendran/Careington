@@ -196,6 +196,10 @@ angular.module('starter.controllers')
             $scope.email= $('#regEmail').val();
             $scope.mobile=  $('#regMobile').val();
             $scope.regCountry2 =  $('#regCountryCode').val();
+            if($('#regCountryCode').val() == 'Choose') {
+                $scope.regCountry2 =  $rootScope.regCountry2
+            }
+               
             //  $scope.regCountryCode =  $scope.regCountry2[0];
             //  $scope.regCountryName =  $scope.regCountry2[1];
           //  $scope.regTimezone =  $('#regTimezone').val();
