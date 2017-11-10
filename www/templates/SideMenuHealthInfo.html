@@ -126,7 +126,7 @@
 
 <ion-side-menu side="left">
     <nav class="main-nav" ng-if="hasRequiredFields == false">
-        <!-- <a href="#" class="user-info user-info--main-nav">
+        <a href="#" class="user-info user-info--main-nav">
             <div ng-click="validationForChkingRequiredFields()" class="userpic userpic--white-border userpic--main-nav" ng-bind-html="drawImageSS(PatientImage,primaryPatientName,primaryPatientLastName)"
                 style="border: 2px #fff solid;">
 
@@ -140,9 +140,9 @@
                     <span class="localizejs">{{primaryPatGender}}</span> • <span>{{dob | ageFilter}}</span> • <span>{{mobilePhone}}</span>
                 </div>
             </div>
-        </a> -->
+        </a>
 
-        <div class="userInfoDiv">
+        <!-- <div class="userInfoDiv">
                 <a href="#" class="user-info--main-nav">
                     <div ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')"
                         class="userpic userpic--white-border userpic--main-nav" ng-bind-html="drawImageSS(PatientImage,primaryPatientName,primaryPatientLastName)"
@@ -159,7 +159,7 @@
                         <span class="localizejs">{{primaryPatGender}}</span> • <span>{{dob | ageFilter}}</span> • <span>{{mobilePhone}}</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
         <ul class="main-nav__list">
             <li><a ng-click="validationForChkingRequiredFields()"><span> <i ng-bind-html="drawSVGCIcon('users')"></i></span><span class="localizejs">Patient List</span></a></li>
@@ -176,7 +176,7 @@
     </nav>
 
     <nav class="main-nav" ng-if="hasRequiredFields != false">
-        <!-- <a href="#" class="user-info user-info--main-nav">
+        <a href="#" class="user-info user-info--main-nav">
             <div ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')"
                 class="userpic userpic--white-border userpic--main-nav" ng-bind-html="drawImageSS(PatientImage,primaryPatientName,primaryPatientLastName)"
                 style="border: 2px #fff solid;">
@@ -191,9 +191,9 @@
                     <span class="localizejs">{{primaryPatGender}}</span> • <span>{{dob | ageFilter}}</span> • <span class="localizejs">{{mobilePhone}}</span>
                 </div>
             </div>
-        </a> -->
+        </a>
 
-        <div class="userInfoDiv">
+        <!-- <div class="userInfoDiv">
                 <a href="#" class="user-info--main-nav">
                     <div ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')"
                         class="userpic userpic--white-border userpic--main-nav" ng-bind-html="drawImageSS(PatientImage,primaryPatientName,primaryPatientLastName)"
@@ -210,7 +210,7 @@
                         <span class="localizejs">{{primaryPatGender}}</span> • <span>{{dob | ageFilter}}</span> • <span>{{mobilePhone}}</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
         <ul class="main-nav__list">
             <li><a ng-href="#/tab/userhome"><span> <i ng-bind-html="drawSVGCIcon('users')"></i></span><span class="localizejs">Patient List</span></a></li>
