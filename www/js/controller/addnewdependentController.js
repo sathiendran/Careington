@@ -596,6 +596,15 @@ angular.module('starter.controllers')
                 }else if(identifierTypeCode_.indexOf("Patient's Medicare number") != -1) {
                    $scope.ErrorMessage = "Please enter Patient's Medicare number";
                 }
+                else if  (identifierTypeCode_.indexOf("Número de licencia de conducir") != -1) {
+                    $scope.ErrorMessage = "Please enter Driver's license number";
+                } else if (identifierTypeCode_.indexOf("Número de Empleado") != -1) {
+                    $scope.ErrorMessage = "Please enter Employee number";
+                } else if (identifierTypeCode_.indexOf("Número de Medicaid del paciente") != -1) {
+                    $scope.ErrorMessage = "Please enter Patient Medicaid number";
+                } else if (identifierTypeCode_.indexOf("Número de Medicare del Paciente") != -1) {
+                    $scope.ErrorMessage = "Please enter Patient's Medicare number";
+                }
               $rootScope.Validation($scope.ErrorMessage);
             } else {
                 if (typeof $scope.height2 === 'undefined' || $scope.height2 === '') {
@@ -665,6 +674,15 @@ angular.module('starter.controllers')
                    $scope.ErrorMessage = "Please enter Patient Medicaid number";
                 }else if(identifierTypeCode_.indexOf("Patient's Medicare number") != -1) {
                    $scope.ErrorMessage = "Please enter Patient's Medicare number";
+                }
+                else if  (identifierTypeCode_.indexOf("Número de licencia de conducir") != -1) {
+                    $scope.ErrorMessage = "Please enter Driver's license number";
+                } else if (identifierTypeCode_.indexOf("Número de Empleado") != -1) {
+                    $scope.ErrorMessage = "Please enter Employee number";
+                } else if (identifierTypeCode_.indexOf("Número de Medicaid del paciente") != -1) {
+                    $scope.ErrorMessage = "Please enter Patient Medicaid number";
+                } else if (identifierTypeCode_.indexOf("Número de Medicare del Paciente") != -1) {
+                    $scope.ErrorMessage = "Please enter Patient's Medicare number";
                 }
               $rootScope.Validation($scope.ErrorMessage);
             } else {

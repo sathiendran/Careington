@@ -5780,22 +5780,49 @@ margin-right: 10px;
     transition: opacity 0.3s ease
 }
 
-.user-info--main-nav .user-info__name {
+// .user-info--main-nav .user-info__name {
+//     color: #fff
+// }
+
+// .user-info--main-nav .user-info__text {
+//     margin-left: 60px;
+//     margin-top: 5px
+// }
+
+// .user-info--main-nav .user-info__info {
+//     //font-size: 0.8em;
+//     font-size: 1.1em !important;
+//     color: #fff;
+//     font-family: "GloberRegular", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+//     width: 100%
+// }
+//sakthi
+.userInfoDiv {
+    height: 76px;
+    padding: 15px;
+    background: #444;
+    width: 100%;
+}
+
+
+.user-info__name {
     color: #fff
 }
 
-.user-info--main-nav .user-info__text {
-    margin-left: 60px;
-    margin-top: 5px
+ .user-info__text {
+    margin-left: 56px;
+    margin-top: -13px;
 }
 
-.user-info--main-nav .user-info__info {
+ .user-info__info {
     //font-size: 0.8em;
     font-size: 1.1em !important;
     color: #fff;
     font-family: "GloberRegular", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
-    width: 100%
+    //width: 100%
 }
+ //sakthi
+
 .userpic {
     overflow: hidden;
     position: relative;
@@ -5925,7 +5952,7 @@ margin-right: 10px;
 }
 .insCardNumber {
   font-family: GloberSemiBold;
-  font-size: 21px;
+  font-size: 24px !important;
   position: relative;
   top: 3px;
 }

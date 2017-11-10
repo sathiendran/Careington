@@ -1384,18 +1384,24 @@ body {
     background-color: $Nobel;
     border-color: $Nobel;
 }
+
+
+
 .consultation_head {
     font-size: 164%;
     padding-top: 22px;
     color: #2A2A2A;
+    width: 110%;
     .consultation_number {
         margin-right: 17px;
         font-family: $fontFamily_semibold;
         color: #666666;
         text-align: left;
+        width: 110%;
         span {
             text-decoration: line-through; //color: red;
-            margin-left: 11px;
+            margin-left: 35px;
+            font-size: 22px;
         }
     }
     .consultation_numberCopay {
@@ -1404,30 +1410,33 @@ body {
         color: #666666;
         text-align: left;
         padding-right: 16px;
+        width: 110%;
         span {
             color: red;
             font-size: 22px;
-            margin-left: 11px;
+            margin-left: 35px;
         }
     }
     .consultTittleCharge {
         color: #666666;
         font-family: $fontFamily_semibold;
-        margin-left: 10px;
+        margin-left: 10%;
         float: left;
+        font-size: 24px;
     }
     .consultTittle {
         color: #666666;
         font-family: $fontFamily_semibold;
-        margin-left: 10px;
+        margin-left: -3%;
         float: left;
         width: 63%;
         text-align: right;
+        font-size: 24px;
     }
     .consultTittleCopay {
         color: #666666;
         font-family: $fontFamily_semibold;
-        margin-left: 10px;
+        margin-left: -10px;
         float: left;
         width: 63%;
         text-align: right;
@@ -1438,6 +1447,36 @@ body {
         color: #C2C2C2;
     }
 }
+
+@media (min-width: 320px) and (max-width: 568px) {
+  .consultation_head {
+    .consultTittle {
+      font-size: 20px !important;
+    }
+    .consultTittleCopay {
+      font-size: 14px !important;
+    }
+    .consultation_number {
+      width: 110% !important;
+        span {
+          font-size: 20px !important;
+        }
+    }
+    .consultation_numberCopay {
+      width: 110% !important;
+        span {
+            font-size: 20px !important;
+        }
+    }
+    .consultTittleCharge {
+      margin-left:
+      3% !important;
+      font-size: 20px !important;
+    }
+ }
+}
+
+
 .UseHealthPlan {
     padding-top: 45px;
     a {

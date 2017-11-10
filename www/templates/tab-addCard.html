@@ -31,13 +31,13 @@
          </div>
       </ion-header-bar>
       <ion-content class="consultCharge_contentPayment consultConPaymentMargin addCardConScetion"  >
-         <div style="padding-right: 10%;{{IpadInsurncepageCenterAddcard}}">
+         <div style="padding-right: 10%;">
             <div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
-               <div class="consultTittle localizejs" style="margin-left: -3%;font-size: 110%;">Consultation Charge</div>
-               <div class="consultation_number"> <span style="font-size: 22px;">${{consultationAmount}}*</span></div>
+               <div class="consultTittle localizejs">Consultation Charge</div>
+               <div class="consultation_number"> <span>${{consultationAmount}}*</span></div>
             </div>
             <div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
-               <div class="consultTittleCopay localizejs" style="margin-left: -3%;font-size: 20px; {{IpadInsurncepageYourCopy}}"  >Your Copay</div>
+               <div class="consultTittleCopay localizejs" >Your Copay</div>
                <div class="consultation_numberCopay"> <span>${{copayAmount}}*</span></div>
             </div>
          </div>
@@ -66,7 +66,7 @@
                      </div>
                   </div>
                </div>
-            <div class="SkipToPayment" style="display: {{enableSubmitpaymentAddCard}}; padding-top: 10%;">
+            <div class="SkipToPayment" style="display: {{enableSubmitpaymentAddCard}}; padding-top: 23%;">
                <button type="submit" ng-click='doPostCoPayDetails()'  class="button button-block button-balanced" style="padding: 3px;">
                <span class="localizejs">Submit Payment</span>
                </button>
@@ -94,7 +94,7 @@
 
 
             </div>
-            <div class="SkipToPayment" style="display: {{disableSubmitpaymentAddCard}}; padding-top: 23%;{{IpadInsurncepageCenterAddcardButton}}">
+            <div class="SkipToPayment" style="display: {{disableSubmitpaymentAddCard}}; padding-top: 23%;">
                <button class="button button-block button-royal cardSubmitPayment">
                <span class="localizejs">  Submit Payment</span>
                </button>
