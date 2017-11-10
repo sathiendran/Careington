@@ -52,7 +52,7 @@
          <a class="item item-icon-left item-icon-right" ng-href="#/tab/consultations">
          <i class="icon iconsize fontcolor" ng-bind-html="drawSVGCIcon('health_card')"></i> <span class="fontcolorfamily localizejs">  Consultations </span> <i class="icon ion-chevron-right fontcolor"></i>
          </a>
-         <a class="item item-icon-left item-icon-right" ng-href="#/tab/healthinfo">
+         <a class="item item-icon-left item-icon-right" ng-href="#/tab/healthinfo/">
          <i class="icon iconsize fontcolor" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="fontcolorfamily"> My Health </span><i class="icon ion-chevron-right fontcolor"></i>
          </a>
          <a class="item item-icon-left item-icon-right"  ng-href="#/tab/appointmentpatientdetails/">
@@ -73,10 +73,10 @@
          <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i>
          <span class="tabcolor localizejs">Consultations</span>
          </a>
-         <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId == patientId">
+         <a class="tab-item" ng-href="#/tab/healthinfo/" ng-if="primaryPatientId == patientId">
          <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor localizejs">My Health</span>
          </a>
-         <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId != patientId">
+         <a class="tab-item" ng-href="#/tab/healthinfo/" ng-if="primaryPatientId != patientId">
          <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor localizejs">Health Info</span>
          </a>
          <a class="tab-item" ng-href="#/tab/appointmentpatientdetails">

@@ -1,3 +1,8 @@
+<style>
+   .relatedhead {
+         margin-top:  0 !important;
+   }   
+</style>
 <ion-side-menus>
 <ion-side-menu-content>
    <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
@@ -234,10 +239,10 @@
             <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i>
             <span class="tabcolor localizejs">Consultations</span>
             </a>
-            <a class="tab-item loginpat" ng-href="#/tab/healthinfo" ng-if="primaryPatientId == patientId">
+            <a class="tab-item loginpat" ng-href="#/tab/healthinfo/" ng-if="primaryPatientId == patientId">
             <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor localizejs">My Health</span>
             </a>
-            <a class="tab-item otherpat" ng-href="#/tab/healthinfo" ng-if="primaryPatientId != patientId">
+            <a class="tab-item otherpat" ng-href="#/tab/healthinfo/" ng-if="primaryPatientId != patientId">
             <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor localizejs">Health Info</span>
             </a>
             <a class="tab-item" ng-href="#/tab/appointmentpatientdetails/">
