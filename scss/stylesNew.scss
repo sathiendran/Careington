@@ -6276,3 +6276,94 @@ a.item.item-avatar.avatheight:first-child{
       margin-top: -6px !important;
   }
 }
+
+
+
+
+.homelabel{
+    display: block;
+    font-size: 12px;
+    line-height: 18px;
+    font-family: 'GloberBold','Helvetica Neue',Helvetica,Arial,Sans-Serif;
+    color: #777;
+    top: 10px;
+    left: 5px;
+    height: 26px;
+    position: relative;
+}
+
+.userhomeaddress{
+    width: calc(100%);
+    position: relative;
+    left: 18px;
+     padding-left: 18px;
+    padding-right: 15px;
+    cursor: text;
+    font-family: 'GloberSemiBold','Helvetica Neue',Helvetica,Arial,Sans-Serif;
+}
+.useraddress
+{
+    width: calc(86%);
+    position: relative;
+    left: 12px;
+    padding-left: 18px;
+    padding-right: 15px;
+    cursor: text;
+    color: rgba(0,0,0,0.75) !important;
+    font-family: 'GloberSemiBold','Helvetica Neue',Helvetica,Arial,Sans-Serif;
+}
+
+.addresslabel{
+    display: block;
+    font-size: 12px;
+    line-height: 18px;
+    font-family: 'GloberBold','Helvetica Neue',Helvetica,Arial,Sans-Serif;
+    color: #777;
+    top: 10px;
+    left: 10px;
+    height: 26px;
+    position: relative;
+}
+.addressRow{
+    border-bottom : 1px solid #979797;
+}
+.sideblock{
+    margin-top: 5px;
+    margin-bottom: -5px;
+    border-right: 1px solid #979797;
+}
+#CancelAddress{
+    color: #666;
+    text-align: center;
+    padding: 0;
+    letter-spacing: 0;
+    height: 32px;
+    line-height: 32px;
+    font-size: 16px;
+    font-family: 'GloberBold','Helvetica Neue',Helvetica,Arial,Sans-Serif;
+}
+#ContinueAddress{
+    color: white;
+    text-align: center;
+    padding: 0;
+    letter-spacing: 0;
+    height: 32px;
+    line-height: 32px;
+    font-size: 16px;
+    font-family: 'GloberBold','Helvetica Neue',Helvetica,Arial,Sans-Serif;
+}
+.CancelAddressBtn{
+    color: #666;
+    display: block;
+    border-radius: 0.3em;
+    position: relative;
+}
+.ContinueAddressBtn{
+    background: #A5CA92;
+    display: block;
+    border-radius: 0.3em;
+    position: relative;
+}
+.pac-container {
+    z-index: 3000 !important;
+}
