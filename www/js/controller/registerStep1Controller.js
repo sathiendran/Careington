@@ -584,25 +584,26 @@ angular.module('starter.controllers')
             if (typeof(element) != 'undefined' && element != null)
             {
                if(document.getElementById('state').value != '' && document.getElementById('state').value != 'Select State')
-               {
-
                 var state = document.getElementById('state').value;
-                  $scope.State = state;
-               }
+                 /* $scope.State = state;
+                  $scope.state1  = '';*/
+
+
             }
             var element =  document.getElementById('state1');
             if (typeof(element) != 'undefined' && element != null)
             {
                if(document.getElementById('state1').value != '' )
-               {
                 var state = document.getElementById('state1').value;
-                $scope.state1 = state;
-                
-               }
+                /*$scope.state1 = state;
+                $scope.state  = '';*/
             }
             var zipcode = document.getElementById('zipcode').value;
             if(document.getElementById('country').value != 'Select Country' )
-                var country = document.getElementById('country').value;
+                {
+                        var country = document.getElementById('country').value;
+                }
+
             //$scope.Country = country;
             var res = new Object();
             res['txtPlaces'] = txtPlaces;
@@ -728,7 +729,7 @@ angular.module('starter.controllers')
                     $scope.City = '';
                     $scope.ZipCode = '';
                     $scope.State = '';
-                    $scope.State1 = '';
+                    $scope.state1 = '';
                     $scope.Country = '';
                     $scope.vsPlace = place;
                     for(var k = 0; k < place.address_components.length; k++){
@@ -754,7 +755,10 @@ angular.module('starter.controllers')
                                 $scope.Country = place.address_components[k].short_name;
                                 if($scope.Country == "US")
                                 {
-                                    $scope.getStatesForUS();
+                                   // $scope.getStatesForUS();
+                                }else{
+                                     $scope.state1 =  $scope.State; 
+                                     $scope.State = '';
                                 }
                             }
                         }
@@ -770,13 +774,22 @@ angular.module('starter.controllers')
                         if (typeof(element) != 'undefined' && element != null)
                             {
                              
-                                document.getElementById('state1').value = $scope.State;
+                                document.getElementById('state1').value = $scope.state1;
                             }
                         document.getElementById('zipcode').value = $scope.ZipCode;
                         document.getElementById('country').value = $scope.Country;
+
+                        if($scope.State != '')
+                        {
+                            var state = $scope.State;
+                        }
+                        if($scope.state1 != '')
+                        {
+                            var state = $scope.state1;
+                        }
                         var txtPlaces = $scope.route;
                         var city = $scope.City;
-                        var state = $scope.State;
+                        //var state = $scope.State;
                         var zipcode = $scope.ZipCode;
                         var country = $scope.Country;
                         var res = new Object();
