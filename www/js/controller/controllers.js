@@ -615,7 +615,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -2628,7 +2628,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
         if($rootScope.regCountry2 == "" || $rootScope.regCountry2  == 'Choose') {
             $rootScope.regCountry2 =  $('#regCountryCode').val();
         } else if ($rootScope.regCountry2 != "") {
-            $rootScope.regCountry2 = $rootScope.regCountry2;
+            if($('#regCountryCode').val() != "Choose") {
+                $rootScope.regCountry2 = $('#regCountryCode').val();
+            } else {
+                $rootScope.regCountry2 = $rootScope.regCountry2;
+            }
+            
         } else {
              $rootScope.regCountry2 =  $('#regCountryCode').val();
         }
