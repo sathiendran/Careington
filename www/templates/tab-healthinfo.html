@@ -241,7 +241,7 @@
                     <div class="col col-45">
                       <span class="input-label labelcolor" style=" white-space: normal;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel">D.O.B </b><i class="ion-asterisk"></i></span>
                     </div>
-                     <span class="DOBClass-{{deviceName}}">
+                     <span class="healthViewDetails">
                      <input type="date"  name="healthInfoDOB" id="healthInfoDOB"   class="textdata" ng-model="userdob" placeholder="Required" ng-change="editDob()" >
                      </span>
                   </div>
@@ -269,7 +269,7 @@
                     <div class="col col-45">
                        <span class="input-label labelcolor" style=" white-space: normal;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel labelfont localizejs">Country</b><i class="ion-asterisk"></i></span>
                    </div>
-                     <span class="healthViewDetails">
+                     <span class="healthViewDetails" style="padding-top: 18px;padding-bottom: 11px;">
                         <select class="textdata optionselect localizejs"  name="healthInfoCountry" id="healthInfoCountry" ng-model="healthInfoModel.healthInfoCountry" >
                            <option class="localizejs" value="">Choose</option>
                            <option  ng-repeat="country in serviceCountries" ng-selected="currentPatientDetails[0].countryCode == country.code"  value="{{country.code}}" ><b class="localizejs">{{country.name}}</b></option>
@@ -279,7 +279,7 @@
                   <div class="item item-input itemtab validated" style="display: {{timezoneDisplay}};">
                     <div class="col col-45">
                     <span class="input-label labelcolor" style=" white-space: normal;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('clock')"></i></i><b class="formlabel labelfont localizejs">Timezone</b><i class="ion-asterisk"></i></span></div>
-                     <span class="healthViewDetails">
+                     <span class="healthViewDetails" style="padding-top: 18px;padding-bottom: 11px;">
                         <select class="textdata optionselect localizejs"  name="healthInfoTimezone" id="healthInfoTimezone" ng-model="healthInfoModel.healthInfoTimezone" >
                            <option class="localizejs">Choose</option>
                            <option ng-repeat="timeZone in timeZones"  ng-selected="getTimeZoneName(currentPatientDetails[0].account.timeZoneId)== timeZone.id"   value="{{timeZone.id}}" ><b>{{timeZone.name}}</b></option>
@@ -311,14 +311,14 @@
                      <!-- <span class="DOBClass-{{deviceName}}">
                         <ion-google-place placeholder="Full Address" style="line-height:25px" ng-model="healthInfoModel.address" />
                      </span> -->
-                     <span class="DOBClass-{{deviceName}}" ng-click="doGetCountries();getStatesForUS();addressEditModal()">
+                     <span class="healthViewDetails" style="padding-top: 18px;padding-bottom: 11px;" ng-click="doGetCountries();getStatesForUS();addressEditModal()">
                         {{healthInfoModel.address}}
                      </span>
                   </div>
                   <div class="item item-input itemtab validated" ng-if="OrganizationLocation === 'on'">
                     <div class="col col-45">
                     <span class="input-label labelcolor" style=" white-space: normal;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('group')"></i><b class="formlabel labelfont localizejs">Organization</b></span></div>
-                     <span class="healthViewDetails">
+                     <span class="healthViewDetails" style="padding-top: 18px;padding-bottom: 11px;">
                         <select class="textdata optionselect"  name="healthInfoOrganization" id="healthInfoOrganization" ng-model="healthInfoModel.healthInfoOrganization" >
                            <option class="localizejs" value="">Choose Organization</option>
                            <option ng-repeat="getOrganization in listOfOrganization" value="{{getOrganization.id}}" ng-selected="getOrganization.name == currentPatientDetails[0].organization"><b class="localizejs">{{getOrganization.name}}</b></option>
@@ -330,7 +330,7 @@
 
                     <span class="input-label labelcolor" style=" white-space: normal;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel labelfont localizejs">Location</b> </span>
                   </div>
-                     <span class="healthViewDetails">
+                     <span class="healthViewDetails" style="padding-top: 18px;padding-bottom: 11px;">
                         <select class="textdata optionselect localizejs"  name="healthInfoLocation" id="healthInfoLocation" >
                            <option class="localizejs">Choose Location</option>
                            <option ng-repeat="getLocation in listOfLocForCurntOrg" value="{{getLocation.id}}" ng-selected="getLocation.name == currentPatientDetails[0].location"><b>{{getLocation.name}}</b></option>
@@ -340,7 +340,7 @@
                   <div class="item item-input itemtab validated">
                     <div class="col col-45">
                     <span class="input-label labelcolor" style=" white-space: normal;"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('female')"></i><b class="formlabel labelfont localizejs">Gender</b><i class="ion-asterisk"></i></span></div>
-                     <div class="healthViewDetails">
+                     <div class="healthViewDetails" style="padding-top: 18px;padding-bottom: 11px;">
                         <select class="optionselect textdata localizejs" name="healthInfoGender" id="healthInfoGender"  >
                            <option class="localizejs" value=""><b class="localizejs">Choose</b></option>
                            <option value="M" ng-selected="currentPatientDetails[0].gender == 'M'">Male</option>
@@ -379,7 +379,7 @@
 
                      <span class="input-label labelcolor" style=" white-space: normal;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel labelfont localizejs">Ethnicity</b><i ng-if="PPIsEthnicityRequired === 'on'" class="ion-asterisk"></i></span>
                    </div>
-                     <div class="healthViewDetails">
+                     <div class="healthViewDetails" style="padding-top: 18px;padding-bottom: 11px;">
                         <select class="textdata optionselect localizejs" name="healthInfoEthnicity" id="healthInfoEthnicity" >
                            <option value=""><b class="localizejs">Choose</b></option>
                            <option ng-repeat="getEthnicity in listOfEthnicity[0].codes" value="{{getEthnicity.codeId + '@' + getEthnicity.text}}" ng-selected="getEthnicity.text == currentPatientDetails[0].anatomy.ethnicity"><b class="localizejs">{{getEthnicity.text}}</b></option>
@@ -389,7 +389,7 @@
                   <div class="item item-input itemtab validated">
                     <div class="col col-45">
                     <span class="input-label labelcolor" style=" white-space: normal;"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('hair')"></i><b class="formlabel labelfont localizejs">Hair Color</b><i ng-if="PPIsHairColorRequired === 'on'" class="ion-asterisk"></i></span></div>
-                     <div class="healthViewDetails">
+                     <div class="healthViewDetails" style="padding-top: 18px;padding-bottom: 11px;">
                         <select class="textdata optionselect localizejs" name="healthInfoHairColor" id="healthInfoHairColor">
                            <option value=""><b class="localizejs">Choose</b></option>
                            <option ng-repeat="getHairColor in listOfHairColor[0].codes" value="{{getHairColor.codeId + '@' + getHairColor.text}}" ng-selected="getHairColor.text == currentPatientDetails[0].anatomy.hairColor"><b class="localizejs">{{getHairColor.text}}</b></option>
@@ -401,7 +401,7 @@
 
                     <span class="input-label labelcolor" style=" white-space: normal;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('eye')"></i><b class="formlabel labelfont localizejs">Eye Color</b><i ng-if="PPIsEyeColorRequired === 'on'" class="ion-asterisk"></i></span>
                   </div>
-                     <div class="healthViewDetails">
+                     <div class="healthViewDetails" style="padding-top: 18px;padding-bottom: 11px;">
                         <select class="textdata optionselect localizejs" name="healthInfoEyeColor" id="healthInfoEyeColor" >
                            <option value=""><b class="localizejs">Choose</b></option>
                            <option ng-repeat="getEyeColor in listOfEyeColor[0].codes" value="{{getEyeColor.codeId + '@' + getEyeColor.text}}" ng-selected="getEyeColor.text == currentPatientDetails[0].anatomy.eyeColor"><b class="localizejs">{{getEyeColor.text}}</b></option>
@@ -411,7 +411,7 @@
                   <div class="item item-input itemtab validated">
                     <div class="col col-45">
                     <span class="input-label labelcolor" style=" white-space: normal;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('drop')"></i><b class="formlabel labelfont localizejs">Blood Type</b><i ng-if="PPIsBloodTypeRequired === 'on'" class="ion-asterisk"></i></span></div>
-                     <div class="healthViewDetails">
+                     <div class="healthViewDetails" style="padding-top: 18px;padding-bottom: 11px;">
                         <select class="textdata optionselect localizejs" name="healthInfoBloodType" id="healthInfoBloodType" >
                            <option value=""><b class="localizejs">Choose</b></option>
                            <option ng-repeat="getBloodType in listOfBloodtype[0].codes" value="{{getBloodType.codeId + '@' + getBloodType.text}}" ng-selected="getBloodType.text == currentPatientDetails[0].anatomy.bloodType"><b class="localizejs">{{getBloodType.text}}</b></option>
