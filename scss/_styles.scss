@@ -1423,6 +1423,12 @@ body {
         margin-left: 10%;
         float: left;
         font-size: 24px;
+        padding: 0 0 0 30px;
+    }
+    .consultTittleChargeNew {
+      margin-left: 10%;
+      font-size: 24px;
+      padding: 0 0 0 30px;
     }
     .consultTittle {
         color: #666666;
@@ -1446,6 +1452,10 @@ body {
         font-size: 12px;
         color: #C2C2C2;
     }
+    .consultation-charge{
+        margin-left: 35px;
+        font-size: 24px ;
+    }
 }
 
 @media (min-width: 320px) and (max-width: 568px) {
@@ -1468,9 +1478,12 @@ body {
             font-size: 20px !important;
         }
     }
-    .consultTittleCharge {
-      margin-left:
-      3% !important;
+    .consultTittleChargeNew {
+      margin-left:3% !important;
+      font-size: 20px !important;
+      padding: 0 0 0 0px !important;
+    }
+    .consultation-charge{
       font-size: 20px !important;
     }
  }
@@ -2412,14 +2425,14 @@ select {
             font-size: 22px !important;
             margin-top: -2px;
             position: absolute;
-            top: -4px;
+            top: -5px;
             right: 18px;
         }
         text-align:right;
         float:left;
         width:33%;
         position: relative;
-        top: -7px;
+        top: -5px;
         a {
             cursor: pointer;
             font-weight: bold;
@@ -3976,6 +3989,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
         }
     }
 }
+
 .UserHomePatient {
     cursor: pointer;
     .UserHomeHeader {
@@ -3985,7 +3999,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
         margin-bottom: -28px;
         .UserhmePatientDetails {
             margin-left: 0px;
-            margin-top: 0px !important;
+            margin-top: -10px !important;
             div, p {
 
             }
@@ -4074,7 +4088,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .DependentList {
     padding: 11px;
     top: 25px;
-    height: 79px;
+    height: 71px;
     a {
         cursor: pointer;
         p {
@@ -4711,7 +4725,7 @@ textarea {
     }
 }
 .userDateofbirth {
-    font-size: 20px !important;
+    font-size: 18px !important;
     line-height: 30px !important;
     position: relative;
     top: -5px;
@@ -6109,4 +6123,8 @@ hr {
     position: relative;
     top: -2px;
     left: -2px;
+}
+.UserhmePatientDetails{
+  margin-left: 0px;
+  margin-top: -5px !important;
 }
