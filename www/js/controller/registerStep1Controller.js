@@ -492,6 +492,14 @@ angular.module('starter.controllers')
  $rootScope.editremovemodal = function () {
             $scope.modal.remove()
                 .then(function () {
+                  $scope.regStep1.homeadd= $scope.oldfullAddress; 
+                  $scope.route = $scope.oldroute;
+                  $scope.address2 = $scope.oldaddress2;
+                  $scope.City =  $scope.oldCity;
+                  $scope.ZipCode = $scope.oldZipCode; 
+                  $scope.Country = $scope.oldCountry; 
+                  $scope.state1 = $scope.oldstate1;
+                  $scope.State =   $scope.oldState;
                     $scope.modal = null;
                 });
             $('option').filter(function () {
@@ -684,15 +692,24 @@ angular.module('starter.controllers')
                     $scope.state1 = '';
                 if($scope.State == undefined)
                     $scope.State = '';
+                  $scope.oldfullAddress =  document.getElementById('fullAddress').innerHTML;
+                  $scope.oldroute =  document.getElementById('txtPlaces').value;
+                  $scope.oldaddress2 = document.getElementById('address2').value;
+                  $scope.oldCity = document.getElementById('city').value;
+                  $scope.oldZipCode = document.getElementById('zipcode').value;
+                  $scope.oldCountry = document.getElementById('country').value;
                 var element =  document.getElementById('state1');
                         if (typeof(element) != 'undefined' && element != null)
                             {
                                 document.getElementById('state1').value = $scope.state1;
+                                $scope.oldstate1 = document.getElementById('state1').value;
+
                             }
                  var element =  document.getElementById('state');
                         if (typeof(element) != 'undefined' && element != null)
                             {
                                 document.getElementById('state').value = $scope.State;
+                                $scope.oldState = document.getElementById('state').value;
                             }
 
 

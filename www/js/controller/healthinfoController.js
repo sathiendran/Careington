@@ -269,6 +269,14 @@ $("#localize-widget").show();
         $rootScope.editremovemodal = function () {
             $scope.modal.remove()
                 .then(function () {
+                    $scope.healthInfoModel.address = $scope.oldfullAddress; 
+                  $scope.route = $scope.oldroute;
+                  $scope.address2 = $scope.oldaddress2;
+                  $scope.City =  $scope.oldCity;
+                  $scope.ZipCode = $scope.oldZipCode; 
+                  $scope.Country = $scope.oldCountry; 
+                  $scope.state1 = $scope.oldstate1;
+                  $scope.State =   $scope.oldState;
                     $scope.modal = null;
                 });
             $('option').filter(function () {
@@ -3237,17 +3245,12 @@ $("#localize-widget").show();
                 range.select();
             }
         };
-        //     $scope.setCaretToPos = function() {
-        //     // console.log("length:" + $scope.length);
-        //
-        // };
-
+      
 
         $scope.doGetCountries = function() {
           var params = {
             accessToken: $rootScope.accessToken,
             success: function(data) {
-              
                     $scope.CountryList = data;
                     console.log($scope.CountryList);
               },
@@ -3269,9 +3272,7 @@ $("#localize-widget").show();
             var params = {
                 accessToken : $rootScope.accessToken,   
                 success:function(data){
-                    //alert("enter");
                         $scope.usStates = data;
-                        //console.log($scope.usStates);
                 },
                 error:function(data,status){
                     if (status === 0) {
@@ -3292,21 +3293,12 @@ $("#localize-widget").show();
           $scope.route = document.getElementById('txtPlaces').value;
           $scope.address2 = document.getElementById('address2').value;
           $scope.City = document.getElementById('city').value;
-
             var element =  document.getElementById('state');
             if (typeof(element) != 'undefined' && element != null)
-            {
                $scope.State = document.getElementById('state').value;
-            }
-
-              var element =  document.getElementById('state1');
+            var element =  document.getElementById('state1');
             if (typeof(element) != 'undefined' && element != null)
-            {
               $scope.state1 = document.getElementById('state1').value;
-            }
-
-         
-          
           $scope.ZipCode = document.getElementById('zipcode').value;
           $scope.Country = document.getElementById('country').value;
              $scope.modal.remove()
@@ -3324,27 +3316,16 @@ $("#localize-widget").show();
             {
                if(document.getElementById('state').value != '' && document.getElementById('state').value != 'Select State')
                 var state = document.getElementById('state').value;
-                 /* $scope.State = state;
-                  $scope.state1  = '';*/
-
-
             }
             var element =  document.getElementById('state1');
             if (typeof(element) != 'undefined' && element != null)
             {
                if(document.getElementById('state1').value != '' )
                 var state = document.getElementById('state1').value;
-                /*$scope.state1 = state;
-                $scope.state  = '';*/
             }
-            
             var zipcode = document.getElementById('zipcode').value;
             if(document.getElementById('country').value != 'Select Country' )
-                {
                         var country = document.getElementById('country').value;
-                }
-
-            //$scope.Country = country;
             var res = new Object();
             res['txtPlaces'] = txtPlaces;
             res['address2'] = address2;
@@ -3376,30 +3357,17 @@ $("#localize-widget").show();
                             document.getElementById('fullAddress').innerHTML = "Please enter address";
         }
 
-
-
-
+/*
     $scope.disableTap = function(){
-
-
         document.getElementById('txtPlaces').addEventListener('keypress', function(e) {
         if (event.which == 13 || event.keyCode == 13 && document.getElementsByClassName('pac-container:visible').length) {
-        /* validate your form here and submit your form */
-           // document.forms[0].submit();
             return true;
         }
         return true;
         });
-
-
-      /*  document.getElementById('txtPlaces').keydown(function (e) {
-          if (e.which == 13 && $('.pac-container:visible').length)
-           return false;
-        });*/
-    }
+    }*/
 
         $scope.addressEditModal = function () {
-            //$('#healthInfoHeightUnit').val("");
             $ionicModal.fromTemplateUrl('templates/tab-addressedittemplate.html', {
                 scope: $scope,
                 animation: 'slide-in-up',
@@ -3408,50 +3376,42 @@ $("#localize-widget").show();
             }).then(function (modal) {
                 $scope.modal = modal;
                 $scope.modal.show().then(function () {
-
                 document.getElementById('fullAddress').innerHTML = $scope.healthInfoModel.address;
                 document.getElementById('country').value = $scope.Country;
-
                 if($scope.state1 == undefined)
                     $scope.state1 = '';
                 if($scope.State == undefined)
                     $scope.State = '';
+                $scope.oldfullAddress =  document.getElementById('fullAddress').innerHTML;
+                $scope.oldroute =  document.getElementById('txtPlaces').value;
+                $scope.oldaddress2 = document.getElementById('address2').value;
+                $scope.oldCity = document.getElementById('city').value;
+                $scope.oldZipCode = document.getElementById('zipcode').value;
+                $scope.oldCountry = document.getElementById('country').value;
                 var element =  document.getElementById('state1');
                         if (typeof(element) != 'undefined' && element != null)
-                            {
+                        {
                                 document.getElementById('state1').value = $scope.state1;
-                            }
+                                $scope.oldstate1 = document.getElementById('state1').value;
+                        }
                  var element =  document.getElementById('state');
                         if (typeof(element) != 'undefined' && element != null)
-                            {
+                        {
                                 document.getElementById('state').value = $scope.State;
-                            }
-
-
-                //var location_input = document.getElementById('txtPlaces');
+                                $scope.oldState = document.getElementById('state').value;
+                        }
                 var autocomplete = new google.maps.places.Autocomplete(document.getElementById('txtPlaces'));
                 google.maps.event.addListener(autocomplete, 'place_changed', fillAddress);
-                
                 setTimeout(function(){
                     var container = document.getElementsByClassName('pac-container');
                     container = angular.element(container);
-
-                    // Apply css to ensure the container overlays the other elements, and
-                    // events occur on the element not behind it
                     container.css('z-index', '5000');
                     container.css('pointer-events', 'auto');
-
-                    // Disable ionic data tap
                     container.attr('data-tap-disabled', 'true');
-
-                    // Leave the input field if a prediction is chosen
                     container.on('click', function(){
                         input.blur();
                     });
                 }, 200);
-                //google.maps.event.addDomListener(document.getElementById("pac-input"), 'blur', fillAddress);
-                //document.getElementById('txtPlaces').addEventListener('click', fillAddress);
-
                 function fillAddress()
                 {
                 var place = autocomplete.getPlace();
@@ -3499,35 +3459,18 @@ $("#localize-widget").show();
                         document.getElementById('address2').value = '';
                         var element =  document.getElementById('state');
                         if (typeof(element) != 'undefined' && element != null)
-                            {
                                 document.getElementById('state').value = $scope.State;
-                                   /* if(document.getElementById('state').value.indexOf('? string:') >= 0)
-                                    {
-                                        $scope.State = '? string:'+$scope.State+' ?';
-                                        document.getElementById('state').value = $scope.State;
-                                    }*/
-
-                            }
                         var element =  document.getElementById('state1');
                         if (typeof(element) != 'undefined' && element != null)
-                            {
-                             
                                 document.getElementById('state1').value = $scope.state1;
-                            }
                         document.getElementById('zipcode').value = $scope.ZipCode;
                         document.getElementById('country').value = $scope.Country;
-
                         if($scope.State != '')
-                        {
                             var state = $scope.State;
-                        }
                         if($scope.state1 != '')
-                        {
                             var state = $scope.state1;
-                        }
                         var txtPlaces = $scope.route;
                         var city = $scope.City;
-                        //var state = $scope.State;
                         var zipcode = $scope.ZipCode;
                         var country = $scope.Country;
                         var res = new Object();
@@ -3557,10 +3500,8 @@ $("#localize-widget").show();
                         if(fullAddressCombo.length == 0 || fullAddressCombo ==', ' || fullAddressCombo ==',' )
                             document.getElementById('fullAddress').innerHTML = "Please enter address";
                 });     
-
-             }
-        });
-     });
-
-   }
+             } // fillAddress closed
+        }); // modal closed
+     }); // then closed
+   } //addressEditModal closed
 });

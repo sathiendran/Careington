@@ -3,7 +3,7 @@
   bottom: 0px!important;
 }
 </style>
-<form name="userRegister" id="userRegister" ng-submit="postRegisterStep1()" >
+<form name="userRegister" ng-init="doGetCountries();getStatesForUS();" id="userRegister" ng-submit="postRegisterStep1()" >
 <ion-view>
    <div id="Error_Message" class="localizejs" ></div>
    <div class="registerContent__registerCard" ng-if="is_iPadDeviceWidth < 768">
@@ -90,7 +90,7 @@
 <!-- 
                           <input type="text" readonly="readonly" class="ssoaddress localizejs ion-google-place ng-valid ng-touched" autocomplete="off" placeholder="type here..." ng-model="regStep1.homeadd" id="regaddress" ng-change="addressBlur()"> -->
 
-                           <input type="text" name="address1" class="ssoaddress localizejs" ng-model="regStep1.homeadd" autocomplete="off" data-tap-disabled="true" id="regaddress"  placeholder="type here..." ng-click="doGetCountries();getStatesForUS();addressEditModal()"/> 
+                           <input type="text" name="address1" class="ssoaddress localizejs" ng-model="regStep1.homeadd" autocomplete="off" data-tap-disabled="true" id="regaddress"  placeholder="type here..." ng-click="addressEditModal()"/> 
 
 
                      </div>
@@ -276,7 +276,7 @@
                             {{regStep1.homeadd}}
                           </span> -->
 
-                            <input type="text" name="address1" class="ssoaddress localizejs" ng-model="regStep1.homeadd" autocomplete="off" data-tap-disabled="true"  placeholder="type here..." ng-click="doGetCountries();getStatesForUS();addressEditModal()" id="regaddress" ng-change="addressBlur()"/> 
+                            <input type="text" name="address1" class="ssoaddress localizejs" ng-model="regStep1.homeadd" autocomplete="off" data-tap-disabled="true"  placeholder="type here..." ng-click="addressEditModal()" id="regaddress" ng-change="addressBlur()"/> 
 
                      </div>
                      <span class="user-account__error-message localizejs" ng-show="adderror">Please Select your address</span>

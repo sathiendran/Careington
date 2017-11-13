@@ -5,7 +5,7 @@
 </style>
 <ion-side-menus>
 <ion-side-menu-content>
-   <form name="depForm" id="dependentuserform" ng-submit="postDependentDetails()">
+   <form name="depForm" ng-init="doGetCountries();getStatesForUS();" id="dependentuserform" ng-submit="postDependentDetails()">
       <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight"  style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
          <div class="buttons" >
             <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
@@ -188,9 +188,16 @@
                      <span class="input-label labelcolor" >
                      <i class="iconsize" style="left: -5px; position: relative;" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel localizejs" style="margin-left: -4px; white-space: normal;">Home Address</b><i class="ion-asterisk"></i></span>
                   </div>
-                  <div class="col col-50 depGreyLabel inputlabelclass">
+                 <!--  <div class="col col-50 depGreyLabel inputlabelclass">
                      <ion-google-place class="coUserAddress-{{deviceName}} inputlabelval localizejs" placeholder="Full Address" ng-model="addNewDependent.homeadd" style="fon-size:18px !important;font-family: Glober Regular;" />
+                  </div> -->
+                  <div class="col col-50">
+                   <span class="coUserAddress-{{deviceName}} inputlabelval localizejs" ng-click="addressEditModal()" style="font-size:18px !important;font-family: Glober Regular;" >
+                        {{addNewDependent.homeadd}}
+                     </span>
                   </div>
+
+
                </div>
                <div class="item item-input validated" ng-if="OrganizationLocation === 'on'">
                   <div class="col col-50">
