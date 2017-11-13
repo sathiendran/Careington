@@ -58,6 +58,11 @@ margin-top: 125px !important;
     .formlabel {
         font-size: 17px;
     }
+    .col-45 {
+        .labelcolor {
+            width: 100%;
+        }
+    }
 }
 .deptlist {
     .formlabel {
@@ -723,6 +728,13 @@ padding-bottom: 100px;
 }
 .listprofile {
      padding-bottom: 95px;
+     .itemtab {
+        width: 101%;
+        }
+     .labelcolor {
+        width: 100%;
+        max-width: 100%;
+     }
      .icondown {
          font-size: 11px;
      }
@@ -4625,6 +4637,15 @@ background-color: #23B4D6 !important;
         padding: 14px;
     }
 }
+.col-45 {
+       .labelcolor {
+           width: 100%;
+           max-width: 100%;
+       }
+       .input-label {
+           padding: 0px 0px 0px 0px;
+       }
+   }
 .labelcolor {
     width: 45%;
 }
@@ -4637,6 +4658,7 @@ background-color: #23B4D6 !important;
 .ioncontentalign {
 .item {
     border-color: #979797;
+    height: 75px !important;
 }
 }
 .healthheight-IOS {
