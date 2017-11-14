@@ -148,10 +148,10 @@
                      </h4>
                      <div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}">
                          <div  class="dropdownContainer">
-                           <div ng-if="userDefaultPaymentProfileText == null || userDefaultPaymentProfileText == 'undefined'"  id="cardViewport" class="cardViewport">
+                           <div ng-if="userDefaultPaymentProfileText == null || userDefaultPaymentProfileText == 'undefined'"  id="cardViewport" class="cardViewport cardViewport1">
                               <div class="insCHooseProviderName localizejs">Choose Your Card</div>
                            </div>
-                           <div ng-if="userDefaultPaymentProfileText != null && userDefaultPaymentProfileText != 'undefined'" id="cardViewport" class="cardViewport">
+                           <div ng-if="userDefaultPaymentProfileText != null && userDefaultPaymentProfileText != 'undefined'" id="cardViewport" class="cardViewport cardViewport1">
                              <div class="insCardName" ng-if="userDefaultPaymentLogo != 'logoNone'"><img class="cardlogo" src="{{userDefaultPaymentLogo}}"></div>
                              <div class="insCardName" ng-if="userDefaultPaymentLogo == 'logoNone'" ><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('credit-card')"></i></div>
                               <div class="insCardNumber">{{ 'XXXX-XXXX-XXXX-'+userDefaultPaymentProfileText}}</div>
