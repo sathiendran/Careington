@@ -595,6 +595,16 @@ $("#localize-widget").show();
                 $('#healthInfoCountry').val($scope.healthInfoModel.healthInfoCountry);
             }, 10);
 
+
+
+                    console.log($rootScope.addressInfoFetch[0]);
+                    $scope.route = $rootScope.addressInfoFetch[0].addressObject.line1;
+                    $scope.address2 = $rootScope.addressInfoFetch[0].addressObject.line2; 
+                    $scope.City = $rootScope.addressInfoFetch[0].addressObject.city;
+                    $scope.ZipCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
+                    $scope.State = $rootScope.addressInfoFetch[0].addressObject.state;
+                    $scope.state1 = $rootScope.addressInfoFetch[0].addressObject.state;
+                    $scope.Country = $rootScope.addressInfoFetch[0].addressObject.countryCode;
             //$scope.newupdatePatientDetails();
         }
 
@@ -819,6 +829,7 @@ $("#localize-widget").show();
             $scope.healthInfoMobilePhone = $('#healthInfoMobilePhone').val();
             $scope.healthmobilelength = $("#healthInfoMobilePhone").val().length;
             $scope.healthInfoAddress = $scope.healthInfoModel.address;
+            $scope.healthInfoAddressobj = $scope.fullAddressObj;
             if ($rootScope.OrganizationLocation === 'on') {
                 $scope.healthInfoOrganization = $('#healthInfoOrganization').val();
                 $scope.healthInfoLocation = $('#healthInfoLocation').val();
@@ -1433,7 +1444,8 @@ $("#localize-widget").show();
                     physicianSpecialistContact: null,
                     preferedPharmacy: null,
                     pharmacyContact: null,
-                    address: $scope.healthInfoAddress,
+                    address: "",
+                    addressObject: $scope.healthInfoAddressobj,
                     profileImagePath: $rootScope.PatientImageSelectUser,
                     height: $scope.healthInfoHeight + "|" + $scope.healthInfoHeight2,
                     weight: $scope.healthInfoWeight,
@@ -1566,6 +1578,9 @@ $("#localize-widget").show();
                         $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                     } else if (data.statusText === "City is empty") {
                         $scope.ErrorMessage = "City is empty";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    }else if(data.status === 400){
+                        $scope.ErrorMessage = data.data;
                         $rootScope.Validation($scope.ErrorMessage);
                     }
                     else {
@@ -3293,17 +3308,45 @@ $("#localize-widget").show();
 
         $scope.addressEditSave = function(){
           $scope.healthInfoModel.address =  document.getElementById('fullAddress').innerHTML;
+          var stateObj  = '';
+          var countryFetch  = '';
+          var countryCodeFetch  = '';
+          var stateCodeFetch  = '';
+          //document.getElementById('fullAddress').innerHTML;
           $scope.route = document.getElementById('txtPlaces').value;
           $scope.address2 = document.getElementById('address2').value;
           $scope.City = document.getElementById('city').value;
             var element =  document.getElementById('state');
             if (typeof(element) != 'undefined' && element != null)
+            {
                $scope.State = document.getElementById('state').value;
+               stateCodeFetch = document.getElementById('state').options[document.getElementById('state').selectedIndex].getAttribute("data-state-code");
+               stateObj = $scope.State;
+            }
             var element =  document.getElementById('state1');
             if (typeof(element) != 'undefined' && element != null)
+            {
               $scope.state1 = document.getElementById('state1').value;
+              stateCodeFetch = $scope.state1;
+              stateObj = $scope.state1;
+            }
           $scope.ZipCode = document.getElementById('zipcode').value;
           $scope.Country = document.getElementById('country').value;
+          var countryFetch = document.getElementById('country').options[document.getElementById('country').selectedIndex].text;
+          var countryCodeFetch = document.getElementById('country').value;
+          
+          var res = new Object();
+          res['city'] = $scope.City;
+          res['country'] = countryFetch;
+          res['countryCode'] = countryCodeFetch;
+          res['line1'] = $scope.route;
+          res['line2'] = $scope.address2;
+          res['postalCode'] = $scope.ZipCode;
+          res['state'] = stateObj;
+          res['stateCode'] = stateCodeFetch;
+
+          $scope.fullAddressObj = res;
+          //console.log($scope.fullAddressObj);
              $scope.modal.remove()
                 .then(function () {
                     $scope.modal = null;
@@ -3369,6 +3412,15 @@ $("#localize-widget").show();
         return true;
         });
     }*/
+
+                /*    $scope.route = $rootScope.currentPatientDetails[0].addressObject.line1;
+                    $scope.address2 = $rootScope.currentPatientDetails[0].addressObject.line2; 
+                    $scope.City = $rootScope.currentPatientDetails[0].addressObject.city;
+                    $scope.ZipCode = $rootScope.currentPatientDetails[0].addressObject.postalCode;
+                    $scope.State = $rootScope.currentPatientDetails[0].addressObject.state;
+                    $scope.state1 = $rootScope.currentPatientDetails[0].addressObject.state;
+                    $scope.Country = $rootScope.currentPatientDetails[0].addressObject.countryCode;*/
+
 
         $scope.addressEditModal = function () {
           $("#localize-widget").hide();

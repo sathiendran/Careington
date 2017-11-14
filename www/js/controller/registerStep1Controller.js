@@ -392,7 +392,8 @@ angular.module('starter.controllers')
           "last": $scope.lname
       }
       var params = {
-          address: $scope.homeaddress,
+          address: '',
+          addressObject: $scope.fullAddressObj,
           dob: $scope.dob,
           email: $scope.email,
           name: $scope.userFirstandLastName,
@@ -563,6 +564,10 @@ angular.module('starter.controllers')
         $scope.addressEditSave = function(){
           if(document.getElementById('fullAddress').innerHTML != 'Please enter address')
           {
+    		      var stateObj  = '';
+              var countryFetch  = '';
+              var countryCodeFetch  = '';
+              var stateCodeFetch  = '';
               $scope.regStep1.homeadd =  document.getElementById('fullAddress').innerHTML;
               $scope.route = document.getElementById('txtPlaces').value;
               $scope.address2 = document.getElementById('address2').value;
@@ -572,18 +577,37 @@ angular.module('starter.controllers')
                 if (typeof(element) != 'undefined' && element != null)
                 {
                    $scope.State = document.getElementById('state').value;
+                   stateCodeFetch = document.getElementById('state').options[document.getElementById('state').selectedIndex].getAttribute("data-state-code");
+                   stateObj = $scope.State;
                 }
 
                   var element =  document.getElementById('state1');
                 if (typeof(element) != 'undefined' && element != null)
                 {
                   $scope.state1 = document.getElementById('state1').value;
+                  stateCodeFetch = $scope.state1;
+                  stateObj = $scope.state1;
                 }
 
 
 
               $scope.ZipCode = document.getElementById('zipcode').value;
               $scope.Country = document.getElementById('country').value;
+              var countryFetch = document.getElementById('country').options[document.getElementById('country').selectedIndex].text;
+              var countryCodeFetch = document.getElementById('country').value;
+              
+              var res = new Object();
+              res['city'] = $scope.City;
+              res['country'] = countryFetch;
+              res['countryCode'] = countryCodeFetch;
+              res['line1'] = $scope.route;
+              res['line2'] = $scope.address2;
+              res['postalCode'] = $scope.ZipCode;
+              res['state'] = stateObj;
+              res['stateCode'] = stateCodeFetch;
+
+              $scope.fullAddressObj = res;
+              //console.log($scope.fullAddressObj);
                  $scope.modal.remove()
                     .then(function () {
                         $scope.modal = null;
@@ -601,26 +625,16 @@ angular.module('starter.controllers')
             {
                if(document.getElementById('state').value != '' && document.getElementById('state').value != 'Select State')
                 var state = document.getElementById('state').value;
-                 /* $scope.State = state;
-                  $scope.state1  = '';*/
-
-
             }
             var element =  document.getElementById('state1');
             if (typeof(element) != 'undefined' && element != null)
             {
                if(document.getElementById('state1').value != '' )
                 var state = document.getElementById('state1').value;
-                /*$scope.state1 = state;
-                $scope.state  = '';*/
             }
             var zipcode = document.getElementById('zipcode').value;
             if(document.getElementById('country').value != 'Select Country' )
-                {
                         var country = document.getElementById('country').value;
-                }
-
-            //$scope.Country = country;
             var res = new Object();
             res['txtPlaces'] = txtPlaces;
             res['address2'] = address2;
@@ -793,26 +807,16 @@ angular.module('starter.controllers')
                         document.getElementById('address2').value = '';
                         var element =  document.getElementById('state');
                         if (typeof(element) != 'undefined' && element != null)
-                            {
                                 document.getElementById('state').value = $scope.State;
-                            }
                         var element =  document.getElementById('state1');
                         if (typeof(element) != 'undefined' && element != null)
-                            {
-
                                 document.getElementById('state1').value = $scope.state1;
-                            }
                         document.getElementById('zipcode').value = $scope.ZipCode;
                         document.getElementById('country').value = $scope.Country;
-
                         if($scope.State != '')
-                        {
                             var state = $scope.State;
-                        }
                         if($scope.state1 != '')
-                        {
                             var state = $scope.state1;
-                        }
                         var txtPlaces = $scope.route;
                         var city = $scope.City;
                         //var state = $scope.State;

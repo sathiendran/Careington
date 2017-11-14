@@ -439,6 +439,7 @@ angular.module('starter.controllers')
         $scope.mobile = $("#mobile").val();
         $scope.mobilelength = $("#mobile").val().length;
         $scope.homeaddress = $scope.addNewDependent.homeadd;
+        $scope.homeaddressObj = $scope.fullAddressObj;
         if ($rootScope.OrganizationLocation === 'on') {
           //  var org = document.getElementById("organization");
             //var loc = document.getElementById("location");
@@ -715,7 +716,9 @@ angular.module('starter.controllers')
                 physicianSpecialistContact: null,
                 preferedPharmacy: null,
                 pharmacyContact: null,
-                address: $scope.homeaddress,
+                //address: $scope.homeaddress,
+                address: '',
+                addressObject: $scope.homeaddressObj,
                 profileImagePath: $rootScope.newDependentImagePath,
                 height: $scope.height + "|" + $scope.height2,
                 weight: $scope.weight,
@@ -1317,17 +1320,44 @@ $rootScope.editremovemodal = function () {
 
         $scope.addressEditSave = function(){
           $scope.addNewDependent.homeadd =  document.getElementById('fullAddress').innerHTML;
+	        var stateObj  = '';
+          var countryFetch  = '';
+          var countryCodeFetch  = '';
+          var stateCodeFetch  = '';
           $scope.route = document.getElementById('txtPlaces').value;
           $scope.address2 = document.getElementById('address2').value;
           $scope.City = document.getElementById('city').value;
             var element =  document.getElementById('state');
             if (typeof(element) != 'undefined' && element != null)
+            {
                $scope.State = document.getElementById('state').value;
+               stateCodeFetch = document.getElementById('state').options[document.getElementById('state').selectedIndex].getAttribute("data-state-code");
+               stateObj = $scope.State;
+            }
             var element =  document.getElementById('state1');
             if (typeof(element) != 'undefined' && element != null)
+            {
               $scope.state1 = document.getElementById('state1').value;
+              stateCodeFetch = $scope.state1;
+              stateObj = $scope.state1;
+            }
           $scope.ZipCode = document.getElementById('zipcode').value;
           $scope.Country = document.getElementById('country').value;
+          var countryFetch = document.getElementById('country').options[document.getElementById('country').selectedIndex].text;
+          var countryCodeFetch = document.getElementById('country').value;
+          
+          var res = new Object();
+          res['city'] = $scope.City;
+          res['country'] = countryFetch;
+          res['countryCode'] = countryCodeFetch;
+          res['line1'] = $scope.route;
+          res['line2'] = $scope.address2;
+          res['postalCode'] = $scope.ZipCode;
+          res['state'] = stateObj;
+          res['stateCode'] = stateCodeFetch;
+
+          $scope.fullAddressObj = res;
+          //console.log($scope.fullAddressObj);
              $scope.modal.remove()
                 .then(function () {
                     $scope.modal = null;
@@ -1393,6 +1423,22 @@ $rootScope.editremovemodal = function () {
         return true;
         });
     }*/
+
+                  /*  $scope.route = $rootScope.primaryPatientDetails[0].addressObject.line1;
+                    $scope.address2 = $rootScope.primaryPatientDetails[0].addressObject.line2; 
+                    $scope.City = $rootScope.primaryPatientDetails[0].addressObject.city;
+                    $scope.ZipCode = $rootScope.primaryPatientDetails[0].addressObject.postalCode;
+                    $scope.State = $rootScope.primaryPatientDetails[0].addressObject.state;
+                    $scope.state1 = $rootScope.primaryPatientDetails[0].addressObject.state;
+                    $scope.Country = $rootScope.primaryPatientDetails[0].addressObject.countryCode;*/
+                    
+                    $scope.route = $rootScope.addressInfoFetch[0].addressObject.line1;
+                    $scope.address2 = $rootScope.addressInfoFetch[0].addressObject.line2; 
+                    $scope.City = $rootScope.addressInfoFetch[0].addressObject.city;
+                    $scope.ZipCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
+                    $scope.State = $rootScope.addressInfoFetch[0].addressObject.state;
+                    $scope.state1 = $rootScope.addressInfoFetch[0].addressObject.state;
+                    $scope.Country = $rootScope.addressInfoFetch[0].addressObject.countryCode;
 
         $scope.addressEditModal = function () {
           $("#localize-widget").hide();
