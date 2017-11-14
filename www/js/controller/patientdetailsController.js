@@ -44,6 +44,7 @@ angular.module('starter.controllers')
         $scope.getPatientProfile = function() {
             $state.go('tab.healthinfo');
         }
+        $("#localize-widget").show();
         var checkAndChangeMenuIcon;
         $interval.cancel(checkAndChangeMenuIcon);
         $rootScope.checkAndChangeMenuIcon = function() {

@@ -8,7 +8,7 @@ angular.module('starter.controllers')
             $ionicSideMenuDelegate.toggleLeft();
             $rootScope.chkSSPageEnter = false;
         }
-
+$("#localize-widget").show();
         $ionicPlatform.registerBackButtonAction(function() {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||

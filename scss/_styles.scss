@@ -480,8 +480,8 @@ body {
         white-space: nowrap;
         overflow: hidden;
         line-height: 24pt;
-        width: 9em;
-        white-space: normal;
+        // width: 9em;
+        // white-space: normal;
     }
 }
 .item {}
@@ -1384,18 +1384,24 @@ body {
     background-color: $Nobel;
     border-color: $Nobel;
 }
+
+
+
 .consultation_head {
     font-size: 164%;
     padding-top: 22px;
     color: #2A2A2A;
+    width: 110%;
     .consultation_number {
         margin-right: 17px;
         font-family: $fontFamily_semibold;
         color: #666666;
         text-align: left;
+        width: 110%;
         span {
             text-decoration: line-through; //color: red;
-            margin-left: 11px;
+            margin-left: 35px;
+            font-size: 22px;
         }
     }
     .consultation_numberCopay {
@@ -1404,30 +1410,39 @@ body {
         color: #666666;
         text-align: left;
         padding-right: 16px;
+        width: 110%;
         span {
             color: red;
             font-size: 22px;
-            margin-left: 11px;
+            margin-left: 35px;
         }
     }
     .consultTittleCharge {
         color: #666666;
         font-family: $fontFamily_semibold;
-        margin-left: 10px;
+        margin-left: 10%;
         float: left;
+        font-size: 24px;
+        padding: 0 0 0 30px;
+    }
+    .consultTittleChargeNew {
+      margin-left: 10%;
+      font-size: 24px;
+      padding: 0 0 0 30px;
     }
     .consultTittle {
         color: #666666;
         font-family: $fontFamily_semibold;
-        margin-left: 10px;
+        margin-left: -3%;
         float: left;
         width: 63%;
         text-align: right;
+        font-size: 24px;
     }
     .consultTittleCopay {
         color: #666666;
         font-family: $fontFamily_semibold;
-        margin-left: 10px;
+        margin-left: -10px;
         float: left;
         width: 63%;
         text-align: right;
@@ -1437,7 +1452,44 @@ body {
         font-size: 12px;
         color: #C2C2C2;
     }
+    .consultation-charge{
+        margin-left: 35px;
+        font-size: 24px ;
+    }
 }
+
+@media (min-width: 320px) and (max-width: 568px) {
+  .consultation_head {
+    .consultTittle {
+      font-size: 20px !important;
+    }
+    .consultTittleCopay {
+      font-size: 14px !important;
+    }
+    .consultation_number {
+      width: 110% !important;
+        span {
+          font-size: 20px !important;
+        }
+    }
+    .consultation_numberCopay {
+      width: 110% !important;
+        span {
+            font-size: 20px !important;
+        }
+    }
+    .consultTittleChargeNew {
+      margin-left:3% !important;
+      font-size: 20px !important;
+      padding: 0 0 0 0px !important;
+    }
+    .consultation-charge{
+      font-size: 20px !important;
+    }
+ }
+}
+
+
 .UseHealthPlan {
     padding-top: 45px;
     a {
@@ -2373,14 +2425,14 @@ select {
             font-size: 22px !important;
             margin-top: -2px;
             position: absolute;
-            top: -4px;
+            top: -5px;
             right: 18px;
         }
         text-align:right;
         float:left;
         width:33%;
         position: relative;
-        top: -7px;
+        top: -5px;
         a {
             cursor: pointer;
             font-weight: bold;
@@ -3937,6 +3989,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
         }
     }
 }
+
 .UserHomePatient {
     cursor: pointer;
     .UserHomeHeader {
@@ -3946,7 +3999,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
         margin-bottom: -28px;
         .UserhmePatientDetails {
             margin-left: 0px;
-            margin-top: 0px !important;
+            margin-top: -10px !important;
             div, p {
 
             }
@@ -4035,7 +4088,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .DependentList {
     padding: 11px;
     top: 25px;
-    height: 79px;
+    height: 71px;
     a {
         cursor: pointer;
         p {
@@ -4672,7 +4725,7 @@ textarea {
     }
 }
 .userDateofbirth {
-    font-size: 20px !important;
+    font-size: 18px !important;
     line-height: 30px !important;
     position: relative;
     top: -5px;
@@ -6070,4 +6123,8 @@ hr {
     position: relative;
     top: -2px;
     left: -2px;
+}
+.UserhmePatientDetails{
+  margin-left: 0px;
+  margin-top: -5px !important;
 }

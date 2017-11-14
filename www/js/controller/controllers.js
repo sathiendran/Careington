@@ -327,7 +327,7 @@ if (deploymentEnv === "Sandbox") {
 
 angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', 'timer', 'ion-google-place', 'ngIOS9UIWebViewPatch', 'ngCordova', 'ngIdle', 'ngStorage'])
 
-.controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, ageFilterReport, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup, $sessionStorage)
+.controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, ageFilterReport, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup)
 {
   $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
   if($rootScope.chkSSPageEnter) {
@@ -584,7 +584,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.reportDone = "padding-top: 26px;";
             $rootScope.reportTitletop = "top: 14px !important; left: -8px !important;";
             $rootScope.resetContent = "margin: -46px 0 0 0;";
-            $rootScope.ConcernFooterNextIOS = "margin-left: -46px !important; left: -16px !important;";
+            $rootScope.ConcernFooterNextIOS = "margin-left: -46px !important; left: -18px !important;";
             $rootScope.providerItamMarginTop = "top: 5px;";
         }
         if ($rootScope.isIPad) {
@@ -601,6 +601,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.FootNextButtonRight = "margin-left: -87px !important;";
             $rootScope.FootNextButton = "left: 22px;";
             $rootScope.FootNextButtonPatient = "left: 3px;";
+            $rootScope.IpadInsurncepageCenter1 = "margin-top: 113px;";
+            $rootScope.IpadInsurncepageCenter = "margin-top: 30px;";
+            $rootScope.IpadInsurncepageYourCopy = "margin-left: -7% !important;"
+            $rootScope.IpadInsurncepageCenterAddcard = "margin-top: 80px;";
+            $rootScope.IpadInsurncepageCenterAddcardButton = "padding-top: 10% !important;"
+            $rootScope.IpadInsurncepageContsultation = "margin-left: 230px !important;margin-top: 70px !important";
         }
         $rootScope.PriorSurgeryContant = "margin-top: 53px;";
         $rootScope.CardDetailYear = "padding-left: 11px;";
@@ -609,7 +615,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -638,7 +644,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.concernListTitleStyle = "concernListTitle";
         $rootScope.concernListDoneStyle = "concernListDone";
         $rootScope.PrimaryMarginTop = "margin-top: -16px";
-        $rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -34px !important;";
+        $rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -18px !important;";
         $rootScope.appointContent = "margin: 76px 0 0 0;";
         $rootScope.waitingContentIos = "margin-top: 120px; ";
         $rootScope.providerItamMarginTop = "";
@@ -2390,9 +2396,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
             $scope.ErrorMessage = "Please enter your password";
             $rootScope.Validation($scope.ErrorMessage);
         } else {
-            $sessionStorage.SessionMessage = [];
-            $sessionStorage.SessionMessage.push($rootScope.UserEmail);
-            alert($sessionStorage.SessionMessage)
+
             $('#loginPwd').hide();
             $('#loginPwdVerify').show();
 
@@ -2621,8 +2625,15 @@ $rootScope.checkAndChangeMenuIcon = function() {
     }
 
     $rootScope.doGetTermsandCondition = function(registerRedirectPage, registerCurrentPage) {
-        if($rootScope.regCountry2 == "") {
+        if($rootScope.regCountry2 == "" || $rootScope.regCountry2  == 'Choose') {
             $rootScope.regCountry2 =  $('#regCountryCode').val();
+        } else if ($rootScope.regCountry2 != "") {
+            if($('#regCountryCode').val() != "Choose") {
+                $rootScope.regCountry2 = $('#regCountryCode').val();
+            } else {
+                $rootScope.regCountry2 = $rootScope.regCountry2;
+            }
+            
         } else {
              $rootScope.regCountry2 =  $('#regCountryCode').val();
         }
@@ -4166,10 +4177,20 @@ $rootScope.checkAndChangeMenuIcon = function() {
                $rootScope.submitPayBack = $rootScope.currState.$current.name;
 			         $rootScope.currentplan = "tab.planDetails";
                $scope.doGetHealthPlanProvider();
-		    } else if ($('option:selected', this).text() === 'Choose Your Health Plan') {
+		    }else if ($('option:selected', this).text() === 'Agregar un nuevo plan de salud') {
+			         $rootScope.currentplan ="";
+               $rootScope.submitPayBack = $rootScope.currState.$current.name;
+			         $rootScope.currentplan = "tab.planDetails";
+               $scope.doGetHealthPlanProvider();
+		    }
+         else if ($('option:selected', this).text() === 'Choose Your Health Plan') {
               $rootScope.editplan ="none";
               $("div.viewport").html('<div class="insCHooseProviderName">Choose Your Health Plan</div>');
-        } else {
+        } else if ($('option:selected', this).text() === 'Elija su plan salud') {
+              $rootScope.editplan ="none";
+              $("div.viewport").html('<div class="insCHooseProviderName">Elija su plan salud</div>');
+        }
+        else {
             //  $('div.viewport').text($("option:selected", this).text());
               var selectedValue = $('option:selected', this).val().split('@');
               $("div.viewport").html('<div class="insProviderName">'+selectedValue[0]+'</div><div class="insSubscriberName">Subscriber ID:'+selectedValue[1]+'</div>');
@@ -4476,6 +4497,34 @@ $scope.EditHealth = {};
             }
             //$('div.cardViewport').text($("option:selected", this).text());
         }
+        if ($('option:selected', this).text() === 'Agregar una tarjeta nueva') {
+            $rootScope.submitPayBack = $rootScope.currState.$current.name;
+            $rootScope.cardPage = "consultCharge";
+            $state.go('tab.cardDetails');
+            if($rootScope.userDefaultPaymentProfileText != null && typeof $rootScope.userDefaultPaymentProfileText != 'undefined' && $rootScope.userDefaultPaymentProfileText != 'undefined') {
+                 $rootScope.editCardStyle = "block";
+            } else {
+                 $rootScope.editCardStyle ="none";
+            }
+        } else {
+            if ($('option:selected', this).text() === 'Elija su Tarjeta') {
+              $rootScope.editCardStyle ="none";
+              $("div.cardViewport").empty();
+              $("div.cardViewport").html('<div class="insCHooseProviderName">Choose Your Card</div>');
+            } else {
+              $rootScope.editCardStyle ="block";
+              var payValue = ($('option:selected', this).val()).split("@");
+              $("div.cardViewport").empty();
+              if(payValue[3] != "logoNone" )
+              {
+                  $("div.cardViewport").html('<div class="insCardName"><img class="cardlogo" src = "'+payValue[3]+'" /></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+              }else{
+                $("div.cardViewport").html('<div class="insCardName"> <i class="iconfontSVG"><svg version="1.1" id="Credit_card" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 3 150 55" enable-background="new 0 3 150 55" width="10cm" height="10cm" preserveAspectRatio="xMinYMin meet"><path d="M18,3H2C0.899,3,0,3.9,0,5v10c0,1.1,0.899,2,2,2h16c1.1,0,2-0.9,2-2V5C20,3.9,19.1,3,18,3z M18,15H2V9h16V15z M18,6H2V5h16    V6z M4,11.1v0.6h0.6v-0.6H4z M7.6,12.299V12.9h1.2v-0.601h0.6v-0.6H10v-0.6H8.8v0.6H8.199v0.6H7.6z M10,12.9v-0.601H9.399V12.9H10z     M7,12.9v-0.601H5.8V12.9H7z M7.6,11.699h0.6v-0.6H7v1.199h0.6V11.699z M5.199,12.299H5.8v-0.6h0.6v-0.6h-1.2v0.6H4.6v0.6H4V12.9    h1.199V12.299z"></path></svg></i></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+            }
+            // $("div.cardViewport").html('<div class="parenttt" style=" display: table;padding: 4px;  width: 100%;  margin: -10px 5px;"><div class="insCardImage"><img src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png"  style =" width: 75px;  height: 50px;vertical-align: middle;"/> '+payValue[1]+'</div> <div class="insCardNumber" style =" vertical-align: middle;display: table-cell; text-align: justify; font-family: GloberSemiBold; font-size: 21px;padding: 12px 0px 12px 25px;">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div> </div>');
+            }
+            //$('div.cardViewport').text($("option:selected", this).text());
+        }
     });
 
     $("#addNewCard_addCard").change(function() {
@@ -4510,6 +4559,37 @@ $scope.EditHealth = {};
             // $("div.cardViewport").html('<div class="parenttt" style=" display: table;padding: 4px;  width: 100%;  margin: -10px 5px;"><div class="insCardImage"><img src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png"  style =" width: 75px;  height: 50px;vertical-align: middle;"/> '+payValue[1]+'</div> <div class="insCardNumber" style =" vertical-align: middle;display: table-cell; text-align: justify; font-family: GloberSemiBold; font-size: 21px;padding: 12px 0px 12px 25px;">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div> </div>');
             }
         }
+        if ($('option:selected', this).text() === 'Agregar una tarjeta nueva') {
+            $rootScope.submitPayBack = $rootScope.currState.$current.name;
+            $rootScope.cardPage = "addCard";
+            $state.go('tab.cardDetails');
+            if($rootScope.userDefaultPaymentProfileText != null && typeof $rootScope.userDefaultPaymentProfileText != 'undefined' && $rootScope.userDefaultPaymentProfileText != 'undefined') {
+                 $rootScope.editCardStyle = "block";
+            } else {
+       $rootScope.editCardStyle ="none";
+            }
+        } else {
+            //$('div.cardViewport').text($("option:selected", this).text());
+            if ($('option:selected', this).text() === 'Elija su Tarjeta') {
+              $rootScope.editCardStyle ="none";
+              $("div.cardViewport").empty();
+              $("div.cardViewport").html('<div class="insCHooseProviderName">Choose Your Card</div>');
+            } else {
+              $rootScope.editCardStyle ="block";
+              var payValue = ($('option:selected', this).val()).split("@");
+              $("div.cardViewport").empty();
+              if(payValue[3] != "logoNone" )
+              {
+                $("div.cardViewport").html('<div class="insCardName"><img class="cardlogo"  src = "'+payValue[3]+'" /></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+              }else{
+                //$("div.cardViewport").html('<div class="insCardName"> <i class="iconfontSVG"><svg class="icon-creditcard"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-creditcard"></use></svg></i></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+                $("div.cardViewport").html('<div class="insCardName"> <i class="iconfontSVG"><svg version="1.1" id="Credit_card" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 3 150 55" enable-background="new 0 3 150 55" width="10cm" height="10cm" preserveAspectRatio="xMinYMin meet" ><path d="M18,3H2C0.899,3,0,3.9,0,5v10c0,1.1,0.899,2,2,2h16c1.1,0,2-0.9,2-2V5C20,3.9,19.1,3,18,3z M18,15H2V9h16V15z M18,6H2V5h16    V6z M4,11.1v0.6h0.6v-0.6H4z M7.6,12.299V12.9h1.2v-0.601h0.6v-0.6H10v-0.6H8.8v0.6H8.199v0.6H7.6z M10,12.9v-0.601H9.399V12.9H10z     M7,12.9v-0.601H5.8V12.9H7z M7.6,11.699h0.6v-0.6H7v1.199h0.6V11.699z M5.199,12.299H5.8v-0.6h0.6v-0.6h-1.2v0.6H4.6v0.6H4V12.9    h1.199V12.299z"></path></svg></i></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+              }
+
+
+            // $("div.cardViewport").html('<div class="parenttt" style=" display: table;padding: 4px;  width: 100%;  margin: -10px 5px;"><div class="insCardImage"><img src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png"  style =" width: 75px;  height: 50px;vertical-align: middle;"/> '+payValue[1]+'</div> <div class="insCardNumber" style =" vertical-align: middle;display: table-cell; text-align: justify; font-family: GloberSemiBold; font-size: 21px;padding: 12px 0px 12px 25px;">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div> </div>');
+            }
+        }
     });
 
     $("#addNewCard_submitPay").change(function() {
@@ -4523,6 +4603,42 @@ $scope.EditHealth = {};
         } else {
 
             if ($('option:selected', this).text() === 'Choose Your Card') {
+              $rootScope.editCardStyle ="none";
+              $("div.cardViewport").empty();
+              $("div.cardViewport").html('<div class="insCHooseProviderName">Choose Your Card</div>');
+            }
+            else{
+          //  $('div.cardViewport').text($("option:selected", this).text());
+          $rootScope.editCardStyle = "block";
+          var payValue = ($('option:selected', this).val()).split("@");
+          $("div.cardViewport").empty();
+          if(payValue[3] != "logoNone" )
+              {
+                $("div.cardViewport").html('<div class="insCardName"><img class="cardlogo"  src = "'+payValue[3]+'" /></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+              }else{
+                //$("div.cardViewport").html('<div class="insCardName"> <i class="iconfontSVG"><svg class="icon-creditcard"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-creditcard"></use></svg></i></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+                $("div.cardViewport").html('<div class="insCardName"> <i class="iconfontSVG"><svg version="1.1" id="Credit_card" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 3 150 55" enable-background="new 0 3 150 55" width="10cm" height="10cm" preserveAspectRatio="xMinYMin meet" ><path d="M18,3H2C0.899,3,0,3.9,0,5v10c0,1.1,0.899,2,2,2h16c1.1,0,2-0.9,2-2V5C20,3.9,19.1,3,18,3z M18,15H2V9h16V15z M18,6H2V5h16    V6z M4,11.1v0.6h0.6v-0.6H4z M7.6,12.299V12.9h1.2v-0.601h0.6v-0.6H10v-0.6H8.8v0.6H8.199v0.6H7.6z M10,12.9v-0.601H9.399V12.9H10z     M7,12.9v-0.601H5.8V12.9H7z M7.6,11.699h0.6v-0.6H7v1.199h0.6V11.699z M5.199,12.299H5.8v-0.6h0.6v-0.6h-1.2v0.6H4.6v0.6H4V12.9    h1.199V12.299z"></path></svg></i></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+              }
+
+
+        //  $rootScope.userCardNumber = $('option:selected', this).text();
+          $rootScope.userCardNumber = payValue[2];
+          $rootScope.userCardDetails = payValue[0];
+          $rootScope.userCardType = payValue[3];
+      }
+        //  $('div.cardViewport').text($("option:selected", this).text());
+        // $("div.cardViewport").html('<div class="parenttt" style=" display: table;padding: 4px;  width: 100%;  margin: -10px 5px;"><div class="insCardImage"><img src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png"  style =" width: 75px;  height: 50px;vertical-align: middle;"/> '+payValue[1]+'</div> <div class="insCardNumber" style =" vertical-align: middle;display: table-cell; text-align: justify; font-family: GloberSemiBold; font-size: 21px;padding: 12px 0px 12px 25px;">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div> </div>');
+        }
+        if ($('option:selected', this).text() === 'Agregar una tarjeta nueva') {
+          //  $rootScope.userCardDetails = $('option:selected', this).text();
+            $rootScope.submitPayBack = $rootScope.currState.$current.name;
+           // $rootScope.userCardNumber = 'Choose Your Card';
+            //$rootScope.cardPage = "submitPayment";
+             $rootScope.editCardStyle = "block";
+            $state.go('tab.cardDetails');
+        } else {
+
+            if ($('option:selected', this).text() === 'Elija su Tarjeta') {
               $rootScope.editCardStyle ="none";
               $("div.cardViewport").empty();
               $("div.cardViewport").html('<div class="insCHooseProviderName">Choose Your Card</div>');
@@ -8648,7 +8764,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
     }
 
     $scope.backToEdiORAddPlan = function() {
-      if($rootScope.getHlthSctValue === 'Add a new health plan' || $rootScope.getHlthSctValue === 'Choose Your Health Plan' || $rootScope.providerName === '') {
+      if($rootScope.getHlthSctValue === 'Add a new health plan' || $rootScope.getHlthSctValue === 'Choose Your Health Plan' || $rootScope.getHlthSctValue === 'Agregar un nuevo plan de salud' || $rootScope.getHlthSctValue === 'Elija su plan salud' || $rootScope.providerName === '') {
             $rootScope.editplan ="none";
         } else {
             $rootScope.editplan ="block";

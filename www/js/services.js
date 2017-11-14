@@ -2078,6 +2078,46 @@ this.getWaitingRoomChatTranscript = function (params) {
                });
          }
 
+         this.getCountriesList = function(params){
+           var requestInfo = {
+               headers: util.getHeaders(params.accessToken),
+               url: apiCommonURL + '/api/v2.1/addresses/countries',
+               method: 'GET',
+           };
+           $http(requestInfo).
+               success(function (data, status, headers, config) {
+                   if (typeof params.success != 'undefined') {
+                       params.success(data);
+                   }
+               }).
+               error(function (data, status, headers, config) {
+                   if (typeof params.error != 'undefined') {
+                       params.success(data);
+                   }
+               });
+         }
+
+         this.getStatesForUS = function(params){
+           var requestInfo = {
+               headers: util.getHeaders(params.accessToken),
+               url: apiCommonURL + '/api/v2.1/addresses/countries/US/administrative-areas-level1',
+               method: 'GET',
+           };
+           $http(requestInfo).
+               success(function (data, status, headers, config) {
+                   if (typeof params.success != 'undefined') {
+                       params.success(data);
+                   }
+               }).
+               error(function (data, status, headers, config) {
+                   if (typeof params.error != 'undefined') {
+                       params.success(data);
+                   }
+               });
+         }
+
+         
+
 
 				   this.getWaitingConsultent= function(params) {
 				     var PatientLocation = {

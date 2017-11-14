@@ -4,7 +4,7 @@ angular.module('starter.controllers')
         $rootScope.drawSVGCIcon = function(iconName) {
             return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
         };
-
+$("#localize-widget").show();
         $ionicPlatform.registerBackButtonAction(function() {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||

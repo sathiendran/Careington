@@ -16,7 +16,7 @@ angular.module('starter.controllers')
                 $rootScope.doGetSelectedPatientProfilesSS(patId, true);
             }
         };
-
+$("#localize-widget").show();
         $scope.getOnlyNumbers = function (text) {
             var newStr = "";
             if (text) {
@@ -269,6 +269,14 @@ angular.module('starter.controllers')
         $rootScope.editremovemodal = function () {
             $scope.modal.remove()
                 .then(function () {
+                    $scope.healthInfoModel.address = $scope.oldfullAddress; 
+                  $scope.route = $scope.oldroute;
+                  $scope.address2 = $scope.oldaddress2;
+                  $scope.City =  $scope.oldCity;
+                  $scope.ZipCode = $scope.oldZipCode; 
+                  $scope.Country = $scope.oldCountry; 
+                  $scope.state1 = $scope.oldstate1;
+                  $scope.State =   $scope.oldState;
                     $scope.modal = null;
                 });
             $('option').filter(function () {
@@ -463,7 +471,7 @@ angular.module('starter.controllers')
             $rootScope.patientId = $rootScope.currentPatientDetails[0].profileId;
         }
         $scope.edittext = function () {
-            console.log("Patientlist" + $rootScope.PatientIdentifiers);
+            //console.log("Patientlist" + $rootScope.PatientIdentifiers);
             $rootScope.checkedpatientdet = '';
             if ($rootScope.PatientIdentifiers == '' || $rootScope.PatientIdentifiers == 'undefined') {
                 $rootScope.PatientidupdateList = [];
@@ -977,6 +985,17 @@ angular.module('starter.controllers')
                             } else if (identifierTypeCode_.indexOf("Patient's Medicare number") != -1) {
                                 $scope.ErrorMessage = "Please enter Patient's Medicare number";
                             }
+
+                            else if  (identifierTypeCode_.indexOf("Número de licencia de conducir") != -1) {
+                                $scope.ErrorMessage = "Please enter Driver's license number";
+                            } else if (identifierTypeCode_.indexOf("Número de Empleado") != -1) {
+                                $scope.ErrorMessage = "Please enter Employee number";
+                            } else if (identifierTypeCode_.indexOf("Número de Medicaid del paciente") != -1) {
+                                $scope.ErrorMessage = "Please enter Patient Medicaid number";
+                            } else if (identifierTypeCode_.indexOf("Número de Medicare del Paciente") != -1) {
+                                $scope.ErrorMessage = "Please enter Patient's Medicare number";
+                            }
+
                             $rootScope.Validation($scope.ErrorMessage);
                         } else {
                             if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
@@ -1052,6 +1071,15 @@ angular.module('starter.controllers')
                             } else if (identifierTypeCode_.indexOf("Patient's Medicare number") != -1) {
                                 $scope.ErrorMessage = "Please enter Patient's Medicare number";
                             }
+                            else if  (identifierTypeCode_.indexOf("Número de licencia de conducir") != -1) {
+                                $scope.ErrorMessage = "Please enter Driver's license number";
+                            } else if (identifierTypeCode_.indexOf("Número de Empleado") != -1) {
+                                $scope.ErrorMessage = "Please enter Employee number";
+                            } else if (identifierTypeCode_.indexOf("Número de Medicaid del paciente") != -1) {
+                                $scope.ErrorMessage = "Please enter Patient Medicaid number";
+                            } else if (identifierTypeCode_.indexOf("Número de Medicare del Paciente") != -1) {
+                                $scope.ErrorMessage = "Please enter Patient's Medicare number";
+                            }
                             $rootScope.Validation($scope.ErrorMessage);
                         } else {
                             if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
@@ -1124,6 +1152,15 @@ angular.module('starter.controllers')
                         } else if (identifierTypeCode_.indexOf("Patient Medicaid number") != -1) {
                             $scope.ErrorMessage = "Please enter Patient Medicaid number";
                         } else if (identifierTypeCode_.indexOf("Patient's Medicare number") != -1) {
+                            $scope.ErrorMessage = "Please enter Patient's Medicare number";
+                        }
+                        else if  (identifierTypeCode_.indexOf("Número de licencia de conducir") != -1) {
+                            $scope.ErrorMessage = "Please enter Driver's license number";
+                        } else if (identifierTypeCode_.indexOf("Número de Empleado") != -1) {
+                            $scope.ErrorMessage = "Please enter Employee number";
+                        } else if (identifierTypeCode_.indexOf("Número de Medicaid del paciente") != -1) {
+                            $scope.ErrorMessage = "Please enter Patient Medicaid number";
+                        } else if (identifierTypeCode_.indexOf("Número de Medicare del Paciente") != -1) {
                             $scope.ErrorMessage = "Please enter Patient's Medicare number";
                         }
                         $rootScope.Validation($scope.ErrorMessage);
@@ -1212,6 +1249,15 @@ angular.module('starter.controllers')
                     } else if (identifierTypeCode_.indexOf("Patient Medicaid number") != -1) {
                         $scope.ErrorMessage = "Please enter Patient Medicaid number";
                     } else if (identifierTypeCode_.indexOf("Patient's Medicare number") != -1) {
+                        $scope.ErrorMessage = "Please enter Patient's Medicare number";
+                    }
+                    else if  (identifierTypeCode_.indexOf("Número de licencia de conducir") != -1) {
+                        $scope.ErrorMessage = "Please enter Driver's license number";
+                    } else if (identifierTypeCode_.indexOf("Número de Empleado") != -1) {
+                        $scope.ErrorMessage = "Please enter Employee number";
+                    } else if (identifierTypeCode_.indexOf("Número de Medicaid del paciente") != -1) {
+                        $scope.ErrorMessage = "Please enter Patient Medicaid number";
+                    } else if (identifierTypeCode_.indexOf("Número de Medicare del Paciente") != -1) {
                         $scope.ErrorMessage = "Please enter Patient's Medicare number";
                     }
                     $rootScope.Validation($scope.ErrorMessage);
@@ -3199,8 +3245,263 @@ angular.module('starter.controllers')
                 range.select();
             }
         };
-        //     $scope.setCaretToPos = function() {
-        //     // console.log("length:" + $scope.length);
-        //
-        // };
-    });
+      
+
+        $scope.doGetCountries = function() {
+          var params = {
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+                    $scope.CountryList = data;
+                    console.log($scope.CountryList);
+              },
+            error: function(data, status) {
+                if (status === 0) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503) {
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+        LoginService.getCountriesList(params);
+      }
+
+        $scope.getStatesForUS = function(){
+            var params = {
+                accessToken : $rootScope.accessToken,   
+                success:function(data){
+                        $scope.usStates = data;
+                },
+                error:function(data,status){
+                    if (status === 0) {
+                        $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if(status === 503) {
+                      $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                    } else {
+                        $rootScope.serverErrorMessageValidation();
+                    }
+                }
+            };
+            LoginService.getStatesForUS(params);
+        }
+
+        $scope.addressEditSave = function(){
+          $scope.healthInfoModel.address =  document.getElementById('fullAddress').innerHTML;
+          $scope.route = document.getElementById('txtPlaces').value;
+          $scope.address2 = document.getElementById('address2').value;
+          $scope.City = document.getElementById('city').value;
+            var element =  document.getElementById('state');
+            if (typeof(element) != 'undefined' && element != null)
+               $scope.State = document.getElementById('state').value;
+            var element =  document.getElementById('state1');
+            if (typeof(element) != 'undefined' && element != null)
+              $scope.state1 = document.getElementById('state1').value;
+          $scope.ZipCode = document.getElementById('zipcode').value;
+          $scope.Country = document.getElementById('country').value;
+             $scope.modal.remove()
+                .then(function () {
+                    $scope.modal = null;
+                });
+        }
+
+        $scope.makeAddress=function(){
+            var txtPlaces = document.getElementById('txtPlaces').value;
+            var address2 = document.getElementById('address2').value;
+            var city = document.getElementById('city').value
+            var element =  document.getElementById('state');
+            if (typeof(element) != 'undefined' && element != null)
+            {
+               if(document.getElementById('state').value != '' && document.getElementById('state').value != 'Select State')
+                var state = document.getElementById('state').value;
+            }
+            var element =  document.getElementById('state1');
+            if (typeof(element) != 'undefined' && element != null)
+            {
+               if(document.getElementById('state1').value != '' )
+                var state = document.getElementById('state1').value;
+            }
+            var zipcode = document.getElementById('zipcode').value;
+            if(document.getElementById('country').value != 'Select Country' )
+                        var country = document.getElementById('country').value;
+            var res = new Object();
+            res['txtPlaces'] = txtPlaces;
+            res['address2'] = address2;
+            res['city'] = city;
+            res['state'] = state;
+            res['zipcode'] = zipcode;
+            res['country'] = country;
+            var fullAddressCombo = '';
+            var c = Object.keys(res).length;
+            var count = 0;
+            for(var i in res)
+            {
+                count++;
+             if(res[i] != '' && res[i] != undefined)
+                 {
+                     if(count != c)
+                        {
+                              fullAddressCombo = fullAddressCombo+res[i]+', ';
+                        }else{
+                            fullAddressCombo = fullAddressCombo+res[i];
+                        }
+
+                 }
+            }
+            
+            if(fullAddressCombo.length != 0 && fullAddressCombo!=', ' && fullAddressCombo !=',' )
+                            document.getElementById('fullAddress').innerHTML = fullAddressCombo;
+            if(fullAddressCombo.length == 0 || fullAddressCombo == ', ' || fullAddressCombo ==',' )
+                            document.getElementById('fullAddress').innerHTML = "Please enter address";
+        }
+
+/*
+    $scope.disableTap = function(){
+        document.getElementById('txtPlaces').addEventListener('keypress', function(e) {
+        if (event.which == 13 || event.keyCode == 13 && document.getElementsByClassName('pac-container:visible').length) {
+            return true;
+        }
+        return true;
+        });
+    }*/
+
+        $scope.addressEditModal = function () {
+            $ionicModal.fromTemplateUrl('templates/tab-addressedittemplate.html', {
+                scope: $scope,
+                animation: 'slide-in-up',
+                focusFirstInput: false,
+                backdropClickToClose: false
+            }).then(function (modal) {
+                $scope.modal = modal;
+                $scope.modal.show().then(function () {
+                document.getElementById('fullAddress').innerHTML = $scope.healthInfoModel.address;
+                document.getElementById('country').value = $scope.Country;
+                if($scope.state1 == undefined)
+                    $scope.state1 = '';
+                if($scope.State == undefined)
+                    $scope.State = '';
+                $scope.oldfullAddress =  document.getElementById('fullAddress').innerHTML;
+                $scope.oldroute =  document.getElementById('txtPlaces').value;
+                $scope.oldaddress2 = document.getElementById('address2').value;
+                $scope.oldCity = document.getElementById('city').value;
+                $scope.oldZipCode = document.getElementById('zipcode').value;
+                $scope.oldCountry = document.getElementById('country').value;
+                var element =  document.getElementById('state1');
+                        if (typeof(element) != 'undefined' && element != null)
+                        {
+                                document.getElementById('state1').value = $scope.state1;
+                                $scope.oldstate1 = document.getElementById('state1').value;
+                        }
+                 var element =  document.getElementById('state');
+                        if (typeof(element) != 'undefined' && element != null)
+                        {
+                                document.getElementById('state').value = $scope.State;
+                                $scope.oldState = document.getElementById('state').value;
+                        }
+                var autocomplete = new google.maps.places.Autocomplete(document.getElementById('txtPlaces'));
+                google.maps.event.addListener(autocomplete, 'place_changed', fillAddress);
+                setTimeout(function(){
+                    var container = document.getElementsByClassName('pac-container');
+                    container = angular.element(container);
+                    container.css('z-index', '5000');
+                    container.css('pointer-events', 'auto');
+                    container.attr('data-tap-disabled', 'true');
+                    container.on('click', function(){
+                        input.blur();
+                    });
+                }, 200);
+                function fillAddress()
+                {
+                var place = autocomplete.getPlace();
+                $scope.$apply(function() {
+                    $scope.route = '';
+                    $scope.address2 = ''; 
+                    $scope.City = '';
+                    $scope.ZipCode = '';
+                    $scope.State = '';
+                    $scope.state1 = '';
+                    $scope.Country = '';
+                    $scope.vsPlace = place;
+                    for(var k = 0; k < place.address_components.length; k++){
+                            if(place.address_components[k].types.indexOf("route") >= 0){
+                                $scope.route = place.address_components[k].long_name;
+                            }
+                            if(place.address_components[k].types.indexOf("sublocality_level_1") >= 0){
+                                $scope.sublocality1 = place.address_components[k].long_name;
+                            }
+                            if(place.address_components[k].types.indexOf("locality") >= 0){
+                                $scope.City = place.address_components[k].long_name;
+                            }
+                            if(place.address_components[k].types.indexOf("administrative_area_level_2") >= 0){
+                                $scope.district = place.address_components[k].long_name;
+                            }
+                            if(place.address_components[k].types.indexOf("postal_code") >= 0){
+                                $scope.ZipCode = Number(place.address_components[k].long_name);
+                            }
+                            if(place.address_components[k].types.indexOf("administrative_area_level_1") >= 0){
+                                $scope.State = place.address_components[k].long_name;
+                            }
+                            if(place.address_components[k].types.indexOf("country") >= 0){
+                                $scope.Country = place.address_components[k].short_name;
+                                if($scope.Country == "US")
+                                {
+                                   // $scope.getStatesForUS();
+                                }else{
+                                     $scope.state1 =  $scope.State; 
+                                     $scope.State = '';
+                                }
+                            }
+                        }
+                        document.getElementById('txtPlaces').value = $scope.route;
+                        document.getElementById('city').value = $scope.City;
+                        document.getElementById('address2').value = '';
+                        var element =  document.getElementById('state');
+                        if (typeof(element) != 'undefined' && element != null)
+                                document.getElementById('state').value = $scope.State;
+                        var element =  document.getElementById('state1');
+                        if (typeof(element) != 'undefined' && element != null)
+                                document.getElementById('state1').value = $scope.state1;
+                        document.getElementById('zipcode').value = $scope.ZipCode;
+                        document.getElementById('country').value = $scope.Country;
+                        if($scope.State != '')
+                            var state = $scope.State;
+                        if($scope.state1 != '')
+                            var state = $scope.state1;
+                        var txtPlaces = $scope.route;
+                        var city = $scope.City;
+                        var zipcode = $scope.ZipCode;
+                        var country = $scope.Country;
+                        var res = new Object();
+                        res['txtPlaces'] = txtPlaces;
+                        res['city'] = city;
+                        res['state'] = state;
+                        res['zipcode'] = zipcode;
+                        res['country'] = country;
+                        var fullAddressCombo = '';
+                        var c =  Object.keys(res).length;
+                        var count = 0;
+                        for(var i in res)
+                        {
+                         if(res[i] != ',' && res[i] != ' ,' && res[i] != '' && res[i] != undefined)
+                             {
+                                count++;
+                                if(count != c)
+                                    {
+                                          fullAddressCombo = fullAddressCombo+res[i]+', ';
+                                    }else{
+                                        fullAddressCombo = fullAddressCombo+res[i];
+                                    }
+                             }
+                        }
+                        if(fullAddressCombo.length != 0 && fullAddressCombo!=', ' && fullAddressCombo !=',' )
+                            document.getElementById('fullAddress').innerHTML = fullAddressCombo;
+                        if(fullAddressCombo.length == 0 || fullAddressCombo ==', ' || fullAddressCombo ==',' )
+                            document.getElementById('fullAddress').innerHTML = "Please enter address";
+                });     
+             } // fillAddress closed
+        }); // modal closed
+     }); // then closed
+   } //addressEditModal closed
+});

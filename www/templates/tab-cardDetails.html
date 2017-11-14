@@ -34,16 +34,16 @@
             <div class="list" style="opacity:{{planverify}};">
                <div class="item item-input" >
                   <span class="input-label cardfont localizejs" >First Name</span>
-                  <input type="text" placeholder="Required" ng-model="getCardDetails.FirstName" name="FirstName" id="FirstName" required>
+                  <input type="text" class="localizejs" placeholder="Required" ng-model="getCardDetails.FirstName" name="FirstName" id="FirstName" required>
                </div>
                <div class="item item-input cards" >
                   <span class="input-label cardfont localizejs" >Last Name</span>
-                  <input type="text" placeholder="Required" ng-model="getCardDetails.LastName" name="LastName" id="LastName" required>
+                  <input type="text" class ="localizejs" placeholder="Required" ng-model="getCardDetails.LastName" name="LastName" id="LastName" required>
                </div>
                <div class="item item-input ">
                   <span class="input-label cardfont localizejs" >Card Number</span>
                   <!--<input type="number" style="{{invalidCard}}" placeholder="Required" ng-model="getCardDetails.CardNumber" name="CardNumber" id="CardNumber" maxlength="19" required> -->
-                  <input style="padding-top: 10px; font-size: 18px; line-height: 20px; {{invalidCard}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" ng-model="getCardDetails.CardNumber" name="CardNumber" id="CardNumber" maxlength="19" required/>
+                  <input style="padding-top: 10px; font-size: 18px; line-height: 20px; {{invalidCard}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" class ="localizejs" ng-model="getCardDetails.CardNumber" name="CardNumber" id="CardNumber" maxlength="19" required/>
                </div>
                <div class="item item-input">
                   <span class="input-label cardfont localizejs">Expiration Date</span>
@@ -62,37 +62,37 @@
                <div class="item item-input" ng-if="AndroidDevice !== true">
                   <span class="input-label cardfont localizejs" >CVV Code</span>
                   <!--<input type="password" pattern="[0-9]*" inputmode="numeric" style="{{invalidCVV}}" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>-->
-                  <input style="-webkit-text-security: disc; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type="password" pattern="[0-9]*" inputmode="numeric"  placeholder="Required" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>
+                  <input style="-webkit-text-security: disc; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type="password" pattern="[0-9]*" inputmode="numeric" class="localizejs" placeholder="Required" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>
                </div>
                <div class="item item-input" ng-if="AndroidDevice === true">
                   <span class="input-label cardfont localizejs" >CVV Code</span>
                   <!--<input type="password" pattern="[0-9]*" inputmode="numeric" style="{{invalidCVV}}" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>-->
                   <!-- <input style="font-size: 18px; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/> -->
-                  <input style="font-size: 18px; -webkit-text-security: disc; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "number" id="password pattern="[0-9]*" inputmode="numeric"  placeholder="Required" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>
+                  <input style="font-size: 18px; -webkit-text-security: disc; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "number" id="password pattern="[0-9]*" inputmode="numeric"  placeholder="Required" class= "localizejs" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>
                </div>
                <div class="item item-input" >
-                  <span class="input-label cardfont" >Billing Address</span>
-                  <input type="text" placeholder="Required" ng-model="getCardDetails.BillingAddress"  name="BillingAddress" id="BillingAddress" required>
+                  <span class="input-label cardfont localizejs" >Billing Address</span>
+                  <input type="text" class="localizejs" placeholder="Required" ng-model="getCardDetails.BillingAddress"  name="BillingAddress" id="BillingAddress" required>
                </div>
                <div class="item item-input" >
-                  <span class="input-label cardfont" >City</span>
-                  <ion-google-place style="font-size: 18px !important;" placeholder="Required" ng-model="getCardDetails.City" required/>
+                  <span class="input-label cardfont localizejs" >City</span>
+                  <ion-google-place style="font-size: 18px !important;" placeholder="Required" class="localizejs" ng-model="getCardDetails.City" required/>
                </div>
                <div class="item item-input">
-                  <span class="input-label cardfont" >State</span>
-                  <input type="text" placeholder="Required"  ng-model="getCardDetails.State"  name="State" id="State" required>
+                  <span class="input-label cardfont localizejs" >State</span>
+                  <input type="text" class="localizejs" placeholder="Required"  ng-model="getCardDetails.State"  name="State" id="State" required>
                </div>
                <div class="item item-input" >
-                  <span class="input-label cardfont" >Country</span>
-                  <input type="text" placeholder="Required" ng-model="getCardDetails.Country"  name="Country" id="Country" required>
+                  <span class="input-label cardfont localizejs" >Country</span>
+                  <input type="text" class="localizejs" placeholder="Required" ng-model="getCardDetails.Country"  name="Country" id="Country" required>
                </div>
                <div class="item item-input" >
-                  <span class="input-label cardfont" >Zip</span>
-                  <input type="text" style="{{invalidZip}}" placeholder="Required"  ng-model="getCardDetails.CardZipCode"  input-max-length-number maxlength="10" name="Zip" id="Zip" required/>
+                  <span class="input-label cardfont localizejs" >Zip</span>
+                  <input type="text" style="{{invalidZip}}" placeholder="Required"  ng-model="getCardDetails.CardZipCode"  class="localizejs" input-max-length-number maxlength="10" name="Zip" id="Zip" required/>
                </div>
             </div>
             <div class="planDetails" ng-if="addCardStatus !== 200" style="opacity:{{planverify}};">
-               <p class="carddetails">When you add a credit card, information about your card, will be sent to Authorize.net and your card issuer.</p>
+               <p class="carddetails localizejs">When you add a credit card, information about your card, will be sent to Authorize.net and your card issuer.</p>
             </div>
             <div class="privacy" style="opacity:{{planverify}};"><a class="hospitalDynamicLink" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;"><span class="localizejs">About</span> {{Hospital}} <span class="loclizejs">Privacy</span></a></div>
          </div>

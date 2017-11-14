@@ -58,6 +58,11 @@ margin-top: 125px !important;
     .formlabel {
         font-size: 17px;
     }
+    .col-45 {
+        .labelcolor {
+            width: 100%;
+        }
+    }
 }
 .deptlist {
     .formlabel {
@@ -723,6 +728,13 @@ padding-bottom: 100px;
 }
 .listprofile {
      padding-bottom: 95px;
+     .itemtab {
+        width: 101%;
+        }
+     .labelcolor {
+        width: 100%;
+        max-width: 100%;
+     }
      .icondown {
          font-size: 11px;
      }
@@ -4625,6 +4637,15 @@ background-color: #23B4D6 !important;
         padding: 14px;
     }
 }
+.col-45 {
+       .labelcolor {
+           width: 100%;
+           max-width: 100%;
+       }
+       .input-label {
+           padding: 0px 0px 0px 0px;
+       }
+   }
 .labelcolor {
     width: 45%;
 }
@@ -4637,6 +4658,7 @@ background-color: #23B4D6 !important;
 .ioncontentalign {
 .item {
     border-color: #979797;
+    height: 75px !important;
 }
 }
 .healthheight-IOS {
@@ -5559,7 +5581,7 @@ margin-right: 10px;
 
 .main-nav__list a span {
     padding-right: 15px;
-    float: left
+    // float: left
 }
 
 .main-nav__toggle {
@@ -5796,6 +5818,33 @@ margin-right: 10px;
     font-family: "GloberRegular", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
     width: 100%
 }
+//sakthi
+// .userInfoDiv {
+//     height: 76px;
+//     padding: 15px;
+//     background: #444;
+//     width: 100%;
+// }
+//
+//
+// .user-info__name {
+//     color: #fff
+// }
+//
+//  .user-info__text {
+//     margin-left: 56px;
+//     margin-top: -13px;
+// }
+//
+//  .user-info__info {
+//     //font-size: 0.8em;
+//     font-size: 1.1em !important;
+//     color: #fff;
+//     font-family: "GloberRegular", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+//     //width: 100%
+// }
+ //sakthi
+
 .userpic {
     overflow: hidden;
     position: relative;
@@ -5925,7 +5974,7 @@ margin-right: 10px;
 }
 .insCardNumber {
   font-family: GloberSemiBold;
-  font-size: 21px;
+  font-size: 24px !important;
   position: relative;
   top: 3px;
 }
@@ -6243,3 +6292,116 @@ a.item.item-avatar.avatheight:first-child{
     font-size: 31px;
     border: 2px solid #fff !important;
 }
+
+@media (min-width: 320px) and (max-width: 568px) {
+  #viewicon {
+      margin-top: -6px !important;
+  }
+}
+
+
+
+
+.homelabel{
+    display: block;
+    font-size: 12px;
+    line-height: 18px;
+    font-family: 'GloberBold','Helvetica Neue',Helvetica,Arial,Sans-Serif;
+    color: #777;
+    top: 10px;
+    left: 5px;
+    height: 26px;
+    position: relative;
+}
+
+.userhomeaddress{
+    width: calc(100%);
+    position: relative;
+    left: 18px;
+     padding-left: 18px;
+    padding-right: 15px;
+    cursor: text;
+    font-family: 'GloberSemiBold','Helvetica Neue',Helvetica,Arial,Sans-Serif;
+}
+.useraddress
+{
+    width: calc(86%);
+    position: relative;
+    left: 12px;
+    padding-left: 18px;
+    padding-right: 15px;
+    cursor: text;
+    color: rgba(0,0,0,0.75) !important;
+    font-family: 'GloberSemiBold','Helvetica Neue',Helvetica,Arial,Sans-Serif;
+}
+
+.addresslabel{
+    display: block;
+    font-size: 12px;
+    line-height: 18px;
+    font-family: 'GloberBold','Helvetica Neue',Helvetica,Arial,Sans-Serif;
+    color: #777;
+    top: 10px;
+    left: 10px;
+    height: 26px;
+    position: relative;
+}
+.addressRow{
+    border-bottom : 1px solid #979797;
+}
+.sideblock{
+    margin-top: 5px;
+    margin-bottom: -5px;
+    border-right: 1px solid #979797;
+}
+#CancelAddress{
+    color: #666;
+    text-align: center;
+    padding: 0;
+    letter-spacing: 0;
+    height: 32px;
+    line-height: 32px;
+    font-size: 16px;
+    font-family: 'GloberBold','Helvetica Neue',Helvetica,Arial,Sans-Serif;
+}
+#ContinueAddress{
+    color: white;
+    text-align: center;
+    padding: 0;
+    letter-spacing: 0;
+    height: 32px;
+    line-height: 32px;
+    font-size: 16px;
+    font-family: 'GloberBold','Helvetica Neue',Helvetica,Arial,Sans-Serif;
+}
+.CancelAddressBtn{
+    color: #666;
+    display: block;
+    border-radius: 0.3em;
+    position: relative;
+}
+.ContinueAddressBtn{
+    background: #A5CA92;
+    display: block;
+    border-radius: 0.3em;
+    position: relative;
+}
+.pac-container {
+    z-index: 3000 !important;
+}
+<<<<<<< HEAD
+=======
+.directionIcon{
+    float: left;
+    margin-left: 5px;
+    width: 3%;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    padding-top: 16px;
+    text-align: center;
+    display: table;
+    /* padding: 22px 19px 7px 13px; */
+    font-size: 16px;
+    color: #999!important;
+}
+>>>>>>> d3c2b5556c7d412b392dc114281976cad9c596d9

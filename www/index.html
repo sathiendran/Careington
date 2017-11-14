@@ -24,7 +24,7 @@
     <script src="js/ng-cordova.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en"></script>
+   <!--  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&language=en"></script> -->
     <script type="text/javascript" src="scripts/jquery-2.0.2.min.js"></script>
     <script type="text/javascript" src="scripts/jquery-ui-1.10.4.min.js"></script>
 
@@ -223,6 +223,13 @@
 
     <script type="text/javascript" src="lib/underscore.js"></script>
     <script type="text/javascript" src="scripts/jquery.runner.js"></script>
+   <!--  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDJbOzLwTA2o1otQz6wToqa-IHG3wo48ZY&sensor=false&libraries=places"></script> -->
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    
+      <!-- <script src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places"></script> -->
+      <!-- <script src="http://jvandemo.github.io/angularjs-google-maps/dist/angularjs-google-maps.js"></script> -->
+
+
 
 
  <!-- <link rel="stylesheet" href="/node_modules/angular-material/angular-material.css">
@@ -622,6 +629,18 @@
     </div>
 </script>
 
+<script>
+window.addEventListener('native.keyboardshow', function() {
+   $("#localize-widget").hide();
+
+});
+window.addEventListener('native.keyboardhide', function() {
+   $("#localize-widget").show();
+});
+// $('input').on('focus', function() {
+//   console.log('input focus:', new Date().getTime());
+// });
+</script>
 
 </html>
 
