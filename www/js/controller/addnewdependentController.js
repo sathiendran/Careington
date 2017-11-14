@@ -1255,14 +1255,15 @@ angular.module('starter.controllers')
     function onCameraCaptureFailure() {}
 
 $rootScope.editremovemodal = function () {
+  $("#localize-widget").show();
             $scope.modal.remove()
                 .then(function () {
-                  $scope.addNewDependent.homeadd = $scope.oldfullAddress; 
+                  $scope.addNewDependent.homeadd = $scope.oldfullAddress;
                   $scope.route = $scope.oldroute;
                   $scope.address2 = $scope.oldaddress2;
                   $scope.City =  $scope.oldCity;
-                  $scope.ZipCode = $scope.oldZipCode; 
-                  $scope.Country = $scope.oldCountry; 
+                  $scope.ZipCode = $scope.oldZipCode;
+                  $scope.Country = $scope.oldCountry;
                   $scope.state1 = $scope.oldstate1;
                   $scope.State =   $scope.oldState;
                   $scope.modal = null;
@@ -1296,7 +1297,7 @@ $rootScope.editremovemodal = function () {
 
         $scope.getStatesForUS = function(){
             var params = {
-                accessToken : $rootScope.accessToken,   
+                accessToken : $rootScope.accessToken,
                 success:function(data){
                         $scope.usStates = data;
                 },
@@ -1376,7 +1377,7 @@ $rootScope.editremovemodal = function () {
 
                  }
             }
-            
+
             if(fullAddressCombo.length != 0 && fullAddressCombo!=', ' && fullAddressCombo !=',' )
                             document.getElementById('fullAddress').innerHTML = fullAddressCombo;
             if(fullAddressCombo.length == 0 || fullAddressCombo == ', ' || fullAddressCombo ==',' )
@@ -1394,6 +1395,7 @@ $rootScope.editremovemodal = function () {
     }*/
 
         $scope.addressEditModal = function () {
+          $("#localize-widget").hide();
             $ionicModal.fromTemplateUrl('templates/tab-addressedittemplate.html', {
                 scope: $scope,
                 animation: 'slide-in-up',
@@ -1443,7 +1445,7 @@ $rootScope.editremovemodal = function () {
                 var place = autocomplete.getPlace();
                 $scope.$apply(function() {
                     $scope.route = '';
-                    $scope.address2 = ''; 
+                    $scope.address2 = '';
                     $scope.City = '';
                     $scope.ZipCode = '';
                     $scope.State = '';
@@ -1475,7 +1477,7 @@ $rootScope.editremovemodal = function () {
                                 {
                                    // $scope.getStatesForUS();
                                 }else{
-                                     $scope.state1 =  $scope.State; 
+                                     $scope.state1 =  $scope.State;
                                      $scope.State = '';
                                 }
                             }
@@ -1525,7 +1527,7 @@ $rootScope.editremovemodal = function () {
                             document.getElementById('fullAddress').innerHTML = fullAddressCombo;
                         if(fullAddressCombo.length == 0 || fullAddressCombo ==', ' || fullAddressCombo ==',' )
                             document.getElementById('fullAddress').innerHTML = "Please enter address";
-                });     
+                });
              } // fillAddress closed
         }); // modal closed
      }); // then closed

@@ -199,7 +199,7 @@ angular.module('starter.controllers')
             if($('#regCountryCode').val() == 'Choose') {
                 $scope.regCountry2 =  $rootScope.regCountry2
             }
-               
+
             //  $scope.regCountryCode =  $scope.regCountry2[0];
             //  $scope.regCountryName =  $scope.regCountry2[1];
           //  $scope.regTimezone =  $('#regTimezone').val();
@@ -497,14 +497,15 @@ angular.module('starter.controllers')
 
 
  $rootScope.editremovemodal = function () {
+   $("#localize-widget").show();
             $scope.modal.remove()
                 .then(function () {
-                  $scope.regStep1.homeadd= $scope.oldfullAddress; 
+                  $scope.regStep1.homeadd= $scope.oldfullAddress;
                   $scope.route = $scope.oldroute;
                   $scope.address2 = $scope.oldaddress2;
                   $scope.City =  $scope.oldCity;
-                  $scope.ZipCode = $scope.oldZipCode; 
-                  $scope.Country = $scope.oldCountry; 
+                  $scope.ZipCode = $scope.oldZipCode;
+                  $scope.Country = $scope.oldCountry;
                   $scope.state1 = $scope.oldstate1;
                   $scope.State =   $scope.oldState;
                     $scope.modal = null;
@@ -519,7 +520,7 @@ angular.module('starter.controllers')
           var params = {
             accessToken: $rootScope.accessToken,
             success: function(data) {
-              
+
                     $scope.CountryList = data;
                     console.log($scope.CountryList);
               },
@@ -539,7 +540,7 @@ angular.module('starter.controllers')
 
         $scope.getStatesForUS = function(){
             var params = {
-                accessToken : $rootScope.accessToken,   
+                accessToken : $rootScope.accessToken,
                 success:function(data){
                     //alert("enter");
                         $scope.usStates = data;
@@ -579,8 +580,8 @@ angular.module('starter.controllers')
                   $scope.state1 = document.getElementById('state1').value;
                 }
 
-             
-              
+
+
               $scope.ZipCode = document.getElementById('zipcode').value;
               $scope.Country = document.getElementById('country').value;
                  $scope.modal.remove()
@@ -588,7 +589,7 @@ angular.module('starter.controllers')
                         $scope.modal = null;
                     });
               }
-        
+
         }
 
         $scope.makeAddress=function(){
@@ -644,7 +645,7 @@ angular.module('starter.controllers')
 
                  }
             }
-            
+
             if(fullAddressCombo.length != 0 && fullAddressCombo!=', ' && fullAddressCombo !=',' )
                             document.getElementById('fullAddress').innerHTML = fullAddressCombo;
             if(fullAddressCombo.length == 0 || fullAddressCombo == ', ' || fullAddressCombo ==',' )
@@ -674,6 +675,7 @@ angular.module('starter.controllers')
     }
 
         $scope.addressEditModal = function () {
+          $("#localize-widget").hide();
             //$('#healthInfoHeightUnit').val("");
             $ionicModal.fromTemplateUrl('templates/tab-addressedittemplate.html', {
                 scope: $scope,
@@ -723,7 +725,7 @@ angular.module('starter.controllers')
                 //var location_input = document.getElementById('txtPlaces');
                 var autocomplete = new google.maps.places.Autocomplete(document.getElementById('txtPlaces'));
                 google.maps.event.addListener(autocomplete, 'place_changed', fillAddress);
-                
+
                 setTimeout(function(){
                     var container = document.getElementsByClassName('pac-container');
                     container = angular.element(container);
@@ -749,7 +751,7 @@ angular.module('starter.controllers')
                 var place = autocomplete.getPlace();
                 $scope.$apply(function() {
                     $scope.route = '';
-                    $scope.address2 = ''; 
+                    $scope.address2 = '';
                     $scope.City = '';
                     $scope.ZipCode = '';
                     $scope.State = '';
@@ -781,7 +783,7 @@ angular.module('starter.controllers')
                                 {
                                    // $scope.getStatesForUS();
                                 }else{
-                                     $scope.state1 =  $scope.State; 
+                                     $scope.state1 =  $scope.State;
                                      $scope.State = '';
                                 }
                             }
@@ -797,7 +799,7 @@ angular.module('starter.controllers')
                         var element =  document.getElementById('state1');
                         if (typeof(element) != 'undefined' && element != null)
                             {
-                             
+
                                 document.getElementById('state1').value = $scope.state1;
                             }
                         document.getElementById('zipcode').value = $scope.ZipCode;
@@ -843,7 +845,7 @@ angular.module('starter.controllers')
                         if(fullAddressCombo.length == 0 || fullAddressCombo ==', ' || fullAddressCombo ==',' )
                             document.getElementById('fullAddress').innerHTML = "Please enter address";
 
-                });     
+                });
 
              }
         });
@@ -894,7 +896,7 @@ angular.module('starter.controllers')
         $scope.change = function()
         {
           var isVisible = $cordovaKeyboard.isVisible();
-          
+
         }
 $("#localize-widget").show();
         $scope.registerStpe1BackToSearchProvider = function() {

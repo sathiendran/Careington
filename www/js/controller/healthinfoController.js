@@ -267,14 +267,15 @@ $("#localize-widget").show();
             $scope.modal.remove();
         };
         $rootScope.editremovemodal = function () {
+          $("#localize-widget").show();
             $scope.modal.remove()
                 .then(function () {
-                    $scope.healthInfoModel.address = $scope.oldfullAddress; 
+                    $scope.healthInfoModel.address = $scope.oldfullAddress;
                   $scope.route = $scope.oldroute;
                   $scope.address2 = $scope.oldaddress2;
                   $scope.City =  $scope.oldCity;
-                  $scope.ZipCode = $scope.oldZipCode; 
-                  $scope.Country = $scope.oldCountry; 
+                  $scope.ZipCode = $scope.oldZipCode;
+                  $scope.Country = $scope.oldCountry;
                   $scope.state1 = $scope.oldstate1;
                   $scope.State =   $scope.oldState;
                     $scope.modal = null;
@@ -2609,6 +2610,7 @@ $("#localize-widget").show();
         $rootScope.selectYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
         $scope.showSurgeryPopup = function () {
             //$scope.surgeryDisplayTrue = true;
+            $("#localize-widget").hide();
             $ionicModal.fromTemplateUrl('templates/tab-surgeries.html', {
                 scope: $scope,
                 animation: 'slide-in-up',
@@ -2719,6 +2721,7 @@ $("#localize-widget").show();
             LoginService.putPatientMedicalProfile(params);
         };
         $scope.hideSurgeryPopup = function (model) {
+          $("#localize-widget").show();
             $scope.modal.remove();
             $rootScope.showNewSurgeryAdd = false;
             $scope.showEditSurgery = false;
@@ -3245,7 +3248,7 @@ $("#localize-widget").show();
                 range.select();
             }
         };
-      
+
 
         $scope.doGetCountries = function() {
           var params = {
@@ -3270,7 +3273,7 @@ $("#localize-widget").show();
 
         $scope.getStatesForUS = function(){
             var params = {
-                accessToken : $rootScope.accessToken,   
+                accessToken : $rootScope.accessToken,
                 success:function(data){
                         $scope.usStates = data;
                 },
@@ -3350,7 +3353,7 @@ $("#localize-widget").show();
 
                  }
             }
-            
+
             if(fullAddressCombo.length != 0 && fullAddressCombo!=', ' && fullAddressCombo !=',' )
                             document.getElementById('fullAddress').innerHTML = fullAddressCombo;
             if(fullAddressCombo.length == 0 || fullAddressCombo == ', ' || fullAddressCombo ==',' )
@@ -3368,6 +3371,7 @@ $("#localize-widget").show();
     }*/
 
         $scope.addressEditModal = function () {
+          $("#localize-widget").hide();
             $ionicModal.fromTemplateUrl('templates/tab-addressedittemplate.html', {
                 scope: $scope,
                 animation: 'slide-in-up',
@@ -3417,7 +3421,7 @@ $("#localize-widget").show();
                 var place = autocomplete.getPlace();
                 $scope.$apply(function() {
                     $scope.route = '';
-                    $scope.address2 = ''; 
+                    $scope.address2 = '';
                     $scope.City = '';
                     $scope.ZipCode = '';
                     $scope.State = '';
@@ -3449,7 +3453,7 @@ $("#localize-widget").show();
                                 {
                                    // $scope.getStatesForUS();
                                 }else{
-                                     $scope.state1 =  $scope.State; 
+                                     $scope.state1 =  $scope.State;
                                      $scope.State = '';
                                 }
                             }
@@ -3499,7 +3503,7 @@ $("#localize-widget").show();
                             document.getElementById('fullAddress').innerHTML = fullAddressCombo;
                         if(fullAddressCombo.length == 0 || fullAddressCombo ==', ' || fullAddressCombo ==',' )
                             document.getElementById('fullAddress').innerHTML = "Please enter address";
-                });     
+                });
              } // fillAddress closed
         }); // modal closed
      }); // then closed
