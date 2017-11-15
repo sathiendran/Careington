@@ -594,10 +594,15 @@ $("#localize-widget").show();
                 $('#healthInfoTimezone').val($scope.healthInfoModel.healthInfoTimezone);
                 $('#healthInfoCountry').val($scope.healthInfoModel.healthInfoCountry);
             }, 10);
+$scope.doGetCountries();
+$scope.getStatesForUS();
+$scope.loadAddressData();
 
 
-
-                    console.log($rootScope.addressInfoFetch[0]);
+                    
+            //$scope.newupdatePatientDetails();
+        }
+        $scope.loadAddressData = function(){
                     $scope.route = $rootScope.addressInfoFetch[0].addressObject.line1;
                     $scope.address2 = $rootScope.addressInfoFetch[0].addressObject.line2; 
                     $scope.City = $rootScope.addressInfoFetch[0].addressObject.city;
@@ -605,7 +610,6 @@ $("#localize-widget").show();
                     $scope.State = $rootScope.addressInfoFetch[0].addressObject.state;
                     $scope.state1 = $rootScope.addressInfoFetch[0].addressObject.state;
                     $scope.Country = $rootScope.addressInfoFetch[0].addressObject.countryCode;
-            //$scope.newupdatePatientDetails();
         }
 
         $scope.editDob = function () {
@@ -3465,7 +3469,8 @@ $("#localize-widget").show();
                     container.css('pointer-events', 'auto');
                     container.attr('data-tap-disabled', 'true');
                     container.on('click', function(){
-                        input.blur();
+                        //input.blur();
+                        document.getElementById('txtPlaces').blur();
                     });
                 }, 200);
                 function fillAddress()
