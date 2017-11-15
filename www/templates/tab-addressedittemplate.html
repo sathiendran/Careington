@@ -5,7 +5,7 @@
          <div class="ErrorMessage ErrorMessageDiv"  ></div>
          <button class="button button__cancel CancelAddressBtn localizejs" ng-click="editremovemodal()" ><span id="CancelAddress">Cancel</span></button>
          <h1 class="title {{concernListTitleStyle}} localizejs" style="{{PrimaryConcernPopupTitle}};text-align: center; ">Enter Address</h1>
-         <button class="button button__green  ContinueAddressBtn localizejs"ng-click="addressEditSave()" ><span id="ContinueAddress">Update</span></button> 
+         <button class="button button__green  ContinueAddressBtn localizejs"ng-click="addressEditSave()" ><span id="ContinueAddress">Update</span></button>
       </header>
       <ion-content has-header="true" style="background-color: #f5f5f5;">
          <ion-list>
@@ -35,11 +35,11 @@
                         <label class="localizejs addresslabel"> Address Line 1</label>
                         <div>
                            <!-- <input type="text" name="fulladdress" class="useraddress" id="homeaddress1" value="full address" placeholder="Enter a location" /> -->
-                           <input type="text" name="address1" class="useraddress localizejs" id="txtPlaces" ng-model="route" autocomplete="on" data-tap-disabled="true"  placeholder="Enter a location" ng-change="makeAddress()"/> 
+                           <input type="text" name="address1" class="useraddress localizejs" id="txtPlaces" ng-model="route" autocomplete="on" data-tap-disabled="true"  placeholder="Enter a location" ng-change="makeAddress()"/>
 
                  <!--  <span class="DOBClass-{{deviceName}}">
                         <ion-google-place placeholder="Full Address" style="line-height:25px" ng-model="healthInfoModel.address" />
-                     </span>     -->                    
+                     </span>     -->
                       </div>
                      </div>
                   </div>
@@ -64,7 +64,7 @@
                            <select ng-if="Country == 'US'" class="textdata localizejs"  name="State" id="state" ng-model="State" style="width: 100% !important; position: relative; top: 6px;border: none;" ng-change="makeAddress()" >
                               <option value="Select State" class="localizejs">Select State</option>
                         <option ng-repeat="state in usStates" data-state-code="{{state.code}}" class="localizejs" >{{state.name}}</option>
-                        
+
                      </select>
                      <input ng-if="Country != 'US'" type="text" name="state1" class="useraddress localizejs" id="state1" ng-model="state1" placeholder="Enter a location" ng-change="makeAddress()"/>
                         </div>
@@ -86,8 +86,10 @@
                               <option class="localizejs" value="Select Country">Select Country</option>
                         <option ng-repeat="country in CountryList" value="{{country.alpha2}}" class="localizejs">{{country.name}}</option>
                      </select>
+
                      </div>
-                     
+
+
                      <!-- <select  class="textdata localizejs"  name="country" id="country" ng-model="Country" ng-change="findCountry(country)" " ng-options="x for x in CountryList">
                      </select> -->
                         </div>
@@ -104,8 +106,8 @@
                           <button class="button button__green localizejs ContinueAddressBtn" ng-click="addressEditSave()"><span id="ContinueAddress">Update</span></button>
                      </div>
                   </div> -->
-                         
-<!-- 
+
+<!--
                <div class="item item-input itemtab validated row" style="border-top:none;">
                   <div class="col col-50">
                      <div class="healthPopup-{{deviceName}}" >

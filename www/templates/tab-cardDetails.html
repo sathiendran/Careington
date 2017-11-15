@@ -68,7 +68,7 @@
                   <span class="input-label cardfont localizejs" >CVV Code</span>
                   <!--<input type="password" pattern="[0-9]*" inputmode="numeric" style="{{invalidCVV}}" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>-->
                   <!-- <input style="font-size: 18px; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/> -->
-                  <input style="font-size: 18px; -webkit-text-security: disc; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "number" id="password pattern="[0-9]*" inputmode="numeric"  placeholder="Required" class= "localizejs" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>
+                  <input style="font-size: 18px; -webkit-text-security: disc; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "number" id="password" pattern="[0-9]*" inputmode="numeric"  placeholder="Required" class= "localizejs" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>
                </div>
                <div class="item item-input" >
                   <span class="input-label cardfont localizejs" >Billing Address</span>
@@ -94,7 +94,9 @@
             <div class="planDetails" ng-if="addCardStatus !== 200" style="opacity:{{planverify}};">
                <p class="carddetails localizejs">When you add a credit card, information about your card, will be sent to Authorize.net and your card issuer.</p>
             </div>
-            <div class="privacy" style="opacity:{{planverify}};"><a class="hospitalDynamicLink" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;"><span class="localizejs">About</span> <span class="localizejs">{{Hospital}}</span> <span class="loclizejs">Privacy</span></a></div>
+            <div class="privacy" style="opacity:{{planverify}};">
+              <a class="hospitalDynamicLink localizejs" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">
+              About {{Hospital}} Privacy</a></div>
          </div>
       </ion-content>
    </form>

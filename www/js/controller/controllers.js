@@ -345,7 +345,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
           text.css("font-size", "17px");
         */
     });
-
+$("#localize-widget").show();
   $('#localize-langs').click(function() {
       var isLang = $('#localize-langs .activated').text();
       if(isLang == "Español"){
@@ -644,7 +644,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -6783,7 +6783,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     $rootScope.selectedRelatedDependentDetails = [];
                     $rootScope.addressInfoFetch = [];
                     angular.forEach(data.data, function(index) {
-                       
+
                         $rootScope.selectedRelatedDependentDetails.push({
                           'identifiers': angular.fromJson(index.identifiers),
                             'account': angular.fromJson(index.account),
