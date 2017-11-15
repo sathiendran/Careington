@@ -6313,8 +6313,12 @@ a.item.item-avatar.avatheight:first-child{
     left: 5px;
     height: 26px;
     position: relative;
+    margin-left: 5px;
 }
-
+#fullAddress{
+    margin-left:15px;
+    margin-top: 10px;
+}
 .userhomeaddress{
     width: calc(100%);
     position: relative;
@@ -6340,8 +6344,8 @@ a.item.item-avatar.avatheight:first-child{
     display: block;
     font-size: 12px;
     line-height: 18px;
-    font-family: 'GloberBold','Helvetica Neue',Helvetica,Arial,Sans-Serif;
-    color: #777;
+    font-family: "GloberBold","Helvetica Neue",Helvetica,Arial,Sans-Serif;
+    color: #666;
     top: 10px;
     left: 10px;
     height: 26px;
@@ -6376,25 +6380,55 @@ a.item.item-avatar.avatheight:first-child{
     font-family: 'GloberBold','Helvetica Neue',Helvetica,Arial,Sans-Serif;
 }
 .CancelAddressBtn{
-    color: #666;
-    display: block;
+   display: block;
     border-radius: 0.3em;
     position: relative;
-    margin-left: 20px;
+    top: 6px;
+    left: 6px;
+    float: none;
+    padding: 0px !important;
+    width: 80px;
+    height: 33px;
+    letter-spacing: 1px;
+    color: #666 !important;
+    background-color: transparent !important;
+    font-size: 18px !important;
+    font-family: "Glober Regular";
+    webkit-transition: box-shadow 0.3s ease !important;
+    -moz-transition: box-shadow 0.3s ease;
+    -o-transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease !important;
 }
 .ContinueAddressBtn{
-    background: #A5CA92;
+    top: 10px !important;
+    right: 6px !important;
     display: block;
-    border-radius: 0.3em;
+    border-radius: 8px;
     position: relative;
-    float:  right;
+    margin-left: 20px;
+    float: none;
+    padding: 0px !important;
+    width: 80px;
+    height: 35px;
+    letter-spacing: 1px;
+    color: #666 !important;
+    background-color: #a2d28a !important;
+    box-shadow: 0 0 0 1px #ccc;
+    /* border: none; */
+    border-color: #ccc !important;
+    font-size: 18px !important;
+    font-family: "Glober Regular";
+    webkit-transition: box-shadow 0.3s ease !important;
+    -moz-transition: box-shadow 0.3s ease;
+    -o-transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease !important
 }
 .pac-container {
     z-index: 3000 !important;
 }
 .directionIcon{
     float: left;
-    margin-left: 5px;
+    margin-left: 12px;
     width: 3%;
     padding-bottom: 0px;
     padding-left: 5px;
@@ -6404,6 +6438,19 @@ a.item.item-avatar.avatheight:first-child{
     /* padding: 22px 19px 7px 13px; */
     font-size: 16px;
     color: #999!important;
+}
+
+.useraddress , .textdata {
+    background-color: #f5f5f5;
+    width: 100%;
+    background-color: transparent !important;
+    border: none;
+    outline: none !important;
+    max-width: none;
+    text-indent: 0;
+    font-size: 16px;
+    color: rgba(0,0,0,0.75);
+    box-shadow: none !important;
 }
 //sakthi Start
 .noPlanContainer-Android .cardViewport1 {
