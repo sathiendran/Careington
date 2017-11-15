@@ -1,0 +1,153 @@
+<div class="modal">
+   <ion-view>
+      <header class="bar bar-header bar-dark concernListHeader" style="background-color: #ccc;
+    border-color: #ccc;height: 52px;">
+         <div class="ErrorMessage ErrorMessageDiv"  ></div>
+         <button class="button button__cancel CancelAddressBtn localizejs" ng-click="editremovemodal()" ><span id="CancelAddress">Cancel</span></button>
+         <h1 class="title {{concernListTitleStyle}} localizejs" style="{{PrimaryConcernPopupTitle}};text-align: center; ">Enter Address</h1>
+         <button class="button button__green  ContinueAddressBtn localizejs"ng-click="addressEditSave()" ><span id="ContinueAddress">Update</span></button>
+      </header>
+      <ion-content has-header="true" style="background-color: #f5f5f5;">
+         <ion-list>
+            <ion-item style="top: 54px;
+            height: auto;
+            margin-left: -24px;
+            margin-top: -23px;
+            border: none;
+            background-color: #f5f5f5;">
+            <!-- <div class="row">
+               <div id="googleLocationText">
+               </div>
+            </div> -->
+                  <div class="row addressRow" style="    height: 70px;">
+                     <div class="col-5" style="width: 50px;background-color:white;">
+                        <div class="directionIcon">
+                            <i ng-bind-html="drawSVGCIcon('address');"></i>
+                        </div>
+                     </div>
+                     <div class="col-95">
+                        <label class="localizejs homelabel">Home Address</label>
+                        <div id="fullAddress"></div>
+                     </div>
+                  </div>
+                  <div class="row addressRow">
+                     <div class="col">
+                        <label class="localizejs addresslabel"> Address Line 1</label>
+                        <div>
+                           <!-- <input type="text" name="fulladdress" class="useraddress" id="homeaddress1" value="full address" placeholder="Enter a location" /> -->
+                           <input type="text" name="address1" class="useraddress localizejs" id="txtPlaces" ng-model="route" autocomplete="on" data-tap-disabled="true"  placeholder="Enter a location" ng-change="makeAddress()"/>
+
+                 <!--  <span class="DOBClass-{{deviceName}}">
+                        <ion-google-place placeholder="Full Address" style="line-height:25px" ng-model="healthInfoModel.address" />
+                     </span>     -->
+                      </div>
+                     </div>
+                  </div>
+                  <div class="row addressRow">
+                     <div class="col">
+                        <label class="localizejs addresslabel"> Address Line 2</label>
+                        <div>
+                           <input type="text" name="address2" class="useraddress localizejs"  id="address2" ng-model="address2" placeholder="Enter a location" ng-change="makeAddress()"/>
+                        </div>
+                     </div>
+                  </div>
+                   <div class="row addressRow">
+                     <div class="col-40 sideblock">
+                        <label class="localizejs addresslabel"> City</label>
+                        <div>
+                           <input type="text" name="city" class="useraddress localizejs" id="city" ng-change="makeAddress()" ng-model="City" placeholder="Enter a location" />
+                        </div>
+                     </div>
+                     <div class="col-40 sideblock">
+                        <label class="localizejs addresslabel"> State/Province</label>
+                        <div>
+                           <select ng-if="Country == 'US'" class="textdata localizejs"  name="State" id="state" ng-model="State" style="width: 100% !important; position: relative; top: 6px;border: none;" ng-change="makeAddress()" >
+                              <option value="Select State" class="localizejs">Select State</option>
+                        <option ng-repeat="state in usStates" data-state-code="{{state.code}}" class="localizejs" >{{state.name}}</option>
+
+                     </select>
+                     <input ng-if="Country != 'US'" type="text" name="state1" class="useraddress localizejs" id="state1" ng-model="state1" placeholder="Enter a location" ng-change="makeAddress()"/>
+                        </div>
+                     </div>
+                     <div class="col-40 sideblock">
+                        <label class="localizejs addresslabel"> Zip/Postal Code</label>
+                        <div>
+                           <input type="text" name="zipcode" maxlength="5" class="useraddress localizejs" id="zipcode" ng-model="ZipCode" placeholder="Enter a location" ng-change="makeAddress()"/>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row addressRow">
+                     <div class="col">
+                        <label class="localizejs addresslabel"> Country</label>
+                        <div>
+                           <select  class="textdata localizejs"  name="country" id="country" ng-model="Country" ng-change="makeAddress()" style="width: 100% !important; position: relative; top: 6px;border: none;"   >
+                              <option class="localizejs" value="Select Country">Select Country</option>
+                        <option ng-repeat="country in CountryList" value="{{country.alpha2}}" class="localizejs">{{country.name}}</option>
+                     </select>
+
+                     <!-- <select  class="textdata localizejs"  name="country" id="country" ng-model="Country" ng-change="findCountry(country)" " ng-options="x for x in CountryList">
+                     </select> -->
+                        </div>
+                     </div>
+                  </div>
+
+                  <div style="height: 50px">
+                  </div>
+                 <!--  <div class="row addressRow" style="margin-top: 50px;border: none;">
+                     <div class="col-50">
+                           <button class="button button__cancel localizejs CancelAddressBtn" ng-click="editremovemodal()"><span id="CancelAddress">Cancel</span></button>
+                     </div>
+                     <div class="col-50">
+                          <button class="button button__green localizejs ContinueAddressBtn" ng-click="addressEditSave()"><span id="ContinueAddress">Update</span></button>
+                     </div>
+                  </div> -->
+
+<!--
+               <div class="item item-input itemtab validated row" style="border-top:none;">
+                  <div class="col col-50">
+                     <div class="healthPopup-{{deviceName}}" >
+                        <input type="tel"  placeholder="Required" name="txtAccountNumber" id="healthInfoHeight"  class="textdata localizejs"  ng-keyup="depheight1()" ng-blur="heightunit1len()" valid-number></span>
+                     </div>
+                     <div class="heightft-{{deviceName}} localizejs" >
+                        <span class="localizejs" ng-show="hfeet">ft</span>
+                        <span class="localizejs" ng-hide="hmeter">m</span>
+                     </div>
+                  </div>
+                  <div class="col col-50">
+                     <div class="healthPopup-{{deviceName}}">
+                        <input type="tel" placeholder="Optional" name="healthInfoHeight2" id="healthInfoHeight2"  class="textdata localizejs"  ng-keyup="heightunit2()" ng-blur="heightunit2len()" valid-number></span>
+                     </div>
+                     <div class="heightft-{{deviceName}}">
+                        <span  class="localizejs" ng-show="hinch">in</span>
+                        <span  class="localizejs" ng-hide="hcmeter">cm</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="item item-input itemtab validated row">
+                  <span class="input-label labelcolor"><b class="formlabel labelfont localizejs">Unit</b></span>
+                  <div class="healthinfoChoose-{{deviceName}} heightChoose-{{deviceName}}">
+                     <select  class="textdata optionselect healthchoose localizejs"  name="healthInfoHeightUnit" id="healthInfoHeightUnit" ng-model="healthheightunit" ng-change="heightunitchange()"  style="width: 100% !important; position: relative; top: 6px;">
+                        <option ng-repeat="getUserheightunit in listOfHeightunit[0].codes" value="{{getUserheightunit.codeId + '@' + getUserheightunit.text}}" ng-selected="getUserheightunit.text == currentPatientDetails[0].anatomy.heightUnit"><b class="localizejs">{{getUserheightunit.text}}</b></option>
+                     </select>
+                  </div>
+               </div> -->
+            </ion-item>
+         </ion-list>
+      </ion-content>
+      <ion-footer-bar style="background-color: #f5f5f5;">
+               <!--  <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+         <div class="ErrorMessage ErrorMessageDiv"  ></div>
+         <button class="button button-clear {{concernListDoneStyle}} localizejs" style="{{PriorSurgeryPopupCancel}};" ng-click="editremovemodal()" >Cancel</button>
+         <h1 class="title {{concernListTitleStyle}} localizejs" style="{{PrimaryConcernPopupTitle}}; ">Enter Address</h1>
+         <button class="button button-clear {{concernListDoneStyle}} localizejs" style="{{PrimaryConcernPopupDone}};" ng-click="heighteditsave()" >Continue</button>
+      </header> -->
+     <!--  <button class="button button-clear {{concernListDoneStyle}} localizejs" style="{{PriorSurgeryPopupCancel}};" ng-click="editremovemodal()" >Cancel</button>
+      <button class="button button-clear {{concernListDoneStyle}} localizejs" style="{{PrimaryConcernPopupDone}};" ng-click="heighteditsave()" >Continue</button> -->
+
+
+   <!--    <button class="button button__cancel localizejs CancelAddressBtn" ng-click="editremovemodal()"><span id="CancelAddress">Cancel</span></button>
+      <button class="button button__green localizejs ContinueAddressBtn" ng-click="addressEditSave()"><span id="ContinueAddress">Update</span></button> -->
+
+      </ion-footer-bar>
+   </ion-view>
+</div>

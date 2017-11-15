@@ -329,6 +329,35 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 .controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, ageFilterReport, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup)
 {
+
+  $(document).ready(function(){
+      //alert("hi document")
+      var textVal = $("#text").text();
+      console.log("textVal "+textVal)
+      var divWidth = $("#theDiv").width();
+      console.log("divWidth "+divWidth)
+      var text = $("#text");
+      console.log("text "+text.width())
+      var fontSize = 12;
+        /*
+        while (text.width() > 180)
+          console.log("text.width() > divWidth ")
+          text.css("font-size", "17px");
+        */
+    });
+$("#localize-widget").show();
+  $('#localize-langs').click(function() {
+      var isLang = $('#localize-langs .activated').text();
+      if(isLang == "Español"){
+          $(".whoNeedsText").css("font-size", "19px");
+      }else{
+          $(".whoNeedsText").css("font-size", "23px");
+      }
+       setCookie('isLang', isLang);
+      isLang = "";
+  });
+
+
   $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
   if($rootScope.chkSSPageEnter) {
         $rootScope.chkSSPageEnter = false;
@@ -2633,7 +2662,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
             } else {
                 $rootScope.regCountry2 = $rootScope.regCountry2;
             }
-            
+
         } else {
              $rootScope.regCountry2 =  $('#regCountryCode').val();
         }
@@ -6700,7 +6729,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     $rootScope.selectedRelatedDependentDetails = [];
                     $rootScope.addressInfoFetch = [];
                     angular.forEach(data.data, function(index) {
-                       
+
                         $rootScope.selectedRelatedDependentDetails.push({
                           'identifiers': angular.fromJson(index.identifiers),
                             'account': angular.fromJson(index.account),

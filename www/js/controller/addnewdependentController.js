@@ -1483,7 +1483,8 @@ $rootScope.editremovemodal = function () {
                     container.css('pointer-events', 'auto');
                     container.attr('data-tap-disabled', 'true');
                     container.on('click', function(){
-                        input.blur();
+                        //input.blur();
+                        document.getElementById('txtPlaces').blur();
                     });
                 }, 200);
                 function fillAddress()

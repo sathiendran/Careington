@@ -35,7 +35,7 @@ angular.module('starter.controllers')
               $rootScope.doGetPatientProfiles();
               $state.go('tab.userhome');
             }
-            $("#localize-widget").show();
+            $("#localize-widget").hide();
         $scope.toggleLeft = function() {
             $ionicSideMenuDelegate.toggleLeft();
             $rootScope.checkAndChangeMenuIcon();

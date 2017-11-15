@@ -18,8 +18,11 @@
 		<a ng-if="cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'" class="add-user-icon add-user-icon-{{deviceName}}" ng-if="customerSso != 'Mandatory'" ng-click = "GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" ><i class="icon ion-plus"></i></a>
 
 
+
 			<div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds" style="height: auto;">
-				<div class="TitleHomeUser_Sub localizejs" id="WhoNeeds">Who Needs Care Today?</div>
+
+
+				<div class="TitleHomeUser_Sub localizejs lang-font whoNeedsText" style="font-size: 23px;">Who Needs Care Today?</div>
 
 					<div class="SearchImage" ng-click="showSearchInput();">
 						<i class="ion-search" style="float: right; font-size: 23px;color: #666666;"></i>

@@ -754,7 +754,8 @@ angular.module('starter.controllers')
 
                     // Leave the input field if a prediction is chosen
                     container.on('click', function(){
-                        input.blur();
+                        //input.blur();
+                        document.getElementById('txtPlaces').blur();
                     });
                 }, 200);
                 //google.maps.event.addDomListener(document.getElementById("pac-input"), 'blur', fillAddress);
