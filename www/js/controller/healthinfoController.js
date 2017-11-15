@@ -267,14 +267,15 @@ $("#localize-widget").show();
             $scope.modal.remove();
         };
         $rootScope.editremovemodal = function () {
+          $("#localize-widget").show();
             $scope.modal.remove()
                 .then(function () {
-                    $scope.healthInfoModel.address = $scope.oldfullAddress; 
+                    $scope.healthInfoModel.address = $scope.oldfullAddress;
                   $scope.route = $scope.oldroute;
                   $scope.address2 = $scope.oldaddress2;
                   $scope.City =  $scope.oldCity;
-                  $scope.ZipCode = $scope.oldZipCode; 
-                  $scope.Country = $scope.oldCountry; 
+                  $scope.ZipCode = $scope.oldZipCode;
+                  $scope.Country = $scope.oldCountry;
                   $scope.state1 = $scope.oldstate1;
                   $scope.State =   $scope.oldState;
                     $scope.modal = null;
@@ -594,6 +595,16 @@ $("#localize-widget").show();
                 $('#healthInfoCountry').val($scope.healthInfoModel.healthInfoCountry);
             }, 10);
 
+
+
+                    console.log($rootScope.addressInfoFetch[0]);
+                    $scope.route = $rootScope.addressInfoFetch[0].addressObject.line1;
+                    $scope.address2 = $rootScope.addressInfoFetch[0].addressObject.line2; 
+                    $scope.City = $rootScope.addressInfoFetch[0].addressObject.city;
+                    $scope.ZipCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
+                    $scope.State = $rootScope.addressInfoFetch[0].addressObject.state;
+                    $scope.state1 = $rootScope.addressInfoFetch[0].addressObject.state;
+                    $scope.Country = $rootScope.addressInfoFetch[0].addressObject.countryCode;
             //$scope.newupdatePatientDetails();
         }
 
@@ -818,6 +829,7 @@ $("#localize-widget").show();
             $scope.healthInfoMobilePhone = $('#healthInfoMobilePhone').val();
             $scope.healthmobilelength = $("#healthInfoMobilePhone").val().length;
             $scope.healthInfoAddress = $scope.healthInfoModel.address;
+            $scope.healthInfoAddressobj = $scope.fullAddressObj;
             if ($rootScope.OrganizationLocation === 'on') {
                 $scope.healthInfoOrganization = $('#healthInfoOrganization').val();
                 $scope.healthInfoLocation = $('#healthInfoLocation').val();
@@ -1432,7 +1444,8 @@ $("#localize-widget").show();
                     physicianSpecialistContact: null,
                     preferedPharmacy: null,
                     pharmacyContact: null,
-                    address: $scope.healthInfoAddress,
+                    address: "",
+                    addressObject: $scope.healthInfoAddressobj,
                     profileImagePath: $rootScope.PatientImageSelectUser,
                     height: $scope.healthInfoHeight + "|" + $scope.healthInfoHeight2,
                     weight: $scope.healthInfoWeight,
@@ -1565,6 +1578,9 @@ $("#localize-widget").show();
                         $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                     } else if (data.statusText === "City is empty") {
                         $scope.ErrorMessage = "City is empty";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    }else if(data.status === 400){
+                        $scope.ErrorMessage = data.data;
                         $rootScope.Validation($scope.ErrorMessage);
                     }
                     else {
@@ -2609,6 +2625,7 @@ $("#localize-widget").show();
         $rootScope.selectYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
         $scope.showSurgeryPopup = function () {
             //$scope.surgeryDisplayTrue = true;
+            $("#localize-widget").hide();
             $ionicModal.fromTemplateUrl('templates/tab-surgeries.html', {
                 scope: $scope,
                 animation: 'slide-in-up',
@@ -2719,6 +2736,7 @@ $("#localize-widget").show();
             LoginService.putPatientMedicalProfile(params);
         };
         $scope.hideSurgeryPopup = function (model) {
+          $("#localize-widget").show();
             $scope.modal.remove();
             $rootScope.showNewSurgeryAdd = false;
             $scope.showEditSurgery = false;
@@ -3245,7 +3263,7 @@ $("#localize-widget").show();
                 range.select();
             }
         };
-      
+
 
         $scope.doGetCountries = function() {
           var params = {
@@ -3270,7 +3288,7 @@ $("#localize-widget").show();
 
         $scope.getStatesForUS = function(){
             var params = {
-                accessToken : $rootScope.accessToken,   
+                accessToken : $rootScope.accessToken,
                 success:function(data){
                         $scope.usStates = data;
                 },
@@ -3290,17 +3308,45 @@ $("#localize-widget").show();
 
         $scope.addressEditSave = function(){
           $scope.healthInfoModel.address =  document.getElementById('fullAddress').innerHTML;
+          var stateObj  = '';
+          var countryFetch  = '';
+          var countryCodeFetch  = '';
+          var stateCodeFetch  = '';
+          //document.getElementById('fullAddress').innerHTML;
           $scope.route = document.getElementById('txtPlaces').value;
           $scope.address2 = document.getElementById('address2').value;
           $scope.City = document.getElementById('city').value;
             var element =  document.getElementById('state');
             if (typeof(element) != 'undefined' && element != null)
+            {
                $scope.State = document.getElementById('state').value;
+               stateCodeFetch = document.getElementById('state').options[document.getElementById('state').selectedIndex].getAttribute("data-state-code");
+               stateObj = $scope.State;
+            }
             var element =  document.getElementById('state1');
             if (typeof(element) != 'undefined' && element != null)
+            {
               $scope.state1 = document.getElementById('state1').value;
+              stateCodeFetch = $scope.state1;
+              stateObj = $scope.state1;
+            }
           $scope.ZipCode = document.getElementById('zipcode').value;
           $scope.Country = document.getElementById('country').value;
+          var countryFetch = document.getElementById('country').options[document.getElementById('country').selectedIndex].text;
+          var countryCodeFetch = document.getElementById('country').value;
+          
+          var res = new Object();
+          res['city'] = $scope.City;
+          res['country'] = countryFetch;
+          res['countryCode'] = countryCodeFetch;
+          res['line1'] = $scope.route;
+          res['line2'] = $scope.address2;
+          res['postalCode'] = $scope.ZipCode;
+          res['state'] = stateObj;
+          res['stateCode'] = stateCodeFetch;
+
+          $scope.fullAddressObj = res;
+          //console.log($scope.fullAddressObj);
              $scope.modal.remove()
                 .then(function () {
                     $scope.modal = null;
@@ -3350,7 +3396,7 @@ $("#localize-widget").show();
 
                  }
             }
-            
+
             if(fullAddressCombo.length != 0 && fullAddressCombo!=', ' && fullAddressCombo !=',' )
                             document.getElementById('fullAddress').innerHTML = fullAddressCombo;
             if(fullAddressCombo.length == 0 || fullAddressCombo == ', ' || fullAddressCombo ==',' )
@@ -3367,7 +3413,17 @@ $("#localize-widget").show();
         });
     }*/
 
+                /*    $scope.route = $rootScope.currentPatientDetails[0].addressObject.line1;
+                    $scope.address2 = $rootScope.currentPatientDetails[0].addressObject.line2; 
+                    $scope.City = $rootScope.currentPatientDetails[0].addressObject.city;
+                    $scope.ZipCode = $rootScope.currentPatientDetails[0].addressObject.postalCode;
+                    $scope.State = $rootScope.currentPatientDetails[0].addressObject.state;
+                    $scope.state1 = $rootScope.currentPatientDetails[0].addressObject.state;
+                    $scope.Country = $rootScope.currentPatientDetails[0].addressObject.countryCode;*/
+
+
         $scope.addressEditModal = function () {
+          $("#localize-widget").hide();
             $ionicModal.fromTemplateUrl('templates/tab-addressedittemplate.html', {
                 scope: $scope,
                 animation: 'slide-in-up',
@@ -3417,7 +3473,7 @@ $("#localize-widget").show();
                 var place = autocomplete.getPlace();
                 $scope.$apply(function() {
                     $scope.route = '';
-                    $scope.address2 = ''; 
+                    $scope.address2 = '';
                     $scope.City = '';
                     $scope.ZipCode = '';
                     $scope.State = '';
@@ -3449,7 +3505,7 @@ $("#localize-widget").show();
                                 {
                                    // $scope.getStatesForUS();
                                 }else{
-                                     $scope.state1 =  $scope.State; 
+                                     $scope.state1 =  $scope.State;
                                      $scope.State = '';
                                 }
                             }
@@ -3499,7 +3555,7 @@ $("#localize-widget").show();
                             document.getElementById('fullAddress').innerHTML = fullAddressCombo;
                         if(fullAddressCombo.length == 0 || fullAddressCombo ==', ' || fullAddressCombo ==',' )
                             document.getElementById('fullAddress').innerHTML = "Please enter address";
-                });     
+                });
              } // fillAddress closed
         }); // modal closed
      }); // then closed

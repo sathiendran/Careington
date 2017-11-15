@@ -312,7 +312,7 @@
                         <ion-google-place placeholder="Full Address" style="line-height:25px" ng-model="healthInfoModel.address" />
                      </span> -->
 
-                     <span class="DOBClass-{{deviceName}}" ng-click="addressEditModal()">
+                     <span class="healthViewDetails" ng-click="addressEditModal()">
                         {{healthInfoModel.address}}
                      </span>
 
@@ -435,7 +435,7 @@
                   </div>
 
 
-                  <div><h3 class="healthpat"><div><span class="localizejs ">Patient IDs</span></div></h3></div>
+                  <div><h3 class="healthpat" style="padding: 2px 2px 6px 2px;"><div><span class="localizejs ">Patient IDs</span></div></h3></div>
                   <div class="item item-input itemtab validated" ng-repeat="patientdisplay in PatientidupdateList" style="display: {{viewpatapiDisplay}};">
                     <div class="col col-45">
 

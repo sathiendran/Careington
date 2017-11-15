@@ -367,6 +367,7 @@
             /***************** PUBLIC API *******************/
             this.load = function () {
                 //this.isDataInit = true;
+                var aa = false;
                 this.set("vm_isNotificationActive", true);
                 this.set("vm_isNotificationActive", false);
                 loadJQuery();
@@ -406,7 +407,7 @@
                         that._setFilterDate(currentUserTime);
                     }
                 });
-                that.isDataInit = this.isDataInit;
+              //  that.isDataInit = this.isDataInit;
                 $customerDataService.getRulesStatus().done(function (status) {
                       that.set("isResponseRuleActive", status.responseRuleActive);
                       that.set("isAddressRuleActive", status.addressRuleActive);
@@ -415,7 +416,7 @@
                       that.trigger("change", { field: "vm_isResponseRuleInactive" });
 
                       var selectedItem = snap.profileSession;
-                      if(typeof that.selectedPatient != 'undefined') {
+                      if(typeof that.selectedPatient != 'undefined' && aa != true) {
                         //  if (selectedItem.profileId !== that.selectedPatient.id) {
                               that.set("vm_isPatientSelectorActive", false);
                               that._setPatientForSelfScheduling(selectedItem);
@@ -443,6 +444,7 @@
                 }
                 if (!this.isDataInit) {
                     this.isDataInit = true;
+                    var aa = true;
                     this._updateCliniciansList();
                 }
             };

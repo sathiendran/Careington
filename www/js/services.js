@@ -237,6 +237,7 @@ angular.module('starter.services', [])
 			  method: 'POST',
 			  data: {
                 address: params.address,
+                addressObject : params.addressObject,
                 dob: params.dob,
         				email: params.email,
         				name: params.name,

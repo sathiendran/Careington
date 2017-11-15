@@ -2893,11 +2893,13 @@ $rootScope.checkAndChangeMenuIcon = function() {
             success: function(data) {
 
                 $rootScope.primaryPatientDetails = [];
+                $rootScope.addressInfoFetch = [];
                 angular.forEach(data.data, function(index) {
                     $rootScope.primaryPatientDetails.push({
                         'account': angular.fromJson(index.account),
                         'address': index.address,
                         'addresses': angular.fromJson(index.addresses),
+                        'addressObject': angular.fromJson(index.addressObject),
                         'anatomy': angular.fromJson(index.anatomy),
                         'countryCode': index.countryCode,
                         'createDate': index.createDate,
@@ -2912,8 +2914,14 @@ $rootScope.checkAndChangeMenuIcon = function() {
                         'schoolContact': index.schoolContact,
                         'schoolName': index.schoolName
                     });
+                     $rootScope.addressInfoFetch.push({
+                            'address': index.address,
+                            'addresses': angular.fromJson(index.addresses),
+                            'addressObject': angular.fromJson(index.addressObject),
+                        });
                 });
-
+               // $rootScope.addressInfoFetch = '';
+               // $rootScope.addressInfoFetch = $scope.primaryPatientDetailsSecond;
                 $rootScope.patientInfomation = data.data[0];
                 $rootScope.patientAccount = data.data[0].account;
                 $rootScope.patientAddresses = data.data[0].addresses;
@@ -6719,12 +6727,15 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             success: function(data) {
                 if (nextPage === 'tab.relatedusers') {
                     $rootScope.selectedRelatedDependentDetails = [];
+                    $rootScope.addressInfoFetch = [];
                     angular.forEach(data.data, function(index) {
+                       
                         $rootScope.selectedRelatedDependentDetails.push({
                           'identifiers': angular.fromJson(index.identifiers),
                             'account': angular.fromJson(index.account),
                             'address': index.address,
                             'addresses': angular.fromJson(index.addresses),
+                            'addressObject': angular.fromJson(index.addressObject),
                             'anatomy': angular.fromJson(index.anatomy),
                             'countryCode': index.countryCode,
                             'createDate': index.createDate,
@@ -6740,7 +6751,16 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             'schoolName': index.schoolName,
 
                         });
+                        $rootScope.addressInfoFetch.push({
+                            'address': index.address,
+                            'addresses': angular.fromJson(index.addresses),
+                            'addressObject': angular.fromJson(index.addressObject),
+                        });
+
+
                     });
+                   // $rootScope.addressInfoFetch = '';
+                   // $rootScope.addressInfoFetch = $scope.selectedRelatedDependentDetailsSecond;
                     $rootScope.PatientIdentifiers = $rootScope.selectedRelatedDependentDetails[0].identifiers;
                     var date = new Date($rootScope.selectedRelatedDependentDetails[0].dob);
                     $rootScope.dependentDOB = $filter('date')(date, "yyyy-MM-dd");
@@ -6805,12 +6825,14 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
                 } else {
                     $scope.selectedPatientDetails = [];
+                    $rootScope.addressInfoFetch = [];
                     angular.forEach(data.data, function(index) {
                         $scope.selectedPatientDetails.push({
                           'identifiers': angular.fromJson(index.identifiers),
                             'account': angular.fromJson(index.account),
                             'address': index.address,
                             'addresses': angular.fromJson(index.addresses),
+                            'addressObject': angular.fromJson(index.addressObject),
                             'anatomy': angular.fromJson(index.anatomy),
                             'countryCode': index.countryCode,
                             'createDate': index.createDate,
@@ -6833,7 +6855,16 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             'schoolName': index.schoolName
                         });
 
+
+                        $rootScope.addressInfoFetch.push({
+                            'address': index.address,
+                            'addresses': angular.fromJson(index.addresses),
+                            'addressObject': angular.fromJson(index.addressObject),
+                        });
+
                     });
+                    //$rootScope.addressInfoFetch = '';
+                  //  $rootScope.addressInfoFetch = $rootScope.selectedPatientDetailsSecond;
                     $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
                     $rootScope.cutaddress = $rootScope.currentPatientDetails[0].address;
                     $rootScope.PatientIdentifiers = $rootScope.currentPatientDetails[0].identifiers;
@@ -6972,12 +7003,14 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
          success: function(data) {
              if (nextPage === 'tab.relatedusers') {
                  $rootScope.selectedRelatedDependentDetails = [];
+                 $rootScope.addressInfoFetch = [];
                  angular.forEach(data.data, function(index) {
                      $rootScope.selectedRelatedDependentDetails.push({
                        'identifiers': angular.fromJson(index.identifiers),
                          'account': angular.fromJson(index.account),
                          'address': index.address,
                          'addresses': angular.fromJson(index.addresses),
+                         'addressObject': angular.fromJson(index.addressObject),
                          'anatomy': angular.fromJson(index.anatomy),
                          'countryCode': index.countryCode,
                          'createDate': index.createDate,
@@ -6993,7 +7026,15 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                          'schoolName': index.schoolName,
 
                      });
+
+                     $rootScope.addressInfoFetch.push({
+                            'address': index.address,
+                            'addresses': angular.fromJson(index.addresses),
+                            'addressObject': angular.fromJson(index.addressObject),
+                        });
                  });
+               //    $rootScope.addressInfoFetch = '';
+               //  $rootScope.addressInfoFetch = $scope.selectedRelatedDependentDetailsSecond;
                  $rootScope.PatientIdentifiers = $rootScope.selectedRelatedDependentDetails[0].identifiers;
                  var date = new Date($rootScope.selectedRelatedDependentDetails[0].dob);
                  $rootScope.dependentDOB = $filter('date')(date, "yyyy-MM-dd");
@@ -7058,12 +7099,14 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
              } else {
                  $scope.selectedPatientDetails = [];
+                 $rootScope.addressInfoFetch = [];
                  angular.forEach(data.data, function(index) {
                      $scope.selectedPatientDetails.push({
                        'identifiers': angular.fromJson(index.identifiers),
                          'account': angular.fromJson(index.account),
                          'address': index.address,
                          'addresses': angular.fromJson(index.addresses),
+                          'addressObject': angular.fromJson(index.addressObject),
                          'anatomy': angular.fromJson(index.anatomy),
                          'countryCode': index.countryCode,
                          'createDate': index.createDate,
@@ -7086,7 +7129,15 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                          'schoolName': index.schoolName
                      });
 
+                     $rootScope.addressInfoFetch.push({
+                            'address': index.address,
+                            'addresses': angular.fromJson(index.addresses),
+                            'addressObject': angular.fromJson(index.addressObject),
+                        });
+
                  });
+                // $rootScope.addressInfoFetch = '';
+                // $rootScope.addressInfoFetch = $scope.selectedPatientDetailsSecond;
                  $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
                  $rootScope.cutaddress = $rootScope.currentPatientDetails[0].address;
                  $rootScope.PatientIdentifiers = $rootScope.currentPatientDetails[0].identifiers;
