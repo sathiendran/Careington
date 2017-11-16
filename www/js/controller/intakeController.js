@@ -1,5 +1,32 @@
 angular.module('starter.controllers')
 .controller('IntakeFormsCtrl', function($scope, $ionicPlatform, $window, $ionicBackdrop,  htmlEscapeValue, $interval, $ionicSideMenuDelegate, replaceCardNumber, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $timeout, CustomCalendar, CustomCalendarMonth) {
+
+
+      var localizeCurrent = $('#localize-current').text();
+         if(localizeCurrent == "Español"){
+              $scope.concernListTitleSpanishFont = "font-size:16px !important;margin-left: 30px;";
+              $scope.cancelbtnSpanishFont = "font-size:14px !important";
+              $scope.donebtnSpanishFont = "font-size:14px !important";
+         }else{
+              $scope.concernListTitleSpanishFont = "font-size:20px !important";
+              $scope.cancelbtnSpanishFont = "font-size:20px !important";
+              $scope.donebtnSpanishFont = "font-size:20px !important";
+         }
+         $('#localize-langs').click(function() {
+             var isLang = $('#localize-langs .activated').text();
+               if(isLang == "Español"){
+                    $scope.concernListTitleSpanishFont = "font-size:16px !important;margin-left: 30px;";
+                    $scope.cancelbtnSpanishFont = "font-size:14px !important";
+                    $scope.donebtnSpanishFont = "font-size:14px !important";
+               }else{
+                    $scope.concernListTitleSpanishFont = "font-size:20px !important";
+                    $scope.cancelbtnSpanishFont = "font-size:20px !important";
+                    $scope.donebtnSpanishFont = "font-size:20px !important";
+               }
+             isLang = "";
+         });
+
+
 $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
 debugger;
 $("#localize-widget").hide();
