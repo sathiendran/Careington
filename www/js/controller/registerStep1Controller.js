@@ -405,7 +405,15 @@ angular.module('starter.controllers')
           mobileNumberWithCountryCode: $scope.regCountry2 + $scope.mobile,
           //timeZoneId: $scope.regTimezone,
         //  country: $scope.regCountryName,
-          success: function() {
+          success: function(data) {
+            $rootScope.addressInfoFetch = [];
+                angular.forEach(data.data, function(index) {
+                     $rootScope.addressInfoFetch.push({
+                            'address': index.address,
+                            'addresses': angular.fromJson(index.addresses),
+                            'addressObject': angular.fromJson(index.addressObject),
+                        });
+                });
               $rootScope.isRegistrationCompleted = true;
               $rootScope.registedEmail = $scope.email;
               $rootScope.registedPwd = $scope.password;

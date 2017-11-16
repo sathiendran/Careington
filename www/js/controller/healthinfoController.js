@@ -15,6 +15,14 @@ angular.module('starter.controllers')
                 var patId = $stateParams.getid;
                 $rootScope.doGetSelectedPatientProfilesSS(patId, true);
             }
+            console.log($rootScope.addressInfoFetch);
+            $scope.route = $rootScope.addressInfoFetch[0].addressObject.line1;
+            $scope.address2 = $rootScope.addressInfoFetch[0].addressObject.line2; 
+            $scope.City = $rootScope.addressInfoFetch[0].addressObject.city;
+            $scope.ZipCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
+            $scope.State = $rootScope.addressInfoFetch[0].addressObject.state;
+            $scope.state1 = $rootScope.addressInfoFetch[0].addressObject.state;
+            $scope.Country = $rootScope.addressInfoFetch[0].addressObject.countryCode;
         };
 $("#localize-widget").show();
         $scope.getOnlyNumbers = function (text) {
@@ -597,13 +605,7 @@ $("#localize-widget").show();
 //$scope.doGetCountries();
 //$scope.getStatesForUS();
 //$scope.loadAddressData();
-            $scope.route = $rootScope.addressInfoFetch[0].addressObject.line1;
-            $scope.address2 = $rootScope.addressInfoFetch[0].addressObject.line2; 
-            $scope.City = $rootScope.addressInfoFetch[0].addressObject.city;
-            $scope.ZipCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
-            $scope.State = $rootScope.addressInfoFetch[0].addressObject.state;
-            $scope.state1 = $rootScope.addressInfoFetch[0].addressObject.state;
-            $scope.Country = $rootScope.addressInfoFetch[0].addressObject.countryCode;
+            
 
 
                     

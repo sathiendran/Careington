@@ -329,6 +329,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 .controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, ageFilterReport, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup)
 {
+
       var localizeCurrent = $('#localize-current').text();
          if(localizeCurrent == "Español"){
              $(".whoNeedsText").css("font-size", "19px");
@@ -347,6 +348,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                }
              isLang = "";
          });
+
 
   $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
   if($rootScope.chkSSPageEnter) {
