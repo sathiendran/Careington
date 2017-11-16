@@ -41,7 +41,7 @@
                   <input type="text" class ="localizejs" placeholder="Required" ng-model="getCardDetails.LastName" name="LastName" id="LastName" required>
                </div>
                <div class="item item-input ">
-                  <span class="input-label cardfont localizejs" >Card Number</span>
+                  <span class="input-label cardfont localizejs" style="white-space: normal;">Card Number</span>
                   <!--<input type="number" style="{{invalidCard}}" placeholder="Required" ng-model="getCardDetails.CardNumber" name="CardNumber" id="CardNumber" maxlength="19" required> -->
                   <input style="padding-top: 10px; font-size: 18px; line-height: 20px; {{invalidCard}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" class ="localizejs" ng-model="getCardDetails.CardNumber" name="CardNumber" id="CardNumber" maxlength="19" required/>
                </div>
@@ -71,7 +71,7 @@
                   <input style="font-size: 18px; -webkit-text-security: disc; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "number" id="password" pattern="[0-9]*" inputmode="numeric"  placeholder="Required" class= "localizejs" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>
                </div>
                <div class="item item-input" >
-                  <span class="input-label cardfont localizejs" >Billing Address</span>
+                  <span class="input-label cardfont localizejs" style="white-space: normal;">Billing Address</span>
                   <input type="text" class="localizejs" placeholder="Required" ng-model="getCardDetails.BillingAddress"  name="BillingAddress" id="BillingAddress" required>
                </div>
                <div class="item item-input" >
