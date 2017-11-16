@@ -588,8 +588,7 @@ this.getPatientMedicalProfile = function(params){
    this.putPatientMedicalProfile = function(params){
       var requestpatientInfo = {
           headers: util.getHeaders(params.accessToken),
-          url: apiCommonURL + '/api/v2/patients/medicalprofile/'+ params.PatientId
-          ,
+          url: apiCommonURL + '/api/v2/patients/medicalprofile/'+ params.PatientId,
           method: 'PUT',
              data: {
                 MedicationAllergies: params.MedicationAllergies,

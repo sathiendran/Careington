@@ -594,9 +594,16 @@ $("#localize-widget").show();
                 $('#healthInfoTimezone').val($scope.healthInfoModel.healthInfoTimezone);
                 $('#healthInfoCountry').val($scope.healthInfoModel.healthInfoCountry);
             }, 10);
-$scope.doGetCountries();
-$scope.getStatesForUS();
-$scope.loadAddressData();
+//$scope.doGetCountries();
+//$scope.getStatesForUS();
+//$scope.loadAddressData();
+            $scope.route = $rootScope.addressInfoFetch[0].addressObject.line1;
+            $scope.address2 = $rootScope.addressInfoFetch[0].addressObject.line2; 
+            $scope.City = $rootScope.addressInfoFetch[0].addressObject.city;
+            $scope.ZipCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
+            $scope.State = $rootScope.addressInfoFetch[0].addressObject.state;
+            $scope.state1 = $rootScope.addressInfoFetch[0].addressObject.state;
+            $scope.Country = $rootScope.addressInfoFetch[0].addressObject.countryCode;
 
 
                     
@@ -3268,46 +3275,12 @@ $scope.loadAddressData();
             }
         };
 
-
-        $scope.doGetCountries = function() {
-          var params = {
-            accessToken: $rootScope.accessToken,
-            success: function(data) {
-                    $scope.CountryList = data;
-                    console.log($scope.CountryList);
-              },
-            error: function(data, status) {
-                if (status === 0) {
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-                } else if(status === 503) {
-                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
-                } else {
-                    $rootScope.serverErrorMessageValidation();
-                }
+        $scope.changeCountry = function(){
+            var country = document.getElementById('country').value;
+            if(country != 'Select Country')
+            {
+             //   $scope.imageName = 'images/countries/flags/'+country+'-32.png';
             }
-        };
-        LoginService.getCountriesList(params);
-      }
-
-        $scope.getStatesForUS = function(){
-            var params = {
-                accessToken : $rootScope.accessToken,
-                success:function(data){
-                        $scope.usStates = data;
-                },
-                error:function(data,status){
-                    if (status === 0) {
-                        $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                        $rootScope.Validation($scope.ErrorMessage);
-                    } else if(status === 503) {
-                      $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
-                    } else {
-                        $rootScope.serverErrorMessageValidation();
-                    }
-                }
-            };
-            LoginService.getStatesForUS(params);
         }
 
         $scope.addressEditSave = function(){
@@ -3375,7 +3348,11 @@ $scope.loadAddressData();
             }
             var zipcode = document.getElementById('zipcode').value;
             if(document.getElementById('country').value != 'Select Country' )
+            {
+
                         var country = document.getElementById('country').value;
+                        $scope.imageName = 'images/countries/flags/'+country+'-32.png';
+            }
             var res = new Object();
             res['txtPlaces'] = txtPlaces;
             res['address2'] = address2;
@@ -3448,6 +3425,7 @@ $scope.loadAddressData();
                 $scope.oldCity = document.getElementById('city').value;
                 $scope.oldZipCode = document.getElementById('zipcode').value;
                 $scope.oldCountry = document.getElementById('country').value;
+                $scope.imageName = 'images/countries/flags/'+$scope.oldCountry+'-32.png';
                 var element =  document.getElementById('state1');
                         if (typeof(element) != 'undefined' && element != null)
                         {
@@ -3526,6 +3504,7 @@ $scope.loadAddressData();
                                 document.getElementById('state1').value = $scope.state1;
                         document.getElementById('zipcode').value = $scope.ZipCode;
                         document.getElementById('country').value = $scope.Country;
+                        $scope.imageName = 'images/countries/flags/'+$scope.Country+'-32.png';
                         if($scope.State != '')
                             var state = $scope.State;
                         if($scope.state1 != '')

@@ -1499,6 +1499,47 @@ $rootScope.checkAndChangeMenuIcon = function() {
         $scope.doGetToken();
     }
 
+
+ $rootScope.doGetCountries = function() {
+          var params = {
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+                    $rootScope.CountryList = data;
+                    console.log($scope.CountryList);
+              },
+            error: function(data, status) {
+                if (status === 0) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503) {
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+        LoginService.getCountriesList(params);
+      }
+
+        $rootScope.getStatesForUS = function(){
+            var params = {
+                accessToken : $rootScope.accessToken,
+                success:function(data){
+                        $rootScope.usStates = data;
+                },
+                error:function(data,status){
+                    if (status === 0) {
+                        $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if(status === 503) {
+                      $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                    } else {
+                        $rootScope.serverErrorMessageValidation();
+                    }
+                }
+            };
+            LoginService.getStatesForUS(params);
+        }
     $rootScope.cancelProviderSearch = function() {
         navigator.notification.confirm(
             'Are you sure that you want to cancel?',
@@ -3080,6 +3121,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
       $rootScope.primaryPatSSDetails = '';
       $scope.doGetConutriesList();
       $rootScope.doGetLocations();
+      $rootScope.doGetCountries();
+      $rootScope.getStatesForUS();
 
         var params = {
             accessToken: $rootScope.accessToken,
@@ -3142,12 +3185,14 @@ $rootScope.checkAndChangeMenuIcon = function() {
                      $rootScope.checkedpatientdet = '';
                      $rootScope.PatientidupdateList = [];
                     $rootScope.primaryPatientId = $rootScope.currentPatientDetails[0].profileId;
-                    $state.go('tab.healthinfo');
+                    
                     $scope.chkPatientFillDetails = true;
                     if($rootScope.currentPatientDetails[0].profileId != '25198')
                     {
                           $rootScope.doGetRequiredPatientProfiles($rootScope.currentPatientDetails[0].profileId, $scope.chkPatientFillDetails);
                     }
+
+                    $state.go('tab.healthinfo');
 
                 }
 
@@ -3204,6 +3249,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
             patientId: patientId,
             success: function(data) {
                 $scope.selectedPatientDetails = [];
+                $rootScope.addressInfoFetch = [];
                 //angular.fromJson(index.billingAddress)
                 angular.forEach(data.data, function(index) {
                     $scope.selectedPatientDetails.push({
@@ -3211,6 +3257,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                         'account': angular.fromJson(index.account),
                         'address': index.address,
                         'addresses': angular.fromJson(index.addresses),
+                        'addressObject': angular.fromJson(index.addressObject),
                         'anatomy': angular.fromJson(index.anatomy),
                         'countryCode': index.countryCode,
                         'createDate': index.createDate,
@@ -3232,8 +3279,15 @@ $rootScope.checkAndChangeMenuIcon = function() {
                         'schoolContact': index.schoolContact,
                         'schoolName': index.schoolName
                     });
+
+                     $rootScope.addressInfoFetch.push({
+                            'address': index.address,
+                            'addresses': angular.fromJson(index.addresses),
+                            'addressObject': angular.fromJson(index.addressObject),
+                        });
                 });
                 $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
+                $rootScope.addressInfoFetch = $scope.selectedPatientDetails;
                 $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
                 $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
                 $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));

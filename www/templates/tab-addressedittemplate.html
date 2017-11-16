@@ -20,7 +20,7 @@
                </div>
             </div> -->
                   <div class="row addressRow" style="    height: 70px;">
-                     <div class="col-5" style="width: 50px;background-color:white;">
+                     <div class="col-5" style="width: 50px;background-color:white;padding-right: 12px;">
                         <div class="directionIcon">
                             <i ng-bind-html="drawSVGCIcon('address');"></i>
                         </div>
@@ -80,10 +80,15 @@
                      <div class="col">
                         <label class="localizejs addresslabel"> Country</label>
                         <div>
-                           <select  class="textdata localizejs"  name="country" id="country" ng-model="Country" ng-change="makeAddress()" style="width: 100% !important; position: relative; top: 6px;border: none;"   >
+                           <div style="margin-left: 12px; margin-top: 10px;">
+                              <img src="{{imageName}}" >
+                           <select  class="textdata localizejs"  name="country" id="country" ng-model="Country" ng-change="changeCountry();makeAddress()" style="width: 100% !important; position: relative;border: none;top: -2px;    margin-left: -35px;padding-left: 30px;"   >
                               <option class="localizejs" value="Select Country">Select Country</option>
                         <option ng-repeat="country in CountryList" value="{{country.alpha2}}" class="localizejs">{{country.name}}</option>
                      </select>
+
+                     </div>
+
 
                      <!-- <select  class="textdata localizejs"  name="country" id="country" ng-model="Country" ng-change="findCountry(country)" " ng-options="x for x in CountryList">
                      </select> -->

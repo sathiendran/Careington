@@ -517,7 +517,7 @@ angular.module('starter.controllers')
 
         };
 
-  $scope.doGetCountries = function() {
+  /*$scope.doGetCountries = function() {
           var params = {
             accessToken: $rootScope.accessToken,
             success: function(data) {
@@ -559,7 +559,7 @@ angular.module('starter.controllers')
                 }
             };
             LoginService.getStatesForUS(params);
-        }
+        }*/
 
         $scope.addressEditSave = function(){
           if(document.getElementById('fullAddress').innerHTML != 'Please enter address')
@@ -634,7 +634,11 @@ angular.module('starter.controllers')
             }
             var zipcode = document.getElementById('zipcode').value;
             if(document.getElementById('country').value != 'Select Country' )
+            {
+
                         var country = document.getElementById('country').value;
+                        $scope.imageName = 'images/countries/flags/'+country+'-32.png';
+            }
             var res = new Object();
             res['txtPlaces'] = txtPlaces;
             res['address2'] = address2;
@@ -721,6 +725,7 @@ angular.module('starter.controllers')
                   $scope.oldCity = document.getElementById('city').value;
                   $scope.oldZipCode = document.getElementById('zipcode').value;
                   $scope.oldCountry = document.getElementById('country').value;
+		  $scope.imageName = 'images/countries/flags/'+$scope.oldCountry+'-32.png';
                 var element =  document.getElementById('state1');
                         if (typeof(element) != 'undefined' && element != null)
                             {
@@ -814,6 +819,7 @@ angular.module('starter.controllers')
                                 document.getElementById('state1').value = $scope.state1;
                         document.getElementById('zipcode').value = $scope.ZipCode;
                         document.getElementById('country').value = $scope.Country;
+                        $scope.imageName = 'images/countries/flags/'+$scope.Country+'-32.png';
                         if($scope.State != '')
                             var state = $scope.State;
                         if($scope.state1 != '')
