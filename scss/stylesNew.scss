@@ -5111,10 +5111,9 @@ margin-right: 10px;
      .newLogPageCont {
           margin-top: 7px !important;
           .enterEmailText {
-               line-height: 0px !important;
                font-size: 18px !important;
-               padding-bottom: 13px;
-               padding-top: 5px;
+               padding-bottom: 5px;
+               line-height: 20px !important;
           }
      }
      .btn1 {
@@ -6472,3 +6471,15 @@ a.item.item-avatar.avatheight:first-child{
   width: 46% !important;
 }
 //End Sakthi
+
+/*
+.itemFloat-Android{
+    text-align:center;
+    margin-left:51px;
+    float:  left;
+}
+.itemFloat-IOS{
+    text-align:center;
+    margin-left:51px;
+    float:  left;
+}*/
