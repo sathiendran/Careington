@@ -1,10 +1,32 @@
 angular.module('starter.controllers')
     .controller('userAccountCtrl', function($scope, $ionicScrollDelegate, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $filter, $timeout, $ionicPopup) {
+      
+var localizeCurrent = $('#localize-current').text();
+         if(localizeCurrent == "Español"){
+             $scope.ualabel = "margin-left:-97px !important";
+         }else{
+             $scope.ualabel = "margin-left:0px !important";
+         }
+         $('#localize-langs').click(function() {
+             
+             var isLang = $('#localize-langs .activated').text();
+               if(isLang == "Español"){
+                   $scope.ualabel = "margin-left:-97px !important";
+               }else{
+                   $scope.ualabel = "margin-left:0px !important";
+               }
+               isLang = '';
+             
+         });
+
       $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
         $rootScope.drawSVGCIcon = function(iconName) {
             return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
         };
 $("#localize-widget").show();
+
+
+
         $ionicPlatform.registerBackButtonAction(function() {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||
