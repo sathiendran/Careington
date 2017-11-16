@@ -1,6 +1,8 @@
 angular.module('starter.controllers')
 .controller('IntakeFormsCtrl', function($scope, $ionicPlatform, $window, $ionicBackdrop,  htmlEscapeValue, $interval, $ionicSideMenuDelegate, replaceCardNumber, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $timeout, CustomCalendar, CustomCalendarMonth) {
 $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+debugger;
+$("#localize-widget").hide();
     $ionicPlatform.registerBackButtonAction(function() {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -39,6 +41,11 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
     }, 100);
     // activeConsultConnection.stop();
   //  activeConsultConnection.qs = {};
+$scope.LocalizeHide = function(){
+
+  $("#localize-widget").hide();
+}
+
    activeConsultConnection = null;
    activeRoomConHub = null;
     $rootScope.currState = $state;
@@ -403,6 +410,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                     $scope.modal.remove();
                 }
             }
+            $("#localize-widget").hide();
         };
         // Onchange of primary concerns
         $scope.OnSelectPatientPrimaryConcern = function (position, primaryConcernList, items) {
@@ -428,6 +436,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                 buttons: [{
                     text: '<span class="localizejs">Cancel</span>',
                     onTap: function (e) {
+                      debugger;
                         angular.forEach($scope.primaryConcernList, function (item) {
                             item.checked = false;
                         });
@@ -436,7 +445,8 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                     text: '<b class="localizejs">Done</b>',
                     type: 'button-positive',
                     onTap: function (e) {
-                        if (!$scope.data.PrimaryConcernOther) {
+                      debugger;
+                    if (!$scope.data.PrimaryConcernOther) {
                             if ($rootScope.PrimaryPopup === 0) {
                                 $scope.ErrorMessages = "Please enter a reason for today's visit";
                                 $rootScope.PopupValidation($scope.ErrorMessages);
@@ -452,9 +462,12 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                             };
                             $scope.primaryConcernList.splice(1, 0, newPrimaryConcernItem);
                             $scope.closePrimaryConcerns();
+                            $("#localize-widget").hide();
                             return $scope.data.PrimaryConcernOther;
                         }
+
                     }
+
                 }]
             });
         };
@@ -1950,6 +1963,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                 }, 300);
             }
         };
+        debugger;
   $("#localize-widget").hide();
         $scope.goTOSchedule = function () {
             $('<link/>', {
