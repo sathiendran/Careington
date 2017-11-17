@@ -5,6 +5,25 @@ angular.module('starter.controllers')
             return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
         };
 
+ var localizeCurrent = $('#localize-current').text();
+           if(localizeCurrent == "Español"){
+
+               $scope.HealthinfoPatient = "width: 106% !important; margin-left: -7px; !important";
+           }else{
+               // $scope.HealthinfoPatient = "font-size:20px !important";
+               //   $scope.HealthinfoPatient = "padding-top: 15px !important;"
+           }
+           $('#localize-langs').click(function() {
+               var isLang = $('#localize-langs .activated').text();
+                 if(isLang == "Español"){
+                      $scope.HealthinfoPatient = "width: 106% !important; margin-left: -7px; !important";
+                 }else{
+                     // $(".whoNeedsText").css("font-size", "23px");
+                     // $scope.HealthinfoPatient = "font-size:20px !important";
+                     //  $scope.HealthinfoPatient = "padding-top: 15px !important;"
+                 }
+               isLang = "";
+           });
 
         $scope.fetchPatientDetails = function () {
             $scope.firsttimecall = 0;

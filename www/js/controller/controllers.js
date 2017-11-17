@@ -335,18 +335,22 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
           //   $(".whoNeedsText").css("font-size", "19px");
              $scope.whoNeedsText = "font-size:17px !important";
              $scope.consentTitleFont = "font-size:17px !important";
+              $scope.ProviderTiltefont = "padding-top: 30px !important;";
          }else{
              $scope.whoNeedsText = "font-size:21px !important";
              $scope.consentTitleFont = "font-size:20px !important";
+             $scope.ProviderTiltefont = "padding-top: 15px !important;";
          }
          $('#localize-langs').click(function() {
              var isLang = $('#localize-langs .activated').text();
                if(isLang == "Español"){
                     $scope.whoNeedsText = "font-size:17px !important";
                    $scope.consentTitleFont = "font-size:17px !important";
+                    $scope.ProviderTiltefont = "padding-top: 30px !important;";
                }else{
                    $scope.whoNeedsText = "font-size:21px !important";
                    $scope.consentTitleFont = "font-size:20px !important";
+                   $scope.ProviderTiltefont = "padding-top: 15px !important;";
                }
              isLang = "";
          });
@@ -638,7 +642,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
