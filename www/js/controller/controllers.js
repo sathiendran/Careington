@@ -332,21 +332,23 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 //venkat start
       var localizeCurrent = $('#localize-current').text();
          if(localizeCurrent == "Español"){
-             $(".whoNeedsText").css("font-size", "19px");
+          //   $(".whoNeedsText").css("font-size", "19px");
+             $scope.whoNeedsText = "font-size:17px !important";
              $scope.consentTitleFont = "font-size:17px !important";
               $scope.ProviderTiltefont = "padding-top: 30px !important;";
          }else{
+             $scope.whoNeedsText = "font-size:21px !important";
              $scope.consentTitleFont = "font-size:20px !important";
              $scope.ProviderTiltefont = "padding-top: 15px !important;";
          }
          $('#localize-langs').click(function() {
              var isLang = $('#localize-langs .activated').text();
                if(isLang == "Español"){
-                   $(".whoNeedsText").css("font-size", "19px");
+                    $scope.whoNeedsText = "font-size:17px !important";
                    $scope.consentTitleFont = "font-size:17px !important";
                     $scope.ProviderTiltefont = "padding-top: 30px !important;";
                }else{
-                   $(".whoNeedsText").css("font-size", "23px");
+                   $scope.whoNeedsText = "font-size:21px !important";
                    $scope.consentTitleFont = "font-size:20px !important";
                    $scope.ProviderTiltefont = "padding-top: 15px !important;";
                }

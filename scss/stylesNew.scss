@@ -6294,15 +6294,21 @@ a.item.item-avatar.avatheight:first-child{
 }
 
 @media (min-width: 320px) and (max-width: 568px) {
-  #viewicon {
-      margin-top: -6px !important;
-  }
+    #viewicon {
+        margin-top: -6px !important;
+    }
     .creditCount-IOS5 {
       margin-right: -55px !important;
       border: none !important;
     }
     .credit-IOS5 {
       display:none !important;
+    }
+    .whoNeedsText-ios5 {
+      font-size: 21px;
+    }
+    .ChangePatient {
+      margin-left: -10px;
     }
 }
 
