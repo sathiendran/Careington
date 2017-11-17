@@ -1,16 +1,24 @@
 angular.module('starter.controllers')
 .controller('IntakeFormsCtrl', function($scope, $ionicPlatform, $window, $ionicBackdrop,  htmlEscapeValue, $interval, $ionicSideMenuDelegate, replaceCardNumber, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $timeout, CustomCalendar, CustomCalendarMonth) {
 
-
+//venkat start cancelbtnSecondSpanishFont concernListTitleSecondSpanishFont donebtnSecondSpanishFont
       var localizeCurrent = $('#localize-current').text();
          if(localizeCurrent == "Español"){
               $scope.concernListTitleSpanishFont = "font-size:16px !important;margin-left: 30px;";
               $scope.cancelbtnSpanishFont = "font-size:14px !important";
               $scope.donebtnSpanishFont = "font-size:14px !important";
+
+              $scope.concernListTitleSecondSpanishFont = "font-size:16px !important;margin-left: 30px;";
+              $scope.cancelbtnSecondSpanishFont = "font-size:14px !important";
+              $scope.donebtnSecondSpanishFont = "font-size:14px !important";
          }else{
               $scope.concernListTitleSpanishFont = "font-size:20px !important";
               $scope.cancelbtnSpanishFont = "font-size:20px !important";
               $scope.donebtnSpanishFont = "font-size:20px !important";
+
+              $scope.concernListTitleSecondSpanishFont = "font-size:20px !important;";
+              $scope.cancelbtnSecondSpanishFont = "font-size:20px !important";
+              $scope.donebtnSecondSpanishFont = "font-size:20px !important";
          }
          $('#localize-langs').click(function() {
              var isLang = $('#localize-langs .activated').text();
@@ -18,6 +26,10 @@ angular.module('starter.controllers')
                     $scope.concernListTitleSpanishFont = "font-size:16px !important;margin-left: 30px;";
                     $scope.cancelbtnSpanishFont = "font-size:14px !important";
                     $scope.donebtnSpanishFont = "font-size:14px !important";
+
+                    $scope.concernListTitleSecondSpanishFont = "font-size:16px !important;margin-left: 30px;";
+                    $scope.cancelbtnSecondSpanishFont = "font-size:14px !important";
+                    $scope.donebtnSecondSpanishFont = "font-size:14px !important";
                }else{
                     $scope.concernListTitleSpanishFont = "font-size:20px !important";
                     $scope.cancelbtnSpanishFont = "font-size:20px !important";
@@ -25,7 +37,7 @@ angular.module('starter.controllers')
                }
              isLang = "";
          });
-
+//venkat end
 
 $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
 debugger;
