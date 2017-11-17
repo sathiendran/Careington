@@ -50,9 +50,9 @@
                <div class="item item-input validated">
                   <div class="col col-50">
                      <span class="input-label labelcolor">
-                     <i class="iconsize" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel localizejs">Email</b><i class="ion-asterisk"></i></span>
+                     <i class="iconsize" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel localizejs" style="white-space: normal;">Email</b><i class="ion-asterisk"></i></span>
                   </div>
-                  <div class="col col-50 depGreyLabel">
+                  <div class="col col-50 depGreyLabel" style="{{coUserEmailStyle}}">
                      <input class="usertext localizejs" id="useremail"  type="email" value="" placeholder="Required" ng-model="email"  name="email">
                      <span class="error localizejs"  ng-show="myForm.email.$error.email"> Not a valid email! </span>
                   </div>
