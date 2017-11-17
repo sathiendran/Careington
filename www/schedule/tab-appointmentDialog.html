@@ -163,7 +163,8 @@ span.icon_phone {
                                             value: vm_primaryConsernId,
                                             source: dataPrimaryConcernList,
                                             events: { change: vm_onPrimaryConcernChange },
-                                            disabled: isReadOnly" tabindex="8"></select>
+                                            disabled: isReadOnly" tabindex="8" style="position:relative;"></select>
+
 
                                         <div class="dialogbox-master__other" data-bind="visible: vm_isPrimaryConcernOtherSelected">
 
@@ -178,7 +179,7 @@ span.icon_phone {
                                             value: vm_secondaryConsernId,
                                             source: dataSecondaryConcernList,
                                             events: { change: vm_onSecondaryConcernChange },
-                                            disabled: isReadOnly" tabindex="10"></select>
+                                            disabled: isReadOnly" tabindex="10" style="position:relative;"></select>
 
                                         <div class="dialogbox-master__other" data-bind="visible: vm_isSecondaryConcernOtherSelected">
                                             <textarea data-value-update="keyup" data-bind="

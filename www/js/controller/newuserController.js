@@ -1,6 +1,30 @@
 angular.module('starter.controllers')
 
 .controller('newuserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $cordovaFileTransfer) {
+
+        var localizeCurrent = $('#localize-current').text();
+           if(localizeCurrent == "Español"){
+               $scope.coUserEmailStyle = "padding: 15px 0px 0px 5px;height: 70px;";
+           }else{
+               $scope.coUserEmailStyle = "";
+           }
+           $('#localize-langs').click(function() {
+               var isLang = $('#localize-langs .activated').text();
+
+               console.log("isLang is to == "+isLang);
+
+               if(isLang!=""){
+                 if(isLang == "Español"){
+                     $scope.coUserEmailStyle = "padding: 15px 0px 0px 5px;height: 70px;";
+                 }else{
+                     $scope.coUserEmailStyle = "";
+                 }
+               }else{
+                    $scope.coUserEmailStyle = "padding: 15px 0px 0px 5px;height: 70px;";
+               }
+            //   isLang = "";
+           });
+
 $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
       $ionicPlatform.registerBackButtonAction(function() {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
