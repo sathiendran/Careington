@@ -136,9 +136,9 @@
             See A Provider Now
          </div>
          <div>
-            <span class="creditCount">
+            <span class="creditCount creditCount-IOS5">
             <span ng-if="getIndividualPatientCreditCount < 10" class="creditCountNo">{{getIndividualPatientCreditCount}}</span>
-            <span ng-if="getIndividualPatientCreditCount > 9" class="creditCountNoTwoDigit">{{getIndividualPatientCreditCount}}</span> <span class="localizejs">Credits</span>
+            <span ng-if="getIndividualPatientCreditCount > 9" class="creditCountNoTwoDigit">{{getIndividualPatientCreditCount}}</span> <span class="localizejs credit-IOS5">Credits</span>
             </span>
          </div>
       </div>
@@ -165,13 +165,13 @@
    </ion-item>
    <ion-footer-bar ng-if="appointmentsPatientId == patientId && P_isAuthorized && providerAvailability == true" style="display: {{individualNextAppointmentDisplay}}" class="bar bar-footer  footer-color userappheight" ng-click="goToPatientConcerns(currentPatientDetails)" >
       <div ng-if="getIndividualPatientCreditCount != 0 && paymentMode == 'on'" class="title CreditClinician userappfootcontent"  >
-         <div class="creditSeeaCLinician localizejs" >
+         <div class="creditSeeaCLinician localizejs " >
             See A Provider Now
          </div>
          <div>
-            <span class="creditCount">
+            <span class="creditCount creditCount-IOS5">
             <span ng-if="getIndividualPatientCreditCount < 10" class="creditCountNo">{{getIndividualPatientCreditCount}}</span>
-            <span ng-if="getIndividualPatientCreditCount > 9" class="creditCountNoTwoDigit">{{getIndividualPatientCreditCount}}</span> <span class="localizejs">Credits</span>
+            <span ng-if="getIndividualPatientCreditCount > 9" class="creditCountNoTwoDigit">{{getIndividualPatientCreditCount}}</span> <span class="localizejs credit-IOS5">Credits</span>
             </span>
          </div>
       </div>
