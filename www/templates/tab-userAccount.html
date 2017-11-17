@@ -75,7 +75,7 @@
                </ion-item>
                <ion-item class="ionicitem " id="accountMngeProfile-{{deviceName}}" ng-click ="doGetCurrentUserAppointment()" >
                   <div class="card" style="box-shadow:none !important;background:none !important;">
-                     <div class="item-text-wrap itemtextwap" style="text-align: center;">
+                     <div class="item-text-wrap itemtextwap" style="{{ualabel}}">
                         <h2 class="title alignchronic ChronicCondition accSecAppoint" >
                            <span class="profileSpan"><i class="profileicon iconalign-{{deviceName}} profilecalendar usrAppointIcon-{{deviceName}}" ng-bind-html="drawSVGCIcon('calendar')"></i></span>
                            <span class="content contentAppoint-{{deviceName}} localizejs" ng-if="primaryPatientId == patientId">
@@ -114,7 +114,7 @@
                </ion-item>
                <ion-item class="ionicitem " id="accountMngeProfile-{{deviceName}}" ng-click ="doGetCurrentUserAppointment()" >
                   <div class="card" style="box-shadow:none !important;background:none !important;">
-                     <div class="item-text-wrap itemtextwap" style="text-align: center;">
+                     <div class="item-text-wrap itemtextwap" style="{{ualabel}}">
                         <h2 class="title alignchronic ChronicCondition accSecAppoint" >
                            <span class="profileSpan"><i class="profileicon iconalign-{{deviceName}} profilecalendar usrAppointIcon-{{deviceName}}" ng-bind-html="drawSVGCIcon('calendar')"></i></span>
                            <span class="content contentAppoint-{{deviceName}} localizejs" ng-if="primaryPatientId == patientId">
