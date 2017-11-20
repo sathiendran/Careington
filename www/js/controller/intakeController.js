@@ -1,91 +1,27 @@
 angular.module('starter.controllers')
-<<<<<<< HEAD
-.controller('IntakeFormsCtrl', function($scope, $ionicPlatform, $window, $ionicBackdrop,  htmlEscapeValue, $interval, $ionicSideMenuDelegate, replaceCardNumber, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $timeout, CustomCalendar, CustomCalendarMonth) {
-
-//venkat start cancelbtnSecondSpanishFont concernListTitleSecondSpanishFont donebtnSecondSpanishFont
-      var localizeCurrent = $('#localize-current').text();
-         if(localizeCurrent == "Español"){
-              $scope.concernListTitleSpanishFont = "font-size:16px !important;margin-left: 30px;";
-              $scope.cancelbtnSpanishFont = "font-size:14px !important";
-              $scope.donebtnSpanishFont = "font-size:14px !important";
-
-              $scope.concernListTitleSecondSpanishFont = "font-size:16px !important;margin-left: 30px;";
-              $scope.cancelbtnSecondSpanishFont = "font-size:14px !important";
-              $scope.donebtnSecondSpanishFont = "font-size:14px !important";
-         }else{
-              $scope.concernListTitleSpanishFont = "font-size:20px !important";
-              $scope.cancelbtnSpanishFont = "font-size:20px !important";
-              $scope.donebtnSpanishFont = "font-size:20px !important";
-
-              $scope.concernListTitleSecondSpanishFont = "font-size:20px !important;";
-              $scope.cancelbtnSecondSpanishFont = "font-size:20px !important";
-              $scope.donebtnSecondSpanishFont = "font-size:20px !important";
-         }
-         $('#localize-langs').click(function() {
-             var isLang = $('#localize-langs .activated').text();
-               if(isLang == "Español"){
-                    $scope.concernListTitleSpanishFont = "font-size:16px !important;margin-left: 30px;";
-                    $scope.cancelbtnSpanishFont = "font-size:14px !important";
-                    $scope.donebtnSpanishFont = "font-size:14px !important";
-
-                    $scope.concernListTitleSecondSpanishFont = "font-size:16px !important;margin-left: 30px;";
-                    $scope.cancelbtnSecondSpanishFont = "font-size:14px !important";
-                    $scope.donebtnSecondSpanishFont = "font-size:14px !important";
-               }else{
-                    $scope.concernListTitleSpanishFont = "font-size:20px !important";
-                    $scope.cancelbtnSpanishFont = "font-size:20px !important";
-                    $scope.donebtnSpanishFont = "font-size:20px !important";
-               }
-             isLang = "";
-         });
-//venkat end
-
-$("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-debugger;
-$("#localize-widget").hide();
-    $ionicPlatform.registerBackButtonAction(function() {
-        if (($rootScope.currState.$current.name === "tab.userhome") ||
-            ($rootScope.currState.$current.name === "tab.addCard") ||
-            ($rootScope.currState.$current.name === "tab.submitPayment") ||
-            ($rootScope.currState.$current.name === "tab.waitingRoom") ||
-            ($rootScope.currState.$current.name === "tab.receipt") ||
-            ($rootScope.currState.$current.name === "tab.videoConference") ||
-            ($rootScope.currState.$current.name === "tab.connectionLost") ||
-            ($rootScope.currState.$current.name === "tab.ReportScreen")
-        ) {
-            // H/W BACK button is disabled for these states (these views)
-            // Do not go to the previous state (or view) for these states.
-            // Do nothing here to disable H/W back button.
-        } else if ($rootScope.currState.$current.name === "tab.login") {
-            navigator.app.exitApp();
-        } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
-            navigator.app.exitApp();
-        } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
-            navigator.app.exitApp();
-        } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
-            var gSearchLength = $('.ion-google-place-container').length;
-            if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block') {
-                $ionicBackdrop.release();
-                $(".ion-google-place-container").css({
-                    "display": "none"
-                });
-=======
     .controller('IntakeFormsCtrl', function ($scope, $ionicPlatform, $window, $ionicBackdrop, htmlEscapeValue, $interval, $ionicSideMenuDelegate, replaceCardNumber, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $timeout, CustomCalendar, CustomCalendarMonth) {
 
-
+        //venkat start cancelbtnSecondSpanishFont concernListTitleSecondSpanishFont donebtnSecondSpanishFont
         window.addEventListener('native.keyboardhide', function () {
             $("#localize-widget").hide();
-        });
-
+        })
         var localizeCurrent = $('#localize-current').text();
         if (localizeCurrent == "Español") {
             $scope.concernListTitleSpanishFont = "font-size:16px !important;margin-left: 30px;";
             $scope.cancelbtnSpanishFont = "font-size:14px !important";
             $scope.donebtnSpanishFont = "font-size:14px !important";
+
+            $scope.concernListTitleSecondSpanishFont = "font-size:16px !important;margin-left: 30px;";
+            $scope.cancelbtnSecondSpanishFont = "font-size:14px !important";
+            $scope.donebtnSecondSpanishFont = "font-size:14px !important";
         } else {
             $scope.concernListTitleSpanishFont = "font-size:20px !important";
             $scope.cancelbtnSpanishFont = "font-size:20px !important";
             $scope.donebtnSpanishFont = "font-size:20px !important";
+
+            $scope.concernListTitleSecondSpanishFont = "font-size:20px !important;";
+            $scope.cancelbtnSecondSpanishFont = "font-size:20px !important";
+            $scope.donebtnSecondSpanishFont = "font-size:20px !important";
         }
         $('#localize-langs').click(function () {
             var isLang = $('#localize-langs .activated').text();
@@ -93,6 +29,10 @@ $("#localize-widget").hide();
                 $scope.concernListTitleSpanishFont = "font-size:16px !important;margin-left: 30px;";
                 $scope.cancelbtnSpanishFont = "font-size:14px !important";
                 $scope.donebtnSpanishFont = "font-size:14px !important";
+
+                $scope.concernListTitleSecondSpanishFont = "font-size:16px !important;margin-left: 30px;";
+                $scope.cancelbtnSecondSpanishFont = "font-size:14px !important";
+                $scope.donebtnSecondSpanishFont = "font-size:14px !important";
             } else {
                 $scope.concernListTitleSpanishFont = "font-size:20px !important";
                 $scope.cancelbtnSpanishFont = "font-size:20px !important";
@@ -100,9 +40,10 @@ $("#localize-widget").hide();
             }
             isLang = "";
         });
-
+        //venkat end
 
         $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+        debugger;
         $("#localize-widget").hide();
         $ionicPlatform.registerBackButtonAction(function () {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
@@ -131,14 +72,8 @@ $("#localize-widget").hide();
                         "display": "none"
                     });
                 } else {
-                    $(".ion-google-place-container").css({
-                        "display": "none"
-                    });
                     navigator.app.backHistory();
                 }
->>>>>>> c99989df716702c509d3a54641a931a8214b1ba3
-            } else {
-                navigator.app.backHistory();
             }
         }, 100);
         // activeConsultConnection.stop();
@@ -2059,7 +1994,7 @@ $("#localize-widget").hide();
                 }, 300);
             }
         };
-       
+
         $("#localize-widget").hide();
         $scope.goTOSchedule = function () {
             $('<link/>', {
