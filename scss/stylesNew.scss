@@ -4877,20 +4877,21 @@ span {
     }
 }
 .patProfileImageSS {
-  width: 52px;
-  height: 52px;
+  width: 63px;
+  height: 63px;
   border-radius: 50%;
   text-align: center;
   font-family: Glober XBold;
   font-size: 26px;
   border: 2px solid #fff !important;
   position: relative;
-  left: -5px;
-  top: -5px;
+  left: -4px;
+  top: -4px;
   span {
       position: relative;
-      top: 25px;
+      top: 28px;
       color: #fff;
+      font-size: 30px;
   }
 }
 .userHomeImage {
@@ -5493,7 +5494,8 @@ margin-right: 10px;
     z-index: 10;
     width: 100%;
     height: 100%;
-    background-color: #d8d8d8;
+    //background-color: #d8d8d8;
+    background-color: #444444;
     font-family: GloberBook;
     -webkit-transition: transform 0.3s ease;
     -moz-transition: transform 0.3s ease;
@@ -5561,13 +5563,17 @@ margin-right: 10px;
 .main-nav__list a {
     display: block;
     width: 100%;
-    height: 48px;
-    background-color: #e6e6e6;
-    color: #666;
-    padding: 15px;
+    //height: 48px; by sakthi
+   // background-color: #e6e6e6; by sakthi
+   background-color: #444444;
+  //  color: #666; by sakthi
+  color: #fff;
+   // padding: 15px; by sakthi
+   padding: 10px 10px 14px 15px;
     transition: background-color 0.3s ease, color 0.3s ease;
     font-family: "GloberSemiBold", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
     line-height: 26px;
+    font-size: 20px;
 
 }
 
@@ -5654,8 +5660,10 @@ margin-right: 10px;
     padding: 18px 0;
     margin-top: -27px;
     border-top: 1px solid #666;
-    color: #666;
-    font-family: "GloberRegular", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+    // color: #666; // sakthi
+    // font-family: "GloberRegular", "Helvetica Neue", Helvetica, Arial, Sans-Serif; // sakthi
+    color: #fff;
+    font-family: GloberSemiBold, "Helvetica Neue", Helvetica, Arial, sans-serif;
   //  font-size: 0.9em
     position: absolute;
     bottom: 0;
@@ -5674,7 +5682,8 @@ margin-right: 10px;
     height: 50px;
     padding: 10px 2%;
     box-sizing: border-box;
-    background-color: #ececec;
+    //background-color: #ececec;
+    border-bottom: 1px solid #ccc; //by sakthi
     -webkit-transition: background 0.2s ease-in;
     -moz-transition: background 0.2s ease-in;
     -ms-transition: background 0.2s ease-in;
@@ -5781,7 +5790,7 @@ margin-right: 10px;
 }
 
 .user-info--main-nav {
-    height: 76px;
+    height: 84px;
     background: #444;
     padding: 15px
 }
@@ -5807,8 +5816,8 @@ margin-right: 10px;
 }
 
 .user-info--main-nav .user-info__text {
-    margin-left: 60px;
-    margin-top: 5px
+    margin-left: 68px;
+    margin-top: 7px
 }
 
 .user-info--main-nav .user-info__info {
@@ -5917,8 +5926,8 @@ margin-right: 10px;
 
 .userpic--main-nav {
     font-size: 0.625em;
-    height: 44px;
-    width: 44px;
+    height: 58px;
+    width: 58px;
     position: relative;
     top: 50%;
     -webkit-transform: translateY(-50%);

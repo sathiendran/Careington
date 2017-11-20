@@ -32847,7 +32847,8 @@ only screen and (min-width: 541px) {
     z-index: 10;
     width: 75%;
     height: 100%;
-    background-color: #d8d8d8;
+    /*background-color: #d8d8d8; */
+    background-color: #444444;
     font-family: GloberBook;
     -webkit-transition: transform 0.3s ease;
     -moz-transition: transform 0.3s ease;
@@ -32901,13 +32902,16 @@ only screen and (min-width: 541px) {
 .main-nav__list a {
     display: block;
     width: 100%;
-    height: 48px;
-    background-color: #e6e6e6;
-    color: #666;
+    height: 50px; 
+  /* background-color: #e6e6e6; */
+    background-color: #444444;
+    color: #fff;
     padding: 15px;
+  padding: 10px 10px 14px 15px; 
     transition: background-color 0.3s ease, color 0.3s ease;
       font-family: "GloberSemiBold", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
-    line-height: 26px
+    line-height: 26px;
+    font-size:20px;
 }
 .main-nav__list a:hover,
 .main-nav__list a:active,
@@ -32978,7 +32982,8 @@ only screen and (min-width: 541px) {
     padding: 18px 0;
     margin-top: -27px;
     border-top: 1px solid #666;
-    color: #666;
+    /* color: #666; */
+    color: #fff;
     font-family: "GloberRegular", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
     font-size: 0.8em
 }
@@ -43842,7 +43847,7 @@ only screen and (min-width: 541px) {
     height: 50px
 }
 .user-info__text {
-    margin-left: 40px;
+    margin-left: 60px;
     line-height: 1
 }
 .user-info__text>* {
@@ -43891,7 +43896,7 @@ only screen and (min-width: 541px) {
     font-size: 0.661em
 }
 .user-info--main-nav {
-    height: 76px;
+    height: 84px;
     background: #444;
     padding: 15px
 }
@@ -43913,8 +43918,8 @@ only screen and (min-width: 541px) {
     color: #fff
 }
 .user-info--main-nav .user-info__text {
-    margin-left: 60px;
-    margin-top: 5px
+    margin-left: 68px;
+    margin-top: 7px
 }
 .user-info--main-nav .user-info__info {
     font-size: 15px !important;
@@ -44677,8 +44682,8 @@ only screen and (min-width: 541px) {
 }
 .userpic--main-nav {
     font-size: 0.625em;
-    height: 44px;
-    width: 44px;
+    height: 58px;
+    width: 58px;
     position: relative;
     top: 50%;
     -webkit-transform: translateY(-50%);
@@ -62475,3 +62480,21 @@ input:checked+.slider:before {
         margin: 0 0 16px
     }
 }
+.patProfileImageSS {
+    width: 63px;
+    height: 63px;
+    border-radius: 50%;
+    text-align: center;
+    font-family: Glober XBold;
+    font-size: 26px;
+    border: 2px solid #fff !important;
+    position: relative;
+    left: -4px;
+    top: -4px;
+    span {
+        position: relative;
+        top: 28px;
+        color: #fff;
+        font-size: 30px;
+    }
+  }
