@@ -1,7 +1,7 @@
 <ion-side-menus>
 <ion-side-menu-content>
    <ion-header-bar align-title="left" class="homeheader bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-      <div class="buttons" >
+    <!--   <div class="buttons" >
          <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()">
             <i class="ng-binding">
                <svg class="icon-menu">
@@ -9,17 +9,33 @@
                </svg>
             </i>
          </span>
-      </div>
-      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} accoTitle-{{deviceName}}" >
-         <span class="headerfont accountHeader-{{deviceName}} localizejs">User</span>
+      </div> -->
+      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} accoTitle-{{deviceName}}" style="margin-top: 18px;">
+            <a ng-href="#/tab/userhome" class="userAccountbackBtn"> <i  class="iconfontSVG ng-binding" ng-bind-html="drawSVGCIcon('chevron-left')"><svg class="icon-chevron-left" style="margin-bottom: -5px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-left"></use></svg></i> <span style="margin-left: -7px">Back</span></a>
+            <div class="headerfont accountHeader-{{deviceName}} localizejs userAccountTitle"> Patient</div>
+         </h1>
+
+      <!-- <p class="{{title_patient}} {{HeaderList}} {{intakeTittle}} accoTitle-{{deviceName}}" style="
+    margin-top: 18px;">
+    <a ng-href="#/tab/userhome" class="userAccountbackBtn"> <i  class="iconfontSVG ng-binding" ng-bind-html="drawSVGCIcon('chevron-left')"><svg class="icon-chevron-left" style="margin-bottom: -5px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-left"></use></svg></i> <span style="margin-left: -7px">Back</span></a>
+         <span class="headerfont accountHeader-{{deviceName}} localizejs userAccountTitle">Patient</span>
          <div class="Server_Error ErrorMessageDiv" ></div>
          <div id="Error_Message"></div>
          <span> <a class="headerval accountCancel-{{deviceName}} localizejs" ng-href="#/tab/userhome" >Cancel</a>
-         </span>
-      </h1>
-      <div class="bar bar-subheader bar-dark subheaderheight" >
+         </span>      </p> -->
+      <div class="bar bar-subheader bar-dark subheaderheight" style="height: 150px !important;" >
+      <div class="bar bar-subheader bar-dark subheaderheight" style="
+      background-color: rgb(255,198,11);
+      height: 50px;
+      top: -3px;
+      border: 0px solid rgb(255,198,11);
+      ">
+          <p class="userAccApptInfo"><i ng-bind-html="drawSVGCIcon('video_camera')" class="ng-binding ">
+             <svg class="iconImg-video_camera"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-video_camera"></use></svg>
+             </i><span class="apptTime">Appt @ 2:45 pm</span><span class="apptDetailsInfo">View Details <i class="iconfontSVG ng-binding" ng-bind-html="drawSVGCIcon('chevron-right')"><svg class="icon-chevron-right" style="margin-bottom: -5px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-right"></use></svg></i> </span></p>
+      </div>
          <div class="row">
-            <h1 class="headertitle">
+            <h1 class="headertitle" style="top: 55px !important;">
                <div class="ellipsis subHeader_content_name" >
                   <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">{{PatientFirstName}}</span>
                   <span class="patientLastName ellipsis lnamefont" >{{PatientLastName}}</span>
@@ -27,7 +43,7 @@
             </h1>
          </div>
          <div class="row userAccountPanel">
-            <div class="col col-33 uAPHomeIcon ">
+            <div class="col col-33 uAPHomeIcon" style="visibility: hidden;">
                <a ng-href='#/tab/userAccount'>
                   <div class="icon homeicon">
                      <div class="buttons">
@@ -40,7 +56,7 @@
                </a>
             </div>
             <div class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
-            <div class="col col-33 uAPChangePatient ">
+            <div class="col col-33 uAPChangePatient" style="visibility: hidden;">
                <a ng-click="changeptienthome()">
                   <div class="icon groupicon">
                      <div class="buttons">
@@ -57,37 +73,35 @@
       <ion-content padding="true"  title="User Account" class="usercontent-{{deviceName}} scroll-content ionic-scroll  has-header"  style="display: {{individualwithoutAppointmentDisplay}};">
          <ion-refresher on-refresh="doRefreshAccount()"></ion-refresher>
          <ion-list>
-            <div class="list userlist {{accountStyle}}">
-               <ion-item class="ioniictem" id="accountMngeProfile-{{deviceName}}" ng-click="getManageProfile(currentPatientDetails)">
-                  <div class="card" style="box-shadow:none !important;background:none !important;">
-                     <div class="item-text-wrap itemtextwap" style="text-align: center;">
-                        <h2 class="title alignchronic ChronicCondition" >
-                           <span class="profileSpan"> <i class="profileicon profileperson" ng-bind-html="drawSVGCIcon('user')"></i> </span>
-                           <span class="content content-{{deviceName}} localizejs" ng-if="primaryPatientId == patientId">
-                           Manage Your Profile
-                           </span>
-                           <span class="content content-{{deviceName}} localizejs" ng-if="primaryPatientId != patientId">
-                           Manage Profile
-                           </span>
-                        </h2>
-                     </div>
-                  </div>
-               </ion-item>
-               <ion-item class="ionicitem " id="accountMngeProfile-{{deviceName}}" ng-click ="doGetCurrentUserAppointment()" >
-                  <div class="card" style="box-shadow:none !important;background:none !important;">
-                     <div class="item-text-wrap itemtextwap" style="{{ualabel}}">
-                        <h2 class="title alignchronic ChronicCondition accSecAppoint" >
-                           <span class="profileSpan"><i class="profileicon iconalign-{{deviceName}} profilecalendar usrAppointIcon-{{deviceName}}" ng-bind-html="drawSVGCIcon('calendar')"></i></span>
-                           <span class="content contentAppoint-{{deviceName}} localizejs" ng-if="primaryPatientId == patientId">
-                           View Your Appointments
-                           </span>
-                           <span class="content contentAppoint-{{deviceName}} localizejs" ng-if="primaryPatientId != patientId">
-                           View Appointments
-                           </span>
-                        </h2>
-                     </div>
-                  </div>
-               </ion-item>
+            <div class="list userlistAccountHome {{accountStyle}}">
+
+              <div class="card accMainContent">
+                   <div class="accOndemandCon">
+                      <h2 class="localizejs accOnVisit">On-demand visit</h2>
+                      <p class="localizejs accOnCall">See the next available provider on-call.</p>
+                      <!-- <p class="localizejs accOnCall2">provider on-call.</p> -->
+                   </div>
+
+                   <div class="btn1 accSeeNext">
+                     <button type="submit" class="button button-block button-balanced" style="padding: 3px;margin-top: -12px;">
+                        <span class="localizejs">See a provider now</span>
+                     </button>
+                   </div>
+                </div>
+                <div class="card accMainContent">
+                   <div class="accOndemandCon">
+                      <h2 class="localizejs accOnVisit">Create Appointment</h2>
+                      <p class="localizejs accOnCall">Schedule a visit with a specific provider.</p>
+                      <!-- <p class="localizejs accOnCall2">with a specific provider.</p> -->
+                   </div>
+
+                   <div class="btn1 accSeeNext">
+                     <button type="submit" class="button button-Search-providers" style="padding: 3px;margin-top: -12px;">
+                        <span class="localizejs">Search providers</span>
+                     </button>
+                   </div>
+                </div>
+
             </div>
          </ion-list>
       </ion-content>
@@ -96,7 +110,7 @@
       <ion-content  title="User Account" class="usercontentpat-{{deviceName}} scroll-content ionic-scroll  has-header"  style="display: {{individualNextAppointmentDisplay}};">
          <ion-refresher on-refresh="doRefreshUserPage()"></ion-refresher>
          <ion-list>
-            <div class="list userlist {{accountStyle}}">
+            <div class="list userlistAccountHome {{accountStyle}}">
                <ion-item class="ioniictem " id="accountMngeProfile-{{deviceName}}" ng-click="getManageProfile(currentPatientDetails)">
                   <div class="card" style="box-shadow:none !important;background:none !important;">
                      <div class="item-text-wrap itemtextwap" style="text-align: center;">
@@ -114,7 +128,7 @@
                </ion-item>
                <ion-item class="ionicitem " id="accountMngeProfile-{{deviceName}}" ng-click ="doGetCurrentUserAppointment()" >
                   <div class="card" style="box-shadow:none !important;background:none !important;">
-                     <div class="item-text-wrap itemtextwap" style="{{ualabel}}">
+                     <div class="item-text-wrap itemtextwap" style="text-align: center;">
                         <h2 class="title alignchronic ChronicCondition accSecAppoint" >
                            <span class="profileSpan"><i class="profileicon iconalign-{{deviceName}} profilecalendar usrAppointIcon-{{deviceName}}" ng-bind-html="drawSVGCIcon('calendar')"></i></span>
                            <span class="content contentAppoint-{{deviceName}} localizejs" ng-if="primaryPatientId == patientId">
@@ -130,22 +144,22 @@
          </ion-list>
       </ion-content>
    </ion-view>
-   <ion-footer-bar ng-if="onDemandAvailability > 0 && P_isAuthorized && providerAvailability == true" style="display: {{accountClinicianFooter}}" class="bar bar-footer  footer-color footerstyle" ng-click="goToPatientConcerns(currentPatientDetails)" >
+   <!-- <ion-footer-bar ng-if="onDemandAvailability > 0 && P_isAuthorized && providerAvailability == true" style="display: {{accountClinicianFooter}}" class="bar bar-footer  footer-color footerstyle" ng-click="goToPatientConcerns(currentPatientDetails)" >
       <div ng-if="getIndividualPatientCreditCount != 0 && paymentMode == 'on'" class="title CreditClinician" id="centercolor" >
          <div class="creditSeeaCLinician localizejs" >
             See A Provider Now
          </div>
          <div>
-            <span class="creditCount creditCount-IOS5">
+            <span class="creditCount">
             <span ng-if="getIndividualPatientCreditCount < 10" class="creditCountNo">{{getIndividualPatientCreditCount}}</span>
-            <span ng-if="getIndividualPatientCreditCount > 9" class="creditCountNoTwoDigit">{{getIndividualPatientCreditCount}}</span> <span class="localizejs credit-IOS5">Credits</span>
+            <span ng-if="getIndividualPatientCreditCount > 9" class="creditCountNoTwoDigit">{{getIndividualPatientCreditCount}}</span> <span class="localizejs">Credits</span>
             </span>
          </div>
       </div>
       <div ng-if="getIndividualPatientCreditCount == 0 ||  paymentMode != 'on'">
          <h1 class="title" id="centercolor" ><span class="localizejs">See A Provider Now</span></h1>
       </div>
-   </ion-footer-bar>
+   </ion-footer-bar> -->
    <ion-item ng-if="appointmentsPatientId == patientId" class="apptdetails accountAppointHeight" style="display: {{individualNextAppointmentDisplay}}; " ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData, 'userAccount')" ng-show="$first">
       <div>
          <div class="appth3">
@@ -165,13 +179,13 @@
    </ion-item>
    <ion-footer-bar ng-if="appointmentsPatientId == patientId && P_isAuthorized && providerAvailability == true" style="display: {{individualNextAppointmentDisplay}}" class="bar bar-footer  footer-color userappheight" ng-click="goToPatientConcerns(currentPatientDetails)" >
       <div ng-if="getIndividualPatientCreditCount != 0 && paymentMode == 'on'" class="title CreditClinician userappfootcontent"  >
-         <div class="creditSeeaCLinician localizejs " >
+         <div class="creditSeeaCLinician localizejs" >
             See A Provider Now
          </div>
          <div>
-            <span class="creditCount creditCount-IOS5">
+            <span class="creditCount">
             <span ng-if="getIndividualPatientCreditCount < 10" class="creditCountNo">{{getIndividualPatientCreditCount}}</span>
-            <span ng-if="getIndividualPatientCreditCount > 9" class="creditCountNoTwoDigit">{{getIndividualPatientCreditCount}}</span> <span class="localizejs credit-IOS5">Credits</span>
+            <span ng-if="getIndividualPatientCreditCount > 9" class="creditCountNoTwoDigit">{{getIndividualPatientCreditCount}}</span> <span class="localizejs">Credits</span>
             </span>
          </div>
       </div>
