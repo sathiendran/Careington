@@ -47,6 +47,22 @@ margin-top: 125px !important;
             margin-top: -13px !important;
           }
        }
+
+       .subheaderheight {
+           .userAccountPanelNew{
+             margin-top: 0px !important;
+             .patProfileImage {
+               width: 64px !important;
+               height: 64px !important;
+               font-size: 36px !important;
+               }
+             .uAPlProfileImage{
+                   span{
+                     top: 26px !important;
+                   }
+                 }
+           }
+         }
     .usercontent-IOS {
         margin-top: 32% !important;
         #accountMngeProfile-IOS {
@@ -6586,58 +6602,67 @@ background-color: rgb(245,245,245);
 }
 
   .accMainContentNew {
-    border: 1px solid;
-    margin: 10px 20px;
-    border-radius: 13px;
-       .accOndemandCon  {
-            margin-top: 28px !important;
-            .accOnVisit {
-              font-family: "Glober Bold";
-              font-weight: bold;
-              font-size: 24px;
-              color: #999999;
-              text-align: center;
-              padding-top: 0px !important;
-              letter-spacing: -1px;
-              margin-top: -11px;
-            }
-            .accOnVisitNew{
-              font-size: 25px !important;
-            }
-            .accOnCallNew{
-              font-size: 16px !important;
-            }
-            .accOnServiceDate{
-              font-family: "Glober Bold";
-              font-size: 19px !important;
-              color: #111;
-            }
-            .accOnQuestion{
-                font-size: 14px !important;
-                color: black;
-            }
-            h2 {
-                 font-size: 32px !important;
-                 margin-top: 25px;
-            }
-            p{
-                font-family: "Glober Regular";
-                font-weight: normal;
-                font-size: 19px;
+      border: 1px solid;
+      margin: 10px 20px;
+      background-color: rgba(0, 0, 0, 0.03) !important;
+      border-color: rgba(0, 0, 0, 0.38) !important;
+      border-radius: 8px !important;
+         .accOndemandCon  {
+              margin-top: 28px !important;
+              .accOnVisit {
+                font-family: "Glober Semibold";
+                font-weight: bold;
+                font-size: 24px;
                 color: #999999;
                 text-align: center;
-                line-height: 15px;
-                letter-spacing: 0px;
-            }
-       }
-       .btn1 {
-              margin: 25px 15px 15px 15px !important;
-              .button {
-                  height: 53px;
-                  font-size: 25px;
+                padding-top: 0px !important;
+                letter-spacing: -1px;
+                margin-top: -11px;
               }
-       }
-  }
+              .accOnVisitNew{
+                font-size: 26px !important;
+                color: rgba(0, 0, 0, 0.23) !important;
+              }
+              .accOnCallNew{
+                font-size: 16px !important;
+              }
+              .accOnServiceDate{
+                font-family: "Glober Bold";
+                font-size: 18px;
+                color: #111;
+              }
+              .accOnQuestion{
+                  font-size: 14px !important;
+                  color: rgba(0, 0, 0, 0.38) !important;
+              }
+              .accOnQuestionNew {
+                    padding-top: 13px !important;
+              }
+              h2 {
+                   font-size: 32px !important;
+                   margin-top: 25px;
+              }
+              p{
+                  font-family: "Glober Regular";
+                  font-weight: normal;
+                  font-size: 19px;
+                  color: #999999;
+                  text-align: center;
+                  line-height: 15px;
+                  letter-spacing: 0px;
+              }
+         }
+         .accOndemandConNew {
+               margin-top: 18px !important;
+         }
+         .btn1 {
+                margin: 25px 15px 15px 15px !important;
+                .button {
+                    height: 53px;
+                    font-size: 25px;
+                }
+         }
+    }
 
 .userAccApptInfo{
     margin-left: 15px;
@@ -6719,10 +6744,10 @@ background-color: rgb(245,245,245);
 }
 
 .subheaderheightTwo{
-    background-color: rgb(255,198,11) !important;  
-    height: 50px;  
-    top: -3px; 
-    border: 0px solid rgb(255,198,11);   
+    background-color: rgb(255,198,11) !important;
+    height: 50px;
+    top: -3px;
+    border: 0px solid rgb(255,198,11);
 }
 .userAccHeaderTitle{
     top: 55px !important;
@@ -6735,4 +6760,7 @@ background-color: rgb(245,245,245);
 .button-Search-providers.activated{
     background-color: #ffc60b;
     border-color: #ffc60b;
+}
+.cardNew {
+   box-shadow: 0 1px 3px rgba(0, 0, 0, 0) !important;
 }
