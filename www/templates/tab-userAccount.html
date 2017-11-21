@@ -1,13 +1,13 @@
 <ion-side-menus>
 <ion-side-menu-content>
    <ion-header-bar align-title="left" class="homeheader bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} accoTitle-{{deviceName}}" style="margin-top: 18px;">
-          <a ng-href="#/tab/userhome" class="userAccountbackBtn"> <i  class="iconfontSVG ng-binding" ng-bind-html="drawSVGCIcon('chevron-left')"><svg class="icon-chevron-left" style="margin-bottom: -5px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-left"></use></svg></i> <span style="margin-left: -7px">Back</span></a>
+      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} accoTitle-{{deviceName}} userAccTitle">
+          <a ng-href="#/tab/userhome" class="userAccountbackBtn"> <i  class="iconfontSVG ng-binding" ng-bind-html="drawSVGCIcon('chevron-left')"><svg class="icon-chevron-left"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-left"></use></svg></i> <span>Back</span></a>
           <div class="headerfont accountHeader-{{deviceName}} localizejs userAccountTitle"> Patient</div>
        </h1>
 
-      <div class="bar bar-subheader bar-dark subheaderheight" style="height: 150px !important;" >
-        <div class="bar bar-subheader bar-dark subheaderheight" style="background-color: rgb(255,198,11);  height: 50px;  top: -3px; border: 0px solid rgb(255,198,11);" style="display: {{individualNextAppointmentDisplay}}; " ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData, 'userAccount')" ng-show="$first">
+      <div class="bar bar-subheader bar-dark subheaderheight subheaderheightOne">
+        <div class="bar bar-subheader bar-dark subheaderheight subheaderheightTwo" style="display: {{individualNextAppointmentDisplay}}; " ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData, 'userAccount')" ng-show="$first">
             <p class="userAccApptInfo">
               <i ng-bind-html="drawSVGCIcon('video_camera')" class="ng-binding" ng-if="scheduledListData.encounterTypeCode == 3">
                 <svg class="iconImg-video_camera"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-video_camera"></use></svg>
@@ -18,20 +18,20 @@
               <span class="apptTime">Appt @ {{scheduledListData.scheduledTime | date: "hh:mm"}} {{scheduledListData.scheduledTime | date: "a"}}</span>
               <span class="apptDetailsInfo" ng-if="scheduledListData.appointmentStatusCode != 'Waiting' && scheduledListData.status != 71">
                   <a class="appviewinfo-{{deviceName}}">View Details</a>
-                  <i class="iconfontSVG ng-binding appViewicons" ng-bind-html="drawSVGCIcon('chevron-right')"><svg class="icon-chevron-right" style="margin-bottom: -5px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-right"></use></svg></i>
+                  <i class="iconfontSVG ng-binding appViewicons" ng-bind-html="drawSVGCIcon('chevron-right')"><svg class="icon-chevron-right"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-right"></use></svg></i>
               </span>
               <span class="apptDetailsInfo" ng-if="scheduledListData.appointmentStatusCode == 'Waiting' && scheduledListData.status != 71">
                   <a class="appviewinfo-{{deviceName}}">In queue</a>
-                  <i class="iconfontSVG ng-binding appViewicons" ng-bind-html="drawSVGCIcon('chevron-right')"><svg class="icon-chevron-right" style="margin-bottom: -5px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-right"></use></svg></i>
+                  <i class="iconfontSVG ng-binding appViewicons" ng-bind-html="drawSVGCIcon('chevron-right')"><svg class="icon-chevron-right"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-right"></use></svg></i>
               </span>
               <span class="apptDetailsInfo" ng-if="scheduledListData.status == 71">
                 <a class="appviewinfo-{{deviceName}}">In progress</a>
-                <i class="iconfontSVG ng-binding appViewicons" ng-bind-html="drawSVGCIcon('chevron-right')"><svg class="icon-chevron-right" style="margin-bottom: -5px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-right"></use></svg></i>
+                <i class="iconfontSVG ng-binding appViewicons" ng-bind-html="drawSVGCIcon('chevron-right')"><svg class="icon-chevron-right"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-right"></use></svg></i>
               </span>
             </p>
         </div>
          <div class="row">
-            <h1 class="headertitle" style="top: 55px !important;">
+            <h1 class="headertitle userAccHeaderTitle">
                <div class="ellipsis subHeader_content_name" >
                   <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">{{PatientFirstName}}</span>
                   <span class="patientLastName ellipsis lnamefont" >{{PatientLastName}}</span>
@@ -51,7 +51,7 @@
                   </div>
                </a>
             </div>
-            <div class="col col-33 uAPlProfileImage" style="cursor: pointer;" ng-click="getManageProfile(currentPatientDetails)" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
+            <div class="col col-33 uAPlProfileImage UserAccountProfileImage" style="cursor: pointer;" ng-click="getManageProfile(currentPatientDetails)" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
             <div class="col col-33 uAPChangePatient" style="visibility: hidden;">
                <a ng-click="changeptienthome()">
                   <div class="icon groupicon">
@@ -77,7 +77,8 @@
                    </div>
 
                    <div class="btn1 accSeeNext">
-                     <button type="submit" class="button button-block button-balanced" style="padding: 3px;margin-top: -12px;" ng-click="goToPatientConcerns(currentPatientDetails)">
+                     <button type="submit" class="button button-block button-balanced user-button-position" ng-click="goToPatientConcerns(currentPatientDetails)">
+                      <!-- ng-click="goToPatientConcerns(currentPatientDetails)" -->
                         <span class="localizejs">See a provider now</span>
                      </button>
                    </div>
@@ -93,6 +94,7 @@
                      </div>
                   </div>
                 <div class="card accMainContent" ng-if="online == true && onSSAvailability == 'on'">
+                  <!-- ng-if="online == true && onSSAvailability == 'on'" -->
                    <div class="accOndemandCon">
                       <h2 class="localizejs accOnVisit">Create Appointment</h2>
                       <p class="localizejs accOnCall">Schedule a visit with a specific provider.</p>
@@ -100,7 +102,7 @@
                    </div>
 
                    <div class="btn1 accSeeNext">
-                     <button type="submit" class="button button-Search-providers" style="padding: 3px;margin-top: -12px;" ng-click="goTOSchedule()">
+                     <button type="submit" class="button button-Search-providers user-button-position" ng-click="goTOSchedule()" > <!--ng-click="goTOSchedule()"-->
                         <span class="localizejs">Search providers</span>
                      </button>
                    </div>

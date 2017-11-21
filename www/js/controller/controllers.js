@@ -7514,6 +7514,9 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $rootScope.getIndividualScheduledList = '';
         $rootScope.individualScheduledList = '';
         $rootScope.individualNextAppointmentDisplay = 'none';
+        $('.subheaderheightOne').attr('style', 'height: 100px !important');
+        $('.userAccHeaderTitle').attr('style', 'margin-top: -43px !important');
+        $('.userlistAccountHome').attr('style', 'margin-top: -43px !important');
         $rootScope.individualwithoutAppointmentDisplay = 'block';
         $rootScope.accountClinicianFooter = 'block';
         $rootScope.accountStyle = "";
@@ -7540,6 +7543,9 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
               //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
               var currentUserHomeDate = d;
               $rootScope.individualNextAppointmentDisplay = 'none';
+              $('.subheaderheightOne').attr('style', 'height: 100px !important');
+              $('.userAccHeaderTitle').attr('style', 'margin-top: -43px !important');
+              $('.userlistAccountHome').attr('style', 'margin-top: -43px !important');
               $rootScope.individualwithoutAppointmentDisplay = 'block';
               $rootScope.accountClinicianFooter = 'block';
               $rootScope.accountStyle = "";
@@ -7555,6 +7561,9 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                   if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                       $rootScope.accountClinicianFooter = 'none';
                       $rootScope.individualNextAppointmentDisplay = 'block';
+                    $('.subheaderheightOne').attr('style', 'height: 150px !important');
+                    $('.userAccHeaderTitle').attr('style', 'margin-top: 0px !important');
+                    $('.userlistAccountHome').attr('style', 'margin-top: 0px !important');
                       $rootScope.individualwithoutAppointmentDisplay = 'none';
                       $rootScope.accountStyle = "AppointNone" + $rootScope.deviceName;
                       $rootScope.userAccContent = "userAccContent" + $rootScope.deviceName;
