@@ -25,6 +25,12 @@ margin-top: 125px !important;
                visibility: hidden;
           }
      }
+     .appviewinfo-IOS {
+        display: none;
+     }
+     .appviewinfo-Android {
+        display: none;
+     }
 .usercontent-IOS {
     margin-top: 32% !important;
     #accountMngeProfile-IOS {
@@ -6530,7 +6536,7 @@ background-color: rgb(245,245,245);
             padding-top: 0px !important;
             letter-spacing: 0px;
             margin-top: -11px;          }
-          
+
           p{
               font-family: "GloberRegular";
               font-weight: normal;
@@ -6571,19 +6577,26 @@ background-color: rgb(245,245,245);
     text-align: left;
     font-family: GloberBold;
     color: rgba(0,0,0,0.75);
+    position: relative;
+    top: 4px;
 }
 .apptDetailsInfo{
     margin-top: 4px;
-    margin-left: 24px;
+    //margin-left: 24px;
     font-size: 10pt;
     font-family: GloberRegular;
     line-height: 16pt;
     text-align: left;
     color: rgba(0,0,0,0.75);
     float:right;
+    cursor: pointer;
 }
 .apptDetailsInfo i svg{
     margin-bottom: -10px;
+}
+.appViewicons {
+    position: relative;
+    top: -3px;
 }
 .button-Search-providers{
     padding: 3px;
