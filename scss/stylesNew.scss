@@ -13,6 +13,10 @@ margin-top: 125px !important;
   text-align:center;
   font-size:21pz !important;
 }
+.userlistAccountHome-ios5{
+    //margin-top: 0px !important;
+
+}
 @media (max-width: 320px) and (min-width: 315px) {
      .AppointmentView {
           visibility: hidden;
@@ -33,6 +37,7 @@ margin-top: 125px !important;
      }
      .userlistAccountHome {
         padding-top: 40px !important;
+            //margin-top: 45px !important;
        }
        .subheaderheightNew{
          height: 85px !important;
@@ -6664,7 +6669,8 @@ background-color: rgb(245,245,245);
     cursor: pointer;
 }
 .apptDetailsInfo i svg{
-    margin-bottom: -5px;
+    margin-bottom: -9px;
+    margin-left: -8px;
 }
 .appViewicons {
     position: relative;

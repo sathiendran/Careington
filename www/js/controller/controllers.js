@@ -7517,6 +7517,12 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $('.subheaderheightOne').attr('style', 'height: 100px !important');
         $('.userAccHeaderTitle').attr('style', 'margin-top: -43px !important');
         $('.userlistAccountHome').attr('style', 'margin-top: -43px !important');
+        var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+        if(width <= 320)
+            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0px !important');
+        else
+            $('.userlistAccountHome-ios5').attr('style', 'margin-top: -35px !important');
+
         $rootScope.individualwithoutAppointmentDisplay = 'block';
         $rootScope.accountClinicianFooter = 'block';
         $rootScope.accountStyle = "";
@@ -7546,6 +7552,12 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
               $('.subheaderheightOne').attr('style', 'height: 100px !important');
               $('.userAccHeaderTitle').attr('style', 'margin-top: -43px !important');
               $('.userlistAccountHome').attr('style', 'margin-top: -43px !important');
+               var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+                if(width <= 320)
+                    $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0px !important');
+                else
+                    $('.userlistAccountHome-ios5').attr('style', 'margin-top: -35px !important');
+             // $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0px !important');
               $rootScope.individualwithoutAppointmentDisplay = 'block';
               $rootScope.accountClinicianFooter = 'block';
               $rootScope.accountStyle = "";
@@ -7564,6 +7576,12 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     $('.subheaderheightOne').attr('style', 'height: 150px !important');
                     $('.userAccHeaderTitle').attr('style', 'margin-top: 0px !important');
                     $('.userlistAccountHome').attr('style', 'margin-top: 0px !important');
+                     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+                    if(width <= 320)
+                        $('.userlistAccountHome-ios5').attr('style', 'margin-top: 40px !important');
+                    else
+                        $('.userlistAccountHome-ios5').attr('style', 'margin-top: 8px !important');
+                 //   $('.userlistAccountHome-ios5').attr('style', 'margin-top: 40px !important');
                       $rootScope.individualwithoutAppointmentDisplay = 'none';
                       $rootScope.accountStyle = "AppointNone" + $rootScope.deviceName;
                       $rootScope.userAccContent = "userAccContent" + $rootScope.deviceName;
