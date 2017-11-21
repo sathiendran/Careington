@@ -31,35 +31,46 @@ margin-top: 125px !important;
      .appviewinfo-Android {
         display: none;
      }
-.usercontent-IOS {
-    margin-top: 32% !important;
-    #accountMngeProfile-IOS {
-        padding: 19px 10px;
+     .userlistAccountHome {
+        padding-top: 40px !important;
+       }
+       .subheaderheightNew{
+         height: 85px !important;
+       }
+       .userAccountPanel {
+         .uAPlProfileImageNew {
+            margin-top: -13px !important;
+          }
+       }
+    .usercontent-IOS {
+        margin-top: 32% !important;
+        #accountMngeProfile-IOS {
+            padding: 19px 10px;
+        }
     }
-}
-#WhoNeeds {
-    font-size: 20px;
-    width: 85%;
-}
-.fday {
-    font-size: 25px !important;
-    margin-top: 4px !important;
-}
-.ftime {
-    font-size: 55px !important;
-}
-.fdate {
-    margin-top: 0px !important;
-}
-#AppointNoneIOS {
-    padding: 34px 10px !important;
-}
-.usercontentpat-IOS {
-      margin-top: 29%;
-    #accountMngeProfile-IOS {
-        padding: 12px 10px !important;
+    #WhoNeeds {
+        font-size: 20px;
+        width: 85%;
     }
-}
+    .fday {
+        font-size: 25px !important;
+        margin-top: 4px !important;
+    }
+    .ftime {
+        font-size: 55px !important;
+    }
+    .fdate {
+        margin-top: 0px !important;
+    }
+    #AppointNoneIOS {
+        padding: 34px 10px !important;
+    }
+    .usercontentpat-IOS {
+          margin-top: 29%;
+        #accountMngeProfile-IOS {
+            padding: 12px 10px !important;
+        }
+    }
 .listprofileEdit {
     .formlabel {
         font-size: 17px;
@@ -6562,6 +6573,61 @@ background-color: rgb(245,245,245);
             }
      }
 }
+
+  .accMainContentNew {
+    border: 1px solid;
+    margin: 10px 20px;
+    border-radius: 13px;
+       .accOndemandCon  {
+            margin-top: 28px !important;
+            .accOnVisit {
+              font-family: "Glober Bold";
+              font-weight: bold;
+              font-size: 24px;
+              color: #999999;
+              text-align: center;
+              padding-top: 0px !important;
+              letter-spacing: -1px;
+              margin-top: -11px;
+            }
+            .accOnVisitNew{
+              font-size: 25px !important;
+            }
+            .accOnCallNew{
+              font-size: 16px !important;
+            }
+            .accOnServiceDate{
+              font-family: "Glober Bold";
+              font-size: 19px !important;
+              color: #111;
+            }
+            .accOnQuestion{
+                font-size: 14px !important;
+                color: black;
+            }
+            h2 {
+                 font-size: 32px !important;
+                 margin-top: 25px;
+            }
+            p{
+                font-family: "Glober Regular";
+                font-weight: normal;
+                font-size: 19px;
+                color: #999999;
+                text-align: center;
+                line-height: 15px;
+                letter-spacing: 0px;
+            }
+       }
+       .btn1 {
+              margin: 25px 15px 15px 15px !important;
+              .button {
+                  height: 53px;
+                  font-size: 25px;
+              }
+       }
+  }
+
 .userAccApptInfo{
     margin-left: 15px;
     color: rgb(0,0,0);
