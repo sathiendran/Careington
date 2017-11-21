@@ -7642,6 +7642,9 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     }
                 });
 
+                $rootScope.getNextAvailProvTime = CustomCalendar.getLocalTime(data.data[0].startTime);
+                  $rootScope.getNextAvailProvTime1 = data.data[0].startTime;
+
                 $rootScope.onDemandAvailability = data.data[0].onDemandAvailabilityBlockCount;
             },
             error: function(data, status) {
