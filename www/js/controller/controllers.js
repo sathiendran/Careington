@@ -3970,7 +3970,6 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
     }
 
-
     $scope.GetHealthPlanList = function() {
         $scope.doGetPatientHealthPlansList();
     }
@@ -7517,8 +7516,10 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $('.subheaderheightOne').attr('style', 'height: 100px !important');
         $('.userAccHeaderTitle').attr('style', 'margin-top: -43px !important');
         $('.userlistAccountHome').attr('style', 'margin-top: -43px !important');
-        var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-        if(width <= 320)
+        //var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+        if($rootScope.is_iPadDeviceWidth >= 550)
+            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 55px !important');
+        else if($rootScope.is_iPadDeviceWidth <= 320)
             $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0px !important');
         else
             $('.userlistAccountHome-ios5').attr('style', 'margin-top: -35px !important');
@@ -7552,8 +7553,10 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
               $('.subheaderheightOne').attr('style', 'height: 100px !important');
               $('.userAccHeaderTitle').attr('style', 'margin-top: -43px !important');
               $('.userlistAccountHome').attr('style', 'margin-top: -43px !important');
-               var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-                if(width <= 320)
+               //var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+                if($rootScope.is_iPadDeviceWidth >= 550)
+                    $('.userlistAccountHome-ios5').attr('style', 'margin-top: 55px !important');
+                else if($rootScope.is_iPadDeviceWidth <= 320)
                     $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0px !important');
                 else
                     $('.userlistAccountHome-ios5').attr('style', 'margin-top: -35px !important');
@@ -7576,8 +7579,10 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     $('.subheaderheightOne').attr('style', 'height: 150px !important');
                     $('.userAccHeaderTitle').attr('style', 'margin-top: 0px !important');
                     $('.userlistAccountHome').attr('style', 'margin-top: 0px !important');
-                     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-                    if(width <= 320)
+                  //   var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+                    if($rootScope.is_iPadDeviceWidth >= 500)
+                        $('.userlistAccountHome-ios5').attr('style', 'margin-top: 95px !important');
+                    else if($rootScope.is_iPadDeviceWidth <= 320)
                         $('.userlistAccountHome-ios5').attr('style', 'margin-top: 40px !important');
                     else
                         $('.userlistAccountHome-ios5').attr('style', 'margin-top: 8px !important');
