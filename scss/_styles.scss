@@ -500,6 +500,7 @@ body {
     background-color: #A2D28A;
     border-color: #A2D28A;
 }
+
 .footer {
     color: #fff;
     background-color: #4D4D4D !important;
@@ -3261,7 +3262,10 @@ a {
     margin-left: 8px;
     border: 2px solid white;
 }
-.userAccountPanel .uAPlProfileImage .UserHmelistImgView{
+.UserAccountProfileImage img{
+    margin-top: 50px;   
+}
+.UserAccountProfileImage .patProfileImage{
     margin-top: 50px;   
 }
 .UserHmelistImgView {

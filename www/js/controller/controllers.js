@@ -3970,7 +3970,6 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
     }
 
-
     $scope.GetHealthPlanList = function() {
         $scope.doGetPatientHealthPlansList();
     }
@@ -7514,6 +7513,17 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $rootScope.getIndividualScheduledList = '';
         $rootScope.individualScheduledList = '';
         $rootScope.individualNextAppointmentDisplay = 'none';
+        $('.subheaderheightOne').attr('style', 'height: 100px !important');
+        $('.userAccHeaderTitle').attr('style', 'margin-top: -43px !important');
+        $('.userlistAccountHome').attr('style', 'margin-top: -43px !important');
+        //var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+        if($rootScope.is_iPadDeviceWidth >= 550)
+            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 55px !important');
+        else if($rootScope.is_iPadDeviceWidth <= 320)
+            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0px !important');
+        else
+            $('.userlistAccountHome-ios5').attr('style', 'margin-top: -35px !important');
+
         $rootScope.individualwithoutAppointmentDisplay = 'block';
         $rootScope.accountClinicianFooter = 'block';
         $rootScope.accountStyle = "";
@@ -7540,6 +7550,17 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
               //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
               var currentUserHomeDate = d;
               $rootScope.individualNextAppointmentDisplay = 'none';
+              $('.subheaderheightOne').attr('style', 'height: 100px !important');
+              $('.userAccHeaderTitle').attr('style', 'margin-top: -43px !important');
+              $('.userlistAccountHome').attr('style', 'margin-top: -43px !important');
+               //var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+                if($rootScope.is_iPadDeviceWidth >= 550)
+                    $('.userlistAccountHome-ios5').attr('style', 'margin-top: 55px !important');
+                else if($rootScope.is_iPadDeviceWidth <= 320)
+                    $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0px !important');
+                else
+                    $('.userlistAccountHome-ios5').attr('style', 'margin-top: -35px !important');
+             // $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0px !important');
               $rootScope.individualwithoutAppointmentDisplay = 'block';
               $rootScope.accountClinicianFooter = 'block';
               $rootScope.accountStyle = "";
@@ -7555,6 +7576,17 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                   if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                       $rootScope.accountClinicianFooter = 'none';
                       $rootScope.individualNextAppointmentDisplay = 'block';
+                    $('.subheaderheightOne').attr('style', 'height: 150px !important');
+                    $('.userAccHeaderTitle').attr('style', 'margin-top: 0px !important');
+                    $('.userlistAccountHome').attr('style', 'margin-top: 0px !important');
+                  //   var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+                    if($rootScope.is_iPadDeviceWidth >= 500)
+                        $('.userlistAccountHome-ios5').attr('style', 'margin-top: 95px !important');
+                    else if($rootScope.is_iPadDeviceWidth <= 320)
+                        $('.userlistAccountHome-ios5').attr('style', 'margin-top: 40px !important');
+                    else
+                        $('.userlistAccountHome-ios5').attr('style', 'margin-top: 8px !important');
+                 //   $('.userlistAccountHome-ios5').attr('style', 'margin-top: 40px !important');
                       $rootScope.individualwithoutAppointmentDisplay = 'none';
                       $rootScope.accountStyle = "AppointNone" + $rootScope.deviceName;
                       $rootScope.userAccContent = "userAccContent" + $rootScope.deviceName;
@@ -7641,6 +7673,9 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                         $rootScope.providerAvailability = index.providerAvailable;
                     }
                 });
+
+                $rootScope.getNextAvailProvTime = CustomCalendar.getLocalTime(data.data[0].startTime);
+                  $rootScope.getNextAvailProvTime1 = data.data[0].startTime;
 
                 $rootScope.onDemandAvailability = data.data[0].onDemandAvailabilityBlockCount;
             },
