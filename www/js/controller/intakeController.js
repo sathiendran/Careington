@@ -14,6 +14,7 @@ angular.module('starter.controllers')
             $scope.concernListTitleSecondSpanishFont = "font-size:16px !important;margin-left: 30px;";
             $scope.cancelbtnSecondSpanishFont = "font-size:14px !important";
             $scope.donebtnSecondSpanishFont = "font-size:14px !important";
+            $scope.PatientConcernCancel = "padding: 7px;"
         } else {
             $scope.concernListTitleSpanishFont = "font-size:20px !important";
             $scope.cancelbtnSpanishFont = "font-size:20px !important";
@@ -22,6 +23,7 @@ angular.module('starter.controllers')
             $scope.concernListTitleSecondSpanishFont = "font-size:20px !important;";
             $scope.cancelbtnSecondSpanishFont = "font-size:20px !important";
             $scope.donebtnSecondSpanishFont = "font-size:20px !important";
+              $scope.PatientConcernCancel = "padding: 10px;"
         }
         $('#localize-langs').click(function () {
             var isLang = $('#localize-langs .activated').text();
@@ -33,10 +35,12 @@ angular.module('starter.controllers')
                 $scope.concernListTitleSecondSpanishFont = "font-size:16px !important;margin-left: 30px;";
                 $scope.cancelbtnSecondSpanishFont = "font-size:14px !important";
                 $scope.donebtnSecondSpanishFont = "font-size:14px !important";
+                $scope.PatientConcernCancel = "padding: 7px;"
             } else {
                 $scope.concernListTitleSpanishFont = "font-size:20px !important";
                 $scope.cancelbtnSpanishFont = "font-size:20px !important";
                 $scope.donebtnSpanishFont = "font-size:20px !important";
+                $scope.PatientConcernCancel = "padding: 10px;"
             }
             isLang = "";
         });

@@ -1,6 +1,6 @@
 <ion-side-menus>
 <ion-side-menu-content>
-   <ion-header-bar align-title="left" class="homeheader bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+   <ion-header-bar align-title="left" class="homeheader bar-positiveHomeUser animated slideInUp" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
       <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} accoTitle-{{deviceName}} userAccTitle">
           <a ng-href="#/tab/userhome" class="userAccountbackBtn"> <i  class="iconfontSVG ng-binding" ng-bind-html="drawSVGCIcon('chevron-left')"><svg class="icon-chevron-left"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-left"></use></svg></i> <span>Back</span></a>
           <div class="headerfont accountHeader-{{deviceName}} localizejs userAccountTitle"> Patient</div>
@@ -66,14 +66,14 @@
       </div>
    </ion-header-bar>
    <ion-view title="User Account Details" ng-init="doGetScheduledNowPhoneConsulatation()"   >
-      <ion-content padding="true"  title="User Account" class="usercontent-{{deviceName}} scroll-content ionic-scroll  has-header" >
+      <ion-content padding="true"  title="User Account" class="usercontent-{{deviceName}} scroll-content ionic-scroll  has-header animated slideInUp" >
         <ion-list>
             <div class="list userlistAccountHome userlistAccountHome-ios5 {{accountStyle}}">
                 <div class="card accMainContent" ng-if="P_isAuthorized && providerAvailability == true" >
                    <div class="accOndemandCon">
                       <h2 class="localizejs accOnVisit">On-demand visit</h2>
-                      <p class="localizejs accOnCall">See the next available provider on-call.</p>
-                      <!-- <p class="localizejs accOnCall2">provider on-call.</p> -->
+                      <p class="localizejs accOnCall">See the next available</p>
+                      <p class="localizejs accOnCall2">provider on-call.</p>
                    </div>
 
                    <div class="btn1 accSeeNext">
@@ -82,8 +82,8 @@
                         <span class="localizejs">See a provider now</span>
                      </button>
                    </div>
-                </div>
-                <div class="card cardNew accMainContentNew" ng-if="providerAvailability != true">
+                </div> <!--{{providerAvailability}} -- {{onSSAvailability}} --- {{chkAvailabiltyOfSS}} ---{{providerOnDemandEnabled}} -->
+                <div class="card cardNew accMainContentNew" ng-if="providerAvailability != true && providerOnDemandEnabled != false">
                      <div class="accOndemandCon accOndemandConNew">
                         <h2 class="localizejs accOnVisit accOnVisitNew">On-demand visit</h2>
                         <p class="localizejs accOnCall accOnCallNew">See the next available </p>
@@ -93,12 +93,12 @@
                         <p class="localizejs accOnCall2 accOnQuestion">Questions? Please call (516)445-6289</p>
                      </div>
                   </div>
-                <div class="card accMainContent" ng-if="online == true && onSSAvailability == 'on'">
+                <div class="card accMainContent" ng-if="online == true && onSSAvailability == 'on' && chkAvailabiltyOfSS == true">
                   <!-- ng-if="online == true && onSSAvailability == 'on'" -->
                    <div class="accOndemandCon">
                       <h2 class="localizejs accOnVisit">Create Appointment</h2>
-                      <p class="localizejs accOnCall">Schedule a visit with a specific provider.</p>
-                      <!-- <p class="localizejs accOnCall2">with a specific provider.</p> -->
+                      <p class="localizejs accOnCall">Schedule a visit</p>
+                       <p class="localizejs accOnCall2">with a specific provider.</p>
                    </div>
 
                    <div class="btn1 accSeeNext">
@@ -108,7 +108,7 @@
                    </div>
                 </div>
 
-                  <div class="card cardNew accMainContentNew"  ng-if="onSSAvailability != 'on'">
+                  <div class="card cardNew accMainContentNew"  ng-if="onSSAvailability == 'on' && chkAvailabiltyOfSS != true">
                      <div class="accOndemandCon accOndemandConNew">
                         <h2 class="localizejs accOnVisit accOnVisitNew">Create Appointment</h2>
                         <p class="localizejs accOnCall accOnCallNew">Schedule a visit</p>
@@ -117,6 +117,9 @@
                         <p class="localizejs accOnCall2 accOnQuestion accOnQuestionNew">Questions? Please call (516)445-6289</p>
                      </div>
                   </div>
+
+
+                  <ion-item ng-if="onSSAvailability != 'on' && chkAvailabiltyOfSS == false && providerAvailability != true && providerOnDemandEnabled != true" class="localizejs noapptviewResult item" style="white-space: normal;">Service is currently unavailable!</ion-item>
 
             </div>
          </ion-list>

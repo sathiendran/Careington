@@ -2809,7 +2809,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
             $rootScope.viewhealthDisplay = 'block';
             $("#HealthFooter").css("display", "block");
         } else {
-            $rootScope.c('tab.Health');
+          //$rootScope.doGetRelatedPatientProfiles('tab.Health');
+          $rootScope.imgUploadPatientProfile = true;
             $rootScope.doGetPatientProfiles();
         }
 
@@ -3027,7 +3028,10 @@ $rootScope.checkAndChangeMenuIcon = function() {
                 $rootScope.zipCode = data.data[0].zipCode;
 
                 $rootScope.primaryPatientId = $rootScope.patientAccount.patientId;
-                $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                if($rootScope.imgUploadPatientProfile == true)
+                    $rootScope.doGetScheduledNowPhoneConsulatation('tab.healthinfo');
+                else
+                    $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
                 $scope.doGetPrimaryPatientLastName();
               //  $rootScope.doGetScheduledConsulatation();
 
