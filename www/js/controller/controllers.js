@@ -329,30 +329,37 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 .controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, ageFilterReport, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup)
 {
+  $("#localize-widget").show();
 //venkat start
-      var localizeCurrent = $('#localize-current').text();
-         if(localizeCurrent == "Español"){
-          //   $(".whoNeedsText").css("font-size", "19px");
-             $scope.whoNeedsText = "font-size:17px !important";
-             $scope.consentTitleFont = "font-size:17px !important";
-              $scope.ProviderTiltefont = "padding-top: 30px !important;";
-         }else{
-             $scope.whoNeedsText = "font-size:21px !important";
-             $scope.consentTitleFont = "font-size:20px !important";
-             $scope.ProviderTiltefont = "padding-top: 15px !important;";
-         }
+   if($( window ).width()== 320){
+     var localizeCurrent = $('#localize-current').text();
+        if(localizeCurrent == "Español"){
+            $scope.whoNeedsText = "font-size:17px";
+            $scope.consentTitleFont = "font-size:17px !important";
+        }else{
+            $scope.whoNeedsText = "font-size:21px";
+            $scope.consentTitleFont = "font-size:20px !important";
+        }
+   }
+
          $('#localize-langs').click(function() {
+            if($( window ).width()== 320){
              var isLang = $('#localize-langs .activated').text();
+             console.log("isLang isssss is== "+isLang);
                if(isLang == "Español"){
-                    $scope.whoNeedsText = "font-size:17px !important";
+                   $("#whoNeedsTextval").css("font-size", "17px");
                    $scope.consentTitleFont = "font-size:17px !important";
-                    $scope.ProviderTiltefont = "padding-top: 30px !important;";
-               }else{
-                   $scope.whoNeedsText = "font-size:21px !important";
+               }
+               if(isLang == "English (UK)"){
+                  $("#whoNeedsTextval").css("font-size", "21px");
                    $scope.consentTitleFont = "font-size:20px !important";
-                   $scope.ProviderTiltefont = "padding-top: 15px !important;";
+               }
+               if(isLang == "English"){
+                   $("#whoNeedsTextval").css("font-size", "21px");
+                   $scope.consentTitleFont = "font-size:20px !important";
                }
              isLang = "";
+           }
          });
 //venkat end
 
@@ -642,7 +649,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -4285,7 +4292,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
         else {
             //  $('div.viewport').text($("option:selected", this).text());
               var selectedValue = $('option:selected', this).val().split('@');
-              $("div.viewport").html('<div class="insProviderName">'+selectedValue[0]+'</div><div class="insSubscriberName">Subscriber ID:'+selectedValue[1]+'</div>');
+              $("div.viewport").html('<div class="insProviderName localizejs">'+selectedValue[0]+'</div><div class="insSubscriberName localizejs">Subscriber ID:'+selectedValue[1]+'</div>');
 			         $rootScope.editplan ="block";
         }
     });
@@ -4574,7 +4581,7 @@ $scope.EditHealth = {};
             if ($('option:selected', this).text() === 'Choose Your Card') {
               $rootScope.editCardStyle ="none";
               $("div.cardViewport").empty();
-              $("div.cardViewport").html('<div class="insCHooseProviderName">Choose Your Card</div>');
+              $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
             } else {
               $rootScope.editCardStyle ="block";
               var payValue = ($('option:selected', this).val()).split("@");
@@ -4602,7 +4609,7 @@ $scope.EditHealth = {};
             if ($('option:selected', this).text() === 'Elija su Tarjeta') {
               $rootScope.editCardStyle ="none";
               $("div.cardViewport").empty();
-              $("div.cardViewport").html('<div class="insCHooseProviderName">Choose Your Card</div>');
+              $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
             } else {
               $rootScope.editCardStyle ="block";
               var payValue = ($('option:selected', this).val()).split("@");
@@ -4634,7 +4641,7 @@ $scope.EditHealth = {};
             if ($('option:selected', this).text() === 'Choose Your Card') {
               $rootScope.editCardStyle ="none";
               $("div.cardViewport").empty();
-              $("div.cardViewport").html('<div class="insCHooseProviderName">Choose Your Card</div>');
+              $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
             } else {
               $rootScope.editCardStyle ="block";
               var payValue = ($('option:selected', this).val()).split("@");
@@ -4665,7 +4672,7 @@ $scope.EditHealth = {};
             if ($('option:selected', this).text() === 'Elija su Tarjeta') {
               $rootScope.editCardStyle ="none";
               $("div.cardViewport").empty();
-              $("div.cardViewport").html('<div class="insCHooseProviderName">Choose Your Card</div>');
+              $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
             } else {
               $rootScope.editCardStyle ="block";
               var payValue = ($('option:selected', this).val()).split("@");
@@ -4697,7 +4704,7 @@ $scope.EditHealth = {};
             if ($('option:selected', this).text() === 'Choose Your Card') {
               $rootScope.editCardStyle ="none";
               $("div.cardViewport").empty();
-              $("div.cardViewport").html('<div class="insCHooseProviderName">Choose Your Card</div>');
+              $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
             }
             else{
           //  $('div.cardViewport').text($("option:selected", this).text());
@@ -4733,7 +4740,7 @@ $scope.EditHealth = {};
             if ($('option:selected', this).text() === 'Elija su Tarjeta') {
               $rootScope.editCardStyle ="none";
               $("div.cardViewport").empty();
-              $("div.cardViewport").html('<div class="insCHooseProviderName">Choose Your Card</div>');
+              $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
             }
             else{
           //  $('div.cardViewport').text($("option:selected", this).text());

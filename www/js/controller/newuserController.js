@@ -4,7 +4,7 @@ angular.module('starter.controllers')
 
         var localizeCurrent = $('#localize-current').text();
            if(localizeCurrent == "Español"){
-               $scope.coUserEmailStyle = "padding: 15px 0px 0px 5px;height: 70px;";
+               $scope.coUserEmailStyle = "padding: 15px 0px 0px 5px;height: 73px;";
            }else{
                $scope.coUserEmailStyle = "";
            }
@@ -15,7 +15,7 @@ angular.module('starter.controllers')
 
                if(isLang!=""){
                  if(isLang == "Español"){
-                     $scope.coUserEmailStyle = "padding: 15px 0px 0px 5px;height: 70px;";
+                     $scope.coUserEmailStyle = "padding: 15px 0px 0px 5px;height: 73px;";
                  }else{
                      $scope.coUserEmailStyle = "";
                  }

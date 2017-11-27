@@ -63,10 +63,17 @@
                         </h4>
                         <div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}" >
                            <div  class="dropdownContainer">
-                              <div style = "display: {{chooseHealthHide}};" class="viewport healthSelectedValue"><div class="insCHooseProviderName localizejs">Choose Your Health Plan</div></div>
+                              <div style = "display: {{chooseHealthHide}};" class="viewport healthSelectedValue">
+                                <div class="insCHooseProviderName localizejs">
+                                  <span class="localizejs">Choose Your Health Plan</span>
+                                </div>
+                              </div>
                               <div style = "display: {{chooseHealthShow}};" class="viewport insuranceNameDisplayed healthSelectedValue">
                                 <!--<b>{{providerName +' '+ PolicyNo}}</b>-->
-                                <div class="insProviderName localizejs" style="width: 15em;padding-left: 17px;">{{providerName}}</div><div class="insSubscriberName" style="padding-left: 17px;"><span class ="localizejs">Subscriber ID:</span><span class="loalizejs">{{PolicyNo}}</span></div>
+                                <div class="insProviderName localizejs" style="width: 15em;padding-left: 17px;">
+                                  <span class="localizejs">{{providerName}}</span>
+                                </div>
+                                  <div class="insSubscriberName" style="padding-left: 17px;"><span class ="localizejs">Subscriber ID:</span><span class="loalizejs">{{PolicyNo}}</span></div>
 
                               </div>
                               <select class="consultHealthPlanDropDown localizejs" id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan"  style="border: none;">

@@ -2,7 +2,7 @@
 <ion-side-menu-content>
    <ion-header-bar align-title="left" class="homeheader bar-positiveHomeUser animated slideInUp" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
       <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} accoTitle-{{deviceName}} userAccTitle">
-          <a ng-href="#/tab/userhome" class="userAccountbackBtn"> <i  class="iconfontSVG ng-binding" ng-bind-html="drawSVGCIcon('chevron-left')"><svg class="icon-chevron-left"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-left"></use></svg></i> <span>Back</span></a>
+          <a ng-href="#/tab/userhome" class="userAccountbackBtn"> <i  class="iconfontSVG ng-binding" ng-bind-html="drawSVGCIcon('chevron-left')"><svg class="icon-chevron-left"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-left"></use></svg></i> <span class="localizejs">Back</span></a>
           <div class="headerfont accountHeader-{{deviceName}} localizejs userAccountTitle"> Patient</div>
        </h1>
 
@@ -17,15 +17,15 @@
               </i>
               <span class="apptTime">Appt @ {{scheduledListData.scheduledTime | date: "hh:mm"}} {{scheduledListData.scheduledTime | date: "a"}}</span>
               <span class="apptDetailsInfo" ng-if="scheduledListData.appointmentStatusCode != 'Waiting' && scheduledListData.status != 71">
-                  <a class="appviewinfo-{{deviceName}}">View Details</a>
+                  <a class="appviewinfo-{{deviceName}} localizejs">View Details</a>
                   <i class="iconfontSVG ng-binding appViewicons" ng-bind-html="drawSVGCIcon('chevron-right')"><svg class="icon-chevron-right"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-right"></use></svg></i>
               </span>
               <span class="apptDetailsInfo" ng-if="scheduledListData.appointmentStatusCode == 'Waiting' && scheduledListData.status != 71">
-                  <a class="appviewinfo-{{deviceName}}">In queue</a>
+                  <a class="appviewinfo-{{deviceName}} localizejs">In queue</a>
                   <i class="iconfontSVG ng-binding appViewicons" ng-bind-html="drawSVGCIcon('chevron-right')"><svg class="icon-chevron-right"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-right"></use></svg></i>
               </span>
               <span class="apptDetailsInfo" ng-if="scheduledListData.status == 71">
-                <a class="appviewinfo-{{deviceName}}">In progress</a>
+                <a class="appviewinfo-{{deviceName}} localizejs">In progress</a>
                 <i class="iconfontSVG ng-binding appViewicons" ng-bind-html="drawSVGCIcon('chevron-right')"><svg class="icon-chevron-right"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-right"></use></svg></i>
               </span>
             </p>
@@ -65,7 +65,7 @@
          </div>
       </div>
    </ion-header-bar>
-   <ion-view title="User Account Details" ng-init="doGetScheduledNowPhoneConsulatation()"   >
+   <ion-view title="User Account Details" ng-init="doGetScheduledNowPhoneConsulatation()">
       <ion-content padding="true"  title="User Account" class="usercontent-{{deviceName}} scroll-content ionic-scroll  has-header animated slideInUp" >
         <ion-list>
             <div class="list userlistAccountHome userlistAccountHome-ios5 {{accountStyle}}">
