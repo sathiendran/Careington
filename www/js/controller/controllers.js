@@ -649,7 +649,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -1584,6 +1584,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
             success: function(data) {
                 $rootScope.getDetails = data.data[0].enabledModules;
                $rootScope.mobileSettings = data.data[0].settings;
+               $rootScope.appointmentsContactNumber = data.data[0].appointmentsContactNumber;
                var mobappversion = $rootScope.mobileSettings.mobileApp_MinSupportedVersion;
                var sptversion = mobappversion.split("v");
                var checkmobilever = parseFloat(sptversion[1]);
@@ -2195,6 +2196,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
                 $rootScope.contactNumber = data.data[0].contactNumber;
                 $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
                 $rootScope.clientName = data.data[0].hospitalName;
+                if (!angular.isUndefined(data.data[0].customerSso) && data.data[0].customerSso === "Mandatory") {
+                    $rootScope.customerSso = "Mandatory";
+                    ssoURL = data.data[0].patientLogin;
+                } else {
+                    $rootScope.customerSso = '';
+                }
 
                 var hospitaData = {};
       					hospitaData.hospitalId = $rootScope.hospitalId;
@@ -2272,12 +2279,6 @@ $rootScope.checkAndChangeMenuIcon = function() {
       					var hsettingsJsonData = JSON.stringify(hsettings);
       					$window.localStorage.setItem('snap_hospital_settings', hsettingsJsonData);
 
-                if (!angular.isUndefined(data.data[0].customerSso) && data.data[0].customerSso === "Mandatory") {
-                    $rootScope.customerSso = "Mandatory";
-                    ssoURL = data.data[0].patientLogin;
-                } else {
-                    $rootScope.customerSso = '';
-                }
                 if (!angular.isUndefined(data.data[0].patientRegistrationApi) && data.data[0].patientRegistrationApi !== "") {
                     $rootScope.isSSORegisterAvailable = data.data[0].patientRegistrationApi;
                 } else {
@@ -2713,7 +2714,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
              $rootScope.regCountry2 =  $('#regCountryCode').val();
         }
 
-        debugger;
+      //  debugger;
         if (deploymentEnvLogout === 'Single') {
             if (deploymentEnvForProduction === 'Production') {
             //    if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
@@ -2811,6 +2812,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
         if ($rootScope.hasRequiredFields === false) {
             $rootScope.doGetPatientProfiles();
             //  $rootScope.doGetRelatedPatientProfiles('tab.userhome');
+            $rootScope.imgUploadPatientProfile = false;
             $rootScope.hasRequiredFields = true;
             $rootScope.viewmyhealthDisplay = 'none';
             $rootScope.viewhealthDisplay = 'block';
@@ -7674,6 +7676,9 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
 
     $rootScope.doGetonDemandAvailability = function() {
+      $rootScope.providerAvailability = '';
+        $rootScope.onDemandAvailability = '';
+        $rootScope.providerOnDemandEnabled = '';
         var params = {
             accessToken: $rootScope.accessToken,
             hospitalId: $rootScope.hospitalId,
@@ -7689,6 +7694,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                   $rootScope.getNextAvailProvTime1 = data.data[0].startTime;
 
                 $rootScope.onDemandAvailability = data.data[0].onDemandAvailabilityBlockCount;
+                $rootScope.providerOnDemandEnabled = data.data[0].providerOnDemandEnabled;
             },
             error: function(data, status) {
               if (status === 0) {
@@ -9004,6 +9010,34 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         };
         LoginService.getAttachmentURL(params);
     }
+
+
+     $scope.GetUserAccountCondition = function(pid) {
+        var params = {
+            patientId: pid,
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+              if(data.total === 0)
+              {
+                $rootScope.chkAvailabiltyOfSS = false;
+              }else if(data.total > 0){
+                $rootScope.chkAvailabiltyOfSS = true;
+              }
+            },
+            error: function(data,status) {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else{
+                $rootScope.serverErrorMessageValidation();
+              }
+            }
+        };
+        LoginService.getUserAccountCondition(params);
+    }
+
 
     $scope.loadDependent = function(){
         $rootScope.RelatedPatientProfiles = '';

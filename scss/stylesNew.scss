@@ -6736,6 +6736,76 @@ background-color: rgb(245,245,245);
     text-align: center;
     color: rgb(255,255,255);
 }
+.userAccTitle{
+    margin-top: 18px;
+}
+.subheaderheightOne{
+    height: 150px !important;
+}
+
+.subheaderheightTwo{
+    background-color: rgb(255,198,11) !important;
+    height: 50px;
+    top: -3px;
+    border: 0px solid rgb(255,198,11);
+}
+.userAccHeaderTitle{
+    top: 55px !important;
+}
+.user-button-position{
+    padding: 3px !important;
+    margin-top: -12px !important;
+}
+
+.button-Search-providers.activated{
+    background-color: #ffc60b;
+    border-color: #ffc60b;
+}
+.cardNew {
+   box-shadow: 0 1px 3px rgba(0, 0, 0, 0) !important;
+}
 .HealthSideMenusvgLogout {
     vertical-align: text-bottom !important;
+}
+.labelwidth{
+    width: 100% !important;
+    max-width: 100%;
+}
+.healthViewDetailsNew {
+  margin-top: -7px;
+  padding: 0px 0px 12px 0px;
+    input {
+      padding: 25px 0px 0px 6px;
+    }
+
+}
+
+.noneSchedule{
+    top: 20px;
+}
+.noneScheduleImg{
+    color: rgb(0,0,0);
+    opacity: 0.2;
+}
+.noneScheduleImg svg{
+    font-size: 106px;
+}
+
+.noneScheduleText{
+    font-size: 14pt !important;
+    font-family: GloberBold;
+    text-align: center;
+    line-height: 16pt;
+    color: rgba(0,0,0,0.75) !important;
+}
+.noneScheduleNumber{
+    font-size: 16pt !important;
+    font-family: GloberSemiBold;
+    text-align: center;
+    line-height: 24pt;
+    color: rgba(0,0,0,0.75);
+    margin-top: 13px !important;
+}
+.noneScheduleTextBox{
+    margin-top: 18px;
 }
