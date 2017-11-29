@@ -3107,6 +3107,7 @@ a {
           margin-top: -7px !important;
           .uAPlProfileImage {
                 margin-top: -2px;
+
           }
     }
 }
@@ -3263,10 +3264,10 @@ a {
     border: 2px solid white;
 }
 .UserAccountProfileImage img{
-    margin-top: 50px;   
+    margin-top: 50px;
 }
 .UserAccountProfileImage .patProfileImage{
-    margin-top: 50px;   
+    margin-top: 50px;
 }
 .UserHmelistImgView {
     width: 60px;
@@ -3606,7 +3607,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 }
 //end Validation styles
 #healthInfoDOB {
-    line-height: 22px;
+    line-height: 33px;
 }
 #healthInfoEmail {
     text-overflow: ellipsis;
@@ -4586,7 +4587,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
         pointer-events: none;
         color: #60605D;
         position: absolute;
-        width: 85%;
+        width: 87%;
         height: 100%;
         z-index: 15;
         overflow: hidden;
@@ -6136,4 +6137,7 @@ hr {
 .UserhmePatientDetails{
   margin-left: 0px;
   margin-top: -5px !important;
+}
+.headertitle1{
+  top: 57px;
 }

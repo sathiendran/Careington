@@ -225,7 +225,7 @@
     <script type="text/javascript" src="scripts/jquery.runner.js"></script>
    <!--  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDJbOzLwTA2o1otQz6wToqa-IHG3wo48ZY&sensor=false&libraries=places"></script> -->
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
-    
+
       <!-- <script src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places"></script> -->
       <!-- <script src="http://jvandemo.github.io/angularjs-google-maps/dist/angularjs-google-maps.js"></script> -->
 
@@ -503,7 +503,7 @@
 
 <script id="apptSlotTemplate" type="text/x-kendo-template">
     <div data-bind = "css: { is-selected : vm_isInvisible }" >
-        <button type="button" class="drawer-card__appointment-action" data-bind="events: {click: vm_onSlotClick }, html: formatedTime" ></button>
+        <button type="button" class="drawer-card__appointment-action localizejs" data-bind="events: {click: vm_onSlotClick }, html: formatedTime" ></button>
     </div>
 </script>
 
@@ -625,7 +625,7 @@
 
 <script id="patient_apptSlotTemplate" type="text/x-kendo-template">
     <div data-bind="css: { is-selected : vm_isInvisible">
-        <button type="button" class="drawer-card__appointment-action" data-bind="events: {click: vm_onSlotClick }, html: formatedTime"></button>
+        <button type="button" class="drawer-card__appointment-action localizejs" data-bind="events: {click: vm_onSlotClick }, html: formatedTime"></button>
     </div>
 </script>
 

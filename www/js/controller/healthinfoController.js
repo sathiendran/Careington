@@ -36,7 +36,7 @@ angular.module('starter.controllers')
             }
             console.log($rootScope.addressInfoFetch);
             $scope.route = $rootScope.addressInfoFetch[0].addressObject.line1;
-            $scope.address2 = $rootScope.addressInfoFetch[0].addressObject.line2; 
+            $scope.address2 = $rootScope.addressInfoFetch[0].addressObject.line2;
             $scope.City = $rootScope.addressInfoFetch[0].addressObject.city;
             $scope.ZipCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
             $scope.State = $rootScope.addressInfoFetch[0].addressObject.state;
@@ -624,15 +624,15 @@ $("#localize-widget").show();
 //$scope.doGetCountries();
 //$scope.getStatesForUS();
 //$scope.loadAddressData();
-            
 
 
-                    
+
+
             //$scope.newupdatePatientDetails();
         }
         $scope.loadAddressData = function(){
                     $scope.route = $rootScope.addressInfoFetch[0].addressObject.line1;
-                    $scope.address2 = $rootScope.addressInfoFetch[0].addressObject.line2; 
+                    $scope.address2 = $rootScope.addressInfoFetch[0].addressObject.line2;
                     $scope.City = $rootScope.addressInfoFetch[0].addressObject.city;
                     $scope.ZipCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
                     $scope.State = $rootScope.addressInfoFetch[0].addressObject.state;
@@ -3332,7 +3332,7 @@ $("#localize-widget").show();
           $scope.Country = document.getElementById('country').value;
           var countryFetch = document.getElementById('country').options[document.getElementById('country').selectedIndex].text;
           var countryCodeFetch = document.getElementById('country').value;
-          
+
           var res = new Object();
           res['city'] = $scope.City;
           res['country'] = countryFetch;
@@ -3416,7 +3416,7 @@ $("#localize-widget").show();
     }*/
 
                 /*    $scope.route = $rootScope.currentPatientDetails[0].addressObject.line1;
-                    $scope.address2 = $rootScope.currentPatientDetails[0].addressObject.line2; 
+                    $scope.address2 = $rootScope.currentPatientDetails[0].addressObject.line2;
                     $scope.City = $rootScope.currentPatientDetails[0].addressObject.city;
                     $scope.ZipCode = $rootScope.currentPatientDetails[0].addressObject.postalCode;
                     $scope.State = $rootScope.currentPatientDetails[0].addressObject.state;

@@ -342,6 +342,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
    }
 
+var localizeCurrent = $('#localize-current').text();
+  if(localizeCurrent == "Español"){
+    $scope.consentTitleFont = "font-size:21px !important";
+    }else{
+        $scope.consentTitleFont = "font-size:25px !important";
+    }
+
+
          $('#localize-langs').click(function() {
             if($( window ).width()== 320){
              var isLang = $('#localize-langs .activated').text();
@@ -649,7 +657,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
