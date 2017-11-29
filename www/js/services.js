@@ -777,6 +777,29 @@ this.getPatientMedicalProfile = function(params){
                 });
     }
 
+ this.getUserAccountCondition = function (params) {
+
+        //util.setHeaders($http, params);
+         var newdate = new Date();
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+//            url: apiCommonURL + '/api/v2/patients/consultations/' + params.patientId + '/all',
+            url: apiCommonURL + '/api/v2.1/patients/appointments/self-scheduling/clinicians?date='+newdate+'&name=&availableOnly=false&patientId='+ params.patientId + '&take=20&skip=0&onlyMyProviders=false&applyVisibilityRules=true',
+            method: 'GET'
+        };
+
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    if (typeof params.error != 'undefined') {
+                       params.error(data,status);
+                    }
+                });
+    }
 
     this.getExistingConsulatation = function (params) {
         //util.setHeaders($http, params);
