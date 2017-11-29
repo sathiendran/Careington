@@ -5,7 +5,11 @@ span.icon_video_camera {
 span.icon_phone {
     font-size: 30px;
 }
-
+:lang(es) .button__red.error::after {
+  content: "Rever?";
+  padding-bottom: 10px;
+    /* border-color: black; */
+}
 </style>
 <div id="appointDialog">
     <div class="dialogbox-master is-next is-pss">
@@ -13,7 +17,7 @@ span.icon_phone {
         <div id="appoitEditPop" class="dialogbox-master__titlebar dialogbox-master__titlebar--usertray dialogbox-master__titlebar--patient appoitEditPop">
             <span data-bind="text: vm_dialogTitle localizejs"></span>
         </div>
-        <div class="dialogbox-master__main" data-bind="css:{dialogbox-master__main--timer:vm_isNew, is-disabled:isExpiredAppointment}">
+        <div class="dialogbox-master__main localizejs" data-bind="css:{dialogbox-master__main--timer:vm_isNew, is-disabled:isExpiredAppointment}">
             <div class="loader loader--grey" data-bind="css: {is-active: vm_isLoading}"></div>
 
             <div class="dialogbox-master__timer" data-bind="visible:vm_isNew, css:{is-hidden:vm_hideTimer}">
@@ -22,7 +26,7 @@ span.icon_phone {
             <div class="dialogbox-master__parent-container" data-bind="css:{ dialogbox-master__parent-container--timer:vm_isNew, is-disabled:isExpiredAppointment}">
                 <div class="notification-bar notification-bar--error notification-bar--dialogbox" data-bind="visible:vm_isNew, css:{is-active:isExpiredAppointment}">
                     <div class="notification-bar__icon"><span class="icon_emoji-sad"></span></div>
-                    <div class="notification-bar__desc" data-bind="text:vm_notification_msg"></div>
+                    <div class="notification-bar__desc localizejs" data-bind="text:vm_notification_msg"></div>
                 </div>
                 <div class="dialogbox-master__wrapper dialogbox-master__wrapper--full" data-bind="css:{ dialogbox-master__wrapper--timer:vm_isNew, is-disabled:isExpiredAppointment}">
                     <div class="dialogbox-master__container js-scroll-container" id="dialogbox-master__left-container">
@@ -230,7 +234,7 @@ span.icon_phone {
                         invisible: vm_isCancelBtnVisible,
                         disabled: isDisabled,
                         events: { click: vm_onSubmitClick },
-                        css: { is-loading: isLoading, button__red: isError, error: isError, button__green: vm_isNotError, button__gray: isDisabled }"><span data-bind="text:vm_saveBtnTxt" class="localizejs"></span></button>
+                        css: { is-loading: isLoading, button__red: isError, error: isError, button__green: vm_isNotError, button__gray: isDisabled }"><span data-bind="text:vm_saveBtnTxt" id="retrySpanish" class="localizejs"></span></button>
             <!--</div>-->
 
             <button style="min-height: 30px; line-height: 30px;" class="button button__cancel js-cancel localizejs" tabindex="12"  data-bind="events: { click: vm_onCloseClick }" ><span class="localizejs">Close</span></button>

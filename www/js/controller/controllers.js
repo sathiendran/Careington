@@ -349,6 +349,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
    }
 
+var localizeCurrent = $('#localize-current').text();
+  if(localizeCurrent == "Español"){
+    $scope.consentTitleFont = "font-size:21px !important";
+    }else{
+        $scope.consentTitleFont = "font-size:25px !important";
+    }
+
+
          $('#localize-langs').click(function() {
             if($( window ).width()== 320){
              var isLang = $('#localize-langs .activated').text();

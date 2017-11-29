@@ -72,6 +72,14 @@ angular.module('starter.controllers')
             }, 300);
         }
     }
+    var localizeCurrent = $('#localize-current').text();
+      if(localizeCurrent == "Español"){
+        $scope.Errorconlength = "width: 96% !important";
+        }else{
+            $scope.Errorconlength = "width: 93% !important";
+        }
+
+
     $rootScope.ValidationFunction1 = function($a) {
         function refresh_close() {
             $('.close').click(function() {
@@ -80,7 +88,7 @@ angular.module('starter.controllers')
         }
         refresh_close();
 
-        var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
+        var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent Errorconlength localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
         $("#notifications-top-center").remove();
           $(".ErrorMessage").append(top);
         refresh_close();
@@ -1345,7 +1353,7 @@ $rootScope.editremovemodal = function () {
           $scope.Country = document.getElementById('country').value;
           var countryFetch = document.getElementById('country').options[document.getElementById('country').selectedIndex].text;
           var countryCodeFetch = document.getElementById('country').value;
-          
+
           var res = new Object();
           res['city'] = $scope.City;
           res['country'] = countryFetch;
@@ -1429,15 +1437,15 @@ $rootScope.editremovemodal = function () {
     }*/
 
                   /*  $scope.route = $rootScope.primaryPatientDetails[0].addressObject.line1;
-                    $scope.address2 = $rootScope.primaryPatientDetails[0].addressObject.line2; 
+                    $scope.address2 = $rootScope.primaryPatientDetails[0].addressObject.line2;
                     $scope.City = $rootScope.primaryPatientDetails[0].addressObject.city;
                     $scope.ZipCode = $rootScope.primaryPatientDetails[0].addressObject.postalCode;
                     $scope.State = $rootScope.primaryPatientDetails[0].addressObject.state;
                     $scope.state1 = $rootScope.primaryPatientDetails[0].addressObject.state;
                     $scope.Country = $rootScope.primaryPatientDetails[0].addressObject.countryCode;*/
-                    
+
                     $scope.route = $rootScope.addressInfoFetch[0].addressObject.line1;
-                    $scope.address2 = $rootScope.addressInfoFetch[0].addressObject.line2; 
+                    $scope.address2 = $rootScope.addressInfoFetch[0].addressObject.line2;
                     $scope.City = $rootScope.addressInfoFetch[0].addressObject.city;
                     $scope.ZipCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
                     $scope.State = $rootScope.addressInfoFetch[0].addressObject.state;
