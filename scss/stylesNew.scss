@@ -6784,8 +6784,33 @@ background-color: rgb(245,245,245);
     }
 
 }
-// @media screen and (min-width: 320px) and (max-width:568px) {
-//  .providerListDiviphone5{
-//     padding-top: 30px !important;
-//   }
-// }
+
+.noneSchedule{
+    top: 20px;
+}
+.noneScheduleImg{
+    color: rgb(0,0,0);
+    opacity: 0.2;
+}
+.noneScheduleImg svg{
+    font-size: 106px;
+}
+
+.noneScheduleText{
+    font-size: 14pt !important;
+    font-family: GloberBold;
+    text-align: center;
+    line-height: 16pt;
+    color: rgba(0,0,0,0.75) !important;
+}
+.noneScheduleNumber{
+    font-size: 16pt !important;
+    font-family: GloberSemiBold;
+    text-align: center;
+    line-height: 24pt;
+    color: rgba(0,0,0,0.75);
+    margin-top: 13px !important;
+}
+.noneScheduleTextBox{
+    margin-top: 18px;
+}
