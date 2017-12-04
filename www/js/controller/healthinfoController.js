@@ -42,6 +42,12 @@ angular.module('starter.controllers')
             $scope.State = $rootScope.addressInfoFetch[0].addressObject.state;
             $scope.state1 = $rootScope.addressInfoFetch[0].addressObject.state;
             $scope.Country = $rootScope.addressInfoFetch[0].addressObject.countryCode;
+            if($scope.Country == 'US')
+              {
+                $scope.showCountrySelectBox = true;
+              }else{
+                $scope.showCountrySelectBox = false;
+              }
         };
 $("#localize-widget").show();
         $scope.getOnlyNumbers = function (text) {
@@ -303,6 +309,12 @@ $("#localize-widget").show();
                   $scope.City =  $scope.oldCity;
                   $scope.ZipCode = $scope.oldZipCode;
                   $scope.Country = $scope.oldCountry;
+                  if($scope.Country == 'US')
+                  {
+                    $scope.showCountrySelectBox = true;
+                  }else{
+                    $scope.showCountrySelectBox = false;
+                  }
                   $scope.state1 = $scope.oldstate1;
                   $scope.State =   $scope.oldState;
                     $scope.modal = null;
@@ -319,7 +331,7 @@ $("#localize-widget").show();
                 });
             }
             refresh_close();
-            var top = '<div id="notifications-top-center" class="notificationError" ><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i>' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
+            var top = '<div id="notifications-top-center" class="notificationError localizejs" ><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i>' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
             $("#notifications-top-center").remove();
             $(".Error_Message").append(top);
             refresh_close();
@@ -332,7 +344,7 @@ $("#localize-widget").show();
                 });
             }
             refresh_close();
-            var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
+            var top = '<div class="notifications-top-center notificationError localizejs"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
 
             $(".notifications-top-center").remove();
             $(".ErrorMessage").append(top);
@@ -638,6 +650,12 @@ $("#localize-widget").show();
                     $scope.State = $rootScope.addressInfoFetch[0].addressObject.state;
                     $scope.state1 = $rootScope.addressInfoFetch[0].addressObject.state;
                     $scope.Country = $rootScope.addressInfoFetch[0].addressObject.countryCode;
+                    if($scope.Country == 'US')
+                      {
+                        $scope.showCountrySelectBox = true;
+                      }else{
+                        $scope.showCountrySelectBox = false;
+                      }
         }
 
         $scope.editDob = function () {
@@ -3298,9 +3316,9 @@ $("#localize-widget").show();
 
         $scope.changeCountry = function(){
             var country = document.getElementById('country').value;
-            if(country != 'Select Country')
+            if(country == 'Select Country')
             {
-             //   $scope.imageName = 'images/countries/flags/'+country+'-32.png';
+              $scope.imageName = '';
             }
         }
 
@@ -3330,6 +3348,12 @@ $("#localize-widget").show();
             }
           $scope.ZipCode = document.getElementById('zipcode').value;
           $scope.Country = document.getElementById('country').value;
+          if($scope.Country == 'US')
+          {
+            $scope.showCountrySelectBox = true;
+          }else{
+            $scope.showCountrySelectBox = false;
+          }
           var countryFetch = document.getElementById('country').options[document.getElementById('country').selectedIndex].text;
           var countryCodeFetch = document.getElementById('country').value;
 
@@ -3374,6 +3398,12 @@ $("#localize-widget").show();
                         var country = document.getElementById('country').value;
                         $scope.imageName = 'images/countries/flags/'+country+'-32.png';
             }
+            if(document.getElementById('country').value == 'US')
+            {
+              $scope.showCountrySelectBox  = true;
+            }else{
+              $scope.showCountrySelectBox  = false;
+            }
             var res = new Object();
             res['txtPlaces'] = txtPlaces;
             res['address2'] = address2;
@@ -3387,7 +3417,7 @@ $("#localize-widget").show();
             for(var i in res)
             {
                 count++;
-             if(res[i] != '' && res[i] != undefined)
+             if(res[i] != '' && res[i] != undefined && res[i].indexOf('?') == -1)
                  {
                      if(count != c)
                         {
@@ -3507,8 +3537,9 @@ $("#localize-widget").show();
                                 $scope.Country = place.address_components[k].short_name;
                                 if($scope.Country == "US")
                                 {
-                                   // $scope.getStatesForUS();
+                                   $scope.showCountrySelectBox = true;
                                 }else{
+                                    $scope.showCountrySelectBox = false;
                                      $scope.state1 =  $scope.State;
                                      $scope.State = '';
                                 }

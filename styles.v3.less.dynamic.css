@@ -22099,7 +22099,11 @@ input[type="radio"].radio:checked+span::before {
     animation-play-state: running;
     animation-fill-mode: forwards
 }
-
+/*:lang(es) .button__red.error::after {   background-color: black; }
+/*html[lang=en].button__red.error::after {
+    /*content: "Rever?";
+    background-color: black;
+  }*/
 @keyframes fail-text {
     0% {
         opacity: 0

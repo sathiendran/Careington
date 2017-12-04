@@ -1,5 +1,25 @@
 angular.module('starter.controllers')
     .controller('registerStep1Controller', function($scope, ageFilter, $timeout, step1PostRegDetailsService, $ionicPlatform, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
+       var localizeCurrent = $('#localize-current').text();
+        if(localizeCurrent == "Español"){
+            $rootScope.defaultAddressText = 'Por favor ingrese la dirección'; 
+          }else{
+            $rootScope.defaultAddressText = 'Please enter address';
+          }
+
+
+          $('#localize-langs').click(function() {
+             var isLang = $('#localize-langs .activated').text();
+             console.log("isLang isssss is== "+isLang);
+               if(isLang == "Español"){
+                  $rootScope.defaultAddressText = 'Por favor ingrese la dirección'; 
+               }else{
+                $rootScope.defaultAddressText = 'Please enter address';
+               }
+               
+             isLang = "";
+         });
+
         $rootScope.isRegistrationCompleted = false;
         var onePopupLimit = true;
         $ionicPlatform.registerBackButtonAction(function() {
@@ -515,6 +535,12 @@ angular.module('starter.controllers')
                   $scope.City =  $scope.oldCity;
                   $scope.ZipCode = $scope.oldZipCode;
                   $scope.Country = $scope.oldCountry;
+                  if($scope.Country == 'US')
+                  {
+                    $scope.showCountrySelectBox = true;
+                  }else{
+                    $scope.showCountrySelectBox = false;
+                  }
                   $scope.state1 = $scope.oldstate1;
                   $scope.State =   $scope.oldState;
                     $scope.modal = null;
@@ -570,7 +596,8 @@ angular.module('starter.controllers')
         }*/
 
         $scope.addressEditSave = function(){
-          if(document.getElementById('fullAddress').innerHTML != 'Please enter address')
+          //if(document.getElementById('fullAddress').innerHTML != 'Please enter address' )
+          if(document.getElementById('fullAddress').innerHTML != $rootScope.defaultAddressText )
           {
     		      var stateObj  = '';
               var countryFetch  = '';
@@ -601,6 +628,12 @@ angular.module('starter.controllers')
 
               $scope.ZipCode = document.getElementById('zipcode').value;
               $scope.Country = document.getElementById('country').value;
+              if($scope.Country == 'US')
+              {
+                $scope.showCountrySelectBox = true;
+              }else{
+                $scope.showCountrySelectBox = false;
+              }
               var countryFetch = document.getElementById('country').options[document.getElementById('country').selectedIndex].text;
               var countryCodeFetch = document.getElementById('country').value;
               
@@ -623,7 +656,13 @@ angular.module('starter.controllers')
               }
 
         }
-
+        $scope.changeCountry = function(){
+            var country = document.getElementById('country').value;
+            if(country == 'Select Country')
+            {
+               $scope.imageName = '';
+            }
+        }
         $scope.makeAddress=function(){
             var txtPlaces = document.getElementById('txtPlaces').value;
             var address2 = document.getElementById('address2').value;
@@ -647,6 +686,12 @@ angular.module('starter.controllers')
                         var country = document.getElementById('country').value;
                         $scope.imageName = 'images/countries/flags/'+country+'-32.png';
             }
+            if(document.getElementById('country').value == 'US')
+            {
+              $scope.showCountrySelectBox  = true;
+            }else{
+              $scope.showCountrySelectBox  = false;
+            }
             var res = new Object();
             res['txtPlaces'] = txtPlaces;
             res['address2'] = address2;
@@ -660,7 +705,7 @@ angular.module('starter.controllers')
             for(var i in res)
             {
                 count++;
-             if(res[i] != '' && res[i] != undefined)
+             if(res[i] != '' && res[i] != undefined && res[i].indexOf('?') == -1)
                  {
                      if(count != c)
                         {
@@ -675,7 +720,8 @@ angular.module('starter.controllers')
             if(fullAddressCombo.length != 0 && fullAddressCombo!=', ' && fullAddressCombo !=',' )
                             document.getElementById('fullAddress').innerHTML = fullAddressCombo;
             if(fullAddressCombo.length == 0 || fullAddressCombo == ', ' || fullAddressCombo ==',' )
-                            document.getElementById('fullAddress').innerHTML = "Please enter address";
+                            document.getElementById('fullAddress').innerHTML = $rootScope.defaultAddressText;
+                            //document.getElementById('fullAddress').innerHTML = "Please enter address";
         }
 
 
@@ -716,7 +762,8 @@ angular.module('starter.controllers')
 
                   if(document.getElementById('regaddress').value == '')
                   {
-                    AddrText  = 'Please enter address';
+                    //AddrText  = 'Please enter address';
+                    AddrText  = $rootScope.defaultAddressText;
                   }else{
                     AddrText  = document.getElementById('regaddress').value;
                   }
@@ -809,8 +856,9 @@ angular.module('starter.controllers')
                                 $scope.Country = place.address_components[k].short_name;
                                 if($scope.Country == "US")
                                 {
-                                   // $scope.getStatesForUS();
+                                   $scope.showCountrySelectBox  = true;
                                 }else{
+                                  $scope.showCountrySelectBox  = false;
                                      $scope.state1 =  $scope.State;
                                      $scope.State = '';
                                 }
@@ -862,7 +910,8 @@ angular.module('starter.controllers')
                         if(fullAddressCombo.length != 0 && fullAddressCombo!=', ' && fullAddressCombo !=',' )
                             document.getElementById('fullAddress').innerHTML = fullAddressCombo;
                         if(fullAddressCombo.length == 0 || fullAddressCombo ==', ' || fullAddressCombo ==',' )
-                            document.getElementById('fullAddress').innerHTML = "Please enter address";
+                            document.getElementById('fullAddress').innerHTML = $rootScope.defaultAddressText;
+                            //document.getElementById('fullAddress').innerHTML = "Please enter address";
 
                 });
 

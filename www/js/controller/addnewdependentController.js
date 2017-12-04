@@ -44,6 +44,16 @@ angular.module('starter.controllers')
         }
     }, 100);
 
+
+	$rootScope.adddependent = function() {
+            $scope.doGetLocations();
+            $rootScope.newDependentImagePath = '';
+            $rootScope.addPatientidupdateList = '';
+            $rootScope.listOfAddPatientIdentifiers = '';
+            $('select').prop('selectedIndex', 0);
+            $state.go('tab.addnewdependent');
+        }
+
     var checkAndChangeMenuIcon;
     $interval.cancel(checkAndChangeMenuIcon);
     $rootScope.checkAndChangeMenuIcon = function() {
@@ -185,7 +195,9 @@ angular.module('starter.controllers')
         return newStr;
     }
     $scope.addNewDependent = {};
-    $scope.addNewDependent.homeadd = $rootScope.primaryPatientDetails[0].address;
+    // $scope.addNewDependent.homeadd = $rootScope.primaryPatientDetails[0].addresses;
+    $scope.addNewDependent.homeadd = $rootScope.primaryPatientDetails[0].addresses[0].addressText;
+    // alert("addNewDependent.homeadd " + $scope.addNewDependent.homeadd);
     var newUploadedPhoto;
 
     $('input').blur(function() {
@@ -1275,6 +1287,12 @@ $rootScope.editremovemodal = function () {
                   $scope.City =  $scope.oldCity;
                   $scope.ZipCode = $scope.oldZipCode;
                   $scope.Country = $scope.oldCountry;
+                  if($scope.Country == 'US')
+                  {
+                    $scope.showCountrySelectBox = true;
+                  }else{
+                    $scope.showCountrySelectBox = false;
+                  }
                   $scope.state1 = $scope.oldstate1;
                   $scope.State =   $scope.oldState;
                   $scope.modal = null;
@@ -1351,6 +1369,12 @@ $rootScope.editremovemodal = function () {
             }
           $scope.ZipCode = document.getElementById('zipcode').value;
           $scope.Country = document.getElementById('country').value;
+          if($scope.Country == 'US')
+          {
+            $scope.showCountrySelectBox = true;
+          }else{
+            $scope.showCountrySelectBox = false;
+          }
           var countryFetch = document.getElementById('country').options[document.getElementById('country').selectedIndex].text;
           var countryCodeFetch = document.getElementById('country').value;
 
@@ -1370,6 +1394,14 @@ $rootScope.editremovemodal = function () {
                 .then(function () {
                     $scope.modal = null;
                 });
+        }
+
+        $scope.changeCountry = function(){
+            var country = document.getElementById('country').value;
+            if(country == 'Select Country')
+            {
+               $scope.imageName = '';
+            }
         }
 
         $scope.makeAddress=function(){
@@ -1395,6 +1427,12 @@ $rootScope.editremovemodal = function () {
                         var country = document.getElementById('country').value;
                         $scope.imageName = 'images/countries/flags/'+country+'-32.png';
             }
+            if(document.getElementById('country').value == 'US')
+            {
+              $scope.showCountrySelectBox  = true;
+            }else{
+              $scope.showCountrySelectBox  = false;
+            }
             var res = new Object();
             res['txtPlaces'] = txtPlaces;
             res['address2'] = address2;
@@ -1408,7 +1446,7 @@ $rootScope.editremovemodal = function () {
             for(var i in res)
             {
                 count++;
-             if(res[i] != '' && res[i] != undefined)
+             if(res[i] != '' && res[i] != undefined && res[i].indexOf('?') == -1)
                  {
                      if(count != c)
                         {
@@ -1423,7 +1461,8 @@ $rootScope.editremovemodal = function () {
             if(fullAddressCombo.length != 0 && fullAddressCombo!=', ' && fullAddressCombo !=',' )
                             document.getElementById('fullAddress').innerHTML = fullAddressCombo;
             if(fullAddressCombo.length == 0 || fullAddressCombo == ', ' || fullAddressCombo ==',' )
-                            document.getElementById('fullAddress').innerHTML = "Please enter address";
+                            // document.getElementById('fullAddress').innerHTML = "Please enter address";
+                            document.getElementById('fullAddress').innerHTML = $rootScope.defaultAddressText;
         }
 
 /*
@@ -1451,6 +1490,12 @@ $rootScope.editremovemodal = function () {
                     $scope.State = $rootScope.addressInfoFetch[0].addressObject.state;
                     $scope.state1 = $rootScope.addressInfoFetch[0].addressObject.state;
                     $scope.Country = $rootScope.addressInfoFetch[0].addressObject.countryCode;
+                    if($scope.Country == 'US')
+                      {
+                        $scope.showCountrySelectBox  = true;
+                      }else{
+                        $scope.showCountrySelectBox  = false;
+                      }
 
         $scope.addressEditModal = function () {
           $("#localize-widget").hide();
@@ -1535,8 +1580,9 @@ $rootScope.editremovemodal = function () {
                                 $scope.Country = place.address_components[k].short_name;
                                 if($scope.Country == "US")
                                 {
-                                   // $scope.getStatesForUS();
+                                   $scope.showCountrySelectBox = true;
                                 }else{
+                                    $scope.showCountrySelectBox = false;
                                      $scope.state1 =  $scope.State;
                                      $scope.State = '';
                                 }
@@ -1587,7 +1633,9 @@ $rootScope.editremovemodal = function () {
                         if(fullAddressCombo.length != 0 && fullAddressCombo!=', ' && fullAddressCombo !=',' )
                             document.getElementById('fullAddress').innerHTML = fullAddressCombo;
                         if(fullAddressCombo.length == 0 || fullAddressCombo ==', ' || fullAddressCombo ==',' )
-                            document.getElementById('fullAddress').innerHTML = "Please enter address";
+                            // document.getElementById('fullAddress').innerHTML = "Please enter address";
+                           document.getElementById('fullAddress').innerHTML = $rootScope.defaultAddressText;
+
                 });
              } // fillAddress closed
         }); // modal closed

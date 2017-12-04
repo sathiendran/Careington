@@ -27,7 +27,7 @@
                      </div>
                      <div class="col-95">
                         <label class="localizejs homelabel">Home Address</label>
-                        <div id="fullAddress"></div>
+                        <div class="localizejs" id="fullAddress"></div>
                      </div>
                   </div>
                   <div class="row addressRow">
@@ -61,12 +61,12 @@
                      <div class="col-40 sideblock">
                         <label class="localizejs addresslabel"> State/Province</label>
                         <div>
-                           <select ng-if="Country == 'US'" class="textdata localizejs"  name="State" id="state" ng-model="State" style="width: 100% !important; position: relative; top: 6px;border: none;" ng-change="makeAddress()" >
+                           <select ng-if="showCountrySelectBox == true" class="textdata localizejs"  name="State" id="state" ng-model="State" style="width: 100% !important; position: relative; top: 6px;border: none;" ng-change="makeAddress()" >
                               <option value="Select State" class="localizejs">Select State</option>
                         <option ng-repeat="state in usStates" data-state-code="{{state.code}}" class="localizejs" >{{state.name}}</option>
 
                      </select>
-                     <input ng-if="Country != 'US'" type="text" name="state1" class="useraddress localizejs" id="state1" ng-model="state1" placeholder="Enter a location" ng-change="makeAddress()"/>
+                     <input ng-if="showCountrySelectBox == false" type="text" name="state1" class="useraddress localizejs" id="state1" ng-model="state1" placeholder="Enter a location" ng-change="makeAddress()"/>
                         </div>
                      </div>
                      <div class="col-40 sideblock">

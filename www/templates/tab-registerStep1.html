@@ -87,10 +87,10 @@
                        <!--    <span class="ssoaddress localizejs" ng-click="addressEditModal()">
                             {{regStep1.homeadd}}
                           </span> -->
-<!-- 
+<!--
                           <input type="text" readonly="readonly" class="ssoaddress localizejs ion-google-place ng-valid ng-touched" autocomplete="off" placeholder="type here..." ng-model="regStep1.homeadd" id="regaddress" ng-change="addressBlur()"> -->
 
-                           <input type="text" name="address1" class="ssoaddress localizejs" ng-model="regStep1.homeadd" autocomplete="off" data-tap-disabled="true" id="regaddress"  placeholder="type here..." ng-click="addressEditModal()" readonly/> 
+                           <input type="text" name="address1" class="ssoaddress localizejs" ng-model="regStep1.homeadd" autocomplete="off" data-tap-disabled="true" id="regaddress"  placeholder="type here..." ng-click="addressEditModal()" readonly/>
 
 
                      </div>
@@ -122,7 +122,7 @@
                         <div class="viewport localizejs" ng-if="regCountry2 != ''">{{regCountry2}}</div>
                          <select class="ssooptionCountry textdata consultHealthPlanDropDown localizejs" id="regCountryCode" name="regCountryCode" ng-model="regStep1.regCountryCode"  ng-change="countryBlur()" >
                             <option value="Choose" class="localizejs"><b class="localizejs">Choose</b></option>
-                            <option class="planlist" ng-repeat="country in serviceCountries" value="{{country.code}}"><b>{{country.name}} ({{country.code}})</b></option>
+                            <option class="planlist localizejs" ng-repeat="country in serviceCountries" value="{{country.code}}"><b class="localizejs">{{country.name}} ({{country.code}})</b></option>
                          </select>
                         <span class="user-account__error-message localizejs" ng-show="countryError">Please choose your country code</span>
                      </div>
@@ -276,7 +276,7 @@
                             {{regStep1.homeadd}}
                           </span> -->
 
-                            <input type="text" name="address1" class="ssoaddress localizejs" ng-model="regStep1.homeadd" autocomplete="off" data-tap-disabled="true"  placeholder="type here..." readonly ng-click="addressEditModal()" id="regaddress" ng-change="addressBlur()"/> 
+                            <input type="text" name="address1" class="ssoaddress localizejs" ng-model="regStep1.homeadd" autocomplete="off" data-tap-disabled="true"  placeholder="type here..." readonly ng-click="addressEditModal()" id="regaddress" ng-change="addressBlur()"/>
 
                      </div>
                      <span class="user-account__error-message localizejs" ng-show="adderror">Please Select your address</span>
@@ -305,9 +305,10 @@
                      <div class="user-account__input regDropDownContainer">
                       <div class="viewport localizejs" ng-if="regCountry2 == ''">Choose</div>
                       <div class="viewport localizejs" ng-if="regCountry2 != ''">{{regCountry2}}</div>
-                         <select class="ssooptionCountry textdata consultHealthPlanDropDown" id="regCountryCode" name="regCountryCode" ng-model="regStep1.regCountryCode"  ng-change="countryBlur()" >
+                         <select class="ssooptionCountry textdata consultHealthPlanDropDown localizejs" id="regCountryCode" name="regCountryCode" ng-model="regStep1.regCountryCode"  ng-change="countryBlur()" >
                             <option class="localizejs" value="Choose"><b class="localizejs">Choose</b></option>
-                            <option class="planlist" ng-repeat="country in serviceCountries" value="{{country.code}}"><b>{{country.name}} ({{country.code}})</b></option>
+                            <option class="planlist localizejs" ng-repeat="country in serviceCountries" value="{{country.code}}"><b class="localizejs">{{country.name}} (
+                            {{country.code}})</b></option>
                          </select>
                         <span class="user-account__error-message localizejs" ng-show="countryError">Please choose your country code</span>
                      </div>
