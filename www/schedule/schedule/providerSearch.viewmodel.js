@@ -137,7 +137,9 @@
                         return ["(", this.filterQuantity, ")"].join("");
                     };
                     this.vm_onCheckedStateChange = function () {
-                        $eventAggregator.published(filterItemChangedEvent);
+                          window.setTimeout(function(){
+                            $eventAggregator.published(filterItemChangedEvent);
+                        }, 200);
                     };
                 }
 
