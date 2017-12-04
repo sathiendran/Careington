@@ -673,7 +673,7 @@ var localizeCurrent = $('#localize-current').text();
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -3667,8 +3667,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
                     });
                     $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
-                    // $rootScope.cutaddress = $rootScope.currentPatientDetails[0].address; //surya commanded
-                    $rootScope.cutaddress = $rootScope.currentPatientDetails[0].addresses[0].addressText;
+                    $rootScope.cutaddress = $rootScope.currentPatientDetails[0].address; //surya commanded
+                    //$rootScope.cutaddress = $rootScope.currentPatientDetails[0].addresses[0].addressText;
 
                     $rootScope.PatientIdentifiers = $rootScope.currentPatientDetails[0].identifiers;
                     $rootScope.PatidentifierCount = $scope.PatientIdentifiers.length;
@@ -6956,8 +6956,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     //$rootScope.addressInfoFetch = '';
                   //  $rootScope.addressInfoFetch = $rootScope.selectedPatientDetailsSecond;
                     $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
-                    // $rootScope.cutaddress = $rootScope.currentPatientDetails[0].address;//surya commanded
-                    $rootScope.cutaddress = $rootScope.currentPatientDetails[0].addresses[0].addressText;
+                    $rootScope.cutaddress = $rootScope.currentPatientDetails[0].address;//surya commanded
+                    //$rootScope.cutaddress = $rootScope.currentPatientDetails[0].addresses[0].addressText;
                     $rootScope.PatientIdentifiers = $rootScope.currentPatientDetails[0].identifiers;
                     $rootScope.PatidentifierCount = $scope.PatientIdentifiers.length;
                     var cutaddresses = $rootScope.cutaddress.split(",");
@@ -7230,8 +7230,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 // $rootScope.addressInfoFetch = '';
                 // $rootScope.addressInfoFetch = $scope.selectedPatientDetailsSecond;
                  $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
-                 // $rootScope.cutaddress = $rootScope.currentPatientDetails[0].address;
-                 $rootScope.cutaddress = $rootScope.currentPatientDetails[0].addresses[0].addressText;
+                 $rootScope.cutaddress = $rootScope.currentPatientDetails[0].address;
+                 //$rootScope.cutaddress = $rootScope.currentPatientDetails[0].addresses[0].addressText;
                  $rootScope.PatientIdentifiers = $rootScope.currentPatientDetails[0].identifiers;
                  $rootScope.PatidentifierCount = $scope.PatientIdentifiers.length;
                  var cutaddresses = $rootScope.cutaddress.split(",");

@@ -42,6 +42,7 @@ angular.module('starter.controllers')
             $scope.State = $rootScope.addressInfoFetch[0].addressObject.state;
             $scope.state1 = $rootScope.addressInfoFetch[0].addressObject.state;
             $scope.Country = $rootScope.addressInfoFetch[0].addressObject.countryCode;
+            $rootScope.currentPatientDetails[0].address = $rootScope.addressInfoFetch[0].addressObject.addressText;
             if($scope.Country == 'US')
               {
                 $scope.showCountrySelectBox = true;
@@ -211,6 +212,8 @@ $("#localize-widget").show();
         };
         $scope.healthInfoModel = {};
         //$rootScope.timezoneDisplay = 'none';
+        
+        
         $scope.healthInfoModel.address = $rootScope.currentPatientDetails[0].address;
         $scope.mobileval = $rootScope.currentPatientDetails[0].mobilePhone;
         $scope.addmore = false;
@@ -715,6 +718,12 @@ $("#localize-widget").show();
             $rootScope.listOfPatientIdentifiers = [];
             $scope.newupdatePatientDetails();
 
+            $scope.txtPlacesVal = $scope.route;
+            $scope.cityVal = $scope.City;
+            $scope.state1Val = $scope.state1;
+            $scope.zipcodeVal = $scope.ZipCode;
+            $scope.countryVal = $scope.Country;
+
             if (typeof $rootScope.PatientIdentifiers != 'undefined') {
                 if ($rootScope.PatientIdentifiers.length > $rootScope.listOfPatientIdentifiers.length) {
                     var a = $rootScope.PatientIdentifiers;
@@ -1037,7 +1046,29 @@ $("#localize-widget").show();
                         } else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '')) {
                             $scope.ErrorMessage = "Please select Blood Type";
                             $rootScope.Validation($scope.ErrorMessage);
-                        } else if (identifierTypeCode_ !== '') {
+                        }
+                        else if (typeof $scope.txtPlacesVal === 'undefined' || $scope.txtPlacesVal === '' || $scope.txtPlacesVal === null) {
+                             $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                             $rootScope.Validation($scope.ErrorMessage);
+                         }
+                           else if (typeof $scope.cityVal === 'undefined' || $scope.cityValVal === '' || $scope.cityValVal === null) {
+                             $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                             $rootScope.Validation($scope.ErrorMessage);
+                         }
+                           else if (typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) {
+                             $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                             $rootScope.Validation($scope.ErrorMessage);
+                         }
+                           else if (typeof $scope.zipcodeVal === 'undefined' || $scope.zipcodeVal === '' || $scope.zipcodeVal === null) {
+                             $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                             $rootScope.Validation($scope.ErrorMessage);
+                         }
+                           else if (typeof $scope.countryVal === 'undefined' || $scope.countryVal === '' || $scope.countryVal === null) {
+                             $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                             $rootScope.Validation($scope.ErrorMessage);
+                          }
+
+                        else if (identifierTypeCode_ !== '') {
                             if (identifierTypeCode_.indexOf("Driver's license number") != -1) {
                                 $scope.ErrorMessage = "Please enter Driver's license number";
                             } else if (identifierTypeCode_.indexOf("Employee number") != -1) {
@@ -1123,7 +1154,31 @@ $("#localize-widget").show();
                         } else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '')) {
                             $scope.ErrorMessage = "Please select Blood Type";
                             $rootScope.Validation($scope.ErrorMessage);
-                        } else if (identifierTypeCode_ !== '') {
+                        }
+                        else if (typeof $scope.txtPlacesVal === 'undefined' || $scope.txtPlacesVal === '' || $scope.txtPlacesVal === null) {
+                             $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                             $rootScope.Validation($scope.ErrorMessage);
+                         }
+                           else if (typeof $scope.cityVal === 'undefined' || $scope.cityValVal === '' || $scope.cityValVal === null) {
+                             $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                             $rootScope.Validation($scope.ErrorMessage);
+                         }
+                           else if (typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) {
+                             $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                             $rootScope.Validation($scope.ErrorMessage);
+                         }
+                           else if (typeof $scope.zipcodeVal === 'undefined' || $scope.zipcodeVal === '' || $scope.zipcodeVal === null) {
+                             $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                             $rootScope.Validation($scope.ErrorMessage);
+                         }
+                           else if (typeof $scope.countryVal === 'undefined' || $scope.countryVal === '' || $scope.countryVal === null) {
+                             $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                             $rootScope.Validation($scope.ErrorMessage);
+                          }
+
+
+
+                          else if (identifierTypeCode_ !== '') {
                             if (identifierTypeCode_.indexOf("Driver's license number") != -1) {
                                 $scope.ErrorMessage = "Please enter Driver's license number";
                             } else if (identifierTypeCode_.indexOf("Employee number") != -1) {
@@ -1206,7 +1261,29 @@ $("#localize-widget").show();
                     } else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '')) {
                         $scope.ErrorMessage = "Please select Blood Type";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (identifierTypeCode_ !== '') {
+                    }
+                    else if (typeof $scope.txtPlacesVal === 'undefined' || $scope.txtPlacesVal === '' || $scope.txtPlacesVal === null) {
+                         $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                         $rootScope.Validation($scope.ErrorMessage);
+                     }
+                       else if (typeof $scope.cityVal === 'undefined' || $scope.cityValVal === '' || $scope.cityValVal === null) {
+                         $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                         $rootScope.Validation($scope.ErrorMessage);
+                     }
+                       else if (typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) {
+                         $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                         $rootScope.Validation($scope.ErrorMessage);
+                     }
+                       else if (typeof $scope.zipcodeVal === 'undefined' || $scope.zipcodeVal === '' || $scope.zipcodeVal === null) {
+                         $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                         $rootScope.Validation($scope.ErrorMessage);
+                     }
+                       else if (typeof $scope.countryVal === 'undefined' || $scope.countryVal === '' || $scope.countryVal === null) {
+                         $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                         $rootScope.Validation($scope.ErrorMessage);
+                      }
+
+                      else if (identifierTypeCode_ !== '') {
                         if (identifierTypeCode_.indexOf("Driver's license number") != -1) {
                             $scope.ErrorMessage = "Please enter Driver's license number";
                         } else if (identifierTypeCode_.indexOf("Employee number") != -1) {
@@ -1303,7 +1380,29 @@ $("#localize-widget").show();
                 } else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '')) {
                     $scope.ErrorMessage = "Please select Blood Type";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (identifierTypeCode_ !== '') {
+                }
+                else if (typeof $scope.txtPlacesVal === 'undefined' || $scope.txtPlacesVal === '' || $scope.txtPlacesVal === null) {
+                     $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                     $rootScope.Validation($scope.ErrorMessage);
+                 }
+                   else if (typeof $scope.cityVal === 'undefined' || $scope.cityValVal === '' || $scope.cityValVal === null) {
+                     $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                     $rootScope.Validation($scope.ErrorMessage);
+                 }
+                   else if (typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) {
+                     $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                     $rootScope.Validation($scope.ErrorMessage);
+                 }
+                   else if (typeof $scope.zipcodeVal === 'undefined' || $scope.zipcodeVal === '' || $scope.zipcodeVal === null) {
+                     $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                     $rootScope.Validation($scope.ErrorMessage);
+                 }
+                   else if (typeof $scope.countryVal === 'undefined' || $scope.countryVal === '' || $scope.countryVal === null) {
+                     $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                     $rootScope.Validation($scope.ErrorMessage);
+                  }
+
+                else if (identifierTypeCode_ !== '') {
                     if (identifierTypeCode_.indexOf("Driver's license number") != -1) {
                         $scope.ErrorMessage = "Please enter Driver's license number";
                     } else if (identifierTypeCode_.indexOf("Employee number") != -1) {
