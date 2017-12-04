@@ -331,14 +331,21 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 {
   $("#localize-widget").show();
 //venkat start
+  $(".accoTitle-IOS").css("margin-top", "4px");
    if($( window ).width()== 320){
      var localizeCurrent = $('#localize-current').text();
         if(localizeCurrent == "Español"){
             $scope.whoNeedsText = "font-size:17px";
             $scope.consentTitleFont = "font-size:17px !important";
+            $(".newProviderSub").css("padding-bottom", "16px");
+            $(".ConcernsFooter .FooterCenter a").css("padding-left", "1px");
+            //$(".ConcernsFooter .FooterCenter a").css("width", "40%");
         }else{
             $scope.whoNeedsText = "font-size:21px";
             $scope.consentTitleFont = "font-size:20px !important";
+            $(".newProviderSub").css("padding-bottom", "33px");
+            $(".ConcernsFooter .FooterCenter a").css("padding-left", "10px");
+            //$(".ConcernsFooter .FooterCenter a").css("width", "33%");
         }
    }
 
@@ -356,14 +363,23 @@ var localizeCurrent = $('#localize-current').text();
              console.log("isLang isssss is== "+isLang);
                if(isLang == "Español"){
                    $("#whoNeedsTextval").css("font-size", "17px");
+                   $(".newProviderSub").css("padding-bottom", "16px");
+                   $(".ConcernsFooter .FooterCenter a").css("padding-left", "1px");
+                //   $(".ConcernsFooter .FooterCenter a").css("width", "40%");
                    $scope.consentTitleFont = "font-size:17px !important";
                }
                if(isLang == "English (UK)"){
                   $("#whoNeedsTextval").css("font-size", "21px");
+                  $(".newProviderSub").css("padding-bottom", "33px");
+                  $(".ConcernsFooter .FooterCenter a").css("padding-left", "10px");
+                  //$(".ConcernsFooter .FooterCenter a").css("width", "33%");
                    $scope.consentTitleFont = "font-size:20px !important";
                }
                if(isLang == "English"){
                    $("#whoNeedsTextval").css("font-size", "21px");
+                   $(".newProviderSub").css("padding-bottom", "33px");
+                   $(".ConcernsFooter .FooterCenter a").css("padding-left", "10px");
+                   //$(".ConcernsFooter .FooterCenter a").css("width", "33%");
                    $scope.consentTitleFont = "font-size:20px !important";
                }
              isLang = "";
@@ -7538,6 +7554,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $rootScope.getIndividualScheduledList = '';
         $rootScope.individualScheduledList = '';
         $rootScope.individualNextAppointmentDisplay = 'none';
+
+        $('.accoTitle-IOS').attr('style', 'margin-top: 4px !important');
         $('.subheaderheightOne').attr('style', 'height: 100px !important');
         $('.userAccHeaderTitle').attr('style', 'margin-top: -43px !important');
         $('.userlistAccountHome').attr('style', 'margin-top: -43px !important');
@@ -7575,6 +7593,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
               //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
               var currentUserHomeDate = d;
               $rootScope.individualNextAppointmentDisplay = 'none';
+                $('.accoTitle-IOS').attr('style', 'margin-top: 4px !important');
               $('.subheaderheightOne').attr('style', 'height: 100px !important');
               $('.userAccHeaderTitle').attr('style', 'margin-top: -43px !important');
               $('.userlistAccountHome').attr('style', 'margin-top: -43px !important');
@@ -7601,6 +7620,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                   if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                       $rootScope.accountClinicianFooter = 'none';
                       $rootScope.individualNextAppointmentDisplay = 'block';
+                    $('.accoTitle-IOS').attr('style', 'margin-top: 4px !important');
                     $('.subheaderheightOne').attr('style', 'height: 150px !important');
                     $('.userAccHeaderTitle').attr('style', 'margin-top: 0px !important');
                     $('.userlistAccountHome').attr('style', 'margin-top: 0px !important');
