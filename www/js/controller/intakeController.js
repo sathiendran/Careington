@@ -8,8 +8,8 @@ angular.module('starter.controllers')
         var localizeCurrent = $('#localize-current').text();
         if (localizeCurrent == "Español") {
             $scope.concernListTitleSpanishFont = "font-size:16px !important;margin-left: 30px;";
-            $scope.cancelbtnSpanishFont = "font-size:14px !important";
-            $scope.donebtnSpanishFont = "font-size:14px !important";
+            $scope.cancelbtnSpanishFont = "font-size:16px !important";
+            $scope.donebtnSpanishFont = "font-size:16px !important";
 
             $scope.concernListTitleSecondSpanishFont = "font-size:16px !important;margin-left: 30px;";
             $scope.cancelbtnSecondSpanishFont = "font-size:14px !important";
@@ -29,8 +29,8 @@ angular.module('starter.controllers')
             var isLang = $('#localize-langs .activated').text();
             if (isLang == "Español") {
                 $scope.concernListTitleSpanishFont = "font-size:16px !important;margin-left: 30px;";
-                $scope.cancelbtnSpanishFont = "font-size:14px !important";
-                $scope.donebtnSpanishFont = "font-size:14px !important";
+                $scope.cancelbtnSpanishFont = "font-size:16px !important";
+                $scope.donebtnSpanishFont = "font-size:16px !important";
 
                 $scope.concernListTitleSecondSpanishFont = "font-size:16px !important;margin-left: 30px;";
                 $scope.cancelbtnSecondSpanishFont = "font-size:14px !important";

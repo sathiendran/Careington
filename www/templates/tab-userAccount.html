@@ -38,7 +38,7 @@
                </div>
             </h1>
          </div>
-         <div class="row userAccountPanel">
+         <div class="row userAccountPanel userAccountPanelNew">
             <div class="col col-33 uAPHomeIcon" style="visibility: hidden;">
                <a ng-href='#/tab/userAccount'>
                   <div class="icon homeicon">
@@ -119,7 +119,16 @@
                   </div>
 
 
-                  <ion-item ng-if="onSSAvailability != 'on' && chkAvailabiltyOfSS == false && providerAvailability != true && providerOnDemandEnabled != true" class="localizejs noapptviewResult item" style="white-space: normal;">Service is currently unavailable!</ion-item>
+                  <ion-item ng-if="onSSAvailability != 'on' && chkAvailabiltyOfSS == false && providerAvailability != true && providerOnDemandEnabled != true" class="noneSchedule localizejs noapptviewResult item" style="white-space: normal;">
+                    <div>
+                      <i class="noneScheduleImg" ng-bind-html="drawSVGCIcon('new_calendar_item')"></i>
+                      <div class="noneScheduleTextBox">
+                      <p class="noneScheduleText">Please call us to schedule an </p>
+                      <p class="noneScheduleText">appointment.</p>
+                      </div>
+                      <p class="noneScheduleNumber">{{appointmentsContactNumber}}</p>
+                    </div>
+                  </ion-item>
 
             </div>
          </ion-list>

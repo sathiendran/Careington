@@ -331,16 +331,31 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 {
   $("#localize-widget").show();
 //venkat start
+  $(".accoTitle-IOS").css("margin-top", "4px");
    if($( window ).width()== 320){
      var localizeCurrent = $('#localize-current').text();
         if(localizeCurrent == "Español"){
             $scope.whoNeedsText = "font-size:17px";
             $scope.consentTitleFont = "font-size:17px !important";
+            $(".newProviderSub").css("padding-bottom", "16px");
+            $(".ConcernsFooter .FooterCenter a").css("padding-left", "1px");
+            //$(".ConcernsFooter .FooterCenter a").css("width", "40%");
         }else{
             $scope.whoNeedsText = "font-size:21px";
             $scope.consentTitleFont = "font-size:20px !important";
+            $(".newProviderSub").css("padding-bottom", "33px");
+            $(".ConcernsFooter .FooterCenter a").css("padding-left", "10px");
+            //$(".ConcernsFooter .FooterCenter a").css("width", "33%");
         }
    }
+
+var localizeCurrent = $('#localize-current').text();
+  if(localizeCurrent == "Español"){
+    $scope.consentTitleFont = "font-size:21px !important";
+    }else{
+        $scope.consentTitleFont = "font-size:25px !important";
+    }
+
 
          $('#localize-langs').click(function() {
             if($( window ).width()== 320){
@@ -348,14 +363,23 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
              console.log("isLang isssss is== "+isLang);
                if(isLang == "Español"){
                    $("#whoNeedsTextval").css("font-size", "17px");
+                   $(".newProviderSub").css("padding-bottom", "16px");
+                   $(".ConcernsFooter .FooterCenter a").css("padding-left", "1px");
+                //   $(".ConcernsFooter .FooterCenter a").css("width", "40%");
                    $scope.consentTitleFont = "font-size:17px !important";
                }
                if(isLang == "English (UK)"){
                   $("#whoNeedsTextval").css("font-size", "21px");
+                  $(".newProviderSub").css("padding-bottom", "33px");
+                  $(".ConcernsFooter .FooterCenter a").css("padding-left", "10px");
+                  //$(".ConcernsFooter .FooterCenter a").css("width", "33%");
                    $scope.consentTitleFont = "font-size:20px !important";
                }
                if(isLang == "English"){
                    $("#whoNeedsTextval").css("font-size", "21px");
+                   $(".newProviderSub").css("padding-bottom", "33px");
+                   $(".ConcernsFooter .FooterCenter a").css("padding-left", "10px");
+                   //$(".ConcernsFooter .FooterCenter a").css("width", "33%");
                    $scope.consentTitleFont = "font-size:20px !important";
                }
              isLang = "";
@@ -649,7 +673,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -1584,6 +1608,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
             success: function(data) {
                 $rootScope.getDetails = data.data[0].enabledModules;
                $rootScope.mobileSettings = data.data[0].settings;
+               $rootScope.appointmentsContactNumber = data.data[0].appointmentsContactNumber;
                var mobappversion = $rootScope.mobileSettings.mobileApp_MinSupportedVersion;
                var sptversion = mobappversion.split("v");
                var checkmobilever = parseFloat(sptversion[1]);
@@ -2195,6 +2220,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
                 $rootScope.contactNumber = data.data[0].contactNumber;
                 $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
                 $rootScope.clientName = data.data[0].hospitalName;
+                if (!angular.isUndefined(data.data[0].customerSso) && data.data[0].customerSso === "Mandatory") {
+                    $rootScope.customerSso = "Mandatory";
+                    ssoURL = data.data[0].patientLogin;
+                } else {
+                    $rootScope.customerSso = '';
+                }
 
                 var hospitaData = {};
       					hospitaData.hospitalId = $rootScope.hospitalId;
@@ -2272,12 +2303,6 @@ $rootScope.checkAndChangeMenuIcon = function() {
       					var hsettingsJsonData = JSON.stringify(hsettings);
       					$window.localStorage.setItem('snap_hospital_settings', hsettingsJsonData);
 
-                if (!angular.isUndefined(data.data[0].customerSso) && data.data[0].customerSso === "Mandatory") {
-                    $rootScope.customerSso = "Mandatory";
-                    ssoURL = data.data[0].patientLogin;
-                } else {
-                    $rootScope.customerSso = '';
-                }
                 if (!angular.isUndefined(data.data[0].patientRegistrationApi) && data.data[0].patientRegistrationApi !== "") {
                     $rootScope.isSSORegisterAvailable = data.data[0].patientRegistrationApi;
                 } else {
@@ -2713,7 +2738,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
              $rootScope.regCountry2 =  $('#regCountryCode').val();
         }
 
-        debugger;
+      //  debugger;
         if (deploymentEnvLogout === 'Single') {
             if (deploymentEnvForProduction === 'Production') {
             //    if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
@@ -2811,6 +2836,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
         if ($rootScope.hasRequiredFields === false) {
             $rootScope.doGetPatientProfiles();
             //  $rootScope.doGetRelatedPatientProfiles('tab.userhome');
+            $rootScope.imgUploadPatientProfile = false;
             $rootScope.hasRequiredFields = true;
             $rootScope.viewmyhealthDisplay = 'none';
             $rootScope.viewhealthDisplay = 'block';
@@ -7524,6 +7550,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $rootScope.getIndividualScheduledList = '';
         $rootScope.individualScheduledList = '';
         $rootScope.individualNextAppointmentDisplay = 'none';
+
+        $('.accoTitle-IOS').attr('style', 'margin-top: 4px !important');
         $('.subheaderheightOne').attr('style', 'height: 100px !important');
         $('.userAccHeaderTitle').attr('style', 'margin-top: -43px !important');
         $('.userlistAccountHome').attr('style', 'margin-top: -43px !important');
@@ -7561,6 +7589,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
               //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
               var currentUserHomeDate = d;
               $rootScope.individualNextAppointmentDisplay = 'none';
+                $('.accoTitle-IOS').attr('style', 'margin-top: 4px !important');
               $('.subheaderheightOne').attr('style', 'height: 100px !important');
               $('.userAccHeaderTitle').attr('style', 'margin-top: -43px !important');
               $('.userlistAccountHome').attr('style', 'margin-top: -43px !important');
@@ -7587,6 +7616,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                   if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                       $rootScope.accountClinicianFooter = 'none';
                       $rootScope.individualNextAppointmentDisplay = 'block';
+                    $('.accoTitle-IOS').attr('style', 'margin-top: 4px !important');
                     $('.subheaderheightOne').attr('style', 'height: 150px !important');
                     $('.userAccHeaderTitle').attr('style', 'margin-top: 0px !important');
                     $('.userlistAccountHome').attr('style', 'margin-top: 0px !important');
@@ -7674,6 +7704,9 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
 
     $rootScope.doGetonDemandAvailability = function() {
+      $rootScope.providerAvailability = '';
+        $rootScope.onDemandAvailability = '';
+        $rootScope.providerOnDemandEnabled = '';
         var params = {
             accessToken: $rootScope.accessToken,
             hospitalId: $rootScope.hospitalId,
@@ -7689,6 +7722,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                   $rootScope.getNextAvailProvTime1 = data.data[0].startTime;
 
                 $rootScope.onDemandAvailability = data.data[0].onDemandAvailabilityBlockCount;
+                $rootScope.providerOnDemandEnabled = data.data[0].providerOnDemandEnabled;
             },
             error: function(data, status) {
               if (status === 0) {
@@ -9004,6 +9038,34 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         };
         LoginService.getAttachmentURL(params);
     }
+
+
+     $scope.GetUserAccountCondition = function(pid) {
+        var params = {
+            patientId: pid,
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+              if(data.total === 0)
+              {
+                $rootScope.chkAvailabiltyOfSS = false;
+              }else if(data.total > 0){
+                $rootScope.chkAvailabiltyOfSS = true;
+              }
+            },
+            error: function(data,status) {
+              if (status === 0) {
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+              } else if(status === 503) {
+                $scope.callServiceUnAvailableError();
+              } else{
+                $rootScope.serverErrorMessageValidation();
+              }
+            }
+        };
+        LoginService.getUserAccountCondition(params);
+    }
+
 
     $scope.loadDependent = function(){
         $rootScope.RelatedPatientProfiles = '';

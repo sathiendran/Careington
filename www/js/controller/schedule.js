@@ -1,6 +1,18 @@
 angular.module('starter.controllers')
     .controller('ScheduleCtrl', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService, $window, $ionicBackdrop) {
         //var snap = snap || {};
+
+        var localizeCurrent = $('#localize-current').text();
+      console.log("localizeCurrent is== "+localizeCurrent);
+           if(localizeCurrent == "Español"){
+               // $("#retrySpanish").text("Rever?");
+               $("#retrySpanish").css("color", "Red");
+           }else{
+               // $("#retrySpanish").text("Retry?");
+               $("#retrySpanish").css("color", "Pink");
+            //   $scope.retrySpanish = "Retry?";
+           }
+
         var vm = '';
         var headerVM = '';
         snap.baseUrl  = apiCommonURL;

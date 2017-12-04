@@ -15,7 +15,6 @@ margin-top: 125px !important;
 }
 .userlistAccountHome-ios5{
     //margin-top: 0px !important;
-
 }
 @media (max-width: 320px) and (min-width: 315px) {
      .AppointmentView {
@@ -52,17 +51,66 @@ margin-top: 125px !important;
            .userAccountPanelNew{
              margin-top: 0px !important;
              .patProfileImage {
-               width: 64px !important;
-               height: 64px !important;
+               width: 75px !important;
+               height: 75px !important;
                font-size: 36px !important;
+               margin-top: 43px !important;
                }
+               .uAPlProfileImage img {
+	                  width: 75px !important;
+	                  height: 75px !important;
+	                  font-size: 36px !important;
+	                  margin-top: 40px !important;
+             }
              .uAPlProfileImage{
+               margin-top: -10px;
                    span{
-                     top: 26px !important;
+                     top: 30px !important;
                    }
                  }
            }
          }
+         .userAccountPanel {
+	              .patProfileImage {
+                   width: 75px !important;
+	                   height: 75px !important;
+	                   font-size: 36px !important;
+	                   margin-top: 8px !important;
+	              }
+	              .uAPlProfileImage img {
+	                   width: 75px !important;
+	                   height: 75px !important;
+	                   font-size: 36px !important;
+	                   margin-top: 15px;
+              }
+	              .uAPlProfileImage{
+                  // margin-top: -4px !important;
+                   span{
+	                     top: 30px !important;
+	                   }
+	                 }
+	          }
+
+	          .accMainContent .accOndemandCon .accOnVisit {
+	               margin-top: -27px !important;
+	               font-size: 25px !important;
+	          }
+	          .accMainContent .btn1 {
+              margin: 25px 15px 15px 15px !important;
+	              .button span{
+                   font-size: 16pt !important;
+	              }
+	          }
+	          .accMainContentNew .accOndemandCon .accOnVisit {
+	               margin-top: -11px !important;
+	          }
+          .accMainContentNew .accOndemandConNew {
+	               padding-bottom: 0px !important;
+	          }
+
+	       .userAccTitle-IOS {
+	             top: 3px !important;
+}
     .usercontent-IOS {
         margin-top: 32% !important;
         #accountMngeProfile-IOS {
@@ -565,54 +613,77 @@ color: #888;
     font-size: 15px;
 }
 }
+@media (min-width: 768px) and (max-width: 1024px) {
+     .userlistAccountHome{
+          margin-left: 15%;
+          margin-right: 15%;
+     }
+     .accMainContent {
+          margin-bottom: 15%;
+     }
+     .accMainContentNew {
+          margin-bottom: 15%;
+     }
+}
 @media (min-width: 770px) and (max-width: 1024px) {
-.tabs-top > .tabs,
-.tabs.tabs-top {
-    top: inherit !important;
-}
-.usercontent-IOS {
-    margin-top: 35%;
-    padding-top: 193px;
-    #accountMngeProfile-IOS {
-        padding: 48px 20px;
-    }
-}
-.usercontentpat-IOS {
-    margin-top: 17%;
-    padding-top: 30%;
-    #accountMngeProfile-IOS {
-        padding: 56px 10px;
-    }
-}
-.usercontent {}
-.usercard {
-    margin: 90px 10px !important;
-}
-.userlist {
-    padding-top: 177px !important;
-}
-.popup-container .popup {
-    width: 39% !important;
-}
-.topimage {
-    margin-left: 43% !important;
-}
-.userdetcontent {
-    margin-top: 138px !important;
-}
+     .tabs-top > .tabs,
+     .tabs.tabs-top {
+         top: inherit !important;
+     }
+     .userlistAccountHome{
+          margin-left: 15%;
+          margin-right: 15%;
+     }
+     .accMainContent {
+          margin-bottom: 15%;
+     }
+     .accMainContentNew {
+          margin-bottom: 15%;
+     }
 
-.ioncontentsalign {
-    margin-top: 185px;
-}
-.valuealign {
-    color: #888;
-}
-.valtex {
-    margin-left: 109px;
-    color: #888;
-    width: 146px;
-    font-size: 15px;
-}
+     .usercontent-IOS {
+         margin-top: 35%;
+         padding-top: 193px;
+         #accountMngeProfile-IOS {
+             padding: 48px 20px;
+         }
+     }
+     .usercontentpat-IOS {
+         margin-top: 17%;
+         padding-top: 30%;
+         #accountMngeProfile-IOS {
+             padding: 56px 10px;
+         }
+     }
+     .usercontent {}
+     .usercard {
+         margin: 90px 10px !important;
+     }
+     .userlist {
+         padding-top: 177px !important;
+     }
+     .popup-container .popup {
+         width: 39% !important;
+     }
+     .topimage {
+         margin-left: 43% !important;
+     }
+     .userdetcontent {
+         margin-top: 138px !important;
+     }
+
+     .ioncontentsalign {
+         margin-top: 185px;
+     }
+     .valuealign {
+         color: #888;
+     }
+     .valtex {
+         margin-left: 109px;
+         color: #888;
+         width: 146px;
+         font-size: 15px;
+     }
 }
 @media (max-width: 1366px) and (min-width: 769px) {
 .itemhead {
@@ -3815,7 +3886,7 @@ input[type="url"],
 input[type="search"],
 input[type="tel"],
 input[type="color"] {
-    height: 44px;
+    height: 46px;
     max-width: 100%;
 }
 .depGreyLabel {
@@ -3823,7 +3894,7 @@ input[type="color"] {
 }
 .optionselect {
     padding: 2px;
-    height: 44px;
+    height: 46px;
 }
 .item {
     border-color: #979797;
@@ -4017,7 +4088,7 @@ margin-left: -10px;
 float: left;
 }
 .dependHeigh-Android {
-width: 75%;
+width: 64%;
 float: left; //margin-left: -5px;padding-right: 10px;
 }
 .dependwetUnit-Android {
@@ -4091,7 +4162,8 @@ margin-top: -12px;
 }
 }
 .AppointNoneIOS {
-padding-top: 105px;
+padding-top: 45px;
+//padding-top: 105px;
 }
 .AppointDisplayIOS {
 padding-top: 53px;
@@ -4688,6 +4760,10 @@ background-color: #23B4D6 !important;
        }
        .input-label {
            padding: 0px 0px 0px 0px;
+       }
+       .labelwidth{
+        //width: 100% !important;
+      //  max-width: 100% !important;
        }
    }
 .labelcolor {
@@ -6552,8 +6628,9 @@ a.item.item-avatar.avatheight:first-child{
 
 
 
+
 .userlistAccountHome {
-    padding-top: 75px;
+  //  padding-top: 75px;
 }
 .accMainContent {
     margin-top: 0px;
@@ -6568,12 +6645,16 @@ background-color: rgb(245,245,245);
             font-family: "GloberBold";
             font-weight: bold;
             font-size: 21pt;
-            line-height: 10pt;
+            line-height: 27pt;
             text-align: center;
-            color: rgba(0,0,0,0.54);
+            //color: rgba(0,0,0,0.54);
+            color: #707070;
             padding-top: 0px !important;
             letter-spacing: 0px;
-            margin-top: -11px;          }
+            margin-top: -18px;          
+
+           // margin-top: -29px;          
+        }
 
           p{
               font-family: "GloberRegular";
@@ -6581,12 +6662,12 @@ background-color: rgb(245,245,245);
               font-size: 12pt;
               color: rgba(0,0,0,0.54);
               text-align: center;
-              line-height: 22pt;
+              line-height: 11pt;
               letter-spacing: 0.1pt;
           }
      }
      .btn1 {
-            margin: 25px 15px 15px 15px !important;
+            margin: 25px 15px 20px 15px !important;
             .button {
                 height: 53px;
                 font-size: 25px;
@@ -6617,11 +6698,12 @@ background-color: rgb(245,245,245);
                 text-align: center;
                 padding-top: 0px !important;
                 letter-spacing: -1px;
-                margin-top: -11px;
+                margin-top: -10px;
               }
               .accOnVisitNew{
                 font-size: 26px !important;
                 color: rgba(0, 0, 0, 0.23) !important;
+                padding-top: 5px !important;
               }
               .accOnCallNew{
                 font-size: 16px !important;
@@ -6653,7 +6735,7 @@ background-color: rgb(245,245,245);
               }
          }
          .accOndemandConNew {
-               margin-top: 18px !important;
+               margin-top: 10px !important;
          }
          .btn1 {
                 margin: 25px 15px 15px 15px !important;
@@ -6680,7 +6762,7 @@ background-color: rgb(245,245,245);
     font-family: GloberBold;
     color: rgba(0,0,0,0.75);
     position: relative;
-    top: 4px;
+    top: 0px;
 }
 .apptDetailsInfo{
     margin-top: 4px;
@@ -6694,7 +6776,7 @@ background-color: rgb(245,245,245);
     cursor: pointer;
 }
 .apptDetailsInfo i svg{
-    margin-bottom: -9px;
+    margin-bottom: -14px;
     margin-left: -8px;
 }
 .appViewicons {
@@ -6724,18 +6806,98 @@ background-color: rgb(245,245,245);
     margin-left: -20px;
 }
 .userAccountbackBtn i svg{
-    margin-bottom: -5px;
+    margin-bottom: -9px;
+    //margin-bottom: -10px;
     font-size: 32px;
 }
 .userAccountbackBtn span{
-    margin-left: -7px
+   margin-left: -9px;
+   margin-right: -17px;
 }
 .userAccountTitle{
-    font-size: 18pt;
+    font-size: 100%;
     line-height: 28pt;
     text-align: center;
     color: rgb(255,255,255);
 }
 .HealthSideMenusvgLogout {
     vertical-align: text-bottom !important;
+}
+
+
+
+
+.userAccTitle{
+    margin-top: 18px;
+}
+.userAccTitleNew{
+     margin-top: -10px !important;
+}
+.subheaderheightOne{
+    height: 150px !important;
+}
+
+.subheaderheightTwo{
+    background-color: rgb(255,198,11) !important;
+    height: 50px;
+    top: -3px;
+    border: 0px solid rgb(255,198,11);
+}
+.userAccHeaderTitle{
+    top: 55px !important;
+}
+.user-button-position{
+    padding: 3px !important;
+    margin-top: -12px !important;
+}
+
+.button-Search-providers.activated{
+    background-color: #ffc60b;
+    border-color: #ffc60b;
+}
+.cardNew {
+   box-shadow: 0 1px 3px rgba(0, 0, 0, 0) !important;
+}
+
+.labelwidth{
+    width: 100% !important;
+    max-width: 100%;
+}
+.healthViewDetailsNew {
+  margin-top: -7px;
+  padding: 0px 0px 12px 0px;
+    input {
+      padding: 25px 0px 0px 6px;
+    }
+
+}
+
+.noneSchedule{
+    top: 20px;
+}
+.noneScheduleImg{
+    color: rgb(0,0,0);
+    opacity: 0.2;
+}
+.noneScheduleImg svg{
+    font-size: 106px;
+}
+
+.noneScheduleText{
+    font-size: 14pt !important;
+    font-family: GloberBold;
+    text-align: center;
+    line-height: 16pt;
+    color: rgba(0,0,0,0.75) !important;
+}
+.noneScheduleNumber {
+    font-size: 16pt !important;
+    font-family: GloberSemiBold;
+    text-align: center;
+    line-height: 24pt;
+    color: rgba(0,0,0,0.75);
+    margin-top: 13px !important;
+}
+.noneScheduleTextBox {
+    margin-top: 18px;
 }
