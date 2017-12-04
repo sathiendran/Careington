@@ -673,6 +673,7 @@ var localizeCurrent = $('#localize-current').text();
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
+        $rootScope.userAccNewTitle = "margin-top: -10px;"
    } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
@@ -702,7 +703,7 @@ var localizeCurrent = $('#localize-current').text();
         $rootScope.concernListTitleStyle = "concernListTitle";
         $rootScope.concernListDoneStyle = "concernListDone";
         $rootScope.PrimaryMarginTop = "margin-top: -16px";
-        $rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -18px !important;";
+        $rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -34px !important;";
         $rootScope.appointContent = "margin: 76px 0 0 0;";
         $rootScope.waitingContentIos = "margin-top: 120px; ";
         $rootScope.providerItamMarginTop = "";
@@ -1233,6 +1234,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
         $rootScope.InsVerificationDummy = '';
         $rootScope.InsuranceBeforeWaiting = '';
         $rootScope.HidePaymentPageBeforeWaitingRoom = '';
+        $rootScope.HideForgotPasswordLink = '';
+        $rootScope.BlankUserAccount = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -1251,6 +1254,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
                 $rootScope.ssopatienttoken = data.data[0].patientTokenApi;
                 $rootScope.ssopatientregister = data.data[0].patientRegistrationApi;
                 $rootScope.ssopatientforgetpwd = data.data[0].patientForgotPasswordApi;
+                $rootScope.appointmentsContactNumber = data.data[0].appointmentsContactNumber;
+
                 if ($rootScope.getDetails !== '') {
                     for (var i = 0; i < $rootScope.getDetails.length; i++) {
                         if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
@@ -1262,6 +1267,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
                         if ($rootScope.getDetails[i] === 'HidePaymentPageBeforeWaitingRoom' || $rootScope.getDetails[i] === 'mHidePaymentPageBeforeWaitingRoom') {
                             $rootScope.HidePaymentPageBeforeWaitingRoom = 'on';
                         }
+                        if ($rootScope.getDetails[i] === 'HideForgotPasswordLink' || $rootScope.getDetails[i] === 'mHideForgotPasswordLink') {
+                            $rootScope.HideForgotPasswordLink = 'on';
+                        }
+                        /*if (($rootScope.getDetails[i] === 'ClinicianSearch' || $rootScope.getDetails[i] === 'mClinicianSearch') && ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand')) {
+                            $rootScope.BlankUserAccount = 'on';
+                        }*/
                         if ($rootScope.getDetails[i] === 'InsVerificationDummy' || $rootScope.getDetails[i] === 'mInsVerificationDummy') {
                             $rootScope.InsVerificationDummy = 'on';
                         }
@@ -1293,6 +1304,13 @@ $rootScope.checkAndChangeMenuIcon = function() {
                             $rootScope.PPIsEyeColorRequired = 'on';
                         }
                     }
+                    if($rootScope.onDemandMode == '' && $rootScope.onSSAvailability == '' )
+                    {
+                        $rootScope.BlankUserAccount = true;
+                    }else{
+                        $rootScope.BlankUserAccount = false;
+                    }
+
                 }
                 $rootScope.brandColor = data.data[0].brandColor;
                 $rootScope.logo = data.data[0].hospitalImage;
@@ -1603,6 +1621,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
           $rootScope.InsVerificationDummy = '';
           $rootScope.InsuranceBeforeWaiting = '';
           $rootScope.HidePaymentPageBeforeWaitingRoom = '';
+          $rootScope.HideForgotPasswordLink = '';
+        $rootScope.BlankUserAccount = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -1622,6 +1642,13 @@ $rootScope.checkAndChangeMenuIcon = function() {
                     if ($rootScope.getDetails[i] === 'InsuranceBeforeWaiting' || $rootScope.getDetails[i] === 'mInsuranceBeforeWaiting') {
                         $rootScope.InsuranceBeforeWaiting = 'on';
                     }
+                    if($rootScope.getDetails[i] === 'HideForgotPasswordLink' || $rootScope.getDetails[i] === 'mHideForgotPasswordLink')
+                    {
+                        $rootScope.HideForgotPasswordLink = 'on';
+                    }
+                    /*if (($rootScope.getDetails[i] === 'ClinicianSearch' || $rootScope.getDetails[i] === 'mClinicianSearch') && ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand')) {
+                            $rootScope.BlankUserAccount = 'on';
+                        }*/
                     if ($rootScope.getDetails[i] === 'HidePaymentPageBeforeWaitingRoom' || $rootScope.getDetails[i] === 'mHidePaymentPageBeforeWaitingRoom') {
                         $rootScope.HidePaymentPageBeforeWaitingRoom = 'on';
                     }
@@ -1656,6 +1683,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
       								$rootScope.PPIsEyeColorRequired = 'on';
       							}
       						}
+                            if($rootScope.onDemandMode == '' && $rootScope.onSSAvailability == '' )
+                            {
+                                $rootScope.BlankUserAccount = true;
+                            }else{
+                                $rootScope.BlankUserAccount = false;
+                            }
       					}
       					$rootScope.brandColor = data.data[0].brandColor;
 
@@ -2044,10 +2077,14 @@ $rootScope.checkAndChangeMenuIcon = function() {
         $rootScope.InsVerificationDummy = '';
         $rootScope.InsuranceBeforeWaiting = '';
         $rootScope.HidePaymentPageBeforeWaitingRoom = '';
+        $rootScope.HideForgotPasswordLink = '';
+        $rootScope.BlankUserAccount = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
                 $rootScope.getDetails = data.data[0].enabledModules;
+                $rootScope.appointmentsContactNumber = data.data[0].appointmentsContactNumber;
+
                 if ($rootScope.getDetails !== '') {
                     for (var i = 0; i < $rootScope.getDetails.length; i++) {
                         if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
@@ -2059,6 +2096,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
                         if ($rootScope.getDetails[i] === 'HidePaymentPageBeforeWaitingRoom' || $rootScope.getDetails[i] === 'mHidePaymentPageBeforeWaitingRoom') {
                             $rootScope.HidePaymentPageBeforeWaitingRoom = 'on';
                         }
+                        if ($rootScope.getDetails[i] === 'HideForgotPasswordLink' || $rootScope.getDetails[i] === 'mHideForgotPasswordLink') {
+                            $rootScope.HideForgotPasswordLink = 'on';
+                        }
+                        /*if (($rootScope.getDetails[i] === 'ClinicianSearch' || $rootScope.getDetails[i] === 'mClinicianSearch') && ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand')) {
+                            $rootScope.BlankUserAccount = 'on';
+                        }*/
                         if ($rootScope.getDetails[i] === 'InsVerificationDummy' || $rootScope.getDetails[i] === 'mInsVerificationDummy') {
                             $rootScope.InsVerificationDummy = 'on';
                         }
@@ -2089,6 +2132,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
                         if ($rootScope.getDetails[i] === 'PPIsEyeColorRequired') {
                             $rootScope.PPIsEyeColorRequired = 'on';
                         }
+                    }
+                    if($rootScope.onDemandMode == '' && $rootScope.onSSAvailability == '' )
+                    {
+                        $rootScope.BlankUserAccount = true;
+                    }else{
+                        $rootScope.BlankUserAccount = false;
                     }
                 }
 
@@ -2156,6 +2205,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
         $rootScope.InsVerificationDummy = '';
         $rootScope.InsuranceBeforeWaiting = '';
         $rootScope.HidePaymentPageBeforeWaitingRoom = '';
+        $rootScope.HideForgotPasswordLink = '';
+        $rootScope.BlankUserAccount = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -2163,6 +2214,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
                 $rootScope.ssopatienttoken = data.data[0].patientTokenApi;
                 $rootScope.ssopatientregister = data.data[0].patientRegistrationApi;
                 $rootScope.ssopatientforgetpwd = data.data[0].patientForgotPasswordApi;
+                $rootScope.appointmentsContactNumber = data.data[0].appointmentsContactNumber;
+
                 if ($rootScope.getDetails !== '') {
                     for (var i = 0; i < $rootScope.getDetails.length; i++) {
                         if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
@@ -2174,9 +2227,15 @@ $rootScope.checkAndChangeMenuIcon = function() {
                         if ($rootScope.getDetails[i] === 'HidePaymentPageBeforeWaitingRoom' || $rootScope.getDetails[i] === 'mHidePaymentPageBeforeWaitingRoom') {
                             $rootScope.HidePaymentPageBeforeWaitingRoom = 'on';
                         }
+                        if ($rootScope.getDetails[i] === 'HideForgotPasswordLink' || $rootScope.getDetails[i] === 'mHideForgotPasswordLink') {
+                            $rootScope.HideForgotPasswordLink = 'on';
+                        }
                         if ($rootScope.getDetails[i] === 'InsVerificationDummy' || $rootScope.getDetails[i] === 'mInsVerificationDummy') {
                             $rootScope.InsVerificationDummy = 'on';
                         }
+                        /*if (($rootScope.getDetails[i] === 'ClinicianSearch' || $rootScope.getDetails[i] === 'mClinicianSearch') && ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand')) {
+                            $rootScope.BlankUserAccount = 'on';
+                        }*/
                         if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
                             $rootScope.paymentMode = 'on';
                         }
@@ -2204,6 +2263,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
                         if ($rootScope.getDetails[i] === 'PPIsEyeColorRequired') {
                             $rootScope.PPIsEyeColorRequired = 'on';
                         }
+                    }
+                    if($rootScope.onDemandMode == '' && $rootScope.onSSAvailability == '' )
+                    {
+                        $rootScope.BlankUserAccount = true;
+                    }else{
+                        $rootScope.BlankUserAccount = false;
                     }
                 }
                 $rootScope.brandColor = data.data[0].brandColor;
@@ -7565,7 +7630,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         else if($rootScope.is_iPadDeviceWidth <= 320)
             $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0px !important');
         else
-            $('.userlistAccountHome-ios5').attr('style', 'margin-top: -35px !important');
+            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 36px !important');
 
         $rootScope.individualwithoutAppointmentDisplay = 'block';
         $rootScope.accountClinicianFooter = 'block';
@@ -7578,6 +7643,22 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $rootScope.primaryAppointDetails = [];
         $rootScope.getAllInQueueScheduleDetails =[];
         $rootScope.getAllPatScheduleDetails = [];
+
+        $('.subheaderheightOne').attr('style', 'height: 115px !important');
+        $('.userAccHeaderTitle').attr('style', 'margin-top: -43px !important');
+        $('.userlistAccountHome').attr('style', 'margin-top: -43px !important');
+        //var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+        if($rootScope.is_iPadDeviceWidth >= 550)
+            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 55px !important');
+        else if($rootScope.is_iPadDeviceWidth <= 320)
+        {
+            $('.uAPlProfileImage').attr('style', 'margin-top: -19px !important');
+            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 7px !important');
+            $('.subheaderheightOne').attr('style', 'height: 100px !important');
+        }
+        else
+            $('.userlistAccountHome-ios5').attr('style', 'margin-top: -35px !important');
+
 
         $rootScope.scheduledList = $filter('filter')($filter('orderBy')($rootScope.getScheduledList, "scheduledTime"), "a");
         if($rootScope.scheduledList != '') {
@@ -7593,22 +7674,25 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
               //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
               var currentUserHomeDate = d;
               $rootScope.individualNextAppointmentDisplay = 'none';
-                $('.accoTitle-IOS').attr('style', 'margin-top: 4px !important');
-              $('.subheaderheightOne').attr('style', 'height: 100px !important');
+              $rootScope.individualwithoutAppointmentDisplay = 'block';
+              $rootScope.accountClinicianFooter = 'block';
+              $rootScope.accountStyle = "";
+              $rootScope.userAccContent = "";
+              $('.subheaderheightOne').attr('style', 'height: 115px !important');
               $('.userAccHeaderTitle').attr('style', 'margin-top: -43px !important');
               $('.userlistAccountHome').attr('style', 'margin-top: -43px !important');
                //var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
                 if($rootScope.is_iPadDeviceWidth >= 550)
                     $('.userlistAccountHome-ios5').attr('style', 'margin-top: 55px !important');
-                else if($rootScope.is_iPadDeviceWidth <= 320)
-                    $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0px !important');
+                    else if($rootScope.is_iPadDeviceWidth <= 320)
+                    {
+                        $('.uAPlProfileImage').attr('style', 'margin-top: -19px !important');
+                        $('.userlistAccountHome-ios5').attr('style', 'margin-top: 7px !important');
+                        $('.subheaderheightOne').attr('style', 'height: 100px !important');
+                    }
                 else
                     $('.userlistAccountHome-ios5').attr('style', 'margin-top: -35px !important');
-             // $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0px !important');
-              $rootScope.individualwithoutAppointmentDisplay = 'block';
-              $rootScope.accountClinicianFooter = 'block';
-              $rootScope.accountStyle = "";
-              $rootScope.userAccContent = "";
+
               if ($rootScope.getIndividualScheduleDetails != '') {
                 //  if($rootScope.getIndividualPatScheduleDetails != '') {
                       var getReplaceTime = $rootScope.getIndividualScheduleDetails[0].scheduledTime;
@@ -7620,22 +7704,26 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                   if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                       $rootScope.accountClinicianFooter = 'none';
                       $rootScope.individualNextAppointmentDisplay = 'block';
-                    $('.accoTitle-IOS').attr('style', 'margin-top: 4px !important');
-                    $('.subheaderheightOne').attr('style', 'height: 150px !important');
-                    $('.userAccHeaderTitle').attr('style', 'margin-top: 0px !important');
-                    $('.userlistAccountHome').attr('style', 'margin-top: 0px !important');
-                  //   var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-                    if($rootScope.is_iPadDeviceWidth >= 500)
-                        $('.userlistAccountHome-ios5').attr('style', 'margin-top: 95px !important');
-                    else if($rootScope.is_iPadDeviceWidth <= 320)
-                        $('.userlistAccountHome-ios5').attr('style', 'margin-top: 40px !important');
-                    else
-                        $('.userlistAccountHome-ios5').attr('style', 'margin-top: 8px !important');
-                 //   $('.userlistAccountHome-ios5').attr('style', 'margin-top: 40px !important');
                       $rootScope.individualwithoutAppointmentDisplay = 'none';
                       $rootScope.accountStyle = "AppointNone" + $rootScope.deviceName;
                       $rootScope.userAccContent = "userAccContent" + $rootScope.deviceName;
                       $rootScope.appointmentsPatientId = $rootScope.patientId;
+
+                      $('.subheaderheightOne').attr('style', 'height: 160px !important');
+                      $('.userAccHeaderTitle').attr('style', 'margin-top: 0px !important');
+                      $('.userlistAccountHome').attr('style', 'margin-top: 0px !important');
+                    //   var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+                      if($rootScope.is_iPadDeviceWidth >= 550)
+                          $('.userlistAccountHome-ios5').attr('style', 'margin-top: 95px !important');
+                      else if($rootScope.is_iPadDeviceWidth <= 320)
+                      {
+                          $('.uAPlProfileImage').attr('style', 'margin-top: -19px !important');
+                          $('.userlistAccountHome-ios5').attr('style', 'margin-top: 50px !important');
+                          $('.subheaderheightOne').attr('style', 'height: 150px !important');
+                      }
+                      else
+                          $('.userlistAccountHome-ios5').attr('style', 'margin-top: 8px !important');
+
                     /*  var beforAppointmentTime = getReplaceTime;
                       var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
 

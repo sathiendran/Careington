@@ -90,7 +90,7 @@
                         <p class="localizejs accOnCall2 accOnCallNew">provider on-call.</p>
                       <!--  <p class="localizejs accOnCall2 accOnServiceDate">Service will resume at</p>-->
                         <p class="localizejs accOnCall2 accOnServiceDate">Service is currently unavailable.</p>
-                        <p class="localizejs accOnCall2 accOnQuestion">Questions? Please call (516)445-6289</p>
+                        <p class="localizejs accOnCall2 accOnQuestion">Questions? Please call {{appointmentsContactNumber}}</p>
                      </div>
                   </div>
                 <div class="card accMainContent" ng-if="online == true && onSSAvailability == 'on' && chkAvailabiltyOfSS == true">
@@ -113,13 +113,12 @@
                         <h2 class="localizejs accOnVisit accOnVisitNew">Create Appointment</h2>
                         <p class="localizejs accOnCall accOnCallNew">Schedule a visit</p>
                         <p class="localizejs accOnCall2 accOnCallNew">with a specific provider</p>
-                        <p class="localizejs accOnCall2 accOnServiceDate">Service is currently unavailable</p>
-                        <p class="localizejs accOnCall2 accOnQuestion accOnQuestionNew">Questions? Please call (516)445-6289</p>
+                        <p class="localizejs accOnCall2 accOnServiceDate">Service is currently unavailable.</p>
+                        <p class="localizejs accOnCall2 accOnQuestion accOnQuestionNew">Questions? Please call {{appointmentsContactNumber}}</p>
                      </div>
                   </div>
-
-
-                  <ion-item ng-if="onSSAvailability != 'on' && chkAvailabiltyOfSS == false && providerAvailability != true && providerOnDemandEnabled != true" class="noneSchedule localizejs noapptviewResult item" style="white-space: normal;">
+<!-- <ion-item ng-if="onSSAvailability != 'on' && chkAvailabiltyOfSS == false && providerAvailability != true && providerOnDemandEnabled != true" class="noneSchedule localizejs noapptviewResult item" style="white-space: normal;"> -->
+                  <ion-item ng-if="BlankUserAccount == true" class="noneSchedule localizejs noapptviewResult item" style="white-space: normal;">
                     <div>
                       <i class="noneScheduleImg" ng-bind-html="drawSVGCIcon('new_calendar_item')"></i>
                       <div class="noneScheduleTextBox">
