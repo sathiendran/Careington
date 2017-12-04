@@ -13209,7 +13209,7 @@ textarea.input-field {
     height: 32px;
     line-height: 32px;
     color: #4d4d4d;
-    text-indent: 0.33em;
+  /*  text-indent: 0.33em;*/
     margin: 0;
     border-radius: 5px;
     border: 1px #ccc solid;
@@ -32902,12 +32902,12 @@ only screen and (min-width: 541px) {
 .main-nav__list a {
     display: block;
     width: 100%;
-    height: 50px; 
+    height: 50px;
   /* background-color: #e6e6e6; */
     background-color: #444444;
     color: #fff;
     padding: 15px;
-  padding: 10px 10px 14px 15px; 
+  padding: 10px 10px 14px 15px;
     transition: background-color 0.3s ease, color 0.3s ease;
       font-family: "GloberSemiBold", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
     line-height: 26px;
