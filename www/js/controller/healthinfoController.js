@@ -34,7 +34,12 @@ angular.module('starter.controllers')
                 var patId = $stateParams.getid;
                 $rootScope.doGetSelectedPatientProfilesSS(patId, true);
             }
+
+            console.log("addressInfoFetch");
             console.log($rootScope.addressInfoFetch);
+            console.log("currentPatientDetails");
+            console.log($rootScope.currentPatientDetails);
+
             $scope.route = $rootScope.addressInfoFetch[0].addressObject.line1;
             $scope.address2 = $rootScope.addressInfoFetch[0].addressObject.line2;
             $scope.City = $rootScope.addressInfoFetch[0].addressObject.city;
@@ -42,6 +47,16 @@ angular.module('starter.controllers')
             $scope.State = $rootScope.addressInfoFetch[0].addressObject.state;
             $scope.state1 = $rootScope.addressInfoFetch[0].addressObject.state;
             $scope.Country = $rootScope.addressInfoFetch[0].addressObject.countryCode;
+
+
+/*            $scope.route = $rootScope.primaryPatientDetails[0].addressObject.line1;
+            $scope.address2 = $rootScope.primaryPatientDetails[0].addressObject.line2;
+            $scope.City = $rootScope.primaryPatientDetails[0].addressObject.city;
+            $scope.ZipCode = $rootScope.primaryPatientDetails[0].addressObject.postalCode;
+            $scope.State = $rootScope.primaryPatientDetails[0].addressObject.state;
+            $scope.state1 = $rootScope.primaryPatientDetails[0].addressObject.state;
+            $scope.Country = $rootScope.primaryPatientDetails[0].addressObject.countryCode;*/
+
             $rootScope.currentPatientDetails[0].address = $rootScope.addressInfoFetch[0].addressObject.addressText;
             if($scope.Country == 'US')
               {
@@ -50,7 +65,7 @@ angular.module('starter.controllers')
                 $scope.showCountrySelectBox = false;
               }
         };
-$("#localize-widget").show();
+        $("#localize-widget").show();
         $scope.getOnlyNumbers = function (text) {
             var newStr = "";
             if (text) {
@@ -215,6 +230,7 @@ $("#localize-widget").show();
         
         
         $scope.healthInfoModel.address = $rootScope.currentPatientDetails[0].address;
+        console.log($rootScope.currentPatientDetails);
         $scope.mobileval = $rootScope.currentPatientDetails[0].mobilePhone;
         $scope.addmore = false;
         $scope.healthhide = true;

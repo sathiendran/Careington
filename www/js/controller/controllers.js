@@ -7621,7 +7621,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $rootScope.individualNextAppointmentDisplay = 'none';
 
         $('.accoTitle-IOS').attr('style', 'margin-top: 4px !important');
-        $('.subheaderheightOne').attr('style', 'height: 100px !important');
+        /*$('.subheaderheightOne').attr('style', 'height: 100px !important');
         $('.userAccHeaderTitle').attr('style', 'margin-top: -43px !important');
         $('.userlistAccountHome').attr('style', 'margin-top: -43px !important');
         //var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
@@ -7630,7 +7630,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         else if($rootScope.is_iPadDeviceWidth <= 320)
             $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0px !important');
         else
-            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 36px !important');
+            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 36px !important');*/
 
         $rootScope.individualwithoutAppointmentDisplay = 'block';
         $rootScope.accountClinicianFooter = 'block';
@@ -7657,7 +7657,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             $('.subheaderheightOne').attr('style', 'height: 100px !important');
         }
         else
-            $('.userlistAccountHome-ios5').attr('style', 'margin-top: -35px !important');
+            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 36px !important');
 
 
         $rootScope.scheduledList = $filter('filter')($filter('orderBy')($rootScope.getScheduledList, "scheduledTime"), "a");
@@ -7691,7 +7691,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                         $('.subheaderheightOne').attr('style', 'height: 100px !important');
                     }
                 else
-                    $('.userlistAccountHome-ios5').attr('style', 'margin-top: -35px !important');
+                    $('.userlistAccountHome-ios5').attr('style', 'margin-top: 36px !important');
 
               if ($rootScope.getIndividualScheduleDetails != '') {
                 //  if($rootScope.getIndividualPatScheduleDetails != '') {
@@ -7722,7 +7722,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                           $('.subheaderheightOne').attr('style', 'height: 150px !important');
                       }
                       else
-                          $('.userlistAccountHome-ios5').attr('style', 'margin-top: 8px !important');
+                          $('.userlistAccountHome-ios5').attr('style', 'margin-top: 76px !important');
 
                     /*  var beforAppointmentTime = getReplaceTime;
                       var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);

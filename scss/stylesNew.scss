@@ -16,6 +16,27 @@ margin-top: 125px !important;
 .userlistAccountHome-ios5{
     //margin-top: 0px !important;
 }
+
+  @media (max-width: 375px) {
+  .mobileInput-Ios5 {
+        padding-left: 55px !important;
+      //  margin-right: -30px !important;
+        float: right !important;
+        }
+  .mobileInputNo-Ios5 {
+        margin-left: 0px !important;
+  }
+}
+  @media (min-width: 414px) {
+    .mobileInput-Ios5 {
+          padding-left: 75px !important;
+        //  margin-right: -30px !important;
+          float: right !important;
+          }
+    .mobileInputNo-Ios5 {
+          margin-left: 0px !important;
+    }
+  }
 @media (max-width: 320px) and (min-width: 315px) {
      .AppointmentView {
           visibility: hidden;
@@ -117,6 +138,11 @@ margin-top: 125px !important;
             padding: 19px 10px;
         }
     }
+    .mobileInput-Ios5 {
+               padding-left: 30px !important;
+               float: right !important;
+          }
+
     #WhoNeeds {
         font-size: 20px;
         width: 85%;
@@ -623,6 +649,13 @@ color: #888;
      }
      .accMainContentNew {
           margin-bottom: 15%;
+     }
+     .mobileInput-Ios5 {
+       padding-left: 0px !important;
+       float: right !important;
+      }
+     .mobileInputNo-Ios5 {
+       margin-right: -40px !important;
      }
 }
 @media (min-width: 770px) and (max-width: 1024px) {
@@ -4616,6 +4649,10 @@ padding: 44px 10px;
 .adddepuser {
     padding: 44px 10px !important;
 }
+.mobileInput-Ios5 {
+     padding-left: 50px !important;
+     float: right !important;
+      }
 }
 @media screen and (device-width: 384px) and (device-height: 598px) {
 #accountMngeProfile-Android {
@@ -6901,8 +6938,10 @@ background-color: rgb(245,245,245);
 .noneScheduleTextBox {
     margin-top: 18px;
 }
-.mobileInput-Ios5 {
+/* .mobileInput-Ios5 {
            padding-left: 52px !important;
            float: right !important;
-      }
-
+      } */
+.emailDependent {
+  height: 55px;
+}

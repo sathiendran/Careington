@@ -138,7 +138,7 @@
                     <div class="col col-45">
                      <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel labelfont localizejs">Mobile</b> </span></div>
                      <div class="HealthViewDetails mobileInput-Ios5 localizejs" ng-if="currentPatientDetails[0].mobilePhone" style="width: auto; float: left; position: relative; top: 3px;">{{getCountryCode(currentPatientDetails[0].countryCode)}}</div>
-                     <div class="healthViewDetails" ng-if="currentPatientDetails[0].mobilePhone">
+                     <div class="healthViewDetails mobileInputNo-Ios5" ng-if="currentPatientDetails[0].mobilePhone">
                         <input type="text" readonly="true" value="{{getPhoneNumberWithoutCountryCode(currentPatientDetails[0].mobilePhone) |  tel}}" style="background-color: #fff !important; font-size: 18px; color: #444;">
                      </div>
                      <div class="healthViewDetails localizejs" ng-if="!currentPatientDetails[0].mobilePhone">
