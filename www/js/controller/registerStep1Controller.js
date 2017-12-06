@@ -413,7 +413,7 @@ angular.module('starter.controllers')
       }
       var params = {
           address: '',
-          addressObject: $scope.fullAddressObj,
+          addressObject: $rootScope.fullAddressObj,
           dob: $scope.dob,
           email: $scope.email,
           name: $scope.userFirstandLastName,
@@ -647,8 +647,8 @@ angular.module('starter.controllers')
               res['state'] = stateObj;
               res['stateCode'] = stateCodeFetch;
 
-              $scope.fullAddressObj = res;
-              //console.log($scope.fullAddressObj);
+              $rootScope.fullAddressObj = res;
+              //console.log($rootScope.fullAddressObj);
                  $scope.modal.remove()
                     .then(function () {
                         $scope.modal = null;

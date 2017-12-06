@@ -291,13 +291,22 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
 })
 
 .directive('phoneInput', function($filter, $browser) {
+    debugger;
         return {
             require: 'ngModel',
             link: function($scope, $element, $attrs, ngModelCtrl) {
                 var listener = function() {
+                    var cursorPos = $element[0].selectionStart + 1;
+                    $element[0].setSelectionRange(cursorPos, cursorPos);
                     var value = $element.val().replace(/[^0-9]/g, '');
                     $element.val($filter('tel')(value, false));
-                };
+                    /*var value = $element.val().replace(/[^0-9]/g, '');
+                    $element.val($filter('tel')(value, false));
+*/                };
+/*
+                 ngModelCtrl.$formatters.unshift(function (modelValue) {
+                    return $filter('tel')(modelValue, false);
+                });*/
                 // This runs when we update the text field
                 ngModelCtrl.$parsers.push(function(viewValue) {
                     return viewValue.replace(/[^0-9]/g, '').slice(0, 10);
@@ -305,7 +314,9 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
 
                 // This runs when the model gets updated on the scope directly and keeps our view in sync
                 ngModelCtrl.$render = function() {
+
                     $element.val($filter('tel')(ngModelCtrl.$viewValue, false));
+                    
                 };
 
                 $element.bind('change', listener);

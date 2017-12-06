@@ -703,7 +703,7 @@ var localizeCurrent = $('#localize-current').text();
         $rootScope.concernListTitleStyle = "concernListTitle";
         $rootScope.concernListDoneStyle = "concernListDone";
         $rootScope.PrimaryMarginTop = "margin-top: -16px";
-        $rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -34px !important;";
+        //$rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -34px !important;";
         $rootScope.appointContent = "margin: 76px 0 0 0;";
         $rootScope.waitingContentIos = "margin-top: 120px; ";
         $rootScope.providerItamMarginTop = "";
@@ -6986,10 +6986,10 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     }
 
                 } else {
-                    $scope.selectedPatientDetails = [];
+                    $rootScope.selectedPatientDetails = [];
                     $rootScope.addressInfoFetch = [];
                     angular.forEach(data.data, function(index) {
-                        $scope.selectedPatientDetails.push({
+                        $rootScope.selectedPatientDetails.push({
                           'identifiers': angular.fromJson(index.identifiers),
                             'account': angular.fromJson(index.account),
                             'address': index.address,
@@ -7025,8 +7025,10 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                         });
 
                     });
-                    $scope.selectedPatientDetails[0].address = ($scope.selectedPatientDetails[0].address != '' ? $scope.selectedPatientDetails[0].address : $scope.selectedPatientDetails[0].addressObject.addressText );
+                    $rootScope.selectedPatientDetails[0].address = ($rootScope.selectedPatientDetails[0].address != '' ? $rootScope.selectedPatientDetails[0].address : $rootScope.selectedPatientDetails[0].addressObject.addressText );
                     $rootScope.addressInfoFetch[0].address = ($rootScope.addressInfoFetch[0].address != '' ? $rootScope.addressInfoFetch[0].address : $rootScope.addressInfoFetch[0].addressObject.addressText );
+           //         $scope.selectedPatientDetails[0].address = ($scope.selectedPatientDetails[0].address != '' ? $scope.selectedPatientDetails[0].address : $scope.selectedPatientDetails[0].addressObject.addressText );
+            //        $rootScope.addressInfoFetch[0].address = ($rootScope.addressInfoFetch[0].address != '' ? $rootScope.addressInfoFetch[0].address : $rootScope.addressInfoFetch[0].addressObject.addressText );
                     //$rootScope.addressInfoFetch = '';
                   //  $rootScope.addressInfoFetch = $rootScope.selectedPatientDetailsSecond;
                     $rootScope.currentPatientDetails = $scope.selectedPatientDetails;

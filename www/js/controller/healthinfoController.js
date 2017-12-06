@@ -1611,7 +1611,7 @@ angular.module('starter.controllers')
                     $scope.patientMedicalHistoryDetails.surgery4Year = $rootScope.patientmedicalsurgeries[3].year;
                 }
             }
-
+          
             var params = {
                 accessToken: $rootScope.accessToken,
                 emailAddress: $scope.healthInfoEmail,

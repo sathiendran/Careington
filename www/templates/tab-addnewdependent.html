@@ -48,7 +48,7 @@
                      <i class="iconsize" ng-bind-html="drawSVGCIcon('user')"></i><b class="formlabel localizejs">First Name</b><i class="ion-asterisk"></i></span>
                   </div>
                   <div class="col col-50 depGreyLabel">
-                     <input class="usertext localizejs" id="firstname" type="text" ng-model="firstname" name="firstname" placeholder="Required" maxlength="24">
+                     <input class="usertext localizejs" id="firstname" type="text" ng-model="firstname" name="firstname" placeholder="Required">
                   </div>
                </div>
                <div class="item item-input validated">
@@ -57,7 +57,7 @@
                      <i class="iconsize" ng-bind-html="drawSVGCIcon('user')"></i><b class="formlabel localizejs">Last Name</b><i class="ion-asterisk"></i></span>
                   </div>
                   <div class="col col-50 depGreyLabel">
-                     <input class="usertext localizejs" id="lastname" type="text" ng-model="lastname" name="lastname" placeholder="Required" maxlength="24">
+                     <input class="usertext localizejs" id="lastname" type="text" ng-model="lastname" name="lastname" placeholder="Required">
                   </div>
                </div>
                <div class="item item-input validated">
@@ -87,7 +87,7 @@
                      <i class="iconsize" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel localizejs" style="white-space: normal;">Email</b></span>
                   </div>
                   <div class="col col-50 depGreyLabel">
-                     <input class="usertext localizejs" id="email"  type="email" value="" placeholder="Optional" ng-model="email"  name="email" ng-blur="emailBlur()" ng-keyup="depemail()" style="padding: 25px 0px 36px 0px;">
+                     <input class="usertext localizejs" id="email"  type="email" value="" placeholder="Optional" ng-model="email"  name="email" ng-blur="emailBlur()" ng-keyup="depemail()" >
                      <span class="error localizejs" id="eremail" ng-show="myForm.email.$error.email" > Not a valid email! </span>
                   </div>
                </div>

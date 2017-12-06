@@ -446,11 +446,25 @@ angular.module('starter.controllers')
       $rootScope.listOfAddPatientIdentifiers = [];
         $scope.newupdatePatientDetails();
 
+        if($rootScope.fullAddressObj == '' || $rootScope.fullAddressObj ==undefined)
+        {
+          var res = new Object();
+          res['city'] = $rootScope.addressInfoFetch[0].addressObject.city;
+          res['country'] = $rootScope.addressInfoFetch[0].addressObject.country;
+          res['countryCode'] = $rootScope.addressInfoFetch[0].addressObject.countryCode;
+          res['line1'] = $rootScope.addressInfoFetch[0].addressObject.line1;
+          res['line2'] = $rootScope.addressInfoFetch[0].addressObject.line2;
+          res['postalCode'] = $rootScope.addressInfoFetch[0].addressObject.postalCode;
+          res['state'] = $rootScope.addressInfoFetch[0].addressObject.state;
+          res['stateCode'] = $rootScope.addressInfoFetch[0].addressObject.stateCode;
+          $rootScope.fullAddressObj = res;
+        }
+
         $scope.firstName = $("#firstname").val();
         $scope.lastName = $("#lastname").val();
         $scope.email = $("#email").val();
         $scope.dob = $("#dob").val();
-        $scope.relation = $("#relation").val();
+        $scope.relation = $("#dependentrelation").val();
         var splitheight = $('#heightdep').val();
         $scope.splitheights = $('#heightdep').val();
         if ($rootScope.height2 === "") {
@@ -468,11 +482,12 @@ angular.module('starter.controllers')
         $scope.mobile = $("#mobile").val();
         $scope.mobilelength = $("#mobile").val().length;
         $scope.homeaddress = $scope.addNewDependent.homeadd;
-        $scope.homeaddressObj = $scope.fullAddressObj;
+        $scope.homeaddressObj = $rootScope.fullAddressObj;
 
         $scope.txtPlacesVal = $scope.route;
         $scope.cityVal = $scope.City;
         $scope.state1Val = $scope.state1;
+        $scope.stateVal = $scope.State;
         $scope.zipcodeVal = $scope.ZipCode;
         $scope.countryVal = $scope.Country;
 
@@ -633,7 +648,8 @@ angular.module('starter.controllers')
                  $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
                  $rootScope.Validation($scope.ErrorMessage);
              }
-               else if (typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) {
+            //   else if (typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) {
+                else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)) {
                  $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
                  $rootScope.Validation($scope.ErrorMessage);
              }
@@ -734,7 +750,8 @@ angular.module('starter.controllers')
                  $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
                  $rootScope.Validation($scope.ErrorMessage);
              }
-               else if (typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) {
+             //  else if (typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) {
+                else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)) {
                  $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
                  $rootScope.Validation($scope.ErrorMessage);
              }
@@ -798,7 +815,8 @@ angular.module('starter.controllers')
                 pharmacyContact: null,
                 //address: $scope.homeaddress,
                 address: '',
-                addressObject: $scope.homeaddressObj,
+                //addressObject: $scope.homeaddressObj,
+                addressObject: $rootScope.fullAddressObj,
                 profileImagePath: $rootScope.newDependentImagePath,
                 height: $scope.height + "|" + $scope.height2,
                 weight: $scope.weight,
@@ -856,7 +874,8 @@ angular.module('starter.controllers')
                     return this.value.indexOf('?') >= 0;
                 }).remove();
                 if (data.status === 400) {
-                    $scope.ErrorMessage = data.statusText;
+                    //$scope.ErrorMessage = data.statusText;
+                    $scope.ErrorMessage = 'Max length for first / last name is 24';
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
@@ -1448,8 +1467,8 @@ $rootScope.editremovemodal = function () {
           res['state'] = stateObj;
           res['stateCode'] = stateCodeFetch;
 
-          $scope.fullAddressObj = res;
-          //console.log($scope.fullAddressObj);
+          $rootScope.fullAddressObj = res;
+          //console.log($rootScope.fullAddressObj);
              $scope.modal.remove()
                 .then(function () {
                     $scope.modal = null;
