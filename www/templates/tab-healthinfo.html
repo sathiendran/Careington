@@ -258,11 +258,10 @@
                   </div>
                   <div class="item item-input itemtab validated" style="display: {{emailDisplay}};">
                     <div class="col col-45">
-
                     <span class="input-label labelcolor" style=" white-space: normal;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel labelfont localizejs">Email</b><i  class="emailion ion-asterisk"></i></span>
                   </div>
                      <span class="healthViewDetails" >
-                     <input type="email" name="healthInfoEmail ellipsis" id="healthInfoEmail"   value="{{currentPatientDetails[0].account.email}}" class="textdata localizejs" placeholder="Required" ng-blur="emailBlur()" ng-keyup="editmail()">
+                     <input type="email" name="healthInfoEmail ellipsis" id="healthInfoEmail"   value="{{currentPatientDetails[0].account.email}}" class="textdata localizejs" placeholder="Required" ng-blur="emailBlur()"  ng-click="showEmail()" ng-keyup="editmail()">
                      </span>
                   </div>
                   <div class="item item-input itemtab validated">

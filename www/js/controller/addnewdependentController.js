@@ -196,14 +196,15 @@ angular.module('starter.controllers')
     }
     $scope.addNewDependent = {};
     console.log($rootScope.primaryPatientDetails);
-     $scope.addNewDependent.homeadd = ($rootScope.primaryPatientDetails[0].address =='') ? $rootScope.primaryPatientDetails[0].addressObject : $rootScope.primaryPatientDetails[0].address ;
+    $scope.addNewDependent.homeadd = $rootScope.primaryPatientDetails[0].address;
+     /*$scope.addNewDependent.homeadd = ($rootScope.primaryPatientDetails[0].address =='') ? $rootScope.primaryPatientDetails[0].addressObject : $rootScope.primaryPatientDetails[0].address ;
        $scope.route = $rootScope.primaryPatientDetails[0].addressObject.line1;
             $scope.address2 = $rootScope.primaryPatientDetails[0].addressObject.line2;
             $scope.City = $rootScope.primaryPatientDetails[0].addressObject.city;
             $scope.ZipCode = $rootScope.primaryPatientDetails[0].addressObject.postalCode;
             $scope.State = $rootScope.primaryPatientDetails[0].addressObject.state;
             $scope.state1 = $rootScope.primaryPatientDetails[0].addressObject.state;
-            $scope.Country = $rootScope.primaryPatientDetails[0].addressObject.countryCode;
+            $scope.Country = $rootScope.primaryPatientDetails[0].addressObject.countryCode;*/
    // $scope.addNewDependent.homeadd = $rootScope.primaryPatientDetails[0].addresses[0].addressText;
     // alert("addNewDependent.homeadd " + $scope.addNewDependent.homeadd);
     var newUploadedPhoto;

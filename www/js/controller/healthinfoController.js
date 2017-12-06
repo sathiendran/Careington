@@ -230,7 +230,7 @@ angular.module('starter.controllers')
         
         
         $scope.healthInfoModel.address = $rootScope.currentPatientDetails[0].address;
-        console.log($rootScope.currentPatientDetails);
+        
         $scope.mobileval = $rootScope.currentPatientDetails[0].mobilePhone;
         $scope.addmore = false;
         $scope.healthhide = true;
@@ -531,6 +531,8 @@ angular.module('starter.controllers')
         }
         $scope.edittext = function () {
             //console.log("Patientlist" + $rootScope.PatientIdentifiers);
+            $('#healthInfoEmail').attr('style', 'text-overflow: ellipsis !important');
+            $scope.healthInfoModel.address = $rootScope.currentPatientDetails[0].address;
             $rootScope.checkedpatientdet = '';
             if ($rootScope.PatientIdentifiers == '' || $rootScope.PatientIdentifiers == 'undefined') {
                 $rootScope.PatientidupdateList = [];
@@ -706,6 +708,10 @@ angular.module('starter.controllers')
             var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return expr.test(email);
         };
+        $scope.showEmail = function(){
+
+            $('#healthInfoEmail').attr('style', 'text-overflow: unset !important');
+        }
         $scope.emailBlur = function () {
             var emailvalue = $('#healthInfoEmail').val();
             if (emailvalue !== '') {
@@ -727,6 +733,7 @@ angular.module('starter.controllers')
             }
         }
         $scope.putUpdatePatientDetails = function () {
+
             var selectDate = document.getElementById('healthInfoDOB').value;
             var now = new Date();
             var dt1 = Date.parse(now),
@@ -737,6 +744,7 @@ angular.module('starter.controllers')
             $scope.txtPlacesVal = $scope.route;
             $scope.cityVal = $scope.City;
             $scope.state1Val = $scope.state1;
+            $scope.stateVal = $scope.State;
             $scope.zipcodeVal = $scope.ZipCode;
             $scope.countryVal = $scope.Country;
 
@@ -1071,10 +1079,15 @@ angular.module('starter.controllers')
                              $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
                              $rootScope.Validation($scope.ErrorMessage);
                          }
-                           else if (typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) {
-                             $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                             $rootScope.Validation($scope.ErrorMessage);
-                         }
+                          else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)) 
+                             {
+                              //  if(typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)
+                               // {
+                                     $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                                     $rootScope.Validation($scope.ErrorMessage);
+                              //  }
+
+                             }
                            else if (typeof $scope.zipcodeVal === 'undefined' || $scope.zipcodeVal === '' || $scope.zipcodeVal === null) {
                              $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
                              $rootScope.Validation($scope.ErrorMessage);
@@ -1179,10 +1192,15 @@ angular.module('starter.controllers')
                              $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
                              $rootScope.Validation($scope.ErrorMessage);
                          }
-                           else if (typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) {
-                             $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                             $rootScope.Validation($scope.ErrorMessage);
-                         }
+                           else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)) 
+                             {
+                              //  if(typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)
+                               // {
+                                     $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                                     $rootScope.Validation($scope.ErrorMessage);
+                              //  }
+
+                             }
                            else if (typeof $scope.zipcodeVal === 'undefined' || $scope.zipcodeVal === '' || $scope.zipcodeVal === null) {
                              $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
                              $rootScope.Validation($scope.ErrorMessage);
@@ -1286,10 +1304,15 @@ angular.module('starter.controllers')
                          $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
                          $rootScope.Validation($scope.ErrorMessage);
                      }
-                       else if (typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) {
+                       else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)) 
+                 {
+                  //  if(typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)
+                   // {
                          $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
                          $rootScope.Validation($scope.ErrorMessage);
-                     }
+                  //  }
+
+                 }
                        else if (typeof $scope.zipcodeVal === 'undefined' || $scope.zipcodeVal === '' || $scope.zipcodeVal === null) {
                          $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
                          $rootScope.Validation($scope.ErrorMessage);
@@ -1404,12 +1427,15 @@ angular.module('starter.controllers')
                    else if (typeof $scope.cityVal === 'undefined' || $scope.cityValVal === '' || $scope.cityValVal === null) {
                      $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
                      $rootScope.Validation($scope.ErrorMessage);
-                 }
-                   else if (typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) {
-                     $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                     $rootScope.Validation($scope.ErrorMessage);
-                 }
-                   else if (typeof $scope.zipcodeVal === 'undefined' || $scope.zipcodeVal === '' || $scope.zipcodeVal === null) {
+                 }else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)) 
+                 {
+                  //  if(typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)
+                   // {
+                         $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                         $rootScope.Validation($scope.ErrorMessage);
+                  //  }
+
+                 }else if (typeof $scope.zipcodeVal === 'undefined' || $scope.zipcodeVal === '' || $scope.zipcodeVal === null) {
                      $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
                      $rootScope.Validation($scope.ErrorMessage);
                  }

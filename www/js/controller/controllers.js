@@ -3060,6 +3060,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
                 });
                // $rootScope.addressInfoFetch = '';
                // $rootScope.addressInfoFetch = $scope.primaryPatientDetailsSecond;
+                $rootScope.primaryPatientDetails[0].address = ($rootScope.primaryPatientDetails[0].address != '' ? $rootScope.primaryPatientDetails[0].address : $rootScope.primaryPatientDetails[0].addressObject.addressText );
+                $rootScope.addressInfoFetch[0].address = ($rootScope.addressInfoFetch[0].address != '' ? $rootScope.addressInfoFetch[0].address : $rootScope.addressInfoFetch[0].addressObject.addressText );
                 $rootScope.patientInfomation = data.data[0];
                 $rootScope.patientAccount = data.data[0].account;
                 $rootScope.patientAddresses = data.data[0].addresses;
@@ -3386,6 +3388,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
                             'addressObject': angular.fromJson(index.addressObject),
                         });
                 });
+                $scope.selectedPatientDetails[0].address = ($scope.selectedPatientDetails[0].address != '' ? $scope.selectedPatientDetails[0].address : $scope.selectedPatientDetails[0].addressObject.addressText );
+                $rootScope.addressInfoFetch[0].address = ($rootScope.addressInfoFetch[0].address != '' ? $rootScope.addressInfoFetch[0].address : $rootScope.addressInfoFetch[0].addressObject.addressText );
                 $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
                 $rootScope.addressInfoFetch = $scope.selectedPatientDetails;
                 $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
@@ -3731,6 +3735,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                         });
 
                     });
+                    $scope.selectedPatientDetails[0].address = ($scope.selectedPatientDetails[0].address != '' ? $scope.selectedPatientDetails[0].address : $scope.selectedPatientDetails[0].addressObject.addressText );
                     $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
                     $rootScope.cutaddress = $rootScope.currentPatientDetails[0].address; //surya commanded
                     //$rootScope.cutaddress = $rootScope.currentPatientDetails[0].addresses[0].addressText;
@@ -6914,6 +6919,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
 
                     });
+                    $rootScope.selectedRelatedDependentDetails[0].address = ($rootScope.selectedRelatedDependentDetails[0].address != '' ? $rootScope.selectedRelatedDependentDetails[0].address : $rootScope.selectedRelatedDependentDetails[0].addressObject.addressText );
+                    $rootScope.addressInfoFetch[0].address = ($rootScope.addressInfoFetch[0].address != '' ? $rootScope.addressInfoFetch[0].address : $rootScope.addressInfoFetch[0].addressObject.addressText );
                    // $rootScope.addressInfoFetch = '';
                    // $rootScope.addressInfoFetch = $scope.selectedRelatedDependentDetailsSecond;
                     $rootScope.PatientIdentifiers = $rootScope.selectedRelatedDependentDetails[0].identifiers;
@@ -7018,6 +7025,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                         });
 
                     });
+                    $scope.selectedPatientDetails[0].address = ($scope.selectedPatientDetails[0].address != '' ? $scope.selectedPatientDetails[0].address : $scope.selectedPatientDetails[0].addressObject.addressText );
+                    $rootScope.addressInfoFetch[0].address = ($rootScope.addressInfoFetch[0].address != '' ? $rootScope.addressInfoFetch[0].address : $rootScope.addressInfoFetch[0].addressObject.addressText );
                     //$rootScope.addressInfoFetch = '';
                   //  $rootScope.addressInfoFetch = $rootScope.selectedPatientDetailsSecond;
                     $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
@@ -7189,6 +7198,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             'addressObject': angular.fromJson(index.addressObject),
                         });
                  });
+                 $rootScope.selectedRelatedDependentDetails[0].address = ($rootScope.selectedRelatedDependentDetails[0].address != '' ? $rootScope.selectedRelatedDependentDetails[0].address : $rootScope.selectedRelatedDependentDetails[0].addressObject.addressText );
+                 $rootScope.addressInfoFetch[0].address = ($rootScope.addressInfoFetch[0].address != '' ? $rootScope.addressInfoFetch[0].address : $rootScope.addressInfoFetch[0].addressObject.addressText );
                //    $rootScope.addressInfoFetch = '';
                //  $rootScope.addressInfoFetch = $scope.selectedRelatedDependentDetailsSecond;
                  $rootScope.PatientIdentifiers = $rootScope.selectedRelatedDependentDetails[0].identifiers;
@@ -7292,6 +7303,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                         });
 
                  });
+                 $scope.selectedPatientDetails[0].address = ($scope.selectedPatientDetails[0].address != '' ? $scope.selectedPatientDetails[0].address : $scope.selectedPatientDetails[0].addressObject.addressText );
+                 $rootScope.addressInfoFetch[0].address = ($rootScope.addressInfoFetch[0].address != '' ? $rootScope.addressInfoFetch[0].address : $rootScope.addressInfoFetch[0].addressObject.addressText );
                 // $rootScope.addressInfoFetch = '';
                 // $rootScope.addressInfoFetch = $scope.selectedPatientDetailsSecond;
                  $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
