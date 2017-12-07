@@ -227,10 +227,10 @@ angular.module('starter.controllers')
         };
         $scope.healthInfoModel = {};
         //$rootScope.timezoneDisplay = 'none';
-        
-        
+
+
         $scope.healthInfoModel.address = $rootScope.currentPatientDetails[0].address;
-        
+
         $scope.mobileval = $rootScope.currentPatientDetails[0].mobilePhone;
         $scope.addmore = false;
         $scope.healthhide = true;
@@ -1007,7 +1007,7 @@ angular.module('starter.controllers')
                 if (($rootScope.restage >= 12)) {
                     if ($rootScope.currentPatientDetails[0].account.email !== '') {
                         if (typeof $scope.healthInfoFirstName === 'undefined' || $scope.healthInfoFirstName === '') {
-                            $scope.ErrorMessage = "Please enterenter First Name";
+                            $scope.ErrorMessage = "Please enter First Name";
                             $rootScope.Validation($scope.ErrorMessage);
                         } else if (typeof $scope.healthInfoLastName === 'undefined' || $scope.healthInfoLastName === '') {
                             $scope.ErrorMessage = "Please enter Last Name";
@@ -1079,7 +1079,7 @@ angular.module('starter.controllers')
                              $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
                              $rootScope.Validation($scope.ErrorMessage);
                          }
-                          else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)) 
+                          else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null))
                              {
                               //  if(typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)
                                // {
@@ -1127,7 +1127,7 @@ angular.module('starter.controllers')
                         }
                     } else {
                         if (typeof $scope.healthInfoFirstName === 'undefined' || $scope.healthInfoFirstName === '') {
-                            $scope.ErrorMessage = "Please enterenter First Name";
+                            $scope.ErrorMessage = "Please enter First Name";
                             $rootScope.Validation($scope.ErrorMessage);
                         } else if (typeof $scope.healthInfoLastName === 'undefined' || $scope.healthInfoLastName === '') {
                             $scope.ErrorMessage = "Please enter Last Name";
@@ -1192,7 +1192,7 @@ angular.module('starter.controllers')
                              $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
                              $rootScope.Validation($scope.ErrorMessage);
                          }
-                           else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)) 
+                           else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null))
                              {
                               //  if(typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)
                                // {
@@ -1304,7 +1304,7 @@ angular.module('starter.controllers')
                          $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
                          $rootScope.Validation($scope.ErrorMessage);
                      }
-                       else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)) 
+                       else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null))
                  {
                   //  if(typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)
                    // {
@@ -1427,7 +1427,7 @@ angular.module('starter.controllers')
                    else if (typeof $scope.cityVal === 'undefined' || $scope.cityValVal === '' || $scope.cityValVal === null) {
                      $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
                      $rootScope.Validation($scope.ErrorMessage);
-                 }else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)) 
+                 }else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null))
                  {
                   //  if(typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)
                    // {
@@ -1611,7 +1611,7 @@ angular.module('starter.controllers')
                     $scope.patientMedicalHistoryDetails.surgery4Year = $rootScope.patientmedicalsurgeries[3].year;
                 }
             }
-          
+
             var params = {
                 accessToken: $rootScope.accessToken,
                 emailAddress: $scope.healthInfoEmail,

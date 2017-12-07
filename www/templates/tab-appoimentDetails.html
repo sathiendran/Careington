@@ -95,7 +95,7 @@
                      <span class="appfloat"><i class="icon ion-chevron-right " style="display: none;"></i></span>
                      <span class="encounterappticon" style="top: 2px !important;" >
                        <i  class="iconAlignment" ng-bind-html="drawSVGCIcon('phone')"></i> </span>
-                     <p class="patage localizejs" style="margin-top:-22px !important;">{{scheduledDoctorDetails[0].gender}} <span> .</span> {{scheduledDoctorDetails[0].dob | ageFilter}}</p>
+                     <p class="patage localizejs" style="margin-top:-22px !important;"><span>{{scheduledDoctorDetails[0].gender}}  .</span> {{scheduledDoctorDetails[0].dob | ageFilter}}</p>
                  </div>
               </a>
 
@@ -200,7 +200,7 @@
 
 </ion-footer-bar>
 <ion-footer-bar ng-if="scheduledListDatas.encounterTypeCode != '3'" class="bar bar-footer footheight" style="background-color:#FFC60B !important; height: 73px; display: block" >
-				<h1 class="title enterAppoint-{{deviceName}} localizejs" id="centercolor" > <p style="color:#666666 !important; margin-top:-11px;"> Your Provider will call you at</p>
+				<h1 class="title enterAppoint-{{deviceName}} localizejs" id="centercolor" > <p style="color:#666666 !important; margin-top:-11px;" class="localizejs"> Your Provider will call you at</p>
            <p style="color:#444444 !important; margin-top:-30px;">{{schedulemobile  |  tel}} </p> </h1>
 </ion-footer-bar>
 <ion-footer-bar class="bar bar-footer  footer-color footheight enterAppoinment2"  >

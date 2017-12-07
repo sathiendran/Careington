@@ -583,7 +583,7 @@ angular.module('starter.controllers')
             dt2 = Date.parse(selectedDate);
         if ($rootScope.restage >= 12) {
             if (typeof $scope.firstName === 'undefined' || $scope.firstName === '') {
-                $scope.ErrorMessage = "Please enterenter First Name";
+                $scope.ErrorMessage = "Please enter First Name";
                 $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.lastName === 'undefined' || $scope.lastName === '') {
                 $scope.ErrorMessage = "Please enter Last Name";
