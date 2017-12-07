@@ -95,8 +95,13 @@
                <p class="carddetails localizejs">When you add a credit card, information about your card, will be sent to Authorize.net and your card issuer.</p>
             </div>
             <div class="privacy" style="opacity:{{planverify}};">
-              <a class="hospitalDynamicLink localizejs" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">
-              About {{Hospital}} Privacy</a></div>
+              <!-- <a class="hospitalDynamicLink localizejs" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">
+              About {{Hospital}} Privacy</a> -->
+
+              <a class="localizejs" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" >
+                About {{Hospital}} Privacy</a>
+            
+            </div>
          </div>
       </ion-content>
    </form>
