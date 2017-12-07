@@ -178,8 +178,11 @@
                    Terms & Conditions</span>
                  <span class="localizejs"> as well as the </span>
                  <span style="text-decoration: underline;">
-                   <a class="hospitalDynamicLink" ng-click="hospitallink()" >
-                     <span class="localizejs">Privacy Policy</span></a></span>
+                   <a class="" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');" >
+                     <span class="localizejs">Privacy Policy</span></a>
+                     <!-- <a class="hospitalDynamicLink" ng-click="hospitallink()" >
+                      <span class="localizejs">Privacy Policy</span></a> -->
+                    </span>
                       <span class="localizejs">associated with the use of this service.</span></p>
             </div>
             <div ng-controller="LoginCtrl">
@@ -361,15 +364,15 @@
             </div>
             <div class="acinfoRegisterBottomAcceptText-{{deviceName}}"  >
                <p ng-if="deploymentEnv == 'Multiple'" class="localizejs"><span class="localizejs">By clicking below I understand that I am accepting the</span>
-                    <span style="text-decoration: underline;" class="localizejs" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</span> <span class="localizejs">as well as the </span><span style="text-decoration: underline;"><a class="hospitalDynamicLink" ng-click="hospitallink()" ><span class="localizejs"> Privacy Policy </span></a></span>
+                    <span style="text-decoration: underline;" class="localizejs" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</span> <span class="localizejs">as well as the </span><span style="text-decoration: underline;"><a class="" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');" ><span class="localizejs"> Privacy Policy </span></a></span>
                     <span class="localizejs">associated with the use of this service.</span>
                </p>
                <p ng-if="deploymentEnv != 'Multiple'" class="localizejs"><span class="localizejs">By clicking below I understand that I am accepting the</span>
-                    <span class="localizejs" style="text-decoration: underline;" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.registerStep1');">Terms & Conditions</span><span class="localizejs"> as well as the</span> <span style="text-decoration: underline;"><a class="hospitalDynamicLink" ng-click="hospitallink()" ><span class="localizejs">Privacy Policy</span> </a></span>
+                    <span class="localizejs" style="text-decoration: underline;" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.registerStep1');">Terms & Conditions</span><span class="localizejs"> as well as the</span> <span style="text-decoration: underline;"><a class=""ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');" ><span class="localizejs">Privacy Policy</span> </a></span>
                     <span class="localizejs">associated with the use of this service.</span>
                </p>
                <p ng-if="deploymentEnv != 'Multiple' &&  cobrandApp == 'LatchOn'" class="localizejs"><span class="localizejs">By clicking below I understand that I am accepting the</span>
-                    <span class="localizejs" style="text-decoration: underline;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</span> <span class="localizejs">as well as the</span> <span style="text-decoration: underline;"><a class="hospitalDynamicLink" ng-click="hospitallink()" ><span class="localizejs">Privacy Policy</span> </a></span>
+                    <span class="localizejs" style="text-decoration: underline;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</span> <span class="localizejs">as well as the</span> <span style="text-decoration: underline;"><a class="" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');" ><span class="localizejs">Privacy Policy</span> </a></span>
                     <span class="localizejs">associated with the use of this service.</span>
                </p>
             </div>
