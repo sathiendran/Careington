@@ -81,7 +81,7 @@
                         <label class="localizejs addresslabel"> Country</label>
                         <div>
                            <div style="margin-left: 12px; margin-top: 10px;">
-                              <img src="{{imageName}}" >
+                              <img src="{{imageName}}" ng-if="imageName != 'images/countries/flags/-32.png'">
                            <select  class="textdata localizejs"  name="country" id="country" ng-model="Country" ng-change="changeCountry();makeAddress()" style="width: 100% !important; position: relative;border: none;top: -2px;    margin-left: -35px;padding-left: 30px;"   >
                               <option class="localizejs" value="Select Country">Select Country</option>
                         <option ng-repeat="country in CountryList" value="{{country.alpha2}}" class="localizejs">{{country.name}}</option>

@@ -248,7 +248,7 @@
 }
 #notifications-top-center-close:hover {
 	cursor: pointer;
-	background-color: black;
+	/*background-color: black;*/
 	opacity: 0.85;
 }
 .notifications-top-center-close {
@@ -280,7 +280,7 @@
 }
 .notifications-top-center-close:hover {
 	cursor: pointer;
-	background-color: black;
+	/*background-color: black;*/
 	opacity: 0.85;
 }
 #notifications-full{
@@ -338,6 +338,6 @@
 /*height:auto !important;*/
 .notificationError { line-height: normal !important;font-size: 18px;left: 0px;
   top: 0px; }
-.ErrorContent { text-align: center;width: 93% !important;margin-top: 22px;  margin-bottom: -30px; }
+.ErrorContent { text-align: center;width: 93% !important;margin-top: 15px !important;  margin-bottom: -30px; }
 .NoticationClose { position: relative;width: 7% !important;  float: right !important;margin-top: -10px; }
 .noticationIcon { left: 0px;position: relative;top: 19px  !important; }
