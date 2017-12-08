@@ -974,7 +974,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
             });
         }
         refresh_close();
-        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+        if($errorMsg.length >= 60)
+        {
+            var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent localizejs" style="font-size: 17px !important;"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';     
+        }else{
+            var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+        }
         $("#notifications-top-center").remove();
         $("#Error_Message").append(top);
         refresh_close();
@@ -3346,6 +3351,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
           $rootScope.dob = '';
           $rootScope.primaryPatGender = '';
         }
+
         var params = {
             accessToken: $rootScope.accessToken,
             patientId: patientId,
@@ -3393,6 +3399,9 @@ $rootScope.checkAndChangeMenuIcon = function() {
                 $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
                 $rootScope.addressInfoFetch = $scope.selectedPatientDetails;
                 $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
+
+                console.log("data");
+                console.log($rootScope.currentPatientDetails);
                 $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
                 $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
                 if(chkPreviousPage === true) {

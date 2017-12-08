@@ -296,10 +296,10 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
             require: 'ngModel',
             link: function($scope, $element, $attrs, ngModelCtrl) {
                 var listener = function() {
-                    var cursorPos = $element[0].selectionStart + 1;
-                    $element[0].setSelectionRange(cursorPos, cursorPos);
+                   // var cursorPos = $element[0].selectionStart + 1;
                     var value = $element.val().replace(/[^0-9]/g, '');
                     $element.val($filter('tel')(value, false));
+                   // $element[0].setSelectionRange(cursorPos, cursorPos);
                     /*var value = $element.val().replace(/[^0-9]/g, '');
                     $element.val($filter('tel')(value, false));
 */                };
