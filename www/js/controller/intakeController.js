@@ -805,18 +805,18 @@ angular.module('starter.controllers')
             $scope.data = {}
             $ionicPopup.show({
                 template: '<textarea name="comment" id="comment-textarea" ng-model="data.SecondaryConcernOther" class="textAreaPop">',
-                title: 'Enter Secondary Concern',
+                title: '<span class="localizejs">Enter Secondary Concern</span>',
                 subTitle: '',
                 scope: $scope,
                 buttons: [{
-                    text: 'Cancel',
+                    text: '<span class="localizejs">Cancel</span>',
                     onTap: function (e) {
                         angular.forEach($scope.secondaryConcernList, function (item) {
                             item.checked = false;
                         });
                     }
                 }, {
-                    text: '<b>Done</b>',
+                    text: '<b class="localizejs">Done</b>',
                     type: 'button-positive',
                     onTap: function (e) {
                         if (!$scope.data.SecondaryConcernOther) {
@@ -976,11 +976,11 @@ angular.module('starter.controllers')
             $scope.data = {}
             $ionicPopup.show({
                 template: '<textarea name="comment" id="comment-textarea" ng-model="data.ChronicCondtionOther" class="textAreaPop">',
-                title: 'Enter Concerns',
+                title: '<span class="localizejs">Enter Concerns</span>',
                 subTitle: '',
                 scope: $scope,
                 buttons: [{
-                    text: 'Cancel',
+                    text: '<span class="localizejs">Cancel</span>',
                     onTap: function (e) {
                         angular.forEach($scope.chronicConditionList, function (item) {
                             if (item.checked) {
@@ -991,7 +991,7 @@ angular.module('starter.controllers')
                         $rootScope.checkedChronic--;
                     }
                 }, {
-                    text: '<b>Done</b>',
+                    text: '<b class="localizejs">Done</b>',
                     type: 'button-positive',
                     onTap: function (e) {
                         if (!$scope.data.ChronicCondtionOther) {
@@ -1073,11 +1073,11 @@ angular.module('starter.controllers')
             $scope.data = {}
             $ionicPopup.show({
                 template: '<textarea name="comment" id="comment-textarea" ng-model="data.MedicationAllergiesOther" class="textAreaPop">',
-                title: 'Enter Concerns',
+                title: '<span class="localizejs">Enter Concerns</span>',
                 subTitle: '',
                 scope: $scope,
                 buttons: [{
-                    text: 'Cancel',
+                    text: '<span class="localizejs">Cancel</span>',
                     onTap: function (e) {
                         angular.forEach($scope.MedicationAllegiesList, function (item) {
                             if (item.checked) {
@@ -1088,7 +1088,7 @@ angular.module('starter.controllers')
                         $rootScope.checkedAllergies--;
                     }
                 }, {
-                    text: '<b>Done</b>',
+                    text: '<b class="localizejs">Done</b>',
                     type: 'button-positive',
                     onTap: function (e) {
                         if (!$scope.data.MedicationAllergiesOther) {
@@ -1175,11 +1175,11 @@ angular.module('starter.controllers')
             $scope.data = {}
             $ionicPopup.show({
                 template: '<textarea name="comment" id="comment-textarea" ng-model="data.CurrentMedicationOther" class="textAreaPop">',
-                title: 'Enter Medication',
+                title: '<span class="localizejs">Enter Medication</span>',
                 subTitle: '',
                 scope: $scope,
                 buttons: [{
-                    text: 'Cancel',
+                    text: '<span class="localizejs">Cancel</span>',
                     onTap: function (e) {
                         angular.forEach($scope.CurrentMedicationList, function (item) {
                             if (item.checked) {
@@ -1189,7 +1189,7 @@ angular.module('starter.controllers')
                         $rootScope.checkedMedication--;
                     }
                 }, {
-                    text: '<b>Done</b>',
+                    text: '<b class="localizejs">Done</b>',
                     type: 'button-positive',
                     onTap: function (e) {
                         if (!$scope.data.CurrentMedicationOther) {

@@ -187,7 +187,8 @@
             </span><span style="top: -4px !important;position: relative;" class="localizejs">Logout</span></a></li>
         </ul>
         <div class="main-nav__bottom-aligner main-nav__bottom-aligner--patient"></div>
-        <a class="main-nav__toc localizejs" ng-click="sideMenuHospitallink()" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">Terms &amp; Conditions</a>
+        <!-- <a class="main-nav__toc localizejs" ng-click="sideMenuHospitallink()" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">Terms &amp; Conditions</a> -->
+        <a class="main-nav__toc localizejs" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms &amp; Conditions</a>
     </nav>
 
     <nav class="main-nav" ng-if="hasRequiredFields != false">
@@ -245,6 +246,7 @@
             </span><span style="top: -4px !important;position: relative;" class="localizejs">Logout</span></a></li>
         </ul>
         <div class="main-nav__bottom-aligner main-nav__bottom-aligner--patient"></div>
-        <a class="main-nav__toc localizejs" ng-click="sideMenuHospitallink()" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">Terms &amp; Conditions</a>
+        <!-- <a class="main-nav__toc localizejs" ng-click="sideMenuHospitallink()" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">Terms &amp; Conditions</a> -->
+        <a class="main-nav__toc localizejs" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms &amp; Conditions</a>
     </nav>
 </ion-side-menu>

@@ -674,7 +674,7 @@ var localizeCurrent = $('#localize-current').text();
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -1500,7 +1500,11 @@ $rootScope.checkAndChangeMenuIcon = function() {
                     }
 
                     $rootScope.CountryLists = CountryList.getCountryDetails();
-                    $state.go('tab.provider');
+                   // $state.go('tab.provider');
+                   if($rootScope.viaNewUser != true || typeof $rootScope.viaNewUser == 'undefined') 
+                    {
+                     $state.go('tab.provider'); //Sakthi
+                    }
                 }
 
 
@@ -1545,12 +1549,20 @@ $rootScope.checkAndChangeMenuIcon = function() {
         $state.go($rootScope.frontPage);
     }
 
+    // $rootScope.getTokenDetailsForRegisterdUsers = function() {
+    //     $rootScope.UserEmail = $rootScope.registedEmail;
+    //     $scope.pass.password = $rootScope.registedPwd;
+    //     $scope.doGetToken();
+    // }
+
     $rootScope.getTokenDetailsForRegisterdUsers = function() {
+        $rootScope.viaNewUser = true;
+        $scope.doGetFacilitiesList();
+        $scope.doGetSingleHospitalInformation()
         $rootScope.UserEmail = $rootScope.registedEmail;
         $scope.pass.password = $rootScope.registedPwd;
         $scope.doGetToken();
-    }
-
+     }
 
  $rootScope.doGetCountries = function() {
           var params = {
@@ -1608,7 +1620,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
     }
 
     $rootScope.backtoPreviousPageFromTerms = function(registerCurrentPage) {
-        $state.go(registerCurrentPage);
+        //$state.go(registerCurrentPage);
+        $window.history.back();
     }
 
     $scope.doGetSingleHospitalInformation = function() {
@@ -1785,8 +1798,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
       						$.extend(hsettings, data.data[0]['settings']);
       					}
       					var hsettingsJsonData = JSON.stringify(hsettings);
-      					$window.localStorage.setItem('snap_hospital_settings', hsettingsJsonData);
-      					$state.go('tab.password');
+                          $window.localStorage.setItem('snap_hospital_settings', hsettingsJsonData);
+                          if($rootScope.viaNewUser != true || typeof $rootScope.viaNewUser == 'undefined') 
+                            {
+                                $state.go('tab.password');
+                            }
+      					//$state.go('tab.password');
   				}else{
       					var confirmPopup = $ionicPopup.prompt({
 
