@@ -674,7 +674,7 @@ var localizeCurrent = $('#localize-current').text();
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -976,7 +976,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
         refresh_close();
         if($errorMsg.length >= 60)
         {
-            var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent localizejs" style="font-size: 17px !important;"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';     
+            var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent localizejs" style="font-size: 17px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';     
         }else{
             var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         }

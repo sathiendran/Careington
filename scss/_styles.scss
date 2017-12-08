@@ -1,3 +1,4 @@
+
 @import "variable";
 @font-face {
     font-family: 'Glober Black Italic';
@@ -4196,13 +4197,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .popupnotification {
     position: relative !important;
 }
-.notificationError {
-    height: auto !important;
-    line-height: normal !important;
-    font-size: 18px;
-    left: 0px;
-    top: 0px;
-}
+
 .ErrorContent {
     text-align: center;
     width: 93% !important;
