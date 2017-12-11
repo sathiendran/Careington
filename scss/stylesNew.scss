@@ -15,7 +15,7 @@ margin-top: 125px !important;
 .userlistAccountHome-ios5{
     //margin-top: 0px !important;
 }
- 
+
   @media (max-width: 375px) {
   .mobileInput-Ios5 {
         padding-left: 55px !important;
@@ -6721,7 +6721,8 @@ background-color: rgb(245,245,245);
   .accMainContentNew {
       border: 1px solid;
       margin: 10px 20px;
-      background-color: rgba(0, 0, 0, 0.03) !important;
+      //background-color: rgba(0, 0, 0, 0.03) !important;
+      background-color: rgb(255, 255, 255) !important;
       border-color: rgba(0, 0, 0, 0.38) !important;
       border-radius: 8px !important;
          .accOndemandCon  {
@@ -6738,23 +6739,29 @@ background-color: rgb(245,245,245);
               }
               .accOnVisitNew{
                 font-size: 26px !important;
-                color: rgba(0, 0, 0, 0.23) !important;
+                color: rgba(0, 0, 0, 0.54) !important;
                 padding-top: 5px !important;
+                opacity: 0.50 !important;
+                font-family: "Glober bold" !important;
               }
               .accOnCallNew{
                 font-size: 16px !important;
+                color: rgba(0, 0, 0, 0.54) !important;
+                opacity: 0.50 !important;
               }
               .accOnServiceDate{
                 font-family: "Glober Bold";
                 font-size: 18px;
-                color: #111;
+                //color: #111;
+                margin-top: 20px !important;
+                color: rgba(0, 0, 0, 0.75) !important;
               }
               .accOnQuestion{
                   font-size: 14px !important;
-                  color: rgba(0, 0, 0, 0.38) !important;
+                  color: rgba(0, 0, 0, 0.75) !important;
               }
               .accOnQuestionNew {
-                    padding-top: 13px !important;
+                //    padding-top: 13px !important;
               }
               h2 {
                    font-size: 32px !important;
