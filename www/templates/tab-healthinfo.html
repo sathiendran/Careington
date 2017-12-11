@@ -127,10 +127,10 @@
                   <label class="item item-input itemtab validated">
                     <div class="col col-45">
                     <span class="input-label labelcolor" style=" white-space: normal;"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel labelfont localizejs">Home Phone</b></span></div>
-                     <div class="healthViewDetails homePhoneInput-Ios5" ng-if="currentPatientDetails[0].homePhone">
+                     <div class="healthViewDetails homePhoneInput homePhoneInputValue" ng-if="currentPatientDetails[0].homePhone">
                         <input type="text" readonly="true" value="{{getPhoneNumberWithoutCountryCode(currentPatientDetails[0].homePhone) |  tel}}" style="background-color: #fff !important; font-size: 18px; color: #444;">
                      </div>
-                     <div class="healthViewDetails homePhoneInput-Ios5 localizejs" ng-if="!currentPatientDetails[0].homePhone">
+                     <div class="healthViewDetails homePhoneInput homePhoneInputValue localizejs" ng-if="!currentPatientDetails[0].homePhone">
                         NA
                      </div>
                   </label>
@@ -148,8 +148,8 @@
                   <label class="item item-input itemtab validated">
                     <div class="col col-45">
                     <span class="input-label labelcolor" style=" white-space: normal;"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel labelfont localizejs">Home Address</b></span></div>
-                     <div class="healthViewDetails homePhoneInput-Ios5 ellipsis" ng-if="currentPatientDetails[0].address">{{currentPatientDetails[0].address}}</div>
-                     <div class="healthViewDetails homePhoneInput-Ios5 ellipsis localizejs" ng-if="!currentPatientDetails[0].address">NA</div>
+                     <div class="healthViewDetails homePhoneInput ellipsis" ng-if="currentPatientDetails[0].address">{{currentPatientDetails[0].address}}</div>
+                     <div class="healthViewDetails homePhoneInput ellipsis localizejs" ng-if="!currentPatientDetails[0].address">NA</div>
                   </label>
                   <label ng-if="OrganizationLocation === 'on'" class="item item-input itemtab validated">
                     <div class="col col-45">
