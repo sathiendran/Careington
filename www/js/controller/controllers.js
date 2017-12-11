@@ -674,7 +674,7 @@ var localizeCurrent = $('#localize-current').text();
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -7690,16 +7690,18 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $('.userAccHeaderTitle').attr('style', 'margin-top: -43px !important');
         $('.userlistAccountHome').attr('style', 'margin-top: -43px !important');
         //var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-        if($rootScope.is_iPadDeviceWidth >= 550)
-            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 55px !important');
-        else if($rootScope.is_iPadDeviceWidth <= 320)
-        {
-            $('.uAPlProfileImage').attr('style', 'margin-top: -19px !important');
-            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 7px !important');
+        //if($rootScope.is_iPadDeviceWidth >= 550)
+          //  $('.userlistAccountHome-ios5').attr('style', 'margin-top: 55px !important');
+         if($rootScope.is_iPadDeviceWidth <= 320) {
+            $('.UserAccountProfileImage').attr('style', 'margin-top: 9% !important');
+            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 2% !important');
             $('.subheaderheightOne').attr('style', 'height: 100px !important');
+            $('.UserAccountProfileImage .patProfileImage').attr('style', 'margin-top: 16% !important');
         }
+        else if($rootScope.is_iPadDeviceWidth == 360)
+            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 3% !important');
         else
-            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 36px !important');
+            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 15% !important');
 
 
         $rootScope.scheduledList = $filter('filter')($filter('orderBy')($rootScope.getScheduledList, "scheduledTime"), "a");
@@ -7723,17 +7725,16 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
               $('.subheaderheightOne').attr('style', 'height: 115px !important');
               $('.userAccHeaderTitle').attr('style', 'margin-top: -43px !important');
               $('.userlistAccountHome').attr('style', 'margin-top: -43px !important');
-               //var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-                if($rootScope.is_iPadDeviceWidth >= 550)
-                    $('.userlistAccountHome-ios5').attr('style', 'margin-top: 55px !important');
-                    else if($rootScope.is_iPadDeviceWidth <= 320)
-                    {
-                        $('.uAPlProfileImage').attr('style', 'margin-top: -19px !important');
-                        $('.userlistAccountHome-ios5').attr('style', 'margin-top: 7px !important');
+                     if($rootScope.is_iPadDeviceWidth <= 320) {
+                        $('.UserAccountProfileImage').attr('style', 'margin-top: 9% !important');
+                        $('.userlistAccountHome-ios5').attr('style', 'margin-top: 2% !important');
                         $('.subheaderheightOne').attr('style', 'height: 100px !important');
+                        $('.UserAccountProfileImage .patProfileImage').attr('style', 'margin-top: 16% !important');
                     }
-                else
-                    $('.userlistAccountHome-ios5').attr('style', 'margin-top: 36px !important');
+                    else if($rootScope.is_iPadDeviceWidth == 360)
+                       $('.userlistAccountHome-ios5').attr('style', 'margin-top: 3% !important');
+                    else
+                       $('.userlistAccountHome-ios5').attr('style', 'margin-top: 15% !important');
 
               if ($rootScope.getIndividualScheduleDetails != '') {
                 //  if($rootScope.getIndividualPatScheduleDetails != '') {
@@ -7754,17 +7755,16 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                       $('.subheaderheightOne').attr('style', 'height: 160px !important');
                       $('.userAccHeaderTitle').attr('style', 'margin-top: 0px !important');
                       $('.userlistAccountHome').attr('style', 'margin-top: 0px !important');
-                    //   var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-                      if($rootScope.is_iPadDeviceWidth >= 550)
-                          $('.userlistAccountHome-ios5').attr('style', 'margin-top: 95px !important');
-                      else if($rootScope.is_iPadDeviceWidth <= 320)
-                      {
-                          $('.uAPlProfileImage').attr('style', 'margin-top: -19px !important');
-                          $('.userlistAccountHome-ios5').attr('style', 'margin-top: 50px !important');
+                      if($rootScope.is_iPadDeviceWidth <= 320) {
+                          $('.UserAccountProfileImage').attr('style', 'margin-top: 10% !important');
+                          $('.userlistAccountHome-ios5').attr('style', 'margin-top: 18% !important');
                           $('.subheaderheightOne').attr('style', 'height: 150px !important');
+                          $('.UserAccountProfileImage .patProfileImage').attr('style', 'margin-top: 19% !important');
                       }
+                      else if($rootScope.is_iPadDeviceWidth == 360)
+                          $('.userlistAccountHome-ios5').attr('style', 'margin-top: 3% !important');
                       else
-                          $('.userlistAccountHome-ios5').attr('style', 'margin-top: 76px !important');
+                          $('.userlistAccountHome-ios5').attr('style', 'margin-top: 22% !important');
 
                     /*  var beforAppointmentTime = getReplaceTime;
                       var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);

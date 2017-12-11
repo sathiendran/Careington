@@ -4,6 +4,13 @@ angular.module('starter.controllers')
 .controller('appoimentDetailsCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar) {
  // $('link[src="css/styles.v3.less.dynamic.css"]').remove();
   //     $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+
+if($rootScope.is_iPadDeviceWidth <= 360){
+         $('.apponitmentdate').attr('style', 'width: 115% !important; font-size: 22px !important;margin-top: 10px !important;');
+       }else{
+           $('.apponitmentdate').attr('style', 'width: 115% !important; padding-right: 15%;');
+         }
+
   $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
 $("#localize-widget").show();
     $ionicPlatform.registerBackButtonAction(function() {
