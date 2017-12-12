@@ -65,6 +65,12 @@ margin-top: 125px !important;
          .uAPlProfileImageNew {
             margin-top: -13px !important;
           }
+          a{
+              p{
+                margin-left: -7px;
+                width: 110%;
+              }
+          }
        }
 
        .subheaderheight {
@@ -83,7 +89,7 @@ margin-top: 125px !important;
                   margin-top: 40px !important;
                 }
              .uAPlProfileImage{
-                  margin-top: -10px;
+                //  margin-top: -10px;
                    span{
                      top: 30px !important;
                    }
@@ -151,7 +157,12 @@ margin-top: 125px !important;
                    float: right !important;
               }
         .button_new {
-              margin-right: 10px !important;
+              margin-right: 15px !important;
+        }
+        .FooterCenter {
+          .button_new {
+                margin-right: -15px !important;
+          }
         }
         #WhoNeeds {
             font-size: 20px;
@@ -6652,7 +6663,7 @@ a.item.item-avatar.avatheight:first-child{
 .disable-pointer-events {
     margin-left: -47px;
     pointer-events: none;
-    width:auto !important;
+    width:110% !important;
     white-space: normal;
 }
 
