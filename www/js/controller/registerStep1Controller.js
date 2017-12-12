@@ -604,7 +604,7 @@ angular.module('starter.controllers')
               var countryCodeFetch  = '';
               var stateCodeFetch  = '';
               $scope.regStep1.homeadd =  document.getElementById('fullAddress').innerHTML;
-              $scope.route = document.getElementById('txtPlaces').value;
+             // $scope.route = document.getElementById('txtPlaces').value;
               $scope.address2 = document.getElementById('address2').value;
               $scope.City = document.getElementById('city').value;
 
@@ -797,7 +797,21 @@ angular.module('starter.controllers')
 
 
                 //var location_input = document.getElementById('txtPlaces');
+                //var autocomplete = new google.maps.places.Autocomplete(document.getElementById('txtPlaces'));
                 var autocomplete = new google.maps.places.Autocomplete(document.getElementById('txtPlaces'));
+
+
+                 /*document.getElementById('txtPlaces').onkeyup = function(e) {
+    setTimeout(function() {
+       var places = document.querySelectorAll('.pac-item');      
+       for (var i=0;i<places.length;i++) {
+          var place=places[i];
+          var pac_icon = place.querySelector('.pac-icon').outerHTML
+          var place_name_reduced = place.querySelector('.pac-item-query').outerHTML;
+          place.innerHTML = pac_icon+place_name_reduced;
+       }
+    }, 10);
+  }*/
                 google.maps.event.addListener(autocomplete, 'place_changed', fillAddress);
 
                 setTimeout(function(){
@@ -810,7 +824,7 @@ angular.module('starter.controllers')
                     container.css('pointer-events', 'auto');
 
                     // Disable ionic data tap
-                    container.attr('data-tap-disabled', 'true');
+                    //container.attr('data-tap-disabled', 'true');
 
                     // Leave the input field if a prediction is chosen
                     container.on('click', function(){
@@ -864,7 +878,7 @@ angular.module('starter.controllers')
                                 }
                             }
                         }
-                        document.getElementById('txtPlaces').value = $scope.route;
+                        //document.getElementById('txtPlaces').value = $scope.route;
                         document.getElementById('city').value = $scope.City;
                         document.getElementById('address2').value = '';
                         var element =  document.getElementById('state');

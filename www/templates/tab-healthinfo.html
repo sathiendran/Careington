@@ -101,7 +101,7 @@
                   </label>
                   <label class="item item-input itemtab validated" ng-if="primaryPatientId != currentPatientDetails[0].account.patientId && editOption !== 'None'">
                     <div class="col col-45">
-                      <span class="input-label labelcolor" style=" white-space: normal;"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('users')"></i><b class="formlabel labelfont localizejs">Relationship</b></span>
+                      <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('users')"></i><b class="formlabel labelfont localizejs">Relationship</b></span>
                    </div>
                      <div class="healthViewDetails ellipsis localizejs">{{currentPatientDetails[0].account.relationship}}</div>
                   </label>
@@ -211,7 +211,7 @@
                   </label>
                   <label class="item item-input itemtab validated" ng-if="primaryPatientId != currentPatientDetails[0].account.patientId && editOption !== 'None'">
                     <div class="col col-45">
-                    <span class="input-label labelcolor" style=" white-space: normal;"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('lock-open')"></i><b class="formlabel labelfont localizejs">Authorization</b></span></div>
+                    <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('lock-open')"></i><b class="formlabel labelfont localizejs">Authorization</b></span></div>
                     <div ng-show="patientAuthorize" class="healthViewDetails ellipsis localizejs">Authorized</div>
                     <div ng-show="patientUnAuthorize" class="healthViewDetails ellipsis localizejs">Unauthorized</div>
                   </label>
@@ -370,7 +370,7 @@
                     <span class="input-label labelcolor" style=" white-space: normal;"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('weight')"></i><b class="formlabel labelfont localizejs">Weight</b><i class="ion-asterisk"></i></span></div>
                      <div class="healthViewDetails">
                         <div class="healthWeight-{{deviceName}}" style="float: left;">
-                           <input type="tel" ng-model="weight" name="healthInfoWeight" id="healthInfoWeight"  class="textdata localizejs" ng-change="weightunitchange()"  ng-keyup="weightunit()" style="width: 90px;line-height:23px; margin-right: 10px;" placeholder="Required">
+                           <input type="tel" ng-model="weight" name="healthInfoWeight" id="healthInfoWeight"  class="textdata localizejs" ng-change="weightunitchange()"  ng-keyup="weightunit()" style="width: 50px;line-height:23px; margin-right: 10px;" placeholder="Required">
                         </div>
                         <div class="healthWeight1-{{deviceName}}">
                            <select class="textdata optionselect localizejs" name="healthInfoWeightUnit" id="healthInfoWeightUnit" style="width: 115%;padding-top:10px !important;">

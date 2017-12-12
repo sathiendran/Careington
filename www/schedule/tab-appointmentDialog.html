@@ -15,7 +15,7 @@ span.icon_phone {
     <div class="dialogbox-master is-next is-pss">
         <a class="dialogbox-master__close" data-bind="events: { click: vm_onCloseClick }"></a>
         <div id="appoitEditPop" class="dialogbox-master__titlebar dialogbox-master__titlebar--usertray dialogbox-master__titlebar--patient appoitEditPop">
-            <span data-bind="text: vm_dialogTitle localizejs"></span>
+            <span class="localizejs" data-bind="text: vm_dialogTitle"></span>
         </div>
         <div class="dialogbox-master__main localizejs" data-bind="css:{dialogbox-master__main--timer:vm_isNew, is-disabled:isExpiredAppointment}">
             <div class="loader loader--grey" data-bind="css: {is-active: vm_isLoading}"></div>
