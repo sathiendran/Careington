@@ -332,59 +332,55 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
   $("#localize-widget").show();
 //venkat start
   $(".accoTitle-IOS").css("margin-top", "4px");
-   if($( window ).width()== 320){
-     var localizeCurrent = $('#localize-current').text();
-        if(localizeCurrent == "Español"){
+
+  var localizeCurrent = $('#localize-current').text();
+
+   if($( window ).width()== 320) {
+        if(localizeCurrent == "Español") {
             $scope.whoNeedsText = "font-size:17px";
             $scope.consentTitleFont = "font-size:17px !important";
             $(".newProviderSub").css("padding-bottom", "16px");
             $(".ConcernsFooter .FooterCenter a").css("padding-left", "1px");
-            //$(".ConcernsFooter .FooterCenter a").css("width", "40%");
-        }else{
+        } if(localizeCurrent == "English (UK)") {
             $scope.whoNeedsText = "font-size:21px";
             $scope.consentTitleFont = "font-size:20px !important";
             $(".newProviderSub").css("padding-bottom", "33px");
             $(".ConcernsFooter .FooterCenter a").css("padding-left", "10px");
-            //$(".ConcernsFooter .FooterCenter a").css("width", "33%");
+        } if(localizeCurrent == "English") {
+            $scope.whoNeedsText = "font-size:21px";
+            $scope.consentTitleFont = "font-size:20px !important";
+            $(".newProviderSub").css("padding-bottom", "33px");
+            $(".ConcernsFooter .FooterCenter a").css("padding-left", "10px");
         }
-   }
-
-var localizeCurrent = $('#localize-current').text();
-  if(localizeCurrent == "Español"){
-    $scope.consentTitleFont = "font-size:21px !important";
-    }else{
-        $scope.consentTitleFont = "font-size:25px !important";
-    }
-
+       } else {
+           if(localizeCurrent == "Español"){
+                 $scope.consentTitleFont = "font-size:21px !important";
+             }else{
+                 $scope.consentTitleFont = "font-size:25px !important";
+             }
+       }
 
          $('#localize-langs').click(function() {
             if($( window ).width()== 320){
              var isLang = $('#localize-langs .activated').text();
-             console.log("isLang isssss is== "+isLang);
-               if(isLang == "Español"){
+               if(isLang == "Español") {
                    $("#whoNeedsTextval").css("font-size", "17px");
                    $(".newProviderSub").css("padding-bottom", "16px");
                    $(".ConcernsFooter .FooterCenter a").css("padding-left", "1px");
-                //   $(".ConcernsFooter .FooterCenter a").css("width", "40%");
-                   $scope.consentTitleFont = "font-size:17px !important";
                }
-               if(isLang == "English (UK)"){
+               if(isLang == "English (UK)") {
                   $("#whoNeedsTextval").css("font-size", "21px");
                   $(".newProviderSub").css("padding-bottom", "33px");
                   $(".ConcernsFooter .FooterCenter a").css("padding-left", "10px");
-                  //$(".ConcernsFooter .FooterCenter a").css("width", "33%");
-                   $scope.consentTitleFont = "font-size:20px !important";
                }
-               if(isLang == "English"){
+               if(isLang == "English") {
                    $("#whoNeedsTextval").css("font-size", "21px");
                    $(".newProviderSub").css("padding-bottom", "33px");
                    $(".ConcernsFooter .FooterCenter a").css("padding-left", "10px");
-                   //$(".ConcernsFooter .FooterCenter a").css("width", "33%");
-                   $scope.consentTitleFont = "font-size:20px !important";
                }
              isLang = "";
            }
-         });
+     });
 //venkat end
 
   $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
@@ -674,7 +670,7 @@ var localizeCurrent = $('#localize-current').text();
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -977,7 +973,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
         if($errorMsg.length >= 50)
         {
 
-            var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: 6px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';     
+            var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: 6px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         }else{
             var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         }
@@ -1502,7 +1498,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
                     $rootScope.CountryLists = CountryList.getCountryDetails();
                    // $state.go('tab.provider');
-                   if($rootScope.viaNewUser != true || typeof $rootScope.viaNewUser == 'undefined') 
+                   if($rootScope.viaNewUser != true || typeof $rootScope.viaNewUser == 'undefined')
                     {
                      $state.go('tab.provider'); //Sakthi
                     }
@@ -1800,7 +1796,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
       					}
       					var hsettingsJsonData = JSON.stringify(hsettings);
                           $window.localStorage.setItem('snap_hospital_settings', hsettingsJsonData);
-                          if($rootScope.viaNewUser != true || typeof $rootScope.viaNewUser == 'undefined') 
+                          if($rootScope.viaNewUser != true || typeof $rootScope.viaNewUser == 'undefined')
                             {
                                 $state.go('tab.password');
                             }

@@ -53,11 +53,11 @@
                   <input type="text" class="localizejs" placeholder="Required" ng-model="AddHealth.lastName" name="lastName" id="lastName" required >
                </div>
                <div class="item item-input">
-                  <span class="input-label cardfont localizejs">Policy Number</span>
+                  <span class="input-label cardfont localizejs" style="white-space: normal;">Policy Number</span>
                   <input type="text" class="localizejs" placeholder="Required"  ng-model="AddHealth.policyNumber" id="policyNumber" name="policyNumber" required>
                </div>
                <label ng-if="deviceName == 'IOS'" class="item item-input datePlaceholder" >
-                  <span class="input-label cardfont localizejs" style="padding: 5px 10px 3px 0px;">
+                  <span class="input-label cardfont localizejs" style="padding: 5px 10px 3px 0px;white-space: normal;">
                      Date of Birth
                      <div style="font-size: 10px;" class="localizejs">for the policy holder</div>
                   </span>
@@ -65,7 +65,7 @@
                   <input class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth"  id="date"  required>
                </label>
                <label ng-if="deviceName != 'IOS'" class="item item-input datePlaceholder" >
-                  <span class="input-label cardfont localizejs" style="padding: 5px 10px 3px 0px;"  >
+                  <span class="input-label cardfont localizejs" style="padding: 5px 10px 3px 0px;white-space: normal;"  >
                      Date of Birth
                      <div class="localizejs" style="font-size: 10px;">for the policy holder</div>
                   </span>

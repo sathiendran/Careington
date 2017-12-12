@@ -36,7 +36,7 @@
                   <input type="text" class="localizejs" placeholder="Required"  name="LastName" value="{{editbilling.last}}" id="editLastName" required>
                </div>
                <div class="item item-input ">
-                  <span class="input-label cardfont localizejs" >Card Number</span>
+                  <span class="input-label cardfont localizejs" style="white-space: normal;">Card Number</span>
                   <!--<input type="text"  placeholder="xxxx-xxxx-xxxx-{{editcardNumber}}" value="" name="CardNumber" id="editCardNumber" required>-->
                   <input style="line-height: 20px; font-size: 18px; padding: 0px; {{invalidCard}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type = "tel" class="localizejs" placeholder="xxxx-xxxx-xxxx-{{editcardNumber}}" ng-model="editCardDetails.CardNumber" name="CardNumber" id="editCardNumber" maxlength="19" required/>
                </div>
@@ -55,17 +55,17 @@
                   </select>
                </div>
                <div class="item item-input" ng-if="AndroidDevice !== true" >
-                  <span class="input-label cardfont localizejs" >Security Code</span>
+                  <span class="input-label cardfont localizejs"  style="white-space: normal;">Security Code</span>
                   <!--<input type="password" pattern="[0-9]*"  inputmode="numeric" id="editcvv" style="{{invalidCVV}}" placeholder="XXX" maxlength="{{editCvvLength}}"   name="Cvv"  required> -->
                   <input class="localizejs" style="-webkit-text-security: disc; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type="password" pattern="[0-9]*" inputmode="numeric"  placeholder="Required" maxlength="4"  name="editcvv" id="editcvv" required/>
                </div>
                <div class="item item-input" ng-if="AndroidDevice === true" >
-                  <span class="input-label cardfont localizejs" >Security Code</span>
+                  <span class="input-label cardfont localizejs" style="white-space: normal;">Security Code</span>
                   <!--<input type="password" pattern="[0-9]*"  inputmode="numeric" id="editcvv" style="{{invalidCVV}}" placeholder="XXX" maxlength="{{editCvvLength}}"   name="Cvv"  required> -->
                   <input style="-webkit-text-security: disc; font-size: 18px; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  class="localizejs" type = "tel"  placeholder="Required" maxlength="4"   name="editcvv" id="editcvv" required/>
                </div>
                <div class="item item-input" >
-                  <span class="input-label cardfont localizejs" >Billing Address</span>
+                  <span class="input-label cardfont localizejs" style="white-space: normal;">Billing Address</span>
                   <input type="text" placeholder="Required" value="{{editbilling.street}}" name="BillingAddress" id="editbillingAddress" required>
                </div>
                <div class="item item-input" >

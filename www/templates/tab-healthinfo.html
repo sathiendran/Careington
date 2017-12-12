@@ -373,7 +373,7 @@
                            <input type="tel" ng-model="weight" name="healthInfoWeight" id="healthInfoWeight"  class="textdata localizejs" ng-change="weightunitchange()"  ng-keyup="weightunit()" style="width: 90px;line-height:23px; margin-right: 10px;" placeholder="Required">
                         </div>
                         <div class="healthWeight1-{{deviceName}}">
-                           <select class="textdata optionselect localizejs" name="healthInfoWeightUnit" id="healthInfoWeightUnit" style="width: 94%;padding-top:10px !important;">
+                           <select class="textdata optionselect localizejs" name="healthInfoWeightUnit" id="healthInfoWeightUnit" style="width: 115%;padding-top:10px !important;">
                               <option ng-repeat="getUserweightunit in listOfWeightunit[0].codes" value="{{getUserweightunit.codeId + '@' + getUserweightunit.text}}" ng-selected="getUserweightunit.text == currentPatientDetails[0].anatomy.weightUnit"><b class="localizejs">{{getUserweightunit.text}}</b></option>
                            </select>
                         </div>
