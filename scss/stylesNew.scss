@@ -69,34 +69,34 @@ margin-top: 125px !important;
 
        .subheaderheight {
            .userAccountPanelNew{
-             margin-top: 0px !important;
+              margin-top: 0px !important;
              .patProfileImage {
-               width: 75px !important;
-               height: 75px !important;
-               font-size: 36px !important;
-               margin-top: 43px !important;
+                 width: 75px !important;
+                 height: 75px !important;
+                 font-size: 36px !important;
+                 margin-top: 43px !important;
                }
-               .uAPlProfileImage img {
-	                  width: 75px !important;
-	                  height: 75px !important;
-	                  font-size: 36px !important;
-	                  margin-top: 40px !important;
-             }
+              .uAPlProfileImage img {
+                  width: 75px !important;
+                  height: 75px !important;
+                  font-size: 36px !important;
+                  margin-top: 40px !important;
+                }
              .uAPlProfileImage{
-               margin-top: -10px;
+                  margin-top: -10px;
                    span{
                      top: 30px !important;
                    }
                  }
            }
-         }
+       }
          .userAccountPanel {
-	              .patProfileImage {
+              .patProfileImage {
                    width: 75px !important;
-	                   height: 75px !important;
-	                   font-size: 36px !important;
-	                   margin-top: 8px !important;
-	              }
+                   height: 75px !important;
+                   font-size: 36px !important;
+                   margin-top: 8px !important;
+              }
 	              .uAPlProfileImage img {
 	                   width: 75px !important;
 	                   height: 75px !important;
@@ -104,25 +104,30 @@ margin-top: 125px !important;
 	                   margin-top: 15px;
               }
 	              .uAPlProfileImage{
-                  // margin-top: -4px !important;
                    span{
 	                     top: 30px !important;
 	                   }
-	                 }
+	                }
 	          }
-
-                .homePhoneInput {
-                   margin-top: -20px !important;
+            .heightft-IOS {
+                span {
+                    margin-left: -10px;
                 }
-
+            }
+            .FooterRight {
+                margin-left: -5px !important;
+            }
+            .FooterCenter {
+              width: 35% !important;
+            }
 	          .accMainContent .accOndemandCon .accOnVisit {
 	               margin-top: -27px !important;
 	               font-size: 25px !important;
 	          }
 	          .accMainContent .btn1 {
-              margin: 25px 15px 15px 15px !important;
+                margin: 25px 15px 15px 15px !important;
 	              .button span{
-                   font-size: 16pt !important;
+                    font-size: 16pt !important;
 	              }
 	          }
 	          .accMainContentNew .accOndemandCon .accOnVisit {
@@ -134,40 +139,42 @@ margin-top: 125px !important;
 
 	       .userAccTitle-IOS {
 	             top: 3px !important;
-}
-    .usercontent-IOS {
-        margin-top: 32% !important;
-        #accountMngeProfile-IOS {
-            padding: 19px 10px;
-        }
-    }
-    .mobileInput-Ios5 {
-               padding-left: 30px !important;
-               float: right !important;
+              }
+          .usercontent-IOS {
+              margin-top: 32% !important;
+              #accountMngeProfile-IOS {
+                  padding: 19px 10px;
+              }
           }
-
-    #WhoNeeds {
-        font-size: 20px;
-        width: 85%;
-    }
-    .fday {
-        font-size: 25px !important;
-        margin-top: 4px !important;
-    }
-    .ftime {
-        font-size: 55px !important;
-    }
-    .fdate {
-        margin-top: 0px !important;
-    }
-    #AppointNoneIOS {
-        padding: 34px 10px !important;
-    }
-    .usercontentpat-IOS {
-          margin-top: 29%;
-        #accountMngeProfile-IOS {
-            padding: 12px 10px !important;
+        .mobileInput-Ios5 {
+                   padding-left: 30px !important;
+                   float: right !important;
+              }
+        .button_new {
+              margin-right: 10px !important;
         }
+        #WhoNeeds {
+            font-size: 20px;
+            width: 85%;
+        }
+        .fday {
+            font-size: 25px !important;
+            margin-top: 4px !important;
+        }
+        .ftime {
+            font-size: 55px !important;
+        }
+        .fdate {
+            margin-top: 0px !important;
+        }
+        #AppointNoneIOS {
+            padding: 34px 10px !important;
+        }
+        .usercontentpat-IOS {
+              margin-top: 29%;
+            #accountMngeProfile-IOS {
+                padding: 12px 10px !important;
+            }
     }
 .listprofileEdit {
     .formlabel {

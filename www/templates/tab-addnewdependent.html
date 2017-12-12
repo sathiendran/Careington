@@ -123,7 +123,7 @@
                         <input id="weight" class="usertext textdata localizejs" type="tel" value="" placeholder="Required"  name="weight" ng-keyup="weight1len()" >
                      </div>
                      <div class="dependHeighUnit-{{deviceName}}" style="width: 50%;">
-                        <select class="optionselect textdata dependwetUnit-{{deviceName}} localizejs" name="weightunit" id="weightunit" ng-model="weightunits" >
+                        <select class="optionselect textdata dependwetUnit-{{deviceName}} localizejs" style="margin-left: -5px;" name="weightunit" id="weightunit" ng-model="weightunits" >
                            <option ng-repeat="getWeightunit in listOfWeightunit[0].codes" value="{{getWeightunit.codeId + '@' + getWeightunit.text}}"><b class="localizejs">{{getWeightunit.text}}</b></option>
                         </select>
                      </div>
