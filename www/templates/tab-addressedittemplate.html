@@ -58,18 +58,17 @@
                            <input type="text" name="city" class="useraddress localizejs" id="city" ng-change="makeAddress()" ng-model="City" placeholder="Enter a location" />
                         </div>
                      </div>
-                     <div class="col-40 sideblock">
+                     <div class="col-40 sideblock stateBlock">
                         <label class="localizejs addresslabel"> State/Province</label>
                         <div>
-                           <select ng-if="showCountrySelectBox == true" class="textdata localizejs"  name="State" id="state" ng-model="State" style="width: 100% !important; position: relative; top: 6px;border: none;" ng-change="makeAddress()" >
+                           <select ng-if="showCountrySelectBox == true" class="textdata localizejs stateDropDown"  name="State" id="state" ng-model="State"  ng-change="makeAddress()" >
                               <option value="Select State" class="localizejs">Select State</option>
                         <option ng-repeat="state in usStates" data-state-code="{{state.code}}" class="localizejs" >{{state.name}}</option>
-
                      </select>
                      <input ng-if="showCountrySelectBox == false" type="text" name="state1" class="useraddress localizejs" id="state1" ng-model="state1" placeholder="Enter a location" ng-change="makeAddress()"/>
                         </div>
                      </div>
-                     <div class="col-40 sideblock">
+                     <div class="col-40 sideblock zipcodeBlock">
                         <label class="localizejs addresslabel"> Zip/Postal Code</label>
                         <div>
                            <input type="text" name="zipcode" maxlength="5" class="useraddress localizejs" id="zipcode" ng-model="ZipCode" placeholder="Enter a location" ng-change="makeAddress()"/>
