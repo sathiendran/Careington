@@ -335,7 +335,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
   var localizeCurrent = $('#localize-current').text();
 
-   if($( window ).width()== 320) {
+   if($( window ).width()<= 320) {
         if(localizeCurrent == "Español") {
             $scope.whoNeedsText = "font-size:17px";
             $scope.consentTitleFont = "font-size:17px !important";
@@ -361,7 +361,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
        }
 
          $('#localize-langs').click(function() {
-            if($( window ).width()== 320){
+            if($( window ).width()<= 320){
              var isLang = $('#localize-langs .activated').text();
                if(isLang == "Español") {
                    $("#whoNeedsTextval").css("font-size", "17px");
@@ -670,7 +670,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -7689,13 +7689,13 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         //if($rootScope.is_iPadDeviceWidth >= 550)
           //  $('.userlistAccountHome-ios5').attr('style', 'margin-top: 55px !important');
          if($rootScope.is_iPadDeviceWidth <= 320) {
-            $('.UserAccountProfileImage').attr('style', 'margin-top: 9% !important');
+          //  $('.UserAccountProfileImage').attr('style', 'margin-top: 9% !important');
             $('.userlistAccountHome-ios5').attr('style', 'margin-top: 2% !important');
             $('.subheaderheightOne').attr('style', 'height: 100px !important');
-            $('.UserAccountProfileImage .patProfileImage').attr('style', 'margin-top: 16% !important');
+            $('.UserAccountProfileImage .patProfileImage').attr('style', 'margin-top: 35% !important');
         }
         else if($rootScope.is_iPadDeviceWidth == 360)
-            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 3% !important');
+            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 15% !important');
         else
             $('.userlistAccountHome-ios5').attr('style', 'margin-top: 15% !important');
 
@@ -7722,13 +7722,13 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
               $('.userAccHeaderTitle').attr('style', 'margin-top: -43px !important');
               $('.userlistAccountHome').attr('style', 'margin-top: -43px !important');
                      if($rootScope.is_iPadDeviceWidth <= 320) {
-                        $('.UserAccountProfileImage').attr('style', 'margin-top: 9% !important');
+                    //    $('.UserAccountProfileImage').attr('style', 'margin-top: 9% !important');
                         $('.userlistAccountHome-ios5').attr('style', 'margin-top: 2% !important');
                         $('.subheaderheightOne').attr('style', 'height: 100px !important');
-                        $('.UserAccountProfileImage .patProfileImage').attr('style', 'margin-top: 16% !important');
+                        $('.UserAccountProfileImage .patProfileImage').attr('style', 'margin-top: 35% !important');
                     }
                     else if($rootScope.is_iPadDeviceWidth == 360)
-                       $('.userlistAccountHome-ios5').attr('style', 'margin-top: 3% !important');
+                       $('.userlistAccountHome-ios5').attr('style', 'margin-top: 15% !important');
                     else
                        $('.userlistAccountHome-ios5').attr('style', 'margin-top: 15% !important');
 
@@ -7752,13 +7752,13 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                       $('.userAccHeaderTitle').attr('style', 'margin-top: 0px !important');
                       $('.userlistAccountHome').attr('style', 'margin-top: 0px !important');
                       if($rootScope.is_iPadDeviceWidth <= 320) {
-                          $('.UserAccountProfileImage').attr('style', 'margin-top: 10% !important');
+                    //      $('.UserAccountProfileImage').attr('style', 'margin-top: 10% !important');
                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 18% !important');
                           $('.subheaderheightOne').attr('style', 'height: 150px !important');
-                          $('.UserAccountProfileImage .patProfileImage').attr('style', 'margin-top: 19% !important');
+                          $('.UserAccountProfileImage .patProfileImage').attr('style', 'margin-top: 45% !important');
                       }
                       else if($rootScope.is_iPadDeviceWidth == 360)
-                          $('.userlistAccountHome-ios5').attr('style', 'margin-top: 3% !important');
+                          $('.userlistAccountHome-ios5').attr('style', 'margin-top: 22% !important');
                       else
                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 22% !important');
 

@@ -7,6 +7,33 @@ angular.module('starter.controllers')
         }).remove();
     }, 100);
     $("#localize-widget").show();
+
+        var localizeCurrent = $('#localize-current').text();
+         if(localizeCurrent == "Español"){
+              $scope.AddPicture = "margin-top: -10px;";
+           }
+           if(localizeCurrent == "English") {
+              $scope.AddPicture = "margin-top: 0px;";
+           }
+           if(localizeCurrent == "English (UK)") {
+              $scope.AddPicture = "margin-top: 0px;";
+           }
+   $('#localize-langs').click(function() {
+       var isLang = $('#localize-langs .activated').text();
+       if(isLang == "Español"){
+        //  $scope.AddPicture = "margin-top: -10px !important;";
+            $("#AddPicture").css("margin-top", "-10px");
+
+         }
+         if(isLang == "English") {
+          //  $scope.AddPicture = "margin-top: 0px !important;";
+            $("#AddPicture").css("margin-top", "0px");
+         }
+         if(isLang == "English (UK)") {
+          //  $scope.AddPicture = "margin-top: 0px !important;";
+            $("#AddPicture").css("margin-top", "0px");
+         }
+      });
     $ionicPlatform.registerBackButtonAction(function() {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||
