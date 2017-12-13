@@ -7023,3 +7023,7 @@ background-color: rgb(245,245,245);
         border-right: none !important;
 }
 
+.pac-item > span:last-child
+{
+    display: inline !important;
+}
