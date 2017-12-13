@@ -335,7 +335,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
   var localizeCurrent = $('#localize-current').text();
 
-   if($( window ).width()== 320) {
+   if($( window ).width()<= 320) {
         if(localizeCurrent == "Español") {
             $scope.whoNeedsText = "font-size:17px";
             $scope.consentTitleFont = "font-size:17px !important";
@@ -361,7 +361,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
        }
 
          $('#localize-langs').click(function() {
-            if($( window ).width()== 320){
+            if($( window ).width()<= 320){
              var isLang = $('#localize-langs .activated').text();
                if(isLang == "Español") {
                    $("#whoNeedsTextval").css("font-size", "17px");
