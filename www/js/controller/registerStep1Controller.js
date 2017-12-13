@@ -794,38 +794,19 @@ angular.module('starter.controllers')
                                 document.getElementById('state').value = $scope.State;
                                 $scope.oldState = document.getElementById('state').value;
                             }
-
-
                 //var location_input = document.getElementById('txtPlaces');
                 //var autocomplete = new google.maps.places.Autocomplete(document.getElementById('txtPlaces'));
                 var autocomplete = new google.maps.places.Autocomplete(document.getElementById('txtPlaces'));
-
-
-                 /*document.getElementById('txtPlaces').onkeyup = function(e) {
-    setTimeout(function() {
-       var places = document.querySelectorAll('.pac-item');      
-       for (var i=0;i<places.length;i++) {
-          var place=places[i];
-          var pac_icon = place.querySelector('.pac-icon').outerHTML
-          var place_name_reduced = place.querySelector('.pac-item-query').outerHTML;
-          place.innerHTML = pac_icon+place_name_reduced;
-       }
-    }, 10);
-  }*/
                 google.maps.event.addListener(autocomplete, 'place_changed', fillAddress);
-
                 setTimeout(function(){
                     var container = document.getElementsByClassName('pac-container');
                     container = angular.element(container);
-
                     // Apply css to ensure the container overlays the other elements, and
                     // events occur on the element not behind it
                     container.css('z-index', '5000');
                     container.css('pointer-events', 'auto');
-
                     // Disable ionic data tap
-                    //container.attr('data-tap-disabled', 'true');
-
+                    container.attr('data-tap-disabled', 'true');
                     // Leave the input field if a prediction is chosen
                     container.on('click', function(){
                         //input.blur();
@@ -834,7 +815,6 @@ angular.module('starter.controllers')
                 }, 200);
                 //google.maps.event.addDomListener(document.getElementById("pac-input"), 'blur', fillAddress);
                 //document.getElementById('txtPlaces').addEventListener('click', fillAddress);
-
                 function fillAddress()
                 {
                 var place = autocomplete.getPlace();
