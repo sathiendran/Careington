@@ -1,4 +1,3 @@
-
 @import "variable";
 @font-face {
     font-family: 'Glober Black Italic';
@@ -3750,9 +3749,11 @@ form.ng-submitted input.ng-valid + i.icon.error {
     float: right;
 }
 .addBtn {
-    color: black;
+    color: rgb(255,255,255);
     font-size: 30px;
     cursor: pointer;
+    z-index: 1;
+    position: relative;
     .icon-circle-with-plus {
         font-size: 34px !important;
     }
@@ -4445,7 +4446,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
         pointer-events: none;
         color: #60605D;
         position: absolute;
-        width: 85%;
+        width: 95%;
         height: 100%;
         z-index: 15;
         overflow: hidden;

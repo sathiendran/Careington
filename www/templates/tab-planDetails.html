@@ -1,5 +1,5 @@
 <ion-view title="Plan Details">
-   <form  ng-submit="PlanDetailsValidation()" name="HealthForm"  novalidate>
+   <form  ng-submit="PlanDetailsValidation()" ng-init="initialPlanDetails()" name="HealthForm"  novalidate>
       <ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" style="background-color:{{brandColor}};border-color:{{brandColor}};  {{HeadercardDetails}};{{backgroundimage}}" >
          <div id="Error_Message" class="ErrorMessageDiv" ></div>
          <div class="Server_Error ErrorMessageDiv" ></div>
@@ -62,7 +62,7 @@
                      <div style="font-size: 10px;" class="localizejs">for the policy holder</div>
                   </span>
                   <div class="dobRequired localizejs" ng-if="!AddHealth.dateBirth">Required</div>
-                  <input class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth"  id="date"  required>
+                  <input class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth" id="date"  required>
                </label>
                <label ng-if="deviceName != 'IOS'" class="item item-input datePlaceholder" >
                   <span class="input-label cardfont localizejs" style="padding: 5px 10px 3px 0px;white-space: normal;"  >
@@ -70,7 +70,7 @@
                      <div class="localizejs" style="font-size: 10px;">for the policy holder</div>
                   </span>
                   <div class="dobRequired localizejs" ng-if="!AddHealth.dateBirth">Required</div>
-                  <input class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth" value="{{PreviousDate}}"   id="date"  required>
+                  <input class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth" value="{{PreviousDate}}"   id="date" required>
                </label>
             </div>
             <div class="planDetails localizejs"  style="opacity:{{planverify}};">
@@ -78,7 +78,7 @@
             </div>
             <div class="privacy localizejs" style="opacity:{{planverify}};">
                 <!-- <a class="hospitalDynamicLink"  ng-click="hospitallink()" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">About {{Hospital}} Privacy</a> -->
-                <a class="" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');"  style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" >About {{Hospital}} Privacy</a>
+                <a class="" ng-click="catchPlanDetails();doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');"  style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" >About {{Hospital}} Privacy</a>
             </div>
          </div>
       </ion-content>
