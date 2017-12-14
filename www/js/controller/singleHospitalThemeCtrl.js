@@ -7,6 +7,7 @@ angular.module('starter.controllers')
     });
     $rootScope.customerSso = '';
     $rootScope.online = navigator.onLine;
+    $rootScope.viaNewUser = false;
 
     if (deploymentEnvLogout === 'Single') {
         if (deploymentEnvForProduction === 'Production') {

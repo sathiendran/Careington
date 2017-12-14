@@ -16,26 +16,7 @@ margin-top: 125px !important;
     //margin-top: 0px !important;
 }
 
-  @media (max-width: 375px) {
-  .mobileInput-Ios5 {
-        padding-left: 55px !important;
-      //  margin-right: -30px !important;
-        float: right !important;
-        }
-  .mobileInputNo-Ios5 {
-        margin-left: 0px !important;
-  }
-}
-  @media (min-width: 414px) {
-    .mobileInput-Ios5 {
-          padding-left: 75px !important;
-        //  margin-right: -30px !important;
-          float: right !important;
-          }
-    .mobileInputNo-Ios5 {
-          margin-left: 0px !important;
-    }
-  }
+
 @media (max-width: 320px) and (min-width: 315px) {
      .AppointmentView {
           visibility: hidden;
@@ -153,7 +134,7 @@ margin-top: 125px !important;
               }
           }
         .mobileInput-Ios5 {
-                   padding-left: 30px !important;
+                   padding-left: 40px !important;
                    float: right !important;
               }
         .button_new {
@@ -299,6 +280,16 @@ margin-top: 125px !important;
     width: 146px;
     font-size: 15px;
 }
+.userAccountPanel {
+   .hometext {
+         margin-left: -10px !important;
+   }
+ }
+ .ConsultChargeFooter {
+   .ConsultChargeCancel{
+         width: 35% !important;
+     }
+   }
 }
 .ioncontentalign {
      margin-top: 220px;
@@ -660,6 +651,7 @@ color: #888;
     font-size: 15px;
 }
 }
+
 @media (min-width: 768px) and (max-width: 1024px) {
      .userlistAccountHome{
           margin-left: 15%;
@@ -671,13 +663,7 @@ color: #888;
      .accMainContentNew {
           margin-bottom: 15%;
      }
-     .mobileInput-Ios5 {
-       padding-left: 0px !important;
-       float: right !important;
-      }
-     .mobileInputNo-Ios5 {
-       margin-right: -40px !important;
-     }
+
 }
 @media (min-width: 770px) and (max-width: 1024px) {
      .tabs-top > .tabs,
@@ -4693,10 +4679,7 @@ padding: 44px 10px;
 .adddepuser {
     padding: 44px 10px !important;
 }
-.mobileInput-Ios5 {
-     padding-left: 50px !important;
-     float: right !important;
-      }
+
 }
 @media screen and (device-width: 384px) and (device-height: 598px) {
 #accountMngeProfile-Android {
@@ -7011,8 +6994,8 @@ background-color: rgb(245,245,245);
 }
 
 .stateDropDown{
-    width: 100% !important; 
-    position: relative; 
+    width: 100% !important;
+    position: relative;
     top: 6px;
     border: none;
 }
@@ -7026,4 +7009,36 @@ background-color: rgb(245,245,245);
 .pac-item > span:last-child
 {
     display: inline !important;
+}
+
+@media (min-width:321px) and (max-width:365px) {
+  .mobileInput-Ios5 {
+    padding-left: 55px !important;
+    float: right !important;
+  }
+}
+@media (min-width:366px) and (max-width:375px) {
+  .mobileInput-Ios5 {
+    padding-left: 60px !important;
+    float: right !important;
+  }
+}
+@media (min-width:376px) and (max-width:414px) {
+  .mobileInput-Ios5 {
+    padding-left: 75px !important;
+    float: right !important;
+  }
+  .mobileInputNo-Ios5 {
+        margin-left: 0px !important;
+  }
+}
+@media (min-width:415px) and (max-width:1280px) {
+  .mobileInput-Ios5 {
+      width: 5% !important;
+      margin-left: 31% !important;
+      float: right !important;
+  }
+  .mobileInputNo-Ios5 {
+    //margin-right: -40px !important;
+  }
 }

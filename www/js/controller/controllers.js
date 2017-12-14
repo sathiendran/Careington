@@ -356,7 +356,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
            if(localizeCurrent == "Español"){
                  $scope.consentTitleFont = "font-size:21px !important";
              }else{
-                 $scope.consentTitleFont = "font-size:25px !important";
+                 $scope.consentTitleFont = "font-size:21px !important";
              }
        }
 
@@ -670,7 +670,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -972,10 +972,13 @@ $rootScope.checkAndChangeMenuIcon = function() {
         refresh_close();
         if($errorMsg.length >= 50)
         {
-
-            var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: 6px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+          if($rootScope.is_iPadDeviceWidth <= 320) {
+              var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: -2px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+          } else {
+              var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: 6px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+          }
         }else{
-            var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         }
         $("#notifications-top-center").remove();
         $("#Error_Message").append(top);
@@ -1071,6 +1074,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
     $scope.userLogin = {};
     $scope.userLogin.UserEmail = $window.localStorage.oldEmail;
     $scope.LoginFunction = function() {
+        $rootScope.viaNewUser = false;
         if ($('#UserEmail').val() === '') {
             $scope.ErrorMessage = "Please enter your email";
             $rootScope.Validation($scope.ErrorMessage);
@@ -7688,16 +7692,16 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         //var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
         //if($rootScope.is_iPadDeviceWidth >= 550)
           //  $('.userlistAccountHome-ios5').attr('style', 'margin-top: 55px !important');
-         if($rootScope.is_iPadDeviceWidth <= 320) {
-          //  $('.UserAccountProfileImage').attr('style', 'margin-top: 9% !important');
-            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 2% !important');
-            $('.subheaderheightOne').attr('style', 'height: 100px !important');
-            $('.UserAccountProfileImage .patProfileImage').attr('style', 'margin-top: 35% !important');
-        }
-        else if($rootScope.is_iPadDeviceWidth == 360)
-            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 15% !important');
-        else
-            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 15% !important');
+          if($rootScope.is_iPadDeviceWidth <= 320) {
+              $('.UserAccountProfileImage').attr('style', 'margin-top: 9% !important');
+              $('.userlistAccountHome-ios5').attr('style', 'margin-top: 2% !important');
+              $('.subheaderheightOne').attr('style', 'height: 100px !important');
+              $('.UserAccountProfileImage .patProfileImage').attr('style', 'margin-top: 10% !important');
+          }
+          else if($rootScope.is_iPadDeviceWidth == 360)
+              $('.userlistAccountHome-ios5').attr('style', 'margin-top: 3% !important');
+          else
+              $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
 
 
         $rootScope.scheduledList = $filter('filter')($filter('orderBy')($rootScope.getScheduledList, "scheduledTime"), "a");
@@ -7721,16 +7725,17 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
               $('.subheaderheightOne').attr('style', 'height: 115px !important');
               $('.userAccHeaderTitle').attr('style', 'margin-top: -43px !important');
               $('.userlistAccountHome').attr('style', 'margin-top: -43px !important');
-                     if($rootScope.is_iPadDeviceWidth <= 320) {
-                    //    $('.UserAccountProfileImage').attr('style', 'margin-top: 9% !important');
-                        $('.userlistAccountHome-ios5').attr('style', 'margin-top: 2% !important');
-                        $('.subheaderheightOne').attr('style', 'height: 100px !important');
-                        $('.UserAccountProfileImage .patProfileImage').attr('style', 'margin-top: 35% !important');
-                    }
-                    else if($rootScope.is_iPadDeviceWidth == 360)
-                       $('.userlistAccountHome-ios5').attr('style', 'margin-top: 15% !important');
-                    else
-                       $('.userlistAccountHome-ios5').attr('style', 'margin-top: 15% !important');
+              if($rootScope.is_iPadDeviceWidth <= 320) {
+                  $('.UserAccountProfileImage').attr('style', 'margin-top: 9% !important');
+                  $('.userlistAccountHome-ios5').attr('style', 'margin-top: 2% !important');
+                  $('.subheaderheightOne').attr('style', 'height: 100px !important');
+                  $('.UserAccountProfileImage .patProfileImage').attr('style', 'margin-top: 10% !important');
+              }
+              else if($rootScope.is_iPadDeviceWidth == 360)
+                 $('.userlistAccountHome-ios5').attr('style', 'margin-top: 3% !important');
+              else
+                 $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
+
 
               if ($rootScope.getIndividualScheduleDetails != '') {
                 //  if($rootScope.getIndividualPatScheduleDetails != '') {
@@ -7752,15 +7757,15 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                       $('.userAccHeaderTitle').attr('style', 'margin-top: 0px !important');
                       $('.userlistAccountHome').attr('style', 'margin-top: 0px !important');
                       if($rootScope.is_iPadDeviceWidth <= 320) {
-                    //      $('.UserAccountProfileImage').attr('style', 'margin-top: 10% !important');
-                          $('.userlistAccountHome-ios5').attr('style', 'margin-top: 18% !important');
-                          $('.subheaderheightOne').attr('style', 'height: 150px !important');
-                          $('.UserAccountProfileImage .patProfileImage').attr('style', 'margin-top: 45% !important');
-                      }
-                      else if($rootScope.is_iPadDeviceWidth == 360)
-                          $('.userlistAccountHome-ios5').attr('style', 'margin-top: 22% !important');
-                      else
-                          $('.userlistAccountHome-ios5').attr('style', 'margin-top: 22% !important');
+                           $('.UserAccountProfileImage').attr('style', 'margin-top: 0% !important');
+                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 18% !important');
+                           $('.subheaderheightOne').attr('style', 'height: 150px !important');
+                           $('.UserAccountProfileImage .patProfileImage').attr('style', 'margin-top: 19% !important');
+                       }
+                       else if($rootScope.is_iPadDeviceWidth >= 768 && $rootScope.is_iPadDeviceWidth <= 1024)
+                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: -20% !important');
+                       else
+                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
 
                     /*  var beforAppointmentTime = getReplaceTime;
                       var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
