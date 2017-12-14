@@ -2,7 +2,7 @@ angular.module('starter.controllers')
 
 .controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService,$log,$ionicBackdrop,Idle,$ionicPopover, $interval) {
     $.getScript( "lib/jquery.signalR-2.1.2.js", function( data, textStatus, jqxhr ) {
-
+$("#localize-widget").hide();
     });
     /*
     $.getScript( "https://snap-qa.com/api/signalR/hubs", function( data, textStatus, jqxhr ) {
