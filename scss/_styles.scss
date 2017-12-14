@@ -6121,10 +6121,15 @@ hr {
 .pc-report {
      padding: 0px 16px !important;
 }
-
 .bg h2 {
       margin-top: -15px !important;
     }
+@media (max-width: 320px) and (min-width: 315px) {
+.bg h2 {
+      margin-top: -45px !important;
+    }
+  }
+
 .bg {
       height: 150px !important;
      }
