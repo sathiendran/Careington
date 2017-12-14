@@ -670,7 +670,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -4511,7 +4511,8 @@ $scope.doGetInsuranceDetails = function(){
         LoginService.getHealthPlanProvidersList(params);
     }
 
-    $scope.AddHealth = {};
+    //$scope.AddHealth = {};
+    $scope.AddHealth = [];
     $scope.doPostNewHealthPlan = function() {
 
         var HealthPlanProviders = $scope.AddHealth.Provider.split("@");
@@ -6722,6 +6723,33 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             $scope.doPostNewHealthPlan();
         }
     }
+
+    $scope.initialPlanDetails = function(){
+       // alert($scope.AddHealth.firstName);
+       $scope.AddHealth.firstName = $rootScope.ahfirstName;
+       $scope.AddHealth.lastName = $rootScope.ahlastName;
+       //$scope.AddHealth.Provider = $rootScope.ahProvider;
+       $scope.AddHealth.policyNumber = $rootScope.ahpolicyNumber;
+       //$scope.AddHealth.dateBirth = $rootScope.ahdateBirth;
+
+     // document.getElementById('Provider').value = $rootScope.ahProvider;
+      $scope.AddHealth.Provider = $rootScope.ahProvider;
+
+     /* var dropdown = document.getElementById("Provider");
+      dropdown.options[dropdown.selectedIndex].value = $rootScope.ahProvider;*/
+
+       
+        $rootScope.ahfirstName = '';
+        $rootScope.ahlastName = '';
+        $rootScope.ahProvider = '';
+        $rootScope.ahpolicyNumber = '';
+     //   $rootScope.ahdateBirth = '';
+      /* $rootScope.ahProvider = document.getElementById('Provider').value;
+        $rootScope.ahfirstName = document.getElementById('firstName').value;
+        $rootScope.ahlastName = document.getElementById('lastName').value;
+        $rootScope.ahpolicyNumber = document.getElementById('policyNumber').value;*/
+    }
+//document.getElementById('Provider').value = $rootScope.ahProvider;
     $scope.VerifyPlanDetailsValidation = function() {
         if ($('#firstName').val() === '' || $('#lastName').val() === '' || $('#policyNumber').val() === '' || $('#date').val() === '') {
             $scope.ErrorMessage = "Required fields can't be empty";
@@ -9112,6 +9140,14 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             $rootScope.editplan ="block";
         }
       $state.go('tab.consultCharge');
+    }
+
+    $scope.catchPlanDetails = function(){
+        $rootScope.ahProvider = document.getElementById('Provider').value;
+        $rootScope.ahfirstName = document.getElementById('firstName').value;
+        $rootScope.ahlastName = document.getElementById('lastName').value;
+        $rootScope.ahpolicyNumber = document.getElementById('policyNumber').value;
+      //  $rootScope.ahdateBirth = document.getElementById('date').value;
     }
 
     $scope.doRefreshReportDetails = function() {

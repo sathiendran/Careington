@@ -6184,9 +6184,10 @@ margin-right: 10px;
 }
 .insCardNumber {
   font-family: GloberSemiBold;
-  font-size: 21px !important;
+  font-size: 20px !important;
   position: relative;
   top: 3px;
+  left: -17px;
 }
 .healthpat{
   font-size: 20px;
@@ -6686,7 +6687,7 @@ a.item.item-avatar.avatheight:first-child{
 .disable-pointer-events {
     margin-left: -47px;
     pointer-events: none;
-    width:110% !important;
+    width:105% !important;
     white-space: normal;
 }
 
@@ -6998,7 +6999,7 @@ background-color: rgb(245,245,245);
     float: left;
     /* left: -15px; */
     position: relative;
-    margin-top: 5px;
+    margin-top: 10px;
     cursor: pointer;
 }
 
@@ -7006,7 +7007,7 @@ background-color: rgb(245,245,245);
         float: right;
     right: 5px;
     position: absolute;
-    margin-top: 5px;
+    margin-top: 10px;
     cursor: pointer;
 }
 
