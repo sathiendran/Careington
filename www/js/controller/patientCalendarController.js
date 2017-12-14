@@ -3,12 +3,18 @@ angular.module('starter.controllers')
       /*  setTimeout(function() {
             document.getElementsByTagName('timer')[0].stop();
         }, 10);*/
+        $("#localize-widget").hide();
         $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
         if($rootScope.chkSSPageEnter) {
             $ionicSideMenuDelegate.toggleLeft();
             $rootScope.chkSSPageEnter = false;
         }
-$("#localize-widget").show();
+// $("#localize-widget").show();
+$("#localize-widget").hide();
+angular.element(document).ready(function () {
+    
+    $("#localize-widget").hide();
+});
         $ionicPlatform.registerBackButtonAction(function() {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||

@@ -1,5 +1,13 @@
 angular.module('starter.controllers')
     .controller('healthinfoController', function ($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService, $window, $ionicBackdrop) {
+        $rootScope.currState = $state;
+        if ($rootScope.currState.$current.name == "tab.consultations" )
+        {
+            $("#localize-widget").hide();
+        }
+        else{
+          $("#localize-widget").show();
+        }
         $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
         $rootScope.drawSVGCIcon = function (iconName) {
             return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
@@ -81,7 +89,7 @@ angular.module('starter.controllers')
                 $scope.showCountrySelectBox = false;
               }
         };
-        $("#localize-widget").show();
+        // $("#localize-widget").show();
         $scope.getOnlyNumbers = function (text) {
             var newStr = "";
             if (text) {
