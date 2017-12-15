@@ -5,6 +5,7 @@ angular.module('starter.controllers')
         $rootScope.APICommonURL = apiCommonURL;
     }
     $("#localize-widget").show();
+      $rootScope.viaNewUser = false;
     $window.localStorage.setItem('ChkVideoConferencePage', "");
     $rootScope.is_iPadDeviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     $ionicPlatform.registerBackButtonAction(function() {

@@ -4,6 +4,7 @@ angular.module('starter.controllers')
     if (deploymentEnv !== 'Multiple') {
         $rootScope.APICommonURL = apiCommonURL;
     }
+    $rootScope.viaNewUser = false;
     $window.localStorage.setItem('ChkVideoConferencePage', "");
     $rootScope.online = navigator.onLine;
     $rootScope.is_iPadDeviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;

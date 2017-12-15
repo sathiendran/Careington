@@ -30,7 +30,9 @@ angular.module('starter.controllers')
  var localizeCurrent = $('#localize-current').text();
            if(localizeCurrent == "Español"){
                $('.homePhoneInput').attr('style', 'margin-top: -20px !important');
-               $scope.HealthinfoPatient = "width: 106% !important; margin-left: -7px; !important";
+               if($rootScope.is_iPadDeviceWidth <= 320) {
+                  $scope.HealthinfoPatient = "width: 106% !important; margin-left: -10px; !important";
+             }
            }else{
                 $('.homePhoneInput').attr('style', 'margin-top: -20px !important');
             if($rootScope.is_iPadDeviceWidth >= 360) {
@@ -45,7 +47,9 @@ angular.module('starter.controllers')
                var isLang = $('#localize-langs .activated').text();
                  if(isLang == "Español"){
                       $('.homePhoneInput').attr('style', 'margin-top: -20px !important');
-                      $scope.HealthinfoPatient = "width: 106% !important; margin-left: -7px; !important";
+                      if($rootScope.is_iPadDeviceWidth <= 320) {
+                          $scope.HealthinfoPatient = "width: 106% !important; margin-left: -10px; !important";
+                    }
                  }else{
                      if($rootScope.is_iPadDeviceWidth >= 360) {
                          $('.homePhoneInputValue').attr('style', 'margin-top: 0px !important');
