@@ -3,7 +3,7 @@ angular.module('starter.controllers')
          $scope.init = function () {
 
           $("#localize-widget").hide();
-          alert("after hide");
+      
   			};
 
         $rootScope.currState = $state;
