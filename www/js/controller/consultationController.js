@@ -3,6 +3,10 @@ angular.module('starter.controllers')
         $rootScope.couserdetails = false;
         $rootScope.dupcouser = false;
         $("#localize-widget").show();
+        angular.element(document).ready(function () {
+
+            $("#localize-widget").hide();
+        });
         $ionicPlatform.registerBackButtonAction(function() {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||

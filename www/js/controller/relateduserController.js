@@ -38,6 +38,10 @@
             }
         }, 100);
 // $("#localize-widget").show();
+angular.element(document).ready(function () {
+
+    $("#localize-widget").hide();
+});
         var checkAndChangeMenuIcon;
         $interval.cancel(checkAndChangeMenuIcon);
         $rootScope.checkAndChangeMenuIcon = function() {

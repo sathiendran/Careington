@@ -12,7 +12,7 @@ angular.module('starter.controllers')
 // $("#localize-widget").show();
 $("#localize-widget").hide();
 angular.element(document).ready(function () {
-    
+
     $("#localize-widget").hide();
 });
         $ionicPlatform.registerBackButtonAction(function() {
