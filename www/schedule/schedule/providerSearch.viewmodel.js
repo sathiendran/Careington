@@ -1459,6 +1459,28 @@
             }
 
 
+            var initialScreenSize = window.innerHeight; 
+            window.addEventListener("resize", function() {
+               if(window.innerHeight < initialScreenSize){
+                    $(".notification-bar--provider-search").css("display","none");
+                    $(".notification-bar--dialogbox").css("display","none");
+                    //$(".header__patient-ss").css("display","none");
+                    //$(".header__patient-ss").hide();
+                    //$(".menu-toggle").css("display","none");
+                  $("footer1").hide(); 
+               } else{ 
+                   // $(".notification-bar--provider-search").css("display","display");
+                    //$(".menu-toggle").css("display","block");
+                    $(".notification-bar--provider-search").css("display","");
+                    $(".notification-bar--dialogbox").css("display","");
+                   // $(".header__patient-ss").show();
+                   $("footer1").show(); 
+               }
+             });
+
+
+
+
             function loadJQuery() {
                 $('.js-toggle-bookmark').on('click', function (event) {
                     event.stopPropagation();
