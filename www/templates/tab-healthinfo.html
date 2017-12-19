@@ -1,6 +1,6 @@
 <ion-side-menus>
 <ion-side-menu-content>
-   <form ng-submit="putUpdatePatientDetails()" ng-init="fetchPatientDetails()" name="HealthInfo Details">
+   <form ng-submit="putUpdatePatientDetails()" ng-init="fetchPatientDetails(); init();" name="HealthInfo Details">
       <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
          <div class="buttons">
             <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
@@ -326,7 +326,7 @@
                     <span class="input-label labelcolor" style=" white-space: normal;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('group')"></i><b class="formlabel labelfont localizejs">Organization</b></span></div>
                      <span class="healthViewDetails" style="padding-top: 18px;padding-bottom: 11px;">
                         <select class="textdata optionselect"  name="healthInfoOrganization" id="healthInfoOrganization" ng-model="healthInfoModel.healthInfoOrganization" >
-                           <option class="localizejs" value="">Choose Organization</option>
+                           <option class="localizejs" value="">Choose Org</option>
                            <option ng-repeat="getOrganization in listOfOrganization" value="{{getOrganization.id}}" ng-selected="getOrganization.name == currentPatientDetails[0].organization"><b class="localizejs">{{getOrganization.name}}</b></option>
                         </select>
                      </span>
@@ -370,7 +370,7 @@
                     <span class="input-label labelcolor" style=" white-space: normal;"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('weight')"></i><b class="formlabel labelfont localizejs">Weight</b><i class="ion-asterisk"></i></span></div>
                      <div class="healthViewDetails">
                         <div class="healthWeight-{{deviceName}}" style="float: left;">
-                           <input type="tel" ng-model="weight" name="healthInfoWeight" id="healthInfoWeight"  class="textdata localizejs" ng-change="weightunitchange()"  ng-keyup="weightunit()" style="width: 50px;line-height:23px; margin-right: 10px;" placeholder="Required">
+                           <input type="tel" ng-model="weight" name="healthInfoWeight" id="healthInfoWeight"  class="textdata localizejs" ng-change="weightunitchange()"  ng-keyup="weightunit()" style="width: 90px;line-height:23px; margin-right: 10px;" placeholder="Required">
                         </div>
                         <div class="healthWeight1-{{deviceName}}">
                            <select class="textdata optionselect localizejs" name="healthInfoWeightUnit" id="healthInfoWeightUnit" style="width: 115%;padding-top:10px !important;">

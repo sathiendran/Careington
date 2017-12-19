@@ -212,7 +212,7 @@
                   </div>
                   <div class="col col-50 depGreyLabel">
                      <select class="textdata optionselect localizejs"  name="healthInfoOrganization" id="organization" ng-model="addNewDependent.healthInfoOrganization" >
-                        <option value="">Choose Organization</option>
+                        <option value="">Choose Org</option>
                         <option ng-repeat="getOrganization in listOfOrganization" value="{{getOrganization.id}}" ><b class="localizejs">{{getOrganization.name}}</b></option>
                      </select>
                      <input type="hidden" id="organ" value="{{addNewDependent.healthInfoOrganization.id}}" />

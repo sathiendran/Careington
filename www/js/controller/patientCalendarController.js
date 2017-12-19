@@ -11,6 +11,10 @@ angular.module('starter.controllers')
         }
 // $("#localize-widget").show();
 $("#localize-widget").hide();
+angular.element(document).ready(function () {
+
+    $("#localize-widget").hide();
+});
         $ionicPlatform.registerBackButtonAction(function() {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||

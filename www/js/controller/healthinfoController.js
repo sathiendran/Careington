@@ -1,7 +1,13 @@
 angular.module('starter.controllers')
     .controller('healthinfoController', function ($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService, $window, $ionicBackdrop) {
+         $scope.init = function () {
+
+          $("#localize-widget").hide();
+      
+  			};
+
         $rootScope.currState = $state;
-        if ($rootScope.currState.$current.name == "tab.consultations" )
+        if ($rootScope.currState.$current.name == "tab.consultations" || $rootScope.currState.$current.name == "tab.healthinfo")
         {
             $("#localize-widget").hide();
         }
@@ -12,11 +18,21 @@ angular.module('starter.controllers')
         $rootScope.drawSVGCIcon = function (iconName) {
             return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
         };
+        angular.element(document).ready(function () {
+            if( $scope.healthfootsave == true){
 
+                  $("#localize-widget").hide();
+            }
+            else{
+            $("#localize-widget").show();
+          }
+        });
  var localizeCurrent = $('#localize-current').text();
            if(localizeCurrent == "Español"){
                $('.homePhoneInput').attr('style', 'margin-top: -20px !important');
-               $scope.HealthinfoPatient = "width: 106% !important; margin-left: -7px; !important";
+               if($rootScope.is_iPadDeviceWidth <= 320) {
+                  $scope.HealthinfoPatient = "width: 106% !important; margin-left: -10px; !important";
+             }
            }else{
                 $('.homePhoneInput').attr('style', 'margin-top: -20px !important');
             if($rootScope.is_iPadDeviceWidth >= 360) {
@@ -31,7 +47,9 @@ angular.module('starter.controllers')
                var isLang = $('#localize-langs .activated').text();
                  if(isLang == "Español"){
                       $('.homePhoneInput').attr('style', 'margin-top: -20px !important');
-                      $scope.HealthinfoPatient = "width: 106% !important; margin-left: -7px; !important";
+                      if($rootScope.is_iPadDeviceWidth <= 320) {
+                          $scope.HealthinfoPatient = "width: 106% !important; margin-left: -10px; !important";
+                    }
                  }else{
                      if($rootScope.is_iPadDeviceWidth >= 360) {
                          $('.homePhoneInputValue').attr('style', 'margin-top: 0px !important');
