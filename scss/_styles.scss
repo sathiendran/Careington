@@ -1212,7 +1212,7 @@ body {
     top: 17px !important;
 }
 .accoTitle-IOS{
-    top: 4px !important;
+    top: -4px !important;
 }
 .PatientDetailsHome {
     padding: 4%;
@@ -2467,12 +2467,13 @@ select {
         padding: 9px !important;
     }
     .concernListTitle-ios {
-        top: 17px !important;
-        font-size: 16px !important;
-        font-family: $fontFamily_semibold;
+    //  top: 8px !important;
+      font-size: 20px !important;
+      color: #FFFFFF !important;
+      font-family: $fontFamily_semibold;
     }
     .concernListDone-ios {
-        top: 18px !important;
+        top: 5px !important;
         font-size: 15px !important;
         font-family: $fontFamily_semibold;
     }
@@ -4122,7 +4123,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
     font-size: 26px !important;
 }
 .HeaderListIOS {
-    font-size: 18px;
+    font-size: 20px;
     text-align: center;
     width: 100%;
     margin-top: 13px;
