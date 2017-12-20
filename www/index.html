@@ -492,6 +492,14 @@
     </div>
 </script>
 
+<script>
+var viewModel = kendo.observable({
+    isChecked: false
+});
+
+kendo.bind($("input"), viewModel);
+</script>
+
 <script id="apptsSlotsTemplate2" type="text/x-kendo-template">
     <div>
         <div class="drawer-card__footer-flip-slider js-flip-slider"
@@ -554,7 +562,8 @@
         </div>
         <div class="directory__checkbox" data-bind="visible:isSelected">
             <div class="checkbox checkbox-round">
-                <input type="checkbox" class="CheckBoxcheck" data-bind="checked: isSelected">
+                // <input type="checkbox" class="CheckBoxcheck" data-bind="checked: isSelected" data-bind= "events: {click: vm_hideItemsSelector}">
+                <input type="checkbox" class="CheckBoxcheck" data-bind= "events: {click: vm_hideItemsSelector}" checked>
                 <span class="checkbox__control"></span>
             </div>
         </div>
@@ -604,7 +613,7 @@
 
                 </div>
 
-                <div class="directory__selected-item" style="max-height: 72px" class="directory__unselected-items" data-editable="false" data-bind="source: vm_getSelectedItems" data-template="scrollableItem" data-scrollable="false"></div>
+                <div class="directory__selected-item" style="max-height: 72px" class="directory__unselected-items" data-editable="false" data-bind="events: {click: vm_hideItemsSelector}source: vm_getSelectedItems" data-template="scrollableItem" data-scrollable="false"></div>
 
                 <div class="directory__list" data-bind="class: {is-active: vm_isSelectedItemsListNotEmpty}">
                     <div class="directory__unselected-items" data-editable="false" data-scrollable="{ virtual: true }" data-bind="source: ds, invisible: vm_isItemsListEmpty" data-template="scrollableItem"></div>
