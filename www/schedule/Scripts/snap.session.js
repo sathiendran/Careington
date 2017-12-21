@@ -77,7 +77,7 @@
                    'Your session timed out.', // message
                    function() {
                         window.location.href = snap.redirctPage;
-                        window.location.reload(true);
+                      //  window.location.reload(true);
                    },
                    snap.appName, // title
                    'Done' // buttonName

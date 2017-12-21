@@ -903,24 +903,24 @@ $rootScope.checkAndChangeMenuIcon = function() {
              if (deploymentEnvLogout === "Multiple") {
                  $state.go('tab.chooseEnvironment');
                  $timeout(function() {
-                        $window.location.reload(true);
+                        //$window.location.reload(true);
                     });
              } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
                       //$state.go('tab.login');
                       $state.go('tab.singleTheme');
                       $timeout(function() {
-                             $window.location.reload(true);
+                             //$window.location.reload(true);
                          });
              }else if (cobrandApp !== 'MDAmerica' && deploymentEnvLogout === "Single") {
                  //$state.go('tab.loginSingle');
                  $state.go('tab.singleTheme');
                  $timeout(function() {
-                        $window.location.reload(true);
+                        //$window.location.reload(true);
                     });
              }else {
                 $state.go('tab.login');
                 $timeout(function() {
-                       $window.location.reload(true);
+                       //$window.location.reload(true);
                    });
              }
         }
