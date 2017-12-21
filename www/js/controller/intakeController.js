@@ -583,11 +583,23 @@ angular.module('starter.controllers')
                         }
                         if ($rootScope.Cttonscheduled === 'on') {
                             $state.go('tab.ConsentTreat');
+                      /*   } else if($rootScope.copayAmount === 0) {
+                                $rootScope.applyPlanMode = "none";
+                                $rootScope.chooseHealthHide = 'initial';
+                                $rootScope.chooseHealthShow = 'none';
+                                $rootScope.verifyPlanMode = "block";
+                                $rootScope.consultChargeNoPlanPage = "none";
+                                $rootScope.healthPlanPage = "block";
+                                $rootScope.chooseHealthHide = 'initial';
+                                $rootScope.chooseHealthShow = 'none';
+                                $rootScope.providerName = "";
+                                $rootScope.PolicyNo = "";
+                                $scope.doGetPatientHealthPlansList();*/
                         } else if ($rootScope.appointmentwaivefee == true) {
                             $rootScope.doGetWaiveFeeHospitalInformation();
-                        } else if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' && $rootScope.appointmentwaivefee === false && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on') {
+                        } else if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' && $rootScope.appointmentwaivefee === false && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on' && $rootScope.copayAmount != 0) {
                             $rootScope.doPostDepitDetails();
-                        } else if ($rootScope.getIndividualPatientCreditCount !== 0 && $rootScope.appointmentwaivefee === true && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on') {
+                        } else if ($rootScope.getIndividualPatientCreditCount !== 0 && $rootScope.appointmentwaivefee === true && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on' && $rootScope.copayAmount != 0) {
                             $state.go('tab.receipt');
                             $rootScope.enablePaymentSuccess = "none";
                             $rootScope.enableInsuranceVerificationSuccess = "none";
