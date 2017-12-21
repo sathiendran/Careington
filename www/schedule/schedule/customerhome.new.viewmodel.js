@@ -1528,6 +1528,7 @@ var setUserVars = function() {
                 };
 
                 this.vm_onCloseClick = function(e) {
+                  $("#localize-widget").show();
                     if(sessionStorage.getItem('chkSSAddOrEdit') === 'Edit') {
                         $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                     }
@@ -1542,6 +1543,7 @@ var setUserVars = function() {
                 };
 
                 this.vm_onRemoveClick = function() {
+                  $("#localize-widget").show();
                     this._clearDeactivationTimeout();
                     var that = this;
                     $snapNotification.hideAllConfirmations();

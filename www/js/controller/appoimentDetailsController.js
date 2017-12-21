@@ -179,6 +179,7 @@ $("#localize-widget").show();
     }
 
     $scope.editAppointment = function(scheduledListData,$timeout) {
+      $("#localize-widget").hide();
          snap.baseUrl  = apiCommonURL;
           $scope.betDelay=true;
          $ionicLoading.show({
