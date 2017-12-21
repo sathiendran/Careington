@@ -142,12 +142,13 @@
                         </button>
                     </div>
 
-                    <div class="provider-search-header__view">
-                        <button type="button" class="js-set-horizontal" data-bind="css: {is-active: vm_isListMode}, events: { click: vm_onListModeClick}">
+                    <div class="provider-search-header__view" data-bind="css: {is-active: vm_isListMode}, events: { click: vm_onListModeClick}">
+                        <button type="button" class="js-set-horizontal">
                             <span class="icon_list"></span>
                         </button>
-
-                        <button type="button" class="js-set-vertical" data-bind="css: {is-active: vm_isGridMode}, events: { click: vm_onGridModeClick}">
+                    </div>
+                    <div class="provider-search-header__view" data-bind="css: {is-active: vm_isGridMode}, events: { click: vm_onGridModeClick}"> 
+                        <button type="button" class="js-set-vertical">
                             <span class="icon_grid2"></span>
                         </button>
                     </div>

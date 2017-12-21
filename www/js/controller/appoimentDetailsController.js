@@ -632,6 +632,7 @@ $("#localize-widget").show();
                     $rootScope.appointmentsPatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);
                       $rootScope.appointmentsPatientImage = data.data[0].profileImagePath;
                   }
+                    $("#appointNotes").html($rootScope.appointNotes);
 
                 // $rootScope.GoToPatientDetails('',   $rootScope.appointmentsPatientImage, $rootScope.appointmentsPatientFirstName, $rootScope.appointmentsPatientLastName, $rootScope.PatientAge, '',  $rootScope.appointmentPatientId, '', '');
                   },
