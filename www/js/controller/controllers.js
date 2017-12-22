@@ -9095,8 +9095,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         if(scheduledListData.status != 71) {
                   $rootScope.AppointScheduleTime = '';
                   $rootScope.appointmentsPatientId = '';
-                  $rootScope.schedulemobile = scheduledListData.participants[1].person.phones[0].value;
-                 // $rootScope.schedulemobile = scheduledListData.where;
+                  // $rootScope.schedulemobile = scheduledListData.participants[1].person.phones[0].value;
+                 $rootScope.schedulemobile = scheduledListData.where;
                   $rootScope.scheduledListDatas = scheduledListData;
                   $rootScope.appointmentwaivefee = scheduledListData.waiveFee;
                   var currentTime = $rootScope.scheduledListDatas.scheduledTime;

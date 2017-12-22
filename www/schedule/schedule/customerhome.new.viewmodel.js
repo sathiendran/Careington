@@ -1663,6 +1663,16 @@ var setUserVars = function() {
                 this.vm_isPhoneNumberFilled = false;
 
                 this.vm_onPhoneNumberChange = function() {
+
+                  // validmask: function (input) {
+                  //               console.log(input);
+                  //               if (input.is("[data-validmask-msg]") && input.val() != "") {
+                  //                   var maskedtextbox = input.data("kendoMaskedTextBox");
+                  //                   return maskedtextbox.value().indexOf(maskedtextbox.options.promptChar) === -1;
+                  //               }
+                  //
+                  //               return true;
+                  //           }
                     this.set("vm_phoneNumberError", false);
                     this.set("vm_isPhoneNumberFilled", $.trim(this.phoneNumber) !== "");
                     if (this.phoneType !== phoneTypeEnum.other) {

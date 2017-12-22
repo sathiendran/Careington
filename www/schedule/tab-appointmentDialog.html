@@ -43,7 +43,7 @@ span.icon_phone {
                             <div class="dialogbox-master__with"><span class="localizejs">with</span></div>
                             <div tabindex="2">
                                 <div class="dialogbox-master__user">
-                                    <div class="dialogbox-master__time-offset dialogbox-master__time-offset--top" data-bind="css: {is-active: vm_isTimeOffsetsVisible}, text: vm_ProviderTimeText"></div>
+                                    <div class="dialogbox-master__time-offset dialogbox-master__time-offset--top localizejs" data-bind="css: {is-active: vm_isTimeOffsetsVisible}, text: vm_ProviderTimeText"></div>
                                     <div class="dialogbox-master__owner js-toggle-dir" data-bind="css: {dialogbox-master__owner--is-opacity: isClinicianDisabled}">
                                         <div class="userpic userpic--is-available" data-bind="events: {click: vm_onViewClinicianProfileClick}, css: { userpic--warning: isClinicianDisabled }">
                                             <img data-bind="attr: { src: clinicianImageSource }" onerror="this.onerror=null;this.src='images/default-user.jpg';">
@@ -103,9 +103,10 @@ span.icon_phone {
                                 <div class="consultation-phone__number">
                                     <div class="consultation-phone__icon"><span class="icon_phone"></span></div>
                                     <input id="ffff" type="tel" data-value-update="keyup" data-bind="events: { keyup: vm_onPhoneNumberChange }, value: phoneNumber, disabled: isReadOnly" class="consultation-phone__input js-phone-input localizejs" placeholder="Enter a phone number…" tabindex="5">
+                                    <!-- <input id="ffff" type="tel" data-value-update="keyup" data-role='maskedtextbox' data-mask="(999) 000-0000" data-bind="events: { keyup: vm_onPhoneNumberChange }, value: phoneNumber, disabled: isReadOnly" class="consultation-phone__input js-phone-input localizejs" placeholder="Enter a phone number…" tabindex="5"> -->
                                 </div>
                                 <div class="consultation-phone__type js-phone-wrap">
-                                    <input type="text" data-bind="value: phoneType, source: phoneTypeDs, events: {change: vm_onPhoneTypeChange}, disabled: isReadOnly" data-role="dropdownlist" data-value-primitive="true" data-text-field="text" data-value-field="value" class="consultation-phone__dropdown js-dropdown-phone">
+                                    <input type="text" data-bind="value: phoneType, source: phoneTypeDs, events: {change: vm_onPhoneTypeChange}, disabled: isReadOnly" data-role="dropdownlist" data-value-primitive="true" data-text-field="text" data-value-field="value" class="consultation-phone__dropdown js-dropdown-phone localizejs">
                                     <!--<i class="ion-chevron-down"></i>-->
                                 </div>
                             </div>
@@ -156,7 +157,7 @@ span.icon_phone {
                                     <span class="localizejs" data-bind="text: primaryConcernOtherText"></span>
                                 </li>
                                 <li class="dialogbox-master__reason dialogbox-master__reason--readonly" data-bind="visible: displaySecondaryConcern">
-                                    <span data-bind="text: secondaryConcernOtherText"></span>
+                                    <span class="localizejs" data-bind="text: secondaryConcernOtherText"></span>
                                 </li>
                             </ul>
                             <div class="dialogbox-master__box dialogbox-master__box--reason" data-bind="invisible: isReadOnly">

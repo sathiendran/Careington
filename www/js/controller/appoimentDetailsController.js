@@ -191,6 +191,7 @@ $("#localize-widget").show();
           snap.profileSession = JSON.parse($window.localStorage.getItem("snap_patientprofile_session"));
           snap.hospitalSession = JSON.parse($window.localStorage.getItem("snap_hospital_session"));
           snap.hospitalSettings = JSON.parse($window.localStorage.getItem("snap_hospital_settings"));
+          $rootScope.brandName = snap.hospitalSession.brandName;
           $scope.doGetUserTimezone();
         }
 
