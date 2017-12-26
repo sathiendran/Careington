@@ -58,7 +58,7 @@
                            // $overlay.toggleOverlay();
                              window.location.href = snap.redirctPage;
                             // $timeout(function() {
-                                   window.location.reload(true);
+                                //   window.location.reload(true);
                               // });
                             //return;
                         },

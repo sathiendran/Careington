@@ -1528,6 +1528,7 @@ var setUserVars = function() {
                 };
 
                 this.vm_onCloseClick = function(e) {
+                  $("#localize-widget").show();
                     if(sessionStorage.getItem('chkSSAddOrEdit') === 'Edit') {
                         $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                     }
@@ -1542,6 +1543,7 @@ var setUserVars = function() {
                 };
 
                 this.vm_onRemoveClick = function() {
+                  $("#localize-widget").show();
                     this._clearDeactivationTimeout();
                     var that = this;
                     $snapNotification.hideAllConfirmations();
@@ -1661,6 +1663,16 @@ var setUserVars = function() {
                 this.vm_isPhoneNumberFilled = false;
 
                 this.vm_onPhoneNumberChange = function() {
+
+                  // validmask: function (input) {
+                  //               console.log(input);
+                  //               if (input.is("[data-validmask-msg]") && input.val() != "") {
+                  //                   var maskedtextbox = input.data("kendoMaskedTextBox");
+                  //                   return maskedtextbox.value().indexOf(maskedtextbox.options.promptChar) === -1;
+                  //               }
+                  //
+                  //               return true;
+                  //           }
                     this.set("vm_phoneNumberError", false);
                     this.set("vm_isPhoneNumberFilled", $.trim(this.phoneNumber) !== "");
                     if (this.phoneType !== phoneTypeEnum.other) {

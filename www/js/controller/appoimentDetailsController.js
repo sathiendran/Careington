@@ -179,6 +179,7 @@ $("#localize-widget").show();
     }
 
     $scope.editAppointment = function(scheduledListData,$timeout) {
+      $("#localize-widget").hide();
          snap.baseUrl  = apiCommonURL;
           $scope.betDelay=true;
          $ionicLoading.show({
@@ -190,6 +191,7 @@ $("#localize-widget").show();
           snap.profileSession = JSON.parse($window.localStorage.getItem("snap_patientprofile_session"));
           snap.hospitalSession = JSON.parse($window.localStorage.getItem("snap_hospital_session"));
           snap.hospitalSettings = JSON.parse($window.localStorage.getItem("snap_hospital_settings"));
+          $rootScope.brandName = snap.hospitalSession.brandName;
           $scope.doGetUserTimezone();
         }
 
@@ -631,6 +633,7 @@ $("#localize-widget").show();
                     $rootScope.appointmentsPatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);
                       $rootScope.appointmentsPatientImage = data.data[0].profileImagePath;
                   }
+                    $("#appointNotes").html($rootScope.appointNotes);
 
                 // $rootScope.GoToPatientDetails('',   $rootScope.appointmentsPatientImage, $rootScope.appointmentsPatientFirstName, $rootScope.appointmentsPatientLastName, $rootScope.PatientAge, '',  $rootScope.appointmentPatientId, '', '');
                   },
