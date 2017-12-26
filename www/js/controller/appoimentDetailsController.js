@@ -8,7 +8,7 @@ angular.module('starter.controllers')
 if($rootScope.is_iPadDeviceWidth <= 360){
          $('.apponitmentdate').attr('style', 'width: 115% !important; font-size: 22px !important;margin-top: 10px !important;');
        }else{
-           $('.apponitmentdate').attr('style', 'width: 115% !important; padding-right: 15%;');
+           $('.apponitmentdate').attr('style', 'width: 115% !important; padding-right: 15%; margin-top: 20px !important;');
          }
 
   $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");

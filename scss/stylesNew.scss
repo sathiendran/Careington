@@ -7027,20 +7027,30 @@ background-color: rgb(245,245,245);
 }
 @media (min-width:376px) and (max-width:414px) {
   .mobileInput-Ios5 {
-    padding-left: 75px !important;
+    padding-left: 85px !important;
     float: right !important;
   }
   .mobileInputNo-Ios5 {
         margin-left: 0px !important;
   }
 }
-@media (min-width:415px) and (max-width:1280px) {
+@media (min-width:415px) and (max-width:767px) {
   .mobileInput-Ios5 {
       width: 5% !important;
-      margin-left: 31% !important;
+      margin-left: 44% !important;
       float: right !important;
   }
   .mobileInputNo-Ios5 {
-    //margin-right: -40px !important;
+    margin-left: 15px !important;
   }
+}
+@media (min-width:768px) and (max-width:1280px) {
+.mobileInput-Ios5 {
+    width: 5% !important;
+    margin-left: 31% !important;
+    float: right !important;
+}
+.mobileInputNo-Ios5 {
+//  margin-left: 15px !important;
+}
 }
