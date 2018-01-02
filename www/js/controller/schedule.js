@@ -123,6 +123,7 @@ angular.module('starter.controllers')
           LoginService.getUserTimezone(params);
       }
 
+
         this.initSnapVars = function() {
             // snap.baseUrl = "https://emerald.snap-qa.com";
             snap.userSession = JSON.parse($window.localStorage.getItem("snap_user_session"));
