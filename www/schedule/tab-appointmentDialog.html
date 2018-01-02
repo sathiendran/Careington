@@ -106,7 +106,7 @@ span.icon_phone {
                                     <!-- <input id="ffff" type="tel" data-value-update="keyup" data-role='maskedtextbox' data-mask="(999) 000-0000" data-bind="events: { keyup: vm_onPhoneNumberChange }, value: phoneNumber, disabled: isReadOnly" class="consultation-phone__input js-phone-input localizejs" placeholder="Enter a phone number…" tabindex="5"> -->
                                 </div>
                                 <div class="consultation-phone__type js-phone-wrap">
-                                    <input type="text" data-bind="value: phoneType, source: phoneTypeDs, events: {change: vm_onPhoneTypeChange}, disabled: isReadOnly" data-role="dropdownlist" data-value-primitive="true" data-text-field="text" data-value-field="value" class="consultation-phone__dropdown js-dropdown-phone localizejs">
+                                    <input type="text" data-bind="value: phoneType, source: phoneTypeDs, events: {change: vm_onPhoneTypeChange, open: onOpen}, disabled: isReadOnly" data-role="dropdownlist" data-value-primitive="true" data-text-field="text" data-value-field="value" class="consultation-phone__dropdown js-dropdown-phone localizejs">
                                     <!--<i class="ion-chevron-down"></i>-->
                                 </div>
                             </div>
@@ -137,7 +137,9 @@ span.icon_phone {
                                         <spoan class="dialogbox-master__timezone" data-bind="text: timezone">pst</spoan>
                                     </div>
 
-                                    <div class="dialogbox-master__fulldate" data-bind="text: vm_getStartDate"></div>
+                                    <div class="dialogbox-master__fulldate" style="display:none" data-bind="text: vm_getStartDate"></div>
+                                    <div class="dialogbox-master__fulldate"><span class="apponitmentWeekSS"></span>, <span class="apponitmentMonthSS"></span> <span class="apponitmentYearSS"></span></div>
+
                                 </div>
 
                             </div>
@@ -152,11 +154,11 @@ span.icon_phone {
                                 <div class="dialogbox-master__title localizejs">Reasons for appointment</div>
                             </div>
 
-                            <ul class="dialogbox-master__reason-list dialogbox-master__reason-list--readonly" data-bind="visible: isReadOnly">
-                                <li class="dialogbox-master__reason dialogbox-master__reason--readonly">
+                            <ul class="dialogbox-master__reason-list localizejs dialogbox-master__reason-list--readonly" data-bind="visible: isReadOnly">
+                                <li class="dialogbox-master__reason dialogbox-master__reason--readonly localizejs">
                                     <span class="localizejs" data-bind="text: primaryConcernOtherText"></span>
                                 </li>
-                                <li class="dialogbox-master__reason dialogbox-master__reason--readonly" data-bind="visible: displaySecondaryConcern">
+                                <li class="dialogbox-master__reason dialogbox-master__reason--readonly localizejs" data-bind="visible: displaySecondaryConcern">
                                     <span class="localizejs" data-bind="text: secondaryConcernOtherText"></span>
                                 </li>
                             </ul>
@@ -167,7 +169,7 @@ span.icon_phone {
                                         <select class="dialogbox-master__reason-dropdown localizejs" data-role="dropdownlist" data-option-label="Primary Concern/Reason" data-value-primitive="true" data-text-field="text" data-value-field="codeId" data-bind="
                                             value: vm_primaryConsernId,
                                             source: dataPrimaryConcernList,
-                                            events: { change: vm_onPrimaryConcernChange },
+                                            events: { change: vm_onPrimaryConcernChange, open: onOpen },
                                             disabled: isReadOnly" tabindex="8" style="position:relative;"></select>
 
 

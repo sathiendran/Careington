@@ -3303,7 +3303,10 @@ $rootScope.checkAndChangeMenuIcon = function() {
                     $rootScope.viewmyhealthDisplay = 'block';
                     $rootScope.viewhealthDisplay = 'none';
                     $rootScope.passwordPreviousPage = true;
+                    console.log("profileData.id is"+profileData.id);
+                    $scope.GetUserAccountCondition(profileData.id);
                     $state.go('tab.userhome');
+
                   //  $rootScope.doGetPatientProfiles();
                     //  $rootScope.doGetRelatedPatientProfiles('tab.userhome');
                 } else {
@@ -3317,7 +3320,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                     {
                           $rootScope.doGetRequiredPatientProfiles($rootScope.currentPatientDetails[0].profileId, $scope.chkPatientFillDetails);
                     }
-
+                    $scope.GetUserAccountCondition(profileData.id);
                     $state.go('tab.healthinfo');
 
                 }

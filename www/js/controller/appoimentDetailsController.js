@@ -4,13 +4,36 @@ angular.module('starter.controllers')
 .controller('appoimentDetailsCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar) {
  // $('link[src="css/styles.v3.less.dynamic.css"]').remove();
   //     $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-
+//venkat start
 if($rootScope.is_iPadDeviceWidth <= 360){
          $('.apponitmentdate').attr('style', 'width: 115% !important; font-size: 22px !important;margin-top: 10px !important;');
        }else{
            $('.apponitmentdate').attr('style', 'width: 115% !important; padding-right: 15%; margin-top: 20px !important;');
          }
 
+           var enDay = {Monday:"lunes", Tuesday:"martes", Wednesday:"miércoles", Thursday:"jueves", Friday:"viernes", Saturday:"sábado", Sunday:"domingo"};
+           var spDay = {lunes:"Monday", martes:"Tuesday", miércoles:"Wednesday", jueves:"Thursday", viernes:"Friday", sábado:"Saturday", domingo:"Sunday"};
+           var enMonth = {January:"enero", February:"febrero", March:"marzo", April:"abril",May:"Mayo", June:"junio", July:"julio", August:"agosto", September:"septiembre",October:"octubre", November:"noviembre", December:"diciembre"};
+           var spMonth = {enero:"January", febrero:"February", marzo:"March", abril:"April",Mayo:"May", junio:"June", julio:"July", agosto:"August", septiembre:"September",octubre:"October", noviembre:"November", diciembre:"December"};
+
+         $('#localize-langs').click(function() {
+                var isLang = $('#localize-langs .activated').text();
+                var apponitmentWeek = $(".apponitmentWeek").text();
+                var apponitmentMonth = $(".apponitmentMonth").text();
+                if(isLang == "Español") {
+                      $(".apponitmentWeek").text(enDay[apponitmentWeek]);
+                      $(".apponitmentMonth").text(enMonth[apponitmentMonth]);
+                    }
+                if(isLang == "English (UK)") {
+                      $(".apponitmentWeek").text(spDay[apponitmentWeek]);
+                      $(".apponitmentMonth").text(spMonth[apponitmentMonth]);
+                    }
+                if(isLang == "English") {
+                      $(".apponitmentWeek").text(spDay[apponitmentWeek]);
+                      $(".apponitmentMonth").text(spMonth[apponitmentMonth]);
+                    }
+      });
+//venkat end
   $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
 $("#localize-widget").show();
     $ionicPlatform.registerBackButtonAction(function() {
@@ -450,6 +473,35 @@ $("#localize-widget").show();
           }
       };
         LoginService.getSelectedappoimentDetails(params);
+
+//venkat start
+              var shdTime = $rootScope.scheduledListDatas.scheduledTime;
+              var shdDay = shdTime.getDay();
+              var shdMonth = shdTime.getMonth();
+                console.log("shdTime ="+shdTime);
+                console.log("shdMonth ="+shdMonth);
+
+               var spDay = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
+               var enDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+               var spMonth = ["enero", "febrero", "marzo", "abril","Mayo", "junio", "julio", "agosto", "septiembre","octubre", "noviembre", "diciembre"];
+               var enMonth = ["January", "February", "March", "April","May", "June", "July", "August", "September","October", "November", "December"];
+
+               var localizeCurrent = $('#localize-current').text();
+                if(localizeCurrent == "Español") {
+                      $(".apponitmentWeek").text(spDay[shdDay]);
+                      $(".apponitmentMonth").text(spMonth[shdMonth]);
+                    }
+                if(localizeCurrent == "English (UK)") {
+                      $(".apponitmentWeek").text(enDay[shdDay]);
+                      $(".apponitmentMonth").text(enMonth[shdMonth]);
+                    }
+                if(localizeCurrent == "English") {
+                      $(".apponitmentWeek").text(enDay[shdDay]);
+                      $(".apponitmentMonth").text(enMonth[shdMonth]);
+                    }
+//venkat start
+
+
     };
 
     if ($rootScope.appointmentDisplay === "test") {
