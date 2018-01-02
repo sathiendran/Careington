@@ -30,7 +30,7 @@
 
                 lockedSlotsList.addSlot(convertToSlot(availabilityBlockId, from, to));
             });
-
+            this.set("vm_isSearchBarActive", false);
             function convertToSlot(availabilityBlockId, from, to) {
                 return {
                     from: $timeUtils.dateFromSnapDateString(from),

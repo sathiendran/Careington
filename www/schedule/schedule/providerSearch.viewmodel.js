@@ -47,7 +47,7 @@
                 all: "all",
                 favorite: "favorite"
             };
-
+            this.set("vm_isSearchBarActive", false);
             var dataSourceReadSuccessEvent = "cds_dataReadSuccess";
             var filterItemChangedEvent = "fic_changed";
             var filerCathegoryDisplayChanged = "fcd_changed";
@@ -65,7 +65,7 @@
                 imageSource: snap.profileSession.profileImage,
                 firstName: snap.profileSession.firstName
             };
-
+            //this.vm_isPatientSelectorActive = false;
             this.selectedPatient = defaultPatient; // this is a selected patient for self scheduling, if visibility rules is on, this will affect  list of doctors.
             this.isResponseRuleActive = false; // indicator to show if patient response rule is active in hospital;
             this.isAddressRuleActive = false;  // indicator to show if patient address rule is active in hospital;
@@ -503,7 +503,9 @@
 
             this.vm_isPatinetLoactionInLoading = true;
             this.vm_currentPatientLocation = "";
+            //this.set("vm_isPatientSelectorActive", false);
             this.vm_onSelectPersonClick = function () {
+
                 this.set("vm_isPatientSelectorActive", true);
 
                 selector.unselectAll();

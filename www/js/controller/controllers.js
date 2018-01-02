@@ -3303,7 +3303,11 @@ $rootScope.checkAndChangeMenuIcon = function() {
                     $rootScope.viewmyhealthDisplay = 'block';
                     $rootScope.viewhealthDisplay = 'none';
                     $rootScope.passwordPreviousPage = true;
+<<<<<<< HEAD
                     console.log("profileData.id is"+profileData.id);
+=======
+                     console.log("profileData.id iss"+profileData.id);
+>>>>>>> 16706c18e0efdf65ec853702b939fb5760537551
                     $scope.GetUserAccountCondition(profileData.id);
                     $state.go('tab.userhome');
 
@@ -7815,10 +7819,12 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                       $('.userlistAccountHome').attr('style', 'margin-top: 0px !important');
 
                       if($rootScope.is_iPadDeviceWidth <= 320) {
-                           $('.UserAccountProfileImage').attr('style', 'margin-top: 9% !important');
-                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 2% !important');
-                           $('.subheaderheightOne').attr('style', 'height: 100px !important');
-                           $('.UserAccountProfileImage .patProfileImage').attr('style', 'margin-top: 10% !important');
+                        $('.UserAccountProfileImage').attr('style', 'margin-top: 0% !important');
+                         $('.userlistAccountHome-ios5').attr('style', 'margin-top: 18% !important');
+                         $('.subheaderheightOne').attr('style', 'height: 150px !important');
+                         $('.UserAccountProfileImage .patProfileImage').attr('style', 'margin-top: 19% !important');
+                         $('.UserAccountProfileImage img').attr('style', 'margin-top: 45% !important');
+
                        }
                        else if($rootScope.is_iPadDeviceWidth >= 321 && $rootScope.is_iPadDeviceWidth <= 365)
                            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 25% !important');
