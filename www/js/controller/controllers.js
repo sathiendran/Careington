@@ -3303,11 +3303,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                     $rootScope.viewmyhealthDisplay = 'block';
                     $rootScope.viewhealthDisplay = 'none';
                     $rootScope.passwordPreviousPage = true;
-<<<<<<< HEAD
-                    console.log("profileData.id is"+profileData.id);
-=======
-                     console.log("profileData.id iss"+profileData.id);
->>>>>>> 16706c18e0efdf65ec853702b939fb5760537551
+
                     $scope.GetUserAccountCondition(profileData.id);
                     $state.go('tab.userhome');
 
