@@ -3305,7 +3305,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                     $rootScope.passwordPreviousPage = true;
                     $scope.GetUserAccountCondition(profileData.id);
                     $state.go('tab.userhome');
-
+ 
                   //  $rootScope.doGetPatientProfiles();
                     //  $rootScope.doGetRelatedPatientProfiles('tab.userhome');
                 } else {
