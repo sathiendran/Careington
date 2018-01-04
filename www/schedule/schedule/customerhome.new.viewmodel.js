@@ -1790,7 +1790,7 @@ var setUserVars = function() {
                               }
 
                 this.vm_onPrimaryConcernChange = function() {
-                  console.log("vm_onPrimaryConcernChange dropdown2");
+
                     this.trigger("change", { field: "vm_isPrimaryConcernOtherSelected" });
                     this.trigger("change", { field: "vm_isAddConcernButtonVisible" });
 
@@ -1859,10 +1859,6 @@ var setUserVars = function() {
                     return [kendo.toString(this.get("start"), "h:mm"), " <span>", kendo.toString(this.get("start"), "tt"), "</span>"].join("");
                 };
 
-                var enDay = {Monday:"lunes", Tuesday:"martes", Wednesday:"miércoles", Thursday:"jueves", Friday:"viernes", Saturday:"sábado", Sunday:"domingo"};
-                var spDay = {lunes:"Monday", martes:"Tuesday", miércoles:"Wednesday", jueves:"Thursday", viernes:"Friday", sábado:"Saturday", domingo:"Sunday"};
-                var enMonth = {January:"enero", February:"febrero", March:"marzo", April:"abril",May:"Mayo", June:"junio", July:"julio", August:"agosto", September:"septiembre",October:"octubre", November:"noviembre", December:"diciembre"};
-                var spMonth = {enero:"January", febrero:"February", marzo:"March", abril:"April",Mayo:"May", junio:"June", julio:"July", agosto:"August", septiembre:"September",octubre:"October", noviembre:"November", diciembre:"December"};
 
                 this.vm_getStartDate = function() {
 //venkat start
@@ -1908,10 +1904,18 @@ var setUserVars = function() {
                     return kendo.toString(this.get("start"), "dddd, MMMM dd, yyyy");
                 };
 //venkat start
+
+                var enDay = {Monday:"lunes", Tuesday:"martes", Wednesday:"miércoles", Thursday:"jueves", Friday:"viernes", Saturday:"sábado", Sunday:"domingo"};
+                var spDay = {lunes:"Monday", martes:"Tuesday", miércoles:"Wednesday", jueves:"Thursday", viernes:"Friday", sábado:"Saturday", domingo:"Sunday"};
+                var enMonth = {January:"enero", February:"febrero", March:"marzo", April:"abril",May:"Mayo", June:"junio", July:"julio", August:"agosto", September:"septiembre",October:"octubre", November:"noviembre", December:"diciembre"};
+                var spMonth = {enero:"January", febrero:"February", marzo:"March", abril:"April",Mayo:"May", junio:"June", julio:"July", agosto:"August", septiembre:"September",octubre:"October", noviembre:"November", diciembre:"December"};
+
                 $('#localize-langs').click(function() {
                        var isLang = $('#localize-langs .activated').text();
-                       var apponitmentWeek = $(".apponitmentWeek").text();
-                       var apponitmentMonth = $(".apponitmentMonth").text();
+
+                       var apponitmentWeek = $(".apponitmentWeekSS").text();
+                       var apponitmentMonth = $(".apponitmentMonthSS").text();
+
                        if(isLang == "Español") {
                              $(".apponitmentWeekSS").text(enDay[apponitmentWeek]);
                              $(".apponitmentMonthSS").text(enMonth[apponitmentMonth]);
