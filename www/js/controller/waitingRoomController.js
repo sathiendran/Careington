@@ -161,6 +161,16 @@ angular.module('starter.controllers')
       $(".ion-google-place-container").css({
           "display": "none"
       });
+      $rootScope.registedPwd =  '';
+      $rootScope.PatientIdentifiers = '';
+      $rootScope.PatientidupdateList = '';
+      $rootScope.sessionConsultConnection.start().done(function() {
+        $rootScope.sessionRoomConHub.invoke('LogoutUser');
+        // alert('hhh');
+         $rootScope.accessToken = '';
+         $rootScope.sessionRoomConHub = null;
+         $rootScope.sessionConsultConnection = null;
+      });
       $ionicBackdrop.release();
       $window.localStorage.setItem('tokenExpireTime', '');
         $(".overlay").css({"display": "none" });
