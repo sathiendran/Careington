@@ -732,6 +732,47 @@ this.getPatientMedicalProfile = function(params){
 		});
 	}
 
+	this.putActiveSession = function (params) {
+        //util.setHeaders($http, params);
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2/activesessions',
+            method: 'PUT',
+        };
+
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    if (typeof params.error != 'undefined') {
+                       params.error(data,status);
+                    }
+                });
+    }
+		this.getActiveSession = function (params) {
+			var requestInfo = {
+					headers: util.getHeaders(params.accessToken),
+					url: apiCommonURL + '/api/v2/activesessions',
+
+					method: 'GET'
+			};
+
+			$http(requestInfo).
+							success(function (data, status, headers, config) {
+									if (typeof params.success != 'undefined') {
+											params.success(data);
+									}
+							}).
+							error(function (data, status, headers, config) {
+									if (typeof params.error != 'undefined') {
+										 params.error(data,status);
+									}
+							});
+	    }
+
 	this.putConsultationSave = function (params) {
         //util.setHeaders($http, params);
         var requestInfo = {
@@ -2139,7 +2180,7 @@ this.getWaitingRoomChatTranscript = function (params) {
                });
          }
 
-         
+
 
 
 				   this.getWaitingConsultent= function(params) {
@@ -2524,7 +2565,7 @@ this.getCountryDetails = function () {
 		}
 		return getProvider2char;
 	};
-})       
+})
 
 .service('ageFilter', function(){
   //this.getAge = function(dateString) {

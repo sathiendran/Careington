@@ -5928,6 +5928,21 @@ margin-right: 10px;
     margin-left: 40px;
     line-height: 1
 }
+.user-info__sessionText {
+    line-height: 1;
+    margin-top: 3px;
+    margin-bottom: -10px;
+      .user-info__fname {
+          font-size: 24px;
+          font-weight: bold;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: 1.25;
+          letter-spacing: normal;
+          text-align: center;
+          color: rgba(0, 0, 0, 0.75);
+      }
+}
 
 .user-info__text>* {
     box-sizing: border-box;
@@ -5939,6 +5954,42 @@ margin-right: 10px;
     word-break: break-all;
     word-wrap: break-word
 }
+  .loc-sessPopupcontent {
+    padding: 19px !important;
+    text-align: center;
+    font-family: Glober Regular;
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.75)
+  }
+  .sesCancel {
+    font-size: 20px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.4;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    font-family: Glober Bold;
+  }
+
+  .sessLogin {
+    font-family: Glober Bold;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.4;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+  }
 
 .user-info__text--consult-screen {
     margin-left: 60px
@@ -5949,6 +6000,39 @@ margin-right: 10px;
     color: #111;
   //  font-size: 0.875em;
     font-family: inherit
+}
+.user-info__sessionName {
+    width: 100%;
+    color: #111;
+  //  font-size: 0.875em;
+    font-family: inherit;
+    text-align: center;
+}
+.sessionUserPic {
+    float: none !important;
+    text-align: center !important;
+    margin: 0 auto;
+    -webkit-transform: translateY(3%) !important;
+    -moz-transform: translateY(3%) !important;
+    -ms-transform: translateY(3%) !important;
+    -o-transform: translateY(3%) !important;
+    transform: translateY(3%) !important;
+    width: 75px !important;
+    height: 75px !important;
+    .patProfileImageSS {
+        width: 75px !important;
+        height: 75px !important;
+          span {
+                top: 37px;
+                left: 2px;
+          }
+    }
+}
+.sessionLocTitle {
+    text-align: center;
+    font-size: 24px !important;
+     color: rgba(0, 0, 0, 0.75) !important;
+     margin-bottom: -6px;
 }
 
 .user-info__name--consult-screen {
