@@ -5,7 +5,7 @@
          <div class="ErrorMessage ErrorMessageDiv"  ></div>
          <button class="button button__cancel CancelAddressBtn localizejs" ng-click="editremovemodal()" ><span id="CancelAddress">Cancel</span></button>
          <h1 class="title {{concernListTitleStyle}} localizejs" style="{{PrimaryConcernPopupTitle}};text-align: center; ">Enter Address</h1>
-         <button class="button button__green  ContinueAddressBtn localizejs"ng-click="addressEditSave()" ><span id="ContinueAddress">Update</span></button>
+         <button class="button button__green  ContinueAddressBtn localizejs" ng-click="addressEditSave()" ><span id="ContinueAddress">Update</span></button>
       </header>
       <ion-content has-header="true" style="background-color: #f5f5f5;">
          <ion-list>
@@ -27,8 +27,18 @@
                      </div>
                      <div class="col-95">
                         <label class="localizejs homelabel">Home Address</label>
-                        <div class="localizejs" id="fullAddress"></div>
-                     </div>
+                        <!-- <div class="localizejs" id="fullAddress" style="overflow:scroll;"></div> -->
+                        <input type="text" name="fulladdress" style="display: block;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: calc(186% - 57px);
+    position: relative;
+    left: -12px;
+    padding-left: 18px;
+    padding-right: 15px;
+    cursor: text;
+    background-color: transparent !important;overflow:scroll;" id="fullAddress" readonly >
+                     </div> 
                   </div>
                   <div class="row addressRow">
                      <div class="col">
@@ -71,7 +81,7 @@
                      <div class="col-40 sideblock zipcodeBlock">
                         <label class="localizejs addresslabel"> Zip/Postal Code</label>
                         <div>
-                           <input type="text" name="zipcode" maxlength="5" class="useraddress localizejs" id="zipcode" ng-model="ZipCode" placeholder="Enter a location" ng-change="makeAddress()"/>
+                           <input type="text" name="zipcode" class="useraddress localizejs" id="zipcode" ng-model="ZipCode" placeholder="Enter a location" ng-change="makeAddress()" maxlength="5"/>
                         </div>
                      </div>
                   </div>

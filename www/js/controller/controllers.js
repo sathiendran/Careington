@@ -3379,6 +3379,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                     $rootScope.viewmyhealthDisplay = 'block';
                     $rootScope.viewhealthDisplay = 'none';
                     $rootScope.passwordPreviousPage = true;
+                    $scope.GetUserAccountCondition(profileData.id);
                     $state.go('tab.userhome');
 
                   //  $rootScope.doGetPatientProfiles();
@@ -3394,7 +3395,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                     {
                           $rootScope.doGetRequiredPatientProfiles($rootScope.currentPatientDetails[0].profileId, $scope.chkPatientFillDetails);
                     }
-
+                    $scope.GetUserAccountCondition(profileData.id);
                     $state.go('tab.healthinfo');
 
                 }
@@ -8010,9 +8011,10 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     $('.userlistAccountHome-ios5').attr('style', 'margin-top: 15% !important');
                 else if($rootScope.is_iPadDeviceWidth >= 366 && $rootScope.is_iPadDeviceWidth <= 375)
                     $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
-
                 else if($rootScope.is_iPadDeviceWidth >= 376 && $rootScope.is_iPadDeviceWidth <= 414)
                     $('.userlistAccountHome-ios5').attr('style', 'margin-top: 15% !important');
+                else if($rootScope.is_iPadDeviceWidth >= 415 && $rootScope.is_iPadDeviceWidth <= 767)
+                    $('.userlistAccountHome-ios5').attr('style', 'margin-top: 25% !important');
                 else if($rootScope.is_iPadDeviceWidth >= 768 && $rootScope.is_iPadDeviceWidth <= 1024)
                     $('.userlistAccountHome-ios5').attr('style', 'margin-top: -20% !important');
                 else
@@ -8054,6 +8056,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                   $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
               else if($rootScope.is_iPadDeviceWidth >= 376 && $rootScope.is_iPadDeviceWidth <= 414)
                   $('.userlistAccountHome-ios5').attr('style', 'margin-top: 15% !important');
+              else if($rootScope.is_iPadDeviceWidth >= 415 && $rootScope.is_iPadDeviceWidth <= 767)
+                    $('.userlistAccountHome-ios5').attr('style', 'margin-top: 25% !important');
               else if($rootScope.is_iPadDeviceWidth >= 768 && $rootScope.is_iPadDeviceWidth <= 1024)
                   $('.userlistAccountHome-ios5').attr('style', 'margin-top: -20% !important');
               else
@@ -8081,18 +8085,21 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                       $('.userlistAccountHome').attr('style', 'margin-top: 0px !important');
 
                       if($rootScope.is_iPadDeviceWidth <= 320) {
-                           $('.UserAccountProfileImage').attr('style', 'margin-top: 9% !important');
-                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 2% !important');
-                           $('.subheaderheightOne').attr('style', 'height: 100px !important');
-                           $('.UserAccountProfileImage .patProfileImage').attr('style', 'margin-top: 10% !important');
+                        $('.UserAccountProfileImage').attr('style', 'margin-top: 0% !important');
+                         $('.userlistAccountHome-ios5').attr('style', 'margin-top: 18% !important');
+                         $('.subheaderheightOne').attr('style', 'height: 150px !important');
+                         $('.UserAccountProfileImage .patProfileImage').attr('style', 'margin-top: 45% !important');
+                         $('.UserAccountProfileImage img').attr('style', 'margin-top: 45% !important');
+
                        }
                        else if($rootScope.is_iPadDeviceWidth >= 321 && $rootScope.is_iPadDeviceWidth <= 365)
                            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 25% !important');
                        else if($rootScope.is_iPadDeviceWidth >= 366 && $rootScope.is_iPadDeviceWidth <= 375)
                            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
-
                        else if($rootScope.is_iPadDeviceWidth >= 376 && $rootScope.is_iPadDeviceWidth <= 414)
                            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 25% !important');
+                       else if($rootScope.is_iPadDeviceWidth >= 415 && $rootScope.is_iPadDeviceWidth <= 767)
+                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 35% !important');
                        else if($rootScope.is_iPadDeviceWidth >= 768 && $rootScope.is_iPadDeviceWidth <= 1024)
                            $('.userlistAccountHome-ios5').attr('style', 'margin-top: -20% !important');
                        else
@@ -9366,8 +9373,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         if(scheduledListData.status != 71) {
                   $rootScope.AppointScheduleTime = '';
                   $rootScope.appointmentsPatientId = '';
-                  $rootScope.schedulemobile = scheduledListData.participants[1].person.phones[0].value;
-                 // $rootScope.schedulemobile = scheduledListData.where;
+                  // $rootScope.schedulemobile = scheduledListData.participants[1].person.phones[0].value;
+                 $rootScope.schedulemobile = scheduledListData.where;
                   $rootScope.scheduledListDatas = scheduledListData;
                   $rootScope.appointmentwaivefee = scheduledListData.waiveFee;
                   var currentTime = $rootScope.scheduledListDatas.scheduledTime;

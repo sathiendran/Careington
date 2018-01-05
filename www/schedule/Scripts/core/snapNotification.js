@@ -24,7 +24,7 @@
                 templates: [
                 {
                     type: "error",
-                    template: "<div class='snapError' style='width:73%' ><span class='icon_warning'></span><h3>Error:</h3><p> #= content # </p></div>"
+                    template: "<div class='snapError' style='width:73%' ><span class='icon_warning'></span><span class='localizejs'><h3>Error:</h3></span><p class='localizejs'> #= content # </p></div>"
                 }
 
                 ],
@@ -47,7 +47,7 @@
             autoHideAfter: 100000,
             hideOnClick: false,
             button: true,
-          
+
             templates: [{
                 type: "confirmation",
                 template: "<div class='snapInfo'><span class='icon_new'></span><h3>Confirmation:</h3><p> #= content # </p></div>" +
@@ -67,7 +67,7 @@
             autoHideAfter: 0,
             hideOnClick: false,
             button: true,
-          
+
             templates: [{
                 type: "error",
                 template: "<div class='snapError' style='width:73%'><span class='icon_warning'></span><h3>Error:</h3><p> #= content # </p></div>" +
@@ -137,7 +137,7 @@
                 notificationGlobal.show(msg, type);
             };
         })();
-	
+
         var notificationWithCheckBox = $("<span>").kendoNotification({
             pinned: true,
             position: {
@@ -165,7 +165,7 @@
             showSnapNotification(message, "info");
             $(".snapInfo .icon_circle-with-cross").remove();
             $(".snapInfo").prepend("<span class='icon_circle-with-cross></span>");
-          
+
         };
         this.announcement = function (message) {
             showSnapNotification(message, "announcement");
@@ -189,12 +189,12 @@
             $(".snapSuccess .icon_circle-with-cross").remove();
             $(".snapSuccess").prepend("<span class='icon_circle-with-cross' ></span>");
         };
-       
+
        this.confirmationWithClb = function(opt) {
             if(opt.templateType === "confirmation") {
-                confirmationGlobal.show(opt.msg, "confirmation");    
+                confirmationGlobal.show(opt.msg, "confirmation");
             } else if(opt.templateType === "error") {
-                erorrWithConfirmationGlobal.show(opt.msg, "error");    
+                erorrWithConfirmationGlobal.show(opt.msg, "error");
             }
 
             var s = ".k-notification-" + opt.templateType;
@@ -222,7 +222,7 @@
             $yesBth.text(opt.yesText ? opt.yesText : "Yes");
             $noBth.text(opt.noText ? opt.noText : "No");
         };
-       
+
         this.confirmationWithCallbacks = function(msg, yesCallback, noCallback, yesText, noText) {
             this.confirmationWithClb({
                 msg: msg,

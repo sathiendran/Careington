@@ -171,7 +171,8 @@ angular.element(document).ready(function () {
                  $rootScope.scheduledListDatas = scheduledListData;
                  $rootScope.appointPreviousPage = 'tab.appointmentpatientdetails';
                  $rootScope.appointmentwaivefee = scheduledListData.waiveFee;
-                 $rootScope.schedulemobile = scheduledListData.participants[1].person.phones[0].value;
+                 // $rootScope.schedulemobile = scheduledListData.participants[1].person.phones[0].value;
+                 $rootScope.schedulemobile = scheduledListData.where;
                  var currentTime = $rootScope.scheduledListDatas.scheduledTime;
                  var getMinsExtraTime = $scope.addMinutes(currentTime, 30);
                  var getEnterTime = new Date();

@@ -1451,7 +1451,7 @@ $rootScope.editremovemodal = function () {
         }*/
 
         $scope.addressEditSave = function(){
-          $scope.addNewDependent.homeadd =  document.getElementById('fullAddress').innerHTML;
+          $scope.addNewDependent.homeadd =  document.getElementById('fullAddress').value;
 	        var stateObj  = '';
           var countryFetch  = '';
           var countryCodeFetch  = '';
@@ -1565,10 +1565,10 @@ $rootScope.editremovemodal = function () {
             }
 
             if(fullAddressCombo.length != 0 && fullAddressCombo!=', ' && fullAddressCombo !=',' )
-                            document.getElementById('fullAddress').innerHTML = fullAddressCombo;
+                            document.getElementById('fullAddress').value = fullAddressCombo;
             if(fullAddressCombo.length == 0 || fullAddressCombo == ', ' || fullAddressCombo ==',' )
-                            // document.getElementById('fullAddress').innerHTML = "Please enter address";
-                            document.getElementById('fullAddress').innerHTML = $rootScope.defaultAddressText;
+                            // document.getElementById('fullAddress').value = "Please enter address";
+                            document.getElementById('fullAddress').value = $rootScope.defaultAddressText;
         }
 
 /*
@@ -1613,13 +1613,13 @@ $rootScope.editremovemodal = function () {
             }).then(function (modal) {
                 $scope.modal = modal;
                 $scope.modal.show().then(function () {
-                document.getElementById('fullAddress').innerHTML = $scope.addNewDependent.homeadd;
+                document.getElementById('fullAddress').value = $scope.addNewDependent.homeadd;
                 document.getElementById('country').value = $scope.Country;
                 if($scope.state1 == undefined)
                     $scope.state1 = '';
                 if($scope.State == undefined)
                     $scope.State = '';
-                $scope.oldfullAddress =  document.getElementById('fullAddress').innerHTML;
+                $scope.oldfullAddress =  document.getElementById('fullAddress').value;
                 $scope.oldroute =  document.getElementById('txtPlaces').value;
                 $scope.oldaddress2 = document.getElementById('address2').value;
                 $scope.oldCity = document.getElementById('city').value;
@@ -1665,7 +1665,7 @@ $rootScope.editremovemodal = function () {
                     $scope.vsPlace = place;
                     for(var k = 0; k < place.address_components.length; k++){
                             if(place.address_components[k].types.indexOf("route") >= 0){
-                                $scope.route = place.address_components[k].long_name;
+                                $scope.route = place.address_components[k].short_name;
                             }
                             if(place.address_components[k].types.indexOf("sublocality_level_1") >= 0){
                                 $scope.sublocality1 = place.address_components[k].long_name;
@@ -1681,6 +1681,7 @@ $rootScope.editremovemodal = function () {
                             }
                             if(place.address_components[k].types.indexOf("administrative_area_level_1") >= 0){
                                 $scope.State = place.address_components[k].long_name;
+                                $scope.StateCode = place.address_components[k].short_name;
                             }
                             if(place.address_components[k].types.indexOf("country") >= 0){
                                 $scope.Country = place.address_components[k].short_name;
@@ -1707,7 +1708,7 @@ $rootScope.editremovemodal = function () {
                         document.getElementById('country').value = $scope.Country;
                         $scope.imageName = 'images/countries/flags/'+$scope.Country+'-32.png';
                         if($scope.State != '')
-                            var state = $scope.State;
+                            var state = $scope.StateCode;
                         if($scope.state1 != '')
                             var state = $scope.state1;
                         var txtPlaces = $scope.route;
@@ -1737,10 +1738,10 @@ $rootScope.editremovemodal = function () {
                              }
                         }
                         if(fullAddressCombo.length != 0 && fullAddressCombo!=', ' && fullAddressCombo !=',' )
-                            document.getElementById('fullAddress').innerHTML = fullAddressCombo;
+                            document.getElementById('fullAddress').value = fullAddressCombo;
                         if(fullAddressCombo.length == 0 || fullAddressCombo ==', ' || fullAddressCombo ==',' )
-                            // document.getElementById('fullAddress').innerHTML = "Please enter address";
-                           document.getElementById('fullAddress').innerHTML = $rootScope.defaultAddressText;
+                            // document.getElementById('fullAddress').value = "Please enter address";
+                           document.getElementById('fullAddress').value = $rootScope.defaultAddressText;
 
                 });
              } // fillAddress closed

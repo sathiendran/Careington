@@ -7,7 +7,6 @@ angular.module('starter.controllers')
             $rootScope.defaultAddressText = 'Please enter address';
           }
 
-
           $('#localize-langs').click(function() {
              var isLang = $('#localize-langs .activated').text();
              console.log("isLang isssss is== "+isLang);
@@ -596,15 +595,15 @@ angular.module('starter.controllers')
         }*/
 
         $scope.addressEditSave = function(){
-          //if(document.getElementById('fullAddress').innerHTML != 'Please enter address' )
-          if(document.getElementById('fullAddress').innerHTML != $rootScope.defaultAddressText )
+          //if(document.getElementById('fullAddress').value != 'Please enter address' )
+          if(document.getElementById('fullAddress').value != $rootScope.defaultAddressText )
           {
     		      var stateObj  = '';
               var countryFetch  = '';
               var countryCodeFetch  = '';
               var stateCodeFetch  = '';
-              $scope.regStep1.homeadd =  document.getElementById('fullAddress').innerHTML;
-             // $scope.route = document.getElementById('txtPlaces').value;
+              $scope.regStep1.homeadd =  document.getElementById('fullAddress').value;
+              $scope.route = document.getElementById('txtPlaces').value;
               $scope.address2 = document.getElementById('address2').value;
               $scope.City = document.getElementById('city').value;
 
@@ -718,10 +717,10 @@ angular.module('starter.controllers')
             }
 
             if(fullAddressCombo.length != 0 && fullAddressCombo!=', ' && fullAddressCombo !=',' )
-                            document.getElementById('fullAddress').innerHTML = fullAddressCombo;
+                            document.getElementById('fullAddress').value = fullAddressCombo;
             if(fullAddressCombo.length == 0 || fullAddressCombo == ', ' || fullAddressCombo ==',' )
-                            document.getElementById('fullAddress').innerHTML = $rootScope.defaultAddressText;
-                            //document.getElementById('fullAddress').innerHTML = "Please enter address";
+                            document.getElementById('fullAddress').value = $rootScope.defaultAddressText;
+                            //document.getElementById('fullAddress').value = "Please enter address";
         }
 
 
@@ -768,13 +767,13 @@ angular.module('starter.controllers')
                     AddrText  = document.getElementById('regaddress').value;
                   }
 
-                document.getElementById('fullAddress').innerHTML = AddrText;
+                document.getElementById('fullAddress').value = AddrText;
                 document.getElementById('country').value = $scope.Country;
                 if($scope.state1 == undefined)
                     $scope.state1 = '';
                 if($scope.State == undefined)
                     $scope.State = '';
-                  $scope.oldfullAddress =  document.getElementById('fullAddress').innerHTML;
+                  $scope.oldfullAddress =  document.getElementById('fullAddress').value;
                   $scope.oldroute =  document.getElementById('txtPlaces').value;
                   $scope.oldaddress2 = document.getElementById('address2').value;
                   $scope.oldCity = document.getElementById('city').value;
@@ -829,7 +828,7 @@ angular.module('starter.controllers')
                     $scope.vsPlace = place;
                     for(var k = 0; k < place.address_components.length; k++){
                             if(place.address_components[k].types.indexOf("route") >= 0){
-                                $scope.route = place.address_components[k].long_name;
+                                $scope.route = place.address_components[k].short_name;
                             }
                             if(place.address_components[k].types.indexOf("sublocality_level_1") >= 0){
                                 $scope.sublocality1 = place.address_components[k].long_name;
@@ -845,6 +844,7 @@ angular.module('starter.controllers')
                             }
                             if(place.address_components[k].types.indexOf("administrative_area_level_1") >= 0){
                                 $scope.State = place.address_components[k].long_name;
+                                $scope.StateCode = place.address_components[k].short_name;
                             }
                             if(place.address_components[k].types.indexOf("country") >= 0){
                                 $scope.Country = place.address_components[k].short_name;
@@ -858,7 +858,7 @@ angular.module('starter.controllers')
                                 }
                             }
                         }
-                        //document.getElementById('txtPlaces').value = $scope.route;
+                        document.getElementById('txtPlaces').value = $scope.route;
                         document.getElementById('city').value = $scope.City;
                         document.getElementById('address2').value = '';
                         var element =  document.getElementById('state');
@@ -871,7 +871,7 @@ angular.module('starter.controllers')
                         document.getElementById('country').value = $scope.Country;
                         $scope.imageName = 'images/countries/flags/'+$scope.Country+'-32.png';
                         if($scope.State != '')
-                            var state = $scope.State;
+                            var state = $scope.StateCode;
                         if($scope.state1 != '')
                             var state = $scope.state1;
                         var txtPlaces = $scope.route;
@@ -902,10 +902,10 @@ angular.module('starter.controllers')
                              }
                         }
                         if(fullAddressCombo.length != 0 && fullAddressCombo!=', ' && fullAddressCombo !=',' )
-                            document.getElementById('fullAddress').innerHTML = fullAddressCombo;
+                            document.getElementById('fullAddress').value = fullAddressCombo;
                         if(fullAddressCombo.length == 0 || fullAddressCombo ==', ' || fullAddressCombo ==',' )
-                            document.getElementById('fullAddress').innerHTML = $rootScope.defaultAddressText;
-                            //document.getElementById('fullAddress').innerHTML = "Please enter address";
+                            document.getElementById('fullAddress').value = $rootScope.defaultAddressText;
+                            //document.getElementById('fullAddress').value = "Please enter address";
 
                 });
 

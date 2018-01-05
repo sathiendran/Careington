@@ -123,12 +123,14 @@ angular.module('starter.controllers')
           LoginService.getUserTimezone(params);
       }
 
+
         this.initSnapVars = function() {
             // snap.baseUrl = "https://emerald.snap-qa.com";
             snap.userSession = JSON.parse($window.localStorage.getItem("snap_user_session"));
             snap.profileSession = JSON.parse($window.localStorage.getItem("snap_patientprofile_session"));
             snap.hospitalSession = JSON.parse($window.localStorage.getItem("snap_hospital_session"));
             snap.hospitalSettings = JSON.parse($window.localStorage.getItem("snap_hospital_settings"));
+            $rootScope.brandName = snap.hospitalSession.brandName;
             $rootScope.doGetUserTimezone();
         }
         $('.appoitEditPop').css('background-color', brandColor);
