@@ -2687,10 +2687,10 @@ $rootScope.checkAndChangeMenuIcon = function() {
                         $rootScope.Validation($scope.ErrorMessage);
                     } else {
                         $scope.tokenStatus = 'alert-success';
-                        $rootScope.doGetActiveSession();
-                        $scope.doGetUserTimezone();
-                        $scope.doGetCodesSet();
-                        $scope.chkPatientFilledAllRequirements();
+                        $scope.getPatDetailsForSession();
+                        // $scope.doGetUserTimezone();
+                        // $scope.doGetCodesSet();
+                        // $scope.chkPatientFilledAllRequirements();
                     }
                     window.localStorage.setItem('rootScope', angular.fromJson($rootScope));
                 },
@@ -3317,6 +3317,31 @@ $rootScope.checkAndChangeMenuIcon = function() {
             }
         };
         LoginService.getPrimaryPatientLastName(params);
+    }
+    $scope.getPatDetailsForSession = function() {
+      $rootScope.primaryPatSSDetails = '';
+      $rootScope.currentPatientDetails = '';
+        var params = {
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+                $rootScope.currentPatientDetails = data.data[0];
+                $rootScope.doGetActiveSession();
+            },
+            error: function(data, status) {
+                $('#loginPwdVerify').hide();
+                $('#loginPwd').show();
+                if (status === 0) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503) {
+                    $scope.callServiceUnAvailableError();
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+
+        LoginService.getPatientFilledAllRequirements(params);
     }
 
     $scope.chkPatientFilledAllRequirements = function() {
@@ -6795,7 +6820,10 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                accessToken: $rootScope.accessToken,
                success: function(data) {
                  $rootScope.sessPopup = false;
-                 $rootScope.doGetPatientProfiles();
+                 $scope.doGetUserTimezone();
+                 $scope.doGetCodesSet();
+                 $scope.chkPatientFilledAllRequirements();
+                // $rootScope.doGetPatientProfiles();
                  $rootScope.sessionConsultConnection = $.hubConnection();
                  $rootScope.sessionRoomConHub = $rootScope.sessionConsultConnection.createHubProxy('sessionLimiterHub');
                  $rootScope.sessionConsultConnection.url = $rootScope.APICommonURL + "/api/signalR/";
@@ -6944,6 +6972,9 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                       $rootScope.sessPopup = true;
                       $scope.getLogoutPopup();
                   } else {
+                    $scope.doGetUserTimezone();
+                    $scope.doGetCodesSet();
+                    $scope.chkPatientFilledAllRequirements();
                     // $scope.doGetScheduleconsultDetails();
                   }
                 },
