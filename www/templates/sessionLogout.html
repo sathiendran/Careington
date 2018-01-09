@@ -1,12 +1,12 @@
 <div class="" >
    <h2 class="loc-content localizejs" >
-     <div class="userpic userpic--white-border userpic--main-nav sessionUserPic" ng-bind-html="drawImageSS(PatientImage,primaryPatientName,primaryPatientLastName)"
+     <div class="userpic userpic--white-border userpic--main-nav sessionUserPic" ng-bind-html="drawImageSS(currentPatientDetails.profileImage,currentPatientDetails.firstName,currentPatientDetails.lastName)"
          style="border: 2px #fff solid;">
      </div>
 
      <div class="user-info__sessionText">
          <div class="user-info__sessionName">
-             <span class="user-info__fname">{{primaryPatientName}} {{primaryPatientLastName}} </span>
+             <span class="user-info__fname">{{currentPatientDetails.firstName}} {{currentPatientDetails.lastName}} </span>
          </div>
      </div>
    </h2>
