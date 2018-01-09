@@ -4287,6 +4287,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
                          if ($rootScope.currState.$current.name === "tab.consultCharge") {
                              $rootScope.enableAddHealthPlan = "block";
                              $rootScope.disableAddHealthPlan = "none;";
+                             $rootScope.editplan = "block";
+                             $rootScope.planchange();
                          } else if ($rootScope.currState.$current.name === "tab.planDetails") {
                              $rootScope.disableAddHealthPlan = "none";
                              $rootScope.enableAddHealthPlan = "block";
@@ -4528,7 +4530,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
     });
 $rootScope.planchange = function(){
       var insplan = $('#addHealthPlan').val();
-      if( insplan != 'Choose Your Health Plan'){
+      if( insplan != 'Choose Your Health Plan' && insplan.indexOf("undefined") == -1){
        $rootScope.editplan ="block";
      } else{
        $rootScope.editplan ="none";
@@ -8932,10 +8934,17 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
                 }
             }
-            $rootScope.providerName = '';
-            $rootScope.PolicyNo = '';
-            $rootScope.healthPlanID = '';
-            $rootScope.NewHealth = '';
+            
+            if($rootScope.P_Id != P_Id)
+            {
+                $rootScope.providerName = '';
+                $rootScope.PolicyNo = '';
+                $rootScope.healthPlanID = '';
+                $rootScope.NewHealth = '';
+            }
+
+            $rootScope.P_Id = P_Id;
+            
         }
 
         $rootScope.updatedPatientImagePath = '';

@@ -1590,6 +1590,11 @@ angular.module('starter.controllers')
                             if ($rootScope.currState.$current.name === "tab.consultCharge") {
                                 $rootScope.enableAddHealthPlan = "block";
                                 $rootScope.disableAddHealthPlan = "none;";
+                                if($rootScope.chooseHealthShow == 'initial')
+                                    $rootScope.editplan = "block";
+                                else
+                                    $rootScope.editplan = "none";
+                                    
                             } else if ($rootScope.currState.$current.name === "tab.planDetails") {
                                 $rootScope.disableAddHealthPlan = "none";
                                 $rootScope.enableAddHealthPlan = "block";
@@ -1737,10 +1742,12 @@ angular.module('starter.controllers')
                             $rootScope.verifyPlanMode = "none";
                             $rootScope.consultChargeNoPlanPage = "none";
                             $rootScope.healthPlanPage = "block";
-                            $rootScope.chooseHealthHide = 'initial';
-                            $rootScope.chooseHealthShow = 'none';
-                            $rootScope.providerName = "";
-                            $rootScope.PolicyNo = "";
+                          //  $rootScope.chooseHealthHide = 'initial';
+                          //  $rootScope.chooseHealthShow = 'none';
+                            $rootScope.chooseHealthHide = 'none';
+                            $rootScope.chooseHealthShow = 'initial';
+                          //  $rootScope.providerName = "";
+                          //  $rootScope.PolicyNo = "";
                             if ($rootScope.getIndividualPatientCreditCount === 0 && $rootScope.getIndividualPatientCreditCount !== '') {
                                 if (typeof $rootScope.userDefaultPaymentProfile === "undefined" || $rootScope.userDefaultPaymentProfile === null) {
                                     $('#addNewCard').val('Choose Your Card');
