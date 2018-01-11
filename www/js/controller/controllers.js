@@ -887,6 +887,9 @@ $rootScope.checkAndChangeMenuIcon = function() {
       $rootScope.registedPwd =  '';
       $rootScope.PatientIdentifiers = '';
       $rootScope.PatientidupdateList = '';
+      if(typeof $scope.modal != 'undefined' &&  $scope.modal != '') {
+            $scope.modal.remove();
+      }
       $rootScope.sessionConsultConnection.start().done(function() {
         $rootScope.sessionRoomConHub.invoke('LogoutUser');
         // alert('hhh');
@@ -8745,11 +8748,11 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             } else if (status === cordova.plugins.diagnostic.permissionStatus.DENIED) {
                 cordova.plugins.diagnostic.requestMicrophoneAuthorization(function(status) {
                     if (status === cordova.plugins.diagnostic.permissionStatus.DENIED) {
-                        $scope.settingsMessage = "This app requires camera and microphone access to function properly.";
+                        $scope.settingsMessage = "This app requires camera and microphone access in order to conduct audio/video consultations.";
                         $scope.titeName = 'Would Like to Access the Camera and Microphone';
                         onMicroPhoneAuthorizationDenied();
                     } else {
-                        $scope.settingsMessage = "This app requires camera access to function properly.";
+                        $scope.settingsMessage = "This app requires camera access in order to conduct audio/video consultations.";
                         $scope.titeName = 'Would Like to Access the Camera';
                         onMicroPhoneAuthorizationDenied();
                     }
@@ -8758,7 +8761,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 cordova.plugins.diagnostic.requestMicrophoneAuthorization(function(status) {
                     if (status === cordova.plugins.diagnostic.permissionStatus.DENIED) {
                         $scope.titeName = 'Would Like to Access the Microphone';
-                        $scope.settingsMessage = "This app requires microphone access to function properly.";
+                        $scope.settingsMessage = "This app requires microphone access in order to conduct audio/video consultations.";
                         onMicroPhoneAuthorizationDenied();
                     } else { //authorized
                         $window.localStorage.setItem('FlagForCheckingAuthorization', 'Authorized');
@@ -8934,7 +8937,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
                 }
             }
-            
+
             if($rootScope.P_Id != P_Id)
             {
                 $rootScope.providerName = '';
@@ -8944,7 +8947,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             }
 
             $rootScope.P_Id = P_Id;
-            
+
         }
 
         $rootScope.updatedPatientImagePath = '';

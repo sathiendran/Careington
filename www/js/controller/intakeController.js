@@ -203,6 +203,9 @@ angular.module('starter.controllers')
                 $rootScope.chkSSPageEnter = false;
                 $ionicSideMenuDelegate.toggleLeft();
             }
+            if(typeof $scope.modal != 'undefined' &&  $scope.modal != '') {
+                  $scope.modal.remove();
+            }
             $rootScope.registedPwd =  '';
             $rootScope.PatientIdentifiers = '';
             $rootScope.PatientidupdateList = '';
@@ -1594,7 +1597,7 @@ angular.module('starter.controllers')
                                     $rootScope.editplan = "block";
                                 else
                                     $rootScope.editplan = "none";
-                                    
+
                             } else if ($rootScope.currState.$current.name === "tab.planDetails") {
                                 $rootScope.disableAddHealthPlan = "none";
                                 $rootScope.enableAddHealthPlan = "block";

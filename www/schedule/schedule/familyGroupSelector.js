@@ -2085,7 +2085,7 @@
                 this.save = function () {
                     this.set("isLoading", true);
                     this.set("isError", false);
-                    
+
                     var that = this;
                     var promise = $appointmentService.saveAppointment(this.getOptions());
                     promise.done(function () {
@@ -2603,7 +2603,8 @@
                             infinite: false,
                             variableWidth: true,
                             slidesToShow: 1,
-                            slidesToScroll: 2,
+                          //  slidesToScroll: 2,
+													   slidesToScroll: 1,
                             draggable: false,
                             easing: 'ease',
                             prevArrow: '<button type="button" class="slick-prev"><span class="icon_chevron-thin-left"></span></button>',
@@ -2660,7 +2661,8 @@
                             infinite: false,
                             variableWidth: true,
                             slidesToShow: 1,
-                            slidesToScroll: 2,
+                          //  slidesToScroll: 2,
+													slidesToScroll: 1,
                             draggable: false,
                             easing: 'ease',
                             prevArrow: '<button type="button" class="slick-prev"><span class="icon_chevron-thin-left"></span></button>',
