@@ -8758,7 +8758,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     }
                 })
             } else {
-                cordova.plugins.diagnostic.requestMicrophoneAuthorization(function(status) {
+                $scope.GetLoginFunctionDetails();
+                /*cordova.plugins.diagnostic.requestMicrophoneAuthorization(function(status) {
                     if (status === cordova.plugins.diagnostic.permissionStatus.DENIED) {
                         $scope.titeName = 'Would Like to Access the Microphone';
                         $scope.settingsMessage = "This app requires microphone access in order to conduct audio/video consultations.";
@@ -8775,7 +8776,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     }
                 }, function() {
 
-                })
+                })*/
             }
         }, function() {
 
