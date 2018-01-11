@@ -1091,7 +1091,8 @@
                 };
 
                 this.slickFooter = function () {
-
+                  // var slidesToScroll = window.innerWidth < 768 ? 1 : 2;
+                   var slidesToScroll = 1;
                     // 1. Work with grid view.
                     var footer = $("#card_" + this.vm_cardId).find('.js-footer-slider');
 
@@ -1099,7 +1100,7 @@
                         infinite: false,
                         variableWidth: true,
                         slidesToShow: 1,
-                        slidesToScroll: 3,
+                        slidesToScroll: slidesToScroll,
                         draggable: false,
                         easing: 'ease',
                         prevArrow: '<button type="button" class="slick-prev"><span class="icon_chevron-thin-left"></span></button>',
@@ -1461,7 +1462,7 @@
             }
 
 
-            var initialScreenSize = window.innerHeight; 
+            var initialScreenSize = window.innerHeight;
             window.addEventListener("resize", function() {
                if(window.innerHeight < initialScreenSize){
                     $(".notification-bar--provider-search").css("display","none");
@@ -1469,14 +1470,14 @@
                     //$(".header__patient-ss").css("display","none");
                     //$(".header__patient-ss").hide();
                     //$(".menu-toggle").css("display","none");
-                  $("footer1").hide(); 
-               } else{ 
+                  $("footer1").hide();
+               } else{
                    // $(".notification-bar--provider-search").css("display","display");
                     //$(".menu-toggle").css("display","block");
                     $(".notification-bar--provider-search").css("display","");
                     $(".notification-bar--dialogbox").css("display","");
                    // $(".header__patient-ss").show();
-                   $("footer1").show(); 
+                   $("footer1").show();
                }
              });
 

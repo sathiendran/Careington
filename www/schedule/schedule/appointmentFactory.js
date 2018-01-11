@@ -458,8 +458,8 @@ this._checkPatient = function(patient, data) {
 
 
                 this.save = function () {
-                    
-                    
+
+
                     this.set("isLoading", true);
                     this.set("isError", false);
 
@@ -999,7 +999,8 @@ this.vm_isNew = function () {
                             infinite: false,
                             variableWidth: true,
                             slidesToShow: 1,
-                            slidesToScroll: 2,
+                          //  slidesToScroll: 2,
+                          slidesToScroll: 1,
                             draggable: false,
                             easing: 'ease',
                             prevArrow: '<button type="button" class="slick-prev"><span class="icon_chevron-thin-left"></span></button>',
@@ -1056,7 +1057,8 @@ this.vm_isNew = function () {
                             infinite: false,
                             variableWidth: true,
                             slidesToShow: 1,
-                            slidesToScroll: 2,
+                        //    slidesToScroll: 2,
+                            slidesToScroll: 1,
                             draggable: false,
                             easing: 'ease',
                             prevArrow: '<button type="button" class="slick-prev"><span class="icon_chevron-thin-left"></span></button>',
