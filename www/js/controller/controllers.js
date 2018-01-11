@@ -8755,7 +8755,14 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     }
                 })
             } else {
-                $scope.GetLoginFunctionDetails();
+                
+                if (getCurrentFuncName === 'GeneralLoginFun') {
+                            $scope.GetLoginFunctionDetails();
+                        } else if (getCurrentFuncName === 'SingleFuncLogin') {
+                            $scope.GetSingleLoginDetailsFOrCheckingMic();
+                        } else if(getCurrentFuncName === "SearchProvidePage") {
+                              $scope.chkSearchProviderPage($rootScope.LogCurrentPage);
+                        }
                 /*cordova.plugins.diagnostic.requestMicrophoneAuthorization(function(status) {
                     if (status === cordova.plugins.diagnostic.permissionStatus.DENIED) {
                         $scope.titeName = 'Would Like to Access the Microphone';
