@@ -40972,6 +40972,7 @@ only screen and (min-width: 541px) {
     line-height: 38px;
     padding: 3px 40px 3px 5px !important;
     padding-right: 40px;
+    text-indent: inherit;
     text-overflow: ellipsis;
     background-color: transparent !important;
     font-family: "GloberRegular", "Helvetica Neue", Helvetica, Arial, Sans-Serif

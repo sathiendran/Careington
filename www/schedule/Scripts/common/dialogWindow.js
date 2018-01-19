@@ -105,8 +105,8 @@
                 }
 
                 function resizeEventListener() {
-                    window.console.log("resizeEventListener");
-
+                    window.console.log("resizeEventListener123");
+                    //$(".k-animation-container").css("display", "none");
                     // Kendo has problem with center recalculation.
                     // Sometimes it do not correctly calculate center at first time.
                     rCenter(150, 3);

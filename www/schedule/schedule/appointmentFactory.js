@@ -32,7 +32,7 @@
 
             this.dialogContainer = null;
             var fact = this;
-
+$("#localize-widget").hide();
             var encounterTypeCodes = snap.enums.EncounterTypeCode;
 
             var phoneTypeEnum = snap.resolveObject("snap.enums.PhoneTypes");
@@ -682,7 +682,7 @@ this._checkPatient = function(patient, data) {
                     $snapNotification.hideAllConfirmations();
 
                     $patientSelfSchedulingHub.unlockSlot(this.availabilityBlockId, this.start, this.end);
-
+                    //$("#localize-widget").hide();
                     this.preventDefault();
                 };
 
@@ -874,6 +874,11 @@ this.vm_isNew = function () {
 
                 this.vm_expandAddNotes = function(){
                     this.set("vm_isAddNotesExpanded", !this.vm_isAddNotesExpanded);
+                   /*window.setTimeout(function () {
+                    alert("enter");
+                        $('.dialogbox-master__wrapper').animate({scrollTop : 1000},900);
+                  }, 1000);*/
+
                 };
 
                 this.vm_onKeyUpAdditionalNotes = function () {

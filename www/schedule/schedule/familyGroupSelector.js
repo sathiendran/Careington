@@ -3,6 +3,17 @@
 	license: MIT
 	http://www.jacklmoore.com/autosize
 */
+    document.addEventListener("showkeyboard", function() {   
+            
+           alert("showkey");    
+
+       }, false);
+    
+       document.addEventListener("hidekeyboard", function() {
+              
+           alert("hidekey");
+               
+       }, false);
 (function (global, factory) {
 	if (typeof define === 'function' && define.amd) {
 		define(['exports', 'module'], factory);

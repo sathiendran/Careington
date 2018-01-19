@@ -4533,11 +4533,15 @@ $rootScope.checkAndChangeMenuIcon = function() {
     });
 $rootScope.planchange = function(){
       var insplan = $('#addHealthPlan').val();
-      if( insplan != 'Choose Your Health Plan' && insplan.indexOf("undefined") == -1){
-       $rootScope.editplan ="block";
-     } else{
-       $rootScope.editplan ="none";
-     }
+      if(insplan != undefined)
+      {
+        if( insplan != 'Choose Your Health Plan' && insplan.indexOf("undefined") == -1){
+           $rootScope.editplan ="block";
+         } else{
+           $rootScope.editplan ="none";
+         }
+      }
+      
    }
  $scope.editinsurance = function(){
    var ponum = $("#addHealthPlan").val();

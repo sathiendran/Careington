@@ -39,7 +39,8 @@ angular.module('starter.controllers')
                 navigator.app.backHistory();
             }
         }, 100);
-$("#localize-widget").show();
+//$("#localize-widget").show();
+$("#localize-widget").hide();
         $scope.data = {};
         $scope.$watch('data.searchProvider', function(searchKey) {
             $rootScope.providerSearchKey = searchKey;

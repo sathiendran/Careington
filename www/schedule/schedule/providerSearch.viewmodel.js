@@ -33,7 +33,7 @@
             $patientResponseAddressDialog,
             $dialogWindow,
             $locationHelper) {
-
+$("#localize-widget").hide();
             var scope = this,
                 isFooterActive = true,
                 isContentActive = false;
