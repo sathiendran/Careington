@@ -381,6 +381,21 @@ angular.module('starter.controllers')
                     $rootScope.existingConsultationReport = data.data[0].details[0];
                     $rootScope.existconsultationparticipants = data.data[0].participants;
                     $rootScope.existconsultationprescriptions = data.data[0].prescriptions;
+                    var ageFormat = '';
+                    if($rootScope.existingConsultationReport.age.years > 0)
+                    {
+                      ageFormat += $rootScope.existingConsultationReport.age.years+'y'+' ';
+                    }
+                    if($rootScope.existingConsultationReport.age.months > 0)
+                    {
+                       ageFormat += $rootScope.existingConsultationReport.age.months+'m'+' ';
+                    }
+                    if($rootScope.existingConsultationReport.age.days > 0)
+                    {
+                      ageFormat += $rootScope.existingConsultationReport.age.days+'d';
+                    }
+                    $rootScope.existingConsultationReport.ageFormat = ageFormat;
+
                     if ($rootScope.existingConsultationReport.height !== '' && typeof $rootScope.existingConsultationReport.height !== 'undefined') {
                         if ($rootScope.existingConsultationReport.heightUnit !== '' && typeof $rootScope.existingConsultationReport.heightUnit !== 'undefined') {
                             $rootScope.reportHeight = $rootScope.existingConsultationReport.height + " " + $rootScope.existingConsultationReport.heightUnit;

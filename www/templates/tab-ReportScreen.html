@@ -91,7 +91,7 @@
                                     <span class="pc-report__data-list-title localizejs" style="
     width: 100%;
 ">AGE</span>
-                                    <span class="pc-report__data-list-desc">{{existingConsultationReport.dob  | ageFilter}}</span>
+                                    <span class="pc-report__data-list-desc">{{existingConsultationReport.ageFormat}}</span>
                                 </div>
                             </div>
                             <div class="pc-report__data-list">
@@ -529,7 +529,7 @@
                        <div ng-if="userReportDOB >= 1" class="pc-report__table-row pc-report__table-row--50x50-qa" >None Reported</div> -->
                      <!--// medical history -->
 
-<div ng-if="userReportDOB <= 1">
+<div ng-if="userReportDOB < 1">
                      <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin localizejs"><span class="localizejs">Birth Info</span> <span class="pc-report__sub-section-child localizejs"><span class="localizejs">(Child < 1yr)</span></span></div>
 
                      <div class="pc-report__table-title pc-report__table-title--50x50-qa">

@@ -214,7 +214,6 @@ angular.module('starter.controllers')
       }
     }
 
-
     $scope.isPhysicianStartedConsultaion = false;
     $scope.waitingMsg = "The Provider will be with you shortly";
     var initWaitingRoomHub = function() {
