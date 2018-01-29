@@ -1058,6 +1058,28 @@ $rootScope.checkAndChangeMenuIcon = function() {
         refresh_close();
 
     }
+    $rootScope.DynamicValidation = function($errorMsg,$dynamicMsg) {
+        function refresh_close() {
+            $('.close').click(function() {
+                $(this).parent().fadeOut(200);
+            });
+        }
+        refresh_close();
+        if($errorMsg.length >= 50)
+        {
+          if($rootScope.is_iPadDeviceWidth <= 320) {
+              var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent" style="font-size: 16px !important;margin-top: -2px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+          } else {
+              var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent" style="font-size: 16px !important;margin-top: 6px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+          }
+        }else{
+              var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span> </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+        }
+        $("#notifications-top-center").remove();
+        $("#Error_Message").append(top);
+        refresh_close();
+
+    }
 
 
     $scope.$on("callServerErrorMessageValidation", function(event, args) {

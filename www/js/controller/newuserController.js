@@ -171,8 +171,9 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
               } else{
                 var Emailerror=data.message
                 if(Emailerror==="Email ID Already Registered"){
-                    $scope.ErrorMessage = "Patient already exists with email " + $scope.email;
-                    $rootScope.Validation($scope.ErrorMessage);
+                    $scope.ErrorMessage = "Patient already exists with email ";
+                    $scope.DynamicMessage = $scope.email;
+                    $rootScope.DynamicValidation($scope.ErrorMessage,$scope.DynamicMessage);
                 }else{
                     $rootScope.serverErrorMessageValidation();
                 }
