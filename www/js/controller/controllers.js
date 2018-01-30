@@ -5,7 +5,7 @@ var indexOf = [].indexOf || function(item) {
         return -1;
     }
     // request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
-    //request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
+    // request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
 var api_keys_env = '';
 var session = null;
 var publisher = null;
@@ -4354,6 +4354,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
                              $rootScope.editplan = "block";
                          } else if ($rootScope.currState.$current.name === "tab.ConsentTreat") {
                          //   $rootScope.planchange();
+                         $rootScope.enableAddHealthPlan = "none";
+                             $rootScope.disableAddHealthPlan = "block;";
                             $state.go('tab.consultCharge');
                              $rootScope.editplan = "none";
                         } else {

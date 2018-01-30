@@ -104,7 +104,7 @@
                         <span class="localizejs">Verify Health Plan</span>
                         </button>
                      </div>
-                     <div class="SkipToPaymentHealth" style="display: {{verifyPlanModeSkip}};" ng-if="appointmentwaivefee == true" >
+                     <div class="SkipToPaymentHealth" ng-if="appointmentwaivefee == true" >
                         <button class="button button-block button-royal cardSkipPayment" ng-click="showConsultChargeNoPlan(PatientImageSelectUser, PatientFirstName, PatientLastName, PatientAge, PatientGuardian, 'skipThis')" style="padding: 3px;" >
                         <span class="localizejs">Skip this</span>
                         </button>
@@ -130,6 +130,12 @@
                         <span class="localizejs"> Skip to Payment</span>
                         </button>
                      </div>
+                     <div class="SkipToPaymentHealth" ng-if="appointmentwaivefee == true" >
+                        <button class="button button-block button-royal cardSkipPayment" ng-click="showConsultChargeNoPlan(PatientImageSelectUser, PatientFirstName, PatientLastName, PatientAge, PatientGuardian, 'skipThis')" style="padding: 3px;" >
+                        <span class="localizejs">Skip this</span>
+                        </button>
+                     </div>
+
                      <div class="scheduled_appointments_text NoPlanBottomText" style="display: {{applyPlanMode}};"  >
                         <p class="localizejs">*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed</p>
                      </div>
