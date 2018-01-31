@@ -9624,6 +9624,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
               }else if(data.total > 0){
                 $rootScope.chkAvailabiltyOfSS = true;
               }
+              $scope.doGetSingleHospitalRegistrationInformation();
             },
             error: function(data,status) {
               if (status === 0) {
