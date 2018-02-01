@@ -77,7 +77,31 @@ angular.module('starter.controllers')
             console.log($rootScope.addressInfoFetch);
             console.log("currentPatientDetails");
             console.log($rootScope.currentPatientDetails);
+            $scope.fullAddressObj = [];
 
+
+          var res = new Object();
+          res['city'] = $rootScope.addressInfoFetch[0].addressObject.city;
+          res['country'] = $rootScope.addressInfoFetch[0].addressObject.country;
+          res['countryCode'] = $rootScope.addressInfoFetch[0].addressObject.countryCode;
+          res['line1'] = $rootScope.addressInfoFetch[0].addressObject.line1;
+          res['line2'] = $rootScope.addressInfoFetch[0].addressObject.line2;
+          res['postalCode'] = $rootScope.addressInfoFetch[0].addressObject.postalCode;
+          res['state'] = $rootScope.addressInfoFetch[0].addressObject.state;
+          res['stateCode'] = $rootScope.addressInfoFetch[0].addressObject.stateCode;
+          $scope.fullAddressObj = res;
+           /* $scope.fullAddressObj.city = $rootScope.addressInfoFetch[0].addressObject.city;
+            $scope.fullAddressObj.country = $rootScope.addressInfoFetch[0].addressObject.country;
+            $scope.fullAddressObj.countryCode = $rootScope.addressInfoFetch[0].addressObject.countryCode;
+            $scope.fullAddressObj.line1 = $rootScope.addressInfoFetch[0].addressObject.line1;
+            $scope.fullAddressObj.line2 = $rootScope.addressInfoFetch[0].addressObject.line2;
+            $scope.fullAddressObj.postalCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
+            $scope.fullAddressObj.state = $rootScope.addressInfoFetch[0].addressObject.state;
+            $scope.fullAddressObj.stateCode = $rootScope.addressInfoFetch[0].addressObject.stateCode;*/
+            
+            //delete $rootScope.addressInfoFetchModify['addressText'];
+            console.log('$scope.fullAddressObj');
+            console.log( $scope.fullAddressObj);
             $scope.route = $rootScope.addressInfoFetch[0].addressObject.line1;
             $scope.address2 = $rootScope.addressInfoFetch[0].addressObject.line2;
             $scope.City = $rootScope.addressInfoFetch[0].addressObject.city;
