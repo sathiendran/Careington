@@ -61,6 +61,8 @@
 
                     <div class="pc-report__company-info">
                         <h2 class="localizejs" style="width: 142px;">{{reportBrandName}}</h2>
+                        <p>{{reportHospitalAddress.split(',')[0]}}, {{reportHospitalAddress.split(',')[1]}}, {{reportHospitalAddress.split(',')[2]}},
+                           {{reportHospitalAddress.split(',')[3]}}, {{reportHospitalAddress.split(',')[4]}}, {{reportHospitalAddress.split(',')[5]}}</p>
                         <hr>
                         <h2 class="localizejs"ng-if="OrganizationLocation === 'on'"  style="color: #666;">Organization</h2>
                         <p class="localizejs" ng-if="OrganizationLocation === 'on'"> {{organization}}</p>
