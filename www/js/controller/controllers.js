@@ -335,7 +335,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
   var localizeCurrent = $('#localize-current').text();
 
-   if($( window ).width()<= 320) {
+   if($( window ).width()<= 375) {
         if(localizeCurrent == "Español") {
             $scope.whoNeedsText = "font-size:17px";
             $scope.consentTitleFont = "font-size:17px !important";
@@ -361,7 +361,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
        }
 
          $('#localize-langs').click(function() {
-            if($( window ).width()<= 320){
+            if($( window ).width()<= 375){
              var isLang = $('#localize-langs .activated').text();
                if(isLang == "Español") {
                    $("#whoNeedsTextval").css("font-size", "17px");
@@ -4565,7 +4565,7 @@ $rootScope.planchange = function(){
            $rootScope.editplan ="none";
          }
       }
-      
+
    }
  $scope.editinsurance = function(){
    var ponum = $("#addHealthPlan").val();
@@ -8786,7 +8786,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     }
                 })
             } else {
-                
+
                 if (getCurrentFuncName === 'GeneralLoginFun') {
                             $scope.GetLoginFunctionDetails();
                         } else if (getCurrentFuncName === 'SingleFuncLogin') {
