@@ -1816,6 +1816,7 @@ angular.module('starter.controllers')
                         edittextarea.removeClass('editdata');
                         edittextarea.addClass('textdata');
                     }
+                    $rootScope.doGetPrimaryPatientProfiles();
                 },
                 error: function (data, status) {
                     if (status === 400) {

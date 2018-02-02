@@ -670,7 +670,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -3297,6 +3297,169 @@ $rootScope.checkAndChangeMenuIcon = function() {
         LoginService.getPatientProfiles(params);
     }
 
+
+$rootScope.doGetPrimaryPatientProfiles = function() {
+        $rootScope.primaryPatientDetails = '';
+        $rootScope.patientInfomation = '';
+        $rootScope.patientAccount = '';
+        $rootScope.patientAddresses = '';
+        $rootScope.patientAnatomy = '';
+        $rootScope.patientPharmacyDetails = '';
+        $rootScope.patientPhysicianDetails = '';
+        $rootScope.encounterstate = '';
+        $rootScope.encountercountry = '';
+        $rootScope.encounterStateCode = '';
+        $rootScope.encounterCountryCode = '';
+        $rootScope.stateAddressesCode = '';
+        $rootScope.countryAddressCode = '';
+
+        var params = {
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+
+                $rootScope.primaryPatientDetails = [];
+                $rootScope.addressInfoFetch = [];
+                angular.forEach(data.data, function(index) {
+                    $rootScope.primaryPatientDetails.push({
+                        'account': angular.fromJson(index.account),
+                        'address': index.address,
+                        'addresses': angular.fromJson(index.addresses),
+                        'addressObject': angular.fromJson(index.addressObject),
+                        'anatomy': angular.fromJson(index.anatomy),
+                        'countryCode': index.countryCode,
+                        'createDate': index.createDate,
+                        'dob': index.dob,
+                        'gender': index.gender,
+                        'homePhone': index.homePhone,
+                        'lastName': index.lastName,
+                        'mobilePhone': index.mobilePhone,
+                        'patientName': index.patientName,
+                        'pharmacyDetails': index.pharmacyDetails,
+                        'physicianDetails': index.physicianDetails,
+                        'schoolContact': index.schoolContact,
+                        'schoolName': index.schoolName
+                    });
+                     $rootScope.addressInfoFetch.push({
+                            'address': index.address,
+                            'addresses': angular.fromJson(index.addresses),
+                            'addressObject': angular.fromJson(index.addressObject),
+                        });
+                });
+               // $rootScope.addressInfoFetch = '';
+               // $rootScope.addressInfoFetch = $scope.primaryPatientDetailsSecond;
+                $rootScope.primaryPatientDetails[0].address = ($rootScope.primaryPatientDetails[0].address != '' ? $rootScope.primaryPatientDetails[0].address : $rootScope.primaryPatientDetails[0].addressObject.addressText );
+                $rootScope.addressInfoFetch[0].address = ($rootScope.addressInfoFetch[0].address != '' ? $rootScope.addressInfoFetch[0].address : $rootScope.addressInfoFetch[0].addressObject.addressText );
+                $rootScope.patientInfomation = data.data[0];
+                $rootScope.patientAccount = data.data[0].account;
+                $rootScope.patientAddresses = data.data[0].addresses;
+                $rootScope.patientAnatomy = data.data[0].anatomy;
+                $rootScope.patientPharmacyDetails = data.data[0].pharmacyDetails;
+                $rootScope.patientPhysicianDetails = data.data[0].physicianDetails;
+                $rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
+                $rootScope.patientParticularaddress = data.data[0].addressLocation;
+                if($rootScope.patientParticularaddress != undefined){
+                     $rootScope.stateaddresses=$rootScope.patientParticularaddress.state;
+                     $rootScope.countryaddress=$rootScope.patientParticularaddress.country;
+                     $rootScope.stateAddressesCode=$rootScope.patientParticularaddress.stateCode;
+                     $rootScope.countryAddressCode=$rootScope.patientParticularaddress.countryCode;
+                }
+
+                $rootScope.patientEncounteraddress=data.data[0].encounterAddressLocation;
+                if($rootScope.patientEncounteraddress != undefined){
+                  $rootScope.encounterstate=$rootScope.patientEncounteraddress.state;
+                  $rootScope.encounterStateCode=$rootScope.patientEncounteraddress.stateCode;
+                  $rootScope.encountercountry=$rootScope.patientEncounteraddress.country;
+                  $rootScope.encounterCountryCode=$rootScope.patientEncounteraddress.countryCode;
+                }
+
+                $rootScope.city = data.data[0].city;
+                $rootScope.createDate = data.data[0].createDate;
+                $rootScope.dob = data.data[0].dob;
+                $rootScope.PatientAge = $rootScope.dob;
+                $rootScope.ageBirthDate = ageFilter.getDateFilter(data.data[0].dob);
+                if (typeof data.data[0].gender !== 'undefined') {
+                    if (data.data[0].gender === 'F') {
+                        $rootScope.primaryPatGender = "Female";
+                    } else {
+                        $rootScope.primaryPatGender = "Male";
+                    }
+
+                } else {
+                    $rootScope.gender = "NA";
+                    $rootScope.primaryPatGender = '';
+                }
+                $rootScope.homePhone = data.data[0].homePhone;
+                $rootScope.mobilePhone = data.data[0].mobilePhone;
+                if ($rootScope.OrganizationLocation === 'on') {
+                    if (typeof data.data[0].location !== 'undefined') {
+                        $rootScope.location = data.data[0].location;
+                    } else {
+                        $rootScope.location = 'N/A';
+                    }
+
+                    if (typeof data.data[0].organization !== 'undefined') {
+
+                        $rootScope.organization = data.data[0].organization;
+                    } else {
+                        $rootScope.organization = 'N/A';
+                    }
+                }
+                $rootScope.primaryPatientName = angular.element('<div>').html(data.data[0].patientName).text();
+
+                $rootScope.userCountry = data.data[0].country;
+                if (typeof $rootScope.userCountry === 'undefined') {
+                    $rootScope.userCountry = '';
+                }
+                $rootScope.primaryPatientGuardianName = '';
+                $rootScope.state = data.data[0].state;
+                $rootScope.zipCode = data.data[0].zipCode;
+
+                $rootScope.primaryPatientId = $rootScope.patientAccount.patientId;
+
+              //  $rootScope.doGetScheduledConsulatation();
+              if($rootScope.imgUploadPatientProfile == true && $rootScope.sessPopup != true) {
+                 // $rootScope.doGetScheduledNowPhoneConsulatation('tab.healthinfo');
+              } else if($rootScope.sessPopup != true) {
+                 // $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                  $scope.doGetPrimaryPatientLastName();
+              }
+            },
+            error: function(data, status) {
+                $rootScope.patientInfomation = '';
+                $rootScope.patientAccount = '';
+                $rootScope.patientAddresses = '';
+                $rootScope.patientAnatomy = '';
+                $rootScope.patientPharmacyDetails = ''
+                $rootScope.patientPhysicianDetails = '';
+
+                $rootScope.PatientImage = '';
+                $rootScope.address = '';
+                $rootScope.city = '';
+                $rootScope.createDate = '';
+                $rootScope.dob = '';
+                $rootScope.ageBirthDate = '';
+                $rootScope.gender = '';
+                $rootScope.homePhone = '';
+                $rootScope.location = '';
+                $rootScope.mobilePhone = '';
+                $rootScope.organization = '';
+                $rootScope.primaryPatientName = '';
+                $rootScope.userCountry = '';
+                $rootScope.primaryPatientGuardianName = '';
+                $rootScope.state = '';
+                $rootScope.zipCode = '';
+                $rootScope.primaryPatientId = '';
+                if (status === 0) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503) {
+                  $scope.callServiceUnAvailableError();
+                }
+            }
+        };
+
+        LoginService.getPatientProfiles(params);
+    }
 
     $scope.doGetPrimaryPatientLastName = function() {
 
