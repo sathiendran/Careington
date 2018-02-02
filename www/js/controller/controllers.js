@@ -6826,6 +6826,23 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                    'Ok' // buttonName
                );
                return false;
+           }
+           else if(messageType == 'consultation_dismissed') {
+             //  alert('gg1');
+               navigator.notification.alert(
+                 'This consultation has been dismissed.If you feel this cancellation is in error, please contact your provider. ', // message
+                   function() {
+                        activeConsultConnection.stop();
+                        activeConsultConnection.qs = {};
+                        activeConsultConnection = null;
+                        activeRoomConHub = null;
+                     $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                      return;
+                   },
+                   $rootScope.alertMsgName, // title
+                   'Ok' // buttonName
+               );
+               return false;
            } else {
                // alert('gg4');
                $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
