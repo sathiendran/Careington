@@ -416,7 +416,7 @@ angular.module('starter.controllers')
         }
         document.getElementById("hunit").innerHTML = getheightunitid;
         if ($rootScope.height1 === 'undefined' || $rootScope.height1 === '') {
-            $scope.ErrorMessage = "Please enter height";
+            $scope.ErrorMessage = "Please enter min value 0 in required field";
             $rootScope.ValidationFunction1($scope.ErrorMessage);
         }else if($rootScope.height2==0 && $rootScope.height1 ==0){
           $scope.ErrorMessage = "Please enter valid height";

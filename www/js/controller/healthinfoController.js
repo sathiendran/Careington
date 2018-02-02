@@ -405,6 +405,17 @@ angular.module('starter.controllers')
             }).remove();
 
         };
+         $rootScope.editremoveopenmodal = function () {
+          $("#localize-widget").show();
+            $scope.modal.remove()
+                .then(function () {
+                    $scope.modal = null;
+                });
+            $('option').filter(function () {
+                return this.value.indexOf('?') >= 0;
+            }).remove();
+
+        };
         $rootScope.SubmitCardValidation = function ($a) {
             function refresh_close() {
                 $('.close').click(function () {
@@ -434,9 +445,10 @@ angular.module('starter.controllers')
         }
         $scope.heighteditsave = function () {
             $rootScope.patHeightUnit = '';
-            $('#heightuser').val('');
+          //  $('#heightuser').val('');
             $rootScope.height1 = $('#healthInfoHeight').val();
             $rootScope.height2 = $('#healthInfoHeight2').val();
+            if ($rootScope.height1 != 'undefined' && $rootScope.height1 != '') {
             var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
             var heightunitid = $("#healthInfoHeightUnit").val().split("@").slice(0, 1);
             var getheightunitid = _.first(heightunitid);
@@ -469,8 +481,9 @@ angular.module('starter.controllers')
                 }
             }
             document.getElementById("hunit").innerHTML = getheightunitid;
+        }
             if ($rootScope.height1 === 'undefined' || $rootScope.height1 === '') {
-                $scope.ErrorMessage = "Please enter height";
+                $scope.ErrorMessage = "Please enter min value 0 in required field";
                 $rootScope.ValidationFunction1($scope.ErrorMessage);
             } else if ($rootScope.height2 == 0 && $rootScope.height1 == 0) {
                 $scope.ErrorMessage = "Please enter valid height";
