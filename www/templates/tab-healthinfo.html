@@ -443,7 +443,7 @@
                      <span class="input-label labelcolor"  id="pattext_{{ $index + 1 }}" style=" white-space: normal;" ><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('vcard')"></i><b class="formlabel labelfont localizejs">{{patientdisplay.display}}</b></span></div>
                      <span class="healthViewDetails" >
                       <input type="hidden" value="{{patientdisplay.identifierTypeCode+','+ patientdisplay.identifierTypeTitle +','+ patientdisplay.effectiveDate +','+ patientdisplay.statusCode}}" name="patIndentifierDetails[]" id="identifierTypeCode_{{ $index + 1 }}" >
-                      <input type="text" name="healthInfoEmail ellipsis" id="patval_{{ $index + 1 }}"   value="{{patientdisplay.value}}" class="textdata localizejs" placeholder="Required" style="padding: 27px 1px 34px 4px;">
+                      <input type="text" name="healthInfoEmail ellipsis" id="patval_{{ $index + 1 }}" maxlength="64" value="{{patientdisplay.value}}" class="textdata localizejs" placeholder="Required" style="padding: 27px 1px 34px 4px;">
                      </span>
                   </div>
 
@@ -454,7 +454,7 @@
                      <span class="input-label labelcolor" id="patModText_{{ $index + 1 }}" style=" white-space: normal;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('vcard')"></i><b class="formlabel labelfont localizejs">{{patientidentifi.identifierTypeTitle}}</b></span></div>
                      <span class="healthViewDetails" >
                        <input type="hidden" value="{{patientidentifi.identifierTypeCode+','+ patientidentifi.identifierTypeTitle +','+ patientidentifi.effectiveDate +','+ patientidentifi.statusCode}}" name="patientidentifiDetails[]" id="identifierTypeCode_{{ $index + 1 }}" style="padding-top: 31px;padding-bottom: 31px;">
-                       <input type="text" name="healthInfoEmail ellipsis" id="helthPatVal_{{ $index + 1 }}"   value="{{patientidentifi.value}}" class="textdata localizejs" placeholder="Required" style="padding-top: 31px;padding: 27px 1px 34px 4px;">
+                       <input type="text" name="healthInfoEmail ellipsis" id="helthPatVal_{{ $index + 1 }}" maxlength="64"  value="{{patientidentifi.value}}" class="textdata localizejs" placeholder="Required" style="padding-top: 31px;padding: 27px 1px 34px 4px;">
 
 
                      </span>
