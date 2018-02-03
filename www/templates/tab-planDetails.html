@@ -74,16 +74,18 @@
                </label> -->
 
                <div class="item item-input" ng-if="deviceName == 'IOS'">
-                  <span class="input-label cardfont localizejs" style="white-space: normal;"> Date of Birth</span>
-                  <div style="font-size: 10px; margin: 15px 35px -15px -125px;" class="localizejs">for the policy holder</div>
+                  <span class="input-label cardfont localizejs" style="white-space: normal;"> Date of Birth
+                  <div style="font-size: 10px;" class="localizejs">for the policy holder</div>
+                  </span>
                   <div class="dobRequired localizejs" ng-if="!AddHealth.dateBirth">Required</div>
 
                   <input class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth" id="date"  required>
                </div>
 
                <div class="item item-input"  ng-if="deviceName != 'IOS'">
-                  <span class="input-label cardfont localizejs" style="white-space: normal;"> Date of Birth</span>
-                  <div style="font-size: 10px; margin: 15px 35px -15px -125px;" class="localizejs">for the policy holder</div>
+                  <span class="input-label cardfont localizejs" style="white-space: normal;"> Date of Birth
+                  <div style="font-size: 10px;" class="localizejs">for the policy holder</div>
+                  </span>
                   <div class="dobRequired localizejs" ng-if="!AddHealth.dateBirth">Required</div>
 
                   <input class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth" value="{{PreviousDate}}"   id="date" required>
