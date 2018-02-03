@@ -670,7 +670,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -5629,6 +5629,7 @@ $scope.EditHealth = {};
             success: function(data) {
                 if (data !== '') {
                     if (data.data[0].paymentProfiles.length !== 0) {
+                    $rootScope.disableSubmitpayment = "none";  
                         $rootScope.patientprofileID = data.data[0].profileID;
                         $rootScope.PaymentProfile = [];
                         angular.forEach(data.data[0].paymentProfiles, function(index) {
@@ -5709,19 +5710,22 @@ $scope.EditHealth = {};
                                 'cardNumber': replaceCardNumber.getCardNumber(index.cardNumber),
                                 'isBusiness': index.isBusiness,
                                 'profileID': index.profileID,
-							                   'cardType' : index.cardType,
+							    'cardType' : index.cardType,
                                 'cardLogo' : imgUrl,
                             });
 
                         });
-
+                            
+                        
                         if((typeof $rootScope.paymentProfileId != 'undefined' && typeof $rootScope.paymentProfileId != '' && $window.localStorage.getItem("Card"+ $rootScope.UserEmail) != null && $window.localStorage.getItem("Card"+ $rootScope.UserEmail) != '') && ($rootScope.paymentProfileId == $window.localStorage.getItem("Card"+ $rootScope.UserEmail)))
                             {
                               $scope.userCrdType = $filter('filter')($rootScope.PaymentProfile, {
                                   profileID: $rootScope.paymentProfileId
                               });
-                              var userCardType = $scope.userCrdType[0].cardLogo;
-                              var crdNum = $scope.userCrdType[0].cardNumber.split('XXXX');
+                              if($scope.userCrdType != '' && $scope.userCrdType.length != 0)
+                              {
+                                var userCardType = $scope.userCrdType[0].cardLogo;
+                                var crdNum = $scope.userCrdType[0].cardNumber.split('XXXX');
                                  $window.localStorage.setItem("Card" + $rootScope.UserEmail, $rootScope.paymentProfileId);
                                  $window.localStorage.setItem("CardText" + $rootScope.UserEmail, crdNum);
                                  $window.localStorage.setItem("CardLogo" + $rootScope.UserEmail, userCardType);
@@ -5732,6 +5736,13 @@ $scope.EditHealth = {};
                                  }else{
                                      $rootScope.editCardStyle ="block";
                                  }
+                              }else{
+                                 $('#addNewCard').val('Choose Your Card');
+                                    $('#addNewCard_addCard').val('Choose Your Card');
+                                    $('#addNewCard_submitPay').val('Choose Your Card');
+                                    $rootScope.userDefaultPaymentProfileText = null;
+                              }
+                              
                           }
 
                         if(typeof $rootScope.userCardDetails !== 'undefined' && $rootScope.userCardDetails !== '') {
@@ -5802,6 +5813,7 @@ $scope.EditHealth = {};
                         $rootScope.textAddCard = "none";
                     }
                 }
+                                   
             },
             error: function(data, status) {
                 if (status === 0) {
