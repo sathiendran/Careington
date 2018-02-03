@@ -64,10 +64,10 @@
             <i class="ion-ios-circle-outline" style="display: none;"></i>
          </div>
       </div>
-      <div class="acinfo1-{{deviceName}}" ng-if="(deploymentEnv == 'Multiple' || deploymentEnv == 'Single') && cobrandApp_New != 'MDAmerica'">
+      <div class="acinfo1-{{deviceName}}" ng-if="(deploymentEnv == 'Multiple' || deploymentEnv == 'Single' || deploymentEnv == 'QA') && cobrandApp_New != 'MDAmerica'">
          <h4 class="localizejs">Need an account?</h4>
       </div>
-      <div class="acinfo1-{{deviceName}} newLogProviderSecDiv-{{deviceName}}" ng-if="(deploymentEnv == 'Multiple' || deploymentEnv == 'Single') && cobrandApp_New != 'MDAmerica'">
+      <div class="acinfo1-{{deviceName}} newLogProviderSecDiv-{{deviceName}}" ng-if="(deploymentEnv == 'Multiple' || deploymentEnv == 'Single' || deploymentEnv == 'QA') && cobrandApp_New != 'MDAmerica'">
          <h4><span class="localizejs" ng-click="goToSearchProvider('login');">Click here to find your provider.</span></h4>
       </div>
    </ion-content>
