@@ -461,7 +461,7 @@
 
 
 
-                             <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width localizejs">Medication Allergies<span class="pc-report__sub-section-date">As of {{todayDateForReport}}</span></div>
+                             <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width localizejs">Medication Allergies<span class="pc-report__sub-section-date">As of {{todayDateForReport  | date :  "MM/dd/yyyy"}}</span></div>
                              <div ng-if="intake.medicationAllergies != ''" class="pc-report__list-title localizejs">Name</div>
                              <ul class="pc-report__med-list localizejs" ng-repeat="getAllergyList in ReportMedicationAllergies">
                                  <li class="localizejs">{{getAllergyList.description}}</li>
