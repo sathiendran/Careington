@@ -56,7 +56,7 @@
                   <span class="input-label cardfont localizejs" style="white-space: normal;">Policy Number</span>
                   <input type="text" class="localizejs" placeholder="Required"  ng-model="AddHealth.policyNumber" id="policyNumber" name="policyNumber" required>
                </div>
-               <label ng-if="deviceName == 'IOS'" class="item item-input datePlaceholder" >
+              <!--  <label ng-if="deviceName == 'IOS'" class="item item-input datePlaceholder" >
                   <span class="input-label cardfont localizejs" style="padding: 5px 10px 3px 0px;white-space: normal;">
                      Date of Birth
                      <div style="font-size: 10px;" class="localizejs">for the policy holder</div>
@@ -71,7 +71,24 @@
                   </span>
                   <div class="dobRequired localizejs" ng-if="!AddHealth.dateBirth">Required</div>
                   <input class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth" value="{{PreviousDate}}"   id="date" required>
-               </label>
+               </label> -->
+
+               <div class="item item-input" ng-if="deviceName == 'IOS'">
+                  <span class="input-label cardfont localizejs" style="white-space: normal;"> Date of Birth</span>
+                  <div style="font-size: 10px; margin: 15px 35px -15px -125px;" class="localizejs">for the policy holder</div>
+                  <div class="dobRequired localizejs" ng-if="!AddHealth.dateBirth">Required</div>
+
+                  <input class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth" id="date"  required>
+               </div>
+
+               <div class="item item-input"  ng-if="deviceName != 'IOS'">
+                  <span class="input-label cardfont localizejs" style="white-space: normal;"> Date of Birth</span>
+                  <div style="font-size: 10px; margin: 15px 35px -15px -125px;" class="localizejs">for the policy holder</div>
+                  <div class="dobRequired localizejs" ng-if="!AddHealth.dateBirth">Required</div>
+
+                  <input class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth" value="{{PreviousDate}}"   id="date" required>
+               </div>
+               
             </div>
             <div class="planDetails localizejs"  style="opacity:{{planverify}};">
                <p>When you add a health plan, information about your plan will be sent to your provider for verification.</p>
