@@ -44,8 +44,10 @@ span.icon_phone {
                             <div tabindex="2">
                                 <div class="dialogbox-master__user">
                                     <div class="dialogbox-master__time-offset dialogbox-master__time-offset--top localizejs" data-bind="css: {is-active: vm_isTimeOffsetsVisible}, text: vm_ProviderTimeText"></div>
-                                    <div class="dialogbox-master__owner js-toggle-dir" data-bind="css: {dialogbox-master__owner--is-opacity: isClinicianDisabled}">
-                                        <div class="userpic userpic--is-available" data-bind="events: {click: vm_onViewClinicianProfileClick}, css: { userpic--warning: isClinicianDisabled }">
+                                    <!--<div class="dialogbox-master__owner js-toggle-dir" data-bind="css: {dialogbox-master__owner--is-opacity: isClinicianDisabled}">-->
+                                    <div class="dialogbox-master__owner" data-bind="css: {dialogbox-master__owner--is-opacity: isDisabled, is-locked:isSelectorLocked}, attr: {id: vm_nodeId}" id="itemSelector_patientsList_selectedItem">
+                                        <!--<div class="userpic userpic--is-available" data-bind="events: {click: vm_onViewClinicianProfileClick}, css: { userpic--warning: isClinicianDisabled }">-->
+                                        <div class="userpic" data-bind="events: {click: onViewProfileClick}, css: { default-user :isDefault, userpic--warning: isDisabled}">
                                             <img data-bind="attr: { src: clinicianImageSource }" onerror="this.onerror=null;this.src='images/default-user.jpg';">
                                         </div>
                                         <div class="dialogbox-master__userinfo">
