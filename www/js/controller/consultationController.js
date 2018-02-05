@@ -367,6 +367,9 @@ angular.module('starter.controllers')
 
 
         $rootScope.doGetExistingConsulatationReport = function(consultation, nextPage) {
+      /*    console.log("----------doGetExistingConsulatationReport -----------");
+          console.log("consultation = "+consultation);
+          console.log("nextPage = "+nextPage);*/
             $rootScope.consultationDate = '';
             $rootScope.sysTimeZone = '';
             $rootScope.addNotes = '';
@@ -801,7 +804,10 @@ angular.module('starter.controllers')
                           //var spsnocode = snocode.split("-");
                           var spsnocode = snocode.substr(0,snocode.indexOf('-'));
                           var spsnocodeDesc =  snocode.substr(snocode.indexOf('-')+1);
-
+                          /*  console.log("-----------------804------------go = ");
+                            console.log("cptcode = "+cptcode);
+                            console.log("spsnocode = "+spsnocode);
+                            console.log("spsnocodeDesc = "+spsnocodeDesc);*/
                             $rootScope.reportMedicalCodeDetails.push({
                                 'Number': item + 1,
                                 'shortDescription': index.shortDescription,
@@ -849,15 +855,19 @@ angular.module('starter.controllers')
                         $rootScope.reportSNOMED = $filter('filter')($scope.reportMedicalCodeDetails, {
                             medicalCodingSystem: 'SNOMED-CT'
                         });
-                        if($rootScope.reportSNOMED != ""){
+                  /*      if($rootScope.reportSNOMED != ""){
                           var snocode =   $rootScope.reportSNOMED[0].shortDescription;
                           //var spsnocode = cptcode.split("-");
 
                           var spsnocode = cptcode.substr(0,cptcode.indexOf('-'));
                           var spsnocodeDes = cptcode.substr(cptcode.indexOf('-')+1);
+                          console.log("855 = ");
+                          console.log("spsnocode = "+spsnocode);
+                          console.log("spsnocodeDesc = "+spsnocodeDesc);
+
                           $rootScope.reportMediSnocode = spsnocode;
                           $rootScope.reportMediSnodescription = spsnocodeDes;
-                        }
+                        }*/
                     } else {
                         $rootScope.reportMedicalCodeDetails = 'None Reported';
                     }
@@ -979,6 +989,12 @@ angular.module('starter.controllers')
         }
 
         $scope.getSoapNotes = function(consultation) {
+      /*    console.log("getSoapNotes");
+            console.log("existingConsultationReport.subjective = "+$rootScope.existingConsultationReport.subjective);
+            console.log("existingConsultationReport.objective = "+$rootScope.existingConsultationReport.objective);
+            console.log("existingConsultationReport.assessment = "+$rootScope.existingConsultationReport.assessment);
+            console.log("existingConsultationReport.plan = "+$rootScope.existingConsultationReport.plan);
+*/
             $("#reportSubjective").html($rootScope.existingConsultationReport.subjective);
             $("#reportObjective").html($rootScope.existingConsultationReport.objective);
             $("#reportAssessment").html($rootScope.existingConsultationReport.assessment);
@@ -1015,6 +1031,9 @@ angular.module('starter.controllers')
             });
         }
         $rootScope.showReportView = function(consultation, nextPage) {
+      /*    console.log("----------showReportView click-----------");
+          console.log("consultation = "+consultation);
+          console.log("nextPage = "+nextPage);*/
             $rootScope.doGetExistingConsulatationReport(consultation, nextPage);
         }
 
