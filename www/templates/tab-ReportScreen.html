@@ -61,8 +61,7 @@
 
                     <div class="pc-report__company-info">
                         <h2 class="localizejs" style="width: 142px;">{{reportBrandName}}</h2>
-                        <p>{{reportHospitalAddress.split(',')[0]}}, {{reportHospitalAddress.split(',')[1]}}, {{reportHospitalAddress.split(',')[2]}},
-                           {{reportHospitalAddress.split(',')[3]}}, {{reportHospitalAddress.split(',')[4]}}, {{reportHospitalAddress.split(',')[5]}}</p>
+                        <p>{{reportHospitalAddress}}</p>
                         <hr>
                         <h2 class="localizejs"ng-if="OrganizationLocation === 'on'"  style="color: #666;">Organization</h2>
                         <p class="localizejs" ng-if="OrganizationLocation === 'on'"> {{organization}}</p>
@@ -386,8 +385,8 @@
                             </div>
 
                             <div class="pc-report__table-row pc-report__table-row--right"  ng-if="reportSNOMED != ''"
-                            reportSNOMED in reportSNOMED>
-                                <span class="localizejs">ICD-9-DX</span>
+                            ng-repeat="reportSNOMED in reportSNOMED">
+                                <span class="localizejs">SNOMED-CT</span>
                                 <span class="localizejs">{{reportSNOMED.SNOMEDcode}}</span>
                                 <span class="localizejs">{{reportSNOMED.SNOMEDcodeDescription}}</span>
                             </div>
