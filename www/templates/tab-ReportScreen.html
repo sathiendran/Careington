@@ -386,8 +386,8 @@
                             </div>
 
                             <div class="pc-report__table-row pc-report__table-row--right"  ng-if="reportSNOMED != ''"
-                            reportSNOMED in reportSNOMED>
-                                <span class="localizejs">ICD-9-DX</span>
+                            ng-repeat="reportSNOMED in reportSNOMED">
+                                <span class="localizejs">SNOMED-CT</span>
                                 <span class="localizejs">{{reportSNOMED.SNOMEDcode}}</span>
                                 <span class="localizejs">{{reportSNOMED.SNOMEDcodeDescription}}</span>
                             </div>
