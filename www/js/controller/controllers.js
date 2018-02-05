@@ -670,7 +670,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -9955,7 +9955,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 })
 
 
-.filter('ageFilterReport', function() {
+.filter('ageFilter', function() {
         function getAge(dateString) {
             var now = new Date();
             var yearNow = now.getYear();
@@ -10022,11 +10022,14 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
             }
             if (age.years > 0) {
-                if (age.days <= 15) {
+               /* if (age.days <= 15) {
                     var month = age.months + monthString;;
                 } else if (age.days > 15) {
                     var month = (age.months + 1) + monthString;;
-                }
+                }*/
+                 //if (age.days != 0) {
+                    var month = age.months + monthString;;
+               // } 
                 if (age.months !== 0) {
                     return ageString = age.years + yearString + month;
                 } else {
@@ -10056,7 +10059,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         };
     })
 
-.filter('ageFilter', function() {
+.filter('ageFilterOld', function() {
         function getAge(dateString) {
             var now = new Date();
             var yearNow = now.getYear();
