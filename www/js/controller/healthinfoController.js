@@ -3,7 +3,7 @@ angular.module('starter.controllers')
          $scope.init = function () {
 
           $("#localize-widget").hide();
-      
+
   			};
 
         $rootScope.currState = $state;
@@ -98,7 +98,7 @@ angular.module('starter.controllers')
             $scope.fullAddressObj.postalCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
             $scope.fullAddressObj.state = $rootScope.addressInfoFetch[0].addressObject.state;
             $scope.fullAddressObj.stateCode = $rootScope.addressInfoFetch[0].addressObject.stateCode;*/
-            
+
             //delete $rootScope.addressInfoFetchModify['addressText'];
             console.log('$scope.fullAddressObj');
             console.log( $scope.fullAddressObj);
