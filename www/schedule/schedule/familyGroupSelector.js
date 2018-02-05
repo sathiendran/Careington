@@ -5483,6 +5483,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                             return profile.patientId === opt.patientId;
                         }).length > 0;
                         sessionStorage.setItem("snap_patientId_ref", opt.patientId);
+                        $(".button__cancel").click();
                         if(isUserProfile) {
                             //window.location = snap.baseUrl +  "/patient/User";
                             window.location.href = "#/tab/healthinfo/"+opt.patientId;
