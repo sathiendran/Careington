@@ -827,9 +827,22 @@ angular.module('starter.controllers')
                     $scope.Country = '';
                     $scope.vsPlace = place;
                     for(var k = 0; k < place.address_components.length; k++){
+
+
+                      if(place.address_components[k].types.indexOf("street_number") >= 0){
+                                $scope.street = place.address_components[k].long_name;
+                            }
                             if(place.address_components[k].types.indexOf("route") >= 0){
                                 $scope.route = place.address_components[k].short_name;
+                                if($scope.street != '' && $scope.street != null && $scope.street != undefined)
+                                {
+                                      $scope.route = $scope.street + ' ' + $scope.route;
+                                }
                             }
+                            /*
+                            if(place.address_components[k].types.indexOf("route") >= 0){
+                                $scope.route = place.address_components[k].short_name;
+                            }*/
                             if(place.address_components[k].types.indexOf("sublocality_level_1") >= 0){
                                 $scope.sublocality1 = place.address_components[k].long_name;
                             }

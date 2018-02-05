@@ -642,11 +642,11 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
                         $rootScope.reportSNOMED = $filter('filter')($scope.reportMedicalCodeDetails, {
                             medicalCodingSystem: 'SNOMED-CT'
                         });
-                        if($rootScope.reportSNOMED != ""){
+                       /*  if($rootScope.reportSNOMED != ""){
                           var snocode =   $rootScope.reportSNOMED[0].shortDescription;
-                          /*var spsnocode = cptcode.split("-");
+                         var spsnocode = cptcode.split("-");
                           $rootScope.reportMediSnocode = spsnocode[0];
-                          $rootScope.reportMediSnodescription = spsnocode[1];*/
+                          $rootScope.reportMediSnodescription = spsnocode[1];
 
 
                           var spsnocode = cptcode.substr(0,cptcode.indexOf('-'));
@@ -655,7 +655,7 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
                           $rootScope.reportMediSnodescription = spsnocodeDes;
 
 
-                        }
+                        }*/
                     } else {
                         $rootScope.reportMedicalCodeDetails = 'None Reported';
                     }
