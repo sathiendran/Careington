@@ -5,13 +5,13 @@
 */
     document.addEventListener("showkeyboard", function() {
 
-           alert("showkey");
+           //alert("showkey");
 
        }, false);
 
        document.addEventListener("hidekeyboard", function() {
 
-           alert("hidekey");
+         // alert("hidekey");
 
        }, false);
 (function (global, factory) {
