@@ -145,15 +145,15 @@ $("#localize-widget").show();
                 var ageFormat = '';
                 if($rootScope.existingConsultationReport.age.years > 0)
                 {
-                  ageFormat += $rootScope.existingConsultationReport.age.years+'y'+' ';
+                  ageFormat += $rootScope.existingConsultationReport.age.years+' y'+' ';
                 }
                 if($rootScope.existingConsultationReport.age.months > 0)
                 {
-                   ageFormat += $rootScope.existingConsultationReport.age.months+'m'+' ';
+                   ageFormat += $rootScope.existingConsultationReport.age.months+' m'+' ';
                 }
                 if($rootScope.existingConsultationReport.age.days > 0)
                 {
-                  ageFormat += $rootScope.existingConsultationReport.age.days+'d';
+                  ageFormat += $rootScope.existingConsultationReport.age.days+' d';
                 }
                 $rootScope.existingConsultationReport.ageFormat = ageFormat;
 
