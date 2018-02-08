@@ -1,7 +1,7 @@
 <style>
    .relatedhead {
          margin-top:  0 !important;
-   }   
+   }
 </style>
 <ion-side-menus>
 <ion-side-menu-content>
@@ -12,7 +12,7 @@
       <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">
          <div class="Server_Error ErrorMessageDiv" ></div>
          <div id="Error_Message" class="relatedUserError"></div>
-         <span class="localizejs"> Related Users </span>
+         <span class="localizejs HealthTitle-{{deviceName}}"> Related Users </span>
       </h1>
       <a ng-if="customerSso != 'Mandatory' && cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'" ng-show="cousericon" class="add-user-icon add-user-icon-{{deviceName}}" ng-click="addcouser()" ><i class="icon ion-plus"></i></a></span>
       <a ng-if="customerSso != 'Mandatory' && cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'" ng-hide="cousericon" class="add-user-icon add-user-icon-{{deviceName}}"  ng-click="adddependent()"><i class="icon ion-plus"></i></a></span>

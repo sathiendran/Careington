@@ -5,8 +5,9 @@
             <div class="buttons" >
                <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
             </div>
-            <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} localizejs"><span class="newUserTitle-{{deviceName}} localizejs"> Related Users </span> <span style="float:right;">
-               <a class="headerval localizejs" style="cursor: pointer;" ng-click="goToUserPageFromAddUser();">Cancel</a></span>
+            <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} localizejs"><span class="newUserTitle-{{deviceName}} localizejs"> Related Users </span>
+            <!--  <span style="float:right;"><a class="headerval localizejs" style="cursor: pointer;" ng-click="goToUserPageFromAddUser();">Cancel</a></span>-->
+              <span ng-click="goToUserPageFromAddUser()" style="float:right;"><i class="addBtn" style="margin-right: 10px;top: -4px;" ng-bind-html="drawSVGCIcon('cross')"></i></span>
             </h1>
             <div class="bar bar-subheader bar-dark subheaderheight" >
                <div class="row">

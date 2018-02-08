@@ -13,11 +13,70 @@ margin-top: 125px !important;
   font-size:21pz !important;
 }
 .userlistAccountHome-ios5{
-    //margin-top: 0px !important;
+    //margin-top: 0px !important;fv
 }
 
 
 @media (max-width: 320px) and (min-width: 315px) {
+
+.textdatawieghtios {
+  width: 75px !important;
+}
+.surgeryTopAddButton {
+  width: 70px !important;
+  height: 30px !important;
+  margin-top: 10px !important;
+}
+  .ContinueAddressBtn {
+      width: 74px !important;
+  }
+
+  .concernListHeader {
+  .concernListTitle-ios {
+  font-size:18px !important;
+  margin-left: 3px !important;
+  }
+  }
+
+  .CancelAddressBtn {
+  width:63px !important;
+  }
+  #CancelAddress {
+  font-size:14px !important;
+  }
+  .ContinueAddressBtn {
+  width:74px !important;
+  }
+
+  #ContinueAddress {
+  font-size:14px !important;
+  }
+
+  .concernListContent {
+      .concernListSearch {
+          margin-top: -30px !important;
+            }
+          }
+        .concernListTitle-ios {
+              margin-left: -15px !important;
+        }
+
+  .depenErrorMsg-IOS {
+  #notifications-top-center {
+      .ErrorContent {
+          top: -8px !important;
+      }
+      #notifications-top-center-close {
+          span {
+              top: -8px !important;
+          }
+      }
+  }
+  }
+
+      .providerHead-ios{
+        margin-top: -10px !important;
+      }
      .AppointmentView {
           visibility: hidden;
      }
@@ -143,6 +202,15 @@ margin-top: 125px !important;
         .FooterCenter {
           .button_new {
                 margin-right: 0px !important;
+          }
+          .button_newios{
+               margin-right: -200px !important;
+         }
+
+        }
+        .ConsultChargeCancel {
+          .button_newios{
+                margin-right: -200px !important;
           }
         }
         .fulldate-ios5 {
@@ -3521,20 +3589,22 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 .HealthTitle-IOS {
 left: -28px;
 position: relative;
+top: -3px;
 }
 .HealthTitle-Android {
 left: -34px;
 position: relative;
+top: -3px;
 }
 .healthLeft-IOS {
-  top: -29px !important;
+  top: -34px !important;
   background: transparent !important;
   border: none !important;
   font-size: 20px;
   cursor: pointer;
 }
 .healthLeft-Android {
-  top: -29px !important;
+  top: -34px !important;
   background: transparent !important;
   border: none !important;
   font-size: 18px;
@@ -3577,6 +3647,7 @@ margin-top: -5px;
 text-align: right !important;
 }
 .newUserTitle-IOS {
+top: -3px;
 left: 10px;
 position: relative;
 }
@@ -6267,7 +6338,7 @@ margin-right: 10px;
   font-size: 20px !important;
   position: relative;
   top: 3px;
-  left: -17px;
+  left: -15px;
 }
 .healthpat{
   font-size: 20px;
@@ -7114,6 +7185,7 @@ background-color: rgb(245,245,245);
     padding-left: 55px !important;
     float: right !important;
   }
+
 }
 @media (min-width:366px) and (max-width:375px) {
   .mobileInput-Ios5 {
@@ -7123,6 +7195,18 @@ background-color: rgb(245,245,245);
   .ReportEthnicity {
     width: 35.333% !important;
   }
+  .depenErrorMsg-IOS {
+  #notifications-top-center {
+      .ErrorContent {
+          top: -8px !important;
+      }
+      #notifications-top-center-close {
+          span {
+              top: -8px !important;
+          }
+      }
+  }
+}
 }
 @media (min-width:376px) and (max-width:414px) {
   .mobileInput-Ios5 {
@@ -7152,4 +7236,15 @@ background-color: rgb(245,245,245);
 .mobileInputNo-Ios5 {
 //  margin-left: 15px !important;
 }
+}
+
+.CancelAddressBtn-IOS {
+  margin-top: 10px !important;
+}
+
+.PrimaryConcernPopupTitle-IOS {
+  margin-top: 18px !important;
+}
+.ContinueAddressBtn-IOS {
+  margin-top: 10px !important;
 }

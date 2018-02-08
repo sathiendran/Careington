@@ -4,6 +4,8 @@ angular.module('starter.controllers')
     $.getScript( "lib/jquery.signalR-2.1.2.js", function( data, textStatus, jqxhr ) {
 $("#localize-widget").hide();
     });
+
+
     /*
     $.getScript( "https://snap-qa.com/api/signalR/hubs", function( data, textStatus, jqxhr ) {
 
@@ -26,6 +28,73 @@ $("#localize-widget").hide();
     };
 
 $("#localize-widget").show();
+
+
+    //venkat start
+      /*  var localizeCurrent = $('#localize-current').text();
+        var myLength = $(".departmentClassVal").text().length;
+        console.log("myLength ="+myLength);
+         if($( window ).width()<= 375) {
+           if(localizeCurrent == "Español") {
+               console.log("Español");
+             $scope.ReportEthnicityVal1 = "width:36.33% !important";
+           } if(localizeCurrent == "English (UK)") {
+             $scope.ReportEthnicityVal1 = "width:41.33% !important";
+           } if(localizeCurrent == "English") {
+             $scope.ReportEthnicityVal1 = "width:41.33% !important";
+           }
+            if(myLength >= 11) {
+                console.log("myLength  is more=");
+              if(localizeCurrent == "Español") {
+                  console.log("Español");
+                  $scope.departmentClass = "height:45px !important";
+              } if(localizeCurrent == "English (UK)") {
+                  $scope.departmentClass = "height:25px !important";
+              } if(localizeCurrent == "English") {
+                  $scope.departmentClass = "height:25px !important";
+              }
+            }
+             } else {
+                 if(localizeCurrent == "Español"){
+                   }else{
+                   }
+             }
+
+               $('#localize-langs').click(function() {
+                     var myLength = $(".departmentClassVal").text().length;
+                     var isLang = $('#localize-langs .activated').text();
+
+                  //     console.log("myLength ="+myLength);
+                  if($( window ).width()<= 375){
+                    if(isLang == "Español") {
+                        console.log("Español");
+                      $(".ReportEthnicity").css("width", "36.33% !important");
+
+                    } if(isLang == "English (UK)") {
+                      $(".ReportEthnicity").css("width", "41.33% !important");
+
+                    } if(isLang == "English") {
+                      $(".ReportEthnicity").css("width", "41.33% !important");
+
+                    }
+                    if(myLength >= 11) {
+                        console.log("myLength  is more=");
+                     if(isLang == "Español") {
+                          $(".departmentClass").css("height", "45px !important");
+                     }
+                     if(isLang == "English (UK)") {
+                         $(".departmentClass").css("height", "25px !important");
+                     }
+                     if(isLang == "English") {
+                            $(".departmentClass").css("height", "25px !important");
+                     }
+                   isLang = "";
+                 }
+               }
+           }); */
+        //venkat end
+
+
     function clearSessionLogoutTimer(){
        if(typeof appIdleInterval !== "undefined"){
           $interval.cancel(appIdleInterval);

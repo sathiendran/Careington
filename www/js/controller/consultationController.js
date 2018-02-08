@@ -3,10 +3,81 @@ angular.module('starter.controllers')
         $rootScope.couserdetails = false;
         $rootScope.dupcouser = false;
         $("#localize-widget").show();
+
+        //venkat start
+            var localizeCurrent = $('#localize-current').text();
+            var myLength = $(".departmentClassVal").text().length;
+            console.log("myLength ="+myLength);
+             if($( window ).width()<= 375) {
+
+
+               if(localizeCurrent == "Español") {
+                   console.log("Español");
+                 $scope.ReportEthnicityVal = "width:36.33% !important";
+               } if(localizeCurrent == "English (UK)") {
+                 $scope.ReportEthnicityVal = "width:41.33% !important";
+               } if(localizeCurrent == "English") {
+                 $scope.ReportEthnicityVal = "width:41.33% !important";
+               }
+                if(myLength >= 11) {
+                    console.log("myLength  is more=");
+                  if(localizeCurrent == "Español") {
+                      console.log("Español");
+                      $scope.departmentClass = "height:45px !important";
+                  } if(localizeCurrent == "English (UK)") {
+                      $scope.departmentClass = "height:25px !important";
+                  } if(localizeCurrent == "English") {
+                      $scope.departmentClass = "height:25px !important";
+                  }
+                }
+                 } else {
+                     if(localizeCurrent == "Español"){
+                       }else{
+                       }
+                 }
+
+                   $('#localize-langs').click(function() {
+                         var myLength = $(".departmentClassVal").text().length;
+                      //     console.log("myLength ="+myLength);
+                      if($( window ).width()<= 375){
+                        var isLang = $('#localize-langs .activated').text();
+
+                        if(isLang == "Español") {
+                            console.log("Español");
+                          $(".ReportEthnicity").css("width", "36.33% !important");
+
+                        } if(isLang == "English (UK)") {
+                          $(".ReportEthnicity").css("width", "41.33% !important");
+
+                        } if(isLang == "English") {
+                          $(".ReportEthnicity").css("width", "41.33% !important");
+
+                        }
+                        if(myLength >= 11) {
+                            console.log("myLength  is more=");
+                         if(isLang == "Español") {
+                              $(".departmentClass").css("height", "45px !important");
+                         }
+                         if(isLang == "English (UK)") {
+                             $(".departmentClass").css("height", "25px !important");
+                         }
+                         if(isLang == "English") {
+                                $(".departmentClass").css("height", "25px !important");
+                         }
+                       isLang = "";
+                     }
+                   }
+               });
+            //venkat end
+
+
         angular.element(document).ready(function () {
 
             $("#localize-widget").hide();
         });
+
+
+
         $ionicPlatform.registerBackButtonAction(function() {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||

@@ -124,7 +124,7 @@
                                 <span class="pc-report__data-list-desc1 localizejs">N/R</span>
                             </div>
                                <div class="pc-report__data-list pc-report__data-list-item">
-                                <span class="pc-report__data-list-title localizejs ReportEthnicity" style="height: auto;">ETHNICITY</span>
+                                <span class="pc-report__data-list-title localizejs ReportEthnicity" style="height: auto;{{ReportEthnicityVal}}">ETHNICITY</span>
                                 <span class="pc-report__data-list-desc1 localizejs" style="    height: auto;">{{reportethnicity}}</span>
                             </div>
 
@@ -177,11 +177,11 @@
 
                             <div class="pc-report__data-list">
                                 <div class="pc-report__data-list-item pc-report__data-list-item--small" style="width: 151% !important;">
-                                    <span class="pc-report__data-list-title localizejs" style="width: 27.333%;">class</span>
-                                    <span class="pc-report__data-list-desc localizejs" style="width: 67.666%%;">{{appointmenttype}}</span>
+                                    <span class="pc-report__data-list-title localizejs departmentClass" style="width: 27.333%;{{departmentClass}}">class</span>
+                                    <span class="pc-report__data-list-desc localizejs departmentClassVal" style="width: 67.666%%;height: auto;">{{appointmenttype}}</span>
                                 </div>
                                 <div class="pc-report__data-list-item pc-report__data-list-item--small" style="width: 23%">
-                                    <span class="pc-report__data-list-title localizejs" style="margin-left: 1px;width: 26.333%;padding-left: 3px;">VIA</span>
+                                    <span class="pc-report__data-list-title localizejs departmentClass" style="margin-left: 1px;width: 26.333%;padding-left: 3px;{{departmentClass}}">VIA</span>
                                     <span class="pc-report__data-list-desc pc-report__data-list-desc--video localizejs" ng-if="encountercode == 3" style="width: 72.666%;">Video</span>
                                     <span class="pc-report__data-list-desc pc-report__data-list-desc--phone localizejs" ng-if="encountercode != 3" style="width: 72.666%;">Phone</span>
                                       <!--<span class="pc-report__data-list-desc pc-report__data-list-desc--video">{{encountertype}}</span> -->
