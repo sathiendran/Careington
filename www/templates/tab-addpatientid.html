@@ -28,7 +28,7 @@
                   <!--</div>-->
                </div>
             </ion-item>
-            <ion-item  ng-show="(currentPatientsearchList | filter:data.searchProvider).length==0" class="noResult" style="white-space: normal;">Sorry No Result Found!</ion-item>
+            <ion-item  ng-show="(currentPatientsearchList | filter:data.searchProvider).length==0" class="noResult localizejs" style="white-space: normal;">Sorry No Result Found!</ion-item>
          </ion-list>
          <ul class="alpha_sidebar" ng-show="(currentPatientsearchList | filter:data.searchProvider).length!=0" id="nav">
             <li ng-click="gotopatList('index_{{letter}}')" ng-repeat="letter in alphabet" id="lettertest">

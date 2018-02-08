@@ -2,7 +2,7 @@ angular.module('starter.controllers')
     .controller('registerStep1Controller', function($scope, ageFilter, $timeout, step1PostRegDetailsService, $ionicPlatform, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
        var localizeCurrent = $('#localize-current').text();
         if(localizeCurrent == "Español"){
-            $rootScope.defaultAddressText = 'Por favor ingrese la dirección'; 
+            $rootScope.defaultAddressText = 'Por favor ingrese la dirección';
           }else{
             $rootScope.defaultAddressText = 'Please enter address';
           }
@@ -11,11 +11,11 @@ angular.module('starter.controllers')
              var isLang = $('#localize-langs .activated').text();
              console.log("isLang isssss is== "+isLang);
                if(isLang == "Español"){
-                  $rootScope.defaultAddressText = 'Por favor ingrese la dirección'; 
+                  $rootScope.defaultAddressText = 'Por favor ingrese la dirección';
                }else{
                 $rootScope.defaultAddressText = 'Please enter address';
                }
-               
+
              isLang = "";
          });
 
@@ -635,7 +635,7 @@ angular.module('starter.controllers')
               }
               var countryFetch = document.getElementById('country').options[document.getElementById('country').selectedIndex].text;
               var countryCodeFetch = document.getElementById('country').value;
-              
+
               var res = new Object();
               res['city'] = $scope.City;
               res['country'] = countryFetch;

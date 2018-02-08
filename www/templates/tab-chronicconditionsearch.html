@@ -5,9 +5,9 @@
         <!--  <button class="button button-clear {{concernListDoneStyle}} localizejs" style="{{PriorSurgeryPopupCancel}};" ng-click="removemodal()" >Cancel</button>
          <h1 class="title {{concernListTitleStyle}} localizejs" style="{{PrimaryConcernPopupTitle}}; ">My Health</h1>
          <button class="button button-clear {{concernListDoneStyle}} localizejs" style="{{PrimaryConcernPopupDone}};" ng-click="chronicdone()" >Done</button> -->
-           <div ng-click="removemodal()" class="leftHeaderIcon"><i class="addBtn" ng-bind-html="drawSVGCIcon('cross')"></i></div> 
+           <div ng-click="removemodal()" class="leftHeaderIcon"><i class="addBtn" ng-bind-html="drawSVGCIcon('cross')"></i></div>
          <h1 class="title {{concernListTitleStyle}} localizejs" style="{{PrimaryConcernPopupTitle}};">My Health</h1>
-         <div ng-click="chronicdone()" class="rightHeaderIcon"><i class="addBtn" ng-bind-html="drawSVGCIcon('check')"></i></div> 
+         <div ng-click="chronicdone()" class="rightHeaderIcon"><i class="addBtn" ng-bind-html="drawSVGCIcon('check')"></i></div>
       </header>
       <ion-content has-header="true" class="concernListContent">
          <ion-list>
@@ -31,7 +31,7 @@
                   </div>
                </div>
             </ion-item>
-            <ion-item  ng-show="(chronicConditionsearchList | filter:data.searchProvider).length==0" class="noResult" style="white-space: normal;">Sorry No Result Found!</ion-item>
+            <ion-item  ng-show="(chronicConditionsearchList | filter:data.searchProvider).length==0" class="noResult localizejs" style="white-space: normal;">Sorry No Result Found!</ion-item>
          </ion-list>
          <ul class="alpha_sidebar">
             <li ng-click="gotoallergyList('index_{{letter}}')"ng-repeat="letter in alphabets"  ng-show="(chronicConditionsearchList | filter:data.searchProvider).length!=0">

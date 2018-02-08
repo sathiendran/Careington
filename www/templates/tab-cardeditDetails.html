@@ -55,12 +55,12 @@
                   </select>
                </div>
                <div class="item item-input" ng-if="AndroidDevice !== true" >
-                  <span class="input-label cardfont localizejs"  style="white-space: normal;">Security Code</span>
+                  <span class="input-label cardfont localizejs"  style="white-space: normal;">CVV Code</span>
                   <!--<input type="password" pattern="[0-9]*"  inputmode="numeric" id="editcvv" style="{{invalidCVV}}" placeholder="XXX" maxlength="{{editCvvLength}}"   name="Cvv"  required> -->
                   <input class="localizejs" style="-webkit-text-security: disc; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type="password" pattern="[0-9]*" inputmode="numeric"  placeholder="Required" maxlength="4"  name="editcvv" id="editcvv" required/>
                </div>
                <div class="item item-input" ng-if="AndroidDevice === true" >
-                  <span class="input-label cardfont localizejs" style="white-space: normal;">Security Code</span>
+                  <span class="input-label cardfont localizejs" style="white-space: normal;">CVV Code</span>
                   <!--<input type="password" pattern="[0-9]*"  inputmode="numeric" id="editcvv" style="{{invalidCVV}}" placeholder="XXX" maxlength="{{editCvvLength}}"   name="Cvv"  required> -->
                   <input style="-webkit-text-security: disc; font-size: 18px; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  class="localizejs" type = "tel"  placeholder="Required" maxlength="4"   name="editcvv" id="editcvv" required/>
                </div>
