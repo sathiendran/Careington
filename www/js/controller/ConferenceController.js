@@ -214,15 +214,15 @@ $("#localize-widget").show();
                 var ageFormat = '';
                 if($rootScope.existingConsultationReport.age.years > 0)
                 {
-                  ageFormat += $rootScope.existingConsultationReport.age.years+'y'+' ';
+                  ageFormat += $rootScope.existingConsultationReport.age.years+' y'+' ';
                 }
                 if($rootScope.existingConsultationReport.age.months > 0)
                 {
-                   ageFormat += $rootScope.existingConsultationReport.age.months+'m'+' ';
+                   ageFormat += $rootScope.existingConsultationReport.age.months+' m'+' ';
                 }
                 if($rootScope.existingConsultationReport.age.days > 0)
                 {
-                  ageFormat += $rootScope.existingConsultationReport.age.days+'d';
+                  ageFormat += $rootScope.existingConsultationReport.age.days+' d';
                 }
                 $rootScope.existingConsultationReport.ageFormat = ageFormat;
 
@@ -711,11 +711,11 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
                         $rootScope.reportSNOMED = $filter('filter')($scope.reportMedicalCodeDetails, {
                             medicalCodingSystem: 'SNOMED-CT'
                         });
-                        if($rootScope.reportSNOMED != ""){
+                       /*  if($rootScope.reportSNOMED != ""){
                           var snocode =   $rootScope.reportSNOMED[0].shortDescription;
-                          /*var spsnocode = cptcode.split("-");
+                         var spsnocode = cptcode.split("-");
                           $rootScope.reportMediSnocode = spsnocode[0];
-                          $rootScope.reportMediSnodescription = spsnocode[1];*/
+                          $rootScope.reportMediSnodescription = spsnocode[1];
 
 
                           var spsnocode = cptcode.substr(0,cptcode.indexOf('-'));
@@ -724,7 +724,7 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
                           $rootScope.reportMediSnodescription = spsnocodeDes;
 
 
-                        }
+                        }*/
                     } else {
                         $rootScope.reportMedicalCodeDetails = 'None Reported';
                     }
