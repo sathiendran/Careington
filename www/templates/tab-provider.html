@@ -2,8 +2,8 @@
    <ion-header-bar class="bg" style="background-color: {{backColor}}">
       <div id="Error_Message" ></div>
       <div class="Server_Error" ></div>
-       <h2 style="margin-top: -15px !important;" ng-if="cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'"><span>Virtual Care</span></h2>
-      <h2 ng-if="cobrandApp_New == 'MDAmerica' && deploymentEnv_New == 'Single' && singleHospital.length<20" style="margin-top: -15px !important;"><span>{{singleHospital}}</span></h2>
+       <h2 style="margin-top: 15px !important;" ng-if="cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'"><span>Virtual Care</span></h2>
+      <h2 ng-if="cobrandApp_New == 'MDAmerica' && deploymentEnv_New == 'Single' && singleHospital.length<20" style="margin-top: 15px !important;"><span>{{singleHospital}}</span></h2>
        <h2 ng-if="cobrandApp_New == 'MDAmerica' && deploymentEnv_New == 'Single'  && singleHospital.length>20" style="margin-top: -50px !important;"><span>{{singleHospital}}</span></h2>
       <div class="bar bar-subheader-provider searchbox searchAccount newProviderSub">
          <h3 class="logProvider localizejs">Select your provider</h3>
