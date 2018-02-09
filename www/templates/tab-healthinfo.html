@@ -94,7 +94,7 @@
                   </label>
                   <label class="item item-input itemtab validated">
                     <div class="col col-45">
-                     <span class="input-label labelcolor" style=" white-space: normal;"><i ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel">D.O.B</b></span>
+                     <span class="input-label labelcolor localizejs" style=" white-space: normal;"><i ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel localizejs">D.O.B</b></span>
                    </div>
                      <div ng-if="userDOB" class="healthViewDetails">{{userDOB  | date : "MM/dd/yyyy"}}</div>
                      <div ng-if="!userDOB" class="healthViewDetails localizejs">NA</div>
@@ -239,7 +239,7 @@
                   </div>
                   <div class="item item-input itemtab validated">
                     <div class="col col-45">
-                      <span class="input-label labelcolor" style=" white-space: normal;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel">D.O.B </b><i class="ion-asterisk"></i></span>
+                      <span class="input-label labelcolor localizejs" style=" white-space: normal;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel localizejs">D.O.B </b><i class="ion-asterisk"></i></span>
                     </div>
                      <span class="healthViewDetails">
                      <input type="date"  name="healthInfoDOB" id="healthInfoDOB"   class="textdata" ng-model="userdob" placeholder="Required" ng-change="editDob()" >

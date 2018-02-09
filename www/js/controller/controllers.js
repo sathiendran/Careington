@@ -670,7 +670,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -5629,7 +5629,7 @@ $scope.EditHealth = {};
             success: function(data) {
                 if (data !== '') {
                     if (data.data[0].paymentProfiles.length !== 0) {
-                    $rootScope.disableSubmitpayment = "none";  
+                    $rootScope.disableSubmitpayment = "none";
                         $rootScope.patientprofileID = data.data[0].profileID;
                         $rootScope.PaymentProfile = [];
                         angular.forEach(data.data[0].paymentProfiles, function(index) {
@@ -5715,8 +5715,8 @@ $scope.EditHealth = {};
                             });
 
                         });
-                            
-                        
+
+
                         if((typeof $rootScope.paymentProfileId != 'undefined' && typeof $rootScope.paymentProfileId != '' && $window.localStorage.getItem("Card"+ $rootScope.UserEmail) != null && $window.localStorage.getItem("Card"+ $rootScope.UserEmail) != '') && ($rootScope.paymentProfileId == $window.localStorage.getItem("Card"+ $rootScope.UserEmail)))
                             {
                               $scope.userCrdType = $filter('filter')($rootScope.PaymentProfile, {
@@ -5742,7 +5742,7 @@ $scope.EditHealth = {};
                                     $('#addNewCard_submitPay').val('Choose Your Card');
                                     $rootScope.userDefaultPaymentProfileText = null;
                               }
-                              
+
                           }
 
                         if(typeof $rootScope.userCardDetails !== 'undefined' && $rootScope.userCardDetails !== '') {
@@ -5813,7 +5813,7 @@ $scope.EditHealth = {};
                         $rootScope.textAddCard = "none";
                     }
                 }
-                                   
+
             },
             error: function(data, status) {
                 if (status === 0) {
@@ -10029,7 +10029,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 }*/
                  //if (age.days != 0) {
                     var month = age.months + monthString;;
-               // } 
+               // }
                 if (age.months !== 0) {
                     return ageString = age.years + yearString + month;
                 } else {

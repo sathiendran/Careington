@@ -391,14 +391,14 @@
 
                     <div class="drawer-card__info" style="flex-wrap: wrap"
                         data-bind= "events: { click: vm_toggleContent }">
-                        <div class="drawer-card__name" data-bind="text: vm_getFullName">
+                        <div class="drawer-card__name localizejs" data-bind="text: vm_getFullName">
                         </div>
 
-                        <div class="drawer-card__secondary-info" data-bind="text: speciality">
+                        <div class="drawer-card__secondary-info localizejs" data-bind="text: speciality">
                         </div>
 
                         <div class="drawer-card__tertiary-info" >
-                            <span data-bind="text: subSpeciality"></span>
+                            <span data-bind="text: subSpeciality" class="localizejs"></span>
                         </div>
                     </div>
                 </div>
@@ -466,8 +466,8 @@
             </div>
 
             <div class="drawer-card__name">
-                <span data-bind="text: vm_getFullName"></span>
-                <span style='font-family: "GloberRegular","Helvetica Neue",Helvetica,Arial,Sans-Serif;'
+                <span data-bind="text: vm_getFullName localizejs"></span>
+                <span style='font-family: "GloberRegular","Helvetica Neue",Helvetica,Arial,Sans-Serif;' class="localizejs"
                     data-bind="text: speciality"></span>
             </div>
 
