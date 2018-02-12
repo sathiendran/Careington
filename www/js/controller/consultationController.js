@@ -73,7 +73,7 @@ angular.module('starter.controllers')
 
         angular.element(document).ready(function () {
 
-            $("#localize-widget").hide();
+          //  $("#localize-widget").hide();
         });
 
 
