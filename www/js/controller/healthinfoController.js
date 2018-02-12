@@ -1588,17 +1588,18 @@ angular.module('starter.controllers')
                 });
             }
         }
-        
+
         window.addEventListener('native.keyboardshow', function () {
             $scope.$apply(function() {
                 $('#HealthFooter').css({'display':'none'})
              });
             
-         })
+         });
          window.addEventListener('native.keyboardhide', function () {
             $scope.$apply(function() {
                 $('#HealthFooter').css({'display':'block'})
           });
+        });
 
         $rootScope.doPutProfileUpdation = function () {
 
