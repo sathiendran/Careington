@@ -15,7 +15,7 @@
               <i ng-bind-html="drawSVGCIcon('phone')" class="ng-binding" ng-if="scheduledListData.encounterTypeCode != 3">
                 <svg class="iconImg-phone"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-phone"></use></svg>
               </i>
-              <span class="apptTime">Appt @ {{scheduledListData.scheduledTime | date: "hh:mm"}} {{scheduledListData.scheduledTime | date: "a"}}</span>
+              <span class="apptTime localizejs">Appt @ {{scheduledListData.scheduledTime | date: "hh:mm"}} {{scheduledListData.scheduledTime | date: "a"}}</span>
               <span class="apptDetailsInfo" ng-if="scheduledListData.appointmentStatusCode != 'Waiting' && scheduledListData.status != 71">
                   <a class="appviewinfo-{{deviceName}} localizejs">View Details</a>
                   <i class="iconfontSVG ng-binding appViewicons" ng-bind-html="drawSVGCIcon('chevron-right')"><svg class="icon-chevron-right"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-right"></use></svg></i>
@@ -90,7 +90,7 @@
                         <p class="localizejs accOnCall2 accOnCallNew">provider on-call.</p>
                       <!--  <p class="localizejs accOnCall2 accOnServiceDate">Service will resume at</p>-->
                         <p class="localizejs accOnCall2 accOnServiceDate">Service is currently unavailable.</p>
-                        <p class="localizejs accOnCall2 accOnQuestion">Questions? Please call 
+                        <p class="localizejs accOnCall2 accOnQuestion">Questions? Please call
                         <a class="localizejs accOnCall2 accOnQuestion" ng-href="tel: {{appointmentsContactNumber}}">{{appointmentsContactNumber}}</a></p>
                      </div>
                   </div>
@@ -115,7 +115,7 @@
                         <p class="localizejs accOnCall accOnCallNew">Schedule a visit</p>
                         <p class="localizejs accOnCall2 accOnCallNew">with a specific provider</p>
                         <p class="localizejs accOnCall2 accOnServiceDate">Service is currently unavailable.</p>
-                        <p class="localizejs accOnCall2 accOnQuestion accOnQuestionNew">Questions? Please call 
+                        <p class="localizejs accOnCall2 accOnQuestion accOnQuestionNew">Questions? Please call
                         <a class="localizejs accOnCall2 accOnQuestion accOnQuestionNew" ng-href="tel: {{appointmentsContactNumber}}">{{appointmentsContactNumber}}</a></p>
                      </div>
                   </div>

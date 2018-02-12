@@ -16,37 +16,50 @@ margin-top: 125px !important;
     //margin-top: 0px !important;fv
 }
 
-
 @media (max-width: 320px) and (min-width: 315px) {
+  .showNewSurgeryAddios {
+        margin-top: -30px !important;
+  }
 
+  .AvailableIn {
+      .availableImage {
+          .AvailableTimer {
+              padding-left: 25px !important;
+          }
+      }
+  }
+
+  .providerHead-ios{
+    margin-top: 15px !important;
+  }
 .textdatawieghtios {
-  width: 75px !important;
+  width: 85px !important;
 }
 .surgeryTopAddButton {
-  width: 70px !important;
+  width: 75px !important;
   height: 30px !important;
   margin-top: 10px !important;
 }
   .ContinueAddressBtn {
       width: 74px !important;
+      top: 19px !important;
   }
-
   .concernListHeader {
+    height: 60px !important;
   .concernListTitle-ios {
+  margin-top: 12px !important;
   font-size:18px !important;
   margin-left: 3px !important;
   }
   }
-
   .CancelAddressBtn {
   width:63px !important;
+  top:15px !important;
   }
   #CancelAddress {
   font-size:14px !important;
   }
-  .ContinueAddressBtn {
-  width:74px !important;
-  }
+
 
   #ContinueAddress {
   font-size:14px !important;
@@ -74,9 +87,7 @@ margin-top: 125px !important;
   }
   }
 
-      .providerHead-ios{
-        margin-top: -10px !important;
-      }
+
      .AppointmentView {
           visibility: hidden;
      }
@@ -6774,7 +6785,7 @@ a.item.item-avatar.avatheight:first-child{
     transition: box-shadow 0.3s ease !important;
 }
 .ContinueAddressBtn{
-    top: 10px !important;
+    top: 10px;
     right: 6px !important;
     display: block;
     border-radius: 8px;
@@ -7188,8 +7199,15 @@ background-color: rgb(245,245,245);
 
 }
 @media (min-width:366px) and (max-width:375px) {
+  .AvailableIn {
+      .availableImage {
+          .AvailableTimer {
+              padding-left: 25px !important;
+          }
+      }
+  }
   .mobileInput-Ios5 {
-    padding-left: 60px !important;
+    padding-left: 67px !important;
     float: right !important;
   }
   .ReportEthnicity {
@@ -7206,6 +7224,22 @@ background-color: rgb(245,245,245);
           }
       }
   }
+}
+.ContinueAddressBtn {
+    width: 74px !important;
+    top: 19px !important;
+}
+.concernListHeader {
+  height: 60px !important;
+.concernListTitle-ios {
+margin-top: 17px !important;
+font-size:18px !important;
+margin-left: 3px !important;
+}
+}
+.CancelAddressBtn {
+width:63px !important;
+top:15px !important;
 }
 }
 @media (min-width:376px) and (max-width:414px) {
@@ -7230,7 +7264,7 @@ background-color: rgb(245,245,245);
 @media (min-width:768px) and (max-width:1280px) {
 .mobileInput-Ios5 {
     width: 5% !important;
-    margin-left: 31% !important;
+    margin-left: 32% !important;
     float: right !important;
 }
 .mobileInputNo-Ios5 {
