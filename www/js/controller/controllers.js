@@ -4692,6 +4692,7 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
         /* country and State */
 
     $("#addHealthPlan").change(function() {
+      $("#localize-widget").show();
       $rootScope.getHlthSctValue = $('option:selected', this).text();
         if ($('option:selected', this).text() === 'Add a new health plan') {
 			         $rootScope.currentplan ="";
@@ -4717,6 +4718,7 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
               $("div.viewport").html('<div class="insProviderName localizejs">'+selectedValue[0]+'</div><div class="insSubscriberName localizejs">Subscriber ID:'+selectedValue[1]+'</div>');
 			         $rootScope.editplan ="block";
         }
+        $("#localize-widget").show();
     });
 $rootScope.planchange = function(){
       var insplan = $('#addHealthPlan').val();
@@ -4978,6 +4980,10 @@ $scope.EditHealth = {};
         $state.go('tab.cardDetails');
     }
     $scope.cardchange = function(pageName){
+      
+      setTimeout(function() {
+        $("#localize-widget").show();
+      }, 0);
 
       if(pageName === 'consulCharge') {
         var insplan = $('#addNewCard').val();
@@ -4992,6 +4998,7 @@ $scope.EditHealth = {};
        } else{
          $rootScope.editCardStyle ="none";
        }*/
+       $("#localize-widget").show();
    }
 
     $("#addNewCard").change(function() {
@@ -7230,11 +7237,18 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $rootScope.selectedPatientIdForDetails = patientId;
         $state.go('tab.patientCalendar');
     }
+    $scope.changedlanDisplay= function(){
+      setTimeout(function() {
+        $("#localize-widget").show();
+      }, 0);
+    }
+
     $rootScope.PlanDisplay = "inherit";
     $rootScope.verifyPlanDisplay = "none;";
     $rootScope.planverify = "inherit";
     $rootScope.subdetailsdisplay = "inherit";
     $scope.PlanDetailsValidation = function(model) {
+      $("#localize-widget").show();
         $rootScope.doddate = $('#date').val();
         $rootScope.restage = getAge($rootScope.doddate);
 
