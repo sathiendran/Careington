@@ -1110,6 +1110,7 @@ angular.module('starter.controllers')
 
         $scope.closeReportView = function() {
             $state.go('tab.consultations');
+            $('#HealthFooter').css({'display':'block'});
         }
 
 
