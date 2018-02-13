@@ -25,7 +25,8 @@ angular.module('starter.controllers')
             snap.redirctPage = '#/tab/singleTheme';
         }else {
            snap.redirctPage = '#/tab/login';
-        }
+        }        
+
         $rootScope.chkSSPageEnter = true;
         var checkAndChangeMenuIcon;
         $interval.cancel(checkAndChangeMenuIcon);
@@ -60,54 +61,6 @@ angular.module('starter.controllers')
                 }, 300);
             }
         };
-        $rootScope.sessionConsultConnection = $.hubConnection();
-        $rootScope.sessionRoomConHub = $rootScope.sessionConsultConnection.createHubProxy('sessionLimiterHub');
-        $rootScope.sessionConsultConnection.url = $rootScope.APICommonURL + "/api/signalR/";
-        $rootScope.sessionConsultConnection.qs = {
-         "Bearer": $rootScope.accessToken,
-         // "isMobile": true,
-        };
-        $rootScope.sessionRoomConHub.on("onConsultationReview", function() {
-        // alert("The Provider is now reviewing the intake form.");
-         $scope.$digest();
-        });
-        $rootScope.sessionRoomConHub.on("onCustomerDefaultWaitingInformation", function() {
-         $scope.$digest();
-        });
-        $rootScope.sessionRoomConHub.on("onConsultationStarted", function() {
-         $scope.$digest();
-        });
-        $rootScope.sessionConsultConnection.logging = true;
-        window.whub = $rootScope.sessionConsultConnection;
-        $rootScope.sessionConsultConnection.start({
-         withCredentials: false
-        }).then(function() {
-           $rootScope.sessionConsultConnection.disconnected(function() {
-                // console.log("hhhh");
-             setTimeout(function() {
-                  // if(activeConsultConnection && activeConsultConnection.start){
-                    //   activeConsultConnection.start();
-                      //console.log("iiii");
-                //   }
-             }, 5000);
-             });
-
-        });
-
-        $rootScope.sessionRoomConHub.on("onSessionTerminated", function(ip) {
-             navigator.notification.alert(
-                'You have logged in on another device and ended this session.', // message
-                function() {
-                    $rootScope.ClearRootScope();
-                  return;
-                },
-                $rootScope.alertMsgName, // title
-                'Done' // buttonName
-           );
-                //  alert("You have logged in on another device and ended this session.");
-                // // window.console.log("You have logged in on another device. IP: " + ip);
-                // $rootScope.ClearRootScope();
-           });
 
       $rootScope.doGetUserTimezone = function() {
           var params = {
