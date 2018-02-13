@@ -398,6 +398,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
   //  $scope.formatIsdCode = (s,c,n) => (s.length<n) ? s+c.repeat(n-s.length): s;
 
+
+  $scope.LanguageShow = function(){
+    debugger;
+  $("#localize-widget").show();
+}
+
+
     $rootScope.drawImage = function(imagePath, firstName, lastName) {
         $('.patProfileImage').css({
             'background-color': $rootScope.brandColor
@@ -670,7 +677,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -4692,6 +4699,7 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
         /* country and State */
 
     $("#addHealthPlan").change(function() {
+      $("#localize-widget").show();
       $rootScope.getHlthSctValue = $('option:selected', this).text();
         if ($('option:selected', this).text() === 'Add a new health plan') {
 			         $rootScope.currentplan ="";
@@ -4707,9 +4715,9 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
          else if ($('option:selected', this).text() === 'Choose Your Health Plan') {
               $rootScope.editplan ="none";
               $("div.viewport").html('<div class="insCHooseProviderName">Choose Your Health Plan</div>');
-        } else if ($('option:selected', this).text() === 'Elija su plan salud') {
+        } else if ($('option:selected', this).text() === 'Elija su plan de salud') {
               $rootScope.editplan ="none";
-              $("div.viewport").html('<div class="insCHooseProviderName">Elija su plan salud</div>');
+              $("div.viewport").html('<div class="insCHooseProviderName">Elija su plan de salud</div>');
         }
         else {
             //  $('div.viewport').text($("option:selected", this).text());
@@ -4717,12 +4725,13 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
               $("div.viewport").html('<div class="insProviderName localizejs">'+selectedValue[0]+'</div><div class="insSubscriberName localizejs">Subscriber ID:'+selectedValue[1]+'</div>');
 			         $rootScope.editplan ="block";
         }
+        $("#localize-widget").show();
     });
 $rootScope.planchange = function(){
       var insplan = $('#addHealthPlan').val();
       if(insplan != undefined)
       {
-        if( insplan != 'Choose Your Health Plan' && insplan.indexOf("undefined") == -1){
+        if( insplan != 'Choose Your Health Plan' && insplan != 'Elija su plan de salud' && insplan.indexOf("undefined") == -1) {
            $rootScope.editplan ="block";
          } else{
            $rootScope.editplan ="none";
@@ -4978,6 +4987,10 @@ $scope.EditHealth = {};
         $state.go('tab.cardDetails');
     }
     $scope.cardchange = function(pageName){
+      
+      setTimeout(function() {
+        $("#localize-widget").show();
+      }, 0);
 
       if(pageName === 'consulCharge') {
         var insplan = $('#addNewCard').val();
@@ -4992,10 +5005,11 @@ $scope.EditHealth = {};
        } else{
          $rootScope.editCardStyle ="none";
        }*/
+       $("#localize-widget").show();
    }
 
     $("#addNewCard").change(function() {
-        if ($('option:selected', this).text() === 'Add a new card') {
+        if ($('option:selected', this).text() === 'Add a new card' || $('option:selected', this).text() === 'Agregar una tarjeta nueva') {
             $rootScope.submitPayBack = $rootScope.currState.$current.name;
             $rootScope.cardPage = "consultCharge";
             $state.go('tab.cardDetails');
@@ -5009,7 +5023,7 @@ $scope.EditHealth = {};
               $rootScope.editCardStyle ="none";
               $("div.cardViewport").empty();
               $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
-            } else {
+            }  else {
               $rootScope.editCardStyle ="block";
               var payValue = ($('option:selected', this).val()).split("@");
               $("div.cardViewport").empty();
@@ -5033,7 +5047,12 @@ $scope.EditHealth = {};
                  $rootScope.editCardStyle ="none";
             }
         } else {
-            if ($('option:selected', this).text() === 'Elija su Tarjeta') {
+            if ($('option:selected', this).text() === 'Elija su Tarjeta' || $('option:selected', this).text() === 'Add a new card' ) {     
+              $rootScope.editCardStyle ="none";
+              $rootScope.editplan ="none";
+              $("div.cardViewport").empty();
+              $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
+            }  else if ($('option:selected', this).text() === 'Choose Your Card') {     
               $rootScope.editCardStyle ="none";
               $("div.cardViewport").empty();
               $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
@@ -5100,7 +5119,7 @@ $scope.EditHealth = {};
               $rootScope.editCardStyle ="none";
               $("div.cardViewport").empty();
               $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
-            } else {
+            }  else {
               $rootScope.editCardStyle ="block";
               var payValue = ($('option:selected', this).val()).split("@");
               $("div.cardViewport").empty();
@@ -5249,12 +5268,12 @@ $scope.EditHealth = {};
           $rootScope.copayAmount = $rootScope.consultationAmount;
           $rootScope.healthPlanPage = "none";
           $rootScope.consultChargeNoPlanPage = "block";
-  		  if($rootScope.userDefaultPaymentProfile == null || ($('#addNewCard').val() == 'Choose Your Card'))
-          {
-            $rootScope.editCardStyle = "none";
-          }else {
-            $rootScope.editCardStyle = "block";
-          }
+  		  // if($rootScope.userDefaultPaymentProfile == null || ($('#addNewCard').val() == 'Choose Your Card'))
+      //     {
+      //       $rootScope.editCardStyle = "none";
+      //     }else {
+      //       $rootScope.editCardStyle = "block";
+      //     }
           $('option').filter(function() {
               return this.value.indexOf('?') >= 0;
           }).remove();
@@ -5629,7 +5648,7 @@ $scope.EditHealth = {};
             success: function(data) {
                 if (data !== '') {
                     if (data.data[0].paymentProfiles.length !== 0) {
-                    $rootScope.disableSubmitpayment = "none";
+                    $rootScope.disableSubmitpayment = "none";  
                         $rootScope.patientprofileID = data.data[0].profileID;
                         $rootScope.PaymentProfile = [];
                         angular.forEach(data.data[0].paymentProfiles, function(index) {
@@ -5715,8 +5734,8 @@ $scope.EditHealth = {};
                             });
 
                         });
-
-
+                            
+                        
                         if((typeof $rootScope.paymentProfileId != 'undefined' && typeof $rootScope.paymentProfileId != '' && $window.localStorage.getItem("Card"+ $rootScope.UserEmail) != null && $window.localStorage.getItem("Card"+ $rootScope.UserEmail) != '') && ($rootScope.paymentProfileId == $window.localStorage.getItem("Card"+ $rootScope.UserEmail)))
                             {
                               $scope.userCrdType = $filter('filter')($rootScope.PaymentProfile, {
@@ -5742,7 +5761,7 @@ $scope.EditHealth = {};
                                     $('#addNewCard_submitPay').val('Choose Your Card');
                                     $rootScope.userDefaultPaymentProfileText = null;
                               }
-
+                              
                           }
 
                         if(typeof $rootScope.userCardDetails !== 'undefined' && $rootScope.userCardDetails !== '') {
@@ -5813,7 +5832,7 @@ $scope.EditHealth = {};
                         $rootScope.textAddCard = "none";
                     }
                 }
-
+                                   
             },
             error: function(data, status) {
                 if (status === 0) {
@@ -7230,11 +7249,18 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $rootScope.selectedPatientIdForDetails = patientId;
         $state.go('tab.patientCalendar');
     }
+    $scope.changedlanDisplay= function(){
+      setTimeout(function() {
+        $("#localize-widget").show();
+      }, 0);
+    }
+
     $rootScope.PlanDisplay = "inherit";
     $rootScope.verifyPlanDisplay = "none;";
     $rootScope.planverify = "inherit";
     $rootScope.subdetailsdisplay = "inherit";
     $scope.PlanDetailsValidation = function(model) {
+      $("#localize-widget").show();
         $rootScope.doddate = $('#date').val();
         $rootScope.restage = getAge($rootScope.doddate);
 
@@ -7730,7 +7756,9 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                       $rootScope.doCheckExistingConsulatationStatus('tab.userhome');
                     } else if(nextPage === '') {
                       $state.go('tab.appoimentDetails')
-                    }  else if(nextPage !='notNow'){
+                    } else if(nextPage === " "){
+                      $state.go('tab.healthinfo');
+                     } else if(nextPage !='notNow'){
                       $state.go(nextPage);
                     }
                 }
@@ -9733,13 +9761,22 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
     }
 
     $scope.backToEdiORAddPlan = function() {
-      if($rootScope.getHlthSctValue === 'Add a new health plan' || $rootScope.getHlthSctValue === 'Choose Your Health Plan' || $rootScope.getHlthSctValue === 'Agregar un nuevo plan de salud' || $rootScope.getHlthSctValue === 'Elija su plan salud' || $rootScope.providerName === '') {
+      if($rootScope.getHlthSctValue === 'Add a new health plan' || $rootScope.getHlthSctValue === 'Choose Your Health Plan' || $rootScope.getHlthSctValue === 'Agregar un nuevo plan de salud' || $rootScope.getHlthSctValue === 'Elija su plan de salud' || $rootScope.providerName === '') {
             $rootScope.editplan ="none";
         } else {
             $rootScope.editplan ="block";
         }
       $state.go('tab.consultCharge');
     }
+
+    // $scope.backToEdiORAddCard = function() {
+    //   if($rootScope.getHlthSctValue === 'Add a new health plan' || $rootScope.getHlthSctValue === 'Choose Your Health Plan' || $rootScope.getHlthSctValue === 'Agregar un nuevo plan de salud' || $rootScope.getHlthSctValue === 'Elija su plan de salud' || $rootScope.providerName === '') {
+    //         $rootScope.editplan ="none";
+    //     } else {
+    //         $rootScope.editplan ="block";
+    //     }
+    //   $state.go('tab.consultCharge');
+    // }
 
     $scope.catchPlanDetails = function(){
         $rootScope.ahProvider = document.getElementById('Provider').value;
@@ -9899,6 +9936,9 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         LoginService.getRelatedPatientProfiles(params);
       };
 
+      
+
+
   // $(".overlay").css({"display": "none" });
 
 
@@ -10029,7 +10069,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 }*/
                  //if (age.days != 0) {
                     var month = age.months + monthString;;
-               // }
+               // } 
                 if (age.months !== 0) {
                     return ageString = age.years + yearString + month;
                 } else {
