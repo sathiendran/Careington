@@ -383,6 +383,69 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
      });
 //venkat end
 
+
+ //venket
+ var localizeCurrent = $('#localize-current').text();
+ var myLength = $(".departmentClassVal").text().length;
+ console.log("myLength ="+myLength);
+  if($( window ).width()<= 375) {
+    if(localizeCurrent == "Español") {
+     //   console.log("Español");
+      $scope.ReportEthnicityVal = "width:36.33%";
+    } if(localizeCurrent == "English (UK)") {
+      $scope.ReportEthnicityVal = "width:41.33%";
+    } if(localizeCurrent == "English") {
+      $scope.ReportEthnicityVal = "width:41.33%";
+    }
+    /* if(myLength >= 11) {
+     //    console.log("myLength  is more=");
+       if(localizeCurrent == "Español") {
+     //      console.log("Español");
+           $scope.departmentClass = "height:45px";
+       } if(localizeCurrent == "English (UK)") {
+           $scope.departmentClass = "height:25px";
+       } if(localizeCurrent == "English") {
+           $scope.departmentClass = "height:25px";
+       }
+     }*/
+      } else {
+          if(localizeCurrent == "Español"){
+            }else{
+            }
+      }
+
+        $('#localize-langs').click(function() {
+           ///    console.log("myLength ="+myLength);
+           if($( window ).width()<= 375){
+             var isLang = $('#localize-langs .activated').text();
+             var myLength = $(".departmentClassVal").text().length;
+               //console.log("val ="+$(".departmentClassVal").text());
+               //console.log("myLength ="+myLength);
+             if(isLang == "Español") {
+                 //console.log("Español");
+                 $scope.ReportEthnicityVal = "width:36.33%";
+             } if(isLang == "English (UK)") {
+               $scope.ReportEthnicityVal = "width:41.33%";
+             } if(isLang == "English") {
+               $scope.ReportEthnicityVal = "width:41.33%";
+             }
+             if(myLength >= 11) {
+               //  console.log("myLength  is more=");
+              if(isLang == "Español") {
+                  $scope.departmentClass = "height:45px";
+              }
+              if(isLang == "English (UK)") {
+                $scope.departmentClass = "height:25px";
+              }
+              if(isLang == "English") {
+                $scope.departmentClass = "height:25px";
+              }
+            isLang = "";
+         }
+        }
+    });
+
+
   $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
   if($rootScope.chkSSPageEnter) {
         $rootScope.chkSSPageEnter = false;
@@ -396,13 +459,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
     };
 
-  //  $scope.formatIsdCode = (s,c,n) => (s.length<n) ? s+c.repeat(n-s.length): s;
-
-
-  $scope.LanguageShow = function(){
-    debugger;
-  $("#localize-widget").show();
-}
+  //  $scope.formatIsdCode = (s,c,n) => (s.length<n) ? s+c.repeat(n-s.length):
 
 
     $rootScope.drawImage = function(imagePath, firstName, lastName) {
@@ -4987,7 +5044,7 @@ $scope.EditHealth = {};
         $state.go('tab.cardDetails');
     }
     $scope.cardchange = function(pageName){
-      
+
       setTimeout(function() {
         $("#localize-widget").show();
       }, 0);
@@ -5047,12 +5104,12 @@ $scope.EditHealth = {};
                  $rootScope.editCardStyle ="none";
             }
         } else {
-            if ($('option:selected', this).text() === 'Elija su Tarjeta' || $('option:selected', this).text() === 'Add a new card' ) {     
+            if ($('option:selected', this).text() === 'Elija su Tarjeta' || $('option:selected', this).text() === 'Add a new card' ) {
               $rootScope.editCardStyle ="none";
               $rootScope.editplan ="none";
               $("div.cardViewport").empty();
               $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
-            }  else if ($('option:selected', this).text() === 'Choose Your Card') {     
+            }  else if ($('option:selected', this).text() === 'Choose Your Card') {
               $rootScope.editCardStyle ="none";
               $("div.cardViewport").empty();
               $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
@@ -5648,7 +5705,7 @@ $scope.EditHealth = {};
             success: function(data) {
                 if (data !== '') {
                     if (data.data[0].paymentProfiles.length !== 0) {
-                    $rootScope.disableSubmitpayment = "none";  
+                    $rootScope.disableSubmitpayment = "none";
                         $rootScope.patientprofileID = data.data[0].profileID;
                         $rootScope.PaymentProfile = [];
                         angular.forEach(data.data[0].paymentProfiles, function(index) {
@@ -5734,8 +5791,8 @@ $scope.EditHealth = {};
                             });
 
                         });
-                            
-                        
+
+
                         if((typeof $rootScope.paymentProfileId != 'undefined' && typeof $rootScope.paymentProfileId != '' && $window.localStorage.getItem("Card"+ $rootScope.UserEmail) != null && $window.localStorage.getItem("Card"+ $rootScope.UserEmail) != '') && ($rootScope.paymentProfileId == $window.localStorage.getItem("Card"+ $rootScope.UserEmail)))
                             {
                               $scope.userCrdType = $filter('filter')($rootScope.PaymentProfile, {
@@ -5761,7 +5818,7 @@ $scope.EditHealth = {};
                                     $('#addNewCard_submitPay').val('Choose Your Card');
                                     $rootScope.userDefaultPaymentProfileText = null;
                               }
-                              
+
                           }
 
                         if(typeof $rootScope.userCardDetails !== 'undefined' && $rootScope.userCardDetails !== '') {
@@ -5832,7 +5889,7 @@ $scope.EditHealth = {};
                         $rootScope.textAddCard = "none";
                     }
                 }
-                                   
+
             },
             error: function(data, status) {
                 if (status === 0) {
@@ -9936,7 +9993,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         LoginService.getRelatedPatientProfiles(params);
       };
 
-      
+
 
 
   // $(".overlay").css({"display": "none" });
@@ -10069,7 +10126,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 }*/
                  //if (age.days != 0) {
                     var month = age.months + monthString;;
-               // } 
+               // }
                 if (age.months !== 0) {
                     return ageString = age.years + yearString + month;
                 } else {
