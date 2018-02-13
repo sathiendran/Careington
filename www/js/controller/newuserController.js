@@ -141,6 +141,36 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
         }
     }
 
+  //  var alertMsg ="hi"
+
+    var alertMsg = "A verification email has been sent to the user.";
+
+      var localizeCurrent = $('#localize-current').text();
+      console.log("lang "+localizeCurrent);
+        if(localizeCurrent == "Español") {
+            alertMsg = "Se ha enviado un correo electrónico de verificación al usuario.";
+        }
+      else  if(localizeCurrent == "English (UK)") {
+        alertMsg = "A verification email has been sent to the user.";
+      }
+      else if (localizeCurrent == "English")   {
+          alertMsg = "A verification email has been sent to the user."
+        }
+
+
+       $('#localize-langs').click(function() {
+         var isLang = $('#localize-langs .activated').text();
+           console.log("lang "+isLang);
+           if(isLang == "Español") {
+             alertMsg = "Se ha enviado un correo electrónico de verificación al usuario.";
+           }
+          else  if(localizeCurrent == "English (UK)") {
+            alertMsg = "A verification email has been sent to the user."
+          }
+            else if (localizeCurrent == "English") {
+                alertMsg = "A verification email has been sent to the user."
+            }
+          });
 
     $scope.doPostAddCousers = function() {
 
@@ -148,11 +178,11 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                accessToken: $scope.accessToken,
                email: $scope.email,
                firstName: $scope.firstName,
+
             success: function() {
                 $('#couserform')[0].reset();
                 $('select').prop('selectedIndex', 0);
-                navigator.notification.alert(
-                    'A verification email has been sent to the user.', // message
+                navigator.notification.alert(alertMsg, // message
                     function() {
                         $state.go('tab.relatedusers');
                         return;
@@ -317,7 +347,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                 ngModelCtrl.$render = function() {
 
                     $element.val($filter('tel')(ngModelCtrl.$viewValue, false));
-                    
+
                 };
 
                 $element.bind('change', listener);

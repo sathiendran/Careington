@@ -4993,7 +4993,7 @@ $scope.EditHealth = {};
         $state.go('tab.cardDetails');
     }
     $scope.cardchange = function(pageName){
-      
+
       setTimeout(function() {
         $("#localize-widget").show();
       }, 0);
@@ -5053,12 +5053,12 @@ $scope.EditHealth = {};
                  $rootScope.editCardStyle ="none";
             }
         } else {
-            if ($('option:selected', this).text() === 'Elija su Tarjeta' || $('option:selected', this).text() === 'Add a new card' ) {     
+            if ($('option:selected', this).text() === 'Elija su Tarjeta' || $('option:selected', this).text() === 'Add a new card' ) {
               $rootScope.editCardStyle ="none";
               $rootScope.editplan ="none";
               $("div.cardViewport").empty();
               $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
-            }  else if ($('option:selected', this).text() === 'Choose Your Card') {     
+            }  else if ($('option:selected', this).text() === 'Choose Your Card') {
               $rootScope.editCardStyle ="none";
               $("div.cardViewport").empty();
               $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
@@ -5654,7 +5654,7 @@ $scope.EditHealth = {};
             success: function(data) {
                 if (data !== '') {
                     if (data.data[0].paymentProfiles.length !== 0) {
-                    $rootScope.disableSubmitpayment = "none";  
+                    $rootScope.disableSubmitpayment = "none";
                         $rootScope.patientprofileID = data.data[0].profileID;
                         $rootScope.PaymentProfile = [];
                         angular.forEach(data.data[0].paymentProfiles, function(index) {
@@ -5740,8 +5740,8 @@ $scope.EditHealth = {};
                             });
 
                         });
-                            
-                        
+
+
                         if((typeof $rootScope.paymentProfileId != 'undefined' && typeof $rootScope.paymentProfileId != '' && $window.localStorage.getItem("Card"+ $rootScope.UserEmail) != null && $window.localStorage.getItem("Card"+ $rootScope.UserEmail) != '') && ($rootScope.paymentProfileId == $window.localStorage.getItem("Card"+ $rootScope.UserEmail)))
                             {
                               $scope.userCrdType = $filter('filter')($rootScope.PaymentProfile, {
@@ -5767,7 +5767,7 @@ $scope.EditHealth = {};
                                     $('#addNewCard_submitPay').val('Choose Your Card');
                                     $rootScope.userDefaultPaymentProfileText = null;
                               }
-                              
+
                           }
 
                         if(typeof $rootScope.userCardDetails !== 'undefined' && $rootScope.userCardDetails !== '') {
@@ -5838,7 +5838,7 @@ $scope.EditHealth = {};
                         $rootScope.textAddCard = "none";
                     }
                 }
-                                   
+
             },
             error: function(data, status) {
                 if (status === 0) {
@@ -9953,7 +9953,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         LoginService.getRelatedPatientProfiles(params);
       };
 
-      
+
 
 
   // $(".overlay").css({"display": "none" });
@@ -10058,8 +10058,14 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 months: monthAge,
                 days: dateAge
             };
-
+          var localizeCurrent = $('#localize-current').text();
+            console.log("localizeCurrent"+localizeCurrent);
+            if(localizeCurrent == "Español") {
+            yearString = " helahkf ";
+          }
+          else {
             yearString = " yrs ";
+          }
             monthString = " m ";
             //dayString = "days";
             dayString = " d ";
@@ -10086,7 +10092,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 }*/
                  //if (age.days != 0) {
                     var month = age.months + monthString;;
-               // } 
+               // }
                 if (age.months !== 0) {
                     return ageString = age.years + yearString + month;
                 } else {
