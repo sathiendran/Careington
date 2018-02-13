@@ -127,7 +127,7 @@ span.icon_phone {
 
                                     <div class="dialogbox-master__datepicker">
                                         <label class="localizejs">Appt. Date</label>
-                                        <input data-role="datepicker" data-bind="value: startDate, events: {change: vm_startDateChange}, min: vm_currentDate" />
+                                        <input data-role="datepicker" id="datepicker1" data-bind="value: startDate, events: {change: vm_startDateChange}, min: vm_currentDate" />
                                     </div>
                                     <div class="dialogbox-master__appt-times" data-bind="source: apptsSlotsTray, events: {change: vm_appointmentSlotsChanged}" data-template="patient_apptsSlotsTemplate">
                                     </div>
