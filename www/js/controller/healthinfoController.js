@@ -297,6 +297,7 @@ angular.module('starter.controllers')
         $scope.addmore = false;
         $scope.healthhide = true;
         $scope.healthfoottab = true;
+        $('#HealthFooter').css({'display':'block'});
         $scope.healthfootsave = true;
         $scope.editshow = true;
         $scope.doneshow = true;
@@ -1587,7 +1588,21 @@ angular.module('starter.controllers')
                 });
             }
         }
+
+        window.addEventListener('native.keyboardshow', function () {
+            $scope.$apply(function() {
+                $('#HealthFooter').css({'display':'none'})
+             });
+            
+         });
+         window.addEventListener('native.keyboardhide', function () {
+            $scope.$apply(function() {
+                $('#HealthFooter').css({'display':'block'})
+          });
+        });
+
         $rootScope.doPutProfileUpdation = function () {
+
             $scope.patientMedicalHistoryDetails = {};
             $scope.patientMedicalHistoryDetails.patientId = $rootScope.currentPatientDetails[0].account.patientId;
             if ($rootScope.ChronicCount > 0) {
@@ -1821,6 +1836,7 @@ angular.module('starter.controllers')
                         $rootScope.flag = true;
                         $scope.doneedit = false;
                         $scope.healthfoottab = true;
+                        $('#HealthFooter').css({'display':'block'});
                         $scope.healthfootsave = true;
                         var editvalues = angular.element(document.getElementsByTagName('input'));
                         var edittextarea = angular.element(document.getElementsByTagName('textarea'));
@@ -2030,6 +2046,7 @@ angular.module('starter.controllers')
                 $scope.editshow = true;
                 $scope.doneshow = true;
                 $scope.healthfoottab = true;
+                $('#HealthFooter').css({'display':'block'});
                 $scope.healthfootsave = true;
             }
             if ($rootScope.hasRequiredFields !== true) {
@@ -2145,6 +2162,7 @@ angular.module('starter.controllers')
         }
         $scope.getMedicalDetailsinHealthInfo = function () {
             $scope.healthfoottab = true;
+            $('#HealthFooter').css({'display':'block'});
             $scope.healthfootsave = true;
             //$rootScope.patientAuthorize = false;
             if ($rootScope.hasRequiredFields === true) {

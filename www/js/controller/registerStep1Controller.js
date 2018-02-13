@@ -103,6 +103,10 @@ angular.module('starter.controllers')
 
         $scope.countryBlur=function(){
           $scope.countryError =false;
+          
+          setTimeout(function() {
+            $("#localize-widget").show();
+          }, 0);
 
           $('.regstCountry').removeClass("emailbackground");
           $('.ssooptionCountry').removeClass("emailbackground");
@@ -112,6 +116,7 @@ angular.module('starter.controllers')
                 var selectedValue = $('#regCountryCode').val();
                 $("div.viewport").html('<div class="regCountryOpt">'+selectedValue+'</div>');
           }
+
         }
         $scope.timeZoneBlur=function(){
           $scope.timeZoneError =false;

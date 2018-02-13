@@ -73,7 +73,7 @@ angular.module('starter.controllers')
 
         angular.element(document).ready(function () {
 
-            $("#localize-widget").hide();
+          //  $("#localize-widget").hide();
         });
 
 
@@ -1110,6 +1110,7 @@ angular.module('starter.controllers')
 
         $scope.closeReportView = function() {
             $state.go('tab.consultations');
+            $('#HealthFooter').css({'display':'block'});
         }
 
 
