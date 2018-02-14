@@ -383,6 +383,69 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
      });
 //venkat end
 
+
+ //venket
+ var localizeCurrent = $('#localize-current').text();
+ var myLength = $(".departmentClassVal").text().length;
+ console.log("myLength ="+myLength);
+  if($( window ).width()<= 375) {
+    if(localizeCurrent == "Español") {
+     //   console.log("Español");
+      $scope.ReportEthnicityVal = "width:36.33%";
+    } if(localizeCurrent == "English (UK)") {
+      $scope.ReportEthnicityVal = "width:41.33%";
+    } if(localizeCurrent == "English") {
+      $scope.ReportEthnicityVal = "width:41.33%";
+    }
+    /* if(myLength >= 11) {
+     //    console.log("myLength  is more=");
+       if(localizeCurrent == "Español") {
+     //      console.log("Español");
+           $scope.departmentClass = "height:45px";
+       } if(localizeCurrent == "English (UK)") {
+           $scope.departmentClass = "height:25px";
+       } if(localizeCurrent == "English") {
+           $scope.departmentClass = "height:25px";
+       }
+     }*/
+      } else {
+          if(localizeCurrent == "Español"){
+            }else{
+            }
+      }
+
+        $('#localize-langs').click(function() {
+           ///    console.log("myLength ="+myLength);
+           if($( window ).width()<= 375){
+             var isLang = $('#localize-langs .activated').text();
+             var myLength = $(".departmentClassVal").text().length;
+               //console.log("val ="+$(".departmentClassVal").text());
+               //console.log("myLength ="+myLength);
+             if(isLang == "Español") {
+                 //console.log("Español");
+                 $scope.ReportEthnicityVal = "width:36.33%";
+             } if(isLang == "English (UK)") {
+               $scope.ReportEthnicityVal = "width:41.33%";
+             } if(isLang == "English") {
+               $scope.ReportEthnicityVal = "width:41.33%";
+             }
+             if(myLength >= 11) {
+               //  console.log("myLength  is more=");
+              if(isLang == "Español") {
+                  $scope.departmentClass = "height:45px";
+              }
+              if(isLang == "English (UK)") {
+                $scope.departmentClass = "height:25px";
+              }
+              if(isLang == "English") {
+                $scope.departmentClass = "height:25px";
+              }
+            isLang = "";
+         }
+        }
+    });
+
+
   $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
   if($rootScope.chkSSPageEnter) {
         $rootScope.chkSSPageEnter = false;
@@ -396,13 +459,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
     };
 
-  //  $scope.formatIsdCode = (s,c,n) => (s.length<n) ? s+c.repeat(n-s.length): s;
-
-
-  $scope.LanguageShow = function(){
-    debugger;
-  $("#localize-widget").show();
-}
+  //  $scope.formatIsdCode = (s,c,n) => (s.length<n) ? s+c.repeat(n-s.length):
 
 
     $rootScope.drawImage = function(imagePath, firstName, lastName) {
