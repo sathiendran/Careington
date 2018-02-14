@@ -103,7 +103,7 @@ angular.module('starter.controllers')
 
         $scope.countryBlur=function(){
           $scope.countryError =false;
-          
+
           setTimeout(function() {
             $("#localize-widget").show();
           }, 0);
@@ -151,12 +151,14 @@ angular.module('starter.controllers')
         $scope.moblieBlur=function(){
             $('.regstmobile').removeClass("emailbackground");
           $scope.mobilemanderror=false;
+           $scope.mobileerror=false;
          $scope.mobilelength = $("#regMobile").val().length;
-          if ($scope.mobilelength < 14) {
+          if ($scope.mobilelength != 0 && $scope.mobilelength < 14) {
+            $scope.mobilemanderror=false;
             $scope.mobileerror = true;
               $('.regstmobile').addClass("emailbackground");
-          }
-         else{
+          } else{
+            $scope.mobilemanderror=false;
             $scope.mobileerror = false;
          }
         }
@@ -279,6 +281,7 @@ angular.module('starter.controllers')
               $('.regstTimezone').addClass("emailbackground");
               $('.ssooptionTimezone').addClass("emailbackground");*/
           }else if ($scope.mobilelength < 14) {
+               $scope.mobilemanderror=false;
               $scope.mobileerror=true;
           }  else if (typeof $scope.password === 'undefined' || $scope.password === '') {
             $('.regstpwd').addClass("emailbackground");
