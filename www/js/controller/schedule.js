@@ -7,11 +7,19 @@ angular.module('starter.controllers')
            if(localizeCurrent == "Español"){
                // $("#retrySpanish").text("Rever?");
                $("#retrySpanish").css("color", "Red");
+               // $(".drawer-card--empty.is-active::after").css({"content":"No hay proveedores guardados todavía."});
+               $('head').append('<style>.drawer-card--empty.is-active:before{content:"No hay proveedores guardados todavía." !important;}</style>');
+                $('head').append('<style>.drawer-card--empty.is-active::after{content:"Agregue proveedores a su lista seleccionando la estrella en su tarjeta de perfil." !important;}</style>');
+               // $('head').append('<style>.column:before{width:800px !important;}</style>');
            }else{
                // $("#retrySpanish").text("Retry?");
                $("#retrySpanish").css("color", "Pink");
+               $('head').append('<style>.drawer-card--empty.is-active:before{content:"No saved providers yet." !important;}</style>');
+               $('head').append('<style>.drawer-card--empty.is-active:before{content:"Add providers to your list by selecting the star on their profile card." !important;}</style>');
             //   $scope.retrySpanish = "Retry?";
            }
+
+
 
         var vm = '';
         var headerVM = '';
@@ -26,6 +34,7 @@ angular.module('starter.controllers')
         }else {
            snap.redirctPage = '#/tab/login';
         }
+
         $rootScope.chkSSPageEnter = true;
         var checkAndChangeMenuIcon;
         $interval.cancel(checkAndChangeMenuIcon);
@@ -60,54 +69,6 @@ angular.module('starter.controllers')
                 }, 300);
             }
         };
-        $rootScope.sessionConsultConnection = $.hubConnection();
-        $rootScope.sessionRoomConHub = $rootScope.sessionConsultConnection.createHubProxy('sessionLimiterHub');
-        $rootScope.sessionConsultConnection.url = $rootScope.APICommonURL + "/api/signalR/";
-        $rootScope.sessionConsultConnection.qs = {
-         "Bearer": $rootScope.accessToken,
-         // "isMobile": true,
-        };
-        $rootScope.sessionRoomConHub.on("onConsultationReview", function() {
-        // alert("The Provider is now reviewing the intake form.");
-         $scope.$digest();
-        });
-        $rootScope.sessionRoomConHub.on("onCustomerDefaultWaitingInformation", function() {
-         $scope.$digest();
-        });
-        $rootScope.sessionRoomConHub.on("onConsultationStarted", function() {
-         $scope.$digest();
-        });
-        $rootScope.sessionConsultConnection.logging = true;
-        window.whub = $rootScope.sessionConsultConnection;
-        $rootScope.sessionConsultConnection.start({
-         withCredentials: false
-        }).then(function() {
-           $rootScope.sessionConsultConnection.disconnected(function() {
-                // console.log("hhhh");
-             setTimeout(function() {
-                  // if(activeConsultConnection && activeConsultConnection.start){
-                    //   activeConsultConnection.start();
-                      //console.log("iiii");
-                //   }
-             }, 5000);
-             });
-
-        });
-
-        $rootScope.sessionRoomConHub.on("onSessionTerminated", function(ip) {
-             navigator.notification.alert(
-                'You have logged in on another device and ended this session.', // message
-                function() {
-                    $rootScope.ClearRootScope();
-                  return;
-                },
-                $rootScope.alertMsgName, // title
-                'Done' // buttonName
-           );
-                //  alert("You have logged in on another device and ended this session.");
-                // // window.console.log("You have logged in on another device. IP: " + ip);
-                // $rootScope.ClearRootScope();
-           });
 
       $rootScope.doGetUserTimezone = function() {
           var params = {

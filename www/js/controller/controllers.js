@@ -685,7 +685,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.PriorSurgeryPopupCancel = "margin-top: 2px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
             $rootScope.ChronicConditionPopupTitle = "margin-top: 13px;";
             $rootScope.ChronicConditionPopupDone = "margin-top: 13px;";
-            $rootScope.NextIntakeForm = "margin-left: -21px;";
+          //  $rootScope.NextIntakeForm = "margin-left: -21px;";
             $rootScope.LoginContant = "padding-top: 43px !important; margin: 99px 0 0 0;"; //margin: 30px 0 0 0 remove
             $rootScope.LoginContantDiv = "height: 50px;"; //95px
             $rootScope.PasswordOverlop = "margin: 105px 0 0 0 !important;";
@@ -702,7 +702,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.reportDone = "padding-top: 26px;";
             $rootScope.reportTitletop = "top: 14px !important; left: -8px !important;";
             $rootScope.resetContent = "margin: -46px 0 0 0;";
-            $rootScope.ConcernFooterNextIOS = "margin-left: -46px !important; left: -18px !important;";
+            $rootScope.ConcernFooterNextIOS = "margin-left: -46px !important; left: -15px !important;";
             $rootScope.providerItamMarginTop = "top: 5px;";
         }
         if ($rootScope.isIPad) {
@@ -1053,9 +1053,15 @@ $rootScope.checkAndChangeMenuIcon = function() {
         });
 
         $rootScope.sessionRoomConHub.on("onSessionTerminated", function(ip) {
-                 alert("You have logged in on another device and ended this session.");
-                // window.console.log("You have logged in on another device. IP: " + ip);
-                $rootScope.ClearRootScope();
+                  navigator.notification.alert(
+                     'You have logged in on another device and ended this session.', // message
+                     function() {
+                         $rootScope.ClearRootScope();
+                        return;
+                     },
+                     $rootScope.alertMsgName, // title
+                     'Done' // buttonName
+                 );
             });
 
           /*  sessionRoomConHub.on("forceLogout", function(ip) {
@@ -1110,12 +1116,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
         if($errorMsg.length >= 50)
         {
           if($rootScope.is_iPadDeviceWidth <= 320) {
-              var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: -2px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: -2px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           } else {
-              var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: 6px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: 6px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           }
         }else{
-              var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         }
         $("#notifications-top-center").remove();
         $("#Error_Message").append(top);
@@ -1132,12 +1138,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
         if($errorMsg.length >= 50)
         {
           if($rootScope.is_iPadDeviceWidth <= 320) {
-              var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent" style="font-size: 16px !important;margin-top: -2px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent" style="font-size: 16px !important;margin-top: -2px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           } else {
-              var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent" style="font-size: 16px !important;margin-top: 6px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent" style="font-size: 16px !important;margin-top: 6px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           }
         }else{
-              var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span> </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span> </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         }
         $("#notifications-top-center").remove();
         $("#Error_Message").append(top);
@@ -7038,7 +7044,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                          activeConsultConnection.qs = {};
                          activeConsultConnection = null;
                          activeRoomConHub = null;
-                      $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    //  $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    $rootScope.doGetScheduledNowPhoneConsulatation();
                        return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7054,7 +7061,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                          activeConsultConnection.qs = {};
                          activeConsultConnection = null;
                          activeRoomConHub = null;
-                     $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    // $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    $rootScope.doGetScheduledNowPhoneConsulatation();
                       return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7070,7 +7078,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                         activeConsultConnection.qs = {};
                         activeConsultConnection = null;
                         activeRoomConHub = null;
-                     $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    // $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    $rootScope.doGetScheduledNowPhoneConsulatation();
                       return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7087,7 +7096,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                         activeConsultConnection.qs = {};
                         activeConsultConnection = null;
                         activeRoomConHub = null;
-                     $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    // $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    $rootScope.doGetScheduledNowPhoneConsulatation();
                       return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7096,7 +7106,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                return false;
            } else {
                // alert('gg4');
-               $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+               //$rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+               $rootScope.doGetScheduledNowPhoneConsulatation();
            }
        });
 
@@ -7160,9 +7171,15 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                  });
 
                  $rootScope.sessionRoomConHub.on("onSessionTerminated", function(ip) {
-                         // alert("You have logged in on another device and ended this session.");
-                         // window.console.log("You have logged in on another device. IP: " + ip);
-                         $rootScope.ClearRootScope();
+                           navigator.notification.alert(
+                              'You have logged in on another device and ended this session.', // message
+                              function() {
+                                  $rootScope.ClearRootScope();
+                                 return;
+                              },
+                              $rootScope.alertMsgName, // title
+                              'Done' // buttonName
+                          );
                      });
 
                     $rootScope.sessionRoomConHub.on("sessionRegistered", function(ip) {
@@ -10098,8 +10115,14 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 months: monthAge,
                 days: dateAge
             };
-
+          var localizeCurrent = $('#localize-current').text();
+            console.log("localizeCurrent"+localizeCurrent);
+            if(localizeCurrent == "Español") {
+            yearString = " helahkf ";
+          }
+          else {
             yearString = " yrs ";
+          }
             monthString = " m ";
             //dayString = "days";
             dayString = " d ";

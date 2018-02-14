@@ -2389,7 +2389,7 @@ select {
         cursor:pointer;
         position: relative;
         top: -10px;
-        left: 10px;
+        left: 0px;
         span {
             // top: -2px;
             // position: relative;
@@ -2430,14 +2430,15 @@ select {
             font-size: 22px !important;
             margin-top: -2px;
             position: absolute;
-            top: -5px;
+            top: -4px;
             right: 18px;
         }
         text-align:right;
         float:left;
         width:33%;
         position: relative;
-        top: -5px;
+        top: -4px;
+        left: 5px;
         a {
             cursor: pointer;
             font-weight: bold;
