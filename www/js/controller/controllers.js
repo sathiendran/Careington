@@ -677,7 +677,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -3652,6 +3652,7 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
     }
 
     $scope.goTOSchedule = function() {
+      $("#localize-widget").show();
         if ($rootScope.currState.$current.name == "tab.userhome") {
             $window.localStorage.setItem('snap_patientprofile_session', $rootScope.primaryPatSSDetails );
         }
@@ -6976,6 +6977,44 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 });
          });
 
+
+                   var  alertMsgcomplete = "Consultation ended successfully!";
+                   var alertconfirmok = "Ok";
+
+                     var localizeCurrent = $('#localize-current').text();
+                     console.log("lang "+localizeCurrent);
+                       if(localizeCurrent == "Español") {
+                            alertMsgcomplete = "El Proveedor ha marcado su consulta como completa.";
+                            alertconfirmok = "De acuerdo";
+                       }
+                     else  if(localizeCurrent == "English (UK)") {
+                        alertMsgcomplete = "The Provider has marked your consultation as complete.";
+                        alertconfirmok = "Ok";
+                     }
+                     else if (localizeCurrent == "English")   {
+                          alertMsgcomplete = "The Provider has marked your consultation as complete.";
+                          alertconfirmok = "Ok";
+                       }
+
+
+                      $('#localize-langs').click(function() {
+                        var isLang = $('#localize-langs .activated').text();
+                          console.log("lang "+isLang);
+                          if(isLang == "Español") {
+                             alertMsgcomplete = "El Proveedor ha marcado su consulta como completa.";
+                               alertconfirmok = "De acuerdo";
+                          }
+                         else  if(isLang == "English (UK)") {
+                            alertMsgcomplete = "The Provider has marked your consultation as complete.";
+                            alertconfirmok = "Ok";
+                         }
+                           else if (isLang == "English") {
+                                alertMsgcomplete = "The Provider has marked your consultation as complete.";
+                                alertconfirmok = "Ok";
+                           }
+                         });
+
+
        activeRoomConHub.on("broadcastMessage", function(messageType, message) {
           // alert("notificationService: broadcastMessage");
           if(messageType == 'consultation_ended') {
@@ -6992,7 +7031,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                        return;
                    },
                    $rootScope.alertMsgName, // title
-                   'Ok' // buttonName
+                   alertconfirmok // buttonName
                );
                return false;
           } else if(messageType == 'consultation_dropped') {
@@ -7009,13 +7048,14 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                       return;
                    },
                    $rootScope.alertMsgName, // title
-                   'Ok' // buttonName
+                   alertconfirmok // buttonName
                );
                return false;
           } else if(messageType == 'consultation_fulfilled') {
              //  alert('gg1');
                navigator.notification.alert(
-                 'The Provider has marked your consultation as complete.', // message
+                 // 'The Provider has marked your consultation as complete.', // message
+                 alertMsgcomplete,
                    function() {
                         activeConsultConnection.stop();
                         activeConsultConnection.qs = {};

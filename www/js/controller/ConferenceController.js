@@ -1546,7 +1546,49 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
           $('#vdioCamera .vdioIcon i svg').css('color', 'white');
         };
     }
+    var alertMsgConference = "Consultation ended successfully!";
+      var Buttonmsg = "Done";
+      var alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
 
+      var localizeCurrent = $('#localize-current').text();
+
+        if(localizeCurrent == "Español") {
+            alertMsgConference = "¡La consulta terminó exitosamente!";
+            Buttonmsg = "Listo";
+            alertconfirm = "Actualmente tiene una consulta en curso. ¿Está seguro de que desea finalizar esta consulta?";
+        }
+      else  if(localizeCurrent == "English (UK)") {
+        alertMsgConference = "Consultation ended successfully!";
+        Buttonmsg = "Done";
+        alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
+      }
+      else if (localizeCurrent == "English")   {
+          alertMsgConference = "Consultation ended successfully!";
+          Buttonmsg = "Done";
+          alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
+        }
+
+
+       $('#localize-langs').click(function() {
+         var isLang = $('#localize-langs .activated').text();
+           console.log("lang "+isLang);
+           if(isLang == "Español") {
+             alertMsgConference = "¡La consulta terminó exitosamente!";
+              Buttonmsg = "Listo";
+              alertconfirm = "Actualmente tiene una consulta en curso. ¿Está seguro de que desea finalizar esta consulta?";
+
+           }
+          else  if(isLang == "English (UK)") {
+            alertMsgConference = "Consultation ended successfully!";
+            Buttonmsg = "Done";
+            alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
+          }
+            else if (isLang == "English") {
+                alertMsgConference = "Consultation ended successfully!";
+                Buttonmsg = "Done";
+                alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
+            }
+          });
 
     var callEnded = false;
     $scope.disconnectConference = function() {
@@ -1554,7 +1596,7 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
 
             if(!isCallEndedByPhysician){
               navigator.notification.confirm(
-                  'You currently have a consultation in progress.Are you sure you want to end this consultation?',
+                alertconfirm,
                   function(index) {
                       if (index == 1) {
                           $state.go('tab.videoConference');
@@ -1578,10 +1620,10 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
                           window.localStorage.setItem('isVideoCallProgress', "No");
                           callEnded = true;
                         navigator.notification.alert(
-                            'Consultation ended successfully!', // message
+                            alertMsgConference, // message
                             consultationEndedAlertDismissed, // callback
                             $rootScope.alertMsgName, // title
-                            'Done' // buttonName
+                            Buttonmsg // buttonName
                         );
                       }
                   },
@@ -1609,10 +1651,10 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
              }
 
               navigator.notification.alert(
-                  'Consultation ended successfully!', // message
+                  alertMsgConference, // message
                   consultationEndedAlertDismissed, // callback
                   $rootScope.alertMsgName, // title
-                  'Done' // buttonName
+                  Buttonmsg // buttonName
               );
             }
 
