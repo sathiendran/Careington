@@ -1,18 +1,30 @@
-<ion-header-bar class="bg" style="background-color: {{brandColor}}; border-color: {{brandColor}}">
+<ion-header-bar class="bg" style="background-color: {{brandColor}}; border-color: {{brandColor}};height: 48pt !important;">
    <div id="Error_Message" ></div>
    <div class="Server_Error" ></div>
-   <h2 class="HospitalTitle-{{deviceName}}">{{Hospital}}</h2>
+
+    <h2 class="HospitalTitle-{{deviceName}}" style="margin-top: -50px !important;">
+       <span class="localizejs terms-close" ng-click="backtoPreviousPageFromTerms(registerCurrentPage);">Close</span>
+       <span class="localizejs terms-headtitle">Terms</span>
+    </h2>
+
+    <!-- <h1 class="HospitalTitle-{{deviceName}} userAccTitle">
+        <a ng-click="backtoPreviousPageFromTerms(registerCurrentPage);" class="userAccountbackBtn"> <span class="localizejs">Close</span></a>
+        <div class="headerfont accountHeader-{{deviceName}} localizejs userAccountTitle"> Terms</div>
+     </h1> -->
+
+   <!-- <h2 class="HospitalTitle-{{deviceName}}">{{Hospital}}</h2> -->
 </ion-header-bar>
 <ion-view title="Terms&Conditions">
    <ion-content class="ContentList_terms-{{deviceName}} ionic-scroll  has-header has-footer" style="font-size: 19px; color: #4D4D4D; text-align: justify;"  >
-      <div class="singleTermsconContent-{{deviceName}}" >
-         <div class="termscontent"  ng-bind-html="termsandCOnditionsContent | sanitize"></div>
+      <div class="singleTermsconContent-{{deviceName}} TC-content" style="top: -75px;" >
+        <span class="terms-Hospitaltitle">{{Hospital}}</span>
+         <div class="termscontent" style="margin-top: 24pt;"  ng-bind-html="termsandCOnditionsContent | sanitize"></div>
       </div>
    </ion-content>
-   <ion-footer-bar align-title="left" class="footer">
+   <!-- <ion-footer-bar align-title="left" class="footer">
       <div class="buttons footerBackButton">
          <a class="button_new icon ion-chevron-left terms_footer_a" ng-click="backtoPreviousPageFromTerms(registerCurrentPage);"><span class="localizejs">  Back</span></a>
       </div>
-   </ion-footer-bar>
+   </ion-footer-bar> -->
    <!-- End Footer -->
 </ion-view>
