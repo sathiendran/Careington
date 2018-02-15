@@ -94,13 +94,18 @@ $("#localize-widget").show();
                                 if(chkClass) {
                                   $("body").removeClass("is-main-nav");
                                 }
+                                $(".button__cancel").click();
                                 snap.updateSnapJsSession("snap_user_session", "timeZoneSystemId", snap.userSession.timeZoneSystemId);
                                 snap.resolveObject("snap.patient.schedule");
                                 var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
                                 var headerVM = snap.resolveObject("snap.patient.PatientHeaderViewModel");
+                                headerVM.vm_isSearchBarActive = false;
+                                headerVM.vm_isPatientSelectorActive = false;
                                 headerVM.set("moduleTitle", "Provider");
                                 headerVM.set("subModuleTitle", "All providers");
                                 headerVM.isFavoriteCliniciansMode = true;
+                                $("#relatedUsrTab").css("display", "none");
+                                $("#searchFilter").css("display", "none");
                                 kendo.bind($("#scd-bdy"), vm);
                                 kendo.bind($(".header__patient-ss"), headerVM);
                                 var viewMode = "all"; //$stateParams.viewMode; //"favorite";
@@ -151,6 +156,11 @@ $("#localize-widget").show();
 
         this.initKendoUI = function() {
             //if(snap.profileSession === undefined) {
+            $("#searchFilter").removeClass("is-active");
+              $("#searchTab").removeClass("is-active");
+              $("#myProvider").removeClass("is-active");
+              $("#allProvider").addClass("is-active");
+              $(".button__cancel").click();
               this.initSnapVars();
           //  }
         }
