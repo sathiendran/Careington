@@ -743,7 +743,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -10580,12 +10580,10 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         } else {
           //  return ageString = age.years + yearString;
         }
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> 4a4750c54e931bfac5317a7336584931733b6843
+
             // if (age.years === 0) {
             //    /* if (age.days <= 15) {
             //         return ageString = age.months + monthString;;
