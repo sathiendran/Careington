@@ -68,8 +68,8 @@
         <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
     </platform>
-    <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-customurlscheme" spec="git+https://github.com/EddyVerbruggen/LaunchMyApp-PhoneGap-Plugin.git">
         <variable name="URL_SCHEME" value="vc289" />
     </plugin>
+    <engine name="ios" spec="^4.5.4" />
 </widget>

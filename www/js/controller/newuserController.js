@@ -164,10 +164,10 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
            if(isLang == "Español") {
              alertMsg = "Se ha enviado un correo electrónico de verificación al usuario.";
            }
-          else  if(localizeCurrent == "English (UK)") {
+          else  if(isLang == "English (UK)") {
             alertMsg = "A verification email has been sent to the user."
           }
-            else if (localizeCurrent == "English") {
+            else if (isLang == "English") {
                 alertMsg = "A verification email has been sent to the user."
             }
           });
@@ -214,6 +214,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
     }
 
     $scope.goTOSchedule = function() {
+      $("#localize-widget").show();
         $('<link/>', {
             rel: 'stylesheet',
             type: 'text/css',

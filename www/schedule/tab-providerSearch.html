@@ -77,7 +77,7 @@ svg {
                 <span class="user-info__fname">{{primaryPatientName}} </span> <span class="user-info__lname">{{primaryPatientLastName}} </span>
             </div>
             <div class="user-info__info">
-                <span class="localizejs">{{primaryPatGender}}</span> • <span>{{dob | ageFilter}}</span> • <span>{{mobilePhone}}</span>
+                <span class="localizejs">{{primaryPatGender}}</span> • <span>{{dob | ageFilter}}</span><span class="localizejs">{{dob | ageYearsStringFilter}}</span><span>{{dob | ageMonthFilter}}</span> <span>{{dob | ageDayFilter}}</span>• <span>{{mobilePhone}}</span>
             </div>
         </div>
     </a>

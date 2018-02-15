@@ -9408,7 +9408,7 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  line-height: normal; }
+  line-height: 24pt; }
 
 .button.button-positive.button-outline {
   background-color: #A2D28A;
@@ -9642,7 +9642,8 @@ body {
   min-height: 38px;
   margin: 0 0 0 10px;
   text-decoration: none;
-  cursor: pointer; }
+  cursor: pointer;
+  margin-right: 16px; }
 
 .ion-chevron-left::before {
   color: #fff;
@@ -9804,7 +9805,8 @@ body {
 
 .calendar_subHeader_height {
   top: 65px !important;
-  height: auto !important; }
+  height: auto !important;
+  padding-bottom: 7px; }
   .calendar_subHeader_height .calendar_subHeader {
     margin: 3px 7px; }
     .calendar_subHeader_height .calendar_subHeader .subHeader_image {
@@ -9817,14 +9819,14 @@ body {
     .calendar_subHeader_height .calendar_subHeader .subHeader_content-Android .subHeader_content_name {
       font-size: 21px;
       margin-left: 7px;
-      margin-top: 8px; }
+      margin-top: 9px; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_content-Android .subHeader_content_name .patientName {
         font-weight: bold;
         font-family: Glober Bold !important; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_content-Android .subHeader_content_name .patientLastName {
         font-family: Glober Regular !important; }
     .calendar_subHeader_height .calendar_subHeader .subHeader_content-Android .subHeader_content_age {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: bold;
       margin-left: 10px;
       margin-top: 1px;
@@ -9832,7 +9834,7 @@ body {
     .calendar_subHeader_height .calendar_subHeader .subHeader_content-IOS .subHeader_content_name {
       font-size: 22px;
       margin-left: 7px;
-      margin-top: 8px; }
+      margin-top: 9px; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_content-IOS .subHeader_content_name .patientName {
         font-weight: bold;
         font-family: Glober Bold !important; }
@@ -9933,7 +9935,7 @@ body {
     content: "\f125";
     font-size: 19px;
     position: relative;
-    top: -2px; }
+    top: 1px; }
 
 .Appointment_heading {
   top: 12px;
@@ -10077,6 +10079,9 @@ body {
 .intakeTittleIOS {
   top: 17px !important; }
 
+.accoTitle-IOS {
+  top: -4px !important; }
+
 .PatientDetailsHome {
   padding: 4%; }
   .PatientDetailsHome span {
@@ -10108,6 +10113,27 @@ body {
   color: #666;
   font-size: 16px !important; }
 
+.ssooptionCountry {
+  width: 100%;
+  border: none;
+  background-color: #F3F3F3;
+  padding: 5px;
+  margin-left: -6px;
+  color: #666;
+  font-size: 16px !important; }
+  .ssooptionCountry .planlist option {
+    font-size: 16px;
+    color: #fcfcfc; }
+
+.ssooptionTimezone {
+  width: 100%;
+  border: none;
+  background-color: #F3F3F3;
+  padding: 5px;
+  margin-left: -6px;
+  color: #666;
+  font-size: 16px !important; }
+
 .ssoaddress {
   font-size: 16px !important; }
 
@@ -10124,12 +10150,12 @@ body {
     font-size: 26px;
     top: -8px;
     position: relative;
-    left: 10px;
+    left: 15px;
     font-family: "Glober SemiBold";
     font-weight: normal; }
 
 .consultConMargin {
-  margin: 182px 0 0 0; }
+  margin: 206px 0 0 0; }
 
 .consultConPaymentMargin {
   margin: 139px 0 0 0; }
@@ -10213,38 +10239,51 @@ body {
 .consultation_head {
   font-size: 164%;
   padding-top: 22px;
-  color: #2A2A2A; }
+  color: #2A2A2A;
+  width: 110%; }
   .consultation_head .consultation_number {
     margin-right: 17px;
     font-family: "Glober SemiBold";
     color: #666666;
-    text-align: right; }
+    text-align: left;
+    width: 110%; }
     .consultation_head .consultation_number span {
-      text-decoration: line-through; }
+      text-decoration: line-through;
+      margin-left: 35px;
+      font-size: 22px; }
   .consultation_head .consultation_numberCopay {
     font-family: "Glober SemiBold";
     color: #666666;
-    text-align: right;
-    padding-right: 16px; }
+    text-align: left;
+    padding-right: 16px;
+    width: 110%; }
     .consultation_head .consultation_numberCopay span {
       color: red;
-      font-size: 22px; }
+      font-size: 22px;
+      margin-left: 35px; }
   .consultation_head .consultTittleCharge {
     color: #666666;
     font-family: "Glober SemiBold";
-    margin-left: 10px;
-    float: left; }
+    margin-left: 10%;
+    float: left;
+    font-size: 24px;
+    padding: 0 0 0 30px; }
+  .consultation_head .consultTittleChargeNew {
+    margin-left: 10%;
+    font-size: 24px;
+    padding: 0 0 0 30px; }
   .consultation_head .consultTittle {
     color: #666666;
     font-family: "Glober SemiBold";
-    margin-left: 10px;
+    margin-left: -3%;
     float: left;
     width: 63%;
-    text-align: right; }
+    text-align: right;
+    font-size: 24px; }
   .consultation_head .consultTittleCopay {
     color: #666666;
     font-family: "Glober SemiBold";
-    margin-left: 10px;
+    margin-left: -10px;
     float: left;
     width: 63%;
     text-align: right;
@@ -10252,6 +10291,29 @@ body {
   .consultation_head .Plancovers {
     font-size: 12px;
     color: #C2C2C2; }
+  .consultation_head .consultation-charge {
+    margin-left: 35px;
+    font-size: 24px; }
+
+@media (min-width: 320px) and (max-width: 568px) {
+  .consultation_head .consultTittle {
+    font-size: 20px !important; }
+  .consultation_head .consultTittleCopay {
+    font-size: 14px !important; }
+  .consultation_head .consultation_number {
+    width: 110% !important; }
+    .consultation_head .consultation_number span {
+      font-size: 20px !important; }
+  .consultation_head .consultation_numberCopay {
+    width: 110% !important; }
+    .consultation_head .consultation_numberCopay span {
+      font-size: 20px !important; }
+  .consultation_head .consultTittleChargeNew {
+    margin-left: 3% !important;
+    font-size: 20px !important;
+    padding: 0 0 0 0px !important; }
+  .consultation_head .consultation-charge {
+    font-size: 20px !important; } }
 
 .UseHealthPlan {
   padding-top: 45px; }
@@ -10364,7 +10426,7 @@ body {
   -moz-animation-duration: 20s !important;
   -o-animation-duration: 20s !important;
   animation-duration: 20s !important;
-  padding-top: 12px;
+  padding-top: 0px;
   text-align: center;
   color: #5C5C5C; }
   .healthPlan_header .healthPlan_text {
@@ -10379,7 +10441,7 @@ body {
     font-weight: bold;
     left: 7px;
     position: relative;
-    top: -11px;
+    top: -13px;
     color: #666666; }
 
 .bar .button.button-icon .icon:before,
@@ -10479,7 +10541,7 @@ body {
   .planDetails_content input[type="text"],
   .planDetails_content input[type="number"],
   .planDetails_content input[type="password"] {
-    font-size: 19px;
+    font-size: 18px;
     line-height: 30px;
     padding-top: 9px; }
   .planDetails_content .planDetails {
@@ -10504,7 +10566,7 @@ body {
   .planDetails_content .input-label {
     font-weight: bold;
     font-size: 23px;
-    width: 50%;
+    width: 47%;
     padding: 10px 10px 7px 0px;
     color: #666666; }
   .planDetails_content .cardDetailsHeading {
@@ -10712,7 +10774,8 @@ select {
   padding-top: 20px;
   font-family: 'Glober Regular';
   z-index: 999;
-  padding-top: 20px; }
+  padding-top: 20px;
+  top: 0px; }
   .ReportContent em {
     font-style: italic; }
   .ReportContent .providerAddress {
@@ -10865,7 +10928,7 @@ select {
     padding-top: 20px; }
 
 .ConcernsContent {
-  margin-top: 118px !important; }
+  margin-top: 129px !important; }
   .ConcernsContent .PrimaryList {
     top: 3px;
     padding: 1px;
@@ -10967,14 +11030,14 @@ select {
     cursor: pointer;
     position: relative;
     top: -10px;
-    left: 10px; }
+    left: 0px; }
     .ConcernsFooter .FooterLeft .ion-chevron-left:before {
       content: "\f124";
       font-size: 22px;
       margin-top: 0px; }
     .ConcernsFooter .FooterLeft span {
-      top: -2px;
-      position: relative;
+      position: absolute;
+      top: 3px;
       font-weight: bold; }
     .ConcernsFooter .FooterLeft a {
       padding: 10px 10px 10px 0px;
@@ -11002,11 +11065,15 @@ select {
     float: left;
     width: 33%;
     position: relative;
-    top: -7px; }
+    top: -4px;
+    left: 5px; }
     .ConcernsFooter .FooterRight .ion-chevron-right:before {
       content: "\f125";
       font-size: 22px !important;
-      margin-top: -2px; }
+      margin-top: -2px;
+      position: absolute;
+      top: -4px;
+      right: 18px; }
     .ConcernsFooter .FooterRight a {
       cursor: pointer;
       font-weight: bold;
@@ -11022,19 +11089,20 @@ select {
   height: 55px; }
   .concernListHeader .concernListTitle {
     top: 8px !important;
-    font-size: 16px !important;
+    font-size: 20px !important;
     color: #FFFFFF !important;
     font-family: "Glober SemiBold"; }
   .concernListHeader .concernListDone {
-    top: 6px !important;
-    font-size: 15px !important;
-    font-family: "Glober SemiBold"; }
+    top: 7px !important;
+    font-size: 18px !important;
+    font-family: "Glober Regular";
+    padding: 9px !important; }
   .concernListHeader .concernListTitle-ios {
-    top: 17px !important;
-    font-size: 16px !important;
+    font-size: 20px !important;
+    color: #FFFFFF !important;
     font-family: "Glober SemiBold"; }
   .concernListHeader .concernListDone-ios {
-    top: 18px !important;
+    top: 5px !important;
     font-size: 15px !important;
     font-family: "Glober SemiBold"; }
 
@@ -11297,22 +11365,45 @@ select {
 #dependuserlist {
   margin-top: -2px !important; }
 
-.ConsentSteps {
-  color: #888;
-  float: right;
-  margin-right: 15px;
-  margin-top: 5px;
-  font-size: 16px; }
+.conTreatSubHead-Android .consentTitle {
+  margin-top: 136px !important;
+  font-size: 25px !important;
+  margin-left: 15px !important;
+  width: 100%;
+  padding-top: 32px; }
 
-.consentTitle {
+.conTreatSubHead-Android .consentSubTitle {
+  margin-top: -10px;
+  margin-left: 16px;
+  padding-bottom: 0px;
+  font-family: "Glober SemiBold";
+  color: #888888;
+  padding-right: 12%; }
+
+.conTreatSubHead-IOS .consentTitle {
   margin-top: 136px !important;
   font-size: 25px !important;
   margin-left: 15px !important;
   width: 100%;
   padding-top: 7px; }
 
+.conTreatSubHead-IOS .consentSubTitle {
+  margin-top: 22px;
+  margin-left: 16px;
+  padding-bottom: 0px;
+  font-family: "Glober SemiBold";
+  color: #888888;
+  padding-right: 12%; }
+
+.ConsentSteps {
+  color: #888;
+  float: right;
+  margin-right: 15px;
+  margin-top: 20px;
+  font-size: 16px; }
+
 .consentSubTitle {
-  margin-top: -8px;
+  margin-top: 22px;
   margin-left: 16px;
   padding-bottom: 0px;
   font-family: "Glober SemiBold";
@@ -11323,7 +11414,7 @@ select {
   border-bottom: 1px solid #A9ABA7; }
 
 .ConsentContent {
-  margin-top: 177px !important; }
+  margin-top: 195px !important; }
   .ConsentContent .ConsentMessageFirst {
     border-bottom: 1px solid #ddd;
     margin: 12px 10px 10px 10px; }
@@ -11362,7 +11453,7 @@ select {
 
 .UserHomeIcon {
   color: #999999;
-  margin-top: -34px; }
+  margin-top: -40px; }
 
 .UserNeeds {
   border-bottom: 1px solid #9D9E9C;
@@ -11537,7 +11628,8 @@ a {
   text-decoration: none; }
 
 .regularfamily {
-  font-family: Glober Regular; }
+  font-family: GloberRegular;
+  line-height: 16pt; }
 
 .lnamefont {
   font-family: Glober Regular;
@@ -11568,7 +11660,7 @@ a {
   .subheaderheight .item {
     margin: -5px; }
   .subheaderheight .button-bar {
-    padding: 2px 6%; }
+    padding: 2px 1%; }
   .subheaderheight .userAccountPanel {
     margin-top: -7px !important; }
     .subheaderheight .userAccountPanel .uAPlProfileImage {
@@ -11700,7 +11792,7 @@ a {
 .bar-subheaderHomeUser {
   height: 63%;
   top: 80px;
-  margin-top: -6px; }
+  margin-top: -1px; }
 
 .TitleHomeUser_Sub {
   font-family: "Glober Bold";
@@ -11729,11 +11821,17 @@ a {
   margin-left: 8px;
   border: 2px solid white; }
 
+.UserAccountProfileImage img {
+  margin-top: 50px; }
+
+.UserAccountProfileImage .patProfileImage {
+  margin-top: 50px; }
+
 .UserHmelistImgView {
-  width: 52px;
-  height: 52px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  border: 2px solid #FFFFFF; }
+  border: 2px solid #999999; }
 
 .HrefListView {
   font-family: "Glober Thin";
@@ -11763,10 +11861,11 @@ a {
 
 .ListTextTitle {
   position: relative;
-  top: 6px;
-  margin-left: 66px;
-  font-family: "Glober Bold";
-  color: #666666; }
+  top: 10px;
+  margin-left: 71px;
+  font-family: Glober Bold;
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 18pt; }
 
 .listTitle {
   position: relative;
@@ -11796,15 +11895,16 @@ a {
   color: #999999 !important;
   font-size: 14px;
   margin-bottom: -1px;
-  margin-left: 66px;
-  margin-top: 1px;
-  padding-top: 2px; }
+  margin-left: 71px;
+  padding-top: 8px; }
 
 .SubTitleSpan {
+  /*@include font($ fontFamily_regular, normal, 100%);
+    color: #666666;*/
   font-family: "Glober Regular";
   font-weight: normal;
-  font-size: 100%;
-  color: #666666; }
+  font-size: 18pt;
+  color: rgba(0, 0, 0, 0.54); }
 
 .docName {
   width: 63%;
@@ -11957,7 +12057,9 @@ a {
 
 .disable-pointer-events {
   margin-left: -47px;
-  pointer-events: none; }
+  pointer-events: none;
+  width: 17em;
+  white-space: normal; }
 
 .ContentSearchHomeUser {
   margin: -20px 0 0 0; }
@@ -12041,15 +12143,6 @@ form.ng-submitted input.ng-valid + i.icon.error {
   display: flex;
   width: 100%; }
 
-.validated .input-label {
-  -webkit-box-flex: 0;
-  -webkit-flex: 0 0 30%;
-  -moz-box-flex: 0;
-  -moz-flex: 0 0 30%;
-  -ms-flex: 0 0 30%;
-  flex: 0 0 30%;
-  max-width: 50%; }
-
 .validated input {
   -webkit-box-flex: 0;
   -webkit-flex: 0 0 60%;
@@ -12072,7 +12165,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   color: red; }
 
 #healthInfoDOB {
-  line-height: 22px; }
+  line-height: 33px; }
 
 #healthInfoEmail {
   text-overflow: ellipsis;
@@ -12089,7 +12182,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .textAreaPop {
   margin: -5px -13.609375px 0px 0px;
   width: 380px;
-  height: 100px;
+  height: 80px;
   margin-left: 0px; }
 
 .popup-container .popup {
@@ -12210,9 +12303,10 @@ form.ng-submitted input.ng-valid + i.icon.error {
   float: right; }
 
 .addBtn {
-  color: black;
   font-size: 30px;
-  cursor: pointer; }
+  cursor: pointer;
+  z-index: 1;
+  position: relative; }
   .addBtn .icon-circle-with-plus {
     font-size: 34px !important; }
 
@@ -12424,12 +12518,12 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .UserHomePatient {
   cursor: pointer; }
   .UserHomePatient .UserHomeHeader {
-    top: 5px;
+    top: 8px;
     padding: 11px;
-    height: 104px; }
+    margin-bottom: -28px; }
     .UserHomePatient .UserHomeHeader .UserhmePatientDetails {
       margin-left: 0px;
-      margin-top: 0px !important; }
+      margin-top: -10px !important; }
       .UserHomePatient .UserHomeHeader .UserhmePatientDetails .User {
         color: #999999;
         margin-top: -34px; }
@@ -12442,8 +12536,13 @@ form.ng-submitted input.ng-valid + i.icon.error {
   margin-left: 10px; }
 
 .UserHomeNextAppointment {
-  top: -2px;
-  height: 64px; }
+  top: 22px;
+  height: 54px; }
+  .UserHomeNextAppointment .icon-video_camera {
+    font-size: 30px !important; }
+  .UserHomeNextAppointment .icon-phone {
+    position: relative;
+    top: -3px; }
   .UserHomeNextAppointment a {
     margin-left: 10px; }
     .UserHomeNextAppointment a .UHomeNextAppoinment {
@@ -12453,28 +12552,50 @@ form.ng-submitted input.ng-valid + i.icon.error {
       margin-left: -5px; }
     .UserHomeNextAppointment a h2 {
       margin-left: 4px;
-      margin-top: 2px;
+      margin-top: -20px;
       font-size: 22px;
-      color: #706A67; }
+      color: white;
+      font-family: GloberBold; }
       .UserHomeNextAppointment a h2 .NextAppointTime {
         font-size: 18px; }
       .UserHomeNextAppointment a h2 .NextAppointAMorPM {
         font-size: 14px; }
     .UserHomeNextAppointment a .nextList {
-      color: #888;
-      margin-top: -35px;
+      /*color: white;
+            margin-right: 12px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            border: solid 1px white;
+            margin-top: -31px;
+            padding: 5px 12px;
+            border-radius: 50%;
+                color: white;
+                margin-right: 12px;
+                -moz-border-radius: 50%;
+                border: solid 1px white;
+                margin-top: -25px;
+                padding: 0px 7px;
+                border-radius: 50%;*/
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      padding-left: 7px;
+      margin-top: -23px;
+      border: 1px solid white;
+      color: white;
       margin-right: 12px; }
     .UserHomeNextAppointment a .AppointmentView {
       float: right;
       font-size: 14px;
-      margin-right: 30px;
-      color: #888;
-      margin-top: -33px; }
+      margin-right: 39px;
+      color: white;
+      margin-top: -26px;
+      font-family: GloberSemiBold; }
 
 .DependentList {
   padding: 11px;
-  top: -2px;
-  height: 79px; }
+  top: 25px;
+  height: 71px; }
   .DependentList a {
     cursor: pointer; }
     .DependentList a p {
@@ -12493,7 +12614,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   font-size: 26px !important; }
 
 .HeaderListIOS {
-  font-size: 18px;
+  font-size: 20px;
   text-align: center;
   width: 100%;
   margin-top: 13px; }
@@ -12515,7 +12636,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   height: 56px; }
 
 #BackButtonIcon {
-  color: #444444;
+  color: white;
   font-size: 12px !important;
   margin-top: 15px;
   display: block !important; }
@@ -12530,8 +12651,9 @@ form.ng-submitted input.ng-valid + i.icon.error {
   top: 0px !important; }
 
 #WhoNeeds {
-  font-size: 23px;
-  width: 85%; }
+  font-size: 24px;
+  width: 85%;
+  color: rgba(0, 0, 0, 0.75); }
 
 .BackButton {
   padding-top: 14px;
@@ -12566,17 +12688,10 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .popupnotification {
   position: relative !important; }
 
-.notificationError {
-  height: auto !important;
-  line-height: normal !important;
-  font-size: 18px;
-  left: 0px;
-  top: 0px; }
-
 .ErrorContent {
   text-align: center;
   width: 93% !important;
-  margin-top: 12px !important;
+  margin-top: 22px !important;
   margin-bottom: -30px; }
 
 .NoticationClose {
@@ -12635,20 +12750,65 @@ form.ng-submitted input.ng-valid + i.icon.error {
   position: relative;
   top: 3px; }
 
+.regContainer {
+  height: 49px;
+  position: fixed; }
+  .regContainer .regDropDownContainer {
+    /*position: relative;
+    height: 33px;*/ }
+    .regContainer .regDropDownContainer .viewport {
+      pointer-events: none;
+      color: #60605D;
+      position: absolute;
+      width: 83%;
+      height: 100%;
+      z-index: 15;
+      overflow: hidden;
+      white-space: nowrap;
+      -ms-text-overflow: ellipsis;
+      -o-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+      text-align: left;
+      padding-top: 6px; }
+    .regContainer .regDropDownContainer .consultHealthPlanDropDown {
+      z-index: 2;
+      position: relative;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      text-indent: 0.01px;
+      text-overflow: "";
+      color: transparent; }
+      .regContainer .regDropDownContainer .consultHealthPlanDropDown option {
+        color: #666666; }
+    .regContainer .regDropDownContainer ::-webkit-input-placeholder {
+      /* WebKit browsers */
+      font-size: 14px !important; }
+    .regContainer .regDropDownContainer :-moz-placeholder {
+      /* Mozilla Firefox 4 to 18 */
+      font-size: 14px !important;
+      opacity: 1; }
+    .regContainer .regDropDownContainer ::-moz-placeholder {
+      /* Mozilla Firefox 19+ */
+      font-size: 14px !important;
+      opacity: 1; }
+    .regContainer .regDropDownContainer :-ms-input-placeholder {
+      /* Internet Explorer 10+ */
+      font-size: 14px !important; }
+
 .noPlanContainer-Android .dropdownContainer .healthPlanDropDown {
   position: relative;
   -webkit-appearance: none;
   -moz-appearance: none;
   background: #E6E6E6 url(../img/select-arrow.png) no-repeat 95% center;
-  width: 75%;
+  width: 100%;
   padding-right: 37px;
   border-radius: 7px;
-  margin-left: 8px;
   border: 1px solid #CDCACA !important;
   height: 42px;
   font-size: 18px;
   border: none;
-  color: #666666; }
+  color: #666666;
+  padding: 10px 33px 10px 10px; }
 
 .noPlanContainer-Android .dropdownContainer .consultHealthPlanDropDown {
   z-index: 2;
@@ -12721,7 +12881,6 @@ form.ng-submitted input.ng-valid + i.icon.error {
   position: absolute;
   width: 60%;
   height: 100%;
-  z-index: 15;
   overflow: hidden;
   white-space: nowrap;
   -ms-text-overflow: ellipsis;
@@ -12738,7 +12897,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   pointer-events: none;
   color: #60605D;
   position: absolute;
-  width: 85%;
+  width: 95%;
   height: 100%;
   z-index: 15;
   overflow: hidden;
@@ -12770,7 +12929,8 @@ form.ng-submitted input.ng-valid + i.icon.error {
   border: 1px solid #CDCACA !important;
   height: 42px;
   font-size: 18px;
-  border: none; }
+  border: none;
+  padding: 10px 39px 10px 10px; }
 
 .noPlanContainer-IOS .dropdownContainer .consultHealthPlanDropDown {
   z-index: 2;
@@ -12781,12 +12941,12 @@ form.ng-submitted input.ng-valid + i.icon.error {
   width: 102%;
   text-indent: 0.01px;
   text-overflow: "";
-  margin-left: 8px;
   padding: 6px;
   border-bottom: 1px solid #666666 !important;
   border-top: 1px solid #666666 !important;
   height: 60px;
-  font-size: 18px; }
+  font-size: 18px;
+  color: transparent; }
   .noPlanContainer-IOS .dropdownContainer .consultHealthPlanDropDown option {
     color: #666666; }
 
@@ -12815,7 +12975,6 @@ form.ng-submitted input.ng-valid + i.icon.error {
   position: relative;
   height: 50px;
   text-align: center;
-  margin-left: 4px;
   margin-right: 4px; }
 
 .noPlanContainer-IOS .viewport {
@@ -12851,7 +13010,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   text-overflow: ellipsis;
   font-size: 19px;
   padding: 6px;
-  left: 45px;
+  margin-left: 20%;
   top: 8px;
   text-align: left; }
 
@@ -12859,7 +13018,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   pointer-events: none;
   color: #60605D;
   position: absolute;
-  width: 85%;
+  width: 87%;
   height: 100%;
   z-index: 15;
   overflow: hidden;
@@ -12950,7 +13109,7 @@ textarea {
   font-size: 40px;
   color: #352D2D; }
 
-.ion-close:before {
+.icon-cross:before {
   content: "\f12a";
   font-size: 33px !important;
   color: #352D2D; }
@@ -12999,7 +13158,7 @@ textarea {
   top: 5px !important; }
 
 .userDateofbirth {
-  font-size: 20px !important;
+  font-size: 18px !important;
   line-height: 30px !important;
   position: relative;
   top: -5px; }
@@ -13054,7 +13213,7 @@ textarea {
   text-align: center; }
 
 .itemtab {
-  padding: 9px !important; }
+  padding: 6px !important; }
 
 .paticoncontent {
   margin-top: 197px; }
@@ -13282,6 +13441,22 @@ textarea {
   font-size: 145%;
   font-family: Glober Bold; }
 
+#centercolorforEnterAppointment {
+  color: white;
+  margin-top: 3px !important;
+  font-size: 145%;
+  font-family: Glober Bold; }
+  #centercolorforEnterAppointment .icon-video_camera {
+    font-size: 33px !important; }
+  #centercolorforEnterAppointment .enterTextAppoint {
+    position: relative;
+    top: -6px; }
+
+.iconAlignment {
+  position: relative;
+  left: 0.5px;
+  top: 2px; }
+
 .userionitem {
   padding: 10px; }
 
@@ -13375,7 +13550,7 @@ textarea {
 .labelcolor {
   color: #cccccc;
   margin-left: 5px;
-  width: 45%;
+  width: 70%;
   max-width: 50%; }
   .labelcolor .iconsize {
     font-size: 25px; }
@@ -13442,8 +13617,8 @@ hr {
   color: #666666;
   font-size: 18px;
   margin-left: 28px;
-  line-height: 1.5;
-  font-family: Glober Regular; }
+  line-height: 24pt;
+  font-family: GloberSemiBold; }
 
 .chronic {
   margin-top: 12px;
@@ -13459,8 +13634,9 @@ hr {
 
 .editicons {
   float: right;
-  margin-right: 16px;
-  margin-top: -32px; }
+  margin-right: 9px;
+  margin-top: -50px;
+  padding: 15px 8px 9px 14px; }
 
 .closeicon {
   float: right;
@@ -13476,12 +13652,20 @@ hr {
 
 .currentedit {
   float: right;
-  margin-right: 12px; }
+  margin-right: 9px;
+  padding: 0px 11px 2px 7px; }
+
+.currenteditHealthInfo {
+  float: right;
+  margin-right: 9px;
+  margin-top: -4px;
+  padding: 0px 11px 2px 7px; }
 
 .editicon {
   float: right;
-  margin-right: 16px;
-  margin-top: -32px; }
+  margin-right: 2px;
+  margin-top: -50px;
+  padding: 17px 18px 15px 11px; }
 
 .dotalign {
   margin-top: -8px; }
@@ -13544,9 +13728,10 @@ hr {
   color: #666666; }
 
 .fname {
-  font-size: 21px;
-  font-family: Glober Bold;
-  color: #666666; }
+  font-size: 25px;
+  font-family: GloberBold !important;
+  color: rgba(0, 0, 0, 0.75);
+  line-height: 30pt; }
 
 .sname {
   font-size: 21px !important;
@@ -13554,13 +13739,19 @@ hr {
   font-family: Glober Regular; }
 
 .fontsymbol {
-  color: #686868; }
+  letter-spacing: 0.1pt;
+  font-size: 14px;
+  line-height: 20pt;
+  color: rgba(0, 0, 0, 0.38);
+  font-family: GloberRegular;
+  top: -4px;
+  position: relative; }
 
 .appalign {
   margin: 12px 0 0 0 !important; }
 
 .fonttime {
-  font-size: 14px;
+  font-size: 17px;
   color: #686868;
   font-family: Glober SemiBold; }
 
@@ -13880,6 +14071,382 @@ hr {
 .cousers .item-complex .item-content {
   padding: 0px !important; }
 
+/*.select_list{
+    background-color: #fff;
+    border: 1px solid #b3b3b3;
+    cursor: pointer;
+    height: 21px;
+    line-height: 21px;
+    padding: 3px 5px;
+    position: relative;
+    vertical-align: middle;
+    width: 250px;
+}
+.select_list:after{
+    content:"▼";
+    position:absolute;
+    right:3px;
+    color:#b3b3b3;
+}
+.consultHealthPlanDropDown > .options{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:-1px;
+    width:100%;
+    border:1px solid #666;
+    padding:0;
+    margin:0;
+}
+
+.consultHealthPlanDropDown.active > .options{
+    display:block;
+}
+
+.consultHealthPlanDropDown > span, .consultHealthPlanDropDown > .options li {
+    background-position: 5px center;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    list-style:none;
+    color: #666666;
+    z-index: 1;
+    margin-bottom: 5px;
+}
+
+.consultHealthPlanDropDown > .options li:hover {
+    background-color:#4494fc;
+}
+
+.options{
+    background-color: white;
+    border: solid 1px black;
+}*/
+.cardlogo {
+  width: 65px;
+  height: 35px; }
+
+.outside {
+  margin-top: 4px; }
+
+.inside {
+  width: 0px;
+  /* position: relative; */
+  height: 0px;
+  border-style: solid;
+  margin: auto;
+  border-width: 6px 14px 0 14px !important;
+  border-color: white transparent transparent transparent;
+  line-height: 0px;
+  z-index: 2000;
+  left: 49%;
+  /* width: 100px; */
+  /* height: 50px; */
+  position: absolute;
+  top: 76px; }
+
+.regCountryOpt {
+  font-family: Glober Regular !important;
+  font-size: 16px;
+  padding-top: 2px; }
+
+.appointInQueueTitle {
+  font-family: GloberRegular;
+  font-size: 14pt;
+  letter-spacing: 0.1pt;
+  color: #999999 !important;
+  margin-top: 21px;
+  padding-bottom: 5px;
+  background-color: #eeeeee;
+  height: 29px;
+  padding-top: 5px;
+  padding-left: 18px; }
+
+.appointInQueueMainDiv {
+  padding-bottom: 15px; }
+
+.appointScheduledMainDiv {
+  font-family: GloberRegular;
+  font-size: 14pt;
+  letter-spacing: 0.1pt;
+  color: #999999 !important;
+  margin-top: -7px;
+  padding-bottom: 5px;
+  background-color: #eeeeee;
+  height: 29px;
+  padding-top: 5px;
+  padding-left: 18px; }
+
+.UserHomeNextAppointment1 {
+  top: 16px;
+  height: 54px;
+  position: relative; }
+  .UserHomeNextAppointment1 .icon-video_camera {
+    font-size: 30px !important; }
+  .UserHomeNextAppointment1 .icon-phone {
+    position: relative;
+    top: -3px; }
+  .UserHomeNextAppointment1 a {
+    margin-left: 10px; }
+    .UserHomeNextAppointment1 a .UHomeNextAppoinment {
+      font-size: 14px;
+      top: 1px;
+      color: #888;
+      margin-left: -5px; }
+    .UserHomeNextAppointment1 a h2 {
+      margin-left: 4px;
+      margin-top: -20px;
+      font-size: 22px;
+      color: white;
+      font-family: GloberBold; }
+      .UserHomeNextAppointment1 a h2 .NextAppointTime {
+        font-size: 18px; }
+      .UserHomeNextAppointment1 a h2 .NextAppointAMorPM {
+        font-size: 14px; }
+    .UserHomeNextAppointment1 a .nextList {
+      /*color: white;
+            margin-right: 12px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            border: solid 1px white;
+            margin-top: -31px;
+            padding: 5px 12px;
+            border-radius: 50%;
+                color: white;
+                margin-right: 12px;
+                -moz-border-radius: 50%;
+                border: solid 1px white;
+                margin-top: -25px;
+                padding: 0px 7px;
+                border-radius: 50%;*/
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      padding-left: 7px;
+      margin-top: -23px;
+      border: 1px solid white;
+      color: white;
+      margin-right: 12px; }
+    .UserHomeNextAppointment1 a .AppointmentView {
+      float: right;
+      font-size: 14px;
+      margin-right: 39px;
+      color: white;
+      margin-top: -26px;
+      font-family: GloberSemiBold; }
+
+.inside1 {
+  width: 0px;
+  position: relative;
+  height: 0px;
+  border-style: solid;
+  margin: auto;
+  border-width: 6px 14px 0 14px !important;
+  border-color: white transparent transparent transparent;
+  line-height: 0px;
+  z-index: 2000;
+  left: 4%;
+  /* width: 100px; */
+  /* height: 50px; */
+  /* position: absolute; */
+  top: 25px; }
+
+.reportBrandName {
+  font-size: 12px !important;
+  font-family: GloberBold !important;
+  font-color: #333333 !important;
+  text-align: right; }
+
+.guardianName {
+  font-size: 14px;
+  font-family: GloberRegular;
+  height: 20px;
+  color: #000000; }
+
+.guardian {
+  font-size: 17px;
+  font-family: GloberSemiBold;
+  height: 20px;
+  color: #000000; }
+
+.pc-report__sub-section-date {
+  float: right;
+  padding: 5px;
+  font-size: 8px !important; }
+
+.pc-report__table-row span {
+  float: left;
+  line-height: 1;
+  display: block;
+  font-family: GloberBold !important;
+  color: #333; }
+
+.pc-report__sub-section-date {
+  font-size: 10px !important;
+  font-family: GloberRegular !important; }
+
+.pc-report__table-row {
+  font-size: 13px;
+  font-family: "Glober Bold","Helvetica Neue",Helvetica,Arial,Sans-Serif;
+  line-height: 2;
+  color: #444;
+  padding-bottom: 22px !important; }
+
+.pc-report__sub-section-title {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  font: inherit;
+  font-family: Glober !important;
+  font-size: 13px !important;
+  font-weight: bold !important;
+  margin-top: 4px !important; }
+
+.reportTitle-Android {
+  top: 3px !important; }
+
+.reportTitle-IOS {
+  top: 20px !important;
+  margin-left: 23px !important; }
+
+.reportscreenTitle-Android {
+  top: 12px !important; }
+
+.reportscreenTitle-IOS {
+  top: 27px !important;
+  margin-left: 23px !important; }
+
+.reportIconBack-Android {
+  top: 0px !important; }
+
+.reportIconBack-IOS {
+  top: 9px !important; }
+
+.report__data-list-desc1 {
+  font-size: 16px !important; }
+
+.pc-report__data-list-item {
+  flex-grow: 1 !important;
+  flex-wrap: nowrap !important;
+  justify-content: flex-start !important;
+  width: 100% !important;
+  order: 1 !important;
+  border: solid 1px #e6e6e6 !important;
+  font-family: GloberRegular !important;
+  font-size: 14px !important; }
+
+.pc-report__name-details strong {
+  font-size: 17px !important;
+  font-weight: bold !important;
+  font-family: GloberSemiBold !important; }
+
+.pc-report__name-details {
+  font-family: Glober !important;
+  font-size: 17px !important;
+  padding-top: 1px; }
+
+.pc-report__name--provider {
+  font-size: 25px !important;
+  line-height: 1.33 !important;
+  height: 37px;
+  color: #444;
+  margin-top: -4px !important;
+  padding-bottom: 5px;
+  font-family: Glober !important;
+  font-weight: bold !important; }
+
+.pc-report__med-list {
+  font-size: 13px !important;
+  font-family: GloberSemiBold !important;
+  color: #444;
+  margin: 0;
+  padding: 0;
+  font-weight: 600 !important; }
+
+.pc-report__list-title {
+  color: #666;
+  margin-top: 5px;
+  line-height: 2;
+  font-size: 11px !important;
+  font-family: Glober !important; }
+
+.pc-report__table-title span {
+  color: #666;
+  margin-top: 5px;
+  line-height: 2;
+  font-size: 11px !important;
+  font-family: Glober !important; }
+
+.pc-report__name--patient {
+  font-size: 31px !important; }
+
+.pc-report__data-list-desc {
+  font-size: 17px !important;
+  font-family: GloberBold !important;
+  position: relative;
+  top: 0px;
+  border: none !important;
+  padding-top: 0px !important; }
+
+.pc-report__data-list-desc1 {
+  padding-left: 5px;
+  position: relative;
+  font-size: 17px !important; }
+
+.pc-report__complaints li {
+  font-size: 14px !important; }
+
+.pc-report__add-notes strong {
+  font-size: 14px !important; }
+
+.pc-report__add-notes span {
+  font-size: 14px !important; }
+
+.pc-report__data-list-desc--successful {
+  top: 1px !important;
+  width: 74%; }
+
+.pc-report__data-list-title {
+  height: auto !important; }
+
+.enStatus {
+  width: 26.333% !important; }
+
+.pc-report__table-row span {
+  font-family: GloberSemiBold !important; }
+
+.pc-report__company-info h2 {
+  font-size: 12px !important; }
+
+.pc-report__company-info p {
+  font-size: 12px !important;
+  padding-top: 2px; }
+
+.pc-report {
+  padding: 0px 16px !important; }
+
+.bg h2 {
+  margin-top: -15px !important; }
+
+@media (max-width: 320px) and (min-width: 315px) {
+  .bg h2 {
+    margin-top: -45px !important; } }
+
+.bg {
+  height: 150px !important; }
+
+.icon_star {
+  position: relative;
+  top: -2px;
+  left: -2px; }
+
+.UserhmePatientDetails {
+  margin-left: 0px;
+  margin-top: -5px !important; }
+
+.headertitle1 {
+  top: 57px; }
+
 .newcard {
   margin: 33px 10px !important;
   box-shadow: 0 1px 3px transparent !important; }
@@ -13895,10 +14462,127 @@ hr {
   font-size: 21pz !important; }
 
 @media (max-width: 320px) and (min-width: 315px) {
+  .showNewSurgeryAddios {
+    margin-top: -30px !important; }
+  .AvailableIn .availableImage .AvailableTimer {
+    padding-left: 25px !important; }
+  .providerHead-ios {
+    margin-top: 15px !important; }
+  .textdatawieghtios {
+    width: 85px !important; }
+  .surgeryTopAddButton {
+    width: 75px !important;
+    height: 30px !important;
+    margin-top: 10px !important; }
+  .ContinueAddressBtn {
+    width: 74px !important;
+    top: 19px !important; }
+  .concernListHeader {
+    height: 60px !important; }
+    .concernListHeader .concernListTitle-ios {
+      margin-top: 12px !important;
+      font-size: 18px !important;
+      margin-left: 3px !important; }
+  .CancelAddressBtn {
+    width: 63px !important;
+    top: 15px !important; }
+  #CancelAddress {
+    font-size: 14px !important; }
+  #ContinueAddress {
+    font-size: 14px !important; }
+  .concernListContent .concernListSearch {
+    margin-top: -30px !important; }
+  .concernListTitle-ios {
+    margin-left: -15px !important; }
+  .depenErrorMsg-IOS #notifications-top-center .ErrorContent {
+    top: -8px !important; }
+  .depenErrorMsg-IOS #notifications-top-center #notifications-top-center-close span {
+    top: -8px !important; }
+  .AppointmentView {
+    visibility: hidden; }
+  .chkiPhoneView {
+    display: none; }
+  .accountAppointview-IOS .appalignrighticon {
+    visibility: hidden; }
+  .appviewinfo-IOS {
+    display: none; }
+  .appviewinfo-Android {
+    display: none; }
+  .userlistAccountHome {
+    padding-top: 40px !important; }
+  .subheaderheightNew {
+    height: 85px !important; }
+  .userAccountPanel .uAPlProfileImageNew {
+    margin-top: -13px !important; }
+  .userAccountPanel a p {
+    margin-left: -7px;
+    width: 110%; }
+  .subheaderheight .userAccountPanelNew {
+    margin-top: 0px !important; }
+    .subheaderheight .userAccountPanelNew .patProfileImage {
+      width: 75px !important;
+      height: 75px !important;
+      font-size: 36px !important;
+      margin-top: 43px !important; }
+    .subheaderheight .userAccountPanelNew .uAPlProfileImage img {
+      width: 75px !important;
+      height: 75px !important;
+      font-size: 36px !important;
+      margin-top: 10px !important; }
+    .subheaderheight .userAccountPanelNew .uAPlProfileImage span {
+      top: 30px !important; }
+  .userAccountPanel .patProfileImage {
+    width: 75px !important;
+    height: 75px !important;
+    font-size: 36px !important;
+    margin-top: 8px !important; }
+  .userAccountPanel .uAPlProfileImage img {
+    width: 75px !important;
+    height: 75px !important;
+    font-size: 36px !important;
+    margin-top: 15px; }
+  .userAccountPanel .uAPlProfileImage span {
+    top: 30px !important; }
+  .heightft-IOS span {
+    margin-left: -10px; }
+  .FooterRight {
+    margin-left: -5px !important; }
+  .FooterCenter {
+    width: 35% !important; }
+  .accMainContent .accOndemandCon .accOnVisit {
+    margin-top: -27px !important;
+    font-size: 25px !important; }
+  .accMainContent .btn1 {
+    margin: 25px 15px 15px 15px !important; }
+    .accMainContent .btn1 .button span {
+      font-size: 16pt !important; }
+  .accMainContentNew .accOndemandCon .accOnVisit {
+    margin-top: -11px !important; }
+  .accMainContentNew .accOndemandConNew {
+    padding-bottom: 0px !important; }
+  .userAccTitle-IOS {
+    top: 3px !important; }
   .usercontent-IOS {
     margin-top: 32% !important; }
     .usercontent-IOS #accountMngeProfile-IOS {
       padding: 19px 10px; }
+  .mobileInput-Ios5 {
+    padding-left: 40px !important;
+    float: right !important; }
+  .button_new {
+    margin-right: 15px !important; }
+  .FooterCenter .button_new {
+    margin-right: 0px !important; }
+  .FooterCenter .button_newios {
+    margin-right: -200px !important; }
+  .ConsultChargeCancel .button_newios {
+    margin-right: -200px !important; }
+  .fulldate-ios5 {
+    font-size: 18px !important; }
+  .accountHeaderReport {
+    margin-left: -30px !important; }
+  .reportScreenHeader {
+    margin-left: 0px !important; }
   #WhoNeeds {
     font-size: 20px;
     width: 85%; }
@@ -13917,6 +14601,8 @@ hr {
       padding: 12px 10px !important; }
   .listprofileEdit .formlabel {
     font-size: 17px; }
+  .listprofileEdit .col-45 .labelcolor {
+    width: 100%; }
   .deptlist .formlabel {
     font-size: 17px; }
   .apponitmentfday-Android {
@@ -13928,7 +14614,7 @@ hr {
     margin-right: -14px;
     font-size: 24px !important; }
   .consultConMargin {
-    margin: 202px 0 0 0; }
+    margin: 226px 0 0 0; }
   .passedDate-Android {
     margin-right: 10px; }
   .passedDoc-Android {
@@ -13940,7 +14626,7 @@ hr {
   .birthContent .healthViewDetails {
     margin-left: -7px; }
   .passedImage-IOS {
-    width: 12% !important; }
+    width: 24% !important; }
   .passedDate-IOS {
     width: 25% !important; }
   .passedTime-IOS {
@@ -13950,8 +14636,8 @@ hr {
     width: 19% !important;
     margin-left: 5px !important; }
   .passedDetails-IOS {
-    width: 20% !important;
-    margin-left: 5px !important;
+    width: 25% !important;
+    margin-left: 0px !important;
     color: #666666;
     font-family: Glober Regular; }
   .profileSpan {
@@ -13987,7 +14673,13 @@ hr {
     margin-left: 18px;
     color: #888;
     width: 146px;
-    font-size: 15px; } }
+    font-size: 15px; }
+  .userAccountPanel .hometext {
+    margin-left: -10px !important; }
+  .ConsultChargeFooter .ConsultChargeCancel {
+    width: 40% !important; }
+  .ReportEthnicity {
+    width: 41.333% !important; } }
 
 .ioncontentalign {
   margin-top: 220px; }
@@ -14247,10 +14939,26 @@ hr {
     width: 146px;
     font-size: 15px; } }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+  .userlistAccountHome {
+    margin-left: 15%;
+    margin-right: 15%; }
+  .accMainContent {
+    margin-bottom: 15%; }
+  .accMainContentNew {
+    margin-bottom: 15% !important; } }
+
 @media (min-width: 770px) and (max-width: 1024px) {
   .tabs-top > .tabs,
   .tabs.tabs-top {
     top: inherit !important; }
+  .userlistAccountHome {
+    margin-left: 15%;
+    margin-right: 15%; }
+  .accMainContent {
+    margin-bottom: 15%; }
+  .accMainContentNew {
+    margin-bottom: 15%; }
   .usercontent-IOS {
     margin-top: 35%;
     padding-top: 193px; }
@@ -14311,19 +15019,20 @@ hr {
     left: 10px; }
   .consultcontent .patProfileImage {
     position: relative;
-    top: -2px;
+    top: 6px;
     left: 2px;
     max-width: 36px;
     max-height: 36px;
     border-radius: 50%;
     font-size: 15px;
-    border: 2px solid #fff; }
+    border: 2px solid #fff !important; }
     .consultcontent .patProfileImage span {
       top: 8px; }
   .consultcontent .UserHmelistImgView {
     width: 36px;
     height: 36px;
-    border: 2px solid #fff; }
+    border: 2px solid #fff;
+    margin-right: -32px; }
 
 .consultsearchcontent {
   margin-top: 120px; }
@@ -14342,17 +15051,16 @@ hr {
   margin-left: -4px; }
 
 .popup-container .popup {
-  border-radius: 7px;
   width: 85% !important; }
 
 .avatheight {
   padding: 7px !important;
   margin-bottom: -8px;
-  min-height: 70px !important; }
+  height: 80x !important; }
   .avatheight .aptsname {
     margin-top: 6px !important; }
   .avatheight .appmarg {
-    margin-top: -5px; }
+    margin-top: 19px; }
   .avatheight .apptimage {
     float: left;
     margin-left: 9px;
@@ -14363,21 +15071,20 @@ hr {
       height: 44px;
       font-size: 20px;
       margin-top: 7px;
-      border: 2px solid #fff; }
+      border: 2px solid #fff !important; }
     .avatheight .apptimage .patProfileImage {
       width: 42px;
       height: 42px;
       font-size: 20px;
       margin-top: 4px;
-      border: 2px solid #fff; }
+      border: 2px solid #fff !important; }
       .avatheight .apptimage .patProfileImage span {
         top: 13px; }
 
 .appitem {
-  margin-top: -10px;
   padding: 7px !important;
   margin-bottom: -8px;
-  min-height: 66px !important; }
+  height: 73px !important; }
   .appitem .apptimage {
     float: left;
     margin-left: 9px;
@@ -14387,13 +15094,13 @@ hr {
       height: 44px;
       font-size: 20px;
       margin-top: 7px;
-      border: 2px solid #fff; }
+      border: 2px solid #fff !important; }
     .appitem .apptimage .patProfileImage {
       width: 42px;
       height: 42px;
       font-size: 20px;
       margin-top: 7px;
-      border: 2px solid #fff; }
+      border: 2px solid #fff !important; }
       .appitem .apptimage .patProfileImage span {
         top: 13px; }
 
@@ -14413,10 +15120,22 @@ hr {
 
 .listprofile {
   padding-bottom: 95px; }
+  .listprofile .itemtab {
+    width: 101%; }
+  .listprofile .labelcolor {
+    width: 100% !important;
+    max-width: 100%; }
   .listprofile .icondown {
     font-size: 11px; }
   .listprofile .icon-pencil {
-    font-size: 16px !important; }
+    font-size: 21px !important; }
+  .listprofile .ion-plus-round:before {
+    color: black;
+    background-color: snow;
+    padding: 0px;
+    border-radius: 2px;
+    font-size: 20px;
+    width: 16px; }
 
 .popup-head {
   padding: 8px 10px;
@@ -14718,8 +15437,7 @@ hr {
 
 .casearch-Android {
   height: 27px;
-  border-radius: 5px;
-  margin-top: 260px; }
+  border-radius: 5px; }
   .casearch-Android .hsearch {
     text-align: center;
     line-height: 2;
@@ -14729,8 +15447,7 @@ hr {
 
 .casearch-IOS {
   height: 50px;
-  border-radius: 5px;
-  margin-top: 260px; }
+  border-radius: 5px; }
   .casearch-IOS .hsearch {
     text-align: center;
     line-height: 2;
@@ -14754,7 +15471,7 @@ hr {
 
 .consultsearch .patProfileImage {
   position: relative;
-  top: -2px;
+  top: 6px;
   left: 2px;
   max-width: 36px;
   max-height: 36px;
@@ -14766,9 +15483,10 @@ hr {
     top: 3px; }
 
 .consultsearch .UserHmelistImgView {
-  width: 34px;
-  height: 34px;
-  border: 2px solid #fff; }
+  width: 36px;
+  height: 36px;
+  border: 2px solid #fff;
+  margin-right: -32px; }
 
 .topfont {
   max-width: 60px;
@@ -14804,7 +15522,7 @@ hr {
 .ion-chevron-right:before {
   font-size: 10px !important;
   position: relative;
-  top: -1px; }
+  top: 0px; }
 
 .cardshadow {
   box-shadow: 0 1px 3px transparent !important; }
@@ -14839,7 +15557,7 @@ hr {
   background-color: #e9e9e9; }
 
 .dotedhr {
-  margin-top: -16px;
+  margin-top: -12px;
   height: 0px !important;
   border-top: 1px dashed #c0bebe;
   background-color: #e9e9e9; }
@@ -15991,7 +16709,7 @@ hr {
 .register {
   margin-top: -3px;
   padding-bottom: 39px !important;
-  padding-top: 38px; }
+  padding-top: 86px; }
   .register .newLogProviderSecDiv-Android h4 {
     padding-top: 10px !important;
     letter-spacing: 0px; }
@@ -16089,6 +16807,19 @@ hr {
         font-weight: bold;
         font-size: 12.5px;
         color: #FFFFFF; }
+    .register .acinfo1-Android a {
+      font-family: "Glober Bold";
+      font-weight: bold;
+      font-size: 14.5px;
+      color: #FFFFFF;
+      margin: 0;
+      padding-top: 5px;
+      line-height: 2.2em; }
+      .register .acinfo1-Android a span {
+        font-family: "Glober Regular";
+        font-weight: bold;
+        font-size: 12.5px;
+        color: #FFFFFF; }
   .register .acinfo1-IOS {
     text-align: center; }
     .register .acinfo1-IOS h4 {
@@ -16100,6 +16831,20 @@ hr {
       padding-top: 6px;
       letter-spacing: 0px; }
       .register .acinfo1-IOS h4 span {
+        font-family: "Glober Regular";
+        font-weight: bold;
+        font-size: 11px;
+        color: #FFFFFF; }
+    .register .acinfo1-IOS a {
+      font-family: "Glober SemiBold";
+      font-weight: bold;
+      font-size: 13px;
+      color: #FFFFFF;
+      margin: 0;
+      padding-top: 6px;
+      letter-spacing: 0px;
+      line-height: 2.2em; }
+      .register .acinfo1-IOS a span {
         font-family: "Glober Regular";
         font-weight: bold;
         font-size: 11px;
@@ -16355,7 +17100,8 @@ hr {
 
 .item-radio input:checked ~ .radio-icon {
   visibility: visible;
-  color: #A2D28A !important; }
+  color: #A2D28A !important;
+  left: 80%; }
 
 .searchbox {
   height: auto;
@@ -16564,8 +17310,6 @@ hr {
       display: none; }
     .epassbg h2 {
       margin-top: -40px; }
-  .passedDate-Android {
-    margin-right: 10px; }
   .passedDoc-Android {
     width: 17% !important; }
   .insCardName {
@@ -16573,13 +17317,13 @@ hr {
     font-size: 16px !important;
     position: relative;
     top: -5px;
-    width: 25%;
+    width: 30%;
     float: left; }
   .insCardNumber {
     font-family: GloberSemiBold;
     font-size: 17px !important;
     position: relative;
-    top: -5px; } }
+    top: 5px; } }
 
 /* iPhone 6 ----------- */
 @media screen and (min-width: 375px) {
@@ -16762,10 +17506,13 @@ Pagination Styles
   opacity: 1 !important; }
 
 .accountHeader-IOS {
-  margin-right: 48px; }
+  margin-right: 100px;
+  margin-top: 15px; }
 
 .accountHeader-Android {
-  margin-right: 30px; }
+  margin-right: 100px;
+  margin-top: 5%;
+  margin-top: 15px; }
 
 .accountCancel-IOS {
   position: relative;
@@ -16788,6 +17535,12 @@ Pagination Styles
   width: 55%;
   background-color: #e9e9e9;
   padding: 9px; }
+
+.HomeAddress-Android {
+  padding: 14px 0px 11px 0px !important; }
+
+.HomeAddress-IOS {
+  padding: 14px 0px 11px 0px !important; }
 
 .healthTextArea-IOS {
   margin-left: 0px; }
@@ -16822,25 +17575,28 @@ Pagination Styles
 
 .HealthTitle-IOS {
   left: -28px;
-  position: relative; }
+  position: relative;
+  top: -3px; }
 
 .HealthTitle-Android {
-  left: -28px;
-  position: relative; }
+  left: -34px;
+  position: relative;
+  top: -3px; }
 
 .healthLeft-IOS {
-  top: -29px !important;
+  top: -34px !important;
   background: transparent !important;
   border: none !important;
   font-size: 20px;
   cursor: pointer; }
 
 .healthLeft-Android {
-  top: -29px !important;
+  top: -34px !important;
   background: transparent !important;
   border: none !important;
-  font-size: 20px;
-  cursor: pointer; }
+  font-size: 18px;
+  cursor: pointer;
+  font-family: "Glober SemiBold"; }
 
 .searchListHead-IOS {
   position: relative;
@@ -16878,6 +17634,7 @@ Pagination Styles
   text-align: right !important; }
 
 .newUserTitle-IOS {
+  top: -3px;
   left: 10px;
   position: relative; }
 
@@ -16885,7 +17642,7 @@ Pagination Styles
   font-size: 18px; }
 
 .newUserTitle-Android {
-  margin-left: 34px; }
+  margin-left: 21px; }
 
 .coUserAddress-IOS {
   line-height: 25px !important;
@@ -16893,7 +17650,7 @@ Pagination Styles
 
 .coUserAddress-Android {
   line-height: 25px !important;
-  font-size: 20px !important; }
+  font-size: 18px !important; }
 
 .addUser-IOS {
   color: #666666 !important;
@@ -17239,12 +17996,13 @@ input.ion-google-place[readonly] {
   .userdeptcontent input[type="search"],
   .userdeptcontent input[type="tel"],
   .userdeptcontent input[type="color"] {
-    height: 44px; }
+    height: 46px;
+    max-width: 100%; }
   .userdeptcontent .depGreyLabel {
     background-color: #e9e9e9; }
   .userdeptcontent .optionselect {
     padding: 2px;
-    height: 44px; }
+    height: 46px; }
   .userdeptcontent .item {
     border-color: #979797; }
   .userdeptcontent .dobDependent-Android {
@@ -17273,10 +18031,10 @@ input.ion-google-place[readonly] {
 .appiconcontent {
   margin-top: 212px; }
   .appiconcontent .fname {
-    font-size: 21px;
-    font-family: Glober SemiBold !important;
-    color: #666666;
-    font-size: 200% !important; }
+    font-size: 25px;
+    font-family: GloberBold !important;
+    color: rgba(0, 0, 0, 0.75);
+    line-height: 30pt; }
 
 .enterAppoint-IOS {
   font-size: 151% !important;
@@ -17289,7 +18047,7 @@ input.ion-google-place[readonly] {
   top: -10px !important; }
 
 .passedImage-IOS {
-  width: 13%;
+  width: 18%;
   margin-top: -15px;
   padding: 7px 0px; }
   .passedImage-IOS .consimg {
@@ -17317,21 +18075,21 @@ input.ion-google-place[readonly] {
 .passedDoc-IOS {
   width: 28%;
   margin-left: 10px;
-  margin: 3px; }
+  margin: 0px 3px; }
 
 .passedDoc-Android {
   width: 22%;
   margin-left: 10px; }
 
 .passedDetails-IOS {
-  width: 17%;
+  width: 19%;
   margin-left: 10px;
   color: #666666;
   font-family: Glober Regular;
-  margin: 3px; }
+  margin: 0px 3px; }
 
 .passedDetails-Android {
-  width: 17%;
+  width: 18%;
   margin-left: 10px;
   color: #616161;
   font-family: Glober Regular;
@@ -17344,7 +18102,7 @@ input.ion-google-place[readonly] {
   margin-left: 3px; }
 
 .dependHeigh-IOS {
-  width: 47%;
+  width: 67%;
   padding-right: 6px;
   float: left; }
   .dependHeigh-IOS input {
@@ -17375,16 +18133,20 @@ input.ion-google-place[readonly] {
   .consultcontentsearch-Android .listfirst {
     margin-bottom: 120px; }
 
-.appointcontentsearch-Android .fname {
-  font-size: 21px;
-  font-family: Glober SemiBold !important;
-  color: #666666;
-  font-size: 200% !important; }
+.appointcontentsearch-Android {
+  margin-top: 212px; }
+  .appointcontentsearch-Android .fname {
+    font-size: 21px;
+    font-family: Glober SemiBold !important;
+    color: #666666;
+    font-size: 200% !important; }
 
-.appointcontentsearch-IOS .fname {
-  font-family: Glober SemiBold !important;
-  color: #666666;
-  font-size: 200% !important; }
+.appointcontentsearch-IOS {
+  margin-top: 212px; }
+  .appointcontentsearch-IOS .fname {
+    font-family: Glober SemiBold !important;
+    color: #666666;
+    font-size: 200% !important; }
 
 .allsearch-Android {
   margin-top: 34px; }
@@ -17410,7 +18172,7 @@ input.ion-google-place[readonly] {
   float: left; }
 
 .dependHeigh-Android {
-  width: 68%;
+  width: 64%;
   float: left; }
 
 .dependwetUnit-Android {
@@ -17480,7 +18242,7 @@ input.ion-google-place[readonly] {
   color: #666666; }
 
 .AppointNoneIOS {
-  padding-top: 105px; }
+  padding-top: 45px; }
 
 .AppointDisplayIOS {
   padding-top: 53px; }
@@ -17536,13 +18298,13 @@ input.ion-google-place[readonly] {
   /* Internet Explorer 10-11 */
   color: #CBCBCB !important; }
 
-/*.checkbox {
-position: relative;
-display: inline-block;
-height: 22px;
-vertical-align: middle;
-cursor: pointer;
-input {
+.card .checkbox {
+  position: relative;
+  display: inline-block;
+  height: 22px;
+  vertical-align: middle;
+  cursor: pointer; }
+  .card .checkbox input {
     position: absolute;
     top: 0;
     left: 0;
@@ -17552,13 +18314,11 @@ input {
     padding: 0;
     opacity: 0;
     z-index: 1;
+    cursor: pointer; }
+  .card .checkbox span {
     cursor: pointer;
-}
-span {
-    cursor: pointer;
-    text-align: center;
-}
-.checkbox__control {
+    text-align: center; }
+  .card .checkbox .checkbox__control {
     position: absolute;
     top: 0;
     right: 0;
@@ -17568,17 +18328,15 @@ span {
     border: 1px solid #979797;
     background-color: #fff;
     transition: box-shadow 0.3s ease;
-    width: 22px;
-}
-input:checked+span::before {
+    width: 22px; }
+  .card .checkbox input:checked + span::before {
     opacity: 1;
     -webkit-transition: opacity 0.3s ease;
     -moz-transition: opacity 0.3s ease;
     -ms-transition: opacity 0.3s ease;
     -o-transition: opacity 0.3s ease;
-    transition: opacity 0.3s ease;
-}
-.checkbox__control::before {
+    transition: opacity 0.3s ease; }
+  .card .checkbox .checkbox__control::before {
     opacity: 0;
     position: absolute;
     left: 1px;
@@ -17593,18 +18351,16 @@ input:checked+span::before {
     -moz-transition: opacity 0.3s ease;
     -ms-transition: opacity 0.3s ease;
     -o-transition: opacity 0.3s ease;
-    transition: opacity 0.3s ease;
-}
-span:last-child {
+    transition: opacity 0.3s ease; }
+  .card .checkbox span:last-child {
     width: 200px;
     display: inline-block;
     position: relative;
     margin-left: 5px;
     top: -4px;
     left: 18px;
-    text-align: left;
-}
-}*/
+    text-align: left; }
+
 #loginPwd {
   margin-top: 70px; }
   #loginPwd .pwdPatImage {
@@ -17880,8 +18636,17 @@ span:last-child {
   .adddepuser {
     padding: 40px 10px; } }
 
-.consultInsuranceTitle {
+.consultInsuranceTitle-IOS {
+  padding-top: 157px;
   border-bottom: 1px solid #C5C5C5; }
+
+.consultInsuranceTitle-Android {
+  padding-top: 157px;
+  border-bottom: 1px solid #C5C5C5; }
+
+.consultInsuranceTitle {
+  border-bottom: 1px solid #C5C5C5;
+  padding-top: 10px; }
 
 .cardSkipPayment {
   background-color: #fff !important;
@@ -17934,7 +18699,7 @@ span:last-child {
   font-weight: bold;
   left: 7px;
   position: relative;
-  top: -11px;
+  top: -13px;
   color: #666666; }
 
 .CreditClinician {
@@ -17976,14 +18741,26 @@ span:last-child {
   padding: 0px !important; }
   .listprofileEdit .itemtab .healthViewDetails {
     background-color: #e9e9e9;
-    padding: 9px; }
+    padding: 9px;
+    color: #7c7c7c; }
     .listprofileEdit .itemtab .healthViewDetails textarea, .listprofileEdit .itemtab .healthViewDetails input[type="text"], .listprofileEdit .itemtab .healthViewDetails input[type="password"], .listprofileEdit .itemtab .healthViewDetails input[type="datetime"], .listprofileEdit .itemtab .healthViewDetails input[type="datetime-local"], .listprofileEdit .itemtab .healthViewDetails input[type="date"], .listprofileEdit .itemtab .healthViewDetails input[type="month"], .listprofileEdit .itemtab .healthViewDetails input[type="time"], .listprofileEdit .itemtab .healthViewDetails input[type="week"], .listprofileEdit .itemtab .healthViewDetails input[type="number"], .listprofileEdit .itemtab .healthViewDetails input[type="email"], .listprofileEdit .itemtab .healthViewDetails input[type="url"], .listprofileEdit .itemtab .healthViewDetails input[type="search"], .listprofileEdit .itemtab .healthViewDetails input[type="tel"], .listprofileEdit .itemtab .healthViewDetails input[type="color"] {
       height: 41px; }
   .listprofileEdit .itemtab .healthViewDetailsAuthenticat {
     padding: 14px; }
 
+.listprofileEdit .col-45 .labelcolor {
+  width: 100%;
+  max-width: 100%; }
+
+.listprofileEdit .col-45 .input-label {
+  padding: 0px 0px 0px 0px; }
+
 .listprofileEdit .labelcolor {
-  width: 49%; }
+  width: 45%; }
+
+@media screen and (min-width: 320px) and (max-width: 568px) {
+  .listprofileEdit .labelcolor {
+    width: 45%; } }
 
 .ioncontentalign .item {
   border-color: #979797; }
@@ -18069,8 +18846,8 @@ span:last-child {
     top: 10px; }
   .depenErrorMsg-IOS #notifications-top-center #notifications-top-center-close span {
     position: relative;
-    top: 15px;
-    left: -5px; }
+    top: 10px;
+    left: -3px; }
 
 .enterAppoinment2 {
   display: none;
@@ -18141,33 +18918,48 @@ span:last-child {
     height: 39px; }
 
 .patProfileImage {
-  width: 52px;
-  height: 52px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   text-align: center;
   font-family: Glober XBold;
-  font-size: 26px;
-  border: 2px solid #fff; }
+  font-size: 31px;
+  border: 2px solid #999999; }
   .patProfileImage span {
     position: relative;
-    top: 20px;
+    top: 24px;
+    color: #fff !important; }
+
+.patProfileImageIntake {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  text-align: center;
+  font-family: Glober XBold;
+  font-size: 29px;
+  border: 2px solid #fff !important;
+  margin-top: -3px; }
+  .patProfileImageIntake span {
+    position: relative;
+    top: 24px;
     color: #fff; }
 
 .patProfileImageSS {
-  width: 52px;
-  height: 52px;
+  width: 63px;
+  height: 63px;
   border-radius: 50%;
   text-align: center;
   font-family: Glober XBold;
   font-size: 26px;
-  border: 2px solid #fff;
+  border: 2px solid #fff !important;
   position: relative;
-  left: -5px;
-  top: -5px; }
+  left: -4px;
+  top: -4px; }
   .patProfileImageSS span {
     position: relative;
-    top: 25px;
-    color: #fff; }
+    top: 28px;
+    color: #fff;
+    font-size: 30px; }
 
 .userHomeImage {
   float: left; }
@@ -18232,7 +19024,7 @@ span:last-child {
     font-size: 50px;
     margin-left: auto;
     margin-right: auto;
-    border: 2px solid #fff;
+    border: 2px solid #fff !important;
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5); }
@@ -18302,7 +19094,7 @@ span:last-child {
   margin-right: 10px; }
 
 .popup-head .coUserLinkName {
-  margin-top: 11px; }
+  margin-top: 0; }
 
 .regStep2Con {
   padding-top: 30px !important;
@@ -18340,10 +19132,9 @@ span:last-child {
   .regLogin .newLogPageCont {
     margin-top: 7px !important; }
     .regLogin .newLogPageCont .enterEmailText {
-      line-height: 0px !important;
       font-size: 18px !important;
-      padding-bottom: 13px;
-      padding-top: 5px; }
+      padding-bottom: 5px;
+      line-height: 20px !important; }
   .regLogin .btn1 {
     margin: 17px 0px 24px 0px !important; }
   .regLogin .acinfo1-IOS h4 {
@@ -18585,25 +19376,37 @@ span:last-child {
   border-radius: 50%;
   padding: 1px 5px 0px 4px;
   color: white;
-  margin-left: -13px; }
+  margin-left: 20px;
+  top: -4px !important;
+  position: relative;
+  border: 2px solid white; }
   .encountericon [class^="icon-"], .encountericon [class*=" icon-"] {
     font-size: 9px; }
 
-.encounterappticon {
+.searchencountericon {
   background-color: #666;
   border-radius: 50%;
-  padding: 5px 6px 0px 5px;
+  padding: 1px 5px 0px 4px;
   color: white;
-  margin-left: -19px; }
-  .encounterappticon [class^="icon-"], .encounterappticon [class*=" icon-"] {
-    font-size: 14px; }
+  margin-left: -12px;
+  top: -3px  !important;
+  position: relative;
+  border: 2px solid white; }
+  .searchencountericon [class^="icon-"], .searchencountericon [class*=" icon-"] {
+    font-size: 9px; }
+
+.consultSearchRow {
+  height: 56px !important; }
 
 .encounterappticon {
   background-color: #666;
   border-radius: 50%;
-  padding: 5px 6px 0px 5px;
+  padding: 0px 4px 0px 0px;
   color: white;
-  margin-left: -19px; }
+  margin-left: -26px;
+  top: 28px !important;
+  position: relative;
+  border: 2px solid white; }
   .encounterappticon [class^="icon-"], .encounterappticon [class*=" icon-"] {
     font-size: 14px; }
 
@@ -18612,7 +19415,10 @@ span:last-child {
   border-radius: 50%;
   padding: 0px 5px 0px 5px;
   color: white;
-  margin-left: -25px; }
+  margin-left: -24px;
+  top: 6px;
+  position: relative;
+  border: 2px solid white; }
   .encountercalicon [class^="icon-"], .encountercalicon [class*=" icon-"] {
     font-size: 9px; }
 
@@ -18650,7 +19456,7 @@ span:last-child {
   z-index: 10;
   width: 100%;
   height: 100%;
-  background-color: #d8d8d8;
+  background-color: #444444;
   font-family: GloberBook;
   -webkit-transition: transform 0.3s ease;
   -moz-transition: transform 0.3s ease;
@@ -18708,13 +19514,13 @@ span:last-child {
 .main-nav__list a {
   display: block;
   width: 100%;
-  height: 48px;
-  background-color: #e6e6e6;
-  color: #666;
-  padding: 15px;
+  background-color: #444444;
+  color: #fff;
+  padding: 10px 10px 14px 15px;
   transition: background-color 0.3s ease, color 0.3s ease;
   font-family: "GloberSemiBold", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
-  line-height: 26px; }
+  line-height: 26px;
+  font-size: 20px; }
 
 .main-nav__list a:hover,
 .main-nav__list a:active,
@@ -18724,8 +19530,7 @@ span:last-child {
   text-decoration: none; }
 
 .main-nav__list a span {
-  padding-right: 15px;
-  float: left; }
+  padding-right: 15px; }
 
 .main-nav__toggle {
   position: relative;
@@ -18785,8 +19590,10 @@ span:last-child {
   padding: 18px 0;
   margin-top: -27px;
   border-top: 1px solid #666;
-  color: #666;
-  font-family: "GloberRegular", "Helvetica Neue", Helvetica, Arial, Sans-Serif; }
+  color: #fff;
+  font-family: GloberSemiBold, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  position: absolute;
+  bottom: 0; }
 
 @media only screen and (min-width: 768px) {
   .main-nav {
@@ -18799,7 +19606,7 @@ span:last-child {
   height: 50px;
   padding: 10px 2%;
   box-sizing: border-box;
-  background-color: #ececec;
+  border-bottom: 1px solid #ccc;
   -webkit-transition: background 0.2s ease-in;
   -moz-transition: background 0.2s ease-in;
   -ms-transition: background 0.2s ease-in;
@@ -18844,6 +19651,20 @@ span:last-child {
   margin-left: 40px;
   line-height: 1; }
 
+.user-info__sessionText {
+  line-height: 1;
+  margin-top: 3px;
+  margin-bottom: -10px; }
+  .user-info__sessionText .user-info__fname {
+    font-size: 24px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.75); }
+
 .user-info__text > * {
   box-sizing: border-box;
   overflow: hidden;
@@ -18854,6 +19675,41 @@ span:last-child {
   word-break: break-all;
   word-wrap: break-word; }
 
+.loc-sessPopupcontent {
+  padding: 19px !important;
+  text-align: center;
+  font-family: Glober Regular;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.75); }
+
+.sesCancel {
+  font-size: 20px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  font-family: Glober Bold; }
+
+.sessLogin {
+  font-family: Glober Bold;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff; }
+
 .user-info__text--consult-screen {
   margin-left: 60px; }
 
@@ -18861,6 +19717,36 @@ span:last-child {
   width: 90%;
   color: #111;
   font-family: inherit; }
+
+.user-info__sessionName {
+  width: 100%;
+  color: #111;
+  font-family: inherit;
+  text-align: center; }
+
+.sessionUserPic {
+  float: none !important;
+  text-align: center !important;
+  margin: 0 auto;
+  -webkit-transform: translateY(3%) !important;
+  -moz-transform: translateY(3%) !important;
+  -ms-transform: translateY(3%) !important;
+  -o-transform: translateY(3%) !important;
+  transform: translateY(3%) !important;
+  width: 75px !important;
+  height: 75px !important; }
+  .sessionUserPic .patProfileImageSS {
+    width: 75px !important;
+    height: 75px !important; }
+    .sessionUserPic .patProfileImageSS span {
+      top: 37px;
+      left: 2px; }
+
+.sessionLocTitle {
+  text-align: center;
+  font-size: 24px !important;
+  color: rgba(0, 0, 0, 0.75) !important;
+  margin-bottom: -6px; }
 
 .user-info__name--consult-screen {
   font-size: 1.3225em;
@@ -18889,7 +19775,7 @@ span:last-child {
   font-size: 0.661em; }
 
 .user-info--main-nav {
-  height: 76px;
+  height: 84px;
   background: #444;
   padding: 15px; }
 
@@ -18911,8 +19797,8 @@ span:last-child {
   color: #fff; }
 
 .user-info--main-nav .user-info__text {
-  margin-left: 60px;
-  margin-top: 5px; }
+  margin-left: 68px;
+  margin-top: 7px; }
 
 .user-info--main-nav .user-info__info {
   font-size: 1.1em !important;
@@ -18987,8 +19873,8 @@ span:last-child {
 
 .userpic--main-nav {
   font-size: 0.625em;
-  height: 44px;
-  width: 44px;
+  height: 58px;
+  width: 58px;
   position: relative;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -19011,17 +19897,21 @@ span:last-child {
     font-family: GloberRegular; }
 
 .insProviderName {
-  font-family: GloberBold !important;
-  font-size: 18px;
+  font-size: 16px;
   position: relative;
-  top: -5px; }
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  line-height: normal;
+  font-weight: bold;
+  font-family: GloberBold; }
 
 .insCardName {
   font-family: GloberBold !important;
   font-size: 19px;
   position: relative;
   top: -5px;
-  width: 25%;
+  width: 30%;
   float: left; }
 
 .insCHooseProviderName {
@@ -19038,9 +19928,10 @@ span:last-child {
 
 .insCardNumber {
   font-family: GloberSemiBold;
-  font-size: 21px;
+  font-size: 20px !important;
   position: relative;
-  top: -5px; }
+  top: 3px;
+  left: -15px; }
 
 .healthpat {
   font-size: 20px;
@@ -19067,6 +19958,791 @@ span:last-child {
   padding: 5px;
   padding-right: 39px;
   border-radius: 6px; }
+
+.presTitle {
+  font-size: 14px;
+  font-weight: bold; }
+
+.preNoneReport {
+  font-size: 14px;
+  padding-top: 10px; }
+
+.code6 {
+  font-size: 18px !important; }
+
+.depenBackgroundColor .col-50 {
+  max-width: 47%; }
+
+.depenBackgroundColor .depGreyLabel {
+  max-width: 64%;
+  flex: auto; }
+
+/* Health history Surgery Popup */
+.noSurgeryText {
+  text-align: center;
+  font-size: 13pt;
+  color: rgba(0, 0, 0, 0.38);
+  font-family: Glober Regular;
+  padding: 5% 10%; }
+
+.surgeryTopAddButton {
+  background-color: #A2D28A !important;
+  border-color: #A2D28A !important;
+  background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%) !important;
+  height: 32pt;
+  min-height: 20px !important;
+  top: 10px !important;
+  margin-top: 0px;
+  width: 64pt;
+  border-radius: 6px;
+  line-height: 29px !important;
+  padding: 0px;
+  position: absolute;
+  right: 9px; }
+
+.surgeryCloseIcon {
+  margin-top: 5px;
+  font-weight: bold;
+  /* margin-left: -20px; */
+  padding: 5px 7px 5px 6px;
+  left: -22px;
+  position: relative; }
+  .surgeryCloseIcon .icon-cross:before {
+    font-size: 14px !important; }
+  .surgeryCloseIcon .ion-trash-b {
+    font-size: 23px; }
+
+.healthSurgeryBottom {
+  background-color: #fff !important;
+  border: none;
+  padding: 14px 2%;
+  height: 60px; }
+  .healthSurgeryBottom .surgeryAddButton {
+    /* background-color: #A2D28A;
+         border-color: #A2D28A;
+         background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);
+         font-weight: normal;
+         padding-top: -50px;
+         //width: 100%;
+         width: 100%;
+         min-height: 28px;
+         color: #fff;
+         font-family: Glober Bold;
+         //border-radius: 6px;
+         border-radius: 4pt;
+         //font-size: 15px;
+         font-size: 20pt;
+         height: 44pt;
+         top: -27px;
+         margin: 0 !important; */
+    width: 80%;
+    text-align: center;
+    margin-left: 10%;
+    color: #fff;
+    background-color: #A2D28A;
+    border-color: #A2D28A;
+    background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);
+    font-weight: normal;
+    border-radius: 5px;
+    font-size: 25px;
+    min-height: 41px;
+    text-decoration: none;
+    font-family: "Glober Bold";
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%); }
+
+.surDisplay {
+  border: 1px solid #C4C5C3;
+  height: 60pt; }
+  .surDisplay .surDescription {
+    padding: 10px;
+    width: 85%;
+    float: left; }
+
+.surEditIcon {
+  margin-top: 22px;
+  border: none !important;
+  background: white;
+  box-shadow: none !important; }
+  .surEditIcon .icon-cross:before {
+    font-size: 21px !important; }
+
+.surEditIcon:hover {
+  margin-top: 22px;
+  border: none !important;
+  background: white; }
+
+.surCloseIcon {
+  margin-top: 0px;
+  border: none !important;
+  background: white;
+  box-shadow: none !important;
+  margin-top: 5px;
+  font-weight: bold;
+  padding: 5px 7px 5px 6px;
+  left: -22px;
+  position: relative; }
+  .surCloseIcon .icon-cross:before {
+    font-size: 21px !important; }
+
+.surCloseIcon:hover {
+  margin-top: 0px;
+  border: none !important;
+  background: white; }
+
+div.surDescription h2 {
+  font-size: 15pt;
+  font-family: GloberSemiBold;
+  line-height: 22pt;
+  color: rgba(0, 0, 0, 0.75);
+  height: 20pt;
+  width: 100%; }
+
+div.surDescription p {
+  font-size: 13pt;
+  font-family: GloberRegular;
+  line-height: 12pt;
+  color: rgba(0, 0, 0, 0.54);
+  height: 20pt;
+  width: 112pt;
+  margin-top: 4px; }
+
+.priorValueDate {
+  font-size: 14pt;
+  font-family: GloberSemiBold;
+  color: rgba(0, 0, 0, 0.75); }
+
+.priorValue {
+  font-size: 14pt !important;
+  font-family: GloberSemiBold !important;
+  line-height: 25pt !important;
+  color: rgba(0, 0, 0, 0.75) !important;
+  height: 30pt !important;
+  width: 93pt !important; }
+
+.priorTag {
+  font-size: 13pt;
+  font-family: GloberSemiBold;
+  line-height: 20pt;
+  color: rgba(0, 0, 0, 0.54);
+  height: 20pt; }
+
+.surgeryMonth {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background-color: white;
+  margin-top: -3px;
+  padding-right: 5px;
+  padding: 10px 10px 10px 0px;
+  color: rgba(0, 0, 0, 0.75) !important;
+  font-size: 13pt; }
+
+.surgeryYear {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background-color: white;
+  margin-top: -3px;
+  position: relative;
+  padding-left: 8px;
+  padding: 10px;
+  color: rgba(0, 0, 0, 0.75) !important;
+  font-size: 13pt; }
+
+.appointProgreeTitle {
+  text-align: center; }
+
+.appointProgresContent {
+  text-align: center;
+  padding: 20px !important; }
+
+.demo1 {
+  border-radius: 50%;
+  behavior: url(PIE.htc);
+  /* remove if you don't care about IE8 */
+  width: 16px;
+  height: 16px;
+  padding: 8px;
+  border: 2px solid #666;
+  color: #666;
+  text-align: center;
+  font: 12px Arial, sans-serif; }
+
+.icon-credit-card {
+  font-size: 50px;
+  color: black;
+  position: relative;
+  top: -7px; }
+
+a.item.item-avatar.appitem.scheduled:first-child {
+  min-height: 78px !important; }
+
+a.item.item-avatar.appitem.scheduled:last-child {
+  margin-bottom: 100px !important;
+  height: 72px !important; }
+
+a.item.item-avatar.appitem:first-child {
+  min-height: 78px !important; }
+
+a.item.item-avatar.appitem:last-child {
+  height: 72px !important;
+  border-bottom: none; }
+
+a.item.item-avatar.avatheight {
+  min-height: 73px !important; }
+
+a.item.item-avatar.avatheight:first-child {
+  height: 78px !important; }
+
+.consult {
+  padding-top: 10px !important; }
+
+.setIcon {
+  position: relative;
+  top: 3px !important;
+  left: 1px !important; }
+
+.pc-report__sub-section-date {
+  float: right;
+  padding: 5px;
+  font-size: 8px; }
+
+.textAreaPop {
+  margin: -25px -13.609375px 0px 0px !important;
+  width: 380px;
+  height: 100px;
+  margin-left: 0px; }
+
+.inputlabelclass {
+  padding: 29px 0px 0px 0px; }
+
+.inputlabelval {
+  padding: 0px 0px 25px 5px; }
+
+.patProfileImage {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  text-align: center;
+  font-family: Glober XBold;
+  font-size: 31px;
+  border: 2px solid #fff !important; }
+
+@media (min-width: 320px) and (max-width: 568px) {
+  #viewicon {
+    margin-top: -6px !important; }
+  .creditCount-IOS5 {
+    margin-right: -55px !important;
+    border: none !important; }
+  .credit-IOS5 {
+    display: none !important; }
+  .whoNeedsText-ios5 {
+    font-size: 21px; }
+  .ChangePatient {
+    margin-left: -10px; } }
+
+.homelabel {
+  display: block;
+  font-size: 12px;
+  line-height: 18px;
+  font-family: 'GloberBold','Helvetica Neue',Helvetica,Arial,Sans-Serif;
+  color: #777;
+  top: 10px;
+  left: 5px;
+  height: 26px;
+  position: relative;
+  margin-left: 5px; }
+
+#fullAddress {
+  margin-left: 15px;
+  margin-top: 0px; }
+
+.userhomeaddress {
+  width: calc(100%);
+  position: relative;
+  left: 18px;
+  padding-left: 18px;
+  padding-right: 15px;
+  cursor: text;
+  font-family: 'GloberSemiBold','Helvetica Neue',Helvetica,Arial,Sans-Serif; }
+
+.useraddress {
+  width: calc(86%);
+  position: relative;
+  left: 12px;
+  padding-left: 18px;
+  padding-right: 15px;
+  cursor: text;
+  color: rgba(0, 0, 0, 0.75) !important;
+  font-family: 'GloberSemiBold','Helvetica Neue',Helvetica,Arial,Sans-Serif; }
+
+.addresslabel {
+  display: block;
+  font-size: 12px;
+  line-height: 18px;
+  font-family: "GloberBold","Helvetica Neue",Helvetica,Arial,Sans-Serif;
+  color: #666;
+  top: 10px;
+  left: 10px;
+  height: 26px;
+  position: relative; }
+
+.addressRow {
+  border-bottom: 1px solid #979797; }
+
+.sideblock {
+  margin-top: 5px;
+  margin-bottom: -5px;
+  border-right: 1px solid #979797; }
+
+#CancelAddress {
+  color: #666;
+  text-align: center;
+  padding: 0;
+  letter-spacing: 0;
+  height: 32px;
+  line-height: 32px;
+  font-size: 16px;
+  font-family: 'GloberBold','Helvetica Neue',Helvetica,Arial,Sans-Serif; }
+
+#ContinueAddress {
+  color: white;
+  text-align: center;
+  padding: 0;
+  letter-spacing: 0;
+  height: 32px;
+  line-height: 32px;
+  font-size: 16px;
+  font-family: 'GloberBold','Helvetica Neue',Helvetica,Arial,Sans-Serif; }
+
+.CancelAddressBtn {
+  display: block;
+  border-radius: 0.3em;
+  position: relative;
+  top: 6px;
+  left: 6px;
+  float: none;
+  padding: 0px !important;
+  width: 80px;
+  height: 33px;
+  letter-spacing: 1px;
+  color: #666 !important;
+  background-color: transparent !important;
+  font-size: 18px !important;
+  font-family: "Glober Regular";
+  webkit-transition: box-shadow 0.3s ease !important;
+  -moz-transition: box-shadow 0.3s ease;
+  -o-transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease !important; }
+
+.ContinueAddressBtn {
+  top: 10px;
+  right: 6px !important;
+  display: block;
+  border-radius: 8px;
+  position: relative;
+  margin-left: 20px;
+  float: none;
+  padding: 0px !important;
+  width: 80px;
+  height: 35px;
+  letter-spacing: 1px;
+  color: #666 !important;
+  background-color: #a2d28a !important;
+  box-shadow: 0 0 0 1px #ccc;
+  /* border: none; */
+  border-color: #ccc !important;
+  font-size: 18px !important;
+  font-family: "Glober Regular";
+  webkit-transition: box-shadow 0.3s ease !important;
+  -moz-transition: box-shadow 0.3s ease;
+  -o-transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease !important; }
+
+.pac-container {
+  z-index: 3000 !important; }
+
+.directionIcon {
+  float: left;
+  margin-left: 12px;
+  width: 3%;
+  padding-bottom: 0px;
+  padding-left: 5px;
+  padding-top: 16px;
+  text-align: center;
+  display: table;
+  /* padding: 22px 19px 7px 13px; */
+  font-size: 16px;
+  color: #999 !important; }
+
+.useraddress, .textdata {
+  background-color: #f5f5f5;
+  width: 100%;
+  background-color: transparent !important;
+  border: none;
+  outline: none !important;
+  max-width: none;
+  text-indent: 0;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.75);
+  box-shadow: none !important; }
+
+.noPlanContainer-Android .cardViewport1 {
+  top: 11px !important; }
+
+.cardEditButton {
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important; }
+
+.disable-pointer-events {
+  margin-left: -47px;
+  pointer-events: none;
+  width: 105% !important;
+  white-space: normal; }
+
+.labelcolor {
+  width: 46% !important; }
+
+/*
+.itemFloat-Android{
+    text-align:center;
+    margin-left:51px;
+    float:  left;
+}
+.itemFloat-IOS{
+    text-align:center;
+    margin-left:51px;
+    float:  left;
+}*/
+.accMainContent {
+  margin-top: 0px;
+  border-width: 1pt;
+  border-color: #eeeeee;
+  border-radius: 13px;
+  box-shadow: 0pt 2pt 2pt 0pt rgba(0, 0, 0, 0.3);
+  background-color: whitesmoke; }
+  .accMainContent .accOndemandCon {
+    margin-top: 28px !important; }
+    .accMainContent .accOndemandCon .accOnVisit {
+      font-family: "GloberBold";
+      font-weight: bold;
+      font-size: 21pt;
+      line-height: 27pt;
+      text-align: center;
+      color: #707070;
+      padding-top: 0px !important;
+      letter-spacing: 0px;
+      margin-top: -18px; }
+    .accMainContent .accOndemandCon p {
+      font-family: "GloberRegular";
+      font-weight: normal;
+      font-size: 12pt;
+      color: rgba(0, 0, 0, 0.54);
+      text-align: center;
+      line-height: 11pt;
+      letter-spacing: 0.1pt; }
+  .accMainContent .btn1 {
+    margin: 25px 15px 20px 15px !important; }
+    .accMainContent .btn1 .button {
+      height: 53px;
+      font-size: 25px; }
+      .accMainContent .btn1 .button span {
+        font-family: GloberBold;
+        font-size: 18pt;
+        line-height: 28pt;
+        text-align: center;
+        color: white; }
+
+.accMainContentNew {
+  border: 1px solid;
+  margin: 10px 20px;
+  background-color: white !important;
+  border-color: rgba(0, 0, 0, 0.38) !important;
+  border-radius: 8px !important; }
+  .accMainContentNew .accOndemandCon {
+    margin-top: 28px !important; }
+    .accMainContentNew .accOndemandCon .accOnVisit {
+      font-family: "Glober Semibold";
+      font-weight: bold;
+      font-size: 24px;
+      color: #999999;
+      text-align: center;
+      padding-top: 0px !important;
+      letter-spacing: -1px;
+      margin-top: -10px; }
+    .accMainContentNew .accOndemandCon .accOnVisitNew {
+      font-size: 26px !important;
+      color: rgba(0, 0, 0, 0.54) !important;
+      padding-top: 5px !important;
+      opacity: 0.50 !important;
+      font-family: "Glober bold" !important; }
+    .accMainContentNew .accOndemandCon .accOnCallNew {
+      font-size: 16px !important;
+      color: rgba(0, 0, 0, 0.54) !important;
+      opacity: 0.50 !important; }
+    .accMainContentNew .accOndemandCon .accOnServiceDate {
+      font-family: "Glober Bold";
+      font-size: 18px;
+      margin-top: 20px !important;
+      color: rgba(0, 0, 0, 0.75) !important; }
+    .accMainContentNew .accOndemandCon .accOnQuestion {
+      font-size: 14px !important; }
+    .accMainContentNew .accOndemandCon h2 {
+      font-size: 32px !important;
+      margin-top: 25px; }
+    .accMainContentNew .accOndemandCon p {
+      font-family: "Glober Regular";
+      font-weight: normal;
+      font-size: 19px;
+      color: #999999;
+      text-align: center;
+      line-height: 15px;
+      letter-spacing: 0px; }
+  .accMainContentNew .accOndemandConNew {
+    margin-top: 10px !important; }
+  .accMainContentNew .btn1 {
+    margin: 25px 15px 15px 15px !important; }
+    .accMainContentNew .btn1 .button {
+      height: 53px;
+      font-size: 25px; }
+
+.userAccApptInfo {
+  margin-left: 15px;
+  color: black;
+  padding-top: 4px; }
+
+.userAccApptInfo i svg {
+  font-size: 28px;
+  margin-bottom: -4px; }
+
+.apptTime {
+  margin-left: 10px;
+  font-size: 24px;
+  text-align: left;
+  font-family: GloberBold;
+  color: rgba(0, 0, 0, 0.75);
+  position: relative;
+  top: 0px; }
+
+.apptDetailsInfo {
+  margin-top: 4px;
+  font-size: 10pt;
+  font-family: GloberRegular;
+  line-height: 16pt;
+  text-align: left;
+  color: rgba(0, 0, 0, 0.75);
+  float: right;
+  cursor: pointer; }
+
+.apptDetailsInfo i svg {
+  margin-bottom: -14px;
+  margin-left: -8px; }
+
+.appViewicons {
+  position: relative;
+  top: -3px; }
+
+.button-Search-providers {
+  padding: 3px;
+  border-radius: 5px;
+  background-color: #ffc60b;
+  border-color: #ffc60b;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  /* -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); */
+  /* background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%); */
+  line-height: 35px;
+  width: 100%; }
+
+.userAccountbackBtn {
+  width: 102px;
+  padding-top: 0px;
+  color: white;
+  font-size: 19px;
+  font-family: GloberSemiBold;
+  float: left;
+  margin-top: 15px;
+  margin-left: -20px; }
+
+.userAccountbackBtn i svg {
+  margin-bottom: -9px;
+  font-size: 32px; }
+
+.userAccountbackBtn span {
+  margin-left: -9px;
+  margin-right: -17px; }
+
+.userAccountTitle {
+  font-size: 100%;
+  line-height: 28pt;
+  text-align: center;
+  color: white; }
+
+.HealthSideMenusvgLogout {
+  vertical-align: text-bottom !important; }
+
+.userAccTitle {
+  margin-top: 18px; }
+
+.userAccTitleNew {
+  margin-top: -10px !important; }
+
+.subheaderheightOne {
+  height: 150px !important; }
+
+.subheaderheightTwo {
+  background-color: #ffc60b !important;
+  height: 50px;
+  top: -3px;
+  border: 0px solid #ffc60b; }
+
+.userAccHeaderTitle {
+  top: 55px !important; }
+
+.user-button-position {
+  padding: 3px !important;
+  margin-top: -12px !important; }
+
+.button-Search-providers.activated {
+  background-color: #ffc60b;
+  border-color: #ffc60b; }
+
+.cardNew {
+  box-shadow: 0 1px 3px transparent !important; }
+
+.labelwidth {
+  width: 100% !important;
+  max-width: 100%; }
+
+.healthViewDetailsNew {
+  margin-top: -7px;
+  padding: 0px 0px 12px 0px; }
+  .healthViewDetailsNew input {
+    padding: 25px 0px 0px 6px; }
+
+.noneSchedule {
+  top: 20px; }
+
+.noneScheduleImg {
+  color: black;
+  opacity: 0.2; }
+
+.noneScheduleImg svg {
+  font-size: 106px; }
+
+.noneScheduleText {
+  font-size: 14pt !important;
+  font-family: GloberBold;
+  text-align: center;
+  line-height: 16pt;
+  color: rgba(0, 0, 0, 0.75) !important; }
+
+.noneScheduleNumber {
+  font-size: 16pt !important;
+  font-family: GloberSemiBold;
+  text-align: center;
+  line-height: 24pt;
+  color: rgba(0, 0, 0, 0.75);
+  margin-top: 13px !important; }
+
+.noneScheduleTextBox {
+  margin-top: 18px; }
+
+.emailDependent {
+  height: 55px; }
+
+.leftHeaderIcon {
+  float: left;
+  /* left: -15px; */
+  position: relative;
+  margin-top: 10px;
+  cursor: pointer; }
+
+.rightHeaderIcon {
+  float: right;
+  right: 5px;
+  position: absolute;
+  margin-top: 10px;
+  cursor: pointer; }
+
+.stateDropDown {
+  width: 100% !important;
+  position: relative;
+  top: 6px;
+  border: none; }
+
+.stateBlock {
+  width: 160px !important; }
+
+.zipcodeBlock {
+  border-right: none !important; }
+
+.pac-item > span:last-child {
+  display: inline !important; }
+
+@media (min-width: 321px) and (max-width: 365px) {
+  .mobileInput-Ios5 {
+    padding-left: 55px !important;
+    float: right !important; } }
+
+@media (min-width: 366px) and (max-width: 375px) {
+  .AvailableIn .availableImage .AvailableTimer {
+    padding-left: 25px !important; }
+  .mobileInput-Ios5 {
+    padding-left: 67px !important;
+    float: right !important; }
+  .ReportEthnicity {
+    width: 35.333% !important; }
+  .depenErrorMsg-IOS #notifications-top-center .ErrorContent {
+    top: -8px !important; }
+  .depenErrorMsg-IOS #notifications-top-center #notifications-top-center-close span {
+    top: -8px !important; }
+  .ContinueAddressBtn {
+    width: 74px !important;
+    top: 19px !important; }
+  .concernListHeader {
+    height: 60px !important; }
+    .concernListHeader .concernListTitle-ios {
+      margin-top: 17px !important;
+      font-size: 18px !important;
+      margin-left: 3px !important; }
+  .CancelAddressBtn {
+    width: 63px !important;
+    top: 15px !important; } }
+
+@media (min-width: 376px) and (max-width: 414px) {
+  .mobileInput-Ios5 {
+    padding-left: 85px !important;
+    float: right !important; }
+  .mobileInputNo-Ios5 {
+    margin-left: 0px !important; } }
+
+@media (min-width: 415px) and (max-width: 767px) {
+  .mobileInput-Ios5 {
+    width: 5% !important;
+    margin-left: 44% !important;
+    float: right !important; }
+  .mobileInputNo-Ios5 {
+    margin-left: 15px !important; } }
+
+@media (min-width: 768px) and (max-width: 1280px) {
+  .mobileInput-Ios5 {
+    width: 5% !important;
+    margin-left: 32% !important;
+    float: right !important; } }
+
+.CancelAddressBtn-IOS {
+  margin-top: 10px !important; }
+
+.PrimaryConcernPopupTitle-IOS {
+  margin-top: 18px !important; }
+
+.ContinueAddressBtn-IOS {
+  margin-top: 10px !important; }
 
 .locpopup .locicon {
   padding: 3px; }
@@ -19143,9 +20819,10 @@ span:last-child {
   padding-top: 43px; }
 
 .updatepopup .updatetitle {
-  font-family: Glober Bold;
-  font-size: 20px;
+  font-family: GloberBold;
+  font-size: 22px;
   text-align: center;
+  padding-bottom: 5px;
   color: rgba(0, 0, 0, 0.75); }
 
 .updatepopup .updateline {
@@ -19158,6 +20835,8 @@ span:last-child {
   position: relative;
   text-align: center;
   color: rgba(0, 0, 0, 0.12); }
+  .updatepopup .updatevericon .icon-new {
+    font-size: 32px; }
 
 .updatepopup .popup-body {
   padding: 0px !important; }
@@ -19198,6 +20877,11 @@ span:last-child {
     font-size: 18px;
     font-weight: normal;
     padding: 10px !important; }
+  .updatepopup .loc-detcontent .newLogBut {
+    padding: 5px 0px 20px; }
+    .updatepopup .loc-detcontent .newLogBut .buttonupdate {
+      height: 43%;
+      width: 133px; }
 
 .patient-list__search {
   border-bottom: 2px solid #979797;

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "ConnectedCare: An Ionic project",
   "dependencies": {
-    "cordova-ios": "^4.4.0",
+    "cordova-ios": "^4.5.4",
     "cordova-plugin-customurlscheme": "git+https://github.com/EddyVerbruggen/LaunchMyApp-PhoneGap-Plugin.git",
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",

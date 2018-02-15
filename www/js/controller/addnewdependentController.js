@@ -1047,7 +1047,7 @@ angular.module('starter.controllers')
       };
       LoginService.getListOfPatientids(params);
 
-            $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
+           // $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
 
              $scope.alphabet = iterateAlphabet();
               var users = $rootScope.currentPatientIDlist;
@@ -1238,7 +1238,7 @@ angular.module('starter.controllers')
     }
 
     $scope.canceldependent = function() {
-      $ionicScrollDelegate.$getByHandle('isScroll').scrollTo();
+      $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
          $('#dependentuserform')[0].reset();
          $('select').prop('selectedIndex', 0);
          history.back();
@@ -1647,8 +1647,9 @@ $rootScope.editremovemodal = function () {
                     container.css('z-index', '5000');
                     container.css('pointer-events', 'auto');
                     container.attr('data-tap-disabled', 'true');
-                    container.on('click', function(){
+                    container.on('click', function(e){
                         //input.blur();
+                          e.preventDefault();
                         document.getElementById('txtPlaces').blur();
                     });
                 }, 200);
