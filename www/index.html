@@ -409,8 +409,9 @@
 
                         <div class="drawer-info-panel__cell drawer-info-panel__cell--practicing">
                             <div class="drawer-info-panel__header localizejs">Practicing</div>
-                            <div class="drawer-info-panel__content"  data-bind="text: vm_getPracticingYears">
-                                <b>14</b><span class="localizejs">Years</span>
+                              <div class="drawer-info-panel__content">
+                                <span data-bind="text: vm_getPracticingYears"></span>
+                                <span class="localizejs" data-bind="text: vm_getPracticingYearsString"></span>
                             </div>
                         </div>
 
@@ -421,7 +422,9 @@
 
                         <div class="drawer-info-panel__cell drawer-info-panel__cell--age">
                             <div class="drawer-info-panel__header localizejs">Age</div>
-                            <div class="drawer-info-panel__content"><span  data-bind="ageString: dob"></span></div>
+                            <div class="drawer-info-panel__content"><span  data-bind="ageString: dob"></span>
+                                <span class="localizejs" data-bind="ageStringVal: dob">
+                            </div>
                         </div>
 
                         <div class="drawer-info-panel__cell drawer-info-panel__cell--states">

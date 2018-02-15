@@ -1207,8 +1207,18 @@ $("#localize-widget").hide();
                         return "";
                     }
                     var yearsOfPractice = new Date().getFullYear() - this.opt.practicingSince;
-                    return [yearsOfPractice, " Year", yearsOfPractice > 1 ? "s" : ""].join("");
+                    return [yearsOfPractice, "", yearsOfPractice > 1 ? "" : ""].join("");
                 };
+                this.vm_getPracticingYearsString = function () {
+                    if (!this.opt.practicingSince) {
+                        return "";
+                    }
+                    var yearsOfPractice = new Date().getFullYear() - this.opt.practicingSince;
+                    return [" Year", yearsOfPractice > 1 ? "s" : ""].join("");
+                };
+
+
+
                 this.vm_getFullName = function () {
                     return [opt.name, opt.lastName].join(" ");
                 };
