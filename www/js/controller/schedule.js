@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
     .controller('ScheduleCtrl', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService, $window, $ionicBackdrop) {
         //var snap = snap || {};
-
+      $("#localize-widget").show();
         var localizeCurrent = $('#localize-current').text();
       console.log("localizeCurrent is== "+localizeCurrent);
            if(localizeCurrent == "Español"){
@@ -19,7 +19,7 @@ angular.module('starter.controllers')
             //   $scope.retrySpanish = "Retry?";
            }
 
-
+$("#localize-widget").show();
 
         var vm = '';
         var headerVM = '';
@@ -56,7 +56,7 @@ angular.module('starter.controllers')
               $rootScope.doGetPatientProfiles();
               $state.go('tab.userhome');
             }
-            $("#localize-widget").hide();
+            $("#localize-widget").show();
         $scope.toggleLeft = function() {
             $ionicSideMenuDelegate.toggleLeft();
             $rootScope.checkAndChangeMenuIcon();
@@ -71,6 +71,7 @@ angular.module('starter.controllers')
         };
 
       $rootScope.doGetUserTimezone = function() {
+        $("#localize-widget").show();
           var params = {
               accessToken: $rootScope.accessToken,
               success: function(data) {
@@ -84,8 +85,11 @@ angular.module('starter.controllers')
                 var userDataJsonData = JSON.stringify(userData);
                 $window.localStorage.setItem('snap_user_session', userDataJsonData);
                   if(userData.timeZoneSystemId !== '') {
+                    $("#localize-widget").show();
                             snap.cachedGetHtml("schedule/tab-providerBody.html").then(function(html) {
+                              $("#localize-widget").show();
                                 $(".schedular-continer").html(html);
+                                $("#localize-widget").show();
                                 var chkClass = $("body").hasClass("is-main-nav");
                                 if(chkClass) {
                                   $("body").removeClass("is-main-nav");
@@ -134,6 +138,7 @@ angular.module('starter.controllers')
 
 
         this.initSnapVars = function() {
+          $("#localize-widget").show();
             // snap.baseUrl = "https://emerald.snap-qa.com";
             snap.userSession = JSON.parse($window.localStorage.getItem("snap_user_session"));
             snap.profileSession = JSON.parse($window.localStorage.getItem("snap_patientprofile_session"));
@@ -152,6 +157,7 @@ angular.module('starter.controllers')
         this.initKendoUI();
 
         $scope.getDetails = function(userName) {
+          $("#localize-widget").show();
             if($('#searchTab').attr("class") != 'menu-toggle__navigation is-active') {
                 var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
                 var headerVM = snap.resolveObject("snap.patient.PatientHeaderViewModel");

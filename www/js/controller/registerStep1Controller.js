@@ -753,9 +753,11 @@ angular.module('starter.controllers')
            return false;
         });*/
     }
-
+   $rootScope.Widgetshow = function(){
+     $("#localize-widget").show();
+   }
         $scope.addressEditModal = function () {
-          $("#localize-widget").hide();
+          // $("#localize-widget").show();
             //$('#healthInfoHeightUnit').val("");
             $ionicModal.fromTemplateUrl('templates/tab-addressedittemplate.html', {
                 scope: $scope,

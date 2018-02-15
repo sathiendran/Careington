@@ -8,7 +8,7 @@ angular.module('starter.controllers')
               timeoutValue = 0;
               window.localStorage.setItem('InActiveSince', timeoutValue);
          }
-         $("#localize-widget").show();
+         // $("#localize-widget").show();
       $rootScope.consultationId = window.localStorage.getItem('ConferenceCallConsultationId');
       $rootScope.accessToken = window.localStorage.getItem('accessToken');
       $rootScope.videoSessionId = window.localStorage.getItem('videoSessionId');
@@ -18,6 +18,37 @@ angular.module('starter.controllers')
       $rootScope.PatientFirstName = window.localStorage.getItem('PatientFirstName');
       $rootScope.PatientLastName = window.localStorage.getItem('PatientLastName');
       $rootScope.videoLostMessage = 'Internet connection lost. Please reconnect.';
+
+
+          var alertMsgvideo = "Consultation ended successfully!";
+
+            var localizeCurrent = $('#localize-current').text();
+            console.log("lang "+localizeCurrent);
+              if(localizeCurrent == "Español") {
+                  alertMsgvideo = "¡La consulta terminó exitosamente!";
+              }
+            else  if(localizeCurrent == "English (UK)") {
+              alertMsgvideo = "Consultation ended successfully!";
+            }
+            else if (localizeCurrent == "English")   {
+                alertMsgvideo = "Consultation ended successfully!";
+              }
+
+
+             $('#localize-langs').click(function() {
+               var isLang = $('#localize-langs .activated').text();
+                 console.log("lang "+isLang);
+                 if(isLang == "Español") {
+                   alertMsgvideo = "¡La consulta terminó exitosamente!";
+                 }
+                else  if(isLang == "English (UK)") {
+                  alertMsgvideo = "Consultation ended successfully!";
+                }
+                  else if (isLang == "English") {
+                      alertMsgvideo = "Consultation ended successfully!";
+                  }
+                });
+
 
       $rootScope.checkForReEntryConsultation = function() {
           $rootScope.consultionInformation = '';
@@ -47,8 +78,7 @@ angular.module('starter.controllers')
                               $state.go('tab.videoConference');
                           }, 5000);
                       }else{
-                        navigator.notification.alert(
-                            'Consultation ended successfully!', // message
+                        navigator.notification.alert(alertMsgvideo, // message
                             consultationEndedBeforeReconnect, // callback
                             $rootScope.alertMsgName, // title
                             'OK' // buttonName

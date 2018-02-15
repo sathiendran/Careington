@@ -2026,6 +2026,7 @@ angular.module('starter.controllers')
 
         $("#localize-widget").hide();
         $scope.goTOSchedule = function () {
+          $("#localize-widget").show();
             $('<link/>', {
                 rel: 'stylesheet',
                 type: 'text/css',
