@@ -133,7 +133,7 @@
                     <div class="col col-45">
                     <span class="input-label labelcolor" style=" white-space: normal;"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel labelfont localizejs">Home Phone</b></span></div>
                      <div class="healthViewDetails homePhoneInput homePhoneInputValue" ng-if="currentPatientDetails[0].homePhone">
-                        <input type="text" readonly="true" value="{{getPhoneNumberWithoutCountryCode(currentPatientDetails[0].homePhone) |  tel}}" style="background-color: #fff !important; font-size: 18px; color: #444;">
+                        <input type="text" readonly="true" value="{{getPhoneNumberWithoutCountryCode(currentPatientDetails[0].homePhone) |  tel}}" style="background-color: #fff !important; font-size: 18px; color: #444;padding-left: 0px !important;">
                      </div>
                      <div class="healthViewDetails homePhoneInput homePhoneInputValue localizejs" ng-if="!currentPatientDetails[0].homePhone">
                         NA
@@ -159,8 +159,8 @@
                   <label ng-if="OrganizationLocation === 'on'" class="item item-input itemtab validated">
                     <div class="col col-45">
                     <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('group')"></i><b class="formlabel labelfont localizejs">Organization</b></span></div>
-                     <div class="healthViewDetails ellipsis localizejs" ng-if="currentPatientDetails[0].organization">{{currentPatientDetails[0].organization}}</div>
-                     <div class="healthViewDetails ellipsis localizejs" ng-if="!currentPatientDetails[0].organization">NA</div>
+                     <div class="healthViewDetails ellipsis localizejs" style="margin-left: -16px;" ng-if="currentPatientDetails[0].organization">{{currentPatientDetails[0].organization}}</div>
+                     <div class="healthViewDetails ellipsis localizejs" ng-if="!currentPatientDetails[0].organization" style="margin-left: -16px;">NA</div>
                   </label>
                   <label ng-if="OrganizationLocation === 'on'" class="item item-input itemtab validated">
                     <div class="col col-45">

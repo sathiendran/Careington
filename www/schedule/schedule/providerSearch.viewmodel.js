@@ -274,6 +274,7 @@ $("#localize-widget").hide();
                     $("#allProvider").removeClass("is-active");
                     $("#myProvider").removeClass("is-active");
                     $("#searchTab").addClass("is-active");
+                     $("#searchFilter").css("display", "block");
                 } else {
                     if ($('#allProvider').attr("class") == '' & $('#myProvider').attr("class") == '') {
                         $("#searchTab").removeClass("is-active");
@@ -512,7 +513,7 @@ $("#localize-widget").hide();
             this.vm_currentPatientLocation = "";
             //this.set("vm_isPatientSelectorActive", false);
             this.vm_onSelectPersonClick = function () {
-
+                 $("#relatedUsrTab").css("display", "block");
                 this.set("vm_isPatientSelectorActive", true);
 
                 selector.unselectAll();
@@ -1213,8 +1214,18 @@ $("#localize-widget").hide();
                         return "";
                     }
                     var yearsOfPractice = new Date().getFullYear() - this.opt.practicingSince;
-                    return [yearsOfPractice, " Year", yearsOfPractice > 1 ? "s" : ""].join("");
+                    return [yearsOfPractice, "", yearsOfPractice > 1 ? "" : ""].join("");
                 };
+                this.vm_getPracticingYearsString = function () {
+                    if (!this.opt.practicingSince) {
+                        return "";
+                    }
+                    var yearsOfPractice = new Date().getFullYear() - this.opt.practicingSince;
+                    return [" Year", yearsOfPractice > 1 ? "s" : ""].join("");
+                };
+
+
+
                 this.vm_getFullName = function () {
                     return [opt.name, opt.lastName].join(" ");
                 };
