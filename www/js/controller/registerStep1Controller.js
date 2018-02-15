@@ -21,6 +21,7 @@ angular.module('starter.controllers')
 
         $rootScope.isRegistrationCompleted = false;
         var onePopupLimit = true;
+        
         $ionicPlatform.registerBackButtonAction(function() {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -815,8 +816,9 @@ angular.module('starter.controllers')
                     // Disable ionic data tap
                     container.attr('data-tap-disabled', 'true');
                     // Leave the input field if a prediction is chosen
-                    container.on('click', function(){
+                    container.on('click', function(e){
                         //input.blur();
+                        e.preventDefault();
                         document.getElementById('txtPlaces').blur();
                     });
                 }, 200);
