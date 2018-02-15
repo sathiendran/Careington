@@ -297,6 +297,7 @@ angular.module('starter.controllers')
         $scope.addmore = false;
         $scope.healthhide = true;
         $scope.healthfoottab = true;
+        $('#HealthFooter').css({'display':'block'});
         $scope.healthfootsave = true;
         $scope.editshow = true;
         $scope.doneshow = true;
@@ -1587,7 +1588,21 @@ angular.module('starter.controllers')
                 });
             }
         }
+
+        window.addEventListener('native.keyboardshow', function () {
+            $scope.$apply(function() {
+                $('#HealthFooter').css({'display':'none'})
+             });
+
+         });
+         window.addEventListener('native.keyboardhide', function () {
+            $scope.$apply(function() {
+                $('#HealthFooter').css({'display':'block'})
+          });
+        });
+
         $rootScope.doPutProfileUpdation = function () {
+
             $scope.patientMedicalHistoryDetails = {};
             $scope.patientMedicalHistoryDetails.patientId = $rootScope.currentPatientDetails[0].account.patientId;
             if ($rootScope.ChronicCount > 0) {
@@ -1821,6 +1836,7 @@ angular.module('starter.controllers')
                         $rootScope.flag = true;
                         $scope.doneedit = false;
                         $scope.healthfoottab = true;
+                        $('#HealthFooter').css({'display':'block'});
                         $scope.healthfootsave = true;
                         var editvalues = angular.element(document.getElementsByTagName('input'));
                         var edittextarea = angular.element(document.getElementsByTagName('textarea'));
@@ -2030,6 +2046,7 @@ angular.module('starter.controllers')
                 $scope.editshow = true;
                 $scope.doneshow = true;
                 $scope.healthfoottab = true;
+                $('#HealthFooter').css({'display':'block'});
                 $scope.healthfootsave = true;
             }
             if ($rootScope.hasRequiredFields !== true) {
@@ -2145,6 +2162,7 @@ angular.module('starter.controllers')
         }
         $scope.getMedicalDetailsinHealthInfo = function () {
             $scope.healthfoottab = true;
+            $('#HealthFooter').css({'display':'block'});
             $scope.healthfootsave = true;
             //$rootScope.patientAuthorize = false;
             if ($rootScope.hasRequiredFields === true) {
@@ -2384,7 +2402,7 @@ angular.module('starter.controllers')
            $scope.modal.remove();
            $rootScope.viewpatapiDisplay = 'flex';
            $rootScope.viewpatmodalDisplay = 'none';
-           $ionicScrollDelegate.$getByHandle('scrollTopView').scrollTop();
+        //   $ionicScrollDelegate.$getByHandle('scrollTopView').scrollTop();
       } else {
            $scope.updationListLength = 0;
 
@@ -2803,7 +2821,7 @@ angular.module('starter.controllers')
                 success: function (data) {
                     $rootScope.listOfCoUserDetails = [];
                     angular.forEach(data.data, function (index) {
-                        if (index.patientId !== $rootScope.primaryPatientId) {
+                        if (index.patientId !== $rootScope.primaryPatientId && index.isDependent != true) {
                             var getCoUserRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
                                 codeId: index.relationCodeId
                             })
@@ -3457,6 +3475,7 @@ angular.module('starter.controllers')
         //   alert(app);
         // }
         $scope.goTOSchedule = function () {
+          $("#localize-widget").show();
             $('<link/>', {
                 rel: 'stylesheet',
                 type: 'text/css',
@@ -3714,8 +3733,9 @@ angular.module('starter.controllers')
                     container.css('z-index', '5000');
                     container.css('pointer-events', 'auto');
                     container.attr('data-tap-disabled', 'true');
-                    container.on('click', function(){
+                    container.on('click', function(e){
                         //input.blur();
+                          e.preventDefault();
                         document.getElementById('txtPlaces').blur();
                     });
                 }, 200);

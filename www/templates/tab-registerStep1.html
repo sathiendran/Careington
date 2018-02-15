@@ -3,7 +3,7 @@
   bottom: 0px!important;
 }
 </style>
-<form name="userRegister" ng-init="doGetCountries();getStatesForUS();" id="userRegister" ng-submit="postRegisterStep1()" >
+<form name="userRegister" ng-init="doGetCountries();getStatesForUS();" id="userRegister" ng-submit="postRegisterStep1()">
 <ion-view>
    <div id="Error_Message" class="localizejs" ></div>
    <div class="registerContent__registerCard" ng-if="is_iPadDeviceWidth < 768">
@@ -133,8 +133,8 @@
                      <label class="user-account__label localizejs">Mobile</label>
                      <div class="user-account__input">
                         <input type="tel" class="localizejs" placeholder="type here..." ng-model="regStep1.regMobile" name="regMobile" id="regMobile" ng-keyup="moblieBlur()"  phone-input>
-                        <span class="user-account__error-message localizejs" ng-show="mobilemanderror" >Please enter a mobile number</span>
-                        <span class="user-account__error-message localizejs" ng-show="mobileerror" >Please enter a valid mobile number</span>
+                        <span class="user-account__error-message localizejs" ng-show="mobilemanderror" ng-hide="mobileerror" >Please enter a mobile number</span>
+                        <span class="user-account__error-message localizejs" ng-show="mobileerror" ng-hide="mobilemanderror" >Please enter a valid mobile number</span>
                      </div>
                   </div>
                </div>

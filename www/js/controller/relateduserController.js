@@ -330,7 +330,7 @@ angular.element(document).ready(function () {
                 success: function(data) {
                     $rootScope.listOfCoUserDetails = [];
                     angular.forEach(data.data, function(index) {
-                        if (index.patientId !== $rootScope.primaryPatientId) {
+                        if (index.patientId !== $rootScope.primaryPatientId && index.isDependent != true) {
                             var getCoUserRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
                                 codeId: index.relationCodeId
                             })
@@ -798,6 +798,7 @@ angular.element(document).ready(function () {
         };
 
         $scope.goTOSchedule = function() {
+          $("#localize-widget").show();
             $('<link/>', {
                 rel: 'stylesheet',
                 type: 'text/css',

@@ -4,76 +4,71 @@ angular.module('starter.controllers')
         $rootScope.dupcouser = false;
         $("#localize-widget").show();
 
-        //venkat start
-            var localizeCurrent = $('#localize-current').text();
-            var myLength = $(".departmentClassVal").text().length;
-            console.log("myLength ="+myLength);
-             if($( window ).width()<= 375) {
-
-
-               if(localizeCurrent == "Español") {
-                   console.log("Español");
-                 $scope.ReportEthnicityVal = "width:36.33% !important";
-               } if(localizeCurrent == "English (UK)") {
-                 $scope.ReportEthnicityVal = "width:41.33% !important";
-               } if(localizeCurrent == "English") {
-                 $scope.ReportEthnicityVal = "width:41.33% !important";
-               }
-                if(myLength >= 11) {
-                    console.log("myLength  is more=");
-                  if(localizeCurrent == "Español") {
-                      console.log("Español");
-                      $scope.departmentClass = "height:45px !important";
-                  } if(localizeCurrent == "English (UK)") {
-                      $scope.departmentClass = "height:25px !important";
-                  } if(localizeCurrent == "English") {
-                      $scope.departmentClass = "height:25px !important";
-                  }
-                }
-                 } else {
-                     if(localizeCurrent == "Español"){
-                       }else{
-                       }
-                 }
-
-                   $('#localize-langs').click(function() {
-                         var myLength = $(".departmentClassVal").text().length;
-                      //     console.log("myLength ="+myLength);
-                      if($( window ).width()<= 375){
-                        var isLang = $('#localize-langs .activated').text();
-
-                        if(isLang == "Español") {
-                            console.log("Español");
-                          $(".ReportEthnicity").css("width", "36.33% !important");
-
-                        } if(isLang == "English (UK)") {
-                          $(".ReportEthnicity").css("width", "41.33% !important");
-
-                        } if(isLang == "English") {
-                          $(".ReportEthnicity").css("width", "41.33% !important");
-
-                        }
-                        if(myLength >= 11) {
-                            console.log("myLength  is more=");
-                         if(isLang == "Español") {
-                              $(".departmentClass").css("height", "45px !important");
-                         }
-                         if(isLang == "English (UK)") {
-                             $(".departmentClass").css("height", "25px !important");
-                         }
-                         if(isLang == "English") {
-                                $(".departmentClass").css("height", "25px !important");
-                         }
-                       isLang = "";
-                     }
+        //venket
+        var localizeCurrent = $('#localize-current').text();
+        var myLength = $(".departmentClassVal").text().length;
+        console.log("myLength ="+myLength);
+         if($( window ).width()<= 375) {
+           if(localizeCurrent == "Español") {
+            //   console.log("Español");
+             $scope.ReportEthnicityVal = "width:36.33%";
+           } if(localizeCurrent == "English (UK)") {
+             $scope.ReportEthnicityVal = "width:41.33%";
+           } if(localizeCurrent == "English") {
+             $scope.ReportEthnicityVal = "width:41.33%";
+           }
+           /* if(myLength >= 11) {
+            //    console.log("myLength  is more=");
+              if(localizeCurrent == "Español") {
+            //      console.log("Español");
+                  $scope.departmentClass = "height:45px";
+              } if(localizeCurrent == "English (UK)") {
+                  $scope.departmentClass = "height:25px";
+              } if(localizeCurrent == "English") {
+                  $scope.departmentClass = "height:25px";
+              }
+            }*/
+             } else {
+                 if(localizeCurrent == "Español"){
+                   }else{
                    }
-               });
-            //venkat end
+             }
+
+               $('#localize-langs').click(function() {
+                  ///    console.log("myLength ="+myLength);
+                  if($( window ).width()<= 375){
+                    var isLang = $('#localize-langs .activated').text();
+                    var myLength = $(".departmentClassVal").text().length;
+                      //console.log("val ="+$(".departmentClassVal").text());
+                      //console.log("myLength ="+myLength);
+                    if(isLang == "Español") {
+                        //console.log("Español");
+                        $scope.ReportEthnicityVal = "width:36.33%";
+                    } if(isLang == "English (UK)") {
+                      $scope.ReportEthnicityVal = "width:41.33%";
+                    } if(isLang == "English") {
+                      $scope.ReportEthnicityVal = "width:41.33%";
+                    }
+                    if(myLength >= 11) {
+                      //  console.log("myLength  is more=");
+                     if(isLang == "Español") {
+                         $scope.departmentClass = "height:45px";
+                     }
+                     if(isLang == "English (UK)") {
+                       $scope.departmentClass = "height:25px";
+                     }
+                     if(isLang == "English") {
+                       $scope.departmentClass = "height:25px";
+                     }
+                   isLang = "";
+                }
+               }
+           });
 
 
         angular.element(document).ready(function () {
 
-            $("#localize-widget").hide();
+          //  $("#localize-widget").hide();
         });
 
 
@@ -615,6 +610,34 @@ angular.module('starter.controllers')
                         }else if ($rootScope.appointmentcode == 3) {
                             $rootScope.appointmenttype = "Patient Sched";
                         }
+                        //venkat
+                        var appointmenttypeVal = $rootScope.appointmenttype;
+                        var localizeCurrent = $('#localize-current').text();
+                          //console.log("localizeCurrent ="+localizeCurrent);
+                        //  console.log("myText ="+myText);
+                         if($( window ).width()<= 375) {
+                           //console.log("myLength  is more="+appointmenttypeVal.length);
+                            if(appointmenttypeVal == "Provider Sche" || appointmenttypeVal == "Patient Sched") {
+                            //    console.log("myLength  is more="+appointmenttypeVal.length);
+                              if(localizeCurrent == "Español") {
+                              //    console.log("Español h");
+                                  $scope.departmentClass = "height:45px";
+                              } if(localizeCurrent == "English (UK)") {
+                                  $scope.departmentClass = "height:25px";
+                              } if(localizeCurrent == "English") {
+                                //  console.log("English h");
+                                  $scope.departmentClass = "height:25px";
+                              }
+                            }else{
+                                $scope.departmentClass = "height:25px";
+                            }
+                             } else {
+                                 if(localizeCurrent == "Español"){
+                                   }else{
+                                   }
+                             }
+                             // venkat
+
                     } else {
                         $rootScope.appointmenttype = 'None Reported';
                     }
@@ -1110,6 +1133,7 @@ angular.module('starter.controllers')
 
         $scope.closeReportView = function() {
             $state.go('tab.consultations');
+            $('#HealthFooter').css({'display':'block'});
         }
 
 
@@ -1238,6 +1262,7 @@ angular.module('starter.controllers')
         }
 
         $scope.goTOSchedule = function() {
+          $("#localize-widget").show();
             $('<link/>', {
                 rel: 'stylesheet',
                 type: 'text/css',

@@ -1,17 +1,25 @@
 angular.module('starter.controllers')
     .controller('ScheduleCtrl', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService, $window, $ionicBackdrop) {
         //var snap = snap || {};
-
+      $("#localize-widget").show();
         var localizeCurrent = $('#localize-current').text();
       console.log("localizeCurrent is== "+localizeCurrent);
            if(localizeCurrent == "Español"){
                // $("#retrySpanish").text("Rever?");
                $("#retrySpanish").css("color", "Red");
+               // $(".drawer-card--empty.is-active::after").css({"content":"No hay proveedores guardados todavía."});
+               $('head').append('<style>.drawer-card--empty.is-active:before{content:"No hay proveedores guardados todavía." !important;}</style>');
+                $('head').append('<style>.drawer-card--empty.is-active::after{content:"Agregue proveedores a su lista seleccionando la estrella en su tarjeta de perfil." !important;}</style>');
+               // $('head').append('<style>.column:before{width:800px !important;}</style>');
            }else{
                // $("#retrySpanish").text("Retry?");
                $("#retrySpanish").css("color", "Pink");
+               $('head').append('<style>.drawer-card--empty.is-active:before{content:"No saved providers yet." !important;}</style>');
+               $('head').append('<style>.drawer-card--empty.is-active:before{content:"Add providers to your list by selecting the star on their profile card." !important;}</style>');
             //   $scope.retrySpanish = "Retry?";
            }
+
+$("#localize-widget").show();
 
         var vm = '';
         var headerVM = '';
@@ -26,6 +34,7 @@ angular.module('starter.controllers')
         }else {
            snap.redirctPage = '#/tab/login';
         }
+
         $rootScope.chkSSPageEnter = true;
         var checkAndChangeMenuIcon;
         $interval.cancel(checkAndChangeMenuIcon);
@@ -47,7 +56,7 @@ angular.module('starter.controllers')
               $rootScope.doGetPatientProfiles();
               $state.go('tab.userhome');
             }
-            $("#localize-widget").hide();
+            $("#localize-widget").show();
         $scope.toggleLeft = function() {
             $ionicSideMenuDelegate.toggleLeft();
             $rootScope.checkAndChangeMenuIcon();
@@ -60,56 +69,9 @@ angular.module('starter.controllers')
                 }, 300);
             }
         };
-        $rootScope.sessionConsultConnection = $.hubConnection();
-        $rootScope.sessionRoomConHub = $rootScope.sessionConsultConnection.createHubProxy('sessionLimiterHub');
-        $rootScope.sessionConsultConnection.url = $rootScope.APICommonURL + "/api/signalR/";
-        $rootScope.sessionConsultConnection.qs = {
-         "Bearer": $rootScope.accessToken,
-         // "isMobile": true,
-        };
-        $rootScope.sessionRoomConHub.on("onConsultationReview", function() {
-        // alert("The Provider is now reviewing the intake form.");
-         $scope.$digest();
-        });
-        $rootScope.sessionRoomConHub.on("onCustomerDefaultWaitingInformation", function() {
-         $scope.$digest();
-        });
-        $rootScope.sessionRoomConHub.on("onConsultationStarted", function() {
-         $scope.$digest();
-        });
-        $rootScope.sessionConsultConnection.logging = true;
-        window.whub = $rootScope.sessionConsultConnection;
-        $rootScope.sessionConsultConnection.start({
-         withCredentials: false
-        }).then(function() {
-           $rootScope.sessionConsultConnection.disconnected(function() {
-                // console.log("hhhh");
-             setTimeout(function() {
-                  // if(activeConsultConnection && activeConsultConnection.start){
-                    //   activeConsultConnection.start();
-                      //console.log("iiii");
-                //   }
-             }, 5000);
-             });
-
-        });
-
-        $rootScope.sessionRoomConHub.on("onSessionTerminated", function(ip) {
-             navigator.notification.alert(
-                'You have logged in on another device and ended this session.', // message
-                function() {
-                    $rootScope.ClearRootScope();
-                  return;
-                },
-                $rootScope.alertMsgName, // title
-                'Done' // buttonName
-           );
-                //  alert("You have logged in on another device and ended this session.");
-                // // window.console.log("You have logged in on another device. IP: " + ip);
-                // $rootScope.ClearRootScope();
-           });
 
       $rootScope.doGetUserTimezone = function() {
+        $("#localize-widget").show();
           var params = {
               accessToken: $rootScope.accessToken,
               success: function(data) {
@@ -123,19 +85,27 @@ angular.module('starter.controllers')
                 var userDataJsonData = JSON.stringify(userData);
                 $window.localStorage.setItem('snap_user_session', userDataJsonData);
                   if(userData.timeZoneSystemId !== '') {
+                    $("#localize-widget").show();
                             snap.cachedGetHtml("schedule/tab-providerBody.html").then(function(html) {
+                              $("#localize-widget").show();
                                 $(".schedular-continer").html(html);
+                                $("#localize-widget").show();
                                 var chkClass = $("body").hasClass("is-main-nav");
                                 if(chkClass) {
                                   $("body").removeClass("is-main-nav");
                                 }
+                                $(".button__cancel").click();
                                 snap.updateSnapJsSession("snap_user_session", "timeZoneSystemId", snap.userSession.timeZoneSystemId);
                                 snap.resolveObject("snap.patient.schedule");
                                 var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
                                 var headerVM = snap.resolveObject("snap.patient.PatientHeaderViewModel");
+                                headerVM.vm_isSearchBarActive = false;
+                                headerVM.vm_isPatientSelectorActive = false;
                                 headerVM.set("moduleTitle", "Provider");
                                 headerVM.set("subModuleTitle", "All providers");
                                 headerVM.isFavoriteCliniciansMode = true;
+                                $("#relatedUsrTab").css("display", "none");
+                                $("#searchFilter").css("display", "none");
                                 kendo.bind($("#scd-bdy"), vm);
                                 kendo.bind($(".header__patient-ss"), headerVM);
                                 var viewMode = "all"; //$stateParams.viewMode; //"favorite";
@@ -173,6 +143,7 @@ angular.module('starter.controllers')
 
 
         this.initSnapVars = function() {
+          $("#localize-widget").show();
             // snap.baseUrl = "https://emerald.snap-qa.com";
             snap.userSession = JSON.parse($window.localStorage.getItem("snap_user_session"));
             snap.profileSession = JSON.parse($window.localStorage.getItem("snap_patientprofile_session"));
@@ -185,12 +156,18 @@ angular.module('starter.controllers')
 
         this.initKendoUI = function() {
             //if(snap.profileSession === undefined) {
+            $("#searchFilter").removeClass("is-active");
+              $("#searchTab").removeClass("is-active");
+              $("#myProvider").removeClass("is-active");
+              $("#allProvider").addClass("is-active");
+              $(".button__cancel").click();
               this.initSnapVars();
           //  }
         }
         this.initKendoUI();
 
         $scope.getDetails = function(userName) {
+          $("#localize-widget").show();
             if($('#searchTab').attr("class") != 'menu-toggle__navigation is-active') {
                 var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
                 var headerVM = snap.resolveObject("snap.patient.PatientHeaderViewModel");

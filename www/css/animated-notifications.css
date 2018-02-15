@@ -195,12 +195,12 @@
 	width: 100%;
 	background-color: black;
 	height: auto ;
+	z-index: 999;
 	text-align: center;
 	line-height: 70px;
 	color: white;
 	font-size: 18px;
 	font-weight: 600;
-	z-index:1;
 }
 .notifications-top-center {
 	opacity: 0.85;
@@ -209,7 +209,8 @@
 	top: 0px;
 	width: 100%;
 	background-color: black;
-	height: 65px;
+	/*height: 65px;*/
+	height: auto;
 	text-align: center;
 	line-height: 70px;
 	color: white;
@@ -234,7 +235,8 @@
 #notifications-top-center-close {
 	opacity: 0.85;
 	float: right;
-	height: 70px;
+/*	height: 70px;*/
+	height: auto;
 	width: 25px !important;
 	font-size: 20px;
 	color: white;
@@ -321,7 +323,8 @@
 	width: 100%;
 	font-size: 65px;
 	text-align: center;
-	height: 65px;
+	/*height: 65px;*/
+	height: auto;
 	margin-top: 35px;
 	color: #404040;
 }

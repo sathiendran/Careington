@@ -383,6 +383,69 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
      });
 //venkat end
 
+
+ //venket
+ var localizeCurrent = $('#localize-current').text();
+ var myLength = $(".departmentClassVal").text().length;
+ console.log("myLength ="+myLength);
+  if($( window ).width()<= 375) {
+    if(localizeCurrent == "Español") {
+     //   console.log("Español");
+      $scope.ReportEthnicityVal = "width:36.33%";
+    } if(localizeCurrent == "English (UK)") {
+      $scope.ReportEthnicityVal = "width:41.33%";
+    } if(localizeCurrent == "English") {
+      $scope.ReportEthnicityVal = "width:41.33%";
+    }
+    /* if(myLength >= 11) {
+     //    console.log("myLength  is more=");
+       if(localizeCurrent == "Español") {
+     //      console.log("Español");
+           $scope.departmentClass = "height:45px";
+       } if(localizeCurrent == "English (UK)") {
+           $scope.departmentClass = "height:25px";
+       } if(localizeCurrent == "English") {
+           $scope.departmentClass = "height:25px";
+       }
+     }*/
+      } else {
+          if(localizeCurrent == "Español"){
+            }else{
+            }
+      }
+
+        $('#localize-langs').click(function() {
+           ///    console.log("myLength ="+myLength);
+           if($( window ).width()<= 375){
+             var isLang = $('#localize-langs .activated').text();
+             var myLength = $(".departmentClassVal").text().length;
+               //console.log("val ="+$(".departmentClassVal").text());
+               //console.log("myLength ="+myLength);
+             if(isLang == "Español") {
+                 //console.log("Español");
+                 $scope.ReportEthnicityVal = "width:36.33%";
+             } if(isLang == "English (UK)") {
+               $scope.ReportEthnicityVal = "width:41.33%";
+             } if(isLang == "English") {
+               $scope.ReportEthnicityVal = "width:41.33%";
+             }
+             if(myLength >= 11) {
+               //  console.log("myLength  is more=");
+              if(isLang == "Español") {
+                  $scope.departmentClass = "height:45px";
+              }
+              if(isLang == "English (UK)") {
+                $scope.departmentClass = "height:25px";
+              }
+              if(isLang == "English") {
+                $scope.departmentClass = "height:25px";
+              }
+            isLang = "";
+         }
+        }
+    });
+
+
   $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
   if($rootScope.chkSSPageEnter) {
         $rootScope.chkSSPageEnter = false;
@@ -396,7 +459,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
     };
 
-  //  $scope.formatIsdCode = (s,c,n) => (s.length<n) ? s+c.repeat(n-s.length): s;
+  //  $scope.formatIsdCode = (s,c,n) => (s.length<n) ? s+c.repeat(n-s.length):
+
 
     $rootScope.drawImage = function(imagePath, firstName, lastName) {
         $('.patProfileImage').css({
@@ -618,10 +682,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.surgeryConcernPopupDone = "padding-right: 0px; padding-left: 0px;padding: 0px;";
             $rootScope.PriorSurgeryPopupTitle = "margin-top: 16px;";
             $rootScope.PriorSurgeryPopupDone = "margin-top: 21px;";
-            $rootScope.PriorSurgeryPopupCancel = "margin-top: 2px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
+            $rootScope.PriorSurgeryPopupCancel = "margin-top: 3px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
             $rootScope.ChronicConditionPopupTitle = "margin-top: 13px;";
             $rootScope.ChronicConditionPopupDone = "margin-top: 13px;";
-            $rootScope.NextIntakeForm = "margin-left: -21px;";
+          //  $rootScope.NextIntakeForm = "margin-left: -21px;";
             $rootScope.LoginContant = "padding-top: 43px !important; margin: 99px 0 0 0;"; //margin: 30px 0 0 0 remove
             $rootScope.LoginContantDiv = "height: 50px;"; //95px
             $rootScope.PasswordOverlop = "margin: 105px 0 0 0 !important;";
@@ -638,8 +702,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.reportDone = "padding-top: 26px;";
             $rootScope.reportTitletop = "top: 14px !important; left: -8px !important;";
             $rootScope.resetContent = "margin: -46px 0 0 0;";
-            $rootScope.ConcernFooterNextIOS = "margin-left: -46px !important; left: -18px !important;";
+            $rootScope.ConcernFooterNextIOS = "margin-left: -46px !important; left: -15px !important;";
             $rootScope.providerItamMarginTop = "top: 5px;";
+            $rootScope.PrimaryConcernPopupTitleIOSDeviHeader = "height: 64px !important;";
+            $rootScope.rightHeaderIconIOS = "margin-top: 22px !important;";
+            $rootScope.leftHeaderIconIOS = "margin-top: 22px !important;";
+            $rootScope.concernListTitleiosDevices = "margin-top: 21px !important;";
+            $rootScope.concernListContentIOS = "margin-top: 80px !important;";
+            $rootScope.InputboxPaddingIOS = "padding-top: 15px !important;";
+            $rootScope.concernListSearchIconIOS = "bottom: -4px !important;";
         }
         if ($rootScope.isIPad) {
             $rootScope.PrimaryConcernPopupH = "height: 66px;";
@@ -670,7 +741,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -989,9 +1060,15 @@ $rootScope.checkAndChangeMenuIcon = function() {
         });
 
         $rootScope.sessionRoomConHub.on("onSessionTerminated", function(ip) {
-                 alert("You have logged in on another device and ended this session.");
-                // window.console.log("You have logged in on another device. IP: " + ip);
-                $rootScope.ClearRootScope();
+                  navigator.notification.alert(
+                     'You have logged in on another device and ended this session.', // message
+                     function() {
+                         $rootScope.ClearRootScope();
+                        return;
+                     },
+                     $rootScope.alertMsgName, // title
+                     'Done' // buttonName
+                 );
             });
 
           /*  sessionRoomConHub.on("forceLogout", function(ip) {
@@ -1046,12 +1123,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
         if($errorMsg.length >= 50)
         {
           if($rootScope.is_iPadDeviceWidth <= 320) {
-              var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: -2px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: -2px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           } else {
-              var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: 6px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: 6px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           }
         }else{
-              var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         }
         $("#notifications-top-center").remove();
         $("#Error_Message").append(top);
@@ -1068,12 +1145,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
         if($errorMsg.length >= 50)
         {
           if($rootScope.is_iPadDeviceWidth <= 320) {
-              var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent" style="font-size: 16px !important;margin-top: -2px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent" style="font-size: 16px !important;margin-top: -2px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           } else {
-              var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent" style="font-size: 16px !important;margin-top: 6px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent" style="font-size: 16px !important;margin-top: 6px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           }
         }else{
-              var top = '<div id="notifications-top-center" class="notificationError" style="height:65px !important"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span> </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span> </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         }
         $("#notifications-top-center").remove();
         $("#Error_Message").append(top);
@@ -3639,6 +3716,7 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
     }
 
     $scope.goTOSchedule = function() {
+      $("#localize-widget").show();
         if ($rootScope.currState.$current.name == "tab.userhome") {
             $window.localStorage.setItem('snap_patientprofile_session', $rootScope.primaryPatSSDetails );
         }
@@ -4692,6 +4770,7 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
         /* country and State */
 
     $("#addHealthPlan").change(function() {
+      $("#localize-widget").show();
       $rootScope.getHlthSctValue = $('option:selected', this).text();
         if ($('option:selected', this).text() === 'Add a new health plan') {
 			         $rootScope.currentplan ="";
@@ -4707,9 +4786,9 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
          else if ($('option:selected', this).text() === 'Choose Your Health Plan') {
               $rootScope.editplan ="none";
               $("div.viewport").html('<div class="insCHooseProviderName">Choose Your Health Plan</div>');
-        } else if ($('option:selected', this).text() === 'Elija su plan salud') {
+        } else if ($('option:selected', this).text() === 'Elija su plan de salud') {
               $rootScope.editplan ="none";
-              $("div.viewport").html('<div class="insCHooseProviderName">Elija su plan salud</div>');
+              $("div.viewport").html('<div class="insCHooseProviderName">Elija su plan de salud</div>');
         }
         else {
             //  $('div.viewport').text($("option:selected", this).text());
@@ -4717,12 +4796,13 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
               $("div.viewport").html('<div class="insProviderName localizejs">'+selectedValue[0]+'</div><div class="insSubscriberName localizejs">Subscriber ID:'+selectedValue[1]+'</div>');
 			         $rootScope.editplan ="block";
         }
+        $("#localize-widget").show();
     });
 $rootScope.planchange = function(){
       var insplan = $('#addHealthPlan').val();
       if(insplan != undefined)
       {
-        if( insplan != 'Choose Your Health Plan' && insplan.indexOf("undefined") == -1){
+        if( insplan != 'Choose Your Health Plan' && insplan != 'Elija su plan de salud' && insplan.indexOf("undefined") == -1) {
            $rootScope.editplan ="block";
          } else{
            $rootScope.editplan ="none";
@@ -4979,6 +5059,10 @@ $scope.EditHealth = {};
     }
     $scope.cardchange = function(pageName){
 
+      setTimeout(function() {
+        $("#localize-widget").show();
+      }, 0);
+
       if(pageName === 'consulCharge') {
         var insplan = $('#addNewCard').val();
       } else if(pageName === 'addNewCard') {
@@ -4992,10 +5076,11 @@ $scope.EditHealth = {};
        } else{
          $rootScope.editCardStyle ="none";
        }*/
+       $("#localize-widget").show();
    }
 
     $("#addNewCard").change(function() {
-        if ($('option:selected', this).text() === 'Add a new card') {
+        if ($('option:selected', this).text() === 'Add a new card' || $('option:selected', this).text() === 'Agregar una tarjeta nueva') {
             $rootScope.submitPayBack = $rootScope.currState.$current.name;
             $rootScope.cardPage = "consultCharge";
             $state.go('tab.cardDetails');
@@ -5009,7 +5094,7 @@ $scope.EditHealth = {};
               $rootScope.editCardStyle ="none";
               $("div.cardViewport").empty();
               $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
-            } else {
+            }  else {
               $rootScope.editCardStyle ="block";
               var payValue = ($('option:selected', this).val()).split("@");
               $("div.cardViewport").empty();
@@ -5033,7 +5118,12 @@ $scope.EditHealth = {};
                  $rootScope.editCardStyle ="none";
             }
         } else {
-            if ($('option:selected', this).text() === 'Elija su Tarjeta') {
+            if ($('option:selected', this).text() === 'Elija su Tarjeta' || $('option:selected', this).text() === 'Add a new card' ) {
+              $rootScope.editCardStyle ="none";
+              $rootScope.editplan ="none";
+              $("div.cardViewport").empty();
+              $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
+            }  else if ($('option:selected', this).text() === 'Choose Your Card') {
               $rootScope.editCardStyle ="none";
               $("div.cardViewport").empty();
               $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
@@ -5100,7 +5190,7 @@ $scope.EditHealth = {};
               $rootScope.editCardStyle ="none";
               $("div.cardViewport").empty();
               $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
-            } else {
+            }  else {
               $rootScope.editCardStyle ="block";
               var payValue = ($('option:selected', this).val()).split("@");
               $("div.cardViewport").empty();
@@ -5249,12 +5339,12 @@ $scope.EditHealth = {};
           $rootScope.copayAmount = $rootScope.consultationAmount;
           $rootScope.healthPlanPage = "none";
           $rootScope.consultChargeNoPlanPage = "block";
-  		  if($rootScope.userDefaultPaymentProfile == null || ($('#addNewCard').val() == 'Choose Your Card'))
-          {
-            $rootScope.editCardStyle = "none";
-          }else {
-            $rootScope.editCardStyle = "block";
-          }
+  		  // if($rootScope.userDefaultPaymentProfile == null || ($('#addNewCard').val() == 'Choose Your Card'))
+      //     {
+      //       $rootScope.editCardStyle = "none";
+      //     }else {
+      //       $rootScope.editCardStyle = "block";
+      //     }
           $('option').filter(function() {
               return this.value.indexOf('?') >= 0;
           }).remove();
@@ -6951,6 +7041,44 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 });
          });
 
+
+                   var  alertMsgcomplete = "Consultation ended successfully!";
+                   var alertconfirmok = "Ok";
+
+                     var localizeCurrent = $('#localize-current').text();
+                     console.log("lang "+localizeCurrent);
+                       if(localizeCurrent == "Español") {
+                            alertMsgcomplete = "El Proveedor ha marcado su consulta como completa.";
+                            alertconfirmok = "De acuerdo";
+                       }
+                     else  if(localizeCurrent == "English (UK)") {
+                        alertMsgcomplete = "The Provider has marked your consultation as complete.";
+                        alertconfirmok = "Ok";
+                     }
+                     else if (localizeCurrent == "English")   {
+                          alertMsgcomplete = "The Provider has marked your consultation as complete.";
+                          alertconfirmok = "Ok";
+                       }
+
+
+                      $('#localize-langs').click(function() {
+                        var isLang = $('#localize-langs .activated').text();
+                          console.log("lang "+isLang);
+                          if(isLang == "Español") {
+                             alertMsgcomplete = "El Proveedor ha marcado su consulta como completa.";
+                               alertconfirmok = "De acuerdo";
+                          }
+                         else  if(isLang == "English (UK)") {
+                            alertMsgcomplete = "The Provider has marked your consultation as complete.";
+                            alertconfirmok = "Ok";
+                         }
+                           else if (isLang == "English") {
+                                alertMsgcomplete = "The Provider has marked your consultation as complete.";
+                                alertconfirmok = "Ok";
+                           }
+                         });
+
+
        activeRoomConHub.on("broadcastMessage", function(messageType, message) {
           // alert("notificationService: broadcastMessage");
           if(messageType == 'consultation_ended') {
@@ -6962,11 +7090,12 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                          activeConsultConnection.qs = {};
                          activeConsultConnection = null;
                          activeRoomConHub = null;
-                      $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    //  $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    $rootScope.doGetScheduledNowPhoneConsulatation();
                        return;
                    },
                    $rootScope.alertMsgName, // title
-                   'Ok' // buttonName
+                   alertconfirmok // buttonName
                );
                return false;
           } else if(messageType == 'consultation_dropped') {
@@ -6978,23 +7107,26 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                          activeConsultConnection.qs = {};
                          activeConsultConnection = null;
                          activeRoomConHub = null;
-                     $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    // $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    $rootScope.doGetScheduledNowPhoneConsulatation();
                       return;
                    },
                    $rootScope.alertMsgName, // title
-                   'Ok' // buttonName
+                   alertconfirmok // buttonName
                );
                return false;
           } else if(messageType == 'consultation_fulfilled') {
              //  alert('gg1');
                navigator.notification.alert(
-                 'The Provider has marked your consultation as complete.', // message
+                 // 'The Provider has marked your consultation as complete.', // message
+                 alertMsgcomplete,
                    function() {
                         activeConsultConnection.stop();
                         activeConsultConnection.qs = {};
                         activeConsultConnection = null;
                         activeRoomConHub = null;
-                     $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    // $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    $rootScope.doGetScheduledNowPhoneConsulatation();
                       return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7011,7 +7143,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                         activeConsultConnection.qs = {};
                         activeConsultConnection = null;
                         activeRoomConHub = null;
-                     $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    // $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    $rootScope.doGetScheduledNowPhoneConsulatation();
                       return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7020,7 +7153,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                return false;
            } else {
                // alert('gg4');
-               $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+               //$rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+               $rootScope.doGetScheduledNowPhoneConsulatation();
            }
        });
 
@@ -7084,9 +7218,15 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                  });
 
                  $rootScope.sessionRoomConHub.on("onSessionTerminated", function(ip) {
-                         // alert("You have logged in on another device and ended this session.");
-                         // window.console.log("You have logged in on another device. IP: " + ip);
-                         $rootScope.ClearRootScope();
+                           navigator.notification.alert(
+                              'You have logged in on another device and ended this session.', // message
+                              function() {
+                                  $rootScope.ClearRootScope();
+                                 return;
+                              },
+                              $rootScope.alertMsgName, // title
+                              'Done' // buttonName
+                          );
                      });
 
                     $rootScope.sessionRoomConHub.on("sessionRegistered", function(ip) {
@@ -7230,11 +7370,18 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $rootScope.selectedPatientIdForDetails = patientId;
         $state.go('tab.patientCalendar');
     }
+    $scope.changedlanDisplay= function(){
+      setTimeout(function() {
+        $("#localize-widget").show();
+      }, 0);
+    }
+
     $rootScope.PlanDisplay = "inherit";
     $rootScope.verifyPlanDisplay = "none;";
     $rootScope.planverify = "inherit";
     $rootScope.subdetailsdisplay = "inherit";
     $scope.PlanDetailsValidation = function(model) {
+      $("#localize-widget").show();
         $rootScope.doddate = $('#date').val();
         $rootScope.restage = getAge($rootScope.doddate);
 
@@ -7730,7 +7877,9 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                       $rootScope.doCheckExistingConsulatationStatus('tab.userhome');
                     } else if(nextPage === '') {
                       $state.go('tab.appoimentDetails')
-                    }  else if(nextPage !='notNow'){
+                    } else if(nextPage === " "){
+                      $state.go('tab.healthinfo');
+                     } else if(nextPage !='notNow'){
                       $state.go(nextPage);
                     }
                 }
@@ -8826,7 +8975,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 if (data.data !== '') {
                     $rootScope.listOfCoUserDetails = [];
                     angular.forEach(data.data, function(index) {
-                        if (index.patientId !== $rootScope.primaryPatientId) {
+                        if (index.patientId !== $rootScope.primaryPatientId && index.isDependent != true) {
                             var getCoUserRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
                                 codeId: index.relationCodeId
                             })
@@ -9733,13 +9882,22 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
     }
 
     $scope.backToEdiORAddPlan = function() {
-      if($rootScope.getHlthSctValue === 'Add a new health plan' || $rootScope.getHlthSctValue === 'Choose Your Health Plan' || $rootScope.getHlthSctValue === 'Agregar un nuevo plan de salud' || $rootScope.getHlthSctValue === 'Elija su plan salud' || $rootScope.providerName === '') {
+      if($rootScope.getHlthSctValue === 'Add a new health plan' || $rootScope.getHlthSctValue === 'Choose Your Health Plan' || $rootScope.getHlthSctValue === 'Agregar un nuevo plan de salud' || $rootScope.getHlthSctValue === 'Elija su plan de salud' || $rootScope.providerName === '') {
             $rootScope.editplan ="none";
         } else {
             $rootScope.editplan ="block";
         }
       $state.go('tab.consultCharge');
     }
+
+    // $scope.backToEdiORAddCard = function() {
+    //   if($rootScope.getHlthSctValue === 'Add a new health plan' || $rootScope.getHlthSctValue === 'Choose Your Health Plan' || $rootScope.getHlthSctValue === 'Agregar un nuevo plan de salud' || $rootScope.getHlthSctValue === 'Elija su plan de salud' || $rootScope.providerName === '') {
+    //         $rootScope.editplan ="none";
+    //     } else {
+    //         $rootScope.editplan ="block";
+    //     }
+    //   $state.go('tab.consultCharge');
+    // }
 
     $scope.catchPlanDetails = function(){
         $rootScope.ahProvider = document.getElementById('Provider').value;
@@ -9899,6 +10057,9 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         LoginService.getRelatedPatientProfiles(params);
       };
 
+
+
+
   // $(".overlay").css({"display": "none" });
 
 
@@ -10007,36 +10168,59 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             //dayString = "days";
             dayString = " d ";
 
-            if (age.years === 0) {
-               /* if (age.days <= 15) {
-                    return ageString = age.months + monthString;;
-                } else if (age.days > 15) {
-                    return ageString = (age.months + 1) + monthString;;
-                }*/
-                //var sdt = new Date('1993-10-20');
-                var dob1 = new Date(dateString);
-                var difdt1 = new Date(new Date() - dob1);
-                var num_years = difdt1/31536000000;
-                var num_months = (difdt1 % 31536000000)/2628000000;
-                var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
-                return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
+         var monthsCount = (now.getFullYear() - dob.getFullYear()) * 12;
+         monthsCount += now.getMonth() - dob.getMonth();
+            if (now.getDate() < dob.getDate())
+            {
+                monthsCount--;
             }
-            if (age.years > 0) {
-               /* if (age.days <= 15) {
-                    var month = age.months + monthString;;
-                } else if (age.days > 15) {
-                    var month = (age.months + 1) + monthString;;
-                }*/
-                 //if (age.days != 0) {
-                    var month = age.months + monthString;;
-               // }
-                if (age.months !== 0) {
-                    return ageString = age.years + yearString + month;
-                } else {
-                    return ageString = age.years + yearString;
-                }
 
-            }
+         if(monthsCount <= 6 && age.days <= 30) {
+            var dob1 = new Date(dateString);
+            var difdt1 = new Date(new Date() - dob1);
+            var num_years = difdt1/31536000000;
+            var num_months = (difdt1 % 31536000000)/2628000000;
+            var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
+          //  return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
+
+        } else if(monthsCount <= 23 && age.days <=30) {
+         //   return  monthsCount + monthString;
+        } else {
+            return ageString = age.years;
+        }
+
+
+
+            // if (age.years === 0) {
+            //    /* if (age.days <= 15) {
+            //         return ageString = age.months + monthString;;
+            //     } else if (age.days > 15) {
+            //         return ageString = (age.months + 1) + monthString;;
+            //     }*/
+            //     //var sdt = new Date('1993-10-20');
+            //     var dob1 = new Date(dateString);
+            //     var difdt1 = new Date(new Date() - dob1);
+            //     var num_years = difdt1/31536000000;
+            //     var num_months = (difdt1 % 31536000000)/2628000000;
+            //     var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
+            //     return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
+            // }
+            // if (age.years > 0) {
+            //    /* if (age.days <= 15) {
+            //         var month = age.months + monthString;;
+            //     } else if (age.days > 15) {
+            //         var month = (age.months + 1) + monthString;;
+            //     }*/
+            //      //if (age.days != 0) {
+            //         var month = age.months + monthString;;
+            //    // }
+            //     if (age.months !== 0) {
+            //         return ageString = age.years + yearString + month;
+            //     } else {
+            //         return ageString = age.years + yearString;
+            //     }
+
+            // }
         }
         return function(birthdate) {
             var BirthDate = new Date(birthdate);
@@ -10058,6 +10242,398 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             return age;
         };
     })
+
+
+
+
+.filter('ageYearsStringFilter', function() {
+        function getAge(dateString) {
+            var now = new Date();
+            var yearNow = now.getYear();
+            var monthNow = now.getMonth();
+            var dateNow = now.getDate();
+            var dob = new Date(dateString.substring(6, 10),
+                dateString.substring(0, 2) - 1,
+                dateString.substring(3, 5)
+            );
+
+            var yearDob = dob.getYear();
+            var monthDob = dob.getMonth();
+            var dateDob = dob.getDate();
+
+            var age = {};
+            var ageString = "";
+            var yearString = "";
+            var monthString = "";
+
+            yearAge = yearNow - yearDob;
+
+            if (monthNow >= monthDob)
+                var monthAge = monthNow - monthDob;
+            else {
+                yearAge--;
+                var monthAge = 12 + monthNow - monthDob;
+            }
+
+            if (dateNow >= dateDob)
+                var dateAge = dateNow - dateDob;
+            else {
+                monthAge--;
+                var dateAge = 31 + dateNow - dateDob;
+
+                if (monthAge < 0) {
+                    monthAge = 11;
+                    yearAge--;
+                }
+            }
+
+            age = {
+                years: yearAge,
+                months: monthAge,
+                days: dateAge
+            };
+
+            yearString = " yrs ";
+            monthString = " m ";
+            //dayString = "days";
+            dayString = " d ";
+
+         var monthsCount = (now.getFullYear() - dob.getFullYear()) * 12;
+         monthsCount += now.getMonth() - dob.getMonth();
+            if (now.getDate() < dob.getDate())
+            {
+                monthsCount--;
+            }
+
+         if(monthsCount <= 6 && age.days <= 30) {
+            var dob1 = new Date(dateString);
+            var difdt1 = new Date(new Date() - dob1);
+            var num_years = difdt1/31536000000;
+            var num_months = (difdt1 % 31536000000)/2628000000;
+            var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
+         //   return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
+
+        } else if(monthsCount <= 23 && age.days <=30) {
+         //   return  monthsCount + monthString;
+        } else {
+            return ageString = yearString;
+        }
+
+
+
+            // if (age.years === 0) {
+            //    /* if (age.days <= 15) {
+            //         return ageString = age.months + monthString;;
+            //     } else if (age.days > 15) {
+            //         return ageString = (age.months + 1) + monthString;;
+            //     }*/
+            //     //var sdt = new Date('1993-10-20');
+            //     var dob1 = new Date(dateString);
+            //     var difdt1 = new Date(new Date() - dob1);
+            //     var num_years = difdt1/31536000000;
+            //     var num_months = (difdt1 % 31536000000)/2628000000;
+            //     var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
+            //     return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
+            // }
+            // if (age.years > 0) {
+            //    /* if (age.days <= 15) {
+            //         var month = age.months + monthString;;
+            //     } else if (age.days > 15) {
+            //         var month = (age.months + 1) + monthString;;
+            //     }*/
+            //      //if (age.days != 0) {
+            //         var month = age.months + monthString;;
+            //    // }
+            //     if (age.months !== 0) {
+            //         return ageString = age.years + yearString + month;
+            //     } else {
+            //         return ageString = age.years + yearString;
+            //     }
+
+            // }
+        }
+        return function(birthdate) {
+            var BirthDate = new Date(birthdate);
+            var year = BirthDate.getFullYear();
+            var month = BirthDate.getMonth() + 1;
+            if (month < 10) {
+                month = '0' + month;
+            } else {
+                month = month;
+            }
+            var date = BirthDate.getDate();
+            if (date < 10) {
+                date = '0' + date;
+            } else {
+                date = date;
+            }
+            var newDate = month + '/' + date + '/' + year;
+            var age = getAge(newDate);
+            return age;
+        };
+    })
+
+
+
+
+.filter('ageMonthFilter', function() {
+        function getAge(dateString) {
+            var now = new Date();
+            var yearNow = now.getYear();
+            var monthNow = now.getMonth();
+            var dateNow = now.getDate();
+            var dob = new Date(dateString.substring(6, 10),
+                dateString.substring(0, 2) - 1,
+                dateString.substring(3, 5)
+            );
+
+            var yearDob = dob.getYear();
+            var monthDob = dob.getMonth();
+            var dateDob = dob.getDate();
+
+            var age = {};
+            var ageString = "";
+            var yearString = "";
+            var monthString = "";
+
+            yearAge = yearNow - yearDob;
+
+            if (monthNow >= monthDob)
+                var monthAge = monthNow - monthDob;
+            else {
+                yearAge--;
+                var monthAge = 12 + monthNow - monthDob;
+            }
+
+            if (dateNow >= dateDob)
+                var dateAge = dateNow - dateDob;
+            else {
+                monthAge--;
+                var dateAge = 31 + dateNow - dateDob;
+
+                if (monthAge < 0) {
+                    monthAge = 11;
+                    yearAge--;
+                }
+            }
+
+            age = {
+                years: yearAge,
+                months: monthAge,
+                days: dateAge
+            };
+
+            yearString = " yrs ";
+            monthString = " m ";
+            //dayString = "days";
+            dayString = " d ";
+
+         var monthsCount = (now.getFullYear() - dob.getFullYear()) * 12;
+         monthsCount += now.getMonth() - dob.getMonth();
+            if (now.getDate() < dob.getDate())
+            {
+                monthsCount--;
+            }
+
+         if(monthsCount <= 6 && age.days <= 30) {
+            var dob1 = new Date(dateString);
+            var difdt1 = new Date(new Date() - dob1);
+            var num_years = difdt1/31536000000;
+            var num_months = (difdt1 % 31536000000)/2628000000;
+            var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
+            return ageString = Math.floor(num_months) + monthString;
+
+        } else if(monthsCount <= 23 && age.days <=30) {
+            return  monthsCount + monthString;
+        } else {
+          //  return ageString = age.years + yearString;
+        }
+
+
+
+            // if (age.years === 0) {
+            //    /* if (age.days <= 15) {
+            //         return ageString = age.months + monthString;;
+            //     } else if (age.days > 15) {
+            //         return ageString = (age.months + 1) + monthString;;
+            //     }*/
+            //     //var sdt = new Date('1993-10-20');
+            //     var dob1 = new Date(dateString);
+            //     var difdt1 = new Date(new Date() - dob1);
+            //     var num_years = difdt1/31536000000;
+            //     var num_months = (difdt1 % 31536000000)/2628000000;
+            //     var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
+            //     return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
+            // }
+            // if (age.years > 0) {
+            //    /* if (age.days <= 15) {
+            //         var month = age.months + monthString;;
+            //     } else if (age.days > 15) {
+            //         var month = (age.months + 1) + monthString;;
+            //     }*/
+            //      //if (age.days != 0) {
+            //         var month = age.months + monthString;;
+            //    // }
+            //     if (age.months !== 0) {
+            //         return ageString = age.years + yearString + month;
+            //     } else {
+            //         return ageString = age.years + yearString;
+            //     }
+
+            // }
+        }
+        return function(birthdate) {
+            var BirthDate = new Date(birthdate);
+            var year = BirthDate.getFullYear();
+            var month = BirthDate.getMonth() + 1;
+            if (month < 10) {
+                month = '0' + month;
+            } else {
+                month = month;
+            }
+            var date = BirthDate.getDate();
+            if (date < 10) {
+                date = '0' + date;
+            } else {
+                date = date;
+            }
+            var newDate = month + '/' + date + '/' + year;
+            var age = getAge(newDate);
+            return age;
+        };
+    })
+
+
+
+
+.filter('ageDayFilter', function() {
+        function getAge(dateString) {
+            var now = new Date();
+            var yearNow = now.getYear();
+            var monthNow = now.getMonth();
+            var dateNow = now.getDate();
+            var dob = new Date(dateString.substring(6, 10),
+                dateString.substring(0, 2) - 1,
+                dateString.substring(3, 5)
+            );
+
+            var yearDob = dob.getYear();
+            var monthDob = dob.getMonth();
+            var dateDob = dob.getDate();
+
+            var age = {};
+            var ageString = "";
+            var yearString = "";
+            var monthString = "";
+
+            yearAge = yearNow - yearDob;
+
+            if (monthNow >= monthDob)
+                var monthAge = monthNow - monthDob;
+            else {
+                yearAge--;
+                var monthAge = 12 + monthNow - monthDob;
+            }
+
+            if (dateNow >= dateDob)
+                var dateAge = dateNow - dateDob;
+            else {
+                monthAge--;
+                var dateAge = 31 + dateNow - dateDob;
+
+                if (monthAge < 0) {
+                    monthAge = 11;
+                    yearAge--;
+                }
+            }
+
+            age = {
+                years: yearAge,
+                months: monthAge,
+                days: dateAge
+            };
+
+            yearString = " yrs ";
+            monthString = " m ";
+            //dayString = "days";
+            dayString = " d ";
+
+         var monthsCount = (now.getFullYear() - dob.getFullYear()) * 12;
+         monthsCount += now.getMonth() - dob.getMonth();
+            if (now.getDate() < dob.getDate())
+            {
+                monthsCount--;
+            }
+
+         if(monthsCount <= 6 && age.days <= 30) {
+            var dob1 = new Date(dateString);
+            var difdt1 = new Date(new Date() - dob1);
+            var num_years = difdt1/31536000000;
+            var num_months = (difdt1 % 31536000000)/2628000000;
+            var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
+            return ageString = Math.floor(num_days) + dayString ;
+
+        } else if(monthsCount <= 23 && age.days <=30) {
+          //  return  monthsCount + monthString;
+        } else {
+          //  return ageString = age.years + yearString;
+        }
+
+
+
+            // if (age.years === 0) {
+            //    /* if (age.days <= 15) {
+            //         return ageString = age.months + monthString;;
+            //     } else if (age.days > 15) {
+            //         return ageString = (age.months + 1) + monthString;;
+            //     }*/
+            //     //var sdt = new Date('1993-10-20');
+            //     var dob1 = new Date(dateString);
+            //     var difdt1 = new Date(new Date() - dob1);
+            //     var num_years = difdt1/31536000000;
+            //     var num_months = (difdt1 % 31536000000)/2628000000;
+            //     var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
+            //     return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
+            // }
+            // if (age.years > 0) {
+            //    /* if (age.days <= 15) {
+            //         var month = age.months + monthString;;
+            //     } else if (age.days > 15) {
+            //         var month = (age.months + 1) + monthString;;
+            //     }*/
+            //      //if (age.days != 0) {
+            //         var month = age.months + monthString;;
+            //    // }
+            //     if (age.months !== 0) {
+            //         return ageString = age.years + yearString + month;
+            //     } else {
+            //         return ageString = age.years + yearString;
+            //     }
+
+            // }
+        }
+        return function(birthdate) {
+            var BirthDate = new Date(birthdate);
+            var year = BirthDate.getFullYear();
+            var month = BirthDate.getMonth() + 1;
+            if (month < 10) {
+                month = '0' + month;
+            } else {
+                month = month;
+            }
+            var date = BirthDate.getDate();
+            if (date < 10) {
+                date = '0' + date;
+            } else {
+                date = date;
+            }
+            var newDate = month + '/' + date + '/' + year;
+            var age = getAge(newDate);
+            return age;
+        };
+    })
+
+
 
 .filter('ageFilterOld', function() {
         function getAge(dateString) {

@@ -31,6 +31,11 @@
                 } else if ((currentUrl.indexOf('/patient/') != -1)) {
                     loginPath = snap.patientLogin();
                 }
+                sessionLimiterHub.client.onSessionTerminated = function(ip) {
+                 //  $snapNotification.info("You have logged in on another device and ended this session.");
+                   window.console.log("You have logged in on another device. IP: " + ip);
+                 //  forceLogout();
+               };
                 sessionLimiterHub.client.forceLogout = function(ip) {
                     if (snap.EventAggregator) {
                         snap.EventAggregator().publish("forceLogout");
@@ -69,7 +74,7 @@
 
                 };
 
-                sessionLimiterHub.client.warnLogout = function(ip) {
+                /*sessionLimiterHub.client.warnLogout = function(ip) {
                     snap.profileSession.isLogouted = true;
                     var redirectingTimeInSeconds = 5;
                     global.snapInfo("You might have logged in on another device.");
@@ -77,7 +82,7 @@
                     setTimeout(function() {
                       //  window.location.href = loginPath;
                     }, redirectingTimeInSeconds * 1000);
-                };
+               };*/
 
                 /*when a user got deactivated by admin*/
                 sessionLimiterHub.client.deactivated = function() {

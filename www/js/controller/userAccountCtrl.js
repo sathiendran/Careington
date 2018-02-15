@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
     .controller('userAccountCtrl', function($scope, $ionicScrollDelegate, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $filter, $timeout, $ionicPopup) {
-      
+
 var localizeCurrent = $('#localize-current').text();
          if(localizeCurrent == "Español"){
              $scope.ualabel = "margin-left:-97px !important";
@@ -8,7 +8,7 @@ var localizeCurrent = $('#localize-current').text();
              $scope.ualabel = "margin-left:0px !important";
          }
          $('#localize-langs').click(function() {
-             
+
              var isLang = $('#localize-langs .activated').text();
                if(isLang == "Español"){
                    $scope.ualabel = "margin-left:-97px !important";
@@ -16,7 +16,7 @@ var localizeCurrent = $('#localize-current').text();
                    $scope.ualabel = "margin-left:0px !important";
                }
                isLang = '';
-             
+
          });
 
       $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
@@ -205,6 +205,7 @@ $("#localize-widget").show();
             $state.go('tab.appointmentpatientdetails');
         }
         $scope.goTOSchedule = function() {
+          $("#localize-widget").show();
             $('<link/>', {
                 rel: 'stylesheet',
                 type: 'text/css',

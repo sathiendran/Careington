@@ -17,7 +17,7 @@ var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProdu
 var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
 var appStoreTestUserEmail2 = 'snap.rinsoft.qaapptester@gmail.com';
 var deploymentEnvForProduction = ''; //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
-var loginPageEnv = 'Single';
+var loginPageEnv = 'Multiple'; //Multiple //Production // Single
 var appVersion = 8.1;
 var serviceAPIError = 'https://www.connectedcarestatus.com/';
 //var xApiKey = 'c69fe0477e08cb4352e07c502ddd2d146b316112'; // For Photo Upload
@@ -655,143 +655,159 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
           }, 30000);
       }
 
-        setTimeout(function() {
-          //  Idle.watch();
-            if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "" && window.localStorage.getItem("external_load") != "null") {
-                if(window.localStorage.getItem("external_load").indexOf('jwt') >= 0) {
-                  var extQuery = window.localStorage.getItem("external_load").split('?');
-                  var extQueryOnly = extQuery[2];
-                  var query = extQueryOnly.split("&");
-                  var jwtTokenString = query[0].split("=");
-                  window.localStorage.setItem("external_load", null);
-                  if (jwtTokenString[1] != "" && jwtTokenString[1] != "undefined") {
-                      $state.go('tab.ssoJWTPage', {
-                          jwtToken: jwtTokenString[1]
-                      });
-                  } else if (loginPageEnv != 'Single') {
-                      $state.go('tab.login');
-                  }
-                } else {
-                  var EXTRA = {};
-                  var extQuery = window.localStorage.getItem("external_load").split('?')
-                  var extQueryOnly = extQuery[1];
-
-                  var query = extQueryOnly.split("&");
-
-                  for (var i = 0, max = query.length; i < max; i++) {
-                      if (query[i] === "") // check for trailing & with no param
-                          continue;
-
-                      var param = query[i].split("=");
-                      EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
-                  }
-                  window.localStorage.setItem("external_load", null);
-                  if (deploymentEnv != 'Single') {
-                      if (EXTRA['env'] != "") {
-                          var dEnv = EXTRA['env'];
-                          if (dEnv.toUpperCase() == "SANDBOX") {
-                              deploymentEnv = "Sandbox";
-                              apiCommonURL = 'https://sandbox.connectedcare.md';
-                          } else if (dEnv.toUpperCase() == "QA") {
-                              deploymentEnv = "QA";
-                              apiCommonURL = 'https://snap-qa.com';
-                          } else if (dEnv.toUpperCase() == "PRODUCTION") {
-                              deploymentEnv = "Production";
-                              apiCommonURL = 'https://connectedcare.md';
-                          } else if (dEnv.toUpperCase() == "STAGE") {
-                              deploymentEnv = "Staging";
-                              apiCommonURL = 'https://snap-stage.com';
-                          } else if (dEnv.toUpperCase() == "DEMO") {
-                              deploymentEnv = "Demo";
-                              apiCommonURL = 'https://demo.connectedcare.md';
-                          }
-                      }
-                  }
-                  if (EXTRA['token'] != "" && EXTRA['env'] != "" && EXTRA['token'] != "undefined" && EXTRA['env'] != "undefined") {
-                      $state.go('tab.interimpage', {
-                          token: EXTRA['token'],
-                          hospitalId: EXTRA['hospitalId'],
-                          consultationId: EXTRA['consultationId']
-                      });
-                  } else if (EXTRA['env'] != "" && loginPageEnv != 'Single') {
-                      $state.go('tab.login');
-                  }
-              }
-            }
-        }, 2000);
-        $ionicPlatform.on('resume', function() {
-            if(typeof alive_waiting_room_pool != "undefined")
-                clearInterval(alive_waiting_room_pool);
-            alive_waiting_room_pool = undefined;
-            setTimeout(function() {
-                 if($rootScope.netConnectionStaus === true ) {
-                      $state.go('tab.videoLost', { retry : 2 });
-                      //$state.go('tab.login');
-                 }
-                //  Idle.watch();
-                if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "" && window.localStorage.getItem("external_load") != "null") {
-                  if(window.localStorage.getItem("external_load").indexOf('jwt') >= 0) {
-                      var extQuery = window.localStorage.getItem("external_load").split('?');
-                      var extQueryOnly = extQuery[2];
-                      var query = extQueryOnly.split("&");
-                      var jwtTokenString = query[0].split("=");
-                      window.localStorage.setItem("external_load", null);
-                      if (jwtTokenString[1] != "" && jwtTokenString[1] != "undefined") {
-                          $state.go('tab.ssoJWTPage', {
-                              jwtToken: jwtTokenString[1]
-                          });
-                      } else if (loginPageEnv != 'Single') {
-                          $state.go('tab.login');
-                      }
-                  } else {
-                      var EXTRA = {};
-                      var extQuery = window.localStorage.getItem("external_load").split('?')
-                      var extQueryOnly = extQuery[1];
-
-                      var query = extQueryOnly.split("&");
-
-                      for (var i = 0, max = query.length; i < max; i++) {
-                          if (query[i] === "") // check for trailing & with no param
-                              continue;
-
-                          var param = query[i].split("=");
-                          EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
-                      }
-                      window.localStorage.setItem("external_load", null);
-                      if (deploymentEnv != 'Single') {
-                          if (EXTRA['env'] != "") {
-                              var dEnv = EXTRA['env'];
-                              if (dEnv.toUpperCase() == "SANDBOX") {
-                                  deploymentEnv = "Sandbox";
-                                  apiCommonURL = 'https://sandbox.connectedcare.md';
-                              } else if (dEnv.toUpperCase() == "QA") {
-                                  deploymentEnv = "QA";
-                                  apiCommonURL = 'https://snap-qa.com';
-                              } else if (dEnv.toUpperCase() == "PRODUCTION") {
-                                  deploymentEnv = "Production";
-                                  apiCommonURL = 'https://connectedcare.md';
-                              } else if (dEnv.toUpperCase() == "STAGE") {
-                                  deploymentEnv = "Staging";
-                                  apiCommonURL = 'https://snap-stage.com';
-                              } else if (dEnv.toUpperCase() == "DEMO") {
-                                  deploymentEnv = "Demo";
-                                  apiCommonURL = 'https://demo.connectedcare.md';
-                              }
-                          }
-                      }
-                      if (EXTRA['token'] != "" && EXTRA['env'] != "" && EXTRA['token'] != "undefined" && EXTRA['env'] != "undefined") {
-                          $state.go('tab.interimpage', {
-                              token: EXTRA['token'],
-                              hospitalId: EXTRA['hospitalId'],
-                              consultationId: EXTRA['consultationId']
-                          });
-                      } else if (EXTRA['env'] != "" && loginPageEnv != 'Single') {
-                          $state.go('tab.login');
-                      }
-                  }
+      setTimeout(function() {
+        //  Idle.watch();
+         if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "" && window.localStorage.getItem("external_load") != "null") {
+              if(window.localStorage.getItem("external_load").indexOf('jwt') >= 0) {
+                var extQuery = window.localStorage.getItem("external_load").split('?');
+                var extQueryOnly = extQuery[2];
+                var query = extQueryOnly.split("&");
+                var jwtTokenString = query[0].split("=");
+                window.localStorage.setItem("external_load", null);
+                if (jwtTokenString[1] != "" && jwtTokenString[1] != "undefined") {
+                    $state.go('tab.ssoJWTPage', {
+                        jwtToken: jwtTokenString[1]
+                    });
+                } else if (loginPageEnv === 'Single') {
+                    $state.go('tab.loginSingle');
+                } else if (loginPageEnv === 'Multiple') {
+                    $state.go('tab.chooseEnvironment');
+                } else if (loginPageEnv === 'Production') {
+                    $state.go('tab.login');
                 }
-            }, 2000);
-        });
+              } else {
+                var EXTRA = {};
+                var extQuery = window.localStorage.getItem("external_load").split('?')
+                var extQueryOnly = extQuery[1];
+
+                var query = extQueryOnly.split("&");
+
+                for (var i = 0, max = query.length; i < max; i++) {
+                    if (query[i] === "") // check for trailing & with no param
+                        continue;
+
+                    var param = query[i].split("=");
+                    EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
+                }
+                window.localStorage.setItem("external_load", null);
+                if (deploymentEnv != 'Single') {
+                    if (EXTRA['env'] != "") {
+                        var dEnv = EXTRA['env'];
+                        if (dEnv.toUpperCase() == "SANDBOX") {
+                            deploymentEnv = "Sandbox";
+                            apiCommonURL = 'https://sandbox.connectedcare.md';
+                        } else if (dEnv.toUpperCase() == "QA") {
+                            deploymentEnv = "QA";
+                            apiCommonURL = 'https://emerald.qa1.snapvcm.com';
+                        } else if (dEnv.toUpperCase() == "PRODUCTION") {
+                            deploymentEnv = "Production";
+                            apiCommonURL = 'https://connectedcare.md';
+                        } else if (dEnv.toUpperCase() == "STAGE") {
+                            deploymentEnv = "Staging";
+                            apiCommonURL = 'https://emerald.stage.snapvcm.com';
+                        } else if (dEnv.toUpperCase() == "DEMO") {
+                            deploymentEnv = "Demo";
+                            apiCommonURL = 'https://demo.connectedcare.md';
+                        }
+                    }
+                }
+                if (EXTRA['token'] != "" && EXTRA['env'] != "" && EXTRA['token'] != "undefined" && EXTRA['env'] != "undefined") {
+                    $state.go('tab.interimpage', {
+                        token: EXTRA['token'],
+                        hospitalId: EXTRA['hospitalId'],
+                        consultationId: EXTRA['consultationId']
+                    });
+                } else if (EXTRA['env'] != "" && loginPageEnv == 'Multiple') {
+                    $state.go('tab.chooseEnvironment');
+                } else if (EXTRA['env'] != "" && loginPageEnv == 'Single') {
+                    $state.go('tab.loginSingle');
+                } else if (EXTRA['env'] != "" && loginPageEnv == 'Production') {
+                    $state.go('tab.login');
+                }
+           }
+         }
+      }, 2000);
+      $ionicPlatform.on('resume', function() {
+         if(typeof alive_waiting_room_pool != "undefined")
+              clearInterval(alive_waiting_room_pool);
+         alive_waiting_room_pool = undefined;
+         setTimeout(function() {
+               if($rootScope.netConnectionStaus === true ) {
+                    $state.go('tab.videoLost', { retry : 2 });
+                    //$state.go('tab.login');
+               }
+              //  Idle.watch();
+              if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "" && window.localStorage.getItem("external_load") != "null") {
+                if(window.localStorage.getItem("external_load").indexOf('jwt') >= 0) {
+                    var extQuery = window.localStorage.getItem("external_load").split('?');
+                    var extQueryOnly = extQuery[2];
+                    var query = extQueryOnly.split("&");
+                    var jwtTokenString = query[0].split("=");
+                    window.localStorage.setItem("external_load", null);
+                    if (jwtTokenString[1] != "" && jwtTokenString[1] != "undefined") {
+                        $state.go('tab.ssoJWTPage', {
+                            jwtToken: jwtTokenString[1]
+                        });
+                    } else if (loginPageEnv === 'Single') {
+                        $state.go('tab.loginSingle');
+                    } else if (loginPageEnv === 'Multiple') {
+                        $state.go('tab.chooseEnvironment');
+                    } else if (loginPageEnv === 'Production') {
+                        $state.go('tab.login');
+                    }
+                } else {
+                    var EXTRA = {};
+                    var extQuery = window.localStorage.getItem("external_load").split('?')
+                    var extQueryOnly = extQuery[1];
+
+                    var query = extQueryOnly.split("&");
+
+                    for (var i = 0, max = query.length; i < max; i++) {
+                        if (query[i] === "") // check for trailing & with no param
+                            continue;
+
+                        var param = query[i].split("=");
+                        EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
+                    }
+                    window.localStorage.setItem("external_load", null);
+                    if (deploymentEnv != 'Single') {
+                        if (EXTRA['env'] != "") {
+                            var dEnv = EXTRA['env'];
+                            if (dEnv.toUpperCase() == "SANDBOX") {
+                               deploymentEnv = "Sandbox";
+                               apiCommonURL = 'https://sandbox.connectedcare.md';
+                            } else if (dEnv.toUpperCase() == "QA") {
+                               deploymentEnv = "QA";
+                               apiCommonURL = 'https://emerald.qa1.snapvcm.com';
+                            } else if (dEnv.toUpperCase() == "PRODUCTION") {
+                               deploymentEnv = "Production";
+                               apiCommonURL = 'https://connectedcare.md';
+                            } else if (dEnv.toUpperCase() == "STAGE") {
+                               deploymentEnv = "Staging";
+                               apiCommonURL = 'https://emerald.stage.snapvcm.com';
+                            } else if (dEnv.toUpperCase() == "DEMO") {
+                               deploymentEnv = "Demo";
+                               apiCommonURL = 'https://demo.connectedcare.md';
+                            }
+                        }
+                    }
+                    if (EXTRA['token'] != "" && EXTRA['env'] != "" && EXTRA['token'] != "undefined" && EXTRA['env'] != "undefined") {
+                        $state.go('tab.interimpage', {
+                            token: EXTRA['token'],
+                            hospitalId: EXTRA['hospitalId'],
+                            consultationId: EXTRA['consultationId']
+                        });
+                    } else if (EXTRA['env'] != "" && loginPageEnv == 'Multiple') {
+                        $state.go('tab.chooseEnvironment');
+                    } else if (EXTRA['env'] != "" && loginPageEnv == 'Single') {
+                        $state.go('tab.loginSingle');
+                    } else if (EXTRA['env'] != "" && loginPageEnv == 'Production') {
+                        $state.go('tab.login');
+                    }
+                }
+              }
+         }, 2000);
+      });
     });
 
 })

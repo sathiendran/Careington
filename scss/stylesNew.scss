@@ -204,7 +204,7 @@ margin-top: 125px !important;
               }
           }
         .mobileInput-Ios5 {
-                   padding-left: 40px !important;
+                   padding-left: 32px !important;
                    float: right !important;
               }
         .button_new {
@@ -1971,19 +1971,21 @@ font-size: 11px;
 color: #948E8E;
 }
 .circlecam {
-font-size: 2.3em;
-position: absolute;
-margin-top: 15px;
-margin-left: 30px;
+     font-size: 2.3em;
+     position: absolute;
+     margin-top: 15px;
+     margin-left: 32px;
 }
 .circletext {
-font-size: 13px;
-margin-top: 43px;
-position: absolute;
-font-family: Glober Regular;
-color: #888;
-line-height: 1.2;
-margin-left: 23px;
+     font-size: 13px;
+     margin-top: 43px;
+     position: absolute;
+     font-family: Glober Regular;
+     color: #888;
+     line-height: 1.2;
+     margin-left: 20px;
+    text-align: center;
+    width: 56%;
 }
 .alpha_sidebar {
 position: absolute;
@@ -6966,7 +6968,7 @@ background-color: rgb(245,245,245);
               }
               .accOnQuestion{
                   font-size: 14px !important;
-                  color: rgba(0, 0, 0, 0.75) !important;
+                  //color: rgba(0, 0, 0, 0.75) !important;
               }
               .accOnQuestionNew {
                 //    padding-top: 13px !important;
@@ -7193,7 +7195,7 @@ background-color: rgb(245,245,245);
 
 @media (min-width:321px) and (max-width:365px) {
   .mobileInput-Ios5 {
-    padding-left: 55px !important;
+    padding-left: 50px !important;
     float: right !important;
   }
 
@@ -7207,7 +7209,7 @@ background-color: rgb(245,245,245);
       }
   }
   .mobileInput-Ios5 {
-    padding-left: 67px !important;
+    padding-left: 58px !important;
     float: right !important;
   }
   .ReportEthnicity {
@@ -7244,7 +7246,7 @@ top:15px !important;
 }
 @media (min-width:376px) and (max-width:414px) {
   .mobileInput-Ios5 {
-    padding-left: 85px !important;
+    padding-left: 74px !important;
     float: right !important;
   }
   .mobileInputNo-Ios5 {
@@ -7261,10 +7263,17 @@ top:15px !important;
     margin-left: 15px !important;
   }
 }
-@media (min-width:768px) and (max-width:1280px) {
+@media (min-width:1024px) and (max-width:1360px) {
+.mobileInput-Ios5 {
+    width: 5% !important; 
+    margin-left: 34% !important;
+    float: right !important;
+}
+}
+@media (min-width:768px) and (max-width:1020px) {
 .mobileInput-Ios5 {
     width: 5% !important;
-    margin-left: 32% !important;
+    margin-left: 31% !important;
     float: right !important;
 }
 .mobileInputNo-Ios5 {

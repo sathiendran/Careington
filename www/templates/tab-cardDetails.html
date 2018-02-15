@@ -4,7 +4,10 @@
          <div id="Error_Message" class="ErrorMessageDiv" ></div>
          <div class="Server_Error ErrorMessageDiv" ></div>
          <div class="buttons localizejs" style="width: 50%; display: {{cardDisplay}}; {{HeadercardDetailsBack}}" >
-            <site-header2 class ="localizejs" back="Cancel"></site-header2>
+            <!-- <site-header2 class ="localizejs" back="Cancel"></site-header2> -->
+            <a class="button_new icon PlanCancel" ng-click="backToEdiORAddPlan();" >
+            <span class="localizejs">Cancel</span>
+            </a>
          </div>
          <div class="buttons" style="width: 50%; display: {{cardDisplay}};" >
             <div style="width: 100%; text-align: right;" ng-if="CardForm.$invalid">
@@ -62,13 +65,15 @@
                <div class="item item-input" ng-if="AndroidDevice !== true">
                   <span class="input-label cardfont localizejs" >CVV Code</span>
                   <!--<input type="password" pattern="[0-9]*" inputmode="numeric" style="{{invalidCVV}}" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>-->
-                  <input style="-webkit-text-security: disc; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type="password" pattern="[0-9]*" inputmode="numeric" class="localizejs" placeholder="Required" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>
+                 <!-- <input style="-webkit-text-security: disc; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type="password" pattern="[0-9]*" inputmode="numeric" class="localizejs" placeholder="Required" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>-->
+                  <input style="-webkit-text-security: disc; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" class ="localizejs" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>
                </div>
                <div class="item item-input" ng-if="AndroidDevice === true">
                   <span class="input-label cardfont localizejs" >CVV Code</span>
                   <!--<input type="password" pattern="[0-9]*" inputmode="numeric" style="{{invalidCVV}}" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>-->
                   <!-- <input style="font-size: 18px; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/> -->
-                  <input style="font-size: 18px; -webkit-text-security: disc; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "number" id="password" pattern="[0-9]*" inputmode="numeric"  placeholder="Required" class= "localizejs" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>
+                  <!--<input style="font-size: 18px; -webkit-text-security: disc; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "number" id="password" pattern="[0-9]*" inputmode="numeric"  placeholder="Required" class= "localizejs" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>-->
+                   <input style="font-size: 18px; -webkit-text-security: disc; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" class ="localizejs" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>
                </div>
                <div class="item item-input" >
                   <span class="input-label cardfont localizejs" style="white-space: normal;">Billing Address</span>
@@ -100,7 +105,7 @@
 
               <a class="localizejs" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" >
                 About {{Hospital}} Privacy</a>
-            
+
             </div>
          </div>
       </ion-content>

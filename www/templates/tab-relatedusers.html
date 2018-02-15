@@ -2,6 +2,9 @@
    .relatedhead {
          margin-top:  0 !important;
    }
+   .hide-on-keyboard-open {
+    display: block !important;
+   }
 </style>
 <ion-side-menus>
 <ion-side-menu-content>
@@ -69,7 +72,8 @@
       <ion-content class="relatedusercontent" ng-show="couserslists">
          <ion-list class="cousers"  id="couserlist">
             <ion-item ng-repeat="getCoUserDetails in listOfCoUserDetails" click-for-options  item="item">
-               <a ng-click="GoToPatientDetailsFromRelatedUsers(location,getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname,getCoUserDetails.birthdate,getCoUserDetails.guardianName,getCoUserDetails.patientId, getCoUserDetails.isAuthorized,'sideMenuClick')">
+               <!--<a ng-click="GoToPatientDetailsFromRelatedUsers(location,getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname,getCoUserDetails.birthdate,getCoUserDetails.guardianName,getCoUserDetails.patientId, getCoUserDetails.isAuthorized,'sideMenuClick')">-->
+               <a>
                   <div class="docAppointImage" ng-bind-html="drawImage(getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname)"></div>
                   <h2 class="relatedhead">
                      <span class="fname sfont localizejs">{{getCoUserDetails.name}}</span> <span class="sname">{{getCoUserDetails.lastname}}</span>

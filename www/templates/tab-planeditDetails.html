@@ -36,7 +36,7 @@
                <div class="addHealthPlan_header noPlanContainer-{{deviceName}} planSelectedBox"  >
 
                 <div  class="dropdownContainer" style="opacity:{{planverify}}; margin: 0px 13%;">
-                     <select class="healthPlanDropDown inseditselect" id="editprovider" ng-model="EditHealth.Provider" name="" id="" >
+                     <select class="healthPlanDropDown inseditselect" id="editprovider" ng-model="EditHealth.Provider" name="" id="" ng-change="changedlanDisplay()">
                       <option ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}" ng-selected="insuranceList.insuranceCompany == ProviderData.payerName "><b>{{ProviderData.payerName}}</b></option>
                      </select>
 
@@ -63,11 +63,11 @@
                   <input type="text" placeholder="Required" value="{{insuranceList.subscriberLastName}}"  name="lastName" id="editlastName" required >
                </div>
                <div class="item item-input">
-                  <span class="input-label cardfont localizejs">Policy Number</span>
+                  <span class="input-label cardfont localizejs" style="white-space: normal;">Policy Number</span>
                   <input type="text" placeholder="Required"  value="{{insuranceList.policyNumber}}"  id="editpolicyNumber" name="editpolicyNumber" required>
                </div>
                <div class="item item-input">
-                  <span class="input-label cardfont localizejs">Date of Birth <div class="localizejs" style="font-size: 10px;">for the policy holder</div></span>
+                  <span class="input-label cardfont localizejs" style="white-space: normal;">Date of Birth <div class="localizejs" style="font-size: 10px;">for the policy holder</div></span>
                   <input type="date"  id="editdate"  ng-model="editinsDOB" placeholder="Required" style="font-size: 19px;line-height: normal;">
                </div>
 

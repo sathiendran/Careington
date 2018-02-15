@@ -21,6 +21,7 @@ angular.module('starter.controllers')
 
         $rootScope.isRegistrationCompleted = false;
         var onePopupLimit = true;
+        
         $ionicPlatform.registerBackButtonAction(function() {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -104,6 +105,10 @@ angular.module('starter.controllers')
         $scope.countryBlur=function(){
           $scope.countryError =false;
 
+          setTimeout(function() {
+            $("#localize-widget").show();
+          }, 0);
+
           $('.regstCountry').removeClass("emailbackground");
           $('.ssooptionCountry').removeClass("emailbackground");
           if (($('#regCountryCode').val() === 'Choose') || ($('#regCountryCode').val() === ' ')) {
@@ -112,6 +117,7 @@ angular.module('starter.controllers')
                 var selectedValue = $('#regCountryCode').val();
                 $("div.viewport").html('<div class="regCountryOpt">'+selectedValue+'</div>');
           }
+
         }
         $scope.timeZoneBlur=function(){
           $scope.timeZoneError =false;
@@ -146,12 +152,14 @@ angular.module('starter.controllers')
         $scope.moblieBlur=function(){
             $('.regstmobile').removeClass("emailbackground");
           $scope.mobilemanderror=false;
+           $scope.mobileerror=false;
          $scope.mobilelength = $("#regMobile").val().length;
-          if ($scope.mobilelength < 14) {
+          if ($scope.mobilelength != 0 && $scope.mobilelength < 14) {
+            $scope.mobilemanderror=false;
             $scope.mobileerror = true;
               $('.regstmobile').addClass("emailbackground");
-          }
-         else{
+          } else{
+            $scope.mobilemanderror=false;
             $scope.mobileerror = false;
          }
         }
@@ -274,6 +282,7 @@ angular.module('starter.controllers')
               $('.regstTimezone').addClass("emailbackground");
               $('.ssooptionTimezone').addClass("emailbackground");*/
           }else if ($scope.mobilelength < 14) {
+               $scope.mobilemanderror=false;
               $scope.mobileerror=true;
           }  else if (typeof $scope.password === 'undefined' || $scope.password === '') {
             $('.regstpwd').addClass("emailbackground");
@@ -744,9 +753,11 @@ angular.module('starter.controllers')
            return false;
         });*/
     }
-
+   $rootScope.Widgetshow = function(){
+     $("#localize-widget").show();
+   }
         $scope.addressEditModal = function () {
-          $("#localize-widget").hide();
+          // $("#localize-widget").show();
             //$('#healthInfoHeightUnit').val("");
             $ionicModal.fromTemplateUrl('templates/tab-addressedittemplate.html', {
                 scope: $scope,
@@ -807,8 +818,9 @@ angular.module('starter.controllers')
                     // Disable ionic data tap
                     container.attr('data-tap-disabled', 'true');
                     // Leave the input field if a prediction is chosen
-                    container.on('click', function(){
+                    container.on('click', function(e){
                         //input.blur();
+                        e.preventDefault();
                         document.getElementById('txtPlaces').blur();
                     });
                 }, 200);

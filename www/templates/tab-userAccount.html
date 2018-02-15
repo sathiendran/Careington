@@ -15,7 +15,7 @@
               <i ng-bind-html="drawSVGCIcon('phone')" class="ng-binding" ng-if="scheduledListData.encounterTypeCode != 3">
                 <svg class="iconImg-phone"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-phone"></use></svg>
               </i>
-              <span class="apptTime localizejs">Appt @ {{scheduledListData.scheduledTime | date: "hh:mm"}} {{scheduledListData.scheduledTime | date: "a"}}</span>
+              <span class="apptTime localizejs"><span class="localizejs">Appt</span> @ {{scheduledListData.scheduledTime | date: "hh:mm"}} {{scheduledListData.scheduledTime | date: "a"}}</span>
               <span class="apptDetailsInfo" ng-if="scheduledListData.appointmentStatusCode != 'Waiting' && scheduledListData.status != 71">
                   <a class="appviewinfo-{{deviceName}} localizejs">View Details</a>
                   <i class="iconfontSVG ng-binding appViewicons" ng-bind-html="drawSVGCIcon('chevron-right')"><svg class="icon-chevron-right"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-right"></use></svg></i>
