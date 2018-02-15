@@ -10162,21 +10162,11 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 months: monthAge,
                 days: dateAge
             };
-
            
-
-          var localizeCurrent = $('#localize-current').text();
-            console.log("localizeCurrent"+localizeCurrent);
-            if(localizeCurrent == "Español") {
-            yearString = " helahkf ";
-          }
-          else {
             yearString = " yrs ";
-          }
             monthString = " m ";
             //dayString = "days";
             dayString = " d ";
-
 
          var monthsCount = (now.getFullYear() - dob.getFullYear()) * 12;
          monthsCount += now.getMonth() - dob.getMonth();
@@ -10191,12 +10181,12 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             var num_years = difdt1/31536000000;
             var num_months = (difdt1 % 31536000000)/2628000000;
             var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
-            return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
+          //  return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
 
         } else if(monthsCount <= 23 && age.days <=30) {
-            return  monthsCount + monthString; 
+         //   return  monthsCount + monthString; 
         } else {
-            return ageString = age.years + yearString;
+            return ageString = age.years;
         }
 
         
@@ -10252,6 +10242,398 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             return age;
         };
     })
+
+
+
+
+.filter('ageYearsStringFilter', function() {
+        function getAge(dateString) {
+            var now = new Date();
+            var yearNow = now.getYear();
+            var monthNow = now.getMonth();
+            var dateNow = now.getDate();
+            var dob = new Date(dateString.substring(6, 10),
+                dateString.substring(0, 2) - 1,
+                dateString.substring(3, 5)
+            );
+
+            var yearDob = dob.getYear();
+            var monthDob = dob.getMonth();
+            var dateDob = dob.getDate();
+
+            var age = {};
+            var ageString = "";
+            var yearString = "";
+            var monthString = "";
+
+            yearAge = yearNow - yearDob;
+
+            if (monthNow >= monthDob)
+                var monthAge = monthNow - monthDob;
+            else {
+                yearAge--;
+                var monthAge = 12 + monthNow - monthDob;
+            }
+
+            if (dateNow >= dateDob)
+                var dateAge = dateNow - dateDob;
+            else {
+                monthAge--;
+                var dateAge = 31 + dateNow - dateDob;
+
+                if (monthAge < 0) {
+                    monthAge = 11;
+                    yearAge--;
+                }
+            }
+
+            age = {
+                years: yearAge,
+                months: monthAge,
+                days: dateAge
+            };
+           
+            yearString = " yrs ";
+            monthString = " m ";
+            //dayString = "days";
+            dayString = " d ";
+
+         var monthsCount = (now.getFullYear() - dob.getFullYear()) * 12;
+         monthsCount += now.getMonth() - dob.getMonth();
+            if (now.getDate() < dob.getDate())
+            {
+                monthsCount--;
+            }
+         
+         if(monthsCount <= 6 && age.days <= 30) {
+            var dob1 = new Date(dateString);
+            var difdt1 = new Date(new Date() - dob1);
+            var num_years = difdt1/31536000000;
+            var num_months = (difdt1 % 31536000000)/2628000000;
+            var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
+         //   return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
+
+        } else if(monthsCount <= 23 && age.days <=30) {
+         //   return  monthsCount + monthString; 
+        } else {
+            return ageString = yearString;
+        }
+
+        
+
+            // if (age.years === 0) {
+            //    /* if (age.days <= 15) {
+            //         return ageString = age.months + monthString;;
+            //     } else if (age.days > 15) {
+            //         return ageString = (age.months + 1) + monthString;;
+            //     }*/
+            //     //var sdt = new Date('1993-10-20');
+            //     var dob1 = new Date(dateString);
+            //     var difdt1 = new Date(new Date() - dob1);
+            //     var num_years = difdt1/31536000000;
+            //     var num_months = (difdt1 % 31536000000)/2628000000;
+            //     var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
+            //     return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
+            // }
+            // if (age.years > 0) {
+            //    /* if (age.days <= 15) {
+            //         var month = age.months + monthString;;
+            //     } else if (age.days > 15) {
+            //         var month = (age.months + 1) + monthString;;
+            //     }*/
+            //      //if (age.days != 0) {
+            //         var month = age.months + monthString;;
+            //    // }
+            //     if (age.months !== 0) {
+            //         return ageString = age.years + yearString + month;
+            //     } else {
+            //         return ageString = age.years + yearString;
+            //     }
+
+            // }
+        }
+        return function(birthdate) {
+            var BirthDate = new Date(birthdate);
+            var year = BirthDate.getFullYear();
+            var month = BirthDate.getMonth() + 1;
+            if (month < 10) {
+                month = '0' + month;
+            } else {
+                month = month;
+            }
+            var date = BirthDate.getDate();
+            if (date < 10) {
+                date = '0' + date;
+            } else {
+                date = date;
+            }
+            var newDate = month + '/' + date + '/' + year;
+            var age = getAge(newDate);
+            return age;
+        };
+    })
+
+
+
+
+.filter('ageMonthFilter', function() {
+        function getAge(dateString) {
+            var now = new Date();
+            var yearNow = now.getYear();
+            var monthNow = now.getMonth();
+            var dateNow = now.getDate();
+            var dob = new Date(dateString.substring(6, 10),
+                dateString.substring(0, 2) - 1,
+                dateString.substring(3, 5)
+            );
+
+            var yearDob = dob.getYear();
+            var monthDob = dob.getMonth();
+            var dateDob = dob.getDate();
+
+            var age = {};
+            var ageString = "";
+            var yearString = "";
+            var monthString = "";
+
+            yearAge = yearNow - yearDob;
+
+            if (monthNow >= monthDob)
+                var monthAge = monthNow - monthDob;
+            else {
+                yearAge--;
+                var monthAge = 12 + monthNow - monthDob;
+            }
+
+            if (dateNow >= dateDob)
+                var dateAge = dateNow - dateDob;
+            else {
+                monthAge--;
+                var dateAge = 31 + dateNow - dateDob;
+
+                if (monthAge < 0) {
+                    monthAge = 11;
+                    yearAge--;
+                }
+            }
+
+            age = {
+                years: yearAge,
+                months: monthAge,
+                days: dateAge
+            };
+           
+            yearString = " yrs ";
+            monthString = " m ";
+            //dayString = "days";
+            dayString = " d ";
+
+         var monthsCount = (now.getFullYear() - dob.getFullYear()) * 12;
+         monthsCount += now.getMonth() - dob.getMonth();
+            if (now.getDate() < dob.getDate())
+            {
+                monthsCount--;
+            }
+         
+         if(monthsCount <= 6 && age.days <= 30) {
+            var dob1 = new Date(dateString);
+            var difdt1 = new Date(new Date() - dob1);
+            var num_years = difdt1/31536000000;
+            var num_months = (difdt1 % 31536000000)/2628000000;
+            var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
+            return ageString = Math.floor(num_months) + monthString;
+
+        } else if(monthsCount <= 23 && age.days <=30) {
+            return  monthsCount + monthString; 
+        } else {
+          //  return ageString = age.years + yearString;
+        }
+
+        
+
+            // if (age.years === 0) {
+            //    /* if (age.days <= 15) {
+            //         return ageString = age.months + monthString;;
+            //     } else if (age.days > 15) {
+            //         return ageString = (age.months + 1) + monthString;;
+            //     }*/
+            //     //var sdt = new Date('1993-10-20');
+            //     var dob1 = new Date(dateString);
+            //     var difdt1 = new Date(new Date() - dob1);
+            //     var num_years = difdt1/31536000000;
+            //     var num_months = (difdt1 % 31536000000)/2628000000;
+            //     var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
+            //     return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
+            // }
+            // if (age.years > 0) {
+            //    /* if (age.days <= 15) {
+            //         var month = age.months + monthString;;
+            //     } else if (age.days > 15) {
+            //         var month = (age.months + 1) + monthString;;
+            //     }*/
+            //      //if (age.days != 0) {
+            //         var month = age.months + monthString;;
+            //    // }
+            //     if (age.months !== 0) {
+            //         return ageString = age.years + yearString + month;
+            //     } else {
+            //         return ageString = age.years + yearString;
+            //     }
+
+            // }
+        }
+        return function(birthdate) {
+            var BirthDate = new Date(birthdate);
+            var year = BirthDate.getFullYear();
+            var month = BirthDate.getMonth() + 1;
+            if (month < 10) {
+                month = '0' + month;
+            } else {
+                month = month;
+            }
+            var date = BirthDate.getDate();
+            if (date < 10) {
+                date = '0' + date;
+            } else {
+                date = date;
+            }
+            var newDate = month + '/' + date + '/' + year;
+            var age = getAge(newDate);
+            return age;
+        };
+    })
+
+
+
+
+.filter('ageDayFilter', function() {
+        function getAge(dateString) {
+            var now = new Date();
+            var yearNow = now.getYear();
+            var monthNow = now.getMonth();
+            var dateNow = now.getDate();
+            var dob = new Date(dateString.substring(6, 10),
+                dateString.substring(0, 2) - 1,
+                dateString.substring(3, 5)
+            );
+
+            var yearDob = dob.getYear();
+            var monthDob = dob.getMonth();
+            var dateDob = dob.getDate();
+
+            var age = {};
+            var ageString = "";
+            var yearString = "";
+            var monthString = "";
+
+            yearAge = yearNow - yearDob;
+
+            if (monthNow >= monthDob)
+                var monthAge = monthNow - monthDob;
+            else {
+                yearAge--;
+                var monthAge = 12 + monthNow - monthDob;
+            }
+
+            if (dateNow >= dateDob)
+                var dateAge = dateNow - dateDob;
+            else {
+                monthAge--;
+                var dateAge = 31 + dateNow - dateDob;
+
+                if (monthAge < 0) {
+                    monthAge = 11;
+                    yearAge--;
+                }
+            }
+
+            age = {
+                years: yearAge,
+                months: monthAge,
+                days: dateAge
+            };
+           
+            yearString = " yrs ";
+            monthString = " m ";
+            //dayString = "days";
+            dayString = " d ";
+
+         var monthsCount = (now.getFullYear() - dob.getFullYear()) * 12;
+         monthsCount += now.getMonth() - dob.getMonth();
+            if (now.getDate() < dob.getDate())
+            {
+                monthsCount--;
+            }
+         
+         if(monthsCount <= 6 && age.days <= 30) {
+            var dob1 = new Date(dateString);
+            var difdt1 = new Date(new Date() - dob1);
+            var num_years = difdt1/31536000000;
+            var num_months = (difdt1 % 31536000000)/2628000000;
+            var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
+            return ageString = Math.floor(num_days) + dayString ;
+
+        } else if(monthsCount <= 23 && age.days <=30) {
+          //  return  monthsCount + monthString; 
+        } else {
+          //  return ageString = age.years + yearString;
+        }
+
+        
+
+            // if (age.years === 0) {
+            //    /* if (age.days <= 15) {
+            //         return ageString = age.months + monthString;;
+            //     } else if (age.days > 15) {
+            //         return ageString = (age.months + 1) + monthString;;
+            //     }*/
+            //     //var sdt = new Date('1993-10-20');
+            //     var dob1 = new Date(dateString);
+            //     var difdt1 = new Date(new Date() - dob1);
+            //     var num_years = difdt1/31536000000;
+            //     var num_months = (difdt1 % 31536000000)/2628000000;
+            //     var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
+            //     return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
+            // }
+            // if (age.years > 0) {
+            //    /* if (age.days <= 15) {
+            //         var month = age.months + monthString;;
+            //     } else if (age.days > 15) {
+            //         var month = (age.months + 1) + monthString;;
+            //     }*/
+            //      //if (age.days != 0) {
+            //         var month = age.months + monthString;;
+            //    // }
+            //     if (age.months !== 0) {
+            //         return ageString = age.years + yearString + month;
+            //     } else {
+            //         return ageString = age.years + yearString;
+            //     }
+
+            // }
+        }
+        return function(birthdate) {
+            var BirthDate = new Date(birthdate);
+            var year = BirthDate.getFullYear();
+            var month = BirthDate.getMonth() + 1;
+            if (month < 10) {
+                month = '0' + month;
+            } else {
+                month = month;
+            }
+            var date = BirthDate.getDate();
+            if (date < 10) {
+                date = '0' + date;
+            } else {
+                date = date;
+            }
+            var newDate = month + '/' + date + '/' + year;
+            var age = getAge(newDate);
+            return age;
+        };
+    })
+
+
 
 .filter('ageFilterOld', function() {
         function getAge(dateString) {
