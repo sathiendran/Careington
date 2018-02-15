@@ -105,12 +105,43 @@
                 // this.vm_onNextButtuonClick = function() {
                 //     snapInfo("Not implemented yet!!!");
                 // };
+                var nxtappt = " Next available appointment on ";
+
+                  var localizeCurrent = $('#localize-current').text();
+                  console.log("lang "+localizeCurrent);
+                    if(localizeCurrent == "Español") {
+                        nxtappt = " Siguiente cita disponible en ";
+                    }
+                  else  if(localizeCurrent == "English (UK)") {
+                    nxtappt = " Next available appointment on ";
+                  }
+                  else if (localizeCurrent == "English")   {
+                      nxtappt = " Next available appointment on ";
+                    }
+
+                    $('#localize-langs').click(function() {
+                      var isLang = $('#localize-langs .activated').text();
+                        console.log("lang "+isLang);
+                        if(isLang == "Español") {
+                          nxtappt = " Siguiente cita disponible en ";
+                        }
+                       else  if(isLang == "English (UK)") {
+                         nxtappt = " Next available appointment on "
+                       }
+                         else if (isLang == "English") {
+                             nxtappt = " Next available appointment on "
+                         }
+                       });
 
                 this.vm_getNextApptSlotInfo = function() {
                     var nextDay = getClosestNextSlotDate(this.slots);
 
                     if(nextDay) {
-                        return "Next available appointment on <b>" + kendo.toString(nextDay, "MMMM dd, yyyy") + "</b>";
+                      // var nxtappt = " Next available appointment on ";
+                      var nxtappext = "<b>"+ kendo.toString(nextDay, "MMMM dd, yyyy") +"</b>";
+                      var nxtapptapnd = nxtappt + "<b>"+ nxtappext +"</b>";
+                        // return "Next available appointment on <b>" + kendo.toString(nextDay, "MMMM dd, yyyy") + "</b>";
+                        return nxtapptapnd;
                     }
 
                     return "There are no appoinments currently available";

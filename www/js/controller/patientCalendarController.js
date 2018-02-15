@@ -345,6 +345,7 @@ angular.element(document).ready(function () {
         }
 
         $scope.goTOSchedule = function() {
+          $("#localize-widget").show();
             $('<link/>', {
                 rel: 'stylesheet',
                 type: 'text/css',

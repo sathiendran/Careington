@@ -1043,6 +1043,7 @@ angular.module('starter.controllers')
         $scope.doGetExistingConsulatation();
     }
     $scope.goTOSchedule = function() {
+      $("#localize-widget").show();
         $('<link/>', {
             rel: 'stylesheet',
             type: 'text/css',
