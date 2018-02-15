@@ -682,7 +682,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.surgeryConcernPopupDone = "padding-right: 0px; padding-left: 0px;padding: 0px;";
             $rootScope.PriorSurgeryPopupTitle = "margin-top: 16px;";
             $rootScope.PriorSurgeryPopupDone = "margin-top: 21px;";
-            $rootScope.PriorSurgeryPopupCancel = "margin-top: 2px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
+            $rootScope.PriorSurgeryPopupCancel = "margin-top: 3px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
             $rootScope.ChronicConditionPopupTitle = "margin-top: 13px;";
             $rootScope.ChronicConditionPopupDone = "margin-top: 13px;";
           //  $rootScope.NextIntakeForm = "margin-left: -21px;";
@@ -704,6 +704,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.resetContent = "margin: -46px 0 0 0;";
             $rootScope.ConcernFooterNextIOS = "margin-left: -46px !important; left: -15px !important;";
             $rootScope.providerItamMarginTop = "top: 5px;";
+            $rootScope.PrimaryConcernPopupTitleIOSDeviHeader = "height: 64px !important;";
+            $rootScope.rightHeaderIconIOS = "margin-top: 22px !important;";
+            $rootScope.leftHeaderIconIOS = "margin-top: 22px !important;";
+            $rootScope.concernListTitleiosDevices = "margin-top: 21px !important;";
+            $rootScope.concernListContentIOS = "margin-top: 80px !important;";
+            $rootScope.InputboxPaddingIOS = "padding-top: 15px !important;";
+            $rootScope.concernListSearchIconIOS = "bottom: -4px !important;";
         }
         if ($rootScope.isIPad) {
             $rootScope.PrimaryConcernPopupH = "height: 66px;";
@@ -10115,6 +10122,9 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 months: monthAge,
                 days: dateAge
             };
+
+           
+
           var localizeCurrent = $('#localize-current').text();
             console.log("localizeCurrent"+localizeCurrent);
             if(localizeCurrent == "Español") {
@@ -10127,36 +10137,60 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             //dayString = "days";
             dayString = " d ";
 
-            if (age.years === 0) {
-               /* if (age.days <= 15) {
-                    return ageString = age.months + monthString;;
-                } else if (age.days > 15) {
-                    return ageString = (age.months + 1) + monthString;;
-                }*/
-                //var sdt = new Date('1993-10-20');
-                var dob1 = new Date(dateString);
-                var difdt1 = new Date(new Date() - dob1);
-                var num_years = difdt1/31536000000;
-                var num_months = (difdt1 % 31536000000)/2628000000;
-                var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
-                return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
-            }
-            if (age.years > 0) {
-               /* if (age.days <= 15) {
-                    var month = age.months + monthString;;
-                } else if (age.days > 15) {
-                    var month = (age.months + 1) + monthString;;
-                }*/
-                 //if (age.days != 0) {
-                    var month = age.months + monthString;;
-               // }
-                if (age.months !== 0) {
-                    return ageString = age.years + yearString + month;
-                } else {
-                    return ageString = age.years + yearString;
-                }
 
+         var monthsCount = (now.getFullYear() - dob.getFullYear()) * 12;
+         monthsCount += now.getMonth() - dob.getMonth();
+            if (now.getDate() < dob.getDate())
+            {
+                monthsCount--;
             }
+         
+         if(monthsCount <= 6 && age.days <= 30) {
+            var dob1 = new Date(dateString);
+            var difdt1 = new Date(new Date() - dob1);
+            var num_years = difdt1/31536000000;
+            var num_months = (difdt1 % 31536000000)/2628000000;
+            var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
+            return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
+
+        } else if(monthsCount <= 23 && age.days <=30) {
+            return  monthsCount + monthString; 
+        } else {
+            return ageString = age.years + yearString;
+        }
+
+        
+
+            // if (age.years === 0) {
+            //    /* if (age.days <= 15) {
+            //         return ageString = age.months + monthString;;
+            //     } else if (age.days > 15) {
+            //         return ageString = (age.months + 1) + monthString;;
+            //     }*/
+            //     //var sdt = new Date('1993-10-20');
+            //     var dob1 = new Date(dateString);
+            //     var difdt1 = new Date(new Date() - dob1);
+            //     var num_years = difdt1/31536000000;
+            //     var num_months = (difdt1 % 31536000000)/2628000000;
+            //     var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
+            //     return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
+            // }
+            // if (age.years > 0) {
+            //    /* if (age.days <= 15) {
+            //         var month = age.months + monthString;;
+            //     } else if (age.days > 15) {
+            //         var month = (age.months + 1) + monthString;;
+            //     }*/
+            //      //if (age.days != 0) {
+            //         var month = age.months + monthString;;
+            //    // }
+            //     if (age.months !== 0) {
+            //         return ageString = age.years + yearString + month;
+            //     } else {
+            //         return ageString = age.years + yearString;
+            //     }
+
+            // }
         }
         return function(birthdate) {
             var BirthDate = new Date(birthdate);
