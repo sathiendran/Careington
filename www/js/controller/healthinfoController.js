@@ -2402,7 +2402,7 @@ angular.module('starter.controllers')
            $scope.modal.remove();
            $rootScope.viewpatapiDisplay = 'flex';
            $rootScope.viewpatmodalDisplay = 'none';
-           $ionicScrollDelegate.$getByHandle('scrollTopView').scrollTop();
+        //   $ionicScrollDelegate.$getByHandle('scrollTopView').scrollTop();
       } else {
            $scope.updationListLength = 0;
 
@@ -3733,8 +3733,9 @@ angular.module('starter.controllers')
                     container.css('z-index', '5000');
                     container.css('pointer-events', 'auto');
                     container.attr('data-tap-disabled', 'true');
-                    container.on('click', function(){
+                    container.on('click', function(e){
                         //input.blur();
+                          e.preventDefault();
                         document.getElementById('txtPlaces').blur();
                     });
                 }, 200);
