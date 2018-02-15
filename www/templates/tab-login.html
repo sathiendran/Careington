@@ -78,7 +78,7 @@
       <ion-footer-bar class="footer"  hide-on-keyboard="true" style="background-color: {{backColor}} !important; border-color: {{backColor}} !important">
          <div class="terms" >
             <a ng-if="deploymentEnv == 'Multiple' || deploymentEnv=='QA'" class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/chooseEnvironment"><span class="localizejs">Back</span></a>
-            <a ng-if="deploymentEnv != 'Multiple' && cobrandApp_New !== 'MDAmerica' &&  || deploymentEnv !=='QA' ng-href="#/tab/terms"><b class="localizejs">Terms & Conditions</b></a>
+            <a ng-if="deploymentEnv != 'Multiple' && cobrandApp_New !== 'MDAmerica' && deploymentEnv !=='QA'" ng-href="#/tab/terms"><b class="localizejs">Terms & Conditions</b></a>
            <a ng-if="deploymentEnv != 'Multiple' && cobrandApp_New === 'MDAmerica'" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.login');"><b class="localizejs">Terms & Conditions</b></a>
         </div>
          <div class="powerdBySnapMD">
