@@ -1047,7 +1047,7 @@ angular.module('starter.controllers')
       };
       LoginService.getListOfPatientids(params);
 
-            $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
+           // $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
 
              $scope.alphabet = iterateAlphabet();
               var users = $rootScope.currentPatientIDlist;
@@ -1238,7 +1238,7 @@ angular.module('starter.controllers')
     }
 
     $scope.canceldependent = function() {
-      $ionicScrollDelegate.$getByHandle('isScroll').scrollTo();
+      $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
          $('#dependentuserform')[0].reset();
          $('select').prop('selectedIndex', 0);
          history.back();

@@ -2402,7 +2402,7 @@ angular.module('starter.controllers')
            $scope.modal.remove();
            $rootScope.viewpatapiDisplay = 'flex';
            $rootScope.viewpatmodalDisplay = 'none';
-           $ionicScrollDelegate.$getByHandle('scrollTopView').scrollTop();
+        //   $ionicScrollDelegate.$getByHandle('scrollTopView').scrollTop();
       } else {
            $scope.updationListLength = 0;
 
