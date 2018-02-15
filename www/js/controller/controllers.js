@@ -741,7 +741,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -8975,7 +8975,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 if (data.data !== '') {
                     $rootScope.listOfCoUserDetails = [];
                     angular.forEach(data.data, function(index) {
-                        if (index.patientId !== $rootScope.primaryPatientId) {
+                        if (index.patientId !== $rootScope.primaryPatientId && index.isDependent != true) {
                             var getCoUserRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
                                 codeId: index.relationCodeId
                             })
@@ -10162,7 +10162,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 months: monthAge,
                 days: dateAge
             };
-           
+
             yearString = " yrs ";
             monthString = " m ";
             //dayString = "days";
@@ -10174,7 +10174,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             {
                 monthsCount--;
             }
-         
+
          if(monthsCount <= 6 && age.days <= 30) {
             var dob1 = new Date(dateString);
             var difdt1 = new Date(new Date() - dob1);
@@ -10184,12 +10184,12 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
           //  return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
 
         } else if(monthsCount <= 23 && age.days <=30) {
-         //   return  monthsCount + monthString; 
+         //   return  monthsCount + monthString;
         } else {
             return ageString = age.years;
         }
 
-        
+
 
             // if (age.years === 0) {
             //    /* if (age.days <= 15) {
@@ -10292,7 +10292,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 months: monthAge,
                 days: dateAge
             };
-           
+
             yearString = " yrs ";
             monthString = " m ";
             //dayString = "days";
@@ -10304,7 +10304,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             {
                 monthsCount--;
             }
-         
+
          if(monthsCount <= 6 && age.days <= 30) {
             var dob1 = new Date(dateString);
             var difdt1 = new Date(new Date() - dob1);
@@ -10314,12 +10314,12 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
          //   return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
 
         } else if(monthsCount <= 23 && age.days <=30) {
-         //   return  monthsCount + monthString; 
+         //   return  monthsCount + monthString;
         } else {
             return ageString = yearString;
         }
 
-        
+
 
             // if (age.years === 0) {
             //    /* if (age.days <= 15) {
@@ -10422,7 +10422,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 months: monthAge,
                 days: dateAge
             };
-           
+
             yearString = " yrs ";
             monthString = " m ";
             //dayString = "days";
@@ -10434,7 +10434,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             {
                 monthsCount--;
             }
-         
+
          if(monthsCount <= 6 && age.days <= 30) {
             var dob1 = new Date(dateString);
             var difdt1 = new Date(new Date() - dob1);
@@ -10444,12 +10444,12 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             return ageString = Math.floor(num_months) + monthString;
 
         } else if(monthsCount <= 23 && age.days <=30) {
-            return  monthsCount + monthString; 
+            return  monthsCount + monthString;
         } else {
           //  return ageString = age.years + yearString;
         }
 
-        
+
 
             // if (age.years === 0) {
             //    /* if (age.days <= 15) {
@@ -10552,7 +10552,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                 months: monthAge,
                 days: dateAge
             };
-           
+
             yearString = " yrs ";
             monthString = " m ";
             //dayString = "days";
@@ -10564,7 +10564,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             {
                 monthsCount--;
             }
-         
+
          if(monthsCount <= 6 && age.days <= 30) {
             var dob1 = new Date(dateString);
             var difdt1 = new Date(new Date() - dob1);
@@ -10574,12 +10574,12 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             return ageString = Math.floor(num_days) + dayString ;
 
         } else if(monthsCount <= 23 && age.days <=30) {
-          //  return  monthsCount + monthString; 
+          //  return  monthsCount + monthString;
         } else {
           //  return ageString = age.years + yearString;
         }
 
-        
+
 
             // if (age.years === 0) {
             //    /* if (age.days <= 15) {
