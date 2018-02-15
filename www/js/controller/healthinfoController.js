@@ -1593,7 +1593,7 @@ angular.module('starter.controllers')
             $scope.$apply(function() {
                 $('#HealthFooter').css({'display':'none'})
              });
-            
+
          });
          window.addEventListener('native.keyboardhide', function () {
             $scope.$apply(function() {
@@ -3475,6 +3475,7 @@ angular.module('starter.controllers')
         //   alert(app);
         // }
         $scope.goTOSchedule = function () {
+          $("#localize-widget").show();
             $('<link/>', {
                 rel: 'stylesheet',
                 type: 'text/css',

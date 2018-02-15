@@ -744,6 +744,7 @@ $("#localize-widget").show();
     }
 
     $scope.goTOSchedule = function() {
+      $("#localize-widget").show();
         $('<link/>', {
             rel: 'stylesheet',
             type: 'text/css',
