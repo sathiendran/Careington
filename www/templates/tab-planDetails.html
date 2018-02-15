@@ -1,3 +1,12 @@
+<style>
+    input[type="date"]{
+    color : transparent;
+    text-shadow : 0 0 0 #000;
+    }
+    input[type="date"]:focus{
+        outline : none;
+    }
+</style>
 <ion-view title="Plan Details">
    <form  ng-submit="PlanDetailsValidation()" ng-init="initialPlanDetails()" name="HealthForm"  novalidate>
       <ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" style="background-color:{{brandColor}};border-color:{{brandColor}};  {{HeadercardDetails}};{{backgroundimage}}" >
@@ -77,18 +86,18 @@
                   <span class="input-label cardfont localizejs" style="white-space: normal;"> Date of Birth
                   <div style="font-size: 10px;" class="localizejs">for the policy holder</div>
                   </span>
-                  <div class="dobRequired localizejs" ng-if="!AddHealth.dateBirth">Required</div>
+                  <!-- <div class="dobRequired localizejs" ng-if="!AddHealth.dateBirth">Required</div> -->
 
-                  <input class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth" id="date"  required>
+                  <input class="userDateofbirth" type="date"  ng-model="AddHealth.dateBirth" id="date"  required>
                </div>
 
                <div class="item item-input"  ng-if="deviceName != 'IOS'">
                   <span class="input-label cardfont localizejs" style="white-space: normal;"> Date of Birth
                   <div style="font-size: 10px;" class="localizejs">for the policy holder</div>
                   </span>
-                  <div class="dobRequired localizejs" ng-if="!AddHealth.dateBirth">Required</div>
+                  <!-- <div class="dobRequired localizejs" ng-if="!AddHealth.dateBirth">Required</div> -->
 
-                  <input class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth" value="{{PreviousDate}}"   id="date" required>
+                  <input class="userDateofbirth" type="date"  ng-model="AddHealth.dateBirth" value="{{PreviousDate}}"   id="date" required>
                </div>
 
             </div>

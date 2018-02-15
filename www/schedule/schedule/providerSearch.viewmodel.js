@@ -408,6 +408,13 @@ $("#localize-widget").hide();
                     if (currentDateFilter.getTime() != currentUserTime.getTime()) {
                         that._setFilterDate(currentUserTime);
                     }
+                    // Sakthi
+                    this.vm_currentDate = new Date();
+                        this.vm_currentDate.setHours(0, 0, 0, 0);
+
+                        $("#dateFilterPiker").kendoDatePicker({
+                                min: this.vm_currentDate
+                            });
                 });
               //  that.isDataInit = this.isDataInit;
                 $customerDataService.getRulesStatus().done(function (status) {
