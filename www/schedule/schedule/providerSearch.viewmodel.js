@@ -274,6 +274,7 @@ $("#localize-widget").hide();
                     $("#allProvider").removeClass("is-active");
                     $("#myProvider").removeClass("is-active");
                     $("#searchTab").addClass("is-active");
+                     $("#searchFilter").css("display", "block");
                 } else {
                     if ($('#allProvider').attr("class") == '' & $('#myProvider').attr("class") == '') {
                         $("#searchTab").removeClass("is-active");
@@ -512,7 +513,7 @@ $("#localize-widget").hide();
             this.vm_currentPatientLocation = "";
             //this.set("vm_isPatientSelectorActive", false);
             this.vm_onSelectPersonClick = function () {
-
+                 $("#relatedUsrTab").css("display", "block");
                 this.set("vm_isPatientSelectorActive", true);
 
                 selector.unselectAll();
