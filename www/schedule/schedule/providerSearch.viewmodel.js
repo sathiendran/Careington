@@ -786,9 +786,15 @@ $("#localize-widget").hide();
                     that._updateCliniciansList();
                 }, 500);
             };
-
+// var Dateday =kendo.toString(this.get("dateFilter"), "ddd, ");
+// var localizeCurrent = $('#localize-current').text();
+//   if(localizeCurrent == "Español") {
+//     Dateday =
             this.vm_getDateDay = function () {
-                return kendo.toString(this.get("dateFilter"), "ddd, ");
+
+              // var Dateday =kendo.toString(this.get("dateFilter"), "ddd, ");
+                return kendo.toString(this.get("dateFilter"), "ddd");
+
             };
 
             this.vm_getDateFormatted = function () {
