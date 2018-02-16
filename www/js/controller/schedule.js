@@ -104,8 +104,10 @@ $("#localize-widget").show();
                                 headerVM.set("moduleTitle", "Provider");
                                 headerVM.set("subModuleTitle", "All providers");
                                 headerVM.isFavoriteCliniciansMode = true;
-                                $("#relatedUsrTab").css("display", "none");
-                                $("#searchFilter").css("display", "none");
+                                 $("#relatedUsrTab").css("display", "none");
+                                if (!$rootScope.isIPad) {
+                                     $("#searchFilter").css("display", "none");
+                                }
                                 kendo.bind($("#scd-bdy"), vm);
                                 kendo.bind($(".header__patient-ss"), headerVM);
                                 var viewMode = "all"; //$stateParams.viewMode; //"favorite";
