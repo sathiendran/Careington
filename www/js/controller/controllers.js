@@ -705,9 +705,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.ConcernFooterNextIOS = "margin-left: -46px !important; left: -15px !important;";
             $rootScope.providerItamMarginTop = "top: 5px;";
             $rootScope.PrimaryConcernPopupTitleIOSDeviHeader = "height: 64px !important;";
-            $rootScope.rightHeaderIconIOS = "margin-top: 20px !important;";
+            $rootScope.rightHeaderIconIOS = "margin-top: 18px !important;";
             $rootScope.leftHeaderIconIOS = "margin-top: 22px !important;";
-            $rootScope.concernListTitleiosDevices = "margin-top: 21px !important;";
+            $rootScope.concernListTitleiosDevices = "margin-top: 16px !important;";
             $rootScope.concernListContentIOS = "margin-top: 55px !important;";
             $rootScope.InputboxPaddingIOS = "padding-top: 12px !important;";
             $rootScope.concernListSearchIconIOS = "bottom: -4px !important;";
@@ -4771,9 +4771,30 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
 
         }
         /* country and State */
+        
+        $("#addHealthPlan").click(function() {
+            $scope.isSelectDrop = true;
+       });
+
+       $("#Provider").click(function() {
+        $scope.isSelectDrop = true;
+       });
+
+       $("#editprovider").click(function() {
+        $scope.isSelectDrop = true;
+       });
+     $(document).click(function() {
+        if($scope.isSelectDrop) {
+            setTimeout(function() {
+                $("#localize-widget").show();
+              }, 0); 
+        }
+    });
 
     $("#addHealthPlan").change(function() {
-      $("#localize-widget").show();
+        setTimeout(function() {
+            $("#localize-widget").show();
+          }, 0); 
       $rootScope.getHlthSctValue = $('option:selected', this).text();
         if ($('option:selected', this).text() === 'Add a new health plan') {
 			         $rootScope.currentplan ="";
