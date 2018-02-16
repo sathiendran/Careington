@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.snap.connectedcare.udokProduction" version="7.9.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.snap.connectedcare" version="8.0.20" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Virtual Care</name>
     <description>
         An Ionic Framework and Cordova project.
@@ -9,6 +9,10 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <access origin="tel:*" launch-external="yes" />
+    <access origin="mailto:*" launch-external="yes" />
+    <allow-intent href="tel:*" />
+    <allow-navigation href="tel:*" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
@@ -49,6 +53,7 @@
         <icon height="100" src="resources/ios/icon/icon-50@2x.png" width="100" />
         <icon height="60" src="resources/ios/icon/icon-60.png" width="60" />
         <icon height="120" src="resources/ios/icon/icon-60@2x.png" width="120" />
+        <icon height="167" src="resources/ios/icon/icon-83.5@2x.png" width="167" />
         <icon height="180" src="resources/ios/icon/icon-60@3x.png" width="180" />
         <icon height="72" src="resources/ios/icon/icon-72.png" width="72" />
         <icon height="144" src="resources/ios/icon/icon-72@2x.png" width="144" />
@@ -68,8 +73,8 @@
         <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
     </platform>
+    <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-plugin-customurlscheme" spec="git+https://github.com/EddyVerbruggen/LaunchMyApp-PhoneGap-Plugin.git">
-        <variable name="URL_SCHEME" value="vc289" />
+        <variable name="URL_SCHEME" value="snapmdconnectedcare" />
     </plugin>
-    <engine name="ios" spec="^4.5.4" />
 </widget>
