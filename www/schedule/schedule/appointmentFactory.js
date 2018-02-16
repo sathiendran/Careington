@@ -944,10 +944,10 @@ this.vm_isNew = function () {
                     }
 
                     if (this.vm_isPrimaryConcernOtherSelected()) {
-                        $('span.dialogbox__reason-dropdown').first().addClass('is-active');
+                        $('span.dialogbox-master__reason-dropdown').first().addClass('is-active');
                         concern.customCode.description = this.get("primaryConcernOtherText");
                     } else {
-                        $('span.dialogbox__reason-dropdown').first().removeClass('is-active');
+                        $('span.dialogbox-master__reason-dropdown').first().removeClass('is-active');
                     }
 
                     this.primaryConcern = concern;
@@ -979,10 +979,10 @@ this.vm_isNew = function () {
                     }
 
                     if (this.vm_isSecondaryConcernOtherSelected()) {
-                        $('span.dialogbox__reason-dropdown').last().addClass('is-active');
+                        $('span.dialogbox-master__reason-dropdown').last().addClass('is-active');
                         concern.customCode.description = this.get("secondaryConcernOtherText");
                     } else {
-                        $('span.dialogbox__reason-dropdown').last().removeClass('is-active');
+                        $('span.dialogbox-master__reason-dropdown').last().removeClass('is-active');
                     }
 
                     this.secondaryConcern = concern;
