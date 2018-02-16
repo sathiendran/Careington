@@ -21,7 +21,7 @@ angular.module('starter.controllers')
 
         $rootScope.isRegistrationCompleted = false;
         var onePopupLimit = true;
-        
+
         $ionicPlatform.registerBackButtonAction(function() {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -150,17 +150,24 @@ angular.module('starter.controllers')
         }
         //$scope.mobilelength = $("#regMobile").val().length;
         $scope.moblieBlur=function(){
-            $('.regstmobile').removeClass("emailbackground");
-          $scope.mobilemanderror=false;
-           $scope.mobileerror=false;
-         $scope.mobilelength = $("#regMobile").val().length;
+
+          $scope.mobileerrorSpan=false;
+        //  $scope.mobilemanderror=false;
+          $('.regstmobile').removeClass("emailbackground");
+        //   $scope.mobileerror=false;
+           $scope.mobilelength = $("#regMobile").val().length;
           if ($scope.mobilelength != 0 && $scope.mobilelength < 14) {
-            $scope.mobilemanderror=false;
-            $scope.mobileerror = true;
+        //    $scope.mobilemanderror=false;
+        //    $scope.mobileerror = true;
+            $scope.mobileerrorSpan=true;
+            $scope.mobileerroralert = "Please enter a valid mobile number";
+
               $('.regstmobile').addClass("emailbackground");
           } else{
-            $scope.mobilemanderror=false;
-            $scope.mobileerror = false;
+          //  $scope.mobilemanderror=false;
+          //  $scope.mobileerror = false;
+              $scope.mobileerrorSpan=false;
+              $scope.mobileerroralert = "";
          }
         }
         $scope.pwdBlur=function(){
@@ -267,8 +274,13 @@ angular.module('starter.controllers')
                 $scope.emailerror=true;
           }else if(typeof $scope.mobile === 'undefined' ||$scope.mobile === ''){
             $('.regstmobile').addClass("emailbackground");
-            $scope.mobileerror=false;
-            $scope.mobilemanderror=true;
+          //  $scope.mobileerror=false;
+          //  $scope.mobilemanderror=true;
+
+            $scope.mobileerrorSpan=true;
+            $scope.mobileerroralert = "Please enter a mobile number";
+
+
           }else if(typeof $scope.regCountry2 === 'undefined' || $scope.regCountry2 === '' || $scope.regCountry2 === 'Choose'){
               $('.regstCountry').addClass("emailbackground");
               $('.ssooptionCountry').addClass("emailbackground");
@@ -282,8 +294,14 @@ angular.module('starter.controllers')
               $('.regstTimezone').addClass("emailbackground");
               $('.ssooptionTimezone').addClass("emailbackground");*/
           }else if ($scope.mobilelength < 14) {
-               $scope.mobilemanderror=false;
-              $scope.mobileerror=true;
+            //   $scope.mobileerror=true;
+          //     $scope.mobilemanderror=false;
+
+               $scope.mobileerrorSpan=true;
+               $scope.mobileerroralert = "Please enter a valid mobile number";
+
+
+
           }  else if (typeof $scope.password === 'undefined' || $scope.password === '') {
             $('.regstpwd').addClass("emailbackground");
             $scope.pwdmanderror=true;
