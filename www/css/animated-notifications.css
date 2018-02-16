@@ -201,6 +201,8 @@
 	color: white;
 	font-size: 18px;
 	font-weight: 600;
+	padding-bottom: 18px;
+	padding-top: 10px;
 }
 .notifications-top-center {
 	opacity: 0.85;
@@ -217,6 +219,8 @@
 	font-size: 18px;
 	font-weight: 600;
 	z-index:1;
+	padding-bottom: 18px;
+	padding-top: 10px;
 
 	/* opacity: 0.85;
 	position: fixed;

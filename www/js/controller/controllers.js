@@ -713,7 +713,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.concernListSearchIconIOS = "bottom: -4px !important;";
             $rootScope.concernListTitleiosprior = "top: 14px !important;"
             $rootScope.surgeryTopAddButtonIOS  ="top: 23px !important;height: 30px !important;";
-            
+
         }
         if ($rootScope.isIPad) {
             $rootScope.PrimaryConcernPopupH = "height: 66px;";
@@ -744,7 +744,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -1126,9 +1126,9 @@ $rootScope.checkAndChangeMenuIcon = function() {
         if($errorMsg.length >= 50)
         {
           if($rootScope.is_iPadDeviceWidth <= 320) {
-              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: -2px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs" > <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           } else {
-              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: 6px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs" > <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           }
         }else{
               var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
@@ -1148,9 +1148,9 @@ $rootScope.checkAndChangeMenuIcon = function() {
         if($errorMsg.length >= 50)
         {
           if($rootScope.is_iPadDeviceWidth <= 320) {
-              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent" style="font-size: 16px !important;margin-top: -2px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent" > <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           } else {
-              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent" style="font-size: 16px !important;margin-top: 6px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent" > <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           }
         }else{
               var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span> </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
@@ -1202,7 +1202,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
             });
         }
         refresh_close();
-        var top = '<div id="notifications-top-center" class="notificationError" style="height: 65px !important;"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Health Plan Enquiry failed! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Health Plan Enquiry failed! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         $("#notifications-top-center").remove();
         $(".Server_Error").append(top);
         refresh_close();
@@ -6748,7 +6748,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
                             var currentUserHomeDate = d;
 
-                            var getReplaceTime = CustomCalendar.getLocalTime(index.startTime);
+                            var getReplaceTime = CustomCalendar.getLocalTime1(index.startTime);
                             var currentUserHomeDate = currentUserHomeDate;
 
                             if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
@@ -6764,7 +6764,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             }
 
                             $rootScope.getScheduledList.push({
-                                'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
+                                'scheduledTime': CustomCalendar.getLocalTime1(index.startTime),
                                 'appointmentId': index.appointmentId,
                                 'appointmentStatusCode': index.appointmentStatusCode,
                                 'appointmentTypeCode': index.appointmentTypeCode,
@@ -6854,7 +6854,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                            if(index.status == 71) {
                                    $rootScope.getScheduledList.push({
                                         'consultantUserId': index.consultantUserId,
-                                        'scheduledTime': CustomCalendar.getLocalTime(index.consultationDateInfo),
+                                        'scheduledTime': CustomCalendar.getLocalTime1(index.consultationDateInfo),
                                         'consultationId': index.consultationId,
                                         'createdDate': index.createdDate,
                                         'doctorStatus': index.doctorStatus,
@@ -6948,7 +6948,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
                             var currentUserHomeDate = d;
 
-                            var getReplaceTime = CustomCalendar.getLocalTime(index.startTime);
+                            var getReplaceTime = CustomCalendar.getLocalTime1(index.startTime);
                             var currentUserHomeDate = currentUserHomeDate;
 
                             if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
@@ -6964,7 +6964,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             }
 
                             $rootScope.getScheduledList.push({
-                                'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
+                                'scheduledTime': CustomCalendar.getLocalTime1(index.startTime),
                                 'appointmentId': index.appointmentId,
                                 'appointmentStatusCode': index.appointmentStatusCode,
                                 'appointmentTypeCode': index.appointmentTypeCode,
@@ -8621,7 +8621,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     }
                 });
 
-                $rootScope.getNextAvailProvTime = CustomCalendar.getLocalTime(data.data[0].startTime);
+                $rootScope.getNextAvailProvTime = CustomCalendar.getLocalTime1(data.data[0].startTime);
                   $rootScope.getNextAvailProvTime1 = data.data[0].startTime;
 
                 $rootScope.onDemandAvailability = data.data[0].onDemandAvailabilityBlockCount;
@@ -9822,7 +9822,12 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                   $rootScope.scheduledListDatas = scheduledListData;
                   $rootScope.appointmentwaivefee = scheduledListData.waiveFee;
                   var currentTime = $rootScope.scheduledListDatas.scheduledTime;
-                  var getMinsExtraTime = $scope.addMinutes(currentTime, 30);
+
+                  var serverDateTime  = currentTime;
+
+var currentLocalTimeZoneDateTime = new Date(serverDateTime);
+
+                  var getMinsExtraTime = $scope.addMinutes(currentLocalTimeZoneDateTime, 30);
                   var getEnterTime = new Date();
                   var getMissedAppointmentExpiryTime = ((new Date(getMinsExtraTime).getTime()) - (getEnterTime.getTime()));
                   if (getMissedAppointmentExpiryTime > 0) {
