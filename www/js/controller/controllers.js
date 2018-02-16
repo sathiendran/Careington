@@ -689,8 +689,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.LoginContant = "padding-top: 43px !important; margin: 99px 0 0 0;"; //margin: 30px 0 0 0 remove
             $rootScope.LoginContantDiv = "height: 50px;"; //95px
             $rootScope.PasswordOverlop = "margin: 105px 0 0 0 !important;";
-            $rootScope.PriorSurgeryPopupTextBox = "margin-top: 15px;";
-            $rootScope.PriorSurgeryPopupTextBox = "margin-top: 11px;";
+            $rootScope.PriorSurgeryPopupTextBox = "margin-top: 0px;";
+            $rootScope.PriorSurgeryPopupTextBox = "margin-top: 0px;";
             $rootScope.ContentOverlop = "margin: 147px 0 0 0;";
             $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";
             $rootScope.PositionIOS = "position:fixed; top:105px;";
@@ -705,14 +705,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.ConcernFooterNextIOS = "margin-left: -46px !important; left: -15px !important;";
             $rootScope.providerItamMarginTop = "top: 5px;";
             $rootScope.PrimaryConcernPopupTitleIOSDeviHeader = "height: 64px !important;";
-            $rootScope.rightHeaderIconIOS = "margin-top: 22px !important;";
+            $rootScope.rightHeaderIconIOS = "margin-top: 20px !important;";
             $rootScope.leftHeaderIconIOS = "margin-top: 22px !important;";
             $rootScope.concernListTitleiosDevices = "margin-top: 21px !important;";
-            $rootScope.concernListContentIOS = "margin-top: 74px !important;";
-            $rootScope.InputboxPaddingIOS = "padding-top: 15px !important;";
+            $rootScope.concernListContentIOS = "margin-top: 55px !important;";
+            $rootScope.InputboxPaddingIOS = "padding-top: 12px !important;";
             $rootScope.concernListSearchIconIOS = "bottom: -4px !important;";
-            $rootScope.concernListTitleiospr = "top: 5px !important;"
-            $rootScope.surgeryTopAddButtonIOS  ="top: 21px !important;height: 26pt !important;";
+            $rootScope.concernListTitleiosprior = "top: 14px !important;"
+            $rootScope.surgeryTopAddButtonIOS  ="top: 23px !important;height: 30px !important;";
+            
         }
         if ($rootScope.isIPad) {
             $rootScope.PrimaryConcernPopupH = "height: 66px;";
@@ -743,7 +744,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";

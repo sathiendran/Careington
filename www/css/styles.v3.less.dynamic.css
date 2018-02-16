@@ -52802,8 +52802,10 @@ only screen and (min-width: 541px) {
     font-size: 1.2em;
     width: 115px;
     height: 42px;
-    margin-top: 7px;
-    letter-spacing: 0
+    margin-top: 9px;
+    letter-spacing: 0;
+    left: 39px;
+    vertical-align: middle;
 }
 .dialogbox-master__datepicker {
     float: left;
@@ -52822,7 +52824,8 @@ only screen and (min-width: 541px) {
 }
 .dialogbox-master__datepicker .k-input {
     height: 24px;
-    line-height: 24px
+    line-height: 24px;
+    padding-top: 7px;
 }
 .dialogbox-master__datepicker .k-datepicker {
     width: 135px
@@ -52831,7 +52834,8 @@ only screen and (min-width: 541px) {
     background-color: #666;
     border-radius: 0 5px 5px 0;
     height: 32px;
-    line-height: 32px
+    line-height: 32px;
+    padding-bottom: 3px;
 }
 .dialogbox-master__datepicker .k-datepicker .k-icon::before {
     color: #e6e6e6;
@@ -52849,7 +52853,7 @@ only screen and (min-width: 541px) {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    max-width: 335px
+    /* max-width: 335px */
 }
 .dialogbox-master__appt-times .slick-prev,
 .dialogbox-master__appt-times .slick-next {
