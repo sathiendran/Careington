@@ -10444,7 +10444,10 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             var num_years = difdt1/31536000000;
             var num_months = (difdt1 % 31536000000)/2628000000;
             var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
-            return ageString = Math.floor(num_months) + monthString;
+           // return ageString = Math.floor(num_months) + monthString;
+            debugger; // month //
+            var ageString = monthsCount + monthString;
+            return ageString;
 
         } else if(monthsCount <= 23 && age.days <=30) {
             return  monthsCount + monthString;
@@ -10574,7 +10577,11 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             var num_years = difdt1/31536000000;
             var num_months = (difdt1 % 31536000000)/2628000000;
             var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
-            return ageString = Math.floor(num_days) + dayString ;
+            //return ageString = Math.floor(num_days) + dayString ;
+           //Days//
+            debugger;
+            var ageString = age.days + dayString;
+            return ageString;
 
         } else if(monthsCount <= 23 && age.days <=30) {
           //  return  monthsCount + monthString;
