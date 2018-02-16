@@ -713,7 +713,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.concernListSearchIconIOS = "bottom: -4px !important;";
             $rootScope.concernListTitleiosprior = "top: 14px !important;"
             $rootScope.surgeryTopAddButtonIOS  ="top: 23px !important;height: 30px !important;";
-            
+
         }
         if ($rootScope.isIPad) {
             $rootScope.PrimaryConcernPopupH = "height: 66px;";
@@ -744,7 +744,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -1126,9 +1126,9 @@ $rootScope.checkAndChangeMenuIcon = function() {
         if($errorMsg.length >= 50)
         {
           if($rootScope.is_iPadDeviceWidth <= 320) {
-              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: -2px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs" > <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           } else {
-              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: 6px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs" > <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           }
         }else{
               var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
@@ -1148,9 +1148,9 @@ $rootScope.checkAndChangeMenuIcon = function() {
         if($errorMsg.length >= 50)
         {
           if($rootScope.is_iPadDeviceWidth <= 320) {
-              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent" style="font-size: 16px !important;margin-top: -2px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent" > <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           } else {
-              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent" style="font-size: 16px !important;margin-top: 6px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent" > <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           }
         }else{
               var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span> </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
@@ -1202,7 +1202,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
             });
         }
         refresh_close();
-        var top = '<div id="notifications-top-center" class="notificationError" style="height: 65px !important;"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Health Plan Enquiry failed! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Health Plan Enquiry failed! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         $("#notifications-top-center").remove();
         $(".Server_Error").append(top);
         refresh_close();
