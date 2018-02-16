@@ -744,7 +744,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -6727,7 +6727,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
                             var currentUserHomeDate = d;
 
-                            var getReplaceTime = CustomCalendar.getLocalTime(index.startTime);
+                            var getReplaceTime = CustomCalendar.getLocalTime1(index.startTime);
                             var currentUserHomeDate = currentUserHomeDate;
 
                             if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
@@ -6743,7 +6743,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             }
 
                             $rootScope.getScheduledList.push({
-                                'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
+                                'scheduledTime': CustomCalendar.getLocalTime1(index.startTime),
                                 'appointmentId': index.appointmentId,
                                 'appointmentStatusCode': index.appointmentStatusCode,
                                 'appointmentTypeCode': index.appointmentTypeCode,
@@ -6833,7 +6833,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                            if(index.status == 71) {
                                    $rootScope.getScheduledList.push({
                                         'consultantUserId': index.consultantUserId,
-                                        'scheduledTime': CustomCalendar.getLocalTime(index.consultationDateInfo),
+                                        'scheduledTime': CustomCalendar.getLocalTime1(index.consultationDateInfo),
                                         'consultationId': index.consultationId,
                                         'createdDate': index.createdDate,
                                         'doctorStatus': index.doctorStatus,
@@ -6927,7 +6927,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
                             var currentUserHomeDate = d;
 
-                            var getReplaceTime = CustomCalendar.getLocalTime(index.startTime);
+                            var getReplaceTime = CustomCalendar.getLocalTime1(index.startTime);
                             var currentUserHomeDate = currentUserHomeDate;
 
                             if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
@@ -6943,7 +6943,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             }
 
                             $rootScope.getScheduledList.push({
-                                'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
+                                'scheduledTime': CustomCalendar.getLocalTime1(index.startTime),
                                 'appointmentId': index.appointmentId,
                                 'appointmentStatusCode': index.appointmentStatusCode,
                                 'appointmentTypeCode': index.appointmentTypeCode,
@@ -8600,7 +8600,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     }
                 });
 
-                $rootScope.getNextAvailProvTime = CustomCalendar.getLocalTime(data.data[0].startTime);
+                $rootScope.getNextAvailProvTime = CustomCalendar.getLocalTime1(data.data[0].startTime);
                   $rootScope.getNextAvailProvTime1 = data.data[0].startTime;
 
                 $rootScope.onDemandAvailability = data.data[0].onDemandAvailabilityBlockCount;
@@ -9801,7 +9801,12 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                   $rootScope.scheduledListDatas = scheduledListData;
                   $rootScope.appointmentwaivefee = scheduledListData.waiveFee;
                   var currentTime = $rootScope.scheduledListDatas.scheduledTime;
-                  var getMinsExtraTime = $scope.addMinutes(currentTime, 30);
+
+                  var serverDateTime  = currentTime;
+
+var currentLocalTimeZoneDateTime = new Date(serverDateTime);
+
+                  var getMinsExtraTime = $scope.addMinutes(currentLocalTimeZoneDateTime, 30);
                   var getEnterTime = new Date();
                   var getMissedAppointmentExpiryTime = ((new Date(getMinsExtraTime).getTime()) - (getEnterTime.getTime()));
                   if (getMissedAppointmentExpiryTime > 0) {

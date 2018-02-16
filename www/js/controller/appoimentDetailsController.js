@@ -301,7 +301,7 @@ $("#localize-widget").show();
                 $scope.paticipatingPhysicianPhoto = $scope.paticipatingPhysician.person.photoUrl;
 
                 $rootScope.scheduledListDatas.push({
-                    'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
+                    'scheduledTime': CustomCalendar.getLocalTime1(index.startTime),
                     'appointmentId': index.appointmentId,
                     'appointmentStatusCode': index.appointmentStatusCode,
                     'appointmentTypeCode': index.appointmentTypeCode,
