@@ -3,12 +3,12 @@
         <div class="modal">
            <ion-view>
                 <form>
-              <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+              <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};height: 64px !important;">
                  <div class="ErrorMessage ErrorMessageDiv"  ></div>
-                 <button class="button button-clear {{concernListDoneStyle}} localizejs" style="{{PriorSurgeryPopupCancel}};font-size: 18px !important;" ng-click="hideSurgeryPopup()">Done</button>
-                 <h1 class="title {{concernListTitleStyle}} localizejs" style="{{PrimaryConcernPopupTitle}}; ">Prior Surgeries</h1>
-                 <button ng-show="showNewSurgeryAdd" class="button button-clear surgeryTopAddButton {{concernListDoneStyle}} localizejs" style="{{surgeryConcernPopupDone}};font-size: 20px !important;" ng-click="closeSurgeryPopup()" >Add</button>
-                 <button ng-show="showEditSurgery" class="button button-clear surgeryTopAddButton {{concernListDoneStyle}} localizejs" style="{{surgeryConcernPopupDone}};font-size: 18px !important;" ng-click="EditSurgeryItem()"  >Save</button>
+                 <button class="button button-clear {{concernListDoneStyle}} localizejs" style="{{PriorSurgeryPopupCancel}};font-size: 18px !important;padding: 15px 0 0 0 !important;" ng-click="hideSurgeryPopup()">Done</button>
+                 <h1 class="title {{concernListTitleStyle}} localizejs" style="{{PrimaryConcernPopupTitle}};margin-right: 30px !important;margin-top: 5px !important;top: 12px !important;">Prior Surgeries</h1>
+                 <button ng-show="showNewSurgeryAdd" class="button button-clear surgeryTopAddButton {{concernListDoneStyle}} localizejs" style="{{surgeryConcernPopupDone}};font-size: 18px !important;padding: 2px 0px 0px !important;top: 13px !important;" ng-click="closeSurgeryPopup()" >Add</button>
+                 <button ng-show="showEditSurgery" class="button button-clear surgeryTopAddButton {{concernListDoneStyle}} localizejs" style="{{surgeryConcernPopupDone}};font-size: 18px !important;padding: 2px 0px 0px !important;top: 13px !important;" ng-click="EditSurgeryItem()"  >Save</button>
               </header>
               <ion-content has-header="true" class="concernListContent">
                  <div class="list" style="margin-top: 10px;" >
@@ -50,7 +50,7 @@
                     </div>
                  </div>
                  <ion-list>
-                    <div ng-show="showNewSurgeryAdd" class="list showNewSurgeryAddios" style="padding-bottom: 0px !important; {{PriorSurgeryPopupTextBox}}">
+                    <div ng-show="showNewSurgeryAdd" class="list showNewSurgeryAddios" style="padding-bottom: 0px !important;top: -30px; {{PriorSurgeryPopupTextBox}}">
                        <!--<h5 class="surname">Add New Surgery</h5>-->
                        <div class="item item-input validated">
                             <span class="input-label priorTag localizejs">Procedure</span>
