@@ -105,10 +105,11 @@
                      <label class="user-account__label localizejs">Email Address</label>
                      <div class="user-account__input " ng-keyup="emailBlur()">
                         <input type="email" class="localizejs" placeholder="type here..." ng-model="regStep1.regEmail" name="regEmail" id="regEmail"  >
-                        <span class="user-account__error-message localizejs" ng-show="emailmanderror">Please enter your email id</span>
+                        <!-- <span class="user-account__error-message localizejs" ng-show="emailmanderror">Please enter your email id</span>
                         <span class="user-account__error-message localizejs" ng-show="emailerror">Please enter valid email id</span>
-                        <span class="user-account__error-message localizejs" ng-show="emailexisterror">An account with this email already exist.</span>
-                     </div>
+                        <span class="user-account__error-message localizejs" ng-show="emailexisterror">An account with this email already exist.</span> -->
+                        <span class="user-account__error-message localizejs" ng-show="emailerrorSpan">{{emailerroralert}}</span>    
+                      </div>
                   </div>
                </div>
             </div>
@@ -294,10 +295,12 @@
                      <label class="user-account__label localizejs">Email Address</label>
                      <div class="user-account__input " ng-keyup="emailBlur()">
                         <input type="email" class="localizejs" placeholder="type here..." ng-model="regStep1.regEmail" name="regEmail" id="regEmail"  >
-                        <span class="user-account__error-message localizejs" ng-show="emailmanderror">Please enter your email id</span>
+                        <!-- <span class="user-account__error-message localizejs" ng-show="emailmanderror">Please enter your email id</span>
                         <span class="user-account__error-message localizejs" ng-show="emailerror">Please enter valid email id</span>
                         <span class="user-account__error-message localizejs" ng-show="emailexisterror">An account with this email already exist.</span>
-                     </div>
+                     -->
+                     <span class="user-account__error-message localizejs" ng-show="emailerrorSpan">{{emailerroralert}}</span>                  
+                      </div>
                   </div>
                </div>
             </div>
