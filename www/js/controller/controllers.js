@@ -391,11 +391,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
   if($( window ).width()<= 375) {
     if(localizeCurrent == "Español") {
      //   console.log("Español");
-      $scope.ReportEthnicityVal = "width:36.33%";
+    //  $scope.ReportEthnicityVal = "width:36.33%";
     } if(localizeCurrent == "English (UK)") {
-      $scope.ReportEthnicityVal = "width:41.33%";
+    //  $scope.ReportEthnicityVal = "width:41.33%";
     } if(localizeCurrent == "English") {
-      $scope.ReportEthnicityVal = "width:41.33%";
+    ///  $scope.ReportEthnicityVal = "width:41.33%";
     }
     /* if(myLength >= 11) {
      //    console.log("myLength  is more=");
@@ -423,11 +423,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                //console.log("myLength ="+myLength);
              if(isLang == "Español") {
                  //console.log("Español");
-                 $scope.ReportEthnicityVal = "width:36.33%";
+          //       $scope.ReportEthnicityVal = "width:36.33%";
              } if(isLang == "English (UK)") {
-               $scope.ReportEthnicityVal = "width:41.33%";
+            //   $scope.ReportEthnicityVal = "width:41.33%";
              } if(isLang == "English") {
-               $scope.ReportEthnicityVal = "width:41.33%";
+              // $scope.ReportEthnicityVal = "width:41.33%";
              }
              if(myLength >= 11) {
                //  console.log("myLength  is more=");
@@ -4771,7 +4771,7 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
 
         }
         /* country and State */
-        
+
         $("#addHealthPlan").click(function() {
             $scope.isSelectDrop = true;
        });
@@ -4787,14 +4787,14 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
         if($scope.isSelectDrop) {
             setTimeout(function() {
                 $("#localize-widget").show();
-              }, 0); 
+              }, 0);
         }
     });
 
     $("#addHealthPlan").change(function() {
         setTimeout(function() {
             $("#localize-widget").show();
-          }, 0); 
+          }, 0);
       $rootScope.getHlthSctValue = $('option:selected', this).text();
         if ($('option:selected', this).text() === 'Add a new health plan') {
 			         $rootScope.currentplan ="";

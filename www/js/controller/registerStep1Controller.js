@@ -105,7 +105,7 @@ angular.module('starter.controllers')
           $('.ssooption').removeClass("emailbackground");
         }
 
-        
+
         $("#regGender").click(function() {
              $scope.isSelectDrop = true;
        });
@@ -118,7 +118,7 @@ angular.module('starter.controllers')
             if($scope.isSelectDrop) {
                 setTimeout(function() {
                     $("#localize-widget").show();
-                }, 0); 
+                }, 0);
             }
         });
 
@@ -157,7 +157,7 @@ angular.module('starter.controllers')
         //  $scope.emailmanderror =false;
         //  $scope.emailexisterror=false;
           $scope.emailerrorSpan=false;
-          
+
             $('.regemail').removeClass("emailbackground");
             var emailvalue = $('#regEmail').val();
             if (emailvalue !== '') {
@@ -165,8 +165,8 @@ angular.module('starter.controllers')
                  //   $scope.emailerror =true;
                     $scope.emailerrorSpan=true;
                     $scope.emailerroralert = "Please enter valid email id";
-                    
-                    
+
+
                         $('.regemail').addClass("emailbackground");
                 }else{
                     $scope.emailerror =false;
@@ -297,7 +297,7 @@ angular.module('starter.controllers')
             $('.regemail').addClass("emailbackground");
             $scope.emailerrorSpan=true;
             $scope.emailerroralert = "Please enter your email id";
-  
+
           //  $scope.emailmanderror=true;
           }else if(!$scope.ValidateEmail($("#regEmail").val())){
                 $scope.emailerror=true;
@@ -306,8 +306,8 @@ angular.module('starter.controllers')
           //  $scope.mobileerror=false;
           //  $scope.mobilemanderror=true;
 
-          
-         
+
+
             $scope.mobileerrorSpan=true;
             $scope.mobileerroralert = "Please enter a mobile number";
 
@@ -407,7 +407,7 @@ angular.module('starter.controllers')
                                // $scope.emailexisterror=true;
                                 $scope.emailerrorSpan=true;
                                 $scope.emailerroralert = "An account with this email already exist.";
-                      
+
                             }
                         });
                         $scope.closepopup = function() {
@@ -545,7 +545,7 @@ angular.module('starter.controllers')
                           //$scope.emailexisterror=true;
                           $scope.emailerrorSpan=true;
                           $scope.emailerroralert = "An account with this email already exist.";
-                
+
                       }
                   });
                   $scope.closepopup = function() {
@@ -832,7 +832,8 @@ angular.module('starter.controllers')
                   }else{
                     AddrText  = document.getElementById('regaddress').value;
                   }
-
+                  var autocomplete = new google.maps.places.Autocomplete(document.getElementById('txtPlaces'));
+                                  google.maps.event.addListener(autocomplete, 'place_changed', fillAddress);
                 document.getElementById('fullAddress').value = AddrText;
                 document.getElementById('country').value = $scope.Country;
                 if($scope.state1 == undefined)
