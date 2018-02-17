@@ -98,9 +98,29 @@ angular.module('starter.controllers')
         }
         $scope.genderBlur=function(){
           $scope.gendererror =false;
+          setTimeout(function() {
+            $("#localize-widget").show();
+          }, 0);
           $('.regstgender').removeClass("emailbackground");
           $('.ssooption').removeClass("emailbackground");
         }
+
+        
+        $("#regGender").click(function() {
+             $scope.isSelectDrop = true;
+       });
+
+       $("#regCountryCode").click(function() {
+             $scope.isSelectDrop = true;
+        });
+
+        $(document).click(function() {
+            if($scope.isSelectDrop) {
+                setTimeout(function() {
+                    $("#localize-widget").show();
+                }, 0); 
+            }
+        });
 
         $scope.countryBlur=function(){
           $scope.countryError =false;
