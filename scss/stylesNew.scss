@@ -7265,7 +7265,7 @@ top:15px !important;
 }
 @media (min-width:1024px) and (max-width:1360px) {
 .mobileInput-Ios5 {
-    width: 5% !important; 
+    width: 5% !important;
     margin-left: 34% !important;
     float: right !important;
 }
@@ -7349,4 +7349,20 @@ padding-top: 3px;
 .TC-content {
   padding-left: 24pt;
   padding-right: 16pt;
+}
+.termsCloseNew-Android {
+  font-size: 18px !important;
+    top: -10px;
+    color: white;
+    /* font-size: 12px !important; */
+    margin-top: 10px;
+    display: block !important;
+}
+.termsCloseNew-IOS {
+  font-size: 18px !important;
+    top: -10px;
+    color: white;
+    /* font-size: 12px !important; */
+    margin-top: 10px;
+    display: block !important;
 }

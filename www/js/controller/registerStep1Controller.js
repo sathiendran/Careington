@@ -808,6 +808,9 @@ angular.module('starter.controllers')
            return false;
         });*/
     }
+
+    var autocomplete = new google.maps.places.Autocomplete(document.getElementById('txtPlaces'));
+                //    google.maps.event.addListener(autocomplete, 'place_changed', fillAddress);
    $rootScope.Widgetshow = function(){
      $("#localize-widget").show();
    }
@@ -879,7 +882,7 @@ angular.module('starter.controllers')
                         e.preventDefault();
                         document.getElementById('txtPlaces').blur();
                     });
-                }, 200);
+                }, 2000);
                 //google.maps.event.addDomListener(document.getElementById("pac-input"), 'blur', fillAddress);
                 //document.getElementById('txtPlaces').addEventListener('click', fillAddress);
                 function fillAddress()

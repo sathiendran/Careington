@@ -72,8 +72,9 @@
                   <span class="input-label cardfont localizejs" >CVV Code</span>
                   <!--<input type="password" pattern="[0-9]*" inputmode="numeric" style="{{invalidCVV}}" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>-->
                   <!-- <input style="font-size: 18px; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/> -->
-                  <input style="font-size: 18px; -webkit-text-security: disc; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "number" id="password" pattern="[0-9]*" inputmode="numeric"  placeholder="Required" class= "localizejs" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>
-                  <!-- <input style="font-size: 18px; -webkit-text-security: disc; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" class ="localizejs" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>-->
+                <!--  <input style="font-size: 18px; -webkit-text-security: disc; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "number" id="password" pattern="[0-9]*" inputmode="numeric"  placeholder="Required" class= "localizejs" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>-->
+                <input style="font-size: 18px; -webkit-text-security: disc; line-height: 20px; {{invalidCVV}}" type="tel" class="localizejs" placeholder="Required" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" maxlength="4"  phone-input>
+                
                </div>
                <div class="item item-input" >
                   <span class="input-label cardfont localizejs" style="white-space: normal;">Billing Address</span>
