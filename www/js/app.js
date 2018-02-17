@@ -489,7 +489,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 $rootScope.alertPopupA = function() {
                       $rootScope.flagpopup=false;
                        var myPopup = $ionicPopup.show({
-                           template: '<b>Please make sure that you have network connection.</b>',
+                           template: '<span class="localizejs" style="font-weight: bold;">Please make sure that you have network connection.</span>',
                            title: 'No Internet Connection' ,
                            rootScope: $rootScope,
                            cssClass: 'my-custom-popup',
@@ -600,7 +600,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                              $rootScope.alertPopupA = function() {
                                    $rootScope.flagpopup=false;
                                     var myPopup = $ionicPopup.show({
-                                        template: '<b>Please make sure that you have network connection.</b>',
+                                        template: '<span class="localizejs" style="font-weight: bold;">Please make sure that you have network connection.</span>',
                                         title: 'No Internet Connection',
                                         rootScope: $rootScope,
                                         cssClass: 'my-custom-popup',
