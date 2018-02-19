@@ -330,66 +330,76 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                     window.localStorage.setItem('Inactive Success', timeoutValue);
                     timeoutValue = 0;
                     clearSessionLogoutTimer();
+
+                    var localizeCurrent = $('#localize-current').text();
+                      console.log("lang "+localizeCurrent);
+                    if(localizeCurrent == "Español") {
+                      var SessTimedOutMsg = 'Su sesión ha excedido el tiempo de espera.';
+                      var SessTimedOk = 'De acuerdo';
+                    } else {
+                      var SessTimedOutMsg = 'Your session timed out.';
+                      var SessTimedOk = 'Ok';
+                    }
                     if ($rootScope.currState.$current.name == "tab.addnewdependent") {
                           if( $rootScope.flagdeptmodal==true){
                                navigator.notification.alert(
-                                   'Your session timed out.', // message
+                                   SessTimedOutMsg, // message
                                    function() {
                                        $rootScope.ClearRootScope();
                                        return;
                                    },
                                    $rootScope.alertMsgName, // title
-                                   'Ok' // buttonName
+                                   SessTimedOk // buttonName
                                );
                                return false;
                           }else{
                             $rootScope.removemodal();
                             navigator.notification.alert(
-                               'Your session timed out.', // message
+                               SessTimedOutMsg, // message
                                function() {
                                     $rootScope.ClearRootScope();
                                     return;
                                },
                                $rootScope.alertMsgName, // title
-                               'Ok' // buttonName
+                               SessTimedOk // buttonName
                             );
                             return false;
                           }
                         }else if ($rootScope.currState.$current.name == "tab.healthinfo" ) {
                              if( $rootScope.flagmodal==true){
                                   navigator.notification.alert(
-                                     'Your session timed out.', // message
+                                     SessTimedOutMsg, // message
                                      function() {
                                          $rootScope.ClearRootScope();
                                          return;
                                      },
                                      $rootScope.alertMsgName, // title
-                                     'Ok' // buttonName
+                                     SessTimedOk // buttonName
                                  );
                                  return false;
                              }else{
                                $rootScope.editremovemodal();
                                navigator.notification.alert(
-                                  'Your session timed out.', // message
+                                  SessTimedOutMsg, // message
                                   function() {
                                       $rootScope.ClearRootScope();
                                       return;
                                   },
                                   $rootScope.alertMsgName, // title
-                                  'Ok' // buttonName
+                                  SessTimedOk // buttonName
                               );
                               return false;
                              }
                                 }
                           else{
                                navigator.notification.alert(
-                                   'Your session timed out.', // message
+                                   SessTimedOutMsg, // message
                                    function() {
                                        $rootScope.ClearRootScope();
                                        return;
                                    },
                                    $rootScope.alertMsgName, // title
-                                   'Ok' // buttonName
+                                   SessTimedOk // buttonName
                                );
                                return false;
                           }

@@ -13,125 +13,7 @@
         font-size: 24px;
     }
 </style>
-<!--<ion-side-menu side="left" style="background-color: #464644;">
-   <div class="sideMenu" ng-if="hasRequiredFields == false">
-      <a ng-click="validationForChkingRequiredFields()" class="sidemenuContent1" >
-         <ion-list>
-            <ion-item class="icon tabfont"  id="{{sidemenuHome}}">
-               <i ng-bind-html="drawSVGCIcon('users')"></i>
-               <span>  Patient List</span>
-            </ion-item>
-         </ion-list>
-      </a>
-      <a ng-click="validationForChkingRequiredFields()" class="sidemenuContent1" >
-         <ion-list>
-            <ion-item class="icon tabfont sideuserhealth" id="{{sidemenuHome}}">
-               <i ng-bind-html="drawSVGCIcon('clipboard')"></i>
-               <span>  My Health</span>
-            </ion-item>
-         </ion-list>
-      </a>
-      <a ng-click="validationForChkingRequiredFields()" class="sidemenuContent1" >
-         <ion-list>
-            <ion-item class="icon tabfont sidehomeappt" id="{{sidemenuHome}}">
-               <i ng-bind-html="drawSVGCIcon('calendar')"></i>
-               <span>My Appointments</span>
-            </ion-item>
-         </ion-list>
-      </a>
-      <a ng-click="validationForChkingRequiredFields()" class="sidemenuContent1" >
-         <ion-list>
-            <ion-item class="icon tabfont sidehomeconsult" id="{{sidemenuHome}}">
-               <i ng-bind-html="drawSVGCIcon('health_card')"></i>
-               <span>  My Consultations</span>
-            </ion-item>
-         </ion-list>
-      </a>
-      <a ng-if="onSSAvailability == 'on'" ng-click="validationForChkingRequiredFields()" class="sidemenuContent1" >
-           <ion-list>
-              <ion-item class="icon tabfont" id="{{sidemenuHome}}">
-                 <i ng-bind-html="drawSVGCIcon('health_card')"></i>
-                 <span> Self Schedule</span>
-              </ion-item>
-           </ion-list>
-        </a>
 
-      <a ng-click="ClearRootScope()" class="SidemenuLogOut1" >
-         <ion-list>
-            <ion-item class="ion-power LogOutText" >
-               <span>  Logout</span>
-            </ion-item>
-         </ion-list>
-      </a>
-   </div>
-	 <div class="sideMenu" ng-if="hasRequiredFields != false">
-      <a ng-href="#/tab/userhome" class="sidemenuContent1" >
-         <ion-list>
-            <ion-item class="icon tabfont"  id="{{sidemenuHome}}">
-               <i ng-bind-html="drawSVGCIcon('users')"></i>
-               <span>  Patient List</span>
-            </ion-item>
-         </ion-list>
-      </a>
-      <a ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')" class="sidemenuContent1" >
-         <ion-list>
-            <ion-item class="icon tabfont sideuserhealth" id="{{sidemenuHome}}">
-               <i ng-bind-html="drawSVGCIcon('clipboard')"></i>
-               <span>  My Health</span>
-            </ion-item>
-         </ion-list>
-      </a>
-      <a ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClickApoointments')" class="sidemenuContent1" >
-         <ion-list>
-            <ion-item class="icon tabfont sidehomeappt" id="{{sidemenuHome}}">
-               <i ng-bind-html="drawSVGCIcon('calendar')"></i>
-               <span>My Appointments</span>
-            </ion-item>
-         </ion-list>
-      </a>
-      <a ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'tab.consultations')" class="sidemenuContent1" >
-         <ion-list>
-            <ion-item class="icon tabfont sidehomeconsult" id="{{sidemenuHome}}">
-               <i ng-bind-html="drawSVGCIcon('health_card')"></i>
-               <span>  My Consultations</span>
-            </ion-item>
-         </ion-list>
-      </a>
-      <a ng-if="onSSAvailability == 'on'" ng-click="goTOSchedule()" class="sidemenuContent1" >
-           <ion-list>
-              <ion-item class="icon tabfont" id="{{sidemenuHome}}">
-                 <i ng-bind-html="drawSVGCIcon('health_card')"></i>
-                 <span> Self Schedule</span>
-              </ion-item>
-           </ion-list>
-        </a>
-
-      <a ng-click="ClearRootScope()" class="SidemenuLogOut1" >
-         <ion-list>
-            <ion-item class="ion-power LogOutText" >
-               <span>  Logout</span>
-            </ion-item>
-         </ion-list>
-      </a>
-   </div>
-   <div style="margin-top: 25px">
-      <a class="SidemenuLogOut1" >
-         <ion-list>
-            <div class="HrefListView">
-               <div class="UserhmePatientDetails">
-                  <div class="userHomeImageMainPat" ng-bind-html="drawImage(PatientImage,primaryPatientName,primaryPatientLastName)"></div>
-                  <div class= "ListTextTitle ellipsis userHomeFullName" > <b class="ng-binding"> {{primaryPatientName}} </b><span class="SubTitleSpan ellipsis"> {{primaryPatientLastName}}</span></div>
-                  <p class="ListHomeUser_pTitle DateFormateStyle" style="color:#FFFFFF !important;">
-                     {{primaryPatGender}} . {{dob | ageFilter}}
-                  </p>
-               </div>
-            </div>
-            <div style="border-bottom: 1px solid black; padding-top: 5px;"></div>
-         </ion-list>
-      </a>
-   </div>
-</ion-side-menu>
-</ion-side-menus>-->
 
 <ion-side-menu side="left">
     <nav class="main-nav" ng-if="hasRequiredFields == false">
@@ -156,10 +38,10 @@
                     <div ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')"
                         class="userpic userpic--white-border userpic--main-nav" ng-bind-html="drawImageSS(PatientImage,primaryPatientName,primaryPatientLastName)"
                         style="border: 2px #fff solid;top: 25px;">
-    
+
                     </div>
                 </a>
-    
+
                 <div class="user-info__text">
                     <div class="user-info__name">
                         <span class="user-info__fname">{{primaryPatientName}} </span> <span class="user-info__lname">{{primaryPatientLastName}} </span>
@@ -183,7 +65,7 @@
                             <svg class="icon-log-out HealthSideMenusvgLogout">
                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-log-out"></use>
                             </svg>
-                         </i>    
+                         </i>
             </span><span style="top: -4px !important;position: relative;" class="localizejs">Logout</span></a></li>
         </ul>
         <div class="main-nav__bottom-aligner main-nav__bottom-aligner--patient"></div>
@@ -209,24 +91,6 @@
             </div>
         </a>
 
-        <!-- <div class="userInfoDiv">
-                <a href="#" class="user-info--main-nav">
-                    <div ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')"
-                        class="userpic userpic--white-border userpic--main-nav" ng-bind-html="drawImageSS(PatientImage,primaryPatientName,primaryPatientLastName)"
-                        style="border: 2px #fff solid;top: 25px;">
-    
-                    </div>
-                </a>
-    
-                <div class="user-info__text">
-                    <div class="user-info__name">
-                        <span class="user-info__fname">{{primaryPatientName}} </span> <span class="user-info__lname">{{primaryPatientLastName}} </span>
-                    </div>
-                    <div class="user-info__info">
-                        <span class="localizejs">{{primaryPatGender}}</span> • <span>{{dob | ageFilter}}</span> • <span>{{mobilePhone}}</span>
-                    </div>
-                </div>
-            </div> -->
 
         <ul class="main-nav__list">
             <li><a ng-href="#/tab/userhome"><span> <i ng-bind-html="drawSVGCIcon('users')"></i></span><span class="localizejs">Patient List</span></a></li>
@@ -242,7 +106,7 @@
                             <svg class="icon-log-out HealthSideMenusvgLogout">
                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-log-out"></use>
                             </svg>
-                         </i>    
+                         </i>
             </span><span style="top: -4px !important;position: relative;" class="localizejs">Logout</span></a></li>
         </ul>
         <div class="main-nav__bottom-aligner main-nav__bottom-aligner--patient"></div>
