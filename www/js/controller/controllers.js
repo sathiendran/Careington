@@ -744,7 +744,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -961,7 +961,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
       $rootScope.registedPwd =  '';
       $rootScope.PatientIdentifiers = '';
       $rootScope.PatientidupdateList = '';
-      if(typeof $scope.modal != 'undefined' &&  $scope.modal != '') {
+      if(typeof $scope.modal != 'undefined' &&  $scope.modal != '' && $scope.modal != null) {
             $scope.modal.remove();
       }
       $rootScope.sessionConsultConnection.start().done(function() {
@@ -4636,6 +4636,8 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
                         $rootScope.editplan = "block";
                     } else if ($rootScope.currState.$current.name === "tab.ConsentTreat") {
                     //   $rootScope.planchange();
+                       $rootScope.enableAddHealthPlan = "none";
+                       $rootScope.disableAddHealthPlan = "block;";
                        $state.go('tab.consultCharge');
                         $rootScope.editplan = "none";
                    } else {

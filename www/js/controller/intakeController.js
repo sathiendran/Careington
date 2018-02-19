@@ -220,7 +220,7 @@ angular.module('starter.controllers')
                 $rootScope.chkSSPageEnter = false;
                 $ionicSideMenuDelegate.toggleLeft();
             }
-            if(typeof $scope.modal != 'undefined' &&  $scope.modal != '') {
+            if(typeof $scope.modal != 'undefined' &&  $scope.modal != '' && $scope.modal != null) {
                   $scope.modal.remove();
             }
             $rootScope.registedPwd =  '';
