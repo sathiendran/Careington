@@ -7194,8 +7194,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                          activeConsultConnection.qs = {};
                          activeConsultConnection = null;
                          activeRoomConHub = null;
-                    //  $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-                    $rootScope.doGetScheduledNowPhoneConsulatation();
+                      $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    //$rootScope.doGetScheduledNowPhoneConsulatation();
                        return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7212,8 +7212,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                          activeConsultConnection.qs = {};
                          activeConsultConnection = null;
                          activeRoomConHub = null;
-                    // $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-                    $rootScope.doGetScheduledNowPhoneConsulatation();
+                     $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    // $rootScope.doGetScheduledNowPhoneConsulatation();
                       return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7230,8 +7230,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                         activeConsultConnection.qs = {};
                         activeConsultConnection = null;
                         activeRoomConHub = null;
-                    // $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-                    $rootScope.doGetScheduledNowPhoneConsulatation();
+                    $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    // $rootScope.doGetScheduledNowPhoneConsulatation();
                       return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7249,8 +7249,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                         activeConsultConnection.qs = {};
                         activeConsultConnection = null;
                         activeRoomConHub = null;
-                    // $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-                    $rootScope.doGetScheduledNowPhoneConsulatation();
+                     $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    // $rootScope.doGetScheduledNowPhoneConsulatation();
                       return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7259,8 +7259,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                return false;
            } else {
                // alert('gg4');
-               //$rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-               $rootScope.doGetScheduledNowPhoneConsulatation();
+               $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+              // $rootScope.doGetScheduledNowPhoneConsulatation();
            }
        });
 
