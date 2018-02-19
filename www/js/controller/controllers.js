@@ -238,6 +238,9 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
     }
 }
 
+
+
+
 var REVIEW_CONSULTATION_EVENT_CODE = 116;
 var STARTED_CONSULTATION_EVENT_CODE = 117;
 var STOPPED_CONSULTATION_EVENT_CODE = 118;
@@ -330,6 +333,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 .controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, ageFilterReport, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup)
 {
   $("#localize-widget").show();
+
+
 //venkat start
   $(".accoTitle-IOS").css("margin-top", "4px");
 
@@ -869,6 +874,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     var checkAndChangeMenuIcon;
     $interval.cancel(checkAndChangeMenuIcon);
     $scope.currentstateview = true;
+
     /*$rootScope.checkAndChangeMenuIcon = function() {
         if (!$ionicSideMenuDelegate.isOpen(true)) {
             if ($('#BackButtonIcon svg').hasClass("ion-close")) {
@@ -7186,6 +7192,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
        activeRoomConHub.on("broadcastMessage", function(messageType, message) {
           // alert("notificationService: broadcastMessage");
+          
           if(messageType == 'consultation_ended') {
              //  alert('gg2');
                navigator.notification.alert(
@@ -7196,8 +7203,10 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                          activeConsultConnection.qs = {};
                          activeConsultConnection = null;
                          activeRoomConHub = null;
-                      $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-                    //$rootScope.doGetScheduledNowPhoneConsulatation();
+                         if($state.current.name == "tab.waitingRoom")
+                            $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                        else
+                            $rootScope.doGetScheduledNowPhoneConsulatation();
                        return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7214,8 +7223,10 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                          activeConsultConnection.qs = {};
                          activeConsultConnection = null;
                          activeRoomConHub = null;
-                     $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-                    // $rootScope.doGetScheduledNowPhoneConsulatation();
+                    if($state.current.name == "tab.waitingRoom")
+                         $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                     else
+                        $rootScope.doGetScheduledNowPhoneConsulatation();
                       return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7232,8 +7243,10 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                         activeConsultConnection.qs = {};
                         activeConsultConnection = null;
                         activeRoomConHub = null;
-                    $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-                    // $rootScope.doGetScheduledNowPhoneConsulatation();
+                        if($state.current.name == "tab.waitingRoom")
+                            $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                        else
+                         $rootScope.doGetScheduledNowPhoneConsulatation();
                       return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7251,8 +7264,10 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                         activeConsultConnection.qs = {};
                         activeConsultConnection = null;
                         activeRoomConHub = null;
-                     $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-                    // $rootScope.doGetScheduledNowPhoneConsulatation();
+                        if($state.current.name == "tab.waitingRoom")
+                             $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                         else
+                             $rootScope.doGetScheduledNowPhoneConsulatation();
                       return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7261,7 +7276,10 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                return false;
            } else {
                // alert('gg4');
-               $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+               if($state.current.name == "tab.waitingRoom")
+                             $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                         else
+                             $rootScope.doGetScheduledNowPhoneConsulatation();
               // $rootScope.doGetScheduledNowPhoneConsulatation();
            }
        });
