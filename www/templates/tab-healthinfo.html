@@ -1,4 +1,8 @@
-
+<style>
+  /*  .hide-on-keyboard-open {
+      display: block !important;
+   }*/
+</style>
 <ion-side-menus>
 <ion-side-menu-content>
    <form ng-submit="putUpdatePatientDetails()" ng-init="fetchPatientDetails(); init();" name="HealthInfo Details">
@@ -552,14 +556,10 @@
                </button>
             </ion-footer-bar>
          </div>
-     
+      </ion-view>
    </form>
    <!--Side Menu File Include <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('menu')"></i>-->
-
-      <div id="HealthFooter" class="hide-on-keyboard-open"  ng-show="healthfoottab">
-
       <div id="HealthFooter" ng-show="healthfoottab" hide-on-keyboard="true">
-
          <ion-tabs class=" tabs-icon-top tabs-dark">
             <a class="tab-item" ng-href="#/tab/relatedusers" >
             <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i> <span class="tabcolor localizejs">Users</span>
@@ -581,4 +581,3 @@
 </ion-side-menu-content>
 <div ng-include src="'templates/SideMenuHealthInfo.html'"></div>
 </ion-side-menus>
-</ion-view>
