@@ -1127,12 +1127,13 @@ $rootScope.checkAndChangeMenuIcon = function() {
         if($errorMsg.length >= 50)
         {
           if($rootScope.is_iPadDeviceWidth <= 320) {
-              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs" > <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: -2px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs">' + $errorMsg + '! </span> </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           } else {
-              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs" > <i class="ion-alert-circled" style="font-size: 16px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: 6px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs">' + $errorMsg + '! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           }
         }else{
-              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> <span class="localizejs">' + $errorMsg + '! </span> </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         }
         $("#notifications-top-center").remove();
         $("#Error_Message").append(top);
@@ -1189,7 +1190,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
             });
         }
         refresh_close();
-        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Invalid card details. Please correct and try again.! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> <span class="loclaizejs">Invalid card details. Please correct and try again.!</span> </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         $("#notifications-top-center").remove();
         $(".Server_Error").append(top);
         refresh_close();
@@ -1203,7 +1204,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
             });
         }
         refresh_close();
-        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Health Plan Enquiry failed! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+
+        var top = '<div id="notifications-top-center" class="notificationError" style="height: 65px !important;"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> <span class="localizejs">Health Plan Enquiry failed! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         $("#notifications-top-center").remove();
         $(".Server_Error").append(top);
         refresh_close();
@@ -1218,7 +1220,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
         }
         refresh_close();
 
-        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Unable to verify health plan. Please correct and try again.! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i><span class="localizejs"> Unable to verify health plan. Please correct and try again.! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         $("#notifications-top-center").remove();
         $(".Server_Error").append(top);
 
@@ -7596,7 +7598,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             });
         }
         refresh_close();
-        var top = '<div id="notifications-top-center" class="notificationError" ><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i>' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
+        var top = '<div id="notifications-top-center" class="notificationError" ><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i><span class="localizejs">' + $a + '! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
         $("#notifications-top-center").remove();
         $(".Error_Message").append(top);
         refresh_close();
