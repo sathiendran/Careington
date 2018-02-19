@@ -416,8 +416,8 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                                          return;
                                      },
                                      $rootScope.alertMsgName, // title
-
-                                     alertokay // buttonName                               );
+  );
+                                     alertokay // buttonName
                                  return false;
                              }else{
                                $rootScope.editremovemodal();
