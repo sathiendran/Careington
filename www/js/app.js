@@ -314,6 +314,43 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         goActive();
     }
 
+    var alertTimedout = "Your session timed out.";
+    var alertokay = "Ok";
+
+      var localizeCurrent = $('#localize-current').text();
+      console.log("lang "+localizeCurrent);
+        if(localizeCurrent == "Español") {
+            alertTimedout = "Su sesión ha expirado.";
+            alertokay = "De acuerdo";
+        }
+      else  if(localizeCurrent == "English (UK)") {
+        alertTimedout = "Your session timed out.";
+        alertokay = "Ok";
+      }
+      else if (localizeCurrent == "English")   {
+          alertTimedout = "Your session timed out."
+          alertokay = "Ok";
+        }
+
+
+       $('#localize-langs').click(function() {
+         var isLang = $('#localize-langs .activated').text();
+           console.log("lang "+isLang);
+           if(isLang == "Español") {
+             alertTimedout = "Su sesión ha expirado.";
+             alertokay = "De acuerdo";
+           }
+          else  if(isLang == "English (UK)") {
+            alertTimedout = "Your session timed out."
+            alertokay = "Ok";
+          }
+            else if (isLang == "English") {
+                alertTimedout = "Your session timed out."
+                alertokay = "Ok";
+            }
+          });
+
+
     function goInactive() {
       if($state.$current.name !== "tab.waitingRoom" && $state.$current.name !== "tab.videoConference" && $state.$current.name !== "tab.videoLost") {
           var inactiveDuration = window.localStorage.getItem('InActiveSince');
@@ -333,63 +370,63 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                     if ($rootScope.currState.$current.name == "tab.addnewdependent") {
                           if( $rootScope.flagdeptmodal==true){
                                navigator.notification.alert(
-                                   'Your session timed out.', // message
+                                   alertTimedout, // message
                                    function() {
                                        $rootScope.ClearRootScope();
                                        return;
                                    },
                                    $rootScope.alertMsgName, // title
-                                   'Ok' // buttonName
+                                   alertokay // buttonName
                                );
                                return false;
                           }else{
                             $rootScope.removemodal();
                             navigator.notification.alert(
-                               'Your session timed out.', // message
+                               alertTimedout, // message
                                function() {
                                     $rootScope.ClearRootScope();
                                     return;
                                },
                                $rootScope.alertMsgName, // title
-                               'Ok' // buttonName
+                               alertokay // buttonName
                             );
                             return false;
                           }
                         }else if ($rootScope.currState.$current.name == "tab.healthinfo" ) {
                              if( $rootScope.flagmodal==true){
                                   navigator.notification.alert(
-                                     'Your session timed out.', // message
+                                     alertTimedout, // message
                                      function() {
                                          $rootScope.ClearRootScope();
                                          return;
                                      },
                                      $rootScope.alertMsgName, // title
-                                     'Ok' // buttonName
+                                     alertokay // buttonName
                                  );
                                  return false;
                              }else{
                                $rootScope.editremovemodal();
                                navigator.notification.alert(
-                                  'Your session timed out.', // message
+                                  alertTimedout, // message
                                   function() {
                                       $rootScope.ClearRootScope();
                                       return;
                                   },
                                   $rootScope.alertMsgName, // title
-                                  'Ok' // buttonName
+                                  alertokay // buttonName
                               );
                               return false;
                              }
                                 }
                           else{
                                navigator.notification.alert(
-                                   'Your session timed out.', // message
+                                   alertTimedout, // message
                                    function() {
                                        $rootScope.ClearRootScope();
                                        return;
                                    },
                                    $rootScope.alertMsgName, // title
-                                   'Ok' // buttonName
+                                   alertokay // buttonName
                                );
                                return false;
                           }
@@ -489,12 +526,12 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 $rootScope.alertPopupA = function() {
                       $rootScope.flagpopup=false;
                        var myPopup = $ionicPopup.show({
-                           template: '<b>Please make sure that you have network connection.</b>',
-                           title: 'No Internet Connection' ,
+                           template: '<b class="localizejs">Please make sure that you have network connection.</b>',
+                           title: '<span class="localizejs">No Internet Connection</span>' ,
                            rootScope: $rootScope,
                            cssClass: 'my-custom-popup',
                            buttons: [{
-                               text: '<b class="ietfonttype">ok</b>',
+                               text: '<b class="ietfonttype localizejs">ok</b>',
                                 type:'button',
                            }]
                        });
@@ -600,12 +637,12 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                              $rootScope.alertPopupA = function() {
                                    $rootScope.flagpopup=false;
                                     var myPopup = $ionicPopup.show({
-                                        template: '<b>Please make sure that you have network connection.</b>',
-                                        title: 'No Internet Connection',
+                                        template: '<b class="localizejs">Please make sure that you have network connection.</b>',
+                                        title: '<span class="loclizejs">No Internet Connection</span>',
                                         rootScope: $rootScope,
                                         cssClass: 'my-custom-popup',
                                         buttons: [{
-                                            text: '<b class="ietfonttype">ok</b>',
+                                            text: '<b class="ietfonttype localizejs">ok</b>',
                                             onTap: function(e) {
                                                 return false;
                                             }
