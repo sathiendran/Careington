@@ -5,6 +5,11 @@ angular.module('starter.controllers')
         window.addEventListener('native.keyboardhide', function () {
             $("#localize-widget").hide();
         })
+          $("#localize-widget").hide();
+        var alertCancelMessageConsultation = "Are you sure that you want to cancel this consultation?";
+        var YESMessageProviderSearch='Yes';
+        var NaviConfirmation = 'Confirmation:';
+
         var localizeCurrent = $('#localize-current').text();
         if (localizeCurrent == "Español") {
             $scope.concernListTitleSpanishFont = "font-size:16px !important;margin-left: 30px;";
@@ -14,7 +19,10 @@ angular.module('starter.controllers')
             $scope.concernListTitleSecondSpanishFont = "font-size:16px !important;margin-left: 30px;";
             $scope.cancelbtnSecondSpanishFont = "font-size:14px !important";
             $scope.donebtnSecondSpanishFont = "font-size:14px !important";
-            $scope.PatientConcernCancel = "padding: 7px;"
+            $scope.PatientConcernCancel = "padding: 7px;";
+            alertCancelMessageConsultation = "¿Estás seguro de que quieres cancelar esta consulta?";
+            YESMessageProviderSearch='Sí';
+            NaviConfirmation = 'Confirmación:';
         } else {
             $scope.concernListTitleSpanishFont = "font-size:20px !important";
             $scope.cancelbtnSpanishFont = "font-size:20px !important";
@@ -23,7 +31,10 @@ angular.module('starter.controllers')
             $scope.concernListTitleSecondSpanishFont = "font-size:20px !important;";
             $scope.cancelbtnSecondSpanishFont = "font-size:20px !important";
             $scope.donebtnSecondSpanishFont = "font-size:20px !important";
-              $scope.PatientConcernCancel = "padding: 10px;"
+              $scope.PatientConcernCancel = "padding: 10px;";
+              alertCancelMessageConsultation = "Are you sure that you want to cancel this consultation?";
+               YESMessageProviderSearch='Yes';
+               NaviConfirmation = 'Confirmation:';
         }
         $('#localize-langs').click(function () {
             var isLang = $('#localize-langs .activated').text();
@@ -35,12 +46,18 @@ angular.module('starter.controllers')
                 $scope.concernListTitleSecondSpanishFont = "font-size:16px !important;margin-left: 30px;";
                 $scope.cancelbtnSecondSpanishFont = "font-size:14px !important";
                 $scope.donebtnSecondSpanishFont = "font-size:14px !important";
-                $scope.PatientConcernCancel = "padding: 7px;"
+                $scope.PatientConcernCancel = "padding: 7px;";
+                alertCancelMessageConsultation = "¿Estás seguro de que quieres cancelar esta consulta?";
+                YESMessageProviderSearch='Sí';
+                NaviConfirmation = 'Confirmación:';
             } else {
                 $scope.concernListTitleSpanishFont = "font-size:20px !important";
                 $scope.cancelbtnSpanishFont = "font-size:20px !important";
                 $scope.donebtnSpanishFont = "font-size:20px !important";
-                $scope.PatientConcernCancel = "padding: 10px;"
+                $scope.PatientConcernCancel = "padding: 10px;";
+                alertCancelMessageConsultation = "Are you sure that you want to cancel this consultation?";
+                 YESMessageProviderSearch='Yes';
+                 NaviConfirmation = 'Confirmation:';
             }
             isLang = "";
         });
@@ -1956,7 +1973,8 @@ angular.module('starter.controllers')
         }
         $scope.clearRootScopeConce = function () {
             navigator.notification.confirm(
-                'Are you sure that you want to cancel this consultation?',
+                /*'Are you sure that you want to cancel this consultation?',*/
+                alertCancelMessageConsultation,
                 function (index) {
                     if (index == 1) {
 
@@ -1991,7 +2009,7 @@ angular.module('starter.controllers')
                         $state.go('tab.userhome');
                     }
                 },
-                'Confirmation:', ['No', 'Yes']
+                NaviConfirmation, ['No', YESMessageProviderSearch]
             );
 
         };

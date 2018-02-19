@@ -180,10 +180,11 @@ $("#localize-widget").show();
                           $('#divVdioControlPanel').hide();
 
                          navigator.notification.alert(
-                             'Consultation already completed!', // message
+                            // 'Consultation already completed!', // message
+                            consultAlredComplMsg,
                              consultationEndedAlertDismissed, // callback
                              $rootScope.alertMsgName, // title
-                             'Done' // buttonName
+                             Buttonmsg //'Done' // buttonName
                          );
                         $scope.doGetExistingConsulatationReport();
                     }
@@ -1549,6 +1550,8 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
     var alertMsgConference = "Consultation ended successfully!";
       var Buttonmsg = "Done";
       var alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
+      var consultAlredComplMsg = 'Consultation already completed!';
+      var NaviConfirmation = 'Confirmation:';
 
       var localizeCurrent = $('#localize-current').text();
 
@@ -1556,17 +1559,15 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
             alertMsgConference = "¡La consulta terminó exitosamente!";
             Buttonmsg = "Listo";
             alertconfirm = "Actualmente tiene una consulta en curso. ¿Está seguro de que desea finalizar esta consulta?";
+            consultAlredComplMsg = 'Consulta ya completada!';
+            NaviConfirmation = 'Confirmación:';
         }
-      else  if(localizeCurrent == "English (UK)") {
+      else  {
         alertMsgConference = "Consultation ended successfully!";
         Buttonmsg = "Done";
         alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
+        consultAlredComplMsg = 'Consultation already completed!';
       }
-      else if (localizeCurrent == "English")   {
-          alertMsgConference = "Consultation ended successfully!";
-          Buttonmsg = "Done";
-          alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
-        }
 
 
        $('#localize-langs').click(function() {
@@ -1576,18 +1577,16 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
              alertMsgConference = "¡La consulta terminó exitosamente!";
               Buttonmsg = "Listo";
               alertconfirm = "Actualmente tiene una consulta en curso. ¿Está seguro de que desea finalizar esta consulta?";
-
+              consultAlredComplMsg = 'Consulta ya completada!';
+              NaviConfirmation = 'Confirmación:';
            }
-          else  if(isLang == "English (UK)") {
+          else {
             alertMsgConference = "Consultation ended successfully!";
             Buttonmsg = "Done";
             alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
+            consultAlredComplMsg = 'Consultation already completed!';
+            NaviConfirmation = 'Confirmation:';
           }
-            else if (isLang == "English") {
-                alertMsgConference = "Consultation ended successfully!";
-                Buttonmsg = "Done";
-                alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
-            }
           });
 
     var callEnded = false;
@@ -1627,7 +1626,7 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
                         );
                       }
                   },
-                  'Confirmation:', ['No', 'Yes']
+                  NaviConfirmation, ['No', YESMessageProviderSearch]
               );
             }else{
               window.localStorage.setItem('isVideoCallProgress', "No");

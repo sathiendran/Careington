@@ -18,7 +18,7 @@ margin-top: 125px !important;
 
 @media (max-width: 320px) and (min-width: 315px) {
   .showNewSurgeryAddios {
-        margin-top: -30px !important;
+      //  margin-top: -30px !important;
   }
 
   .AvailableIn {
@@ -67,7 +67,7 @@ margin-top: 125px !important;
 
   .concernListContent {
       .concernListSearch {
-          margin-top: -30px !important;
+        //  margin-top: -30px !important;
             }
           }
         .concernListTitle-ios {
@@ -7340,7 +7340,7 @@ padding-top: 3px;
 .termscontent p span {
   text-align: Left !important;
   font-family: "GloberRegular"  !important;
-  font-size: 16pt !important;
+  font-size: 15pt !important;
   line-height: 24pt !important;
   width: 280pt !important;
   height: 372pt !important;
@@ -7360,9 +7360,21 @@ padding-top: 3px;
 }
 .termsCloseNew-IOS {
   font-size: 18px !important;
-    top: -10px;
+    top: 2px !important;
     color: white;
     /* font-size: 12px !important; */
     margin-top: 10px;
     display: block !important;
+}
+.termsTitleNew-Android {
+
+}
+.termsTitleNew-IOS {
+  top: 4px !important;
+}
+.surDone-Android {
+  font-size: 18px !important;padding: 15px 0 0 0 !important;
+}
+.surDone-IOS {
+  font-size: 18px !important;padding: 10px 0 0 0 !important;
 }
