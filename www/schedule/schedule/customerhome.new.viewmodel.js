@@ -1466,6 +1466,10 @@ var setUserVars = function() {
                     var dateFilter = new Date();
                     dateFilter.setHours(0, 0, 0, 0);
 
+                    $("#datepicker1").kendoDatePicker({
+                        min: dateFilter
+                    });
+
                     return dateFilter;
                 };
 
