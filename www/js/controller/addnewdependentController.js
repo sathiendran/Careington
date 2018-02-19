@@ -8,30 +8,45 @@ angular.module('starter.controllers')
     }, 100);
     $("#localize-widget").show();
 
+        var alertupload = "Unable to upload the photo. Please try again later.";
+        var alertokay = "Ok";
         var localizeCurrent = $('#localize-current').text();
+
          if(localizeCurrent == "Español"){
               $scope.AddPicture = "margin-top: -10px;";
+              alertupload = "No se puede cargar la foto. Por favor, inténtelo de nuevo más tarde.";
+              alertokay = "De acuerdo";
            }
            if(localizeCurrent == "English") {
               $scope.AddPicture = "margin-top: 0px;";
+              alertupload = "Unable to upload the photo. Please try again later.";
+              alertokay = "Ok";
            }
            if(localizeCurrent == "English (UK)") {
               $scope.AddPicture = "margin-top: 0px;";
+              alertupload = "Unable to upload the photo. Please try again later.";
+              alertokay = "Ok";
            }
    $('#localize-langs').click(function() {
        var isLang = $('#localize-langs .activated').text();
        if(isLang == "Español"){
         //  $scope.AddPicture = "margin-top: -10px !important;";
             $("#AddPicture").css("margin-top", "-10px");
+            alertupload = "No se puede cargar la foto. Por favor, inténtelo de nuevo más tarde.";
+            alertokay = "De acuerdo";
 
          }
          if(isLang == "English") {
           //  $scope.AddPicture = "margin-top: 0px !important;";
             $("#AddPicture").css("margin-top", "0px");
+            alertupload = "Unable to upload the photo. Please try again later.";
+            alertokay = "Ok";
          }
          if(isLang == "English (UK)") {
           //  $scope.AddPicture = "margin-top: 0px !important;";
             $("#AddPicture").css("margin-top", "0px");
+            alertupload = "Unable to upload the photo. Please try again later.";
+            alertokay = "Ok";
          }
       });
     $ionicPlatform.registerBackButtonAction(function() {
@@ -125,7 +140,7 @@ angular.module('starter.controllers')
         }
         refresh_close();
 
-        var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent Errorconlength localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
+        var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent Errorconlength localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> <span class="localizej">' + $a + '!</span> </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
         $("#notifications-top-center").remove();
           $(".ErrorMessage").append(top);
         refresh_close();
@@ -1339,7 +1354,7 @@ angular.module('starter.controllers')
             $state.go('tab.relatedusers');
         }, function() {
             $ionicLoading.hide();
-            navigator.notification.alert('Unable to upload the photo. Please try again later.', null, $rootScope.alertMsgName, 'OK');
+            navigator.notification.alert(alertupload, null, $rootScope.alertMsgName, alertokay);
             $state.go('tab.relatedusers');
         }, function() {
              $ionicLoading.show({
