@@ -98,9 +98,29 @@ angular.module('starter.controllers')
         }
         $scope.genderBlur=function(){
           $scope.gendererror =false;
+          setTimeout(function() {
+            $("#localize-widget").show();
+          }, 0);
           $('.regstgender').removeClass("emailbackground");
           $('.ssooption').removeClass("emailbackground");
         }
+
+
+        $("#regGender").click(function() {
+             $scope.isSelectDrop = true;
+       });
+
+       $("#regCountryCode").click(function() {
+             $scope.isSelectDrop = true;
+        });
+
+        $(document).click(function() {
+            if($scope.isSelectDrop) {
+                setTimeout(function() {
+                    $("#localize-widget").show();
+                }, 0);
+            }
+        });
 
         $scope.countryBlur=function(){
           $scope.countryError =false;
@@ -134,13 +154,19 @@ angular.module('starter.controllers')
         };
         var pwdRegularExpress = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])^.{8,20}$/;
         $scope.emailBlur = function() {
-          $scope.emailmanderror =false;
-          $scope.emailexisterror=false;
+        //  $scope.emailmanderror =false;
+        //  $scope.emailexisterror=false;
+          $scope.emailerrorSpan=false;
+
             $('.regemail').removeClass("emailbackground");
             var emailvalue = $('#regEmail').val();
             if (emailvalue !== '') {
                 if (!$scope.ValidateEmail($("#regEmail").val())) {
-                    $scope.emailerror =true;
+                 //   $scope.emailerror =true;
+                    $scope.emailerrorSpan=true;
+                    $scope.emailerroralert = "Please enter valid email id";
+
+
                         $('.regemail').addClass("emailbackground");
                 }else{
                     $scope.emailerror =false;
@@ -221,7 +247,7 @@ angular.module('starter.controllers')
 
 
         $rootScope.postRegisterStep1 = function() {
-
+            $scope.emailerrorSpan=false;
             $scope.fname=$('#regFName').val();
             $scope.lname=$('#regLName').val();
             $scope.gender=  $('#regGender').val();
@@ -269,13 +295,18 @@ angular.module('starter.controllers')
               $('.regstaddress').addClass("emailbackground");
           }else if(typeof $scope.email === 'undefined' ||$scope.email === ''){
             $('.regemail').addClass("emailbackground");
-            $scope.emailmanderror=true;
+            $scope.emailerrorSpan=true;
+            $scope.emailerroralert = "Please enter your email id";
+
+          //  $scope.emailmanderror=true;
           }else if(!$scope.ValidateEmail($("#regEmail").val())){
                 $scope.emailerror=true;
           }else if(typeof $scope.mobile === 'undefined' ||$scope.mobile === ''){
             $('.regstmobile').addClass("emailbackground");
           //  $scope.mobileerror=false;
           //  $scope.mobilemanderror=true;
+
+
 
             $scope.mobileerrorSpan=true;
             $scope.mobileerroralert = "Please enter a mobile number";
@@ -373,7 +404,10 @@ angular.module('starter.controllers')
                             $state.go('tab.loginSingle');
                             } else {
                                 $('.regemail').addClass("emailbackground");
-                                $scope.emailexisterror=true;
+                               // $scope.emailexisterror=true;
+                                $scope.emailerrorSpan=true;
+                                $scope.emailerroralert = "An account with this email already exist.";
+
                             }
                         });
                         $scope.closepopup = function() {
@@ -508,7 +542,10 @@ angular.module('starter.controllers')
                         }
                       } else {
                           $('.regemail').addClass("emailbackground");
-                          $scope.emailexisterror=true;
+                          //$scope.emailexisterror=true;
+                          $scope.emailerrorSpan=true;
+                          $scope.emailerroralert = "An account with this email already exist.";
+
                       }
                   });
                   $scope.closepopup = function() {
@@ -771,6 +808,9 @@ angular.module('starter.controllers')
            return false;
         });*/
     }
+
+    var autocomplete = new google.maps.places.Autocomplete(document.getElementById('txtPlaces'));
+                //    google.maps.event.addListener(autocomplete, 'place_changed', fillAddress);
    $rootScope.Widgetshow = function(){
      $("#localize-widget").show();
    }
@@ -795,7 +835,8 @@ angular.module('starter.controllers')
                   }else{
                     AddrText  = document.getElementById('regaddress').value;
                   }
-
+                  var autocomplete = new google.maps.places.Autocomplete(document.getElementById('txtPlaces'));
+                                  google.maps.event.addListener(autocomplete, 'place_changed', fillAddress);
                 document.getElementById('fullAddress').value = AddrText;
                 document.getElementById('country').value = $scope.Country;
                 if($scope.state1 == undefined)
@@ -841,7 +882,7 @@ angular.module('starter.controllers')
                         e.preventDefault();
                         document.getElementById('txtPlaces').blur();
                     });
-                }, 200);
+                }, 2000);
                 //google.maps.event.addDomListener(document.getElementById("pac-input"), 'blur', fillAddress);
                 //document.getElementById('txtPlaces').addEventListener('click', fillAddress);
                 function fillAddress()

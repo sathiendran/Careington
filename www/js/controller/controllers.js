@@ -391,11 +391,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
   if($( window ).width()<= 375) {
     if(localizeCurrent == "Español") {
      //   console.log("Español");
-      $scope.ReportEthnicityVal = "width:36.33%";
+    //  $scope.ReportEthnicityVal = "width:36.33%";
     } if(localizeCurrent == "English (UK)") {
-      $scope.ReportEthnicityVal = "width:41.33%";
+    //  $scope.ReportEthnicityVal = "width:41.33%";
     } if(localizeCurrent == "English") {
-      $scope.ReportEthnicityVal = "width:41.33%";
+    ///  $scope.ReportEthnicityVal = "width:41.33%";
     }
     /* if(myLength >= 11) {
      //    console.log("myLength  is more=");
@@ -423,11 +423,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                //console.log("myLength ="+myLength);
              if(isLang == "Español") {
                  //console.log("Español");
-                 $scope.ReportEthnicityVal = "width:36.33%";
+          //       $scope.ReportEthnicityVal = "width:36.33%";
              } if(isLang == "English (UK)") {
-               $scope.ReportEthnicityVal = "width:41.33%";
+            //   $scope.ReportEthnicityVal = "width:41.33%";
              } if(isLang == "English") {
-               $scope.ReportEthnicityVal = "width:41.33%";
+              // $scope.ReportEthnicityVal = "width:41.33%";
              }
              if(myLength >= 11) {
                //  console.log("myLength  is more=");
@@ -705,9 +705,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.ConcernFooterNextIOS = "margin-left: -46px !important; left: -15px !important;";
             $rootScope.providerItamMarginTop = "top: 5px;";
             $rootScope.PrimaryConcernPopupTitleIOSDeviHeader = "height: 64px !important;";
-            $rootScope.rightHeaderIconIOS = "margin-top: 20px !important;";
+            $rootScope.rightHeaderIconIOS = "margin-top: 18px !important;";
             $rootScope.leftHeaderIconIOS = "margin-top: 22px !important;";
-            $rootScope.concernListTitleiosDevices = "margin-top: 21px !important;";
+            $rootScope.concernListTitleiosDevices = "margin-top: 16px !important;";
             $rootScope.concernListContentIOS = "margin-top: 55px !important;";
             $rootScope.InputboxPaddingIOS = "padding-top: 12px !important;";
             $rootScope.concernListSearchIconIOS = "bottom: -4px !important;";
@@ -763,7 +763,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.MenuInnerStyle = "top: -8px;";
         $rootScope.MenuIconBottomRecipt = "top: -8px;";
         $rootScope.AddhealthplanOverlop = "margin: 186px 0 0 0;";
-        $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
+        $rootScope.PriorSurgeryPopupCancel = "padding-right: 0px; padding-left: 0px;padding: 0px;";
         $rootScope.PatientTitle = "margin-left:-45px;"
         $rootScope.PasswordOverlop = "margin: 57px 0 0 0;";
         $rootScope.resetContent = "margin: 202px 0 0 0;";
@@ -1064,13 +1064,14 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
         $rootScope.sessionRoomConHub.on("onSessionTerminated", function(ip) {
                   navigator.notification.alert(
-                     'You have logged in on another device and ended this session.', // message
+                    /* 'You have logged in on another device and ended this session.', */// message
+                    sessAlertMessage,
                      function() {
                          $rootScope.ClearRootScope();
                         return;
                      },
                      $rootScope.alertMsgName, // title
-                     'Done' // buttonName
+                     sessAlertDone // buttonName
                  );
             });
 
@@ -1126,6 +1127,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
         if($errorMsg.length >= 50)
         {
           if($rootScope.is_iPadDeviceWidth <= 320) {
+
               var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: -2px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs">' + $errorMsg + '! </span> </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           } else {
               var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent localizejs" style="font-size: 16px !important;margin-top: 6px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs">' + $errorMsg + '! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
@@ -1148,9 +1150,9 @@ $rootScope.checkAndChangeMenuIcon = function() {
         if($errorMsg.length >= 50)
         {
           if($rootScope.is_iPadDeviceWidth <= 320) {
-              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent" style="font-size: 16px !important;margin-top: -2px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent" > <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           } else {
-              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent" style="font-size: 16px !important;margin-top: 6px !important;"> <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+              var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent" > <i class="ion-alert-circled" style="font-size: 16px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
           }
         }else{
               var top = '<div id="notifications-top-center" class="notificationError"  ><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> <span class="localizejs"> ' + $errorMsg + '</span><span>'+$dynamicMsg+' ! </span> </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
@@ -1202,6 +1204,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
             });
         }
         refresh_close();
+
         var top = '<div id="notifications-top-center" class="notificationError" style="height: 65px !important;"><div class="ErrorContent localizejs"> <i class="ion-alert-circled" style="font-size: 22px;"></i> <span class="localizejs">Health Plan Enquiry failed! </span></div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
         $("#notifications-top-center").remove();
         $(".Server_Error").append(top);
@@ -1782,7 +1785,8 @@ $rootScope.checkAndChangeMenuIcon = function() {
         }
     $rootScope.cancelProviderSearch = function() {
         navigator.notification.confirm(
-            'Are you sure that you want to cancel?',
+          /*  'Are you sure that you want to cancel?',*/
+            alertCancelMessageProviderSearch,
             function(index) {
                 if (index === 1) {
 
@@ -1791,7 +1795,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                     $state.go($rootScope.frontPage);
                 }
             },
-            'Confirmation:', ['No', 'Yes']
+            NaviConfirmation, ['No', YESMessageProviderSearch ]
         );
     }
 
@@ -2056,49 +2060,53 @@ $rootScope.checkAndChangeMenuIcon = function() {
                     if ($rootScope.consultationStatusId === 71) {
                       //  $rootScope.doGetScheduledNowPhoneConsulatation();
                         navigator.notification.alert(
-                            'Your consultation is already started on other device.', // message
+                            //'Your consultation is already started on other device.', // message
+                            consultStartMsg,
                             function() {
                                 $state.go('tab.userhome');
                                 return;
                             },
                             $rootScope.alertMsgName, // title
-                            'Done' // buttonName
+                            sessAlertDone //'Done' // buttonName
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId === 72) {
                       //  $rootScope.doGetScheduledNowPhoneConsulatation();
                         navigator.notification.alert(
-                            'Your consultation is already ended.', // message
+                            //'Your consultation is already ended.', // message
+                            consultEndMeg,
                             function() {
                                 $state.go('tab.userhome');
                                 return;
                             },
                             $rootScope.alertMsgName, // title
-                            'Done' // buttonName
+                            sessAlertDone //'Done' // buttonName
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId === 79) {
                       //  $rootScope.doGetScheduledNowPhoneConsulatation();
                         navigator.notification.alert(
-                            'Your consultation is cancelled.', // message
+                          //  'Your consultation is cancelled.', // message
+                          consultCancelMsg,
                             function() {
                                 $state.go('tab.userhome');
                                 return;
                             },
                             $rootScope.alertMsgName, // title
-                            'Done' // buttonName
+                            sessAlertDone //'Done' // buttonName
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId === 80) {
                         //$rootScope.doGetScheduledNowPhoneConsulatation();
                         navigator.notification.alert(
-                            'Your consultation is in progress on other device.', // message
+                          //  'Your consultation is in progress on other device.', // message
+                          consultProgMsg,
                             function() {
                                 $state.go('tab.userhome');
                                 return;
                             },
                             $rootScope.alertMsgName, // title
-                            'Done' // buttonName
+                            sessAlertDone //'Done' // buttonName
                         );
                         return false;
                     } else {
@@ -2834,10 +2842,10 @@ $rootScope.checkAndChangeMenuIcon = function() {
             if ($rootScope.currState.$current.name !== "tab.waitingRoom" && $rootScope.currState.$current.name !== "videoConference") {
 
                 navigator.notification.alert(
-                    'Your session timed out.', // message
+                    SessTimedOutMsg, // message
                     null,
                     $rootScope.alertMsgName,
-                    'Ok' // buttonName
+                    SessTimedOk // buttonName
                 );
                 $rootScope.ClearRootScope();
             }
@@ -3719,7 +3727,7 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
     }
 
     $scope.goTOSchedule = function() {
-      $("#localize-widget").show();
+    //  $("#localize-widget").show();
         if ($rootScope.currState.$current.name == "tab.userhome") {
             $window.localStorage.setItem('snap_patientprofile_session', $rootScope.primaryPatSSDetails );
         }
@@ -4192,13 +4200,14 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
             success: function(data) {
               if (ionic.Platform.is('browser') !== true) {
                   navigator.notification.alert(
-                      'Consultation saved successfully!', // message
+                    //  'Consultation saved successfully!', // message
+                    consultSaveMsg,
                       function() {
                           $scope.doGetlocationResponse();
                           return;
                       },
                       $rootScope.alertMsgName, // title
-                      'Done' // buttonName
+                  sessAlertDone  //  'Done' // buttonName
                   );
                   return false;
                 } else {
@@ -4213,13 +4222,14 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
                 $scope.callServiceUnAvailableError();
               } else {
                   navigator.notification.alert(
-                      'Failed to save consultation!', // message
+                      //'Failed to save consultation!', // message
+                      consultFailMsg,
                       function() {
                           $scope.doGetlocationResponse();
                           return;
                       },
                       $rootScope.alertMsgName, // title
-                      'Done' // buttonName
+                    sessAlertDone //  'Done' // buttonName
                   );
                   return false;
               }
@@ -4345,46 +4355,50 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
                 if (!angular.isUndefined($rootScope.consultationStatusId)) {
                     if ($rootScope.consultationStatusId === 71) {
                         navigator.notification.alert(
-                            'Your consultation is already started on other device.', // message
+                          //  'Your consultation is already started on other device.', // message
+                          consultStartMsg,
                             function() {
                                 $state.go('tab.userhome');
                                 return;
                             },
                             $rootScope.alertMsgName, // title
-                            'Done' // buttonName
+                            sessAlertDone //'Done' // buttonName
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId === 72) {
                         navigator.notification.alert(
-                            'Your consultation is already ended.', // message
+                            //'Your consultation is already ended.', // message
+                            consultEndMeg,
                             function() {
                                 $state.go('tab.userhome');
                                 return;
                             },
                             $rootScope.alertMsgName, // title
-                            'Done' // buttonName
+                            sessAlertDone //'Done' // buttonName
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId === 79) {
                         navigator.notification.alert(
-                            'Your consultation is cancelled.', // message
+                          //  'Your consultation is cancelled.', // message
+                          consultCancelMsg,
                             function() {
                                 $state.go('tab.userhome');
                                 return;
                             },
                             $rootScope.alertMsgName, // title
-                            'Done' // buttonName
+                            sessAlertDone //'Done' // buttonName
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId === 80) {
                         navigator.notification.alert(
-                            'Your consultation is in progress on other device.', // message
+                          //  'Your consultation is in progress on other device.', // message
+                          consultProgMsg,
                             function() {
                                 $state.go('tab.userhome');
                                 return;
                             },
                             $rootScope.alertMsgName, // title
-                            'Done' // buttonName
+                            sessAlertDone //'Done' // buttonName
                         );
                         return false;
                     }
@@ -4772,8 +4786,29 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
         }
         /* country and State */
 
+        $("#addHealthPlan").click(function() {
+            $scope.isSelectDrop = true;
+       });
+
+       $("#Provider").click(function() {
+        $scope.isSelectDrop = true;
+       });
+
+       $("#editprovider").click(function() {
+        $scope.isSelectDrop = true;
+       });
+     $(document).click(function() {
+        if($scope.isSelectDrop) {
+            setTimeout(function() {
+                $("#localize-widget").show();
+              }, 0);
+        }
+    });
+
     $("#addHealthPlan").change(function() {
-      $("#localize-widget").show();
+        setTimeout(function() {
+            $("#localize-widget").show();
+          }, 0);
       $rootScope.getHlthSctValue = $('option:selected', this).text();
         if ($('option:selected', this).text() === 'Add a new health plan') {
 			         $rootScope.currentplan ="";
@@ -6071,7 +6106,8 @@ $scope.EditHealth = {};
 
     $scope.cancelConsultation = function() {
         navigator.notification.confirm(
-            'Are you sure that you want to cancel this consultation?',
+            /*'Are you sure that you want to cancel this consultation?',*/
+            alertCancelMessageConsultation,
             function(index) {
                 if (index === 1) {
 
@@ -6080,12 +6116,13 @@ $scope.EditHealth = {};
                 }
             },
 
-            $rootScope.alertMsgName, ['No', 'Yes']
+            $rootScope.alertMsgName, ['No', YESMessageProviderSearch]
         );
     }
     $scope.cancelConsultationForHealthPlan = function() {
         navigator.notification.confirm(
-            'Are you sure that you want to cancel this consultation?',
+          /*  'Are you sure that you want to cancel this consultation?',*/
+          alertCancelMessageConsultation,
             function(index) {
                 if (index === 1) {
 
@@ -6098,7 +6135,7 @@ $scope.EditHealth = {};
                 }
             },
 
-            $rootScope.alertMsgName, ['No', 'Yes']
+            $rootScope.alertMsgName, ['No', YESMessageProviderSearch]
         );
     }
 
@@ -6727,7 +6764,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
                             var currentUserHomeDate = d;
 
-                            var getReplaceTime = CustomCalendar.getLocalTime(index.startTime);
+                            var getReplaceTime = CustomCalendar.getLocalTime1(index.startTime);
                             var currentUserHomeDate = currentUserHomeDate;
 
                             if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
@@ -6743,7 +6780,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             }
 
                             $rootScope.getScheduledList.push({
-                                'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
+                                'scheduledTime': CustomCalendar.getLocalTime1(index.startTime),
                                 'appointmentId': index.appointmentId,
                                 'appointmentStatusCode': index.appointmentStatusCode,
                                 'appointmentTypeCode': index.appointmentTypeCode,
@@ -6833,7 +6870,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                            if(index.status == 71) {
                                    $rootScope.getScheduledList.push({
                                         'consultantUserId': index.consultantUserId,
-                                        'scheduledTime': CustomCalendar.getLocalTime(index.consultationDateInfo),
+                                        'scheduledTime': CustomCalendar.getLocalTime1(index.consultationDateInfo),
                                         'consultationId': index.consultationId,
                                         'createdDate': index.createdDate,
                                         'doctorStatus': index.doctorStatus,
@@ -6927,7 +6964,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
                             var currentUserHomeDate = d;
 
-                            var getReplaceTime = CustomCalendar.getLocalTime(index.startTime);
+                            var getReplaceTime = CustomCalendar.getLocalTime1(index.startTime);
                             var currentUserHomeDate = currentUserHomeDate;
 
                             if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
@@ -6943,7 +6980,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                             }
 
                             $rootScope.getScheduledList.push({
-                                'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
+                                'scheduledTime': CustomCalendar.getLocalTime1(index.startTime),
                                 'appointmentId': index.appointmentId,
                                 'appointmentStatusCode': index.appointmentStatusCode,
                                 'appointmentTypeCode': index.appointmentTypeCode,
@@ -7047,39 +7084,104 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
                    var  alertMsgcomplete = "Consultation ended successfully!";
                    var alertconfirmok = "Ok";
+                   var alertCancelMessageProviderSearch = "Are you sure that you want to cancel?";
+                   var alertCancelMessageConsultation = "Are you sure that you want to cancel this consultation?";
+                   var sessAlertMessage = "You have logged in on another device and ended this session.";
+                   var YESMessageProviderSearch='Yes';
+                   var NaviConfirmation = 'Confirmation:';
+                   var sessAlertDone = 'Done';
+                   var SessTimedOutMsg = 'Your session timed out.';
+                   var SessTimedOk = 'Ok';
+                   var consultEndMessage = 'Consultation is ended.';
+                   var consultExpireMessage = 'The consultation expired.';
+                   var consultDismisMsg = "This consultation has been dismissed.If you feel this cancellation is in error, please contact your provider.";
+                   var consultStartMsg = 'Your consultation is already started on other device.';
+                   var consultEndMeg = 'Your consultation is already ended.';
+                   var consultCancelMsg = 'Your consultation is cancelled.';
+                   var consultProgMsg = 'Your consultation is in progress on other device.';
+                   var consultSaveMsg = 'Consultation saved successfully!';
+                   var consultFailMsg = 'Failed to save consultation!';
+
 
                      var localizeCurrent = $('#localize-current').text();
                      console.log("lang "+localizeCurrent);
                        if(localizeCurrent == "Español") {
                             alertMsgcomplete = "El Proveedor ha marcado su consulta como completa.";
+                            alertCancelMessageProviderSearch = "¿Estás seguro de que quieres cancelar?";
+                            alertCancelMessageConsultation = "¿Estás seguro de que quieres cancelar esta consulta?";
                             alertconfirmok = "De acuerdo";
+                            YESMessageProviderSearch='Sí';
+                            NaviConfirmation = 'Confirmación:';
+                            sessAlertMessage = "Ha iniciado sesión en otro dispositivo y finalizó esta sesión.";
+                            sessAlertDone = 'Hecho';
+                            SessTimedOutMsg = 'Su sesión ha excedido el tiempo de espera.';
+                            SessTimedOk = 'De acuerdo';
+                            consultEndMessage = 'La consulta ha terminado.';
+                            consultExpireMessage = 'La consulta expiró.';
+                            consultDismisMsg = 'Esta consulta ha sido rechazada. Si siente que esta cancelación es errónea, comuníquese con su proveedor.';
+                            consultStartMsg = 'Su consulta ya se inició en otro dispositivo.';
+                            consultEndMeg = 'Su consulta ya ha finalizado';
+                            consultCancelMsg = 'Su consulta se cancela.';
+                            consultProgMsg = 'Su consulta está en progreso en otro dispositivo.';
+                            consultSaveMsg = 'Consulta guardada exitosamente!';
+                            consultFailMsg = 'Error al guardar consulta!';
                        }
-                     else  if(localizeCurrent == "English (UK)") {
+                     else {
                         alertMsgcomplete = "The Provider has marked your consultation as complete.";
+                        alertCancelMessageProviderSearch = "Are you sure that you want to cancel?";
+                        alertCancelMessageConsultation = "Are you sure that you want to cancel this consultation?";
                         alertconfirmok = "Ok";
+                         YESMessageProviderSearch='Yes';
+                         NaviConfirmation = 'Confirmation:';
+                         sessAlertMessage = "You have logged in on another device and ended this session.";
+                         sessAlertDone = 'Done';
                      }
-                     else if (localizeCurrent == "English")   {
-                          alertMsgcomplete = "The Provider has marked your consultation as complete.";
-                          alertconfirmok = "Ok";
-                       }
-
 
                       $('#localize-langs').click(function() {
                         var isLang = $('#localize-langs .activated').text();
                           console.log("lang "+isLang);
                           if(isLang == "Español") {
                              alertMsgcomplete = "El Proveedor ha marcado su consulta como completa.";
-                               alertconfirmok = "De acuerdo";
-                          }
-                         else  if(isLang == "English (UK)") {
+                             alertCancelMessageProviderSearch = "¿Estás seguro de que quieres cancelar?";
+                             alertCancelMessageConsultation = "¿Estás seguro de que quieres cancelar esta consulta?";
+                              alertconfirmok = "De acuerdo";
+                              YESMessageProviderSearch='Sí';
+                              NaviConfirmation = 'Confirmación:';
+                              sessAlertMessage = "Ha iniciado sesión en otro dispositivo y finalizó esta sesión.";
+                              sessAlertDone = 'Hecho';
+                              SessTimedOutMsg = 'Su sesión ha excedido el tiempo de espera.';
+                              SessTimedOk = 'De acuerdo';
+                              consultEndMessage = 'La consulta ha terminado.';
+                              consultExpireMessage = 'La consulta expiró.';
+                              consultDismisMsg = 'Esta consulta ha sido rechazada. Si siente que esta cancelación es errónea, comuníquese con su proveedor.';
+                              consultStartMsg = 'Su consulta ya se inició en otro dispositivo.';
+                              consultEndMeg = 'Su consulta ya ha finalizado';
+                              consultCancelMsg = 'Su consulta se cancela.';
+                              consultProgMsg = 'Su consulta está en progreso en otro dispositivo.';
+                              consultSaveMsg = 'Consulta guardada exitosamente!';
+                              consultFailMsg = 'Error al guardar consulta!';
+                          } else {
                             alertMsgcomplete = "The Provider has marked your consultation as complete.";
                             alertconfirmok = "Ok";
+                            alertCancelMessageProviderSearch = "Are you sure that you want to cancel?";
+                            YESMessageProviderSearch='Yes';
+                            alertCancelMessageConsultation = "Are you sure that you want to cancel this consultation?";
+                            NaviConfirmation = 'Confirmation:';
+                            sessAlertMessage = "You have logged in on another device and ended this session.";
+                            sessAlertDone = 'Done';
+                            SessTimedOutMsg = 'Your session timed out.';
+                            SessTimedOk = 'Ok';
+                            consultEndMessage = 'Consultation is ended.';
+                            consultExpireMessage = 'The consultation expired.';
+                            consultDismisMsg = "This consultation has been dismissed.If you feel this cancellation is in error, please contact your provider.";
+                            consultStartMsg = 'Your consultation is already started on other device.';
+                            consultEndMeg = 'Your consultation is already ended.';
+                            consultCancelMsg = 'Your consultation is cancelled.';
+                            consultProgMsg = 'Your consultation is in progress on other device.';
+                            consultSaveMsg = 'Consultation saved successfully!';
+                            consultFailMsg = 'Failed to save consultation!';
                          }
-                           else if (isLang == "English") {
-                                alertMsgcomplete = "The Provider has marked your consultation as complete.";
-                                alertconfirmok = "Ok";
-                           }
-                         });
+                      });
 
 
        activeRoomConHub.on("broadcastMessage", function(messageType, message) {
@@ -7087,14 +7189,15 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
           if(messageType == 'consultation_ended') {
              //  alert('gg2');
                navigator.notification.alert(
-                  'Consultation is ended.', // message
+                  //'Consultation is ended.', // message
+                  consultEndMessage,
                    function() {
                         activeConsultConnection.stop();
                          activeConsultConnection.qs = {};
                          activeConsultConnection = null;
                          activeRoomConHub = null;
-                    //  $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-                    $rootScope.doGetScheduledNowPhoneConsulatation();
+                      $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    //$rootScope.doGetScheduledNowPhoneConsulatation();
                        return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7104,14 +7207,15 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
           } else if(messageType == 'consultation_dropped') {
              //  alert('gg');
                navigator.notification.alert(
-                 'The consultation expired..', // message
+                 //'The consultation expired.', // message
+                 consultExpireMessage,
                    function() {
                         activeConsultConnection.stop();
                          activeConsultConnection.qs = {};
                          activeConsultConnection = null;
                          activeRoomConHub = null;
-                    // $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-                    $rootScope.doGetScheduledNowPhoneConsulatation();
+                     $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    // $rootScope.doGetScheduledNowPhoneConsulatation();
                       return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7128,8 +7232,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                         activeConsultConnection.qs = {};
                         activeConsultConnection = null;
                         activeRoomConHub = null;
-                    // $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-                    $rootScope.doGetScheduledNowPhoneConsulatation();
+                    $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    // $rootScope.doGetScheduledNowPhoneConsulatation();
                       return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7140,14 +7244,15 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
            else if(messageType == 'consultation_dismissed') {
              //  alert('gg1');
                navigator.notification.alert(
-                 'This consultation has been dismissed.If you feel this cancellation is in error, please contact your provider. ', // message
+                // 'This consultation has been dismissed.If you feel this cancellation is in error, please contact your provider. ', // message
+                    consultDismisMsg,
                    function() {
                         activeConsultConnection.stop();
                         activeConsultConnection.qs = {};
                         activeConsultConnection = null;
                         activeRoomConHub = null;
-                    // $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-                    $rootScope.doGetScheduledNowPhoneConsulatation();
+                     $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                    // $rootScope.doGetScheduledNowPhoneConsulatation();
                       return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7156,8 +7261,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                return false;
            } else {
                // alert('gg4');
-               //$rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-               $rootScope.doGetScheduledNowPhoneConsulatation();
+               $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+              // $rootScope.doGetScheduledNowPhoneConsulatation();
            }
        });
 
@@ -7222,13 +7327,14 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
                  $rootScope.sessionRoomConHub.on("onSessionTerminated", function(ip) {
                            navigator.notification.alert(
-                              'You have logged in on another device and ended this session.', // message
+                            /*  'You have logged in on another device and ended this session.',*/ // message
+                            sessAlertMessage,
                               function() {
                                   $rootScope.ClearRootScope();
                                  return;
                               },
                               $rootScope.alertMsgName, // title
-                              'Done' // buttonName
+                              sessAlertDone // buttonName
                           );
                      });
 
@@ -8600,7 +8706,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     }
                 });
 
-                $rootScope.getNextAvailProvTime = CustomCalendar.getLocalTime(data.data[0].startTime);
+                $rootScope.getNextAvailProvTime = CustomCalendar.getLocalTime1(data.data[0].startTime);
                   $rootScope.getNextAvailProvTime1 = data.data[0].startTime;
 
                 $rootScope.onDemandAvailability = data.data[0].onDemandAvailabilityBlockCount;
@@ -9801,7 +9907,12 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                   $rootScope.scheduledListDatas = scheduledListData;
                   $rootScope.appointmentwaivefee = scheduledListData.waiveFee;
                   var currentTime = $rootScope.scheduledListDatas.scheduledTime;
-                  var getMinsExtraTime = $scope.addMinutes(currentTime, 30);
+
+                  var serverDateTime  = currentTime;
+
+var currentLocalTimeZoneDateTime = new Date(serverDateTime);
+
+                  var getMinsExtraTime = $scope.addMinutes(currentLocalTimeZoneDateTime, 30);
                   var getEnterTime = new Date();
                   var getMissedAppointmentExpiryTime = ((new Date(getMinsExtraTime).getTime()) - (getEnterTime.getTime()));
                   if (getMissedAppointmentExpiryTime > 0) {
@@ -10444,7 +10555,10 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             var num_years = difdt1/31536000000;
             var num_months = (difdt1 % 31536000000)/2628000000;
             var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
-            return ageString = Math.floor(num_months) + monthString;
+           // return ageString = Math.floor(num_months) + monthString;
+            debugger; // month //
+            var ageString = monthsCount + monthString;
+            return ageString;
 
         } else if(monthsCount <= 23 && age.days <=30) {
             return  monthsCount + monthString;
@@ -10574,7 +10688,11 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
             var num_years = difdt1/31536000000;
             var num_months = (difdt1 % 31536000000)/2628000000;
             var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
-            return ageString = Math.floor(num_days) + dayString ;
+            //return ageString = Math.floor(num_days) + dayString ;
+           //Days//
+            debugger;
+            var ageString = age.days + dayString;
+            return ageString;
 
         } else if(monthsCount <= 23 && age.days <=30) {
           //  return  monthsCount + monthString;

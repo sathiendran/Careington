@@ -22,7 +22,7 @@
                      <span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
                      <span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
                   </div>
-                  <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span class="localizejs" ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"><span class="localizejs"> . {{patRelationShip}}</span></span></div>
+                  <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span class="localizejs" ng-if="userGender != ''">{{userGender}}</span> . <span>{{userDOB| ageFilter}}</span><span class="localizejs">{{userDOB | ageYearsStringFilter}}</span><span>{{userDOB | ageMonthFilter}}</span> <span>{{userDOB | ageDayFilter}}</span> <span ng-if="primaryPatientId != patientId"><span class="localizejs"> . {{patRelationShip}}</span></span></div>
                </div>
             </div>
          </div>
@@ -42,11 +42,11 @@
                   <div class="consultation_numberCopay"> <span>${{copayAmount}}*</span></div>
                </div>
                <div ng-if="cardPage == 'consultCharge'" class="consultation_head RegularFontStyle consultChargeNoPlanText" >
-                  <div class="consultTittleCharge localizejs">Consultation Charge</div>
-                  <div class="consultation_number"> ${{consultationAmount}}*</div>
+                  <div class="consultTittleCharge consultTittleChargeNew localizejs">Consultation Charge</div>
+                  <div><span class="consultation_number consultation-charge"> ${{consultationAmount}}*</span></div>
                </div>
             </div>
-            <div class="password_home contentPayHomeAddCard">
+            <div class="password_home contentPayHome">
                <div class="healthPlan_header consultCard" style="display: {{enableSubmitpaymentAddCard}}" >
                   <!--<div class="healthPlan_text NoPlanText payCardText"  >Select your payment card</div>
                     <span class="insuranceedit" ng-click="editpaymentcard()" style="display: {{editcard}};">Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>-->

@@ -74,13 +74,14 @@
             }
             if (notification) {
                  navigator.notification.alert(
-                   'Your session timed out.', // message
+                  // 'Your session timed out.', // message
+                  SessTimedOutMsg,
                    function() {
                         window.location.href = snap.redirctPage;
                       //  window.location.reload(true);
                    },
                    snap.appName, // title
-                   'Done' // buttonName
+                   SessTimedOk //'Done' // buttonName
                );
                return false;
                /* notification.show({

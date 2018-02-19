@@ -367,27 +367,41 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                     window.localStorage.setItem('Inactive Success', timeoutValue);
                     timeoutValue = 0;
                     clearSessionLogoutTimer();
+
+                    var localizeCurrent = $('#localize-current').text();
+                      console.log("lang "+localizeCurrent);
+                    if(localizeCurrent == "Español") {
+                      var SessTimedOutMsg = 'Su sesión ha excedido el tiempo de espera.';
+                      var SessTimedOk = 'De acuerdo';
+                    } else {
+                      var SessTimedOutMsg = 'Your session timed out.';
+                      var SessTimedOk = 'Ok';
+                    }
                     if ($rootScope.currState.$current.name == "tab.addnewdependent") {
                           if( $rootScope.flagdeptmodal==true){
                                navigator.notification.alert(
+
                                    alertTimedout, // message
                                    function() {
                                        $rootScope.ClearRootScope();
                                        return;
                                    },
                                    $rootScope.alertMsgName, // title
+
                                    alertokay // buttonName
                                );
                                return false;
                           }else{
                             $rootScope.removemodal();
                             navigator.notification.alert(
+
                                alertTimedout, // message
                                function() {
                                     $rootScope.ClearRootScope();
                                     return;
                                },
                                $rootScope.alertMsgName, // title
+
                                alertokay // buttonName
                             );
                             return false;
@@ -395,24 +409,27 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                         }else if ($rootScope.currState.$current.name == "tab.healthinfo" ) {
                              if( $rootScope.flagmodal==true){
                                   navigator.notification.alert(
+
                                      alertTimedout, // message
                                      function() {
                                          $rootScope.ClearRootScope();
                                          return;
                                      },
                                      $rootScope.alertMsgName, // title
-                                     alertokay // buttonName
-                                 );
+
+                                     alertokay // buttonName                               );
                                  return false;
                              }else{
                                $rootScope.editremovemodal();
                                navigator.notification.alert(
+
                                   alertTimedout, // message
                                   function() {
                                       $rootScope.ClearRootScope();
                                       return;
                                   },
                                   $rootScope.alertMsgName, // title
+
                                   alertokay // buttonName
                               );
                               return false;
@@ -420,13 +437,14 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                                 }
                           else{
                                navigator.notification.alert(
+
                                    alertTimedout, // message
                                    function() {
                                        $rootScope.ClearRootScope();
                                        return;
                                    },
                                    $rootScope.alertMsgName, // title
-                                   alertokay // buttonName
+
                                );
                                return false;
                           }
@@ -526,7 +544,8 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 $rootScope.alertPopupA = function() {
                       $rootScope.flagpopup=false;
                        var myPopup = $ionicPopup.show({
-                           template: '<b class="localizejs">Please make sure that you have network connection.</b>',
+
+
                            title: '<span class="localizejs">No Internet Connection</span>' ,
                            rootScope: $rootScope,
                            cssClass: 'my-custom-popup',
@@ -637,8 +656,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                              $rootScope.alertPopupA = function() {
                                    $rootScope.flagpopup=false;
                                     var myPopup = $ionicPopup.show({
-                                        template: '<b class="localizejs">Please make sure that you have network connection.</b>',
-                                        title: '<span class="loclizejs">No Internet Connection</span>',
+
                                         rootScope: $rootScope,
                                         cssClass: 'my-custom-popup',
                                         buttons: [{

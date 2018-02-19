@@ -1,23 +1,23 @@
 angular.module('starter.controllers')
     .controller('healthinfoController', function ($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService, $window, $ionicBackdrop) {
-         $scope.init = function () {
-
-          $("#localize-widget").hide();
-
-  			};
-
-        $rootScope.currState = $state;
-        if ($rootScope.currState.$current.name == "tab.consultations" || $rootScope.currState.$current.name == "tab.healthinfo")
-        {
-            $("#localize-widget").hide();
-        }
-        else{
-          $("#localize-widget").show();
-        }
-        $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+         $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
         $rootScope.drawSVGCIcon = function (iconName) {
             return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
         };
+        $scope.init = function () {
+
+         $("#localize-widget").hide();
+
+       };
+
+       $rootScope.currState = $state;
+       if ($rootScope.currState.$current.name == "tab.consultations" || $rootScope.currState.$current.name == "tab.healthinfo")
+       {
+           $("#localize-widget").hide();
+       }
+       else{
+         $("#localize-widget").show();
+       }
         angular.element(document).ready(function () {
             if( $scope.healthfootsave == true){
 
@@ -1589,7 +1589,7 @@ angular.module('starter.controllers')
             }
         }
 
-        window.addEventListener('native.keyboardshow', function () {
+      /*  window.addEventListener('native.keyboardshow', function () {
             $scope.$apply(function() {
                 $('#HealthFooter').css({'display':'none'})
              });
@@ -1599,7 +1599,7 @@ angular.module('starter.controllers')
             $scope.$apply(function() {
                 $('#HealthFooter').css({'display':'block'})
           });
-        });
+        });*/
 
         $rootScope.doPutProfileUpdation = function () {
 
@@ -3475,7 +3475,7 @@ angular.module('starter.controllers')
         //   alert(app);
         // }
         $scope.goTOSchedule = function () {
-          $("#localize-widget").show();
+        //  $("#localize-widget").show();
             $('<link/>', {
                 rel: 'stylesheet',
                 type: 'text/css',
@@ -3738,7 +3738,7 @@ angular.module('starter.controllers')
                           e.preventDefault();
                         document.getElementById('txtPlaces').blur();
                     });
-                }, 200);
+                }, 2000);
                 function fillAddress()
                 {
                 var place = autocomplete.getPlace();

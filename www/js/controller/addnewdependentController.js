@@ -1263,7 +1263,7 @@ angular.module('starter.controllers')
     }
 
     $scope.goTOSchedule = function() {
-      $("#localize-widget").show();
+    //  $("#localize-widget").show();
           $('<link/>', {
               rel: 'stylesheet',
               type: 'text/css',
@@ -1667,7 +1667,7 @@ $rootScope.editremovemodal = function () {
                           e.preventDefault();
                         document.getElementById('txtPlaces').blur();
                     });
-                }, 200);
+                }, 2000);
                 function fillAddress()
                 {
                 var place = autocomplete.getPlace();

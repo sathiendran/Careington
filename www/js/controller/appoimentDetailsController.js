@@ -16,6 +16,7 @@ if($rootScope.is_iPadDeviceWidth <= 360){
            var enMonth = {January:"enero", February:"febrero", March:"marzo", April:"abril",May:"Mayo", June:"junio", July:"julio", August:"agosto", September:"septiembre",October:"octubre", November:"noviembre", December:"diciembre"};
            var spMonth = {enero:"January", febrero:"February", marzo:"March", abril:"April",Mayo:"May", junio:"June", julio:"July", agosto:"August", septiembre:"September",octubre:"October", noviembre:"November", diciembre:"December"};
 
+<<<<<<< HEAD
            var alertconstarted = "Your consultation is already started on other device.";
            var alertconended = "Your consultation is already ended.";
            var alertDone = "Done";
@@ -47,6 +48,30 @@ if($rootScope.is_iPadDeviceWidth <= 360){
                }
 
 
+=======
+
+           var consultStartMsg = 'Your consultation is already started on other device.';
+           var consultEndMeg = 'Your consultation is already ended.';
+           var consultCancelMsg = 'Your consultation is cancelled.';
+           var consultProgMsg = 'Your consultation is in progress on other device.';
+           var sessAlertDone = 'Done';
+
+           var localizeCurrent = $('#localize-current').text();
+
+             if(localizeCurrent == "Español") {
+               consultStartMsg = 'Su consulta ya se inició en otro dispositivo.';
+               consultEndMeg = 'Su consulta ya ha finalizado';
+               consultCancelMsg = 'Su consulta se cancela.';
+               consultProgMsg = 'Su consulta está en progreso en otro dispositivo.';
+               sessAlertDone = 'Hecho';
+             } else {
+             consultStartMsg = 'Your consultation is already started on other device.';
+             consultEndMeg = 'Your consultation is already ended.';
+             consultCancelMsg = 'Your consultation is cancelled.';
+             consultProgMsg = 'Your consultation is in progress on other device.';
+             sessAlertDone = 'Done';
+           }
+>>>>>>> 58e7a7d75145a26feab9e3b3e08c5f0aed257517
          $('#localize-langs').click(function() {
                 var isLang = $('#localize-langs .activated').text();
                 var apponitmentWeek = $(".apponitmentWeek").text();
@@ -57,11 +82,25 @@ if($rootScope.is_iPadDeviceWidth <= 360){
                 if(isLang == "Español") {
                       $(".apponitmentWeek").text(enDay[apponitmentWeek]);
                       $(".apponitmentMonth").text(enMonth[apponitmentMonth]);
+<<<<<<< HEAD
                       alertconstarted = "Su consulta ya se inició en otro dispositivo.";
                       alertconended = "Su consulta ya ha finalizado.";
                       alertDone = "Listo";
                       alertconcancel = "Su consulta se cancela.";
                       alertconprogress = "Su consulta está en progreso en otro dispositivo.";
+=======
+                      consultStartMsg = 'Su consulta ya se inició en otro dispositivo.';
+                      consultEndMeg = 'Su consulta ya ha finalizado';
+                      consultCancelMsg = 'Su consulta se cancela.';
+                      consultProgMsg = 'Su consulta está en progreso en otro dispositivo.';
+                      sessAlertDone = 'Hecho';
+                    } else {
+                      consultStartMsg = 'Your consultation is already started on other device.';
+                      consultEndMeg = 'Your consultation is already ended.';
+                      consultCancelMsg = 'Your consultation is cancelled.';
+                      consultProgMsg = 'Your consultation is in progress on other device.';
+                      sessAlertDone = 'Done';
+>>>>>>> 58e7a7d75145a26feab9e3b3e08c5f0aed257517
                     }
                 if(isLang == "English (UK)") {
                       $(".apponitmentWeek").text(spDay[apponitmentWeek]);
@@ -350,7 +389,7 @@ $("#localize-widget").show();
                 $scope.paticipatingPhysicianPhoto = $scope.paticipatingPhysician.person.photoUrl;
 
                 $rootScope.scheduledListDatas.push({
-                    'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
+                    'scheduledTime': CustomCalendar.getLocalTime1(index.startTime),
                     'appointmentId': index.appointmentId,
                     'appointmentStatusCode': index.appointmentStatusCode,
                     'appointmentTypeCode': index.appointmentTypeCode,
@@ -638,49 +677,85 @@ $("#localize-widget").show();
                     if ($rootScope.consultationStatusId === 71) {
                         $rootScope.doGetScheduledNowPhoneConsulatation();
                         navigator.notification.alert(
+<<<<<<< HEAD
                           alertconstarted, // message
+=======
+                          //  'Your consultation is already started on other device.', // message
+                          consultStartMsg,
+>>>>>>> 58e7a7d75145a26feab9e3b3e08c5f0aed257517
                             function() {
                                 $state.go('tab.userhome');
                                 return;
                             },
                             $rootScope.alertMsgName, // title
+<<<<<<< HEAD
                             alertDone // buttonName
+=======
+                            sessAlertDone //'Done' // buttonName
+>>>>>>> 58e7a7d75145a26feab9e3b3e08c5f0aed257517
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId === 72) {
                         $rootScope.doGetScheduledNowPhoneConsulatation();
                         navigator.notification.alert(
+<<<<<<< HEAD
                             alertconended, // message
+=======
+                            //'Your consultation is already ended.', // message
+                            consultEndMeg,
+>>>>>>> 58e7a7d75145a26feab9e3b3e08c5f0aed257517
                             function() {
                                 $state.go('tab.userhome');
                                 return;
                             },
                             $rootScope.alertMsgName, // title
+<<<<<<< HEAD
                             alertDone // buttonName
+=======
+                            sessAlertDone  //'Done' // buttonName
+>>>>>>> 58e7a7d75145a26feab9e3b3e08c5f0aed257517
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId === 79) {
                         $rootScope.doGetScheduledNowPhoneConsulatation();
                         navigator.notification.alert(
+<<<<<<< HEAD
                             alertconcancel, // message
+=======
+                            //'Your consultation is cancelled.', // message
+                            consultCancelMsg,
+>>>>>>> 58e7a7d75145a26feab9e3b3e08c5f0aed257517
                             function() {
                                 $state.go('tab.userhome');
                                 return;
                             },
                             $rootScope.alertMsgName, // title
+<<<<<<< HEAD
                             alertDone // buttonName
+=======
+                            sessAlertDone  //'Done' // buttonName
+>>>>>>> 58e7a7d75145a26feab9e3b3e08c5f0aed257517
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId === 80) {
                         $rootScope.doGetScheduledNowPhoneConsulatation();
                         navigator.notification.alert(
+<<<<<<< HEAD
                             alertconprogress, // message
+=======
+                            //'Your consultation is in progress on other device.', // message
+                            consultProgMsg,
+>>>>>>> 58e7a7d75145a26feab9e3b3e08c5f0aed257517
                             function() {
                                 $state.go('tab.userhome');
                                 return;
                             },
                             $rootScope.alertMsgName, // title
+<<<<<<< HEAD
                             alertDone // buttonName
+=======
+                            sessAlertDone   //'Done' // buttonName
+>>>>>>> 58e7a7d75145a26feab9e3b3e08c5f0aed257517
                         );
                         return false;
                     }
@@ -793,7 +868,7 @@ $("#localize-widget").show();
     }
 
     $scope.goTOSchedule = function() {
-      $("#localize-widget").show();
+      //$("#localize-widget").show();
         $('<link/>', {
             rel: 'stylesheet',
             type: 'text/css',

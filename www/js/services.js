@@ -2462,13 +2462,21 @@ this.getCountryDetails = function () {
 		  /*var utcTime = moment.utc(dateTime).toDate();
 			var localTime = $filter('date')(utcTime, 'yyyy-MM-ddTHH:mm:ss');
 	        return new Date(dateTime);//localTime;*/
-      var year = dateTime.slice(0, 4);
+              var year = dateTime.slice(0, 4);
               var month = dateTime.slice(5, 7) - 1;
               var day = dateTime.slice(8, 10);
               var hours = dateTime.slice(11, 13);
               var min = dateTime.slice(14, 16);
               return new Date(year, month, day, hours, min);
+
     }
+//vijay added
+    this.getLocalTime1 = function(dateTime){
+              var serverDateTime  = dateTime;
+			  var currentLocalTimeZoneDateTime = new Date(serverDateTime);
+			  return currentLocalTimeZoneDateTime;
+			}
+
 
     this.getMonthName = function(PriorSurgerymonth) {
         PriorSurgerymonth = Number(PriorSurgerymonth);
