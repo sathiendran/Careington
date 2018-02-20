@@ -108,7 +108,7 @@
                         <!-- <span class="user-account__error-message localizejs" ng-show="emailmanderror">Please enter your email id</span>
                         <span class="user-account__error-message localizejs" ng-show="emailerror">Please enter valid email id</span>
                         <span class="user-account__error-message localizejs" ng-show="emailexisterror">An account with this email already exist.</span> -->
-                        <span class="user-account__error-message localizejs" ng-show="emailerrorSpan">{{emailerroralert}}</span>    
+                        <span class="user-account__error-message localizejs" ng-show="emailerrorSpan">{{emailerroralert}}</span>
                       </div>
                   </div>
                </div>
@@ -123,7 +123,7 @@
                         <div class="viewport localizejs" ng-if="regCountry2 != ''">{{regCountry2}}</div>
                          <select class="ssooptionCountry textdata consultHealthPlanDropDown localizejs" id="regCountryCode" name="regCountryCode" ng-model="regStep1.regCountryCode"  ng-change="countryBlur()" >
                             <option value="Choose" class="localizejs"><b class="localizejs">Choose</b></option>
-                            <option class="planlist localizejs" ng-repeat="country in serviceCountries" value="{{country.code}}"><b class="localizejs">{{country.name}} ({{country.code}})</b></option>
+                            <option class="planlist localizejs" ng-repeat="country in serviceCountries" value="{{country.code}}"><span class="localizejs">{{country.name}}</span><span>({{country.code}})</span></option>
                          </select>
                         <span class="user-account__error-message localizejs" ng-show="countryError">Please choose your country code</span>
                      </div>
@@ -299,7 +299,7 @@
                         <span class="user-account__error-message localizejs" ng-show="emailerror">Please enter valid email id</span>
                         <span class="user-account__error-message localizejs" ng-show="emailexisterror">An account with this email already exist.</span>
                      -->
-                     <span class="user-account__error-message localizejs" ng-show="emailerrorSpan">{{emailerroralert}}</span>                  
+                     <span class="user-account__error-message localizejs" ng-show="emailerrorSpan">{{emailerroralert}}</span>
                       </div>
                   </div>
                </div>
