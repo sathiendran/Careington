@@ -2402,6 +2402,9 @@ angular.module('starter.controllers')
            $scope.modal.remove();
            $rootScope.viewpatapiDisplay = 'flex';
            $rootScope.viewpatmodalDisplay = 'none';
+           if($rootScope.PatientsdetCount == 0) {
+            $ionicScrollDelegate.$getByHandle('scrollTopView').scrollTop();
+           }
         //   $ionicScrollDelegate.$getByHandle('scrollTopView').scrollTop();
       } else {
            $scope.updationListLength = 0;

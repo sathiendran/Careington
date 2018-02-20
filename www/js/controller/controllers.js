@@ -3740,7 +3740,6 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
                 $state.go('tab.providerSearch');
     }
 
-
     $rootScope.doGetRequiredPatientProfiles = function(patientId, chkPreviousPage, cutlocations, authen) {
         if(chkPreviousPage === true) {
           $rootScope.PatientImageSelectUser = '';
@@ -5990,7 +5989,7 @@ $scope.EditHealth = {};
     $scope.editpaymentcard = function(pageName){
         //  var proid = $("#addNewCard").val();
         $state.go('tab.cardeditDetails');
-
+        $rootScope.isEditAvailable = true;
 
         if (typeof $scope.cardPaymentId.addNewCard !== 'undefined') {
             if(pageName === 'consulCharge') {
@@ -6183,7 +6182,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
     $scope.doEditPaymentProfileDetails = function() {
 
-
+        $rootScope.iscancel = false;
         var editzipCount = $('#editZip').val().length;
         var currentTime = new Date()
         var EditexpiryDateCheck = new Date();
@@ -6410,7 +6409,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
     $scope.doPostPaymentProfileDetails = function() {
 
-
+        $rootScope.iscancel = false;
+        $rootScope.isEditAvailable = false;
         var zipCount = $('#Zip').val().length;
         var currentTime = new Date()
         var ExpiryDateCheck = new Date();
@@ -10003,15 +10003,23 @@ var currentLocalTimeZoneDateTime = new Date(serverDateTime);
         }
       $state.go('tab.consultCharge');
     }
-
-    // $scope.backToEdiORAddCard = function() {
-    //   if($rootScope.getHlthSctValue === 'Add a new health plan' || $rootScope.getHlthSctValue === 'Choose Your Health Plan' || $rootScope.getHlthSctValue === 'Agregar un nuevo plan de salud' || $rootScope.getHlthSctValue === 'Elija su plan de salud' || $rootScope.providerName === '') {
-    //         $rootScope.editplan ="none";
-    //     } else {
-    //         $rootScope.editplan ="block";
-    //     }
-    //   $state.go('tab.consultCharge');
-    // }
+   
+    $scope.backToEdiORAddCard = function() {
+       debugger
+        //$state.go($rootScope.submitPayBack);
+        $rootScope.iscancel = true;
+        if($rootScope.isEditAvailable){
+            $rootScope.isEditAvailable = true
+        } else {
+            $rootScope.editCardStyle ="none";
+            $rootScope.isEditAvailable = false;
+        }
+        
+        $state.go($rootScope.submitPayBack);
+       
+        // history.back();
+        //    $scope.apply();
+     }
 
     $scope.catchPlanDetails = function(){
         $rootScope.ahProvider = document.getElementById('Provider').value;
