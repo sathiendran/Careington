@@ -20,7 +20,7 @@ angular.module('starter.controllers')
                // $("#retrySpanish").text("Retry?");
                $("#retrySpanish").css("color", "Pink");
                $('head').append('<style>.drawer-card--empty.is-active:before{content:"No saved providers yet." !important;}</style>');
-               $('head').append('<style>.drawer-card--empty.is-active:before{content:"Add providers to your list by selecting the star on their profile card." !important;}</style>');
+               $('head').append('<style>.drawer-card--empty.is-active:after{content:"Add providers to your list by selecting the star on their profile card." !important;}</style>');
             //   $scope.retrySpanish = "Retry?";
               var sessAlertMessage = "You have logged in on another device and ended this session.";
               var YESMessageProviderSearch='Yes';

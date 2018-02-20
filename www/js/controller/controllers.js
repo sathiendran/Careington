@@ -360,7 +360,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
              }
        }
 
-         $('#localize-langs').click(function() {
+           $('#localize-langs').click(function() {
             if($( window ).width()<= 375){
              var isLang = $('#localize-langs .activated').text();
                if(isLang == "Español") {
@@ -744,7 +744,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";

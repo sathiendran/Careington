@@ -27,7 +27,7 @@ if($rootScope.is_iPadDeviceWidth <= 360){
                if(localizeCurrent == "Español") {
                    alertconstarted = "Su consulta ya se inició en otro dispositivo.";
                    alertconended = "Su consulta ya ha finalizado.";
-                   alertDone = "Listo";
+                   alertDone = "Hecho";
                    alertconcancel = "Su consulta se cancela.";
                    alertconprogress = "Su consulta está en progreso en otro dispositivo.";
                }
@@ -60,7 +60,7 @@ if($rootScope.is_iPadDeviceWidth <= 360){
 
                       alertconstarted = "Su consulta ya se inició en otro dispositivo.";
                       alertconended = "Su consulta ya ha finalizado.";
-                      alertDone = "Listo";
+                      alertDone = "Hecho";
                       alertconcancel = "Su consulta se cancela.";
                       alertconprogress = "Su consulta está en progreso en otro dispositivo.";
                     }
