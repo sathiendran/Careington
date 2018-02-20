@@ -12,12 +12,12 @@
 <ion-header-bar align-title="left" class="bar-positiveHomeUser bar bar-header disable-user-behavior" style="background-color: {{brandColor}}; border-color: {{brandColor}}">
   <div id="Error_Message" ></div>
   <div class="Server_Error" ></div>
-    <div class="buttons ">
+    <div class="buttons" style="width: 15%;">
 			<!--<button class="button icon button-clear ion-navicon-round UserHomeIcon {{menuicon}}" id="BackButtonIcon" style="{{MenuIconBottom}}" ng-click="toggleLeft()" ></button>-->
 			<span class="button icon button-clear UserHomeIcon localizejs termsCloseNew-{{deviceName}}"  ng-click="backtoPreviousPageFromTerms(registerCurrentPage);">Close</span>
 		</div>
 
-		<h1 class="title_patientAndroid HeaderListAndroid intakeTittleAndroid userhomePlusIcon termsTitleNew-{{deviceName}}">
+		<h1 class="title_patientAndroid HeaderListAndroid intakeTittleAndroid userhomePlusIcon termsTitleNew-{{deviceName}}" style="width: 70% !important;">
 			<div class="Server_Error ErrorMessageDiv"></div>
 	 		<div id="Error_Message"></div>
 			<span class="localizejs">Terms</span>
@@ -26,7 +26,7 @@
 
 
 <ion-view title="Terms&Conditions">
-   <ion-content class="ContentList_terms-{{deviceName}} ionic-scroll  has-header has-footer" style="font-size: 19px; color: #4D4D4D; text-align: justify;"  >
+   <ion-content class="ContentList_terms-{{deviceName}} ionic-scroll  has-header has-footer" style="font-size: 19px; color: #4D4D4D; "  >
       <div class="singleTermsconContent-{{deviceName}} TC-content" style="top: -110px; padding-top: 200px;" >
         <span class="terms-Hospitaltitle localizejs">{{Hospital}}</span>
          <div class="termscontent localizejs" style="margin-top: 16pt;"  ng-bind-html="termsandCOnditionsContent | sanitize"></div>
