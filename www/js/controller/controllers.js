@@ -749,7 +749,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -10023,7 +10023,7 @@ var currentLocalTimeZoneDateTime = new Date(serverDateTime);
         }
       $state.go('tab.consultCharge');
     }
-   
+
     $scope.backToEdiORAddCard = function() {
        debugger
         //$state.go($rootScope.submitPayBack);
@@ -10034,9 +10034,9 @@ var currentLocalTimeZoneDateTime = new Date(serverDateTime);
             $rootScope.editCardStyle ="none";
             $rootScope.isEditAvailable = false;
         }
-        
+
         $state.go($rootScope.submitPayBack);
-       
+
         // history.back();
         //    $scope.apply();
      }

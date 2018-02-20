@@ -642,6 +642,23 @@ kendo.bind($("input"), viewModel);
 </script>
 
 <script>
+Localize.on('setLanguage', function (data) {
+  console.log('hhh');
+               var culture = "en-US";
+               if (data.to == 'es') {
+                   culture = 'es-ES'
+               } else if (data.to == 'en-GB') {
+                   culture = 'en-GB'
+               } else {
+                   culture = 'en-US'
+               }
+               snap.culture = culture;
+               kendo.culture(culture);
+               snap.datepickers.initializeDatePickerCalture();
+           });
+</script>
+
+<script>
 window.addEventListener('native.keyboardshow', function() {
    $("#localize-widget").hide();
 

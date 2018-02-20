@@ -1,11 +1,15 @@
-﻿// ReSharper disable CoercedEqualsUsing
+// ReSharper disable CoercedEqualsUsing
 // Todo: Provide a comment indicating what this file is for.
 (function (global, $) {
 
     var snap = global.snap = global.snap || {};
+    snap.calenderObj = [];
+    snap.calenderSelector = [];
+
     $.extend(snap, {
         datetimeShortFormatString: "mm/dd/yyyy",
         datetimeFormatString1: "MMM dd, yyyy",
+        datetimeFormatString2: "MM/dd/yyyy",
         dateConversion: {
             //for adminSchedule.viewmodel
             formatConsultationDuration: function (consultationDuration) {
@@ -21,7 +25,7 @@
                     minutes = minutes < 10 ? "0" + minutes : minutes;
                     seconds = seconds < 10 ? "0" + seconds : seconds;
                     hours = hours < 10 ? "0" + hours : hours;
-                    
+
                     return [(hours === "00" ? "" : (hours + ":")), minutes, ":", seconds].join("");
                 }
 
@@ -41,8 +45,8 @@
             },
 
             /********************************
-             * This function ignore time zone. 
-             * Example: 
+             * This function ignore time zone.
+             * Example:
              *     Thu Nov 12 2015 00:00:00 GMT+0600   => Nov 12, 2015
              *     Thu Nov 12 2015 00:00:00 GMT-0800   => Nov 12, 2015
             *********************************/
@@ -71,26 +75,38 @@
                 $("#txtDOB").attr("placeholder", snap.datetimeShortFormatString);
             },
             initializeDatePicker: function (selector, maxDate, minDate, format) {
+                var localCalObj;
                 function onChange() {
                     // Empty is intentional
                 }
                 if (maxDate) {
-                    $(selector).kendoDatePicker({
-                        format: format || snap.datetimeFormatString1,
-                        parseFormats: [snap.datetimeFormatString1, "M/d/yyyy", "dd.MM.yyyy", "dd.MM.yy", "dd.MM", "MM/dd/yyyy", "MM/dd", "MM/dd/yy"],
+                    localCalObj= $(selector).kendoDatePicker({
+                        format: format || snap.datetimeFormatString2,
+                        parseFormats: [snap.datetimeFormatString1, snap.datetimeFormatString2, "M/d/yyyy", "dd.MM.yyyy", "dd.MM.yy", "dd.MM", "MM/dd/yyyy", "MM/dd", "MM/dd/yy"],
                         min: minDate || snap.dateLimits.getStartDate(),
                         max: maxDate,
                         change: onChange,
                     }).data("kendoDatePicker");
                 } else {
-                    $(selector).kendoDatePicker({
-                        format: format || snap.datetimeFormatString1,
-                        parseFormats: [snap.datetimeFormatString1, "M/d/yyyy", "dd.MM.yyyy", "dd.MM.yy", "dd.MM", "MM/dd/yyyy", "MM/dd", "MM/dd/yy"],
+                    localCalObj= $(selector).kendoDatePicker({
+                        format: format || snap.datetimeFormatString2,
+                        parseFormats: [snap.datetimeFormatString1, snap.datetimeFormatString2, "M/d/yyyy", "dd.MM.yyyy", "dd.MM.yy", "dd.MM", "MM/dd/yyyy", "MM/dd", "MM/dd/yy"],
                         min: minDate || snap.dateLimits.getStartDate(),
                         change: onChange,
-                    });
+                    }).data("kendoDatePicker");
+                }
+
+                if (localCalObj && snap.calenderSelector.indexOf(selector) == -1) {
+                    snap.calenderObj.push(localCalObj);
+                    snap.calenderSelector.push(selector);
                 }
             },
+
+            initializeDatePickerCalture: function () {
+                snap.calenderObj.forEach(function (obj) {
+                    obj.setOptions({});
+                })
+            }
 
         },
 
@@ -130,7 +146,11 @@
                 dt.setHours(23, 59, 0, 0);
                 return dt;
             },
-
+            getTodayMinDate: function () {
+                var dt = new Date();
+                dt.setHours(0, 0, 0, 0);
+                return dt;
+            },
 
             getMinScheduledDate: function () {
                 var minDate = new Date();
@@ -140,7 +160,7 @@
             getMinDOBforEmail: function () {
                 var d = new Date();
                 var currentYear = d.getFullYear();
-                var startingYear = (currentYear) - 12;
+                var startingYear = (currentYear) - 13;
                 var startDate = new Date(startingYear, d.getMonth(), d.getDate());
                 return startDate;
             },

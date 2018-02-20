@@ -72,7 +72,20 @@
                     }]
                 }).data("kendoNotification");
             }
+
             if (notification) {
+              var SessTimedOutMsg = 'Your session timed out.';
+              var SessTimedOk = 'Ok';
+
+              var localizeCurrent = $('#localize-current').text();
+                if(localizeCurrent == "Español") {
+                   SessTimedOutMsg = 'Su sesión ha excedido el tiempo de espera.';
+                   SessTimedOk = 'De acuerdo';
+                } else {
+                   SessTimedOutMsg = 'Your session timed out.';
+                   SessTimedOk = 'Ok';
+                }
+                
                  navigator.notification.alert(
                   // 'Your session timed out.', // message
                   SessTimedOutMsg,
