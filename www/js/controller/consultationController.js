@@ -2,7 +2,7 @@ angular.module('starter.controllers')
     .controller('consultationController', function($scope, $sanitize, $ionicSideMenuDelegate, $ionicPlatform, $interval, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $filter, htmlEscapeValue) {
         $rootScope.couserdetails = false;
         $rootScope.dupcouser = false;
-        $("#localize-widget").show();
+        $("#localize-widget").hide();
 
         //venket
         var localizeCurrent = $('#localize-current').text();
@@ -427,7 +427,9 @@ angular.module('starter.controllers')
         }
         $scope.consultsearch = function() {
           //  $scope.passededconsultants();
+          $("#localize-widget").hide();
             $state.go('tab.consultationSearch');
+            $("#localize-widget").hide();
         }
 
 

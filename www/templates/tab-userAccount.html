@@ -91,7 +91,8 @@
                       <!--  <p class="localizejs accOnCall2 accOnServiceDate">Service will resume at</p>-->
                         <p class="localizejs accOnCall2 accOnServiceDate">Service is currently unavailable.</p>
                         <p class="localizejs accOnCall2 accOnQuestion">Questions? Please call
-                        <a class="localizejs accOnCall2 accOnQuestion" ng-href="tel: {{appointmentsContactNumber}}">{{appointmentsContactNumber}}</a></p>
+                        <!--<a class="localizejs accOnCall2 accOnQuestion" ng-href="tel: {{appointmentsContactNumber}}">{{appointmentsContactNumber}}</a></p>-->
+                        <a class="localizejs accOnCall2 accOnQuestion phoneNumColor" ng-click="callPhone()">{{appointmentsContactNumber}}</a></p>
                      </div>
                   </div>
                 <div class="card accMainContent" ng-if="online == true && onSSAvailability == 'on' && chkAvailabiltyOfSS == true">
@@ -116,7 +117,8 @@
                         <p class="localizejs accOnCall2 accOnCallNew">with a specific provider</p>
                         <p class="localizejs accOnCall2 accOnServiceDate">Service is currently unavailable.</p>
                         <p class="localizejs accOnCall2 accOnQuestion accOnQuestionNew">Questions? Please call
-                        <a class="localizejs accOnCall2 accOnQuestion accOnQuestionNew" ng-href="tel: {{appointmentsContactNumber}}">{{appointmentsContactNumber}}</a></p>
+                      <!--  <a class="localizejs accOnCall2 accOnQuestion accOnQuestionNew" ng-href="tel: {{appointmentsContactNumber}}">{{appointmentsContactNumber}}</a></p>-->
+                       <a class="localizejs accOnCall2 accOnQuestion phoneNumColor" ng-click="callPhone()">{{appointmentsContactNumber}}</a></p>
                      </div>
                   </div>
 <!-- <ion-item ng-if="onSSAvailability != 'on' && chkAvailabiltyOfSS == false && providerAvailability != true && providerOnDemandEnabled != true" class="noneSchedule localizejs noapptviewResult item" style="white-space: normal;"> -->
@@ -128,7 +130,8 @@
                       <p class="noneScheduleText">appointment.</p>
                       </div>
                       <p class="noneScheduleNumber">
-                      <a class="noneScheduleNumber" ng-href="tel: {{appointmentsContactNumber}}">{{appointmentsContactNumber}}</a>
+                      <!--<a class="noneScheduleNumber" ng-href="tel: {{appointmentsContactNumber}}">{{appointmentsContactNumber}}</a>-->
+                        <a class="localizejs accOnCall2 accOnQuestion phoneNumColor" ng-click="callPhone()">{{appointmentsContactNumber}}</a>
                       </p>
                     </div>
                   </ion-item>

@@ -590,6 +590,7 @@ angular.module('starter.controllers')
 
  $rootScope.editremovemodal = function () {
    $("#localize-widget").show();
+    $('.regFooter').css("display","block");
             $scope.modal.remove()
                 .then(function () {
                   $scope.regStep1.homeadd= $scope.oldfullAddress;
@@ -659,6 +660,7 @@ angular.module('starter.controllers')
         }*/
 
         $scope.addressEditSave = function(){
+           $('.regFooter').css("display","block");
           //if(document.getElementById('fullAddress').value != 'Please enter address' )
           if(document.getElementById('fullAddress').value != $rootScope.defaultAddressText )
           {
@@ -817,6 +819,7 @@ angular.module('starter.controllers')
         $scope.addressEditModal = function () {
           // $("#localize-widget").show();
             //$('#healthInfoHeightUnit').val("");
+            $('#regDOB').blur();
             $ionicModal.fromTemplateUrl('templates/tab-addressedittemplate.html', {
                 scope: $scope,
                 animation: 'slide-in-up',

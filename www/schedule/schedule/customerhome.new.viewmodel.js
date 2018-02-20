@@ -1449,6 +1449,7 @@ var setUserVars = function() {
                 this.availableTime = "00:00";
 
                 this._startTimer = function() {
+                    console.log("enter");
                     var that = this;
                     var timer = $timer.createTimer({
                         countDown: true,
@@ -2113,6 +2114,7 @@ var setUserVars = function() {
 
                     var that = this;
                     this._deactivationTimeout = setTimeout(function() {
+                            $('.k-calendar-container').css("display","none");
                             that.set("isReadOnly", true);
                             that.set("isDisabled", true);
                             that.set("vm_notification_msg", "This appointment has expired. Please close this dialogue and select a new time.");

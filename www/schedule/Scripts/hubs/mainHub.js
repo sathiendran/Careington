@@ -72,11 +72,45 @@
                     return;
                 }
 
+       var alertInternetConnection ="No Internet Connection.";
+        var localizeCurrent = $('#localize-current').text();
+       f(localizeCurrent == "Español") {
+        alertInternetConnection ="Sin conexión a Internet.";
+       } if(localizeCurrent == "English (UK)") {
+          alertInternetConnection ="No Internet Connection.";
+       } if(localizeCurrent == "English") {
+          alertInternetConnection ="No Internet Connection.";
+       }
+      } else {
+          if(localizeCurrent == "Español"){
+              alertInternetConnection ="Sin conexión a Internet.";
+            }else{
+              alertInternetConnection ="No Internet Connection.";
+            }
+      }
+
+          $('#localize-langs').click(function() {
+
+            var isLang = $('#localize-langs .activated').text();
+              if(isLang == "Español") {
+              alertInternetConnection ="Sin conexión a Internet.";
+              }
+              if(isLang == "English (UK)") {
+                alertInternetConnection ="No Internet Connection.";
+              }
+              if(isLang == "English") {
+                  alertInternetConnection ="No Internet Connection.";
+              }
+            isLang = "";
+          }
+    });
+
                 //only show the message on consulation Page
                 if (wasConsultation) {
                   //  global.snapInfo("Attempting to reconnect...."); //todo keep this up
                       navigator.notification.alert(
-                          'No Internet Connection.', // message
+                          // 'No Internet Connection.', // message
+                          alertInternetConnection
                           function() {
                                //window.location.href = snap.redirctPage;
                               // window.location.reload(true);

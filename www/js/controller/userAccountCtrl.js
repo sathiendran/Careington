@@ -215,4 +215,11 @@ $("#localize-widget").show();
             $state.go('tab.providerSearch');
         }
 
+        $rootScope.callPhone = function() {
+          var url = 'tel:' + $rootScope.appointmentsContactNumber;
+          window.open(url, '_system', 'location=yes');
+          return false;
+      }
+
+
     })

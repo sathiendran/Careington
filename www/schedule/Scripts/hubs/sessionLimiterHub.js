@@ -1,6 +1,34 @@
 ;
 (function(global, $, snap) {
     "use strict";
+    var alertloggedother = "You have logged in on another device.";
+
+                var localizeCurrent = $('#localize-current').text();
+                console.log("lang "+localizeCurrent);
+                  if(localizeCurrent == "Español") {
+                      alertloggedother = "Ha iniciado sesión en otro dispositivo.";
+                  }
+                else  if(localizeCurrent == "English (UK)") {
+                  alertloggedother = "You have logged in on another device.";
+                }
+                else if (localizeCurrent == "English")   {
+                    alertloggedother = "You have logged in on another device.";
+                  }
+
+
+                 $('#localize-langs').click(function() {
+                   var isLang = $('#localize-langs .activated').text();
+                     console.log("lang "+isLang);
+                     if(isLang == "Español") {
+                       alertloggedother = "Ha iniciado sesión en otro dispositivo.";
+                     }
+                    else  if(isLang == "English (UK)") {
+                      alertloggedother = "You have logged in on another device.";
+                    }
+                      else if (isLang == "English") {
+                          alertloggedother = "You have logged in on another device.";
+                      }
+                    });
 
     snap.namespace("snap.hub")
         .use(["snap.hub.hubModel"])
@@ -58,7 +86,7 @@
                         window.location.href = loginPath;
                     });*/
                     navigator.notification.alert(
-                        'You have logged in on another device.', // message
+                        alertloggedother, // message
                         function() {
                            // $overlay.toggleOverlay();
                              window.location.href = snap.redirctPage;

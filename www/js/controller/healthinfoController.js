@@ -2937,6 +2937,7 @@ angular.module('starter.controllers')
 
 
         $scope.closeSurgeryPopup = function () {
+            $("#localize-widget").hide();
             console.log('inside closeSurgeryPopup');
             console.log('name :' + $scope.surgery.name + ', date : ' + $scope.surgery.dateString);
             $scope.surgery.name;
@@ -3024,7 +3025,7 @@ angular.module('starter.controllers')
             LoginService.putPatientMedicalProfile(params);
         };
         $scope.hideSurgeryPopup = function (model) {
-          $("#localize-widget").show();
+          $("#localize-widget").hide();
             $scope.modal.remove();
             $rootScope.showNewSurgeryAdd = false;
             $scope.showEditSurgery = false;
@@ -3041,6 +3042,7 @@ angular.module('starter.controllers')
         }, 100);
 
         $scope.showNewSurgeryAddScreen = function () {
+              $("#localize-widget").hide();
             $scope.surgery = {};
             $timeout(function () {
                 $('select option').filter(function () {

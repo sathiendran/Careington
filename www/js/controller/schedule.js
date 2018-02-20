@@ -12,6 +12,7 @@ angular.module('starter.controllers')
                 $('head').append('<style>.drawer-card--empty.is-active::after{content:"Agregue proveedores a su lista seleccionando la estrella en su tarjeta de perfil." !important;}</style>');
                // $('head').append('<style>.column:before{width:800px !important;}</style>');
                var sessAlertMessage = "Ha iniciado sesión en otro dispositivo y finalizó esta sesión.";
+               var YESMessageProviderSearch='Sí';
                var sessAlertDone = 'Hecho';
                var SessTimedOutMsg = 'Su sesión ha excedido el tiempo de espera.';
                var SessTimedOk = 'De acuerdo';
@@ -19,10 +20,11 @@ angular.module('starter.controllers')
                // $("#retrySpanish").text("Retry?");
                $("#retrySpanish").css("color", "Pink");
                $('head').append('<style>.drawer-card--empty.is-active:before{content:"No saved providers yet." !important;}</style>');
-               $('head').append('<style>.drawer-card--empty.is-active:before{content:"Add providers to your list by selecting the star on their profile card." !important;}</style>');
+               $('head').append('<style>.drawer-card--empty.is-active:after{content:"Add providers to your list by selecting the star on their profile card." !important;}</style>');
             //   $scope.retrySpanish = "Retry?";
               var sessAlertMessage = "You have logged in on another device and ended this session.";
               var YESMessageProviderSearch='Yes';
+              var sessAlertDone = 'Done';
               var SessTimedOutMsg = 'Your session timed out.';
               var SessTimedOk = 'Ok';
            }
