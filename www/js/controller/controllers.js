@@ -749,7 +749,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -5135,13 +5135,13 @@ $scope.EditHealth = {};
 			           $rootScope.editCardStyle ="none";
             }
         } else {
-            if ($('option:selected', this).text() === 'Choose Your Card' || payValue != 'Elija su Tarjeta') {
-                debugger;
-                $rootScope.iscancel = false;
+            if ($('option:selected', this).text() === 'Choose Your Card' || payValue === 'Elija su Tarjeta') {
+              $rootScope.iscancel = false;
               $rootScope.editCardStyle ="none";
               $("div.cardViewport").empty();
               $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
             }  else {
+                  $rootScope.iscancel = true;
               $rootScope.editCardStyle ="block";
               var payValue = ($('option:selected', this).val()).split("@");
               if(payValue == 'Choose Your Card' || payValue == 'Elija su Tarjeta') {
@@ -5159,7 +5159,7 @@ $scope.EditHealth = {};
             }
             //$('div.cardViewport').text($("option:selected", this).text());
         }
-        if ($('option:selected', this).text() === 'Agregar una tarjeta nueva') {
+        if ($('option:selected', this).text() === 'Agregar una tarjeta nueva' || $('option:selected', this).text() === 'Add a new card') {
             $rootScope.submitPayBack = $rootScope.currState.$current.name;
             $rootScope.cardPage = "consultCharge";
             $state.go('tab.cardDetails');
@@ -5169,7 +5169,7 @@ $scope.EditHealth = {};
                  $rootScope.editCardStyle ="none";
             }
         } else {
-            if ($('option:selected', this).text() === 'Elija su Tarjeta' || $('option:selected', this).text() === 'Add a new card' ) {
+            if ($('option:selected', this).text() === 'Elija su Tarjeta' || $('option:selected', this).text() === 'Choose your Card' ) {
               $rootScope.editCardStyle ="none";
               $rootScope.editplan ="none";
               $("div.cardViewport").empty();
@@ -5185,7 +5185,7 @@ $scope.EditHealth = {};
               if(payValue == 'Choose Your Card' || payValue == 'Elija su Tarjeta') {
                 $rootScope.editCardStyle = "none";
             } else {
-                $("div.cardViewport").empty();
+                //$("div.cardViewport").empty();
                     if(payValue[3] != "logoNone" )
                     {
                         $("div.cardViewport").html('<div class="insCardName"><img class="cardlogo" src = "'+payValue[3]+'" /></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
@@ -5335,6 +5335,11 @@ $scope.EditHealth = {};
           if(payValue == 'Choose Your Card' || payValue == 'Elija su Tarjeta') {
             $rootScope.editCardStyle = "none";
           } else {
+            if(payValue != undefined)
+            {
+
+
+
                 $("div.cardViewport").empty();
                 if(payValue[3] != "logoNone" )
                     {
@@ -5344,6 +5349,7 @@ $scope.EditHealth = {};
                       $("div.cardViewport").html('<div class="insCardName"> <i class="iconfontSVG"><svg version="1.1" id="Credit_card" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 3 150 55" enable-background="new 0 3 150 55" width="10cm" height="10cm" preserveAspectRatio="xMinYMin meet" ><path d="M18,3H2C0.899,3,0,3.9,0,5v10c0,1.1,0.899,2,2,2h16c1.1,0,2-0.9,2-2V5C20,3.9,19.1,3,18,3z M18,15H2V9h16V15z M18,6H2V5h16    V6z M4,11.1v0.6h0.6v-0.6H4z M7.6,12.299V12.9h1.2v-0.601h0.6v-0.6H10v-0.6H8.8v0.6H8.199v0.6H7.6z M10,12.9v-0.601H9.399V12.9H10z     M7,12.9v-0.601H5.8V12.9H7z M7.6,11.699h0.6v-0.6H7v1.199h0.6V11.699z M5.199,12.299H5.8v-0.6h0.6v-0.6h-1.2v0.6H4.6v0.6H4V12.9    h1.199V12.299z"></path></svg></i></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
                     }
             }
+                }
 
         //  $rootScope.userCardNumber = $('option:selected', this).text();
           $rootScope.userCardNumber = payValue[2];
@@ -5411,12 +5417,12 @@ $scope.EditHealth = {};
           $rootScope.copayAmount = $rootScope.consultationAmount;
           $rootScope.healthPlanPage = "none";
           $rootScope.consultChargeNoPlanPage = "block";
-  		  // if($rootScope.userDefaultPaymentProfile == null || ($('#addNewCard').val() == 'Choose Your Card'))
-      //     {
-      //       $rootScope.editCardStyle = "none";
-      //     }else {
-      //       $rootScope.editCardStyle = "block";
-      //     }
+  		  if($rootScope.userDefaultPaymentProfile == null || ($('#addNewCard').val() == 'Choose Your Card'))
+          {
+            $rootScope.editCardStyle = "none";
+          }else {
+            $rootScope.editCardStyle = "block";
+          }
           $('option').filter(function() {
               return this.value.indexOf('?') >= 0;
           }).remove();
@@ -5903,6 +5909,8 @@ $scope.EditHealth = {};
                                     $('#addNewCard_addCard').val('Choose Your Card');
                                     $('#addNewCard_submitPay').val('Choose Your Card');
                                     $rootScope.userDefaultPaymentProfileText = null;
+
+                                     $rootScope.editCardStyle ="none";
                               }
 
                           }
@@ -6445,6 +6453,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
     $scope.doPostPaymentProfileDetails = function() {
 
         $rootScope.iscancel = false;
+      
         $rootScope.isEditAvailable = false;
         var zipCount = $('#Zip').val().length;
         var currentTime = new Date()
@@ -10052,13 +10061,12 @@ var currentLocalTimeZoneDateTime = new Date(serverDateTime);
     }
    
     $scope.backToEdiORAddCard = function() {
-       debugger
         //$state.go($rootScope.submitPayBack);
         $rootScope.iscancel = true;
         if($rootScope.isEditAvailable){
             $rootScope.isEditAvailable = true
         } else {
-            $rootScope.editCardStyle ="none";
+            //$rootScope.editCardStyle ="none";
             $rootScope.isEditAvailable = false;
         }
         
