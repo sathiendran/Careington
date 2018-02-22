@@ -718,6 +718,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.concernListSearchIconIOS = "bottom: -4px !important;";
             $rootScope.concernListTitleiosprior = "top: 14px !important;"
             $rootScope.surgeryTopAddButtonIOS  ="top: 23px !important;height: 30px !important;";
+            $rootScope.termsCondtion = "margin-top: 9px !important;";
 
         }
         if ($rootScope.isIPad) {
@@ -785,6 +786,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.appointCOntent = "margin-top:153px;";
         $rootScope.PaymentStyle = "padding: 0px; margin-top: 148px;	background-color: #fff; top: -2px;";
         $rootScope.conChargeMargin = "margin: 206px 0 0 0;";
+        $rootScope.termsCondtion = "margin-top: 1px !important;";
     }
     $scope.showSearchInput = function() {
         var searchStyle = $('#divSearchInput').css('display');

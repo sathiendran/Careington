@@ -9,11 +9,11 @@
 </ion-header-bar>-->
 
 
-<ion-header-bar align-title="left" class="bar-positiveHomeUser bar bar-header disable-user-behavior" style="background-color: {{brandColor}}; border-color: {{brandColor}}">
+<!-- <ion-header-bar align-title="left" class="bar-positiveHomeUser bar bar-header disable-user-behavior" style="background-color: {{brandColor}}; border-color: {{brandColor}}">
   <div id="Error_Message" ></div>
   <div class="Server_Error" ></div>
     <div class="buttons" style="width: 15%;">
-			<!--<button class="button icon button-clear ion-navicon-round UserHomeIcon {{menuicon}}" id="BackButtonIcon" style="{{MenuIconBottom}}" ng-click="toggleLeft()" ></button>-->
+			<!----<button class="button icon button-clear ion-navicon-round UserHomeIcon {{menuicon}}" id="BackButtonIcon" style="{{MenuIconBottom}}" ng-click="toggleLeft()" ></button>----
 			<span class="button icon button-clear UserHomeIcon localizejs termsCloseNew-{{deviceName}}"  ng-click="backtoPreviousPageFromTerms(registerCurrentPage);">Close</span>
 		</div>
 
@@ -22,14 +22,21 @@
 	 		<div id="Error_Message"></div>
 			<span class="localizejs">Terms</span>
 	</h1>
-	</ion-header-bar>
+	</ion-header-bar> -->
+
+  <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};height: 64px !important;">
+
+     <button class="button button-clear {{concernListDoneStyle}} localizejs" style="font-size: 20px !important; padding:10 0 0 0 !important;{{termsCondtion}}" ng-click="backtoPreviousPageFromTerms(registerCurrentPage)">Close</button>
+     <h1 class="title {{concernListTitleStyle}} localizejs" style="margin-right: 30px !important;margin-top: 6px !important;top: 12px !important; font-size:20pt !important; ">Terms</h1>
+
+  </header>
 
 
 <ion-view title="Terms&Conditions">
    <ion-content class="ContentList_terms-{{deviceName}} ionic-scroll  has-header has-footer" style="font-size: 19px; color: #4D4D4D; "  >
       <div class="singleTermsconContent-{{deviceName}} TC-content" style="top: -110px; padding-top: 200px;" >
         <span class="terms-Hospitaltitle localizejs">{{Hospital}}</span>
-         <div class="termscontent localizejs" style="margin-top: 16pt;"  ng-bind-html="termsandCOnditionsContent | sanitize"></div>
+         <div class="termscontent localizejs" style="margin-top: 16pt;text-align: justify;"  ng-bind-html="termsandCOnditionsContent | sanitize"></div>
       </div>
    </ion-content>
    <!-- <ion-footer-bar align-title="left" class="footer">
