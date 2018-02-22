@@ -5171,13 +5171,14 @@ $scope.EditHealth = {};
                  $rootScope.editCardStyle ="none";
             }
         } else {
-            if ($('option:selected', this).text() === 'Elija su Tarjeta' || $('option:selected', this).text() === 'Choose your Card' ) {
+            if ($('option:selected', this).text() === 'Elija su Tarjeta' ) {
               $rootScope.editCardStyle ="none";
-              $rootScope.editplan ="none";
+            //  $rootScope.editplan ="none";
               $("div.cardViewport").empty();
-              $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
+              $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Elija su Tarjeta</div>');
             }  else if ($('option:selected', this).text() === 'Choose Your Card') {
-                $rootScope.iscancel = false;
+               // $rootScope.iscancel = false;
+            //    $rootScope.editplan ="none";
               $rootScope.editCardStyle ="none";
               $("div.cardViewport").empty();
               $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
@@ -5202,7 +5203,7 @@ $scope.EditHealth = {};
     });
 
     $("#addNewCard_addCard").change(function() {
-        if ($('option:selected', this).text() === 'Add a new card') {
+        if ($('option:selected', this).text() === 'Add a new card' || $('option:selected', this).text() === 'Agrega una nueva tarjeta') {
             $rootScope.submitPayBack = $rootScope.currState.$current.name;
             $rootScope.cardPage = "addCard";
             $state.go('tab.cardDetails');
@@ -5240,7 +5241,7 @@ $scope.EditHealth = {};
             // $("div.cardViewport").html('<div class="parenttt" style=" display: table;padding: 4px;  width: 100%;  margin: -10px 5px;"><div class="insCardImage"><img src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png"  style =" width: 75px;  height: 50px;vertical-align: middle;"/> '+payValue[1]+'</div> <div class="insCardNumber" style =" vertical-align: middle;display: table-cell; text-align: justify; font-family: GloberSemiBold; font-size: 21px;padding: 12px 0px 12px 25px;">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div> </div>');
             }
         }
-        if ($('option:selected', this).text() === 'Agregar una tarjeta nueva') {
+        if ($('option:selected', this).text() === 'Agregar una tarjeta nueva' || $('option:selected', this).text() === 'Add a new card') {
             $rootScope.submitPayBack = $rootScope.currState.$current.name;
             $rootScope.cardPage = "addCard";
             $state.go('tab.cardDetails');
@@ -5251,7 +5252,7 @@ $scope.EditHealth = {};
             }
         } else {
             //$('div.cardViewport').text($("option:selected", this).text());
-            if ($('option:selected', this).text() === 'Elija su Tarjeta') {
+            if ($('option:selected', this).text() === 'Elija su Tarjeta' || $('option:selected', this).text() === 'Choose your Card') {
               $rootScope.editCardStyle ="none";
               $("div.cardViewport").empty();
               $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
@@ -5277,7 +5278,7 @@ $scope.EditHealth = {};
     });
 
     $("#addNewCard_submitPay").change(function() {
-        if ($('option:selected', this).text() === 'Add a new card') {
+        if ($('option:selected', this).text() === 'Add a new card' || $('option:selected', this).text() === 'Agrega una nueva tarjeta') {
           //  $rootScope.userCardDetails = $('option:selected', this).text();
             $rootScope.submitPayBack = $rootScope.currState.$current.name;
            // $rootScope.userCardNumber = 'Choose Your Card';
@@ -5316,7 +5317,7 @@ $scope.EditHealth = {};
         //  $('div.cardViewport').text($("option:selected", this).text());
         // $("div.cardViewport").html('<div class="parenttt" style=" display: table;padding: 4px;  width: 100%;  margin: -10px 5px;"><div class="insCardImage"><img src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png"  style =" width: 75px;  height: 50px;vertical-align: middle;"/> '+payValue[1]+'</div> <div class="insCardNumber" style =" vertical-align: middle;display: table-cell; text-align: justify; font-family: GloberSemiBold; font-size: 21px;padding: 12px 0px 12px 25px;">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div> </div>');
         }
-        if ($('option:selected', this).text() === 'Agregar una tarjeta nueva') {
+        if ($('option:selected', this).text() === 'Agregar una tarjeta nueva' || $('option:selected', this).text() === 'Add a new card') {
           //  $rootScope.userCardDetails = $('option:selected', this).text();
             $rootScope.submitPayBack = $rootScope.currState.$current.name;
            // $rootScope.userCardNumber = 'Choose Your Card';
@@ -5325,7 +5326,7 @@ $scope.EditHealth = {};
             $state.go('tab.cardDetails');
         } else {
 
-            if ($('option:selected', this).text() === 'Elija su Tarjeta') {
+            if ($('option:selected', this).text() === 'Elija su Tarjeta' || $('option:selected', this).text() === 'Choose your Card') {
               $rootScope.editCardStyle ="none";
               $("div.cardViewport").empty();
               $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
