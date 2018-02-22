@@ -97,7 +97,9 @@
                      <span class="appfloat"><i class="icon ion-chevron-right " style="display: none;"></i></span>
                      <span class="encounterappticon" style="top: 2px !important;" >
                        <i  class="iconAlignment" ng-bind-html="drawSVGCIcon('phone')"></i> </span>
-                     <p class="patage localizejs" style="margin-top:-22px !important;"><span>{{scheduledDoctorDetails[0].gender}}  .</span> {{scheduledDoctorDetails[0].dob | ageFilter}}</p>
+                     <p class="patage localizejs" style="margin-top:-22px !important;"><span>{{scheduledDoctorDetails[0].gender}}  .</span> 
+                      <span>{{scheduledDoctorDetails[0].dob | ageFilter}}</span><span class="localizejs">{{scheduledDoctorDetails[0].dob | ageYearsStringFilter}}</span><span>{{scheduledDoctorDetails[0].dob | ageMonthFilter}}</span> <span>{{scheduledDoctorDetails[0].dob | ageDayFilter}}</span>
+                    </p>
                  </div>
               </a>
 
