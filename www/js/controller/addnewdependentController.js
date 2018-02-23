@@ -728,7 +728,14 @@ angular.module('starter.controllers')
                 if (typeof $scope.height2 === 'undefined' || $scope.height2 === '') {
                     $scope.height2 = "0";
                 }
-                $scope.doPostNewDependentuser();
+                    if($scope.firstName.length <= 24 && $scope.lastName.length <= 24) {
+                        debugger;
+                        $scope.doPostNewDependentuser();
+                    } else {
+                        debugger
+                        $scope.ErrorMessage = 'Max length for first / last name is 24';
+                        $rootScope.Validation($scope.ErrorMessage);
+                    }
             }
         } else {
             if (typeof $scope.firstName === 'undefined' || $scope.firstName === '') {
@@ -826,7 +833,15 @@ angular.module('starter.controllers')
                 }
               $rootScope.Validation($scope.ErrorMessage);
             } else {
-                $scope.doPostNewDependentuser();
+                if($scope.firstName.length <= 24 && $scope.lastName.length <= 24) {
+                    $scope.doPostNewDependentuser();
+                    debugger;
+                } else {
+                    debugger
+                    $scope.ErrorMessage = 'Max length for first / last name is 24';
+                    $rootScope.Validation($scope.ErrorMessage);
+                }
+                
             }
         }
       }
@@ -917,7 +932,8 @@ angular.module('starter.controllers')
                 }).remove();
                 if (data.status === 400) {
                     //$scope.ErrorMessage = data.statusText;
-                    $scope.ErrorMessage = 'Max length for first / last name is 24';
+                    debugger
+                    $scope.ErrorMessage = 'Email ID Already Registered';
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";

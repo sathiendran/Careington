@@ -396,6 +396,11 @@ $("#localize-widget").hide();
                     $(".provider-search-page__content").scrollTop(0);
                 });
 
+                $('.k-select').click(function() { 
+                    setTimeout(function () {
+                        $('.k-nav-fast').addClass('localizejs');
+                        $('.k-link').addClass('localizejs');
+                  }, 10); })
 
                 $userService.getUserCurrentTime().done(function (response) {
                     var currentDateFilter = new Date(that.dateFilter);
