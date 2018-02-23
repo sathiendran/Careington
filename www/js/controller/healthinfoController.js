@@ -1597,15 +1597,23 @@ angular.module('starter.controllers')
             }
         }
 
-      /*  window.addEventListener('native.keyboardshow', function () {
+      /* window.addEventListener('native.keyboardshow', function () {
             $scope.$apply(function() {
-                $('#HealthFooter').css({'display':'none'})
+                if($rootScope.flag == true) {
+                  $scope.healthfoottab = false;
+                } else {
+                  $scope.healthfootsave = true;
+                }
              });
 
          });
          window.addEventListener('native.keyboardhide', function () {
             $scope.$apply(function() {
-                $('#HealthFooter').css({'display':'block'})
+              if($rootScope.flag == true) {
+                $scope.healthfoottab = true;
+              } else {
+                $scope.healthfootsave = false;
+              }
           });
         });*/
 
