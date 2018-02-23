@@ -606,7 +606,15 @@ angular.module('starter.controllers')
             $rootScope.patientId = $rootScope.currentPatientDetails[0].profileId;
         }
         $scope.edittext = function () {
+          window.addEventListener('native.keyboardshow', function() {
+             $("#localize-widget").hide();
+
+          });
+          window.addEventListener('native.keyboardhide', function() {
+             $("#localize-widget").hide();
+          });
             //console.log("Patientlist" + $rootScope.PatientIdentifiers);
+
             $('#healthInfoEmail').attr('style', 'text-overflow: ellipsis !important');
             $scope.healthInfoModel.address = $rootScope.currentPatientDetails[0].address;
             $rootScope.checkedpatientdet = '';

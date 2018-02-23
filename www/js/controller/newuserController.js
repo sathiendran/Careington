@@ -143,49 +143,9 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
 
   //  var alertMsg ="hi"
 
-    var alertMsg = "A verification email has been sent to the user.";
-    var alertokay = "Ok";
-    var alertphoto = "Photo can be uploaded only after activating co-user account.";
-
-      var localizeCurrent = $('#localize-current').text();
-      console.log("lang "+localizeCurrent);
-        if(localizeCurrent == "Español") {
-            alertMsg = "Se ha enviado un correo electrónico de verificación al usuario.";
-            alertokay = "De acuerdo";
-            alertphoto = "La foto se puede subir solo después de activar la cuenta de co-usuario.";
-        }
-      else  if(localizeCurrent == "English (UK)") {
-        alert("localizeCurrent" + localizeCurrent);
-        alertMsg = "A verification email has been sent to the user.";
-        alertokay = "Ok";
-        alertphoto = "Photo can be uploaded only after activating co-user account.";
-      }
-      else if (localizeCurrent == "English")   {
-          alertMsg = "A verification email has been sent to the user."
-          alertokay = "Ok";
-          alertphoto = "Photo can be uploaded only after activating co-user account.";
-        }
 
 
-       $('#localize-langs').click(function() {
-         var isLang = $('#localize-langs .activated').text();
-           console.log("lang "+isLang);
-           if(isLang == "Español") {
-             alertMsg = "Se ha enviado un correo electrónico de verificación al usuario.";
-             alertokay = "De acuerdo";
-             alertphoto = "La foto se puede subir solo después de activar la cuenta de co-usuario.";
-           }
-          else  if(isLang == "English (UK)") {
-            alertMsg = "A verification email has been sent to the user.";
-            alertokay = "Ok";
-            alertphoto = "Photo can be uploaded only after activating co-user account.";
-          }
-            else if (isLang == "English") {
-                alertMsg = "A verification email has been sent to the user."
-                alertokay = "Ok";
-                alertphoto = "Photo can be uploaded only after activating co-user account.";
-            }
-          });
+      
 
     $scope.doPostAddCousers = function() {
 
@@ -197,13 +157,13 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
             success: function() {
                 $('#couserform')[0].reset();
                 $('select').prop('selectedIndex', 0);
-                navigator.notification.alert(alertMsg, // message
+                navigator.notification.alert($rootScope.alertMsg, // message
                     function() {
                         $state.go('tab.relatedusers');
                         return;
                     },
                     $rootScope.alertMsgName, // title
-                    alertokay // buttonName
+                    $rootScope.alertokay // buttonName
                 );
                 return false;
             },
@@ -252,12 +212,12 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
 
     $scope.showUploadImageAlert = function() {
       navigator.notification.alert(
-          alertphoto, // message
+          $rootScope.alertphoto, // message
           function() {
             return;
           },
           $rootScope.alertMsgName, // title
-         alertokay // buttonName
+         $rootScope.alertokay // buttonName
       );
     }
 
@@ -368,7 +328,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
 
         }, function() {
 
-            navigator.notification.alert(alerterror, null, $rootScope.alertMsgName, alertokay);
+            navigator.notification.alert(alerterror, null, $rootScope.alertMsgName, $rootScope.alertokay);
         }, function() {
             // PROGRESS HANDLING GOES HERE
             $rootScope.$broadcast('loading:show');

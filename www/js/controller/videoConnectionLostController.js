@@ -20,34 +20,6 @@ angular.module('starter.controllers')
       $rootScope.videoLostMessage = 'Internet connection lost. Please reconnect.';
 
 
-          var alertMsgvideo = "Consultation ended successfully!";
-
-            var localizeCurrent = $('#localize-current').text();
-            console.log("lang "+localizeCurrent);
-              if(localizeCurrent == "Español") {
-                  alertMsgvideo = "¡La consulta terminó exitosamente!";
-              }
-            else  if(localizeCurrent == "English (UK)") {
-              alertMsgvideo = "Consultation ended successfully!";
-            }
-            else if (localizeCurrent == "English")   {
-                alertMsgvideo = "Consultation ended successfully!";
-              }
-
-
-             $('#localize-langs').click(function() {
-               var isLang = $('#localize-langs .activated').text();
-                 console.log("lang "+isLang);
-                 if(isLang == "Español") {
-                   alertMsgvideo = "¡La consulta terminó exitosamente!";
-                 }
-                else  if(isLang == "English (UK)") {
-                  alertMsgvideo = "Consultation ended successfully!";
-                }
-                  else if (isLang == "English") {
-                      alertMsgvideo = "Consultation ended successfully!";
-                  }
-                });
 
 
       $rootScope.checkForReEntryConsultation = function() {
@@ -78,10 +50,10 @@ angular.module('starter.controllers')
                               $state.go('tab.videoConference');
                           }, 5000);
                       }else{
-                        navigator.notification.alert(alertMsgvideo, // message
+                        navigator.notification.alert($rootScope.alertMsgvideo, // message
                             consultationEndedBeforeReconnect, // callback
                             $rootScope.alertMsgName, // title
-                            'OK' // buttonName
+                            $rootScope.alertokay // buttonName
                         );
                       }
                   }

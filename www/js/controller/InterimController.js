@@ -6,55 +6,7 @@ angular.module('starter.controllers')
     }
     $("#localize-widget").show();
 
-    var alertTimedout = "Your session timed out.";
-    var alertokay = "Ok";
-    var alertconsultationsave = "Consultation saved successfully!" ;
-    var alertconsultationfailed = "Failed to save consultation!";
 
-      var localizeCurrent = $('#localize-current').text();
-      console.log("lang "+localizeCurrent);
-        if(localizeCurrent == "Español") {
-            alertTimedout = "Su sesión ha expirado.";
-            alertokay = "De acuerdo";
-           alertconsultationsave = "Consulta guardada exitosamente!";
-           alertconsultationfailed = "Error al guardar consulta!";
-        }
-      else  if(localizeCurrent == "English (UK)") {
-        alertTimedout = "Your session timed out.";
-        alertokay = "Ok";
-        alertconsultationsave = "Consultation saved successfully!" ;
-        alertconsultationfailed = "Failed to save consultation!";
-      }
-      else if (localizeCurrent == "English")   {
-          alertTimedout = "Your session timed out."
-          alertokay = "Ok";
-          alertconsultationsave = "Consultation saved successfully!" ;
-          alertconsultationfailed = "Failed to save consultation!";
-        }
-
-
-       $('#localize-langs').click(function() {
-         var isLang = $('#localize-langs .activated').text();
-           console.log("lang "+isLang);
-           if(isLang == "Español") {
-             alertTimedout = "Su sesión ha expirado.";
-             alertokay = "De acuerdo";
-             alertconsultationsave = "Consulta guardada exitosamente!";
-             alertconsultationfailed = "Error al guardar consulta!";
-           }
-          else  if(isLang == "English (UK)") {
-            alertTimedout = "Your session timed out."
-            alertokay = "Ok";
-            alertconsultationsave = "Consultation saved successfully!" ;
-            alertconsultationfailed = "Failed to save consultation!";
-          }
-            else if (isLang == "English") {
-                alertTimedout = "Your session timed out."
-                alertokay = "Ok";
-                alertconsultationsave = "Consultation saved successfully!" ;
-                alertconsultationfailed = "Failed to save consultation!";
-            }
-          });
 
       $rootScope.viaNewUser = false;
     $window.localStorage.setItem('ChkVideoConferencePage', "");
@@ -791,7 +743,7 @@ angular.module('starter.controllers')
             success: function(data) {
               if (ionic.Platform.is('browser') !== true) {
                   navigator.notification.alert(
-                      alertconsultationsave, // message
+                      $rootScope.alertconsultationsave, // message
                       function() {
                           $scope.doGetlocationResponse();
                           return;
@@ -812,7 +764,7 @@ angular.module('starter.controllers')
                 $scope.callServiceUnAvailableError();
               } else {
                   navigator.notification.alert(
-                      alertconsultationfailed, // message
+                      $rootScope.alertconsultationfailed, // message
                       function() {
                           $scope.doGetlocationResponse();
                           return;

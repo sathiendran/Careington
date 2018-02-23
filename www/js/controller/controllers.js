@@ -750,7 +750,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -5233,9 +5233,9 @@ $scope.EditHealth = {};
                   //$("div.cardViewport").html('<div class="insCardName"> <i class="iconfontSVG"><svg class="icon-creditcard"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-creditcard"></use></svg></i></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
                   $("div.cardViewport").html('<div class="insCardName"> <i class="iconfontSVG"><svg version="1.1" id="Credit_card" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 3 150 55" enable-background="new 0 3 150 55" width="10cm" height="10cm" preserveAspectRatio="xMinYMin meet" ><path d="M18,3H2C0.899,3,0,3.9,0,5v10c0,1.1,0.899,2,2,2h16c1.1,0,2-0.9,2-2V5C20,3.9,19.1,3,18,3z M18,15H2V9h16V15z M18,6H2V5h16    V6z M4,11.1v0.6h0.6v-0.6H4z M7.6,12.299V12.9h1.2v-0.601h0.6v-0.6H10v-0.6H8.8v0.6H8.199v0.6H7.6z M10,12.9v-0.601H9.399V12.9H10z     M7,12.9v-0.601H5.8V12.9H7z M7.6,11.699h0.6v-0.6H7v1.199h0.6V11.699z M5.199,12.299H5.8v-0.6h0.6v-0.6h-1.2v0.6H4.6v0.6H4V12.9    h1.199V12.299z"></path></svg></i></div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
                 }
-              
+
               }
-             
+
 
 
             // $("div.cardViewport").html('<div class="parenttt" style=" display: table;padding: 4px;  width: 100%;  margin: -10px 5px;"><div class="insCardImage"><img src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png"  style =" width: 75px;  height: 50px;vertical-align: middle;"/> '+payValue[1]+'</div> <div class="insCardNumber" style =" vertical-align: middle;display: table-cell; text-align: justify; font-family: GloberSemiBold; font-size: 21px;padding: 12px 0px 12px 25px;">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div> </div>');
@@ -6456,7 +6456,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
     $scope.doPostPaymentProfileDetails = function() {
 
         $rootScope.iscancel = false;
-      
+
         $rootScope.isEditAvailable = false;
         var zipCount = $('#Zip').val().length;
         var currentTime = new Date()
@@ -7129,7 +7129,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
          });
 
 
-                   var  alertMsgcomplete = "Consultation ended successfully!";
+                   var  alertMsgcomplete = "The Provider has marked your consultation as complete.";
                    var alertconfirmok = "Ok";
                    var alertCancelMessageProviderSearch = "Are you sure that you want to cancel?";
                    var alertCancelMessageConsultation = "Are you sure that you want to cancel this consultation?";
@@ -10062,7 +10062,7 @@ var currentLocalTimeZoneDateTime = new Date(serverDateTime);
         }
       $state.go('tab.consultCharge');
     }
-   
+
     $scope.backToEdiORAddCard = function() {
         //$state.go($rootScope.submitPayBack);
         $rootScope.iscancel = true;
@@ -10072,9 +10072,9 @@ var currentLocalTimeZoneDateTime = new Date(serverDateTime);
             //$rootScope.editCardStyle ="none";
             $rootScope.isEditAvailable = false;
         }
-        
+
         $state.go($rootScope.submitPayBack);
-       
+
         // history.back();
         //    $scope.apply();
      }
