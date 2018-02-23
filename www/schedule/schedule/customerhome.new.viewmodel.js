@@ -1559,7 +1559,11 @@ var setUserVars = function() {
 
                         that.remove().done(function() {
                             $eventAggregator.published(fact.removedEvent, that);
-                            $snapNotification.success("Appointment is unassigned successfully");
+                            if(snap.lanName === 'English') {
+                                $snapNotification.success("Appointment is unassigned successfully");
+                            } else {
+                              $snapNotification.success("La cita no se ha asignado correctamente");
+                            }
                           // $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                             setTimeout(function() {
                               $.connection.hub.qs = {};

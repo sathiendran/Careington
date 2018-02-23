@@ -16,35 +16,9 @@ if($rootScope.is_iPadDeviceWidth <= 360){
            var enMonth = {January:"enero", February:"febrero", March:"marzo", April:"abril",May:"Mayo", June:"junio", July:"julio", August:"agosto", September:"septiembre",October:"octubre", November:"noviembre", December:"diciembre"};
            var spMonth = {enero:"January", febrero:"February", marzo:"March", abril:"April",Mayo:"May", junio:"June", julio:"July", agosto:"August", septiembre:"September",octubre:"October", noviembre:"November", diciembre:"December"};
 
-           var alertconstarted = "Your consultation is already started on other device.";
-           var alertconended = "Your consultation is already ended.";
-           var alertDone = "Done";
-           var alertconcancel = "Your consultation is cancelled.";
-           var alertconprogress = "Your consultation is in progress on other device.";
 
-             var localizeCurrent = $('#localize-current').text();
-             console.log("lang "+localizeCurrent);
-               if(localizeCurrent == "Español") {
-                   alertconstarted = "Su consulta ya se inició en otro dispositivo.";
-                   alertconended = "Su consulta ya ha finalizado.";
-                   alertDone = "Hecho";
-                   alertconcancel = "Su consulta se cancela.";
-                   alertconprogress = "Su consulta está en progreso en otro dispositivo.";
-               }
-             else  if(localizeCurrent == "English (UK)") {
-               alertconstarted = "Your consultation is already started on other device.";
-               alertconended = "Your consultation is already ended.";
-               alertDone = "Done";
-               alertconcancel = "Your consultation is cancelled.";
-               alertconprogress = "Your consultation is in progress on other device.";
-             }
-             else if (localizeCurrent == "English")   {
-                 alertconstarted = "Your consultation is already started on other device.";
-                 alertconended = "Your consultation is already ended.";
-                 alertDone = "Done";
-                 alertconcancel = "Your consultation is cancelled.";
-                 alertconprogress = "Your consultation is in progress on other device.";
-               }
+
+
 
 
          $('#localize-langs').click(function() {
@@ -58,30 +32,15 @@ if($rootScope.is_iPadDeviceWidth <= 360){
                       $(".apponitmentWeek").text(enDay[apponitmentWeek]);
                       $(".apponitmentMonth").text(enMonth[apponitmentMonth]);
 
-                      alertconstarted = "Su consulta ya se inició en otro dispositivo.";
-                      alertconended = "Su consulta ya ha finalizado.";
-                      alertDone = "Hecho";
-                      alertconcancel = "Su consulta se cancela.";
-                      alertconprogress = "Su consulta está en progreso en otro dispositivo.";
+
                     }
-                if(isLang == "English (UK)") {
+              else
+              {
                       $(".apponitmentWeek").text(spDay[apponitmentWeek]);
                       $(".apponitmentMonth").text(spMonth[apponitmentMonth]);
-                      alertconstarted = "Your consultation is already started on other device.";
-                      alertconended = "Your consultation is already ended.";
-                      alertDone = "Done";
-                      alertconcancel = "Your consultation is cancelled.";
-                      alertconprogress = "Your consultation is in progress on other device.";
+
                     }
-                if(isLang == "English") {
-                      $(".apponitmentWeek").text(spDay[apponitmentWeek]);
-                      $(".apponitmentMonth").text(spMonth[apponitmentMonth]);
-                      alertconstarted = "Your consultation is already started on other device.";
-                      alertconended = "Your consultation is already ended.";
-                      alertDone = "Done";
-                      alertconcancel = "Your consultation is cancelled.";
-                      alertconprogress = "Your consultation is in progress on other device.";
-                    }
+                
       });
 //venkat end
   $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
@@ -252,6 +211,12 @@ $("#localize-widget").show();
     }
 
     $scope.editAppointment = function(scheduledListData,$timeout) {
+      var localizeCurrent = $('#localize-current').text();
+       if(localizeCurrent == "Español"){
+          snap.lanName = 'Spanish';
+        } else {
+          snap.lanName = 'English';
+        }
       $("#localize-widget").hide();
          snap.baseUrl  = apiCommonURL;
           $scope.betDelay=true;
@@ -640,7 +605,7 @@ $("#localize-widget").show();
                         $rootScope.doGetScheduledNowPhoneConsulatation();
                         navigator.notification.alert(
 
-                          alertconstarted, // message
+                          $rootScope.alertconstarted, // message
                           //  'Your consultation is already started on other device.', // message
 
                             function() {
@@ -649,7 +614,7 @@ $("#localize-widget").show();
                             },
                             $rootScope.alertMsgName, // title
 
-                            alertDone // buttonName
+                            $rootScope.alertDone // buttonName
 
                         );
                         return false;
@@ -657,7 +622,7 @@ $("#localize-widget").show();
                         $rootScope.doGetScheduledNowPhoneConsulatation();
                         navigator.notification.alert(
 
-                            alertconended, // message
+                            $rootScope.alertconended, // message
 
                             function() {
                                 $state.go('tab.userhome');
@@ -665,7 +630,7 @@ $("#localize-widget").show();
                             },
                             $rootScope.alertMsgName, // title
 
-                            alertDone // buttonName
+                            $rootScope.alertDone, // buttonName
 
                         );
                         return false;
@@ -673,7 +638,7 @@ $("#localize-widget").show();
                         $rootScope.doGetScheduledNowPhoneConsulatation();
                         navigator.notification.alert(
 
-                            alertconcancel, // message
+                            $rootScope.alertconcancel, // message
 
                             function() {
                                 $state.go('tab.userhome');
@@ -681,7 +646,7 @@ $("#localize-widget").show();
                             },
                             $rootScope.alertMsgName, // title
 
-                            alertDone // buttonName
+                            $rootScope.alertDone, // buttonName
 
                         );
                         return false;
@@ -689,7 +654,7 @@ $("#localize-widget").show();
                         $rootScope.doGetScheduledNowPhoneConsulatation();
                         navigator.notification.alert(
 
-                            alertconprogress, // message
+                            $rootScope.alertconprogress, // message
 
                             function() {
                                 $state.go('tab.userhome');
@@ -697,7 +662,7 @@ $("#localize-widget").show();
                             },
                             $rootScope.alertMsgName, // title
 
-                            alertDone // buttonName
+                            $rootScope.alertDone, // buttonName
 
                         );
                         return false;

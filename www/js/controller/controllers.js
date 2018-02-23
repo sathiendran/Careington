@@ -750,7 +750,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -4806,13 +4806,13 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
        $("#editprovider").click(function() {
         $scope.isSelectDrop = true;
        });
-     $(document).click(function() {
+    /* $(document).click(function() {
         if($scope.isSelectDrop) {
             setTimeout(function() {
                 $("#localize-widget").show();
               }, 0);
         }
-    });
+    });*/
 
     $("#addHealthPlan").change(function() {
         setTimeout(function() {
@@ -5420,7 +5420,7 @@ $scope.EditHealth = {};
           $rootScope.copayAmount = $rootScope.consultationAmount;
           $rootScope.healthPlanPage = "none";
           $rootScope.consultChargeNoPlanPage = "block";
-  		  if($rootScope.userDefaultPaymentProfile == null || ($('#addNewCard').val() == 'Choose Your Card'))
+  		  if($rootScope.userDefaultPaymentProfile == null || ($('#addNewCard').val() == 'Choose Your Card') || ($('#addNewCard').val() == 'Elija su Tarjeta'))
           {
             $rootScope.editCardStyle = "none";
           }else {
@@ -5524,7 +5524,7 @@ $scope.EditHealth = {};
 
         if ($rootScope.currState.$current.name === "tab.consultCharge") {
             if (typeof $scope.Health.addHealthPlan !== 'undefined') {
-                if ($scope.Health.addHealthPlan !== 'Choose Your Health Plan') {
+                if ($scope.Health.addHealthPlan !== 'Choose Your Health Plan' && $scope.Health.addHealthPlan !== 'Elija su plan de salud') {
 
                     $rootScope.NewHealth = $scope.Health.addHealthPlan;
                     $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
@@ -5539,7 +5539,7 @@ $scope.EditHealth = {};
                     $rootScope.healthPlanID = "";
                 }
             }
-            if (typeof $scope.Health.addHealthPlan === 'undefined' || $scope.Health.addHealthPlan === 'Choose Your Health Plan') {
+            if (typeof $scope.Health.addHealthPlan === 'undefined' || $scope.Health.addHealthPlan === 'Choose Your Health Plan' || $scope.Health.addHealthPlan === 'Elija su plan de salud') {
               if ((typeof $rootScope.NewHealth === 'undefined' || $rootScope.NewHealth === "") && $rootScope.providerName === "") {
                     $scope.Choose = 'true';
                 } else {
@@ -5639,7 +5639,7 @@ $scope.EditHealth = {};
         $scope.Choose = 'false';
         if ($rootScope.currState.$current.name === "tab.consultCharge") {
             if (typeof $scope.Health.addHealthPlan !== 'undefined') {
-                if ($scope.Health.addHealthPlan !== 'Choose Your Health Plan') {
+                if ($scope.Health.addHealthPlan !== 'Choose Your Health Plan' && $scope.Health.addHealthPlan !== 'Elija su plan de salud') {
                     $rootScope.NewHealth = $scope.Health.addHealthPlan;
                     $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
                     var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
@@ -5653,7 +5653,7 @@ $scope.EditHealth = {};
                     $rootScope.healthPlanID = "";
                 }
             }
-            if (typeof $scope.Health.addHealthPlan === 'undefined' || $scope.Health.addHealthPlan === 'Choose Your Health Plan') {
+            if (typeof $scope.Health.addHealthPlan === 'undefined' || $scope.Health.addHealthPlan === 'Choose Your Health Plan' || $scope.Health.addHealthPlan === 'Elija su plan de salud') {
               if ((typeof $rootScope.NewHealth === 'undefined' || $rootScope.NewHealth === "") && $rootScope.providerName === "") {
                     $scope.Choose = 'true';
                 } else {
@@ -7129,7 +7129,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
          });
 
 
-                   var  alertMsgcomplete = "Consultation ended successfully!";
+                   var  alertMsgcomplete = "The Provider has marked your consultation as complete.";
                    var alertconfirmok = "Ok";
                    var alertCancelMessageProviderSearch = "Are you sure that you want to cancel?";
                    var alertCancelMessageConsultation = "Are you sure that you want to cancel this consultation?";

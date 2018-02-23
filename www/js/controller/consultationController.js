@@ -44,9 +44,8 @@ angular.module('starter.controllers')
                     if(isLang == "Español") {
                         //console.log("Español");
                         $scope.ReportEthnicityVal = "width:36.33%";
-                    } if(isLang == "English (UK)") {
-                      $scope.ReportEthnicityVal = "width:41.33%";
-                    } if(isLang == "English") {
+
+                    } else {
                       $scope.ReportEthnicityVal = "width:41.33%";
                     }
                     if(myLength >= 11) {
@@ -54,10 +53,8 @@ angular.module('starter.controllers')
                      if(isLang == "Español") {
                          $scope.departmentClass = "height:45px";
                      }
-                     if(isLang == "English (UK)") {
-                       $scope.departmentClass = "height:25px";
-                     }
-                     if(isLang == "English") {
+
+                     else{
                        $scope.departmentClass = "height:25px";
                      }
                    isLang = "";

@@ -396,7 +396,7 @@ $("#localize-widget").hide();
                     $(".provider-search-page__content").scrollTop(0);
                 });
 
-                $('.k-select').click(function() { 
+                $('.k-select').click(function() {
                     setTimeout(function () {
                         $('.k-nav-fast').addClass('localizejs');
                         $('.k-link').addClass('localizejs');
@@ -1201,8 +1201,8 @@ $("#localize-widget").hide();
 
                     function updateclinicianState() {
                         clinician.set("isFavorite", !clinician.isFavorite);
-                        $snapNotification.success(["Provider is", clinician.isFavorite ? "added to" : "removed from", "My Providers list"].join(" "));
-                        scope._updateClinicianListForFavorite();
+                          $snapNotification.success(["Provider is", clinician.isFavorite ? "added to" : "removed from", "My Providers list"].join(" "));
+                          scope._updateClinicianListForFavorite();
                     }
                     if (this.isFavorite) {
                         $selfSchedulingService.removeClinicianFromFavourites(this.opt.personId).done(updateclinicianState);

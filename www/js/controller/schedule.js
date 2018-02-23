@@ -22,6 +22,7 @@ angular.module('starter.controllers')
                //sessAlertMessage = "Has iniciado sesión en otro dispositivo.";
                snap.SessTimedOutMsg = 'Su sesión ha excedido el tiempo de espera.';
                snap.SessTimedOk = 'De acuerdo';
+               snap.lanName = 'Spanish';
            }else{
                //var snap = snap || {};
                // $("#retrySpanish").text("Retry?");
@@ -38,6 +39,7 @@ angular.module('starter.controllers')
             //  sessAlertMessage = "You have logged in on another device.";
               snap.SessTimedOutMsg = 'Your session timed out.';
               snap.SessTimedOk = 'Ok';
+              snap.lanName = 'English';
            }
 
 $("#localize-widget").hide();

@@ -9,30 +9,20 @@ angular.module('starter.controllers')
 
     });*/
     $("#localize-widget").show();
-    var consultStartMsg = 'Your consultation is already started on other device.';
-    var consultEndMeg = 'Your consultation is already ended.';
-    var consultCancelMsg = 'Your consultation is cancelled.';
-    var consultProgMsg = 'Your consultation is in progress on other device.';
-    var sessAlertDone = 'Done';
+
 
     var localizeCurrent = $('#localize-current').text();
 
       if(localizeCurrent == "Español") {
-        consultStartMsg = 'Su consulta ya se inició en otro dispositivo.';
-        consultEndMeg = 'Su consulta ya ha finalizado';
-        consultCancelMsg = 'Su consulta se cancela.';
-        consultProgMsg = 'Su consulta está en progreso en otro dispositivo.';
+
         consultSaveMsg = 'Consulta guardada exitosamente!';
         consultFailMsg = 'Error al guardar consulta!';
-        sessAlertDone = 'Hecho';
+
       } else {
-      consultStartMsg = 'Your consultation is already started on other device.';
-      consultEndMeg = 'Your consultation is already ended.';
-      consultCancelMsg = 'Your consultation is cancelled.';
-      consultProgMsg = 'Your consultation is in progress on other device.';
+
       consultSaveMsg = 'Consultation saved successfully!';
       consultFailMsg = 'Failed to save consultation!';
-      sessAlertDone = 'Done';
+
     }
 
 
@@ -40,21 +30,15 @@ angular.module('starter.controllers')
        var isLang = $('#localize-langs .activated').text();
          console.log("lang "+isLang);
          if(isLang == "Español") {
-             consultStartMsg = 'Su consulta ya se inició en otro dispositivo.';
-             consultEndMeg = 'Su consulta ya ha finalizado';
-             consultCancelMsg = 'Su consulta se cancela.';
-             consultProgMsg = 'Su consulta está en progreso en otro dispositivo.';
+
              consultSaveMsg = 'Consulta guardada exitosamente!';
              consultFailMsg = 'Error al guardar consulta!';
-             sessAlertDone = 'Hecho';
+
          } else {
-            consultStartMsg = 'Your consultation is already started on other device.';
-            consultEndMeg = 'Your consultation is already ended.';
-            consultCancelMsg = 'Your consultation is cancelled.';
-            consultProgMsg = 'Your consultation is in progress on other device.';
+
             consultSaveMsg = 'Consultation saved successfully!';
             consultFailMsg = 'Failed to save consultation!';
-            sessAlertDone = 'Done';
+
         }
         });
 
@@ -404,13 +388,13 @@ angular.module('starter.controllers')
                          if ($rootScope.consultationStatusId === 71) {
                              navigator.notification.alert(
                                 // 'Your consultation is already started on other device.', // message
-                                consultStartMsg,
+                                $rootScope.consultStartMsg,
                                  function() {
                                      $state.go('tab.userhome');
                                      return;
                                  },
                                  $rootScope.alertMsgName, // title
-                                 sessAlertDone  //'Done' // buttonName
+                                 $rootScope.sessAlertDone  //'Done' // buttonName
                              );
                              return false;
                          } else if ($rootScope.consultationStatusId === 72) {
@@ -424,33 +408,33 @@ angular.module('starter.controllers')
 
                                navigator.notification.alert(
                                 // 'Consultation already completed!', // message
-                                consultEndMeg,
+                                $rootScope.consultEndMeg,
                                    consultationEndedAlertDismissed,
                                    $rootScope.alertMsgName, // title
-                                   sessAlertDone //'Done' // buttonName
+                                   $rootScope.sessAlertDone //'Done' // buttonName
                                );
                           } else if ($rootScope.consultationStatusId === 79) {
                              navigator.notification.alert(
                                  //'Your consultation is cancelled.', // message
-                                 consultCancelMsg,
+                                 $rootScope.consultCancelMsg,
                                  function() {
                                      $state.go('tab.userhome');
                                      return;
                                  },
                                  $rootScope.alertMsgName, // title
-                                 sessAlertDone //'Done' // buttonName
+                                 $rootScope.sessAlertDone //'Done' // buttonName
                              );
                              return false;
                          } else if ($rootScope.consultationStatusId === 80) {
                              navigator.notification.alert(
                                 // 'Your consultation is in progress on other device.', // message
-                                consultProgMsg,
+                                $rootScope.consultProgMsg,
                                  function() {
                                      $state.go('tab.userhome');
                                      return;
                                  },
                                  $rootScope.alertMsgName, // title
-                                sessAlertDone // 'Done' // buttonName
+                                $rootScope.sessAlertDone // 'Done' // buttonName
                              );
                              return false;
                          } else if ($rootScope.consultationStatusId === 82 || $rootScope.consultationStatusId === 70) {

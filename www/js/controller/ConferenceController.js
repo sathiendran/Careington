@@ -181,10 +181,10 @@ $("#localize-widget").show();
 
                          navigator.notification.alert(
                             // 'Consultation already completed!', // message
-                            consultAlredComplMsg,
+                            $rootScope.consultAlredComplMsg,
                              consultationEndedAlertDismissed, // callback
                              $rootScope.alertMsgName, // title
-                             Buttonmsg //'Done' // buttonName
+                               $rootScope.Buttonmsg //'Done' // buttonName
                          );
                         $scope.doGetExistingConsulatationReport();
                     }
@@ -1547,52 +1547,9 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
           $('#vdioCamera .vdioIcon i svg').css('color', 'white');
         };
     }
-    var alertMsgConference = "Consultation ended successfully!";
-      var Buttonmsg = "Done";
-      var alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
-      var consultAlredComplMsg = 'Consultation already completed!';
-      var NaviConfirmation = 'Confirmation:';
-      var YESMessageProviderSearch='Yes';
-
-      var localizeCurrent = $('#localize-current').text();
-
-        if(localizeCurrent == "Español") {
-            alertMsgConference = "¡La consulta terminó exitosamente!";
-            Buttonmsg = "Listo";
-            alertconfirm = "Actualmente tiene una consulta en curso. ¿Está seguro de que desea finalizar esta consulta?";
-            consultAlredComplMsg = 'Consulta ya completada!';
-            NaviConfirmation = 'Confirmación:';
-            YESMessageProviderSearch='Sí';
-        }
-      else  {
-        alertMsgConference = "Consultation ended successfully!";
-        Buttonmsg = "Done";
-        alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
-        consultAlredComplMsg = 'Consultation already completed!';
-        YESMessageProviderSearch='Yes';
-      }
 
 
-       $('#localize-langs').click(function() {
-         var isLang = $('#localize-langs .activated').text();
-           console.log("lang "+isLang);
-           if(isLang == "Español") {
-             alertMsgConference = "¡La consulta terminó exitosamente!";
-              Buttonmsg = "Listo";
-              alertconfirm = "Actualmente tiene una consulta en curso. ¿Está seguro de que desea finalizar esta consulta?";
-              consultAlredComplMsg = 'Consulta ya completada!';
-              NaviConfirmation = 'Confirmación:';
-              YESMessageProviderSearch='Sí';
-           }
-          else {
-            alertMsgConference = "Consultation ended successfully!";
-            Buttonmsg = "Done";
-            alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
-            consultAlredComplMsg = 'Consultation already completed!';
-            NaviConfirmation = 'Confirmation:';
-            YESMessageProviderSearch='Yes';
-          }
-          });
+    
 
     var callEnded = false;
     $scope.disconnectConference = function() {
@@ -1600,7 +1557,7 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
 
             if(!isCallEndedByPhysician){
               navigator.notification.confirm(
-                alertconfirm,
+                $rootScope.alertconfirm,
                   function(index) {
                       if (index == 1) {
                           $state.go('tab.videoConference');
@@ -1624,14 +1581,14 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
                           window.localStorage.setItem('isVideoCallProgress', "No");
                           callEnded = true;
                         navigator.notification.alert(
-                            alertMsgConference, // message
+                            $rootScope.alertMsgConference, // message
                             consultationEndedAlertDismissed, // callback
                             $rootScope.alertMsgName, // title
-                            Buttonmsg // buttonName
+                            $rootScope.Buttonmsg // buttonName
                         );
                       }
                   },
-                  NaviConfirmation, ['No', YESMessageProviderSearch]
+                  $rootScope. NaviConfirmation, ['No', $rootScope. YESMessageProviderSearch]
               );
             }else{
               window.localStorage.setItem('isVideoCallProgress', "No");
@@ -1655,10 +1612,10 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
              }
 
               navigator.notification.alert(
-                  alertMsgConference, // message
+                $rootScope.alertMsgConference, // message
                   consultationEndedAlertDismissed, // callback
                   $rootScope.alertMsgName, // title
-                  Buttonmsg // buttonName
+                    $rootScope.Buttonmsg // buttonName
               );
             }
 
