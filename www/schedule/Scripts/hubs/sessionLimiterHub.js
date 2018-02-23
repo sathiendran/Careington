@@ -1,34 +1,6 @@
 ;
 (function(global, $, snap) {
     "use strict";
-    var alertloggedother = "You have logged in on another device.";
-
-                var localizeCurrent = $('#localize-current').text();
-                console.log("lang "+localizeCurrent);
-                  if(localizeCurrent == "Español") {
-                      alertloggedother = "Ha iniciado sesión en otro dispositivo.";
-                  }
-                else  if(localizeCurrent == "English (UK)") {
-                  alertloggedother = "You have logged in on another device.";
-                }
-                else if (localizeCurrent == "English")   {
-                    alertloggedother = "You have logged in on another device.";
-                  }
-
-
-                 $('#localize-langs').click(function() {
-                   var isLang = $('#localize-langs .activated').text();
-                     console.log("lang "+isLang);
-                     if(isLang == "Español") {
-                       alertloggedother = "Ha iniciado sesión en otro dispositivo.";
-                     }
-                    else  if(isLang == "English (UK)") {
-                      alertloggedother = "You have logged in on another device.";
-                    }
-                      else if (isLang == "English") {
-                          alertloggedother = "You have logged in on another device.";
-                      }
-                    });
 
     snap.namespace("snap.hub")
         .use(["snap.hub.hubModel"])
@@ -59,50 +31,41 @@
                 } else if ((currentUrl.indexOf('/patient/') != -1)) {
                     loginPath = snap.patientLogin();
                 }
-                sessionLimiterHub.client.onSessionTerminated = function(ip) {
-                 //  $snapNotification.info("You have logged in on another device and ended this session.");
-                   window.console.log("You have logged in on another device. IP: " + ip);
-                 //  forceLogout();
-               };
                 sessionLimiterHub.client.forceLogout = function(ip) {
                     if (snap.EventAggregator) {
                         snap.EventAggregator().publish("forceLogout");
                     }
                     snap.profileSession.isLogouted = true;
                     snap.clearAllSnapSessions();
-                  /*  $("body").prepend("<div class=\"overlay\"></div>");
 
-                    $(".overlay").css({
-                        "position": "absolute",
-                        "width": $(document).width(),
-                        "height": $(document).height(),
-                        "background-color": "grey",
-                        "z-index": 10005, //We need such a big index in order to overlay kendo dialogWindow, it usually has 10003 index.
-                    }).fadeTo(0, 0.6);
-
-                    global.showSnapAlert("You have logged in on another device.", "confirmation");
-                    window.console.log("You have logged in on another device. IP: " + ip);
-                    $('#btnAlertOk').click(function() {
-                        window.location.href = loginPath;
-                    });*/
                     navigator.notification.alert(
-                        alertloggedother, // message
+                        'You have logged in on another device and ended this session.', // message
                         function() {
-                           // $overlay.toggleOverlay();
+                             if(snap.redirctPage == undefined) {
+                             //window.location.href = "#/tab/chooseEnvironment";
+
+                                 if (deploymentEnvLogout === "Multiple") {
+                                     window.location.href = '#/tab/chooseEnvironment';
+                                 } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
+                                     window.location.href = '#/tab/singleTheme';
+                                 }else if (cobrandApp !== 'MDAmerica' && deploymentEnvLogout === "Single") {
+                                     window.location.href = '#/tab/singleTheme';
+                                 }else {
+                                     window.location.href = '#/tab/login';
+                                 }
+
+                            } else {
                              window.location.href = snap.redirctPage;
-                            // $timeout(function() {
-                                //   window.location.reload(true);
-                              // });
-                            //return;
+                            }
                         },
                         snap.appName, // title
                         'Done' // buttonName
                     );
                     return false;
 
-                };
+               };
 
-                /*sessionLimiterHub.client.warnLogout = function(ip) {
+               /* sessionLimiterHub.client.warnLogout = function(ip) {
                     snap.profileSession.isLogouted = true;
                     var redirectingTimeInSeconds = 5;
                     global.snapInfo("You might have logged in on another device.");
@@ -110,8 +73,8 @@
                     setTimeout(function() {
                       //  window.location.href = loginPath;
                     }, redirectingTimeInSeconds * 1000);
-               };*/
-
+                };
+*/
                 /*when a user got deactivated by admin*/
                 sessionLimiterHub.client.deactivated = function() {
                     snap.userSession.token = '';

@@ -545,7 +545,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                       $rootScope.flagpopup=false;
                        var myPopup = $ionicPopup.show({
 
-
+                           template: '<b class="localizejs">Please make sure that you have network connection.</b>',
                            title: '<span class="localizejs">No Internet Connection</span>' ,
                            rootScope: $rootScope,
                            cssClass: 'my-custom-popup',

@@ -72,54 +72,17 @@
                     return;
                 }
 
-       var alertInternetConnection ="No Internet Connection.";
-       var sessAlertDone = 'Done';
-       var ssConnectLost = 'Connection to the system is lost.';
-       var SessTimedOutMsg = 'Your session timed out.';
-       var SessTimedOk = 'Ok';
-
-       var localizeCurrent = $('#localize-current').text();
-         if(localizeCurrent == "Español") {
-            alertInternetConnection ="Sin conexión a Internet.";
-            sessAlertDone = 'Hecho';
-            ssConnectLost = 'La conexión al sistema se pierde.';
-            SessTimedOutMsg = 'Su sesión ha excedido el tiempo de espera.';
-            SessTimedOk = 'De acuerdo';
-         } else {
-            alertInternetConnection ="No Internet Connection.";
-            sessAlertDone = 'Done';
-            ssConnectLost = 'Connection to the system is lost.';
-            SessTimedOutMsg = 'Your session timed out.';
-            SessTimedOk = 'Ok';
-         }
-
-        /*  $('#localize-langs').click(function() {
-            var isLang = $('#localize-langs .activated').text();
-              if(isLang == "Español") {
-              alertInternetConnection ="Sin conexión a Internet.";
-              }
-              if(isLang == "English (UK)") {
-                alertInternetConnection ="No Internet Connection.";
-              }
-              if(isLang == "English") {
-                  alertInternetConnection ="No Internet Connection.";
-              }
-            isLang = "";
-          }
-    });*/
-
                 //only show the message on consulation Page
                 if (wasConsultation) {
                   //  global.snapInfo("Attempting to reconnect...."); //todo keep this up
                       navigator.notification.alert(
-                          // 'No Internet Connection.', // message
-                          alertInternetConnection,
+                          'No Internet Connection.', // message
                           function() {
                                //window.location.href = snap.redirctPage;
                               // window.location.reload(true);
                           },
                           snap.appName, // title
-                          sessAlertDone //'Done' // buttonName
+                          'Done' // buttonName
                       );
                       return false;
                 }
@@ -134,12 +97,10 @@
                         notificationIsActive = true;
 
                         navigator.notification.alert(
-                            ssConnectLost, //'Connection to the system is lost.', // message
+                            'Connection to the system is lost.', // message
                             function() {
-                                 //window.location.href = snap.redirctPage;
-                                // window.location.reload(true);
-                                if(snap.redirctPage == undefined) {
-                                 //window.location.href = "#/tab/chooseEnvironment";
+                                 if(snap.redirctPage == undefined) {
+                            //window.location.href = "#/tab/chooseEnvironment";
 
                                      if (deploymentEnvLogout === "Multiple") {
                                          window.location.href = '#/tab/chooseEnvironment';
@@ -156,7 +117,7 @@
                                 }
                             },
                             snap.appName, // title
-                            sessAlertDone //'Done' // buttonName
+                            'Done' // buttonName
                         );
                         return false;
 
