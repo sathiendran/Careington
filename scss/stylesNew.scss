@@ -1973,7 +1973,7 @@ color: #948E8E;
 .circlecam {
      font-size: 2.3em;
      position: absolute;
-     margin-top: 15px; 
+     margin-top: 15px;
      margin-left: 32px;
 }
 .circletext {
@@ -5022,7 +5022,7 @@ max-width: 120px;
 }
 .depenErrorMsg-IOS {
 #notifications-top-center {
-    height: 65px !important;
+  //  height: 65px !important;
     .ErrorContent {
         position: relative;
         top: 10px;
@@ -7386,5 +7386,5 @@ padding-top: 3px;
     overflow: hidden;
     text-overflow: inherit;
     white-space: normal;
-    display: inline-flex; 
+    display: inline-flex;
 }
