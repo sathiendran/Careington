@@ -214,12 +214,21 @@ $("#localize-widget").show();
             //  $state.go('tab.providerSearch', { viewMode : 'all' });
             $state.go('tab.providerSearch');
         }
+        //Sakthi
+       $scope.getNumbersFromString = function(num){
+            var txt = num;
+            var numb = txt.match(/\d/g);
+            numb = numb.join("");
+            return numb;
+       }
 
         $rootScope.callPhone = function() {
-          var url = 'tel:' + $rootScope.appointmentsContactNumber;
-          window.open(url, '_system', 'location=yes');
-          return false;
+           
+            var num = $scope.getNumbersFromString($rootScope.appointmentsContactNumber);
+            window.open('tel:' + num , '_system');
+          //   var url = 'tel:' + $rootScope.appointmentsContactNumber;
+          //   window.open(url, '_system', 'location=yes');
+         return false;
       }
-
 
     })
