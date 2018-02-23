@@ -35,13 +35,13 @@ $.extend(snap.util,
             if (!snap.userAborted(xhr) && xhr.status == 0 && xhr.readyState == 0) {
               //  snapInfo("Internet connection lost.");
                   navigator.notification.alert(
-                      'No Internet Connection.', // message
+                      snap.alertInternetConnection, //'No Internet Connection.', // message
                       function() {
                           // window.location.href = snap.redirctPage;
                           // window.location.reload(true);
                       },
                       snap.appName, // title
-                      'Done' // buttonName
+                      snap.sessAlertDone //'Done' // buttonName
                   );
                   return false;
             }

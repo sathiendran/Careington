@@ -5,28 +5,41 @@ angular.module('starter.controllers')
         var localizeCurrent = $('#localize-current').text();
       console.log("localizeCurrent is== "+localizeCurrent);
            if(localizeCurrent == "Español"){
+              //  var snap = snap || {};
                // $("#retrySpanish").text("Rever?");
                $("#retrySpanish").css("color", "Red");
                // $(".drawer-card--empty.is-active::after").css({"content":"No hay proveedores guardados todavía."});
                $('head').append('<style>.drawer-card--empty.is-active:before{content:"No hay proveedores guardados todavía." !important;}</style>');
                 $('head').append('<style>.drawer-card--empty.is-active::after{content:"Agregue proveedores a su lista seleccionando la estrella en su tarjeta de perfil." !important;}</style>');
                // $('head').append('<style>.column:before{width:800px !important;}</style>');
-               var sessAlertMessage = "Ha iniciado sesión en otro dispositivo y finalizó esta sesión.";
-               var YESMessageProviderSearch='Sí';
-               var sessAlertDone = 'Hecho';
-               var SessTimedOutMsg = 'Su sesión ha excedido el tiempo de espera.';
-               var SessTimedOk = 'De acuerdo';
+               snap.alertTimedout = "Su sesión ha expirado.";
+               snap.alertokay = "De acuerdo";
+               snap.alertInternetConnection ="Sin conexión a Internet.";
+               snap.sessAlertDone = "Hecho";
+               snap.ssConnectLost = "La conexión al sistema se pierde.";
+               snap.sessAlertMessage = "Ha iniciado sesión en otro dispositivo y finalizó esta sesión.";
+               snap.YESMessageProviderSearch='Sí';
+               //sessAlertMessage = "Has iniciado sesión en otro dispositivo.";
+               snap.SessTimedOutMsg = 'Su sesión ha excedido el tiempo de espera.';
+               snap.SessTimedOk = 'De acuerdo';
+               snap.lanName = 'Spanish';
            }else{
+               //var snap = snap || {};
                // $("#retrySpanish").text("Retry?");
                $("#retrySpanish").css("color", "Pink");
                $('head').append('<style>.drawer-card--empty.is-active:before{content:"No saved providers yet." !important;}</style>');
                $('head').append('<style>.drawer-card--empty.is-active:after{content:"Add providers to your list by selecting the star on their profile card." !important;}</style>');
-            //   $scope.retrySpanish = "Retry?";
-              var sessAlertMessage = "You have logged in on another device and ended this session.";
-              var YESMessageProviderSearch='Yes';
-              var sessAlertDone = 'Done';
-              var SessTimedOutMsg = 'Your session timed out.';
-              var SessTimedOk = 'Ok';
+              snap.alertTimedout = "Your session timed out."
+              snap.alertokay = "Ok";
+              snap.alertInternetConnection ="No Internet Connection.";
+              snap.sessAlertDone = "Done";
+              snap.ssConnectLost = "Connection to the system is lost.";
+              snap.sessAlertMessage = "You have logged in on another device and ended this session.";
+              snap.YESMessageProviderSearch='Yes';
+            //  sessAlertMessage = "You have logged in on another device.";
+              snap.SessTimedOutMsg = 'Your session timed out.';
+              snap.SessTimedOk = 'Ok';
+              snap.lanName = 'English';
            }
 
 $("#localize-widget").hide();

@@ -1552,6 +1552,7 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
       var alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
       var consultAlredComplMsg = 'Consultation already completed!';
       var NaviConfirmation = 'Confirmation:';
+      var YESMessageProviderSearch='Yes';
 
       var localizeCurrent = $('#localize-current').text();
 
@@ -1561,12 +1562,14 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
             alertconfirm = "Actualmente tiene una consulta en curso. ¿Está seguro de que desea finalizar esta consulta?";
             consultAlredComplMsg = 'Consulta ya completada!';
             NaviConfirmation = 'Confirmación:';
+            YESMessageProviderSearch='Sí';
         }
       else  {
         alertMsgConference = "Consultation ended successfully!";
         Buttonmsg = "Done";
         alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
         consultAlredComplMsg = 'Consultation already completed!';
+        YESMessageProviderSearch='Yes';
       }
 
 
@@ -1579,6 +1582,7 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
               alertconfirm = "Actualmente tiene una consulta en curso. ¿Está seguro de que desea finalizar esta consulta?";
               consultAlredComplMsg = 'Consulta ya completada!';
               NaviConfirmation = 'Confirmación:';
+              YESMessageProviderSearch='Sí';
            }
           else {
             alertMsgConference = "Consultation ended successfully!";
@@ -1586,6 +1590,7 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
             alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
             consultAlredComplMsg = 'Consultation already completed!';
             NaviConfirmation = 'Confirmation:';
+            YESMessageProviderSearch='Yes';
           }
           });
 

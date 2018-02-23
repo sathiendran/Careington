@@ -72,16 +72,17 @@
                     }]
                 }).data("kendoNotification");
             }
+
             if (notification) {
                  navigator.notification.alert(
                   // 'Your session timed out.', // message
-                  SessTimedOutMsg,
+                  snap.SessTimedOutMsg,
                    function() {
                         window.location.href = snap.redirctPage;
                       //  window.location.reload(true);
                    },
                    snap.appName, // title
-                   SessTimedOk //'Done' // buttonName
+                   snap.SessTimedOk //'Done' // buttonName
                );
                return false;
                /* notification.show({
