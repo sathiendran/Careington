@@ -252,6 +252,12 @@ $("#localize-widget").show();
     }
 
     $scope.editAppointment = function(scheduledListData,$timeout) {
+      var localizeCurrent = $('#localize-current').text();
+       if(localizeCurrent == "Español"){
+          snap.lanName = 'Spanish';
+        } else {
+          snap.lanName = 'English';
+        }
       $("#localize-widget").hide();
          snap.baseUrl  = apiCommonURL;
           $scope.betDelay=true;

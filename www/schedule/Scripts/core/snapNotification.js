@@ -24,7 +24,7 @@
                 templates: [
                 {
                     type: "error",
-                    template: "<div class='snapError' style='width:73%' ><span class='icon_warning'></span><span class='localizejs'><h3>Error:</h3></span><p class='localizejs'> #= content # </p></div>"
+                    template: "<div class='snapError localizejs' style='width:73%' ><span class='icon_warning'></span><span class='localizejs'><h3>Error:</h3></span><p class='localizejs'> #= content # </p></div>"
                 }
 
                 ],
@@ -50,9 +50,9 @@
 
             templates: [{
                 type: "confirmation",
-                template: "<div class='snapInfo'><span class='icon_new'></span><h3>Confirmation:</h3><p> #= content # </p></div>" +
-                    "<div><span id='btnConfirmNo'  class='confirm-btnNo' style='float:right'>No</span>" +
-                    "<span id='btnConfirmYes'  class='confirm-btnYes' style='float:left'>Yes</span></div>"
+                template: "<div class='snapInfo localizejs'><span class='icon_new'></span><h3>Confirmation:</h3><p> #= content # </p></div>" +
+                    "<div><span id='btnConfirmNo'  class='confirm-btnNo localizejs' style='float:right'>No</span>" +
+                    "<span id='btnConfirmYes'  class='confirm-btnYes localizejs' style='float:left'>Yes</span></div>"
             }],
             show: onSnapNotification,
         }).data("kendoNotification");
@@ -70,9 +70,9 @@
 
             templates: [{
                 type: "error",
-                template: "<div class='snapError' style='width:73%'><span class='icon_warning'></span><h3>Error:</h3><p> #= content # </p></div>" +
-                    "<div><span id='btnConfirmNo'  class='confirm-btnNo' style='float:right'>No</span>" +
-                    "<span id='btnConfirmYes'  class='confirm-btnYes' style='float:left'>Yes</span></div>"
+                template: "<div class='snapError localizejs' style='width:73%'><span class='icon_warning'></span><h3>Error:</h3><p> #= content # </p></div>" +
+                    "<div><span id='btnConfirmNo'  class='confirm-btnNo localizejs' style='float:right'>No</span>" +
+                    "<span id='btnConfirmYes'  class='confirm-btnYes localizejs' style='float:left'>Yes</span></div>"
             }],
             show: onSnapNotification,
         }).data("kendoNotification");
@@ -90,10 +90,10 @@
 
             templates: [{
                 type: "confirmation",
-                template: "<div class='snapInfo'><span class='icon_new'></span><h3>Confirmation:</h3><p> #= content # </p></div>" +
-                    "<div><span id='btnCancel'  class='snapInfo__btn snapInfo__btn--cancel' style='float:left'>Cancel</span>" +
-                    "<span id='btnOptionOne'  class='snapInfo__btn snapInfo__btn--option' style='float:left'>Option 1</span>" +
-                    "<span id='btnOptionTwo'  class='snapInfo__btn snapInfo__btn--option' style='float:left'>Option 2</span></div>"
+                template: "<div class='snapInfo localizejs'><span class='icon_new'></span><h3>Confirmation:</h3><p> #= content # </p></div>" +
+                    "<div><span id='btnCancel'  class='snapInfo__btn snapInfo__btn--cancel localizejs' style='float:left'>Cancel</span>" +
+                    "<span id='btnOptionOne'  class='snapInfo__btn snapInfo__btn--option localizejs' style='float:left'>Option 1</span>" +
+                    "<span id='btnOptionTwo'  class='snapInfo__btn snapInfo__btn--option localizejs' style='float:left'>Option 2</span></div>"
             }],
             show: onSnapNotification,
         }).data("kendoNotification");
@@ -112,23 +112,23 @@
                 show: onSnapNotification,
                 templates: [{
                     type: "info",
-                    template: "<div class='snapInfo' style='width:71%'><span class='icon_warning'></span><p> #: content # </p></div>"
+                    template: "<div class='snapInfo localizejs' style='width:71%'><span class='icon_warning'></span><p> #: content # </p></div>"
                 },
                     {
                         type: "announcement",
-                        template: "<div class='snapAnnouncement' style='width:73%'><span class='icon_new'></span><p> #: content # </p></div>"
+                        template: "<div class='snapAnnouncement localizejs' style='width:73%'><span class='icon_new'></span><p> #: content # </p></div>"
                     },
                     {
                         type: "email",
-                        template: "<div class='snapEmail'><span class='icon_mail'></span><h3>Email:</h3><p> #: content # </p></div>"
+                        template: "<div class='snapEmail localizejs'><span class='icon_mail'></span><h3>Email:</h3><p> #: content # </p></div>"
                     },
                     {
                         type: "success",
-                        template: "<div class='snapSuccess' style='width:71%'><span class='icon_checkmark'></span><h3>Success:</h3><p> #: content # </p></div>"
+                        template: "<div class='snapSuccess localizejs' style='width:71%'><span class='icon_checkmark localizejs'></span><h3>Success:</h3><p> #: content # </p></div>"
                     },
                     {
                     type: "success Html",
-                        template: "<div class='snapSuccess' style='width:71%'><span class='icon_checkmark'></span><h3>Success:</h3><p> #= content # </p></div>"
+                        template: "<div class='snapSuccess localizejs' style='width:71%'><span class='icon_checkmark localizejs'></span><h3>Success:</h3><p> #= content # </p></div>"
                     }
                 ]
             }).data("kendoNotification");
@@ -151,9 +151,9 @@
             show: onSnapNotification,
             templates: [{
                 type: "confirmation",
-                template: "<div class='snapInfo'><span class='icon_new'></span><h3>Notification:</h3><p> #= content # </p></div>" +
-                    "<div class='snapInfo-checkbox'><input type='checkbox'></input> <span>Do not show this again</span></div>" +
-                    "<div><span id='btnConfirmYes'  class='confirm-btnYes'>Ok</span></div>"
+                template: "<div class='snapInfo localizejs'><span class='icon_new'></span><h3>Notification:</h3><p> #= content # </p></div>" +
+                    "<div class='snapInfo-checkbox localizejs'><input type='checkbox'></input> <span>Do not show this again</span></div>" +
+                    "<div><span id='btnConfirmYes'  class='confirm-btnYes localizejs'>Ok</span></div>"
             }]
         }).data("kendoNotification");
 
