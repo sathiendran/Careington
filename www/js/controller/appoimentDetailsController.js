@@ -40,11 +40,7 @@ if($rootScope.is_iPadDeviceWidth <= 360){
                       $(".apponitmentMonth").text(spMonth[apponitmentMonth]);
 
                     }
-                if(isLang == "English") {
-                      $(".apponitmentWeek").text(spDay[apponitmentWeek]);
-                      $(".apponitmentMonth").text(spMonth[apponitmentMonth]);
-
-                    }
+                
       });
 //venkat end
   $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");

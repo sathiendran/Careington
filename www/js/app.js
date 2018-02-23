@@ -339,6 +339,12 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
    $rootScope.consultCancelMsg = 'Your consultation is cancelled.';
    $rootScope.consultProgMsg = 'Your consultation is in progress on other device.';
    $rootScope.sessAlertDone = 'Done';
+   $rootScope.alertMsgConference = "Consultation ended successfully!";
+   $rootScope.Buttonmsg = "Done";
+   $rootScope.alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
+   $rootScope.consultAlredComplMsg = 'Consultation already completed!';
+   $rootScope. NaviConfirmation = 'Confirmation:';
+   $rootScope. YESMessageProviderSearch='Yes';
 
       var localizeCurrent = $('#localize-current').text();
       console.log("lang "+localizeCurrent);
@@ -367,6 +373,12 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         $rootScope.consultEndMeg = 'Su consulta ya ha finalizado';
         $rootScope.consultCancelMsg = 'Su consulta se cancela.';
         $rootScope.consultProgMsg = 'Su consulta está en progreso en otro dispositivo.';
+        $rootScope.alertMsgConference = "¡La consulta terminó exitosamente!";
+        $rootScope.Buttonmsg = "Listo";
+        $rootScope.alertconfirm = "Actualmente tiene una consulta en curso. ¿Está seguro de que desea finalizar esta consulta?";
+        $rootScope.consultAlredComplMsg = 'Consulta ya completada!';
+        $rootScope.NaviConfirmation = 'Confirmación:';
+        $rootScope.YESMessageProviderSearch='Sí';
         }
 
       else  {
@@ -394,7 +406,12 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
        $rootScope.consultEndMeg = 'Your consultation is already ended.';
        $rootScope.consultCancelMsg = 'Your consultation is cancelled.';
        $rootScope.consultProgMsg = 'Your consultation is in progress on other device.';
-       $rootScope.sessAlertDone = 'Done';
+       $rootScope.sessAlertDone = 'Done';$rootScope.alertMsgConference = "Consultation ended successfully!";
+       $rootScope.Buttonmsg = "Done";
+       $rootScope.alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
+       $rootScope.consultAlredComplMsg = 'Consultation already completed!';
+       $rootScope. NaviConfirmation = 'Confirmation:';
+       $rootScope. YESMessageProviderSearch='Yes';
         }
 
 
@@ -426,6 +443,12 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             $rootScope.consultEndMeg = 'Su consulta ya ha finalizado';
             $rootScope.consultCancelMsg = 'Su consulta se cancela.';
             $rootScope.consultProgMsg = 'Su consulta está en progreso en otro dispositivo.';
+            $rootScope.alertMsgConference = "¡La consulta terminó exitosamente!";
+            $rootScope.Buttonmsg = "Listo";
+            $rootScope.alertconfirm = "Actualmente tiene una consulta en curso. ¿Está seguro de que desea finalizar esta consulta?";
+            $rootScope.consultAlredComplMsg = 'Consulta ya completada!';
+            $rootScope.NaviConfirmation = 'Confirmación:';
+            $rootScope.YESMessageProviderSearch='Sí';
            }
             else{
                 $rootScope.alertTimedout = "Your session timed out."
@@ -453,6 +476,12 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                  $rootScope.consultCancelMsg = 'Your consultation is cancelled.';
                  $rootScope.consultProgMsg = 'Your consultation is in progress on other device.';
                  $rootScope.sessAlertDone = 'Done';
+                 $rootScope.alertMsgConference = "Consultation ended successfully!";
+                 $rootScope.Buttonmsg = "Done";
+                 $rootScope.alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
+                 $rootScope.consultAlredComplMsg = 'Consultation already completed!';
+                 $rootScope. NaviConfirmation = 'Confirmation:';
+                 $rootScope. YESMessageProviderSearch='Yes';
             }
           });
 

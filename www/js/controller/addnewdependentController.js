@@ -15,7 +15,7 @@ angular.module('starter.controllers')
               $scope.AddPicture = "margin-top: -10px;";
 
            }
-          else(localizeCurrent == "English") {
+          else{
               $scope.AddPicture = "margin-top: 0px;";
 
            }
@@ -33,10 +33,10 @@ angular.module('starter.controllers')
             $("#AddPicture").css("margin-top", "0px");
 
          }
-         if(isLang == "English (UK)") {
+    else{
           //  $scope.AddPicture = "margin-top: 0px !important;";
             $("#AddPicture").css("margin-top", "0px");
-          
+
          }
       });
     $ionicPlatform.registerBackButtonAction(function() {
