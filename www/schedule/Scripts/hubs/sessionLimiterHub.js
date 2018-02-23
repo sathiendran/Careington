@@ -39,7 +39,7 @@
                     snap.clearAllSnapSessions();
 
                     navigator.notification.alert(
-                        'You have logged in on another device and ended this session.', // message
+                        snap.sessAlertMessage, //'You have logged in on another device and ended this session.', // message
                         function() {
                              if(snap.redirctPage == undefined) {
                              //window.location.href = "#/tab/chooseEnvironment";
@@ -59,7 +59,7 @@
                             }
                         },
                         snap.appName, // title
-                        'Done' // buttonName
+                        snap.sessAlertDone //'Done' // buttonName
                     );
                     return false;
 

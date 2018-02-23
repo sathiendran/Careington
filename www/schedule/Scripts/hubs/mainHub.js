@@ -76,13 +76,13 @@
                 if (wasConsultation) {
                   //  global.snapInfo("Attempting to reconnect...."); //todo keep this up
                       navigator.notification.alert(
-                          'No Internet Connection.', // message
+                          snap.alertInternetConnection, //'No Internet Connection.', // message
                           function() {
                                //window.location.href = snap.redirctPage;
                               // window.location.reload(true);
                           },
                           snap.appName, // title
-                          'Done' // buttonName
+                          snap.sessAlertDone //'Done' // buttonName
                       );
                       return false;
                 }
@@ -97,7 +97,7 @@
                         notificationIsActive = true;
 
                         navigator.notification.alert(
-                            'Connection to the system is lost.', // message
+                          snap.ssConnectLost, //'Connection to the system is lost.', // message
                             function() {
                                  if(snap.redirctPage == undefined) {
                             //window.location.href = "#/tab/chooseEnvironment";
@@ -117,7 +117,7 @@
                                 }
                             },
                             snap.appName, // title
-                            'Done' // buttonName
+                            snap.sessAlertDone //'Done' // buttonName
                         );
                         return false;
 
