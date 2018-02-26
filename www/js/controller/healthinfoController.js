@@ -3002,7 +3002,7 @@ angular.module('starter.controllers')
                                 'address': index.address,
                                 'bloodType': index.bloodType,
                                 'description': index.description,
-                                'dob': dob,
+                                'dob': index.dob,
                                 'emailId': index.emailId,
                                 'ethnicity': index.ethnicity,
                                 'eyeColor': index.eyeColor,
