@@ -40,7 +40,7 @@ if($rootScope.is_iPadDeviceWidth <= 360){
                       $(".apponitmentMonth").text(spMonth[apponitmentMonth]);
 
                     }
-                
+
       });
 //venkat end
   $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
@@ -505,12 +505,7 @@ $("#localize-widget").show();
                 if(localizeCurrent == "Español") {
                       $(".apponitmentWeek").text(spDay[shdDay]);
                       $(".apponitmentMonth").text(spMonth[shdMonth]);
-                    }
-                if(localizeCurrent == "English (UK)") {
-                      $(".apponitmentWeek").text(enDay[shdDay]);
-                      $(".apponitmentMonth").text(enMonth[shdMonth]);
-                    }
-                if(localizeCurrent == "English") {
+                    } else {
                       $(".apponitmentWeek").text(enDay[shdDay]);
                       $(".apponitmentMonth").text(enMonth[shdMonth]);
                     }
