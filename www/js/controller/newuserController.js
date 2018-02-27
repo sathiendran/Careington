@@ -60,7 +60,7 @@ angular.module('starter.controllers')
       $rootScope.NaviConfirmation = 'Confirmación:';
       $rootScope.YESMessageProviderSearch='Sí';
       }
- 
+
     else  {
     $rootScope.alertTimedout = "Your session timed out."
     $rootScope.alertokay = "Ok";
@@ -93,8 +93,8 @@ angular.module('starter.controllers')
      $rootScope. NaviConfirmation = 'Confirmation:';
      $rootScope. YESMessageProviderSearch='Yes';
       }
- 
- 
+
+
      $('#localize-langs').click(function() {
        var isLang = $('#localize-langs .activated').text();
          console.log("lang "+isLang);
@@ -287,7 +287,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
 
 
 
-      
+
 
     $scope.doPostAddCousers = function() {
 
@@ -429,13 +429,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                 alertTimedout = "Su sesión ha expirado.";
                 alertokay = "De acuerdo";
                 alerterror ="Error en la carga";
-            }
-          else  if(localizeCurrent == "English (UK)") {
-            alertTimedout = "Your session timed out.";
-            alertokay = "Ok";
-            alerterror ="Error in upload!";
-          }
-          else if (localizeCurrent == "English")   {
+            }  else  {
               alertTimedout = "Your session timed out."
               alertokay = "Ok";
               alerterror ="Error in upload!";
@@ -446,21 +440,15 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
              var isLang = $('#localize-langs .activated').text();
                console.log("lang "+isLang);
                if(isLang == "Español") {
-                 alertTimedout = "Su sesión ha expirado.";
-                 alertokay = "De acuerdo";
-                 alerterror ="Error en la carga";
-               }
-              else  if(isLang == "English (UK)") {
-                alertTimedout = "Your session timed out."
-                alertokay = "Ok";
-                alerterror ="Error in upload!";
-              }
-                else if (isLang == "English") {
+                   alertTimedout = "Su sesión ha expirado.";
+                   alertokay = "De acuerdo";
+                   alerterror ="Error en la carga";
+               } else {
                     alertTimedout = "Your session timed out."
                     alertokay = "Ok";
                     alerterror ="Error in upload!";
                 }
-              });
+            });
 
 
         $cordovaFileTransfer.upload(fileUploadUrl, targetPath, options).then(function(result) {

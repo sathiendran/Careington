@@ -346,12 +346,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $scope.consentTitleFont = "font-size:17px !important";
             $(".newProviderSub").css("padding-bottom", "16px");
             $(".ConcernsFooter .FooterCenter a").css("padding-left", "1px");
-        } if(localizeCurrent == "English (UK)") {
-            $scope.whoNeedsText = "font-size:21px";
-            $scope.consentTitleFont = "font-size:20px !important";
-            $(".newProviderSub").css("padding-bottom", "33px");
-            $(".ConcernsFooter .FooterCenter a").css("padding-left", "10px");
-        } if(localizeCurrent == "English") {
+        } else {
             $scope.whoNeedsText = "font-size:21px";
             $scope.consentTitleFont = "font-size:20px !important";
             $(".newProviderSub").css("padding-bottom", "33px");
@@ -372,13 +367,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                    $("#whoNeedsTextval").css("font-size", "17px");
                    $(".newProviderSub").css("padding-bottom", "16px");
                    $(".ConcernsFooter .FooterCenter a").css("padding-left", "1px");
-               }
-               if(isLang == "English (UK)") {
-                  $("#whoNeedsTextval").css("font-size", "21px");
-                  $(".newProviderSub").css("padding-bottom", "33px");
-                  $(".ConcernsFooter .FooterCenter a").css("padding-left", "10px");
-               }
-               if(isLang == "English") {
+               } else {
                    $("#whoNeedsTextval").css("font-size", "21px");
                    $(".newProviderSub").css("padding-bottom", "33px");
                    $(".ConcernsFooter .FooterCenter a").css("padding-left", "10px");
@@ -397,9 +386,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     if(localizeCurrent == "Español") {
      //   console.log("Español");
     //  $scope.ReportEthnicityVal = "width:36.33%";
-    } if(localizeCurrent == "English (UK)") {
-    //  $scope.ReportEthnicityVal = "width:41.33%";
-    } if(localizeCurrent == "English") {
+  } else {
     ///  $scope.ReportEthnicityVal = "width:41.33%";
     }
     /* if(myLength >= 11) {
@@ -429,20 +416,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
              if(isLang == "Español") {
                  //console.log("Español");
           //       $scope.ReportEthnicityVal = "width:36.33%";
-             } if(isLang == "English (UK)") {
-            //   $scope.ReportEthnicityVal = "width:41.33%";
-             } if(isLang == "English") {
+              } else {
               // $scope.ReportEthnicityVal = "width:41.33%";
              }
              if(myLength >= 11) {
                //  console.log("myLength  is more=");
               if(isLang == "Español") {
                   $scope.departmentClass = "height:45px";
-              }
-              if(isLang == "English (UK)") {
-                $scope.departmentClass = "height:25px";
-              }
-              if(isLang == "English") {
+              } else {
                 $scope.departmentClass = "height:25px";
               }
             isLang = "";
@@ -750,7 +731,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";

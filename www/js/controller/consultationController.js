@@ -155,9 +155,7 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
            if(localizeCurrent == "Español") {
             //   console.log("Español");
              $scope.ReportEthnicityVal = "width:36.33%";
-           } if(localizeCurrent == "English (UK)") {
-             $scope.ReportEthnicityVal = "width:41.33%";
-           } if(localizeCurrent == "English") {
+           } else {
              $scope.ReportEthnicityVal = "width:41.33%";
            }
            /* if(myLength >= 11) {
@@ -764,9 +762,7 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
                               if(localizeCurrent == "Español") {
                               //    console.log("Español h");
                                   $scope.departmentClass = "height:45px";
-                              } if(localizeCurrent == "English (UK)") {
-                                  $scope.departmentClass = "height:25px";
-                              } if(localizeCurrent == "English") {
+                              } else {
                                 //  console.log("English h");
                                   $scope.departmentClass = "height:25px";
                               }
