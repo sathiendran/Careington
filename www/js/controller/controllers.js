@@ -9319,7 +9319,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                                 'address': index.address,
                                 'bloodType': index.bloodType,
                                 'description': index.description,
-                                'dob': dob,
+                                'dob': index.dob,
                                 'emailId': index.emailId,
                                 'ethnicity': index.ethnicity,
                                 'eyeColor': index.eyeColor,
@@ -10226,9 +10226,11 @@ var currentLocalTimeZoneDateTime = new Date(serverDateTime);
             //$rootScope.editCardStyle ="none";
             $rootScope.isEditAvailable = false;
         }
-
-        $state.go($rootScope.submitPayBack);
-
+        if(typeof $rootScope.submitPayBack == 'undefined') {
+            history.back();
+        } else {
+            $state.go($rootScope.submitPayBack);
+        }
         // history.back();
         //    $scope.apply();
      }

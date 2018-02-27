@@ -483,6 +483,8 @@ angular.element(document).ready(function () {
                             } else {
                                 var relationShip = '';
                             }
+                            //var dob = ageFilter.getDateFilter(index.dob);
+                           
                             var dob = ageFilter.getDateFilter(index.dob);
                             if (index.gender == 'M') {
                                 var gender = "Male";
@@ -494,7 +496,7 @@ angular.element(document).ready(function () {
                                 'address': index.address,
                                 'bloodType': index.bloodType,
                                 'description': index.description,
-                                'dob': dob,
+                                'dob': index.dob,
                                 'emailId': index.emailId,
                                 'ethnicity': index.ethnicity,
                                 'eyeColor': index.eyeColor,
