@@ -1,3 +1,12 @@
+<style>
+      .ion-asterisk {
+    font-size: 8px;
+    position: relative;
+    top: 2px;
+    color: red;
+    left: 2px;
+}
+</style>
 <div class="modal" ng-init="Widgetshow()">
    <ion-view>
       <header class="bar bar-header bar-dark concernListHeader" style="background-color: #ccc;
@@ -86,7 +95,7 @@
                   </div>
                   <div class="row addressRow">
                      <div class="col">
-                        <label class="localizejs addresslabel"> Country</label>
+                        <label class="localizejs addresslabel"> Country <i class="ion-asterisk"></i></label>
                         <div>
                            <div style="margin-left: 12px; margin-top: 10px;">
                               <img src="{{imageName}}" ng-if="imageName != 'images/countries/flags/-32.png'">

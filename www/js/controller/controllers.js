@@ -731,7 +731,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -10218,8 +10218,7 @@ var currentLocalTimeZoneDateTime = new Date(serverDateTime);
     }
 
     $scope.backToEdiORAddCard = function() {
-        //$state.go($rootScope.submitPayBack);
-        $rootScope.iscancel = true;
+      // $rootScope.iscancel = true;
         if($rootScope.isEditAvailable){
             $rootScope.isEditAvailable = true
         } else {
@@ -10227,12 +10226,11 @@ var currentLocalTimeZoneDateTime = new Date(serverDateTime);
             $rootScope.isEditAvailable = false;
         }
         if(typeof $rootScope.submitPayBack == 'undefined') {
-            history.back();
+          history.back();
         } else {
-            $state.go($rootScope.submitPayBack);
+           $state.go($rootScope.submitPayBack);
         }
-        // history.back();
-        //    $scope.apply();
+
      }
 
     $scope.catchPlanDetails = function(){
