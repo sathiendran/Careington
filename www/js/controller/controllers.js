@@ -731,7 +731,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -1568,7 +1568,27 @@ $rootScope.checkAndChangeMenuIcon = function() {
       					hsettings.hideOpenConsultation = $rootScope.getDetails.indexOf("HideOpenConsultation") > -1;
       					hsettings.hideDrToDrChat = $rootScope.getDetails.indexOf("HideDrToDrChat") > -1;
       					hsettings.drToDrChatInAdmin = false; //data.indexOf("DrToDrChatInAdmin") > -1;
-      					//alert(data.indexOf("HideDrToDrChat"));
+
+                hsettings.adminMeetingReport = $rootScope.getDetails.indexOf("AdminMeetingReport") > -1;
+                hsettings.includeDirections = $rootScope.getDetails.indexOf("IncludeDirections") > -1;
+                hsettings.hideForgotPasswordLink = $rootScope.getDetails.indexOf("HideForgotPasswordLink") > -1;
+                hsettings.encounterGeoLocation = $rootScope.getDetails.indexOf("EncounterGeoLocation") > -1;
+
+
+                hsettings.enableAdminScheduleVideoConsultation = $rootScope.getDetails.indexOf("EnableAdminScheduleVideoConsultation") > -1;
+                hsettings.enableAdminSchedulePhoneConsultation = $rootScope.getDetails.indexOf("EnableAdminSchedulePhoneConsultation") > -1;
+                hsettings.enableAdminScheduleChatConsultation = $rootScope.getDetails.indexOf("EnableAdminScheduleChatConsultation") > -1;
+                hsettings.enableAdminScheduleInPersonConsultation = $rootScope.getDetails.indexOf("EnableAdminScheduleInPersonConsultation") > -1;
+                hsettings.enableSelfScheduleVideoConsultation = $rootScope.getDetails.indexOf("EnableSelfScheduleVideoConsultation") > -1;
+                hsettings.enableSelfSchedulePhoneConsultation = $rootScope.getDetails.indexOf("EnableSelfSchedulePhoneConsultation") > -1;
+                //hsettings.enableSelfScheduleChatConsultation = $rootScope.getDetails.indexOf("EnableSelfScheduleChatConsultation") > -1;
+                hsettings.enableSelfScheduleChatConsultation = false;
+                hsettings.enableSelfScheduleInPersonConsultation = $rootScope.getDetails.indexOf("EnableSelfScheduleInPersonConsultation") > -1;
+                hsettings.enableOnDemandVideoConsultation = $rootScope.getDetails.indexOf("EnableOnDemandVideoConsultation") > -1;
+                hsettings.enableOnDemandPhoneConsultation = $rootScope.getDetails.indexOf("EnableOnDemandPhoneConsultation") > -1;
+                hsettings.enableOnDemandChatConsultation = $rootScope.getDetails.indexOf("EnableOnDemandChatConsultation") > -1;
+
+              	//alert(data.indexOf("HideDrToDrChat"));
       					//Addd Public facing Hospital Setting
       					if (data.data[0]['settings']) {
       						$.extend(hsettings, data.data[0]['settings']);
@@ -1961,6 +1981,26 @@ $rootScope.checkAndChangeMenuIcon = function() {
       					hsettings.hideOpenConsultation = $rootScope.getDetails.indexOf("HideOpenConsultation") > -1;
       					hsettings.hideDrToDrChat = $rootScope.getDetails.indexOf("HideDrToDrChat") > -1;
       					hsettings.drToDrChatInAdmin = false; //data.indexOf("DrToDrChatInAdmin") > -1;
+
+                hsettings.adminMeetingReport = $rootScope.getDetails.indexOf("AdminMeetingReport") > -1;
+                hsettings.includeDirections = $rootScope.getDetails.indexOf("IncludeDirections") > -1;
+                hsettings.hideForgotPasswordLink = $rootScope.getDetails.indexOf("HideForgotPasswordLink") > -1;
+                hsettings.encounterGeoLocation = $rootScope.getDetails.indexOf("EncounterGeoLocation") > -1;
+
+
+                hsettings.enableAdminScheduleVideoConsultation = $rootScope.getDetails.indexOf("EnableAdminScheduleVideoConsultation") > -1;
+                hsettings.enableAdminSchedulePhoneConsultation = $rootScope.getDetails.indexOf("EnableAdminSchedulePhoneConsultation") > -1;
+                hsettings.enableAdminScheduleChatConsultation = $rootScope.getDetails.indexOf("EnableAdminScheduleChatConsultation") > -1;
+                hsettings.enableAdminScheduleInPersonConsultation = $rootScope.getDetails.indexOf("EnableAdminScheduleInPersonConsultation") > -1;
+                hsettings.enableSelfScheduleVideoConsultation = $rootScope.getDetails.indexOf("EnableSelfScheduleVideoConsultation") > -1;
+                hsettings.enableSelfSchedulePhoneConsultation = $rootScope.getDetails.indexOf("EnableSelfSchedulePhoneConsultation") > -1;
+              //  hsettings.enableSelfScheduleChatConsultation = $rootScope.getDetails.indexOf("EnableSelfScheduleChatConsultation") > -1;
+                hsettings.enableSelfScheduleChatConsultation = false;
+                hsettings.enableSelfScheduleInPersonConsultation = $rootScope.getDetails.indexOf("EnableSelfScheduleInPersonConsultation") > -1;
+                hsettings.enableOnDemandVideoConsultation = $rootScope.getDetails.indexOf("EnableOnDemandVideoConsultation") > -1;
+                hsettings.enableOnDemandPhoneConsultation = $rootScope.getDetails.indexOf("EnableOnDemandPhoneConsultation") > -1;
+                hsettings.enableOnDemandChatConsultation = $rootScope.getDetails.indexOf("EnableOnDemandChatConsultation") > -1;
+
       					//alert(data.indexOf("HideDrToDrChat"));
       					//Addd Public facing Hospital Setting
       					if (data.data[0]['settings']) {
@@ -2557,6 +2597,26 @@ $rootScope.checkAndChangeMenuIcon = function() {
       					hsettings.hideOpenConsultation = $rootScope.getDetails.indexOf("HideOpenConsultation") > -1;
       					hsettings.hideDrToDrChat = $rootScope.getDetails.indexOf("HideDrToDrChat") > -1;
       					hsettings.drToDrChatInAdmin = false; //data.indexOf("DrToDrChatInAdmin") > -1;
+
+                hsettings.adminMeetingReport = $rootScope.getDetails.indexOf("AdminMeetingReport") > -1;
+                hsettings.includeDirections = $rootScope.getDetails.indexOf("IncludeDirections") > -1;
+                hsettings.hideForgotPasswordLink = $rootScope.getDetails.indexOf("HideForgotPasswordLink") > -1;
+                hsettings.encounterGeoLocation = $rootScope.getDetails.indexOf("EncounterGeoLocation") > -1;
+
+
+                hsettings.enableAdminScheduleVideoConsultation = $rootScope.getDetails.indexOf("EnableAdminScheduleVideoConsultation") > -1;
+                hsettings.enableAdminSchedulePhoneConsultation = $rootScope.getDetails.indexOf("EnableAdminSchedulePhoneConsultation") > -1;
+                hsettings.enableAdminScheduleChatConsultation = $rootScope.getDetails.indexOf("EnableAdminScheduleChatConsultation") > -1;
+                hsettings.enableAdminScheduleInPersonConsultation = $rootScope.getDetails.indexOf("EnableAdminScheduleInPersonConsultation") > -1;
+                hsettings.enableSelfScheduleVideoConsultation = $rootScope.getDetails.indexOf("EnableSelfScheduleVideoConsultation") > -1;
+                hsettings.enableSelfSchedulePhoneConsultation = $rootScope.getDetails.indexOf("EnableSelfSchedulePhoneConsultation") > -1;
+              //  hsettings.enableSelfScheduleChatConsultation = $rootScope.getDetails.indexOf("EnableSelfScheduleChatConsultation") > -1;
+                hsettings.enableSelfScheduleChatConsultation = false;
+                hsettings.enableSelfScheduleInPersonConsultation = $rootScope.getDetails.indexOf("EnableSelfScheduleInPersonConsultation") > -1;
+                hsettings.enableOnDemandVideoConsultation = $rootScope.getDetails.indexOf("EnableOnDemandVideoConsultation") > -1;
+                hsettings.enableOnDemandPhoneConsultation = $rootScope.getDetails.indexOf("EnableOnDemandPhoneConsultation") > -1;
+                hsettings.enableOnDemandChatConsultation = $rootScope.getDetails.indexOf("EnableOnDemandChatConsultation") > -1;
+
       					//alert(data.indexOf("HideDrToDrChat"));
       					//Addd Public facing Hospital Setting
       					if (data.data[0]['settings']) {

@@ -80,8 +80,10 @@
                    </p>
                    <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                      <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
-                   <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode != 3">
+                   <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 2">
                      <i class="setIcon"  ng-bind-html="drawSVGCIcon('phone')"></i> </span>
+                   <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 4">
+                     <i class="setIcon"  ng-bind-html="drawSVGCIcon('users')"></i> </span>
                    <h4 style="margin-top: -14px;"><span class="fname" style="margin-left: 0px;">{{scheduledListData.scheduledDate }}</span>
                       <span class="fontsymbol"> @ </span>
                       <span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span>
@@ -98,8 +100,10 @@
                    </p>
                    <span class="encounterappticon" style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                      <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
-                   <span class="encounterappticon" style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode != 3">
+                   <span class="encounterappticon" style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode == 2">
                      <i class="setIcon"  ng-bind-html="drawSVGCIcon('phone')"></i> </span>
+                   <span class="encounterappticon" style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode == 4">
+                     <i class="setIcon"  ng-bind-html="drawSVGCIcon('users')"></i> </span>
                    <h4 class="appalign" style="margin-top: -14px !important;"><span class="fname" style="margin-left: 0px;">{{scheduledListData.scheduledDate}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
                    </h4>
                 </a>
@@ -118,8 +122,10 @@
                  </p>
                  <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                    <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
-                 <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode != 3">
+                 <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 2">
                    <i class="setIcon"  ng-bind-html="drawSVGCIcon('phone')"></i> </span>
+                 <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 4">
+                   <i class="setIcon"  ng-bind-html="drawSVGCIcon('users')"></i> </span>
                  <h4 style="margin-top: -14px;"><span class="fname" style="margin-left: 0px;">{{scheduledListData.scheduledDate }}</span>
                     <span class="fontsymbol"> @ </span>
                     <span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span>
@@ -136,8 +142,10 @@
                  </p>
                  <span class="encounterappticon" style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                    <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
-                 <span class="encounterappticon" style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode != 3">
+                 <span class="encounterappticon" style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode == 2">
                    <i class="setIcon"  ng-bind-html="drawSVGCIcon('phone')"></i> </span>
+                 <span class="encounterappticon" style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode == 4">
+                   <i class="setIcon"  ng-bind-html="drawSVGCIcon('users')"></i> </span>
                  <h4 class="appalign" style="margin-top: -14px !important;"><span class="fname" style="margin-left: 0px;">{{scheduledListData.scheduledDate}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
                  </h4>
               </a>
@@ -176,8 +184,10 @@
                   </p>
                   <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                     <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
-                  <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode != 3">
+                  <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 2">
                     <i class="setIcon"  ng-bind-html="drawSVGCIcon('phone')"></i> </span>
+                  <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 4">
+                    <i class="setIcon"  ng-bind-html="drawSVGCIcon('users')"></i> </span>
                   <h4 style="margin-top: -14px;"><span class="fname" style="margin-left: 0px;">{{scheduledListData.scheduledDate }}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
                </a>
                <a class="item item-avatar appitem" ng-repeat="scheduledListData in filteredItems=(getAllInQueueScheduleDetails  | filter: data.searchProvider)" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
@@ -190,8 +200,10 @@
                   </p>
                   <span class="encounterappticon " style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                     <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
-                  <span class="encounterappticon " style="top: 28px !important;"  ng-if="scheduledListData.encounterTypeCode != 3">
+                  <span class="encounterappticon " style="top: 28px !important;"  ng-if="scheduledListData.encounterTypeCode == 2">
                     <i class="setIcon"  ng-bind-html="drawSVGCIcon('phone')"></i> </span>
+                  <span class="encounterappticon " style="top: 28px !important;"  ng-if="scheduledListData.encounterTypeCode == 4">
+                    <i class="setIcon"  ng-bind-html="drawSVGCIcon('users')"></i> </span>
                   <h4 class="appalign" style="margin-top: -14px !important;"><span class="fname" style="margin-left: 0px;">{{scheduledListData.scheduledDate }}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
                   </h4>
                </a>
@@ -208,8 +220,10 @@
                 </p>
                 <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                   <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
-                <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode != 3">
+                <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 2">
                   <i class="setIcon"  ng-bind-html="drawSVGCIcon('phone')"></i> </span>
+                <span class="encounterappticon " style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 4">
+                  <i class="setIcon"  ng-bind-html="drawSVGCIcon('users')"></i> </span>
                 <h4 style="margin-top: -14px;"><span class="fname" style="margin-left: 0px;">{{scheduledListData.scheduledDate }}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
              </a>
              <a class="item item-avatar appitem scheduled" ng-repeat="scheduledListData in filteredItems=(getAllPatScheduleDetails  | filter: data.searchProvider)" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
@@ -222,8 +236,10 @@
                 </p>
                 <span class="encounterappticon " style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode == 3">
                   <i class="setIcon"  ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
-                <span class="encounterappticon " style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode != 3">
+                <span class="encounterappticon " style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode == 2">
                   <i class="setIcon"  ng-bind-html="drawSVGCIcon('phone')"></i> </span>
+                <span class="encounterappticon " style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode == 4">
+                  <i class="setIcon"  ng-bind-html="drawSVGCIcon('users')"></i> </span>
                 <h4 class="appalign" style="margin-top: -14px !important;"><span class="fname" style="margin-left: 0px;">{{scheduledListData.scheduledDate }}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
                 </h4>
              </a>

@@ -71,6 +71,13 @@ var setUserVars = function() {
             });
         };
 
+        this.getServiceTypes = function(appointmentType) {
+            var opt = {
+                appointmentType: appointmentType
+            };
+            return $.get(snap.baseUrl + "/api/v2.1/patients/service-types", opt);
+        };
+
         this.getCliniciansCards = function(opt) {
             return $http.get(snap.baseUrl + "/api/v2.1/patients/appointments/self-scheduling/clinicians", opt);
         };
@@ -106,6 +113,86 @@ var setUserVars = function() {
         };
     }).singleton();
 }(jQuery, window.snap = window.snap || {}));
+//@ sourceURL=encounterMethod.helper.js
+;
+(function($, snap) {
+    "use strict";
+    snap.namespace("snap.helper")
+        .use([
+            "snap.common.schedule.ScheduleCommon"
+        ])
+        .define("encounterMethodHelper", function(
+            $scheduleCommon
+        ) {
+            var adminEncounterMap = {},
+                patientEncounterMap = {},
+                onDemandEncounterMap = {},
+                encounterNameMap = {},
+                $encounterTypeCode = snap.enums.EncounterTypeCode;
+
+            adminEncounterMap[$encounterTypeCode.Video] = snap.hospitalSettings.enableAdminScheduleVideoConsultation;
+            adminEncounterMap[$encounterTypeCode.Phone] = snap.hospitalSettings.enableAdminSchedulePhoneConsultation;
+            adminEncounterMap[$encounterTypeCode.Text] = snap.hospitalSettings.enableAdminScheduleChatConsultation;
+            adminEncounterMap[$encounterTypeCode.InPerson] = snap.hospitalSettings.enableAdminScheduleInPersonConsultation;
+
+            patientEncounterMap[$encounterTypeCode.Video] = snap.hospitalSettings.enableSelfScheduleVideoConsultation;
+            patientEncounterMap[$encounterTypeCode.Phone] = snap.hospitalSettings.enableSelfSchedulePhoneConsultation;
+            patientEncounterMap[$encounterTypeCode.Text] = snap.hospitalSettings.enableSelfScheduleChatConsultation;
+            patientEncounterMap[$encounterTypeCode.InPerson] = snap.hospitalSettings.enableSelfScheduleInPersonConsultation;
+
+            onDemandEncounterMap[$encounterTypeCode.Video] = snap.hospitalSettings.enableOnDemandVideoConsultation;
+            onDemandEncounterMap[$encounterTypeCode.Phone] = snap.hospitalSettings.enableOnDemandPhoneConsultation;
+            onDemandEncounterMap[$encounterTypeCode.Text] = snap.hospitalSettings.enableOnDemandChatConsultation;
+
+            this.vm_isVideoEnabled = snap.hospitalSettings.enableOnDemandVideoConsultation;
+            this.vm_isPhoneEnabled = snap.hospitalSettings.enableOnDemandPhoneConsultation;
+            this.vm_isChatEnabled = snap.hospitalSettings.enableOnDemandChatConsultation;
+
+            encounterNameMap[$encounterTypeCode.Video] = "Video";
+            encounterNameMap[$encounterTypeCode.Phone] = "Phone";
+            encounterNameMap[$encounterTypeCode.Text] = "Chat";
+            encounterNameMap[$encounterTypeCode.InPerson] = "In Person";
+
+            this.getEncounterTypeName = function (typeCode) {
+                return encounterNameMap[typeCode] || "None Reported";
+            };
+
+            this.getFirstEnabledEncounterMethod = function(appointmentTypeCode) {
+                var encounterMap;
+                if (appointmentTypeCode === $scheduleCommon.appointmentTypeCode.patientScheduled) {
+                    encounterMap = patientEncounterMap;
+                } else if (appointmentTypeCode === $scheduleCommon.appointmentTypeCode.onDemand) {
+                    encounterMap = onDemandEncounterMap;
+                } else {
+                    encounterMap = adminEncounterMap;
+                }
+                if (encounterMap[$encounterTypeCode.Video]) {
+                    return $encounterTypeCode.Video;
+                } else if (encounterMap[$encounterTypeCode.Phone]) {
+                    return $encounterTypeCode.Phone;
+                } else if (encounterMap[$encounterTypeCode.Text]) {
+                    return $encounterTypeCode.Text;
+                } else if (encounterMap[$encounterTypeCode.InPerson]) {
+                    return $encounterTypeCode.InPerson;
+                }
+                return $encounterTypeCode.None;
+            };
+
+            this.isEncounterMethodEnabled = function(encounterType, appointmentTypeCode) {
+                if (appointmentTypeCode === $scheduleCommon.appointmentTypeCode.patientScheduled) {
+                    return patientEncounterMap[encounterType] || false;
+                } else if (appointmentTypeCode === $scheduleCommon.appointmentTypeCode.onDemand) {
+                    return onDemandEncounterMap[encounterType] || false;
+                }
+                return adminEncounterMap[encounterType] || false;
+            };
+
+        });
+
+}(jQuery, snap));
+
+
+
 (function($, snap, kendo) {
     "use strict";
 
@@ -211,7 +298,7 @@ var setUserVars = function() {
                                     $overlay.setLoadingIcn("images/Clipboard-Done-C.svg");
                                     $overlay.setLoadingTxt("All set.");
 
-                                    if (appt.encounterTypeCode === snap.enums.EncounterTypeCode.Phone) {
+                                     if (appt.encounterTypeCode === snap.enums.EncounterTypeCode.Phone || appt.encounterTypeCode === snap.enums.EncounterTypeCode.InPerson) {
                                         $overlay.setSubTxt("A provider will call you shortly.");
                                     } else {
                                         //$overlay.setSubTxt("Accept the consent to treat agreement to enter the waiting room.");
@@ -225,9 +312,24 @@ var setUserVars = function() {
                                         });
                                     }, 2000);
 
+ var patient = $scheduleCommon.findPatient(data.participants);
+                                    var opt = {
+                                        patientId: data.patientId,
+                                        patientPersonId: patient.personId,
+                                        appointmentId: data.appointmentId,
+                                        encounterTypeCode: data.encounterTypeCode,
+                                    };
+                                    $patientEnterConsultationHelper.enterConsultation(opt).then(function() {
+                                        window.setTimeout(function() {
+                                            $overlay.toggleOverlay();
+                                        }, 2000);
+                                    }, function() {
+                                        $overlay.toggleOverlay();
+                                    });
                                 },
-                                error: function() {
+                                error: function () {
                                     snapError("Cannot find appointment.");
+                                    $overlay.toggleOverlay();
                                 }
                             });
                         }
@@ -306,9 +408,11 @@ var setUserVars = function() {
             "snapNotification",
             "snap.EventAggregator",
             "snap.admin.patientRules.ruleService",
-            "snap.DataService.customerDataService"
+           "snap.DataService.customerDataService",
+            "snap.helper.locationHelper"
         ])
-        .define("patientResponseAddressDialog", function($snapNotification, $eventAggregator, $ruleService, $customerDataService) {
+        .define("patientResponseAddressDialog", function ($snapNotification, $eventAggregator, $ruleService, $customerDataService,  $locationHelper) {
+
             var userId = null;
             var patientId = null;
             var dialog = null;
@@ -318,115 +422,163 @@ var setUserVars = function() {
             this.countryCodes = [];
             this.regions = [];
 
-            this.selectedCountry = "United States of America";
+           this.selectedCountry = null;
             this.selectedRegion = null;
+            this.currentLocationText = "";
             this.currentLocation = "";
 
-            this.setOptions = function(opt) {
-                patientId = opt.opt.patientId;
-                userId = opt.opt.userId;
+            this.vm_isLocationAutocompleteFocused = false;
+            this.vm_countryError = false;
+            this.vm_isCountryFilled = true;
+            this.vm_stateError = false;
+            this.vm_isStateFilled = false;
+            this.vm_isError = false;
+            this.vm_isLoading = false;
+
+            this.vm_patientProfileImg = global.getDefaultProfileImageForPatient();
+
+
+            /* Initialization */
+           this.setOptions = function(opt) {
                 dialog = opt.dialog;
+                patientId = opt.opt.patientId;
 
+                this.set("currentLocationText", opt.opt.currentLocationText);
+                this.set("vm_patientProfileImg", opt.opt.imageSource || global.getDefaultProfileImageForPatient());
+                this.set("vm_fullName", opt.opt.fullName);
+                this.set("vm_firstName", opt.opt.firstName);
 
-                var location = opt.opt.patientProfile.encounterAddressLocation ? opt.opt.patientProfile.encounterAddressLocation : opt.opt.patientProfile.addressLocation;
-
-                var displayLocation = "";
-                if (location) {
-                    displayLocation = location.country;
-                    if (location.state) {
-                        displayLocation = [location.state, location.country].join(", ");
-                    }
-                } else {
-                    displayLocation = opt.opt.patientProfile.address;
-                }
-
-                this.set("currentLocation", displayLocation);
+                this.currentLocation = opt.opt.currentLocation;
 
                 var that = this;
-                this.loadCountries().done(function() {
-                    that.loadStatesForSelectedCountry();
+                this._loadCountries().done(function() {
+                    that._loadStatesForSelectedCountry();
                 });
+
+                this.set("isEditMode", false);
+                this.set("vm_isLocationAutocompleteFocused", false);
+                this.set("vm_countryError", false);
+                this.set("vm_stateError", false);
+                this.set("vm_isError", false);
+                this.set("vm_isLoading", false);
+
+                this.set("vm_isLoading", false);
+
+                this.trigger("change", { field: "vm_isSelfLocationDialog" });
+                this.trigger("change", { field: "vm_saveButtonText"});
+            };
+
+            this.onDialogCreate = function () {
+                var that = this;
+
+                $('.search input').on('focus', function() {
+                    that.set("vm_isLocationAutocompleteFocused", true);
+                });
+
+                $('.search input').on('blur', function(){
+                    that.set("vm_isLocationAutocompleteFocused", false);
+                });
+            };
+
+
+            /* MVVM properties */
+
+            this.vm_saveButtonText = function() {
+                return this.vm_isError ? "Retry?" : "Save";
             };
 
             this.vm_isRegionsAutocompleteEnable = function() {
                 return this.regions.length > 0;
             };
-            this.vm_countryError = false;
-            this.vm_stateError = false;
-            this.vm_isError = false;
-            this.vm_isLoading = false;
-            this.vm_saveButtonText = "Save";
+
+            this.vm_isSelfLocationDialog = function() {
+                return patientId === snap.profileSession.profileId;
+            };
+
+
+            /* MVVM actions */
 
             this.vm_onYesClick = function() {
                 this.set("vm_isLoading", true);
 
                 var that = this;
-                $customerDataService.updatePatientResponseAddress(this.currentLocation).done(function() {
+
+                var locationEncoded = $locationHelper.encodeLocation(this.currentLocation);
+
+                $customerDataService.updatePatientResponseAddress(locationEncoded, patientId).done(function(response) {
                     that.set("vm_isLoading", false);
                     dialog.close();
-                    $eventAggregator.publish("patientResponseDialog_locationConfirmed");
+                    var addressText = response.data[0];
+                    $eventAggregator.publish("patientResponseDialog_locationConfirmed", that.currentLocation, addressText);
                 });
             };
 
             this.vm_onNoClick = function() {
-                this.set("isEditMode", true);
+            	this.set("isEditMode", true);
             };
 
             this.vm_onCancelClick = function() {
-                this.set("isEditMode", false);
+            	this.set("isEditMode", false);
             };
 
-            this.vm_isSaveDisabled = true;
-
             this.vm_onSaveClick = function() {
-                if (!this._validate()) {
+                if(!this._validate()) {
                     this.set("vm_isError", true);
-                    this.set("vm_saveButtonText", "Retry?");
+                    this.trigger("change", { field: "vm_saveButtonText"});
                     return false;
                 }
 
                 this.set("vm_isError", false);
-                this.set("vm_saveButtonText", "Save");
+                this.trigger("change", { field: "vm_saveButtonText"});
 
                 this.set("vm_isLoading", true);
 
-
-                var address = [this.selectedRegion, this.selectedCountry].join(", ");
+                var selectedLocation = {
+                    countryCode: this.selectedCountry.value,
+                    countryName: this.selectedCountry.text,
+                    regionCode: this.selectedRegion ? this.selectedRegion.value : null,
+                    regionName: this.selectedRegion ? this.selectedRegion.text : null
+                };
+                var locationEncoded = $locationHelper.encodeLocation(selectedLocation);
 
                 var that = this;
-                $customerDataService.updatePatientResponseAddress(address).done(function() {
+                $customerDataService.updatePatientResponseAddress(locationEncoded, patientId).done(function(response) {
                     that.set("vm_isLoading", false);
                     dialog.close();
-                    $eventAggregator.publish("patientResponseDialog_locationConfirmed");
+                    var addressText = response.data[0];
+                    $eventAggregator.publish("patientResponseDialog_locationConfirmed", selectedLocation, addressText);
                 });
             };
 
             this.vm_onCountryChange = function() {
-                this.loadStatesForSelectedCountry();
+                this._loadStatesForSelectedCountry();
             };
 
             this.vm_onRegionChange = function() {
-                var selectedRegion = searchByText(this.regions, this.selectedRegion);
+                this.set("vm_stateError", !this.selectedRegion || !this.selectedRegion.value);
+                this.set("vm_isError", this.vm_stateError);
+                this.trigger("change", { field: "vm_saveButtonText"});
 
-                this.set("vm_stateError", selectedRegion === null);
-
-                if (selectedRegion) {
-                    this.set("vm_isSaveDisabled", false);
-                } else {
-                    this.set("vm_isSaveDisabled", true);
-                }
+                this.set("vm_isStateFilled", !this.vm_stateError);
             };
 
-            this.loadCountries = function() {
+
+
+
+
+
+  /* Private methods */
+
+            this._loadCountries = function() {
                 var that = this;
-                return $customerDataService.getProviderLicensePatientAddressMetaRule().done(function(data) {
+                return $customerDataService.getProviderLicensePatientAddressMetaRule().done(function(data){
                     var d = data.data[0].countries.map(function(country) {
                         var obj = {
                             text: $.trim(country.country),
                             value: $.trim(country.countryCode)
                         };
 
-                        if (country.regions) {
+                        if(country.regions) {
                             obj.regions = country.regions.map(function(region) {
                                 return {
                                     text: $.trim(region.region),
@@ -439,41 +591,49 @@ var setUserVars = function() {
                     }).sort(compareCodesByName);
 
                     that.set("countryCodes", d);
+
+                    // select current location country
+                    var selectedCountryCode = that.currentLocation.countryCode || "US";
+                    var defaultCountry = d.find(function(el) {
+                        return el.value === selectedCountryCode;
+                    });
+                    defaultCountry = defaultCountry || d[0];
+                    that.set("selectedCountry", defaultCountry);
                 });
             };
 
-            this.loadStatesForSelectedCountry = function() {
+            this._loadStatesForSelectedCountry = function() {
                 this.set("regions", []);
                 this.set("selectedRegion", null);
+                this.set("vm_stateError", false);
+                this.set("vm_isStateFilled", false);
 
-                var selectedCountry = searchByText(this.countryCodes, this.selectedCountry);
-                if (selectedCountry !== null) {
+                if (this.selectedCountry && this.selectedCountry.value) {
                     this.set("vm_countryError", false);
+                    this.set("vm_isError", false);
 
-                    if (selectedCountry.regions) {
-                        this.set("regions", selectedCountry.regions);
-                        this.set("vm_isSaveDisabled", true);
-                    } else {
-                        this.set("vm_isSaveDisabled", false);
+                    if(this.selectedCountry.regions) {
+                        this.set("regions", this.selectedCountry.regions);
                     }
                 } else {
                     this.set("vm_countryError", true);
-                    this.set("vm_isSaveDisabled", true);
+                    this.set("vm_isError", true);
                 }
 
+                this.set("vm_isCountryFilled", !this.vm_countryError);
+
                 this.trigger("change", { field: "vm_isRegionsAutocompleteEnable" });
+                this.trigger("change", { field: "vm_saveButtonText"});
             };
 
             this._validate = function() {
-                var selectedCountry = searchByText(this.countryCodes, this.selectedCountry);
-                if (selectedCountry === null) {
+                if(!this.selectedCountry || !this.selectedCountry.value) {
                     this.set("vm_countryError", true);
                     return false;
                 }
 
-                if (this.vm_isRegionsAutocompleteEnable()) {
-                    var selectedRegion = searchByText(this.regions, this.selectedRegion);
-                    if (selectedRegion === null) {
+                if(this.vm_isRegionsAutocompleteEnable()) {
+                    if(!this.selectedRegion || !this.selectedRegion.value) {
                         this.set("vm_stateError", true);
                         return false;
                     }
@@ -482,38 +642,31 @@ var setUserVars = function() {
                 return true;
             };
 
-            function searchByText(arr, text) {
-                if (text) {
-                    for (var i = 0; i < arr.length; i++) {
-                        var country = $.trim(arr[i].text.toLowerCase());
-                        var input = $.trim(text.toLowerCase());
-
-                        if (country === input)
-                            return arr[i];
-                    }
-                }
-
-                return null;
-            }
-
-            function compareCodesByName(a, b) {
-                if (a.text < b.text)
-                    return -1;
-                if (a.text > b.text)
-                    return 1;
-                return 0;
-            }
-
-            this.loadNonMVVM = function() {};
+			function compareCodesByName(a, b) {
+	            if (a.text < b.text)
+	                return -1;
+	            if (a.text > b.text)
+	                return 1;
+	            return 0;
+	        }
         }).singleton();
-}(jQuery, snap, kendo));
+}(jQuery, snap, window));
 //@ sourceURL=rulesService.js
 
+
+
+
+
+
+
+
+
+
 "use strict";
-(function($, snap) {
+(function ($, snap) {
 
     snap.namespace("snap.admin.patientRules").use([])
-        .define("patientRulesCommon", function() {
+        .define("patientRulesCommon", function () {
             // In back-end we have many enums which describes rules logic.
             // In front-end we need to have the same enums in oredr to work with data from API.
 
@@ -901,10 +1054,17 @@ var setUserVars = function() {
                         vmName: "snap.admin.patientRules.patientAddressRule",
                         contentPath: "/content/admin/patientRules/rules/patientAddress.html?v=1694"
                     },
-                    getRuleSummaryInfo: function(ruleObject) {
-                        var operator = ruleObject.conditionTypeId === $patientRulesCommon.ruleLogicTypeCodeEnum.NotIn ? "not in" : "in";
+                     getRuleSummaryInfo: function(ruleObject) {
+                        var locationsText = new LocationsText().getLocationsSummary(ruleObject.subjectAddresses);
 
-                        return ["Allow patients to register if <br/> patient address", operator, ruleObject.subjectAddresses[0].country].join(" ");
+                        var operator = ruleObject.conditionTypeId === $patientRulesCommon.ruleLogicTypeCodeEnum.NotIn ? "isn't located" : "is located";
+
+                        return ["Allow patients to register if the patient's address", operator, locationsText].join(" ");
+                    },
+                    getRuleSummaryShortInfo: function(ruleObject) {
+                        var shortSummary = new LocationsText().getLacationsShortSummary(ruleObject.subjectAddresses);
+
+                        return { description: shortSummary };
                     },
                     save: function(ruleObject) {
                         return $ruleService.saveAdressRule(ruleObject);
@@ -960,15 +1120,20 @@ var setUserVars = function() {
         }).singleton();
 
 }(jQuery, snap));
+
+
+
 //@ sourceURL=appointmentFactory.js
 
-(function($, snap, kendo, global) {
+(function ($, snap, kendo, global) {
     "use strict";
     snap.namespace("snap.patient.schedule")
         .use(["snapNotification",
-            "snap.admin.schedule.TimeUtils",
-            "snap.common.ItemSelector",
+            "snap.common.timeUtils",
+            "snap.common.schedule.itemSelector",
             "snap.common.schedule.ScheduleCommon",
+            "snap.common.schedule.encounterMethodSelector",
+            "snap.helper.encounterMethodHelper",
             "snap.EventAggregator",
             "snap.service.availabilityBlockService",
             "snap.patient.schedule.patientAppointmentService",
@@ -978,13 +1143,18 @@ var setUserVars = function() {
             "snap.patient.schedule.patientSelfSchedulingHub",
             "snap.service.userService",
             "snap.patient.schedule.providersSlotsLocator",
-            "snap.common.timer"
+            "snap.common.timer",
+            "snap.DataService.customerDataService",
+          //  "snap.errorHandler",
+            "snap.common.navigationHelper"
         ])
-        .define("AppointmentFactory", function($snapNotification, $timeUtils,
-            $itemSelector, $scheduleCommon, $eventAggregator,
+        .define("AppointmentFactory", function ($snapNotification, $timeUtils,
+            $itemSelector, $scheduleCommon, $encounterMethodSelector, $encounterMethodHelper, $eventAggregator,
             $availabilityBlockService, $appointmentService,
             $familyGroupDataSource, $apptsSlotsTray, $selfSchedulingService,
-            $patientSelfSchedulingHub, $userService, $providersSlotsLocator, $timer) {
+            $patientSelfSchedulingHub, $userService, $providersSlotsLocator, $timer, $customerDataService,
+            //$errorHandler,
+            $navigationHelper) {
 
             this.closeEvent = "pappt_OnCloseClick";
             this.savedEvent = "pappt_OnSaved";
@@ -1006,6 +1176,7 @@ var setUserVars = function() {
 
                 var otherPrimaryConcernId = $scheduleCommon.concernCodes.otherPrimary;
                 var otherSecondaryConcernId = $scheduleCommon.concernCodes.otherSecondary;
+                var availableTimeTimer = null;
 
                 var defaultPatient = {
                     id: null,
@@ -1028,22 +1199,27 @@ var setUserVars = function() {
                 this.clinicianImageSource = "images/Patient-Male.gif";
                 this.clinicianFullName = "Select a Provider";
 
+                this.availableTime = "00:00";
+
+                this._secondaryConcernsAvailable = false;
 
                 this.clinicianCard = data.clinicianCard;
                 this.isClinicianDisabled = data.isClinicianDisabled;
                 this.isDisabled = !!data.isClinicianDisabled;
 
-                this.patientsSelector = $itemSelector.familyGroupSelector({
-                    defaultItem: defaultPatient
-                });
+                this._providerDisabledReason = data.disableReason || "Provider is unavailable";
+
 
                 this.appointmentId = opt.appointmentId || 0;
-                this.start = opt.start;
+                this.consultationId = opt.consultationId || null; // Optional field. Consultation may not exist yet.
+               this.start = opt.start;
                 this.end = opt.end;
                 this.startDate = opt.start;
                 this.oldStartDate = opt.start;
                 this.availabilityBlockId = opt.availabilityBlockId;
                 this.isNow = opt.isNow;
+ 				this.waiveFee = opt.waiveFee;
+                this.paymentRequisites = opt.paymentRequisites;
 
                 this.isLoading = false;
                 this.isError = false;
@@ -1054,7 +1230,7 @@ var setUserVars = function() {
                 this.vm_secondaryConsernId = null;
                 this.primaryConcernOtherText = "";
                 this.secondaryConcernOtherText = "";
-                this.isReadOnly = data.isReadOnly || false;
+                //this.isReadOnly = data.isReadOnly || false;
                 this.isFuture = data.isFuture;
 
                 this.appointmentStatusCode = opt.appointmentStatusCode;
@@ -1079,8 +1255,59 @@ var setUserVars = function() {
                         value: phoneTypeEnum.other
                     }]
                 });
+                var isUnEditable = data.isReadOnly || false;
+                if (this.appointmentStatusCode) {
+                    isUnEditable = isUnEditable || $scheduleCommon.isAppointmentReadOnly(this.appointmentStatusCode);
+                }
+                this.isRemovable = !isUnEditable;
+                this.isReadOnly = isUnEditable;
+                this.appointmentTypeCode = $scheduleCommon.appointmentTypeCode.patientScheduled;
 
-                this.getOptions = function() {
+                this._initSelectors = function () {
+                    var clinician = $scheduleCommon.findProvider(opt.participants);
+                    var clinicianID = clinician ? clinician.person.id : null;
+
+                    var clinicianPersonId = opt.clinicianPersonId ? opt.clinicianPersonId : clinicianID;
+
+                    this.patientsSelector = this._isPatientSelectorLocked() ?
+                        $itemSelector.emptySelector({
+                            defaultItem: defaultPatient,
+                            htmlContainerId: "#itemSelector_patientsList",
+                            scrollableElementClass: ".itemSelector_scrollable"
+                        }) :
+                        $itemSelector.familyGroupSelector({
+                            defaultItem: defaultPatient,
+                            counterpartFilter: clinicianPersonId,
+                            htmlContainerId: "#itemSelector_patientsList",
+                            scrollableElementClass: ".itemSelector_scrollable"
+                        });
+
+                    this.encounterMethodSelector = $encounterMethodSelector.createSelector({
+                        appointmentTypeCode: this.appointmentTypeCode
+                    });
+                    this.encounterMethodSelector.bind($encounterMethodSelector.events.onMethodSelected, function(encounterTypeCode) {
+                        scope.encounterTypeCode = encounterTypeCode;
+                        scope.trigger("change", { field: "isPhone" });
+                        scope._onDataChange();
+                    });
+                };
+
+                 this.getAppointmentDetails = function () {
+                    var patient = this.patientsSelector.getSelectedItem();
+                    var appointmentDetails = {
+                        clinicianId: this.clinicianCard ? this.clinicianCard.userId : null,
+                        providerSpeciality: this.clinician ? this.clinician.person.speciality : null,
+                        patientId: patient ? patient.id : null,
+                        serviceTypeFee: this.serviceTypeFee
+                    };
+                    return {
+                        baseOptions: this.getOptions(),
+                        appointmentDetails: appointmentDetails
+                    }
+
+                };
+
+                this.getOptions = function () {
                     var concerns = [];
 
                     if (this.primaryConcern) {
@@ -1121,13 +1348,14 @@ var setUserVars = function() {
                         end: this.end,
                         availabilityBlockId: this.availabilityBlockId,
                         isNow: this.isNow,
-                        appointmentTypeCode: $scheduleCommon.appointmentTypeCode.patientScheduled,
+                       appointmentTypeCode: this.appointmentTypeCode,
                         intakeMetadata: {
                             additionalNotes: this.additionalNotes,
                             concerns: concerns
                         },
                         participants: participants,
-                        waiveFee: false,
+                        waiveFee: this.waiveFee,
+                        paymentRequisites: this.paymentRequisites,
                         encounterTypeCode: this.encounterTypeCode,
                         phoneNumber: this.phoneNumber,
                         phoneType: this.phoneType,
@@ -1140,50 +1368,65 @@ var setUserVars = function() {
                     $(".directory__opener").first().focus();
                 };
                 this._finishLoading = function () {
-                  scope = this;
-                  // 1 second timeout to prevent css issues
-                  // so that all styles will apply and conrtols will render
-                  window.setTimeout(function () {
-                      scope.set("vm_isLoading", false);
-                      scope.setInitialFocus();
+                    scope = this;// 1 second timeout to prevent css issues
+                    // so that all styles will apply and conrtols will render
+                    window.setTimeout(function () {
+                        scope.set("vm_isLoading", false);
+                        scope.setInitialFocus();
 
-                      scope.trigger("change", { field: "vm_primaryConsernId" });
-                      scope.trigger("change", { field: "vm_secondaryConsernId" });
-                  }, 1000);
-              };
-              this._checkCurrentTime = function() {
-                  var dfd = $.Deferred();
-                  if (!this.isReadOnly && !this.vm_isNew()) {
-                      $userService.getUserCurrentTime().done(function(resp) {
-                          var userTime = $timeUtils.dateFromSnapDateString(resp.data[0]);
-                          scope.set("isReadOnly", scope.start < userTime);
-                          scope.patientsSelector.set("isSelectorLocked", scope.patientsSelector.isSelectorLocked || scope.isReadOnly);
-                          scope.trigger("change", {field: "vm_dialogTitle"});
+                        scope.trigger("change", { field: "vm_primaryConsernId" });
+                        scope.trigger("change", { field: "vm_secondaryConsernId" });
+                    }, 1000);
+                };
+                this._checkCurrentTime = function() {
+                    var dfd = $.Deferred();
+                    if (!this.isReadOnly && !this.vm_isNew()) {
+                        $userService.getUserCurrentTime().done(function(resp) {
+                            var userTime = $timeUtils.dateFromSnapDateString(resp.data[0]);
+                            scope.set("isReadOnly", scope.start < userTime);
+                            scope.patientsSelector.set("isSelectorLocked", scope.patientsSelector.isSelectorLocked || scope.isReadOnly);
+                            scope.trigger("change", {field: "vm_dialogTitle"});
 
-                          var userDNATime = userTime.setMinutes(userTime.getMinutes() - 30);
-                          scope.set("isFuture", userDNATime <= scope.end);
-                          dfd.resolve();
-                      });
-                  } else {
-                      dfd.resolve();
-                  }
-                  return dfd.promise();
-              }
-                this.load = function() {
+                            scope.encounterMethodSelector.setReadonly(scope.isReadOnly);
+
+                            var userDNATime = userTime.setMinutes(userTime.getMinutes() - 30);
+                            scope.set("isFuture", userDNATime <= scope.end);
+                            dfd.resolve();
+                        });
+                    } else {
+                        dfd.resolve();
+                    }
+                    return dfd.promise();
+                }
+ this.load = function (loadOptions) {
                     scope = this;
-                  //  alert('aaa444'); //add appoint
+
+                    var lockSlotOnOpen = !(loadOptions && loadOptions.doNotLockSlotOnOpen);
+
+                    if (this.vm_isNew() && lockSlotOnOpen) {
+                        this.lockSlot();
+                    }
+
                     this._checkCurrentTime().always(function() {
                         // autosize textarea after changing readonly property
                         global.autosize($('.js-autoresize-textarea'));
                     });
-                    this.set("isReadOnly", this.isReadOnly || !this.vm_isNew() && $scheduleCommon.isAppointmentReadOnly(this.appointmentStatusCode));
 
                     this.set("vm_isLoading", true);
                     this._isPatientLoaded = false;
                     this._areConcernsLoaded = false;
 
-                    this.patientsSelector.refresh();
-                    this.patientsSelector.set("isSelectorLocked", this.isReadOnly);
+                    this.patientsSelector.loadSelector();
+                    this.patientsSelector.set("isSelectorLocked", this._isPatientSelectorLocked());
+                    if (this.isClinicianDisabled) {
+                        var targetEl = $("#providerContainer");
+                        if (targetEl.length) {
+                            targetEl.kendoTooltip({
+                                position: "top",
+                                content: scope._providerDisabledReason
+                            });
+                        }
+                    }
                     if(sessionStorage.getItem('chkSSAddOrEdit') === 'Edit') {
                         this.patientsSelector.set("isSelectorLocked", 'true');
                     }
@@ -1191,37 +1434,58 @@ var setUserVars = function() {
 
                     this._updateProviderEventTime();
 
-                    this.refreshEncounterType();
+                    this.encounterMethodSelector.setReadonly(this.isReadOnly);
+
                     this.set("vm_isPhoneNumberFilled", $.trim(this.phoneNumber) !== "");
-                    this.set("vm_primaryConcernActive", this.vm_primaryConsernId !== null);
-                    this.set("vm_secondaryConcernActive", this.vm_secondaryConsernId !== null);
                     this.set("vm_isAddNotesExpanded", !!this.additionalNotes.length);
 
                     this.trigger("change", {
                         field: "vm_isAddConcernButtonVisible"
                     });
                     this.trigger("change", {
-                        field: "vm_isCancelButtonVisible"
-                    });
-                    this.trigger("change", {
                         field: "vm_dialogTitle"
                     });
 
                     $eventAggregator.unSubscribe("slotTray_slotClickCallback");
-                    $eventAggregator.subscriber("slotTray_slotClickCallback", function() {
+                    $eventAggregator.subscriber("slotTray_slotClickCallback", function () {
                         scope._onDataChange();
                         scope.patientsSelector.updateEventTime(scope.start, scope.end, scope.timeZoneId);
                         scope._updateProviderEventTime();
                     });
-                    scope.patientsSelector.on($itemSelector.events.onSelectorHide, scope.setInitialFocus);
+
+                    $eventAggregator.unSubscribe("itemSelector_onProfileClick");
+                    $eventAggregator.subscriber("itemSelector_onProfileClick", function(data) {
+                        $navigationHelper.patient.goToPatietProfile({ patientId: data.id });
+                    });
+					$eventAggregator.unSubscribe("slotTray_goToDate");
+                    $eventAggregator.subscriber("slotTray_goToDate", function (obj) {
+                        var dateFilter = new Date(obj.nextDate);
+                        dateFilter.setHours(0, 0, 0, 0);
+
+                        scope.setSlotsDate(dateFilter);
+                    });
+
+                    $eventAggregator.unSubscribe("apptvm_TimeSlotSelected");
+                    $eventAggregator.subscriber("apptvm_TimeSlotSelected", function (timeSlot) {
+                        scope.set("start", timeSlot.start);
+                        scope.set("end", timeSlot.end);
+                        scope.set("availabilityBlockId", timeSlot.availabilityBlockId);
+                        scope.set("isNow", timeSlot.isNow);
+                        scope.toggleDateArea();
+                    });
+
+                    scope.patientsSelector.bind($itemSelector.events.onSelectorHide, scope.setInitialFocus);
 
                     if (!this.vm_isNew()) {
                         this.patientsSelector.selectWithConfirmation = true;
-                        this.patientsSelector.on($itemSelector.events.onItemClicked, function(item) {
-                            $snapNotification.confirmationWithCallbacks("Are you sure you want to change the patient for this appointment? (This will send a cancellation notice to the previous patient.)", function() {
+                        this.patientsSelector.bind($itemSelector.events.onItemClicked, function (item) {
+                            $snapNotification.confirmationWithCallbacks("Are you sure you want to change the patient for this appointment? (This will send a cancellation notice to the previous patient.)", function () {
                                 scope.patientsSelector.selectHandler(item);
                             });
                         });
+                    }
+  if (this.vm_isNew()) {
+                        this._loadServiceTypeInfo();
                     }
 
                     var codeSetsDs = new snap.dataSource.codeSetDataSourceWrapper(["consultprimaryconcerns", "consultsecondaryconcerns"]);
@@ -1231,28 +1495,17 @@ var setUserVars = function() {
                         if (this.isReadOnly) {
                             this._isPatientLoaded = true;
                             this.set("vm_canShowTimeOffsets", true);
-                            this.patientsSelector.updateEventTime(this.start, this.end, this.timeZoneId);
                         } else {
                             // check and refresh the patient
-                            getPatientItem(data).done(function(item) {
-                                if (item) {
-                                    scope.patientsSelector.selectItem(item);
-                                } else {
-                                    scope.set("isDisabled", true);
-                                    scope.patientsSelector.disableSelectedItem();
-                                }
-                                scope._isPatientLoaded = true;
-                                if (scope._areConcernsLoaded) {
-                                    // 1 second timeout to prevent css issues
-                                    // so that all styles will apply
-                                    setTimeout(function() {
-                                        scope.set("vm_isLoading", false);
-                                        scope.setInitialFocus();
-                                    }, 1000);
-                                }
-                                scope.set("vm_canShowTimeOffsets", scope.patientsSelector.getSelectedItem() !== null);
-                            });
-                            this.patientsSelector.on($itemSelector.events.onItemSelected, function() {
+                            if (scope.patientsSelector.vm_isItemsLoading) {
+                                scope.patientsSelector.one($itemSelector.events.onDataLoaded, function() {
+                                    scope._checkPatient(patient, data);
+                                });
+                            } else {
+                                scope._checkPatient(patient, data);
+                            }
+
+                            this.patientsSelector.bind($itemSelector.events.onItemSelected, function () {
                                 scope._onDataChange();
                                 scope.set("phoneNumber", "");
                                 scope.vm_onPhoneTypeChange();
@@ -1261,81 +1514,120 @@ var setUserVars = function() {
                                 if (scope.isDisabled && !scope.isClinicianDisabled) {
                                     // if clinician is enabled, and patient disabled, we will enable dialog after selected patient change
                                     scope.set("isDisabled", false);
+                                    scope.trigger("change", { field: "vm_isNotDisabled" });
                                 }
                             });
                         }
                     }
 
-                    codeSetsDs.getItemIdByName("primary", snap.hospitalSession.hospitalId, "other").done(function(codeId) {
+                    codeSetsDs.getItemIdByName("primary", snap.hospitalSession.hospitalId, "other (provide details below)").done(function (codeId) {
                         if (codeId !== null) {
                             otherPrimaryConcernId = codeId;
                             scope.set("dataPrimaryConcernList", codeSetsDs.getCodeSetDataSourceReplacingNames(
                                 "primary",
                                 snap.hospitalSession.hospitalId, [
-                                    "Other"
+                                    "Other (provide details below)"
                                 ], [{
                                     "codeId": otherPrimaryConcernId,
                                     "text": "Other (provide details below)"
                                 }]
                             ));
                         } else {
-                            scope.set("dataPrimaryConcernList", codeSetsDs.getCodeSetDataSourceAddingObjects(
-                                "primary", snap.hospitalSession.hospitalId, [{
-                                    "codeId": otherPrimaryConcernId,
-                                    "text": "Other (provide details below)"
-                                }]));
+                            scope.set("dataPrimaryConcernList", codeSetsDs.getCodeSetDataSource("primary", snap.hospitalSession.hospitalId));
                         }
 
-                        scope.trigger("change", {
-                            field: "vm_primaryConsernId"
-                        });
-                        scope.trigger("change", {
-                            field: "vm_isPrimaryConcernOtherSelected"
-                        });
+                        if (scope.vm_primaryConsernId) {
+                            scope.dataPrimaryConcernList.one("change", function () {
+                                var primaryConcernFound = !!scope._formatConcernData(scope.dataPrimaryConcernList, scope.vm_primaryConsernId, true);
+                                scope.set("vm_primaryConcernError", !primaryConcernFound);
+                                scope.set("vm_primaryConcernActive", primaryConcernFound);
+                            });
+                        }
+                        scope.trigger("change", { field: "vm_primaryConsernId" });
+                        scope.trigger("change", { field: "vm_isPrimaryConcernOtherSelected" });
 
-                        codeSetsDs.getItemIdByName("secondary", snap.hospitalSession.hospitalId, "other").done(function(codeId) {
+                        codeSetsDs.getItemIdByName("secondary", snap.hospitalSession.hospitalId, "other (provide details below)").done(function (codeId) {
                             if (codeId !== null) {
                                 otherSecondaryConcernId = codeId;
                                 scope.set("dataSecondaryConcernList", codeSetsDs.getCodeSetDataSourceReplacingNames(
                                     "secondary",
                                     snap.hospitalSession.hospitalId, [
-                                        "Other"
-                                    ],
-
-                                    [{
+                                        "Other (provide details below)"
+                                    ], [{
                                         "codeId": otherSecondaryConcernId,
                                         "text": "Other (provide details below)"
                                     }]
                                 ));
                             } else {
-                                scope.set("dataSecondaryConcernList", codeSetsDs.getCodeSetDataSourceAddingObjects(
-                                    "secondary", snap.hospitalSession.hospitalId, [{
-                                        "codeId": otherSecondaryConcernId,
-                                        "text": "Other (provide details below)"
-                                    }]));
+                                scope.set("dataSecondaryConcernList", codeSetsDs.getCodeSetDataSource("secondary", snap.hospitalSession.hospitalId));
                             }
-                            scope.trigger("change", {
-                                field: "vm_secondaryConsernId"
+
+                            scope.dataSecondaryConcernList.read().then(function () {
+                                scope._secondaryConcernsAvailable = scope.dataSecondaryConcernList.data().length > 0;
+                                scope.trigger("change", { field: "vm_isAddConcernButtonVisible" });
+                                if (scope.vm_secondaryConsernId) {
+                                    var secondaryConcernFound = !!scope._formatConcernData(scope.dataSecondaryConcernList, scope.vm_secondaryConsernId, false);
+                                    scope.set("vm_secondaryConcernError", !secondaryConcernFound);
+                                    scope.set("vm_secondaryConcernActive", secondaryConcernFound);
+                                }
                             });
-                            scope.trigger("change", {
-                                field: "vm_isSecondaryConcernOtherSelected"
-                            });
+                            scope.trigger("change", { field: "vm_secondaryConsernId" });
+                            scope.trigger("change", { field: "vm_isSecondaryConcernOtherSelected" });
+
                             scope._areConcernsLoaded = true;
                             if (scope._isPatientLoaded) {
-                                // 1 second timeout to prevent css issues
-                                // so that all styles will apply
-                                setTimeout(function() {
-                                    scope.set("vm_isLoading", false);
-                                }, 1000);
+                                scope._finishLoading();
                             }
                         });
                     });
+  				var useExpirationTimer = loadOptions ? loadOptions.useExpirationTimer : true;
 
-                    if (!this.appointmentId) {
+                    if (useExpirationTimer && !this.appointmentId) {
                         this._initDeactivationTimeout();
                     }
-
                 };
+
+                this._loadServiceTypeInfo = function() {
+                    var dfd = $.Deferred();
+                    $selfSchedulingService.getServiceTypes(this.appointmentTypeCode).then(function(data) {
+                        scope.serviceTypeId = data[0].serviceTypeId;
+                        scope.serviceTypeFee = data[0].baseFee;
+                        dfd.resolve();
+                    }, function() {
+                        $snapNotification.error("Failed to load service type details");
+                        dfd.reject();
+                    });
+                    return dfd.promise();
+                };
+
+                this._checkPatient = function(patient, data) {
+                   if (scope.vm_isNew()) {
+                       var patientItem = scope.patientsSelector.getItemById(patient.id) || scope.patientsSelector.getFirstItem();
+                       if (patientItem) {
+                           scope.patientsSelector.selectHandler(patientItem);
+                       }
+                       data.patientProfileId = scope.patientsSelector.getSelectedItem().id;
+                   }
+                   getPatientItem(data.patientProfileId).then(function (item) {
+                       if (item) {
+                           scope.patientsSelector.selectInitialItem(item);
+                       } else {
+                           scope.set("isDisabled", true);
+                           scope.trigger("change", { field: "vm_isNotDisabled" });
+                           scope.patientsSelector.disableSelectedItem($errorHandler.getProfileDisabledReason());
+                       }
+                   }, function(error) {
+                       scope.set("isDisabled", true);
+                       scope.trigger("change", { field: "vm_isNotDisabled" });
+                       scope.patientsSelector.disableSelectedItem($errorHandler.getProfileDisabledReason(error));
+                   }).always(function() {
+                       scope._isPatientLoaded = true;
+                       if (scope._areConcernsLoaded) {
+                           scope._finishLoading();
+                       }
+                       scope.set("vm_canShowTimeOffsets", scope.patientsSelector.getSelectedItem() !== null);
+                   });
+               };
 
                 this.save = function() {
                     this.set("isLoading", true);
@@ -1371,9 +1663,54 @@ var setUserVars = function() {
                     return promise;
                 };
 
-                this.remove = function() {
-                    return $appointmentService.removeAppointment(this.appointmentId);
+                this.remove = function () {
+                   var dfd = $.Deferred();
+                   var that = this;
+                   this._checkPaymentStatus().done(function(result) {
+                       if(result) {
+                           $appointmentService.removeAppointment(that.appointmentId).done(function() {
+                               dfd.resolve();
+                           }).fail(function(error) {
+                               dfd.reject(error);
+                           });
+                       } else {
+                           dfd.reject("Consultation is already paid by other user.");
+                       }
+                   });
+
+                   return dfd;
+               };
+
+ 				this.lockSlot = function() {
+                    $patientSelfSchedulingHub.lockSlot(this.availabilityBlockId, this.start, this.end);
                 };
+
+               this.unlockSlot = function() {
+                   this._clearDeactivationTimeout();
+
+                   $patientSelfSchedulingHub.unlockSlot(this.availabilityBlockId, this.start, this.end);
+               };
+
+               this._checkPaymentStatus = function() {
+                   var dfd = $.Deferred();
+                   if(this.consultationId) {
+                       $customerDataService.checkPaymentStatus(this.consultationId).done(function (responsePayment) {
+                           if (responsePayment.paidByUserId === snap.profileSession.userId)
+                           {
+                               dfd.resolve(true);
+                           }
+                           else {
+                               dfd.resolve(false);
+                           }
+                       }).fail(function() {
+                           dfd.resolve(true);
+                       });
+                   } else {
+                       dfd.resolve(true);
+                   }
+
+                   return dfd;
+               };
 
                 this.validate = function() {
                     var errorList = [];
@@ -1446,12 +1783,12 @@ var setUserVars = function() {
                     this.set("isDateAreaInEditMode", !this.get("isDateAreaInEditMode"));
                 };
                 /*********************** MVVM BINDINGS ***********************/
-                this.availableTime = "00:00";
+            //    this.availableTime = "00:00";
 
                 this._startTimer = function() {
                     console.log("enter");
                     var that = this;
-                    var timer = $timer.createTimer({
+                    availableTimeTimer = $timer.createTimer({
                         countDown: true,
                         time: 300,
                         onTimerTickCallback: function(timerTick) {
@@ -1459,7 +1796,7 @@ var setUserVars = function() {
                         }
                     });
 
-                    timer.start();
+                    availableTimeTimer.start();
                 };
 
                 this.vm_currentDate = function() {
@@ -1480,12 +1817,14 @@ var setUserVars = function() {
                     return this.appointmentId === 0;
                 };
                 this.vm_hideTimer = false;
-                this.vm_dialogTitle = function() {
-                    return this.vm_isNew() ? "New Appointment" : this.isReadOnly ? "Appointment" : "Edit Appointment";
+                this.vm_dialogTitle = function () {
+                    var appoinmentStatus = this.isReadOnly ? "Appointment" : "Edit Appointment";
+                    return this.vm_isNew() ? "New Appointment" : appoinmentStatus;
                 };
 
-                this.vm_appointmentChanged = false;
-
+                this.vm_isNotDisabled = function () {
+                    return !this.isDisabled;
+                };
                 this.vm_saveBtnTxt = function() {
                     return this.vm_isNew() ? "Create" : "Save";
                 };
@@ -1537,12 +1876,12 @@ var setUserVars = function() {
                     if(sessionStorage.getItem('chkSSAddOrEdit') === 'Edit') {
                         $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                     }
-                    this._clearDeactivationTimeout();
+                  //  this._clearDeactivationTimeout();
                     $eventAggregator.published(fact.closeEvent, this);
 
-                    $snapNotification.hideAllConfirmations();
+                  //  $snapNotification.hideAllConfirmations();
 
-                    $patientSelfSchedulingHub.unlockSlot(this.availabilityBlockId, this.start, this.end);
+                  //  $patientSelfSchedulingHub.unlockSlot(this.availabilityBlockId, this.start, this.end);
 
                     this.preventDefault(e);
                 };
@@ -1586,9 +1925,13 @@ var setUserVars = function() {
                     return !this.vm_isNew() && this.isFuture;
                 };
 
-                this.vm_isCancelBtnVisible = function() {
-                    return !this.vm_appointmentChanged && !this.vm_isNew();
-                };
+                this.vm_isSaveBtnVisible = function() {
+                   return this._dialogChanged || this.vm_isNew();
+               };
+
+               this.vm_isCancelBtnVisible = function () {
+                   return !this.vm_isSaveBtnVisible() && this.isRemovable;
+               };
 
                 this.vm_canShowTimeOffsets = false;
                 this.vm_isTimeOffsetsVisible = false;
@@ -1623,10 +1966,16 @@ var setUserVars = function() {
                     });
                 };
 
-                this._onDataChange = function() {
-                    if (!this.vm_appointmentChanged) {
-                        this.set("vm_appointmentChanged", true);
+
+ this._dialogChanged = false;
+                 this._onDataChange = function () {
+                    if (!this._dialogChanged) {
+                        this._dialogChanged = true;
+                        this.trigger("change", { field: "vm_isSaveBtnVisible" });
                         this.trigger("change", { field: "vm_isCancelBtnVisible" });
+                    }
+                    if (this.isError) {
+                        this.set("isError", false);
                     }
                 };
 
@@ -1745,6 +2094,13 @@ var setUserVars = function() {
 
                     this._onDataChange();
                 };
+                this.vm_isNew = function () {
+                    return this.appointmentId === 0;
+                };
+
+                this._isPatientSelectorLocked = function () {
+                    return this.isReadOnly || !this.vm_isNew();
+                };
 
                 this.vm_expandAddNotes = function() {
                     this.set("vm_isAddNotesExpanded", !this.vm_isAddNotesExpanded);
@@ -1807,8 +2163,34 @@ var setUserVars = function() {
                                 $('ul li.k-item').addClass('localizejs');
                               }
 
-                this.vm_onPrimaryConcernChange = function() {
+                              this.vm_onPrimaryConcernChange = function () {
+                                 this.trigger("change", { field: "vm_isPrimaryConcernOtherSelected" });
+                                 this.trigger("change", { field: "vm_isAddConcernButtonVisible" });
 
+                                 this.set("vm_primaryConcernError", false);
+                                 if (this._concernsSimilarError) {
+                                     this.set("vm_secondaryConcernError", false);
+                                     this.set("vm_secondaryConcernActive", this.vm_secondaryConsernId !== null);
+                                     this._concernsSimilarError = false;
+                                 }
+                                 this.set("vm_primaryConcernActive", this.vm_primaryConsernId !== null);
+
+                                 var concern = this._formatConcernData(this.dataPrimaryConcernList, this.vm_primaryConsernId, true);
+                                 var changedSelectedConcern = this.primaryConcern ? this.vm_primaryConsernId !== this.primaryConcern.customCode.code : true;
+                                 if (changedSelectedConcern && this.primaryConcernOtherText !== "") {
+                                     this.set("primaryConcernOtherText", "");
+                                 }
+
+                                 if (this.vm_isPrimaryConcernOtherSelected()) {
+                                     concern.customCode.description = this.get("primaryConcernOtherText");
+                                 }
+
+                                 this.primaryConcern = concern;
+
+                                 this._onDataChange();
+                             };
+
+ this.vm_onPrimaryConcernChange = function () {
                     this.trigger("change", { field: "vm_isPrimaryConcernOtherSelected" });
                     this.trigger("change", { field: "vm_isAddConcernButtonVisible" });
 
@@ -1821,16 +2203,13 @@ var setUserVars = function() {
                     this.set("vm_primaryConcernActive", this.vm_primaryConsernId !== null);
 
                     var concern = this._formatConcernData(this.dataPrimaryConcernList, this.vm_primaryConsernId, true);
-
-                    if (!this.vm_isPrimaryConcernOtherSelected() && this.primaryConcernOtherText !== "") {
+                    var changedSelectedConcern = this.primaryConcern ? this.vm_primaryConsernId !== this.primaryConcern.customCode.code : true;
+                    if (changedSelectedConcern && this.primaryConcernOtherText !== "") {
                         this.set("primaryConcernOtherText", "");
                     }
 
                     if (this.vm_isPrimaryConcernOtherSelected()) {
-                        $('span.dialogbox-master__reason-dropdown').first().addClass('is-active');
                         concern.customCode.description = this.get("primaryConcernOtherText");
-                    } else {
-                        $('span.dialogbox-master__reason-dropdown').first().removeClass('is-active');
                     }
 
                     this.primaryConcern = concern;
@@ -1842,7 +2221,7 @@ var setUserVars = function() {
 
                 this.vm_secondaryConcernActive = false;
 
-                this.vm_onSecondaryConcernChange = function() {
+                this.vm_onSecondaryConcernChange = function () {
                     this.trigger("change", {
                         field: "vm_isSecondaryConcernOtherSelected"
                     });
@@ -1857,15 +2236,13 @@ var setUserVars = function() {
                     }
                     this.set("vm_secondaryConcernActive", this.vm_secondaryConsernId !== null);
 
-                    if (!this.vm_isSecondaryConcernOtherSelected() && this.secondaryConcernOtherText !== "") {
+                    var changedSelectedConcern = this.secondaryConcern ? this.vm_secondaryConsernId !== this.secondaryConcern.customCode.code : true;
+                    if (changedSelectedConcern && this.secondaryConcernOtherText !== "") {
                         this.set("secondaryConcernOtherText", "");
                     }
 
                     if (this.vm_isSecondaryConcernOtherSelected()) {
-                        $('span.dialogbox-master__reason-dropdown').last().addClass('is-active');
                         concern.customCode.description = this.get("secondaryConcernOtherText");
-                    } else {
-                        $('span.dialogbox-master__reason-dropdown').last().removeClass('is-active');
                     }
 
                     this.secondaryConcern = concern;
@@ -2057,8 +2434,9 @@ var setUserVars = function() {
                         this.clinicianImageSource = clinician.person.photoUrl || global.getDefaultProfileImageForClinician();
                         this.clinicianFullName = $scheduleCommon.getFullName(clinician.person);
                         this.info = $scheduleCommon.getSpeciality(clinician.person.speciality);
-                        this.patientsSelector.counterpartFilter = clinician.person.id;
-                        this.patientsSelector.refresh();
+                        if (!this.patientsSelector.isCounterpartFilterSet()) {
+                            this.patientsSelector.setCounterpartFilter(clinician.person.id);
+                        }
                     }
 
                     if (clinicianCard) {
@@ -2072,15 +2450,17 @@ var setUserVars = function() {
                     var patient = $scheduleCommon.findPatient(opt.participants);
                     var patientId = patient.patientId || data.patientProfileId;
                     if (patient) {
-                        this.patientsSelector.selectItem(
-                            $itemSelector.convertPersonToSelectorItem(patient.person, patientId, $itemSelector.personType.patient), true);
-                    }
+                       this.patientsSelector.selectInitialItem(
+                           $itemSelector.convertPersonToSelectorItem(patient.person, patientId, $itemSelector.personType.patient), true);
+                   }
 
-                    this.vm_isAddNotesExpanded = false;
-                    this.phoneNumber = opt.phoneNumber;
-                    this.phoneType = opt.phoneType || phoneTypeEnum.other;
-                    this.encounterTypeCode = opt.encounterTypeCode ? opt.encounterTypeCode : encounterTypeCodes.Video;
-                };
+                   this.vm_isAddNotesExpanded = false;
+                   this.phoneNumber = opt.phoneNumber;
+                   this.phoneType = opt.phoneType || phoneTypeEnum.other;
+
+                   this.encounterTypeCode = opt.encounterTypeCode || $encounterMethodHelper.getFirstEnabledEncounterMethod(this.appointmentTypeCode);
+                   this.encounterMethodSelector.select(this.encounterTypeCode);
+               };
 
                 this._selectNewAppointmentTime = function(timeSlot) {
                     $eventAggregator.published("apptvm_TimeSlotSelected", timeSlot);
@@ -2104,60 +2484,64 @@ var setUserVars = function() {
                     return null;
                 };
                 this._deactivationTimeout = null;
-                this._clearDeactivationTimeout = function() {
+                this._clearDeactivationTimeout = function () {
                     if (this._deactivationTimeout) {
                         clearTimeout(this._deactivationTimeout);
                         this.set("isReadOnly", false);
                     }
+                    if (availableTimeTimer) {
+                        availableTimeTimer.stop();
+                        availableTimeTimer = null;
+                    }
                 };
                 this.isExpiredAppointment = false;
-                this._initDeactivationTimeout = function() {
+                this._initDeactivationTimeout = function () {
                     this._clearDeactivationTimeout();
 
                     this._startTimer();
 
                     var that = this;
-                    this._deactivationTimeout = setTimeout(function() {
-                            $('.k-calendar-container').css("display","none");
-                            that.set("isReadOnly", true);
-                            that.set("isDisabled", true);
-                            that.set("vm_notification_msg", "This appointment has expired. Please close this dialogue and select a new time.");
-                            that.set("vm_hideTimer", true);
+                    this._deactivationTimeout = setTimeout(function () {
+                        that.set("isReadOnly", true);
+                        that.set("isDisabled", true);
+                        that.trigger("change", { field: "vm_isNotDisabled" });
+                        that.set("vm_notification_msg", "This appointment has expired. Please close this dialogue and select a new time.");
+                        that.set("vm_hideTimer", true);
 
-                            setTimeout(function() {
-                                that.set("isExpiredAppointment", true);
-                            }, 1000);
+                        setTimeout(function () {
+                            that.set("isExpiredAppointment", true);
+                        }, 1000);
 
-                            $patientSelfSchedulingHub.unlockSlot(that.availabilityBlockId, that.start, that.end);
-                        },
-                        5 * 60 * 1000);
+                        $patientSelfSchedulingHub.unlockSlot(that.availabilityBlockId, that.start, that.end);
+                    },
+                    5 * 60 * 1000);
                 };
+
+                this._initSelectors();
 
                 this._setOptions(opt, data.clinicianCard);
 
-                function getPatientItem(data) {
+                function getPatientItem(patientProfileId) {
                     var dfd = $.Deferred();
 
-                    if (data.patientProfileId) {
-                        $selfSchedulingService.getFamillyGroup(data.patientProfileId).done(function(resp) {
-                            for (var i = 0; i < resp.data.length; i++) {
-                                var patient = resp.data[i];
-                                if (patient.patientId === data.patientProfileId) {
-                                    dfd.resolve({
-                                        id: patient.patientId,
-                                        personId: patient.person.id,
-                                        name: $scheduleCommon.getFullName(patient.person),
-                                        imageSource: patient.person.photoUrl || global.getDefaultProfileImageForPatient(),
-                                        info: $scheduleCommon.getPhoneNumber(patient.person),
-                                        data: patient,
-                                        personType: $itemSelector.personType.patient
-                                    });
-                                    return;
-                                }
+                    if (patientProfileId) {
+                        $selfSchedulingService.getFamillyGroupPatient(patientProfileId).done(function (resp) {
+                            if (resp.data.length) {
+                                var patient = resp.data[0];
+                                dfd.resolve({
+                                    id: patient.patientId,
+                                    personId: patient.person.id,
+                                    name: $scheduleCommon.getFullName(patient.person),
+                                    imageSource: patient.person.photoUrl || global.getDefaultProfileImageForPatient(),
+                                    info: $scheduleCommon.getPhoneNumber(patient.person),
+                                    data: patient,
+                                    personType: $itemSelector.personType.patient
+                                });
+                            } else {
+                                dfd.resolve(null);
                             }
-                            dfd.resolve(null);
-                        }).fail(function() {
-                            dfd.resolve(null);
+                        }).fail(function (error) {
+                            dfd.reject(error);
                         });
                     } else {
                         dfd.resolve(null);
@@ -2176,25 +2560,41 @@ var setUserVars = function() {
 }(jQuery, snap, kendo, window));
 //@ sourceURL=appointmentPopup.dialog.js
 
-(function($, snap, kendo) {
+(function ($, snap, kendo) {
     "use strict";
 
     snap.namespace("snap.patient.schedule")
-        .use(["snapNotification",
-            "snap.EventAggregator",
-            "snap.patient.schedule.AppointmentFactory",
-            "snap.patient.schedule.patientAppointmentService",
-            "snap.service.availabilityBlockService",
-            "snap.common.schedule.ScheduleCommon",
-            "snap.admin.schedule.TimeUtils",
-            "snap.service.selfSchedulingService"
+    .use([
+        "snapNotification",
+        "snap.EventAggregator",
+        "snap.patient.schedule.AppointmentFactory",
+        "snap.patient.schedule.patientAppointmentService",
+        "snap.service.availabilityBlockService",
+        "snap.enums.userTypes",
+        "snap.common.schedule.ScheduleCommon",
+        "snap.common.timeUtils",
+        "snap.common.dialogWindow",
+      //  "snap.errorHandler",
+        "snap.service.selfSchedulingService"
+    //    "snap.shared.wizard.appointmentWizard"
         ])
-        .define("appointmentDialog", function($snapNotification,
-            $eventAggregator, $appointmentFactory, $appointmentsService,
-            $availabilityBlockService, $scheduleCommon,
-            $timeUtils, $selfSchedulingService) {
+        .define("appointmentDialog", function (
+            $snapNotification,
+            $eventAggregator,
+            $appointmentFactory,
+            $appointmentsService,
+            $availabilityBlockService,
+            $userTypes,
+            $scheduleCommon,
+            $timeUtils,
+            $dialogWindow,
+          //  $errorHandler,
+            $selfSchedulingService
+          //  $appointmentWizard
+        ) {
             var
                 content = null,
+                appointmentWizard = null,
                 container = "#patientPopUpContainer",
                 currentDialog = null;
 
@@ -2223,6 +2623,10 @@ var setUserVars = function() {
                 loadContent().done(function(content) {
                     if ($(container).length === 0) {
                         $("body").append("<div id='patientPopUpContainer'></div>");
+ setTimeout(function () {
+                            snap.datepickers.initializeDatePicker('.appointmentDP', null, snap.dateLimits.getTodayMaxDate(), "MM/dd/yy");
+                            $(".k-list-container").addClass("localizejs");
+                        }, 1000);
                     }
 
                     var $container = $(container);
@@ -2232,7 +2636,7 @@ var setUserVars = function() {
 
                     eventVM.dialogContainer = $container;
 
-                    $eventAggregator.subscriber("apptvm_TimeSlotSelected", function(timeSlot) {
+                 /*   $eventAggregator.subscriber("apptvm_TimeSlotSelected", function(timeSlot) {
                         eventVM.set("start", timeSlot.start);
                         eventVM.set("end", timeSlot.end);
                         eventVM.set("availabilityBlockId", timeSlot.availabilityBlockId);
@@ -2245,7 +2649,7 @@ var setUserVars = function() {
                         dateFilter.setHours(0, 0, 0, 0);
 
                         eventVM.setSlotsDate(dateFilter);
-                    });
+                    });*/
 
 
 
@@ -2259,22 +2663,43 @@ var setUserVars = function() {
 
                         $container.parent().addClass('dialogbox-modal');
 
-                        currentDialog = $container.data("kendoWindow");
+                       currentDialog = {
+                            kendoWindow: $container.data("kendoWindow")
+                        };
                     }
 
                     kendo.bind($container, eventVM);
+ currentDialog.viewModel = eventVM;
+
 
                     $container.show();
 
-                    currentDialog.center();
-                    currentDialog.open();
+                    currentDialog.kendoWindow.center();
+                    currentDialog.kendoWindow.open();
                     eventVM.load();
 
-                    setTimeout(function() {
+                    setTimeout(function(){
                         $container.find('.dialogbox-master').addClass("is-visible");
                     }, 100);
 
                     $container.find(".k-grid-header").css('display', 'none');
+
+                    $(".k-overlay").click(function () {
+                        close();
+                    });
+
+                    $("#patientPopUpContainer").click(function (e) {
+                        var div = eventVM._type + "_editor";
+
+                        if(e.target.id == div){
+                            close();
+                        }
+
+                        if (e.target !== this)
+                            return;
+
+                        close();
+                    });
 
                     dfd.resolve();
                 });
@@ -2286,9 +2711,10 @@ var setUserVars = function() {
                 if (currentDialog) {
                     $(container).find('.dialogbox-master').addClass("is-hidden");
                     $snapNotification.hideAllConfirmations();
-                    setTimeout(function() {
-                        currentDialog.close();
-                        currentDialog.destroy();
+                    setTimeout(function(){
+                        currentDialog.viewModel.unlockSlot();
+                        currentDialog.kendoWindow.close();
+                        currentDialog.kendoWindow.destroy();
                         currentDialog = null;
                         $eventAggregator.published(dlg.appointmentPopupClosedEvent);
                     }, 200);
@@ -2338,6 +2764,25 @@ var setUserVars = function() {
                 close();
             };
 
+  this.openAppointmentWizard = function(options, displayOpt) {
+                if (!appointmentWizard) {
+                    var wizardVm = $appointmentWizard.createNew({
+                        userType: displayOpt.userType
+                    });
+                    appointmentWizard = $dialogWindow.createNewDialog({
+                        contentPath: [
+                            "/content/shared/appointmentWizard/scheduleAppointmentWizard.html",
+                            "/content/shared/appointmentWizard/appointmentStep.patient.html",
+                        ],
+                        container: "#appointmentWizardContainer",
+                        vm: wizardVm
+                    });
+                }
+                appointmentWizard.open({
+                    appointmentOpt: options,
+                    displayOpt: displayOpt
+                });
+            };
 
             this.openNewAppointmentDialog = function(dialogOpt) {
                 var dfd = $.Deferred();
@@ -2363,6 +2808,12 @@ var setUserVars = function() {
                             }
                         },
                         participantTypeCode: $scheduleCommon.participantTypeCode.practicioner
+ }, {
+                        appointmentId: null,
+                        attendenceCode: $scheduleCommon.attendenceCode.required,
+                        person: {},
+                        participantTypeCode: $scheduleCommon.participantTypeCode.patient,
+                        patientId: dialogOpt.patientProfileId ? dialogOpt.patientProfileId : snap.profileSession.profileId
                     }];
 
                     var result = {
@@ -2385,31 +2836,18 @@ var setUserVars = function() {
                         patientProfileId: dialogOpt.patientProfileId ? dialogOpt.patientProfileId : snap.profileSession.profileId
                     };
 
-                      var patId = dialogOpt.patientProfileId ? dialogOpt.patientProfileId : snap.profileSession.profileId;
+                    //   if (snap.showNewAppointmentWizard()) {
+                    //     var diaplayOpt = {
+                    //         userType: $userTypes.patient
+                    //     };
+                    //     that.openAppointmentWizard(result, diaplayOpt);
+                    // } else {
+                         that.open(result);
+                  //  }
 
-                    $selfSchedulingService.getFamillyGroup(patId).done(function(resp) {
-                        for (var i = 0; i < resp.data.length; i++) {
-                            var patient = resp.data[i];
-                            if (patient.patientId === snap.profileSession.profileId) {
-                                result.appt.participants.push({
-                                    appointmentId: null,
-                                    attendenceCode: $scheduleCommon.attendenceCode.required,
-                                    person: patient.person,
-                                    participantTypeCode: $scheduleCommon.participantTypeCode.patient,
-                                    patientId: patient.patientId
-                                });
-                            }
-                        }
-
-                        var appt = that.open(result);
-                        dfd.resolve(appt);
-                    });
-
-                }).fail(function() {
+                }).fail(function () {
                     $snapNotification.error("Provider card information is not available");
                 });
-
-                return dfd.promise();
             };
 
             this.openExistedAppointmentDialog = function(apptId, isReadOnly) {
@@ -2434,9 +2872,9 @@ var setUserVars = function() {
                     result.appt.phoneType = result.appt.whereUse;
                     debugger;
                     $selfSchedulingService.getUserCurrentTime().done(function(resp) {
-                        var userDNATime = $timeUtils.dateFromSnapDateString(resp.data[0]);
-                        userDNATime.setMinutes(userDNATime.getMinutes() - 30);
-                        result.isFuture = userDNATime <= result.appt.end;
+                      //  var userDNATime = $timeUtils.dateFromSnapDateString(resp.data[0]);
+                      //  userDNATime.setMinutes(userDNATime.getMinutes() - 30);
+                      //  result.isFuture = userDNATime <= result.appt.end;
                         $selfSchedulingService.getClinicianCard(result.appt.clinicianId, $timeUtils.dateToString($timeUtils.dateFromSnapDateString(result.appt.startTime))).done(function(clinicianResp) {
                             var clinicianCard = clinicianResp.data[0];
                             result.clinicianCard = {
@@ -3410,7 +3848,29 @@ var setUserVars = function() {
                 dataType: "json",
             });
         };
-        this.getPatientProfileForPatient = function(patientId) {
+
+        this.getPatientProfilesForPatient = function (opt) {
+            var path = snap.baseUrl + "/api/v2.1/patients/authorized-patients";
+            var parameters = opt || {};
+
+            return $.ajax({
+                type: "GET",
+                url: path,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: parameters
+            });
+        };
+        this.getPatientProfileForPatient = function (patientId) {
+            var path = [snap.baseUrl + "/api/v2.1/patients/authorized-patients", patientId].join("/");
+            return $.ajax({
+                type: "GET",
+                url: path,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            });
+        };
+      /*  this.getPatientProfilesForPatient = function(patientId) {
             var path = [snap.baseUrl + "/api/v2/patients/profiles", patientId].join("/");
 
             return $.ajax({
@@ -3419,7 +3879,7 @@ var setUserVars = function() {
                 contentType: "application/json; charset=utf-8",
                 dataType: "json"
             });
-        };
+        };*/
         this.getClinicianProfile = function(providerId, clinicianId) {
             var path = [snap.baseUrl + "/api/v2.1/providers", providerId, "users", clinicianId, "clinician/person"].join("/");
 

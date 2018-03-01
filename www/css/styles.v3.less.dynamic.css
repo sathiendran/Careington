@@ -52804,7 +52804,7 @@ only screen and (min-width: 541px) {
     height: 42px;
     margin-top: 9px;
     letter-spacing: 0;
-    left: 39px;
+    left: 0px;
     vertical-align: middle;
 }
 .dialogbox-master__datepicker {
@@ -52816,7 +52816,9 @@ only screen and (min-width: 541px) {
 }
 .dialogbox-master__datepicker label {
     font-size: 12px;
-    line-height: 18px
+    line-height: 18px;
+    position: relative;
+    top: -5px;
 }
 .dialogbox-master__datepicker .k-picker-wrap {
     overflow: hidden;

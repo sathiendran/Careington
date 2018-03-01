@@ -108,6 +108,7 @@
 
 <script src="schedule/Scripts/models/commonModels.js"></script>
  <script src="schedule/Scripts/viewModels/reEnterConsultation.viewmodel.js"></script>
+
     <!---End of HubMain -->
 
 
@@ -118,8 +119,9 @@
     <script src="schedule/Scripts/common/helper/location.helper.js"></script>
     <script src="schedule/Scripts/common/helper/patientReEnterConsultation.helper.js"></script>
 
-
-
+    <script src="schedule/Scripts/common/helper/encounterMethod.helper.js"></script>
+    <script src="schedule/Scripts/common/scheduleEncounterMethodSelector.js"></script>
+<script src="schedule/Scripts/viewModels/scheduleItemSelector.viewmodel.js"></script>
 
 
     <script src="schedule/schedule/familyGroupList.js"></script>
@@ -137,7 +139,6 @@
   <script src="schedule/schedule/apptSlotsTray.viewmodel.js"></script>
   <script src="schedule/schedule/providerSearch.viewmodel.js"></script>
   <script src="schedule/Scripts/viewModels/patientheader.viewmodel.js"></script>
-
 <script src="schedule/Scripts/snap.session.js"></script>
 <script src="schedule/Scripts/common/helper/rulesService.js"></script>
 
@@ -306,7 +307,7 @@
 <script id="patientSelector_item" type="text/x-kendo-template">
     <div class="directory__item js-patient" id="cs_#= id #">
         <div class="directory__userpic userpic userpic--is-available js-view-patient-profile">
-            <img src="#= imageSource #" onerror="this.onerror=null;this.src='images/default-user.jpg';" alt="" />
+            <img src="#= imageSource #" onerror="this.onerror=null;this.src='/images/default-user.jpg';" alt="" />
         </div>
         <div class="directory__info">
             <div class="directory__info-name">#= name #</div>
@@ -555,18 +556,28 @@ kendo.bind($("input"), viewModel);
         <span class="drawer-info-panel__country-states"> #: data.states #</span>
     </div>
 </script>
+
 <script id="scrollableItem" type="text/x-kendo-template">
-    <div class="directory__item" data-bind="events: {click : onSelectClick}, visible: vm_isVisible">
-        <div class="directory__userpic userpic userpic--is-available" data-bind="events: {click: onViewProfileClick}, css: { default-user :isDefault}"><img data-bind="attr: { src: imageSource }" onerror="this.onerror=null;this.src='images/default-user.jpg';" /></div>
+    <div class="directory__item" data-bind = "css: {is-disabled: isDisabled}, events: {click : onSelectClick}, invisible: isSelected">
+        <div class="directory__userpic userpic userpic--is-available" data-bind="events: {click: onViewProfileClick}, css: { default-user :isDefault}"><img data-bind="attr: { src: imageSource }"/></div>
 
         <div class="directory__info">
-            <div class="directory__info-name js-user-name" data-bind="text: name"></div>
-            <div class="directory__info-mail js-user-info" data-bind="text: info, attr: {title: info}"></div>
+            <div class="directory__info-name" data-bind="text: name"></div>
+            <div class="directory__info-mail" data-bind="text: info, attr: {title: info}"></div>
+        </div>
+    </div>
+</script>
+<script id="scrollableSelectedItem" type="text/x-kendo-template">
+    <div class="directory__item">
+        <div class="directory__userpic userpic userpic--is-available" data-bind="events: {click: onViewProfileClick}, css: { default-user :isDefault}"><img data-bind="attr: { src: imageSource }"/></div>
+
+        <div class="directory__info">
+            <div class="directory__info-name" data-bind="text: name"></div>
+            <div class="directory__info-mail" data-bind="text: info, attr: {title: info}"></div>
         </div>
         <div class="directory__checkbox" data-bind="visible:isSelected">
             <div class="checkbox checkbox-round">
-                // <input type="checkbox" class="CheckBoxcheck" data-bind="checked: isSelected" data-bind= "events: {click: vm_hideItemsSelector}">
-                <input type="checkbox" class="CheckBoxcheck" data-bind= "events: {click: vm_hideItemsSelector}" checked>
+                <input type="checkbox" checked>
                 <span class="checkbox__control"></span>
             </div>
         </div>
@@ -575,9 +586,9 @@ kendo.bind($("input"), viewModel);
 
 <script id="patient_itemSelector_item" type="text/x-kendo-template">
     <div class="dialogbox-master__user">
-        <div class="dialogbox-master__owner js-toggle-dir" data-bind="css: {dialogbox-master__owner--is-opacity: isDisabled, is-locked:isSelectorLocked}">
+        <div class="dialogbox-master__owner" data-bind="css: {dialogbox-master__owner--is-opacity: isDisabled, is-locked:isSelectorLocked}, attr: {id: vm_nodeId}">
             <div class="userpic" data-bind="events: {click: onViewProfileClick}, css: { default-user :isDefault, userpic--warning: isDisabled}">
-                <img data-bind="attr: { src: imageSource }" onerror="this.onerror=null;this.src='images/default-user.jpg';">
+                <img  data-bind="attr: { src: imageSource }" onerror="this.onerror=null;this.src='/images/default-user.jpg';">
             </div>
             <div class="dialogbox-master__userinfo">
                 <span class="dialogbox-master__name" data-bind="text: name"></span>
@@ -587,21 +598,20 @@ kendo.bind($("input"), viewModel);
             <span class="icon_chevron-with-circle-right"></span>
         </div>
         <div class="dialogbox-master__time-offset dialogbox-master__time-offset--bottom" data-bind="css: {is-active: isTimeOffsetsVisible}, text: vm_TimeText"></div>
-
     </div>
-
 </script>
 
 <script id="patient_itemSelector" type="text/x-kendo-template">
     <div>
         <!-- This div necessary for kendo template engine -->
-        <div class="directory__opener" tabindex="1" data-bind="source: vm_getSelectedItemOrDefault, events: {click: vm_openItemsSelector}, class: {is-locked:isSelectorLocked}" data-template="patient_itemSelector_item">
+        <div class="directory__opener" tabindex="1" data-bind="source: vm_getSelectedItemOrDefault, events: {click: vm_openItemsSelector}, class: {is-locked:isSelectorLocked}"
+             data-template="patient_itemSelector_item">
         </div>
 
         <div class="directory directory--consultation" data-bind="invisible: isSelectorLocked, css: {is-active: isItemsSelectorVisible, is-loading: vm_isItemsLoading}">
             <div class="directory__titlebar">
-                <span data-bind="text: vm_userTrayHeaderText" class="localizejs">Directory</span>
-                <button class="button directory__button js-toggle-dir localizejs" data-bind="events: {click: vm_hideItemsSelector}" style="min-height: auto; line-height: 30px;">Done</button>
+                <span class="localizejs" data-bind="text: vm_userTrayHeaderText">Directory</span>
+                <button class="localizejs button directory__button" data-bind="events: {click: vm_hideItemsSelector}">Done</button>
             </div>
 
             <div class="directory__main">
@@ -610,34 +620,72 @@ kendo.bind($("input"), viewModel);
                     <div class="directory__search">
                         <div class="search">
                             <span class="icon_magnifying-glass"></span>
-                            <input class="nameFilterField localizejs" type="text" placeholder="Enter Your Search" data-bind="events: { keyup: vm_nameFilterChange }, value: nameFilter" data-value-update="keyup">
+                            <input class="nameFilterField" type="text" placeholder="Enter Your Search"
+                                data-bind="events: { keyup: vm_nameFilterChange }, value: nameFilter"
+                                data-value-update="keyup">
                         </div>
                     </div>
 
                 </div>
 
-                <div class="directory__selected-item" style="max-height: 72px" class="directory__unselected-items" data-editable="false" data-bind="events: {click: vm_hideItemsSelector}source: vm_getSelectedItems" data-template="scrollableItem" data-scrollable="false"></div>
+                <div class="directory__selected-item"
+                    style= "max-height: 72px"
+                    data-bind="source: vm_getSelectedItems"
+                    data-template="scrollableSelectedItem"
+                ></div>
 
-                <div class="directory__list" data-bind="class: {is-active: vm_isSelectedItemsListNotEmpty}">
-                    <div class="directory__unselected-items" data-editable="false" data-scrollable="{ virtual: true }" data-bind="source: ds, invisible: vm_isItemsListEmpty" data-template="scrollableItem"></div>
+                <div class="directory__list itemSelector_scrollable">
+                    <div class="directory__items-wrap" data-bind="attr: {id: vm_listId}, source: vm_allItems, invisible: vm_isItemsListEmpty"
+                        data-template="scrollableItem"
+                    ></div>
 
-                    <div class="directory__empty-state" data-bind="visible: vm_isItemsListEmpty">
+                    <div class="localizejs directory__empty-state" data-bind="visible: vm_isItemsListEmpty">
                         <span class="icon_user"></span>
-                        <p data-bind="text: vm_getItemsListEmptyNotification"></p>
+                        <p>No users match your search</p>
                     </div>
+
+                    <div class="loader loader--grey loader--small is-active"  data-bind="visible: vm_isItemsLoading" style="z-index: 100" ></div>
                 </div>
             </div>
         </div>
 </script>
 
 <script id="patient_apptsSlotsTemplate" type="text/x-kendo-template">
-    <div class="drawer-card__slider js-footer-slider" data-bind="source: vm_slots" data-template="patient_apptSlotTemplate"></div>
+    <div class="drawer-card__slider js-footer-slider"
+        data-bind="source: vm_slots"
+        data-template="patient_apptSlotTemplate"></div>
 </script>
 
 
 <script id="patient_apptSlotTemplate" type="text/x-kendo-template">
-    <div data-bind="css: { is-selected : vm_isInvisible">
-        <button type="button" class="drawer-card__appointment-action localizejs"  data-bind="events: {click: vm_onSlotClick }, html: formatedTime"></button>
+    <div data-bind = "css: { is-selected : vm_isInvisible" >
+        <button type="button" class="drawer-card__appointment-action" data-bind="events: {click: vm_onSlotClick }, html: formatedTime" ></button>
+    </div>
+</script>
+
+<script id="encounterSelectorTemplate" type="text/x-kendo-template">
+    <div>
+        <div class="dialogbox-master__subtitle">Encounter Method</div>
+        <div class="consultation-type" data-bind="css:{is-disabled: vm_isReadOnly}">
+            <div class="consultation-type__list" data-bind="source: vm_methods" data-template="encounterMethodTemplate">
+            </div>
+        </div>
+    </div>
+</script>
+
+
+<script id="encounterMethodTemplate" type="text/x-kendo-template">
+    <div class="consultation-type__item"
+        data-bind="
+            onEnterKey: vm_onSelect,
+            click: vm_onSelect,
+            css: {is-active: vm_isSelected, is-disabled: vm_isHidden, is-disabled-view: vm_isDisabled }">
+        <div class="consultation-type__icon" tabindex="5">
+            <span class="icon_video_camera"
+                data-bind="css: {icon_video_camera: vm_isVideoType, icon_phone: vm_isPhoneType, icon_chat: vm_isChatType, icon_users: vm_isInPersonType}">
+            </span>
+        </div>
+        <div class="consultation-type__title">#: name#</div>
     </div>
 </script>
 

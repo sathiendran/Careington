@@ -7,6 +7,8 @@
             "snap.admin.TimeUtils",
             "snap.common.schedule.ItemSelector",
             "snap.common.schedule.ScheduleCommon",
+			"snap.common.schedule.encounterMethodSelector",
+            "snap.helper.encounterMethodHelper",
             "snap.EventAggregator",
             "snap.service.availabilityBlockService",
             "snap.patient.schedule.patientAppointmentService",
@@ -21,10 +23,10 @@
             "snap.common.navigationHelper"
         ])
         .define("AppointmentFactory", function ($snapNotification, $timeUtils,
-            $itemSelector, $scheduleCommon, $eventAggregator,
+            $itemSelector, $scheduleCommon, $encounterMethodSelector, $encounterMethodHelper, $eventAggregator,
             $availabilityBlockService, $appointmentService,
             $familyGroupDataSource, $apptsSlotsTray, $selfSchedulingService,
-            $patientSelfSchedulingHub, $userService, $providersSlotsLocator, $timer, $ionicScrollDelegate, $customerDataService, $navigationHelper) {
+            $patientSelfSchedulingHub, $userService, $providersSlotsLocator, $timer, $customerDataService, $errorHandler, $navigationHelper) {
 
             this.closeEvent = "pappt_OnCloseClick";
             this.savedEvent = "pappt_OnSaved";
@@ -49,6 +51,7 @@ $("#localize-widget").hide();
                 var otherPrimaryConcernId = $scheduleCommon.concernCodes.otherPrimary;
                 var otherSecondaryConcernId = $scheduleCommon.concernCodes.otherSecondary;
 
+				var availableTimeTimer = null;
                 var defaultPatient = {
                     id: null,
                     name: "Select a Patient",
@@ -69,18 +72,18 @@ $("#localize-widget").hide();
                 this.clinicianImageSource = "images/Patient-Male.gif";
                 this.clinicianFullName = "Select a Provider";
 
-				this._secondaryConcernsAvailable = false;
+				this.availableTime = "00:00";
+
+                this._secondaryConcernsAvailable = false;
 
                 this.clinicianCard = data.clinicianCard;
                 this.isClinicianDisabled = data.isClinicianDisabled;
                 this.isDisabled = !!data.isClinicianDisabled;
+ 				this._providerDisabledReason = data.disableReason || "Provider is unavailable";
 
-               /* this.patientsSelector = $itemSelector.familyGroupSelector({
-                    defaultItem: defaultPatient
-                });*/
 
                 this.appointmentId = opt.appointmentId || 0;
- this.consultationId = opt.consultationId || null; // Optional field. Consultation may not exist yet.
+  				this.consultationId = opt.consultationId || null; // Optional field. Consultation may not exist yet.
                 this.start = opt.start;
                 this.end = opt.end;
                 this.startDate = opt.start;
@@ -123,12 +126,13 @@ $("#localize-widget").hide();
                         value: phoneTypeEnum.other
                     }]
                 });
-var isUnEditable = data.isReadOnly || false;
+				var isUnEditable = data.isReadOnly || false;
                 if (this.appointmentStatusCode) {
                     isUnEditable = isUnEditable || $scheduleCommon.isAppointmentReadOnly(this.appointmentStatusCode);
                 }
                 this.isRemovable = !isUnEditable;
                 this.isReadOnly = isUnEditable;
+                this.appointmentTypeCode = $scheduleCommon.appointmentTypeCode.patientScheduled;
 
                 this._initSelectors = function () {
                     var clinician = $scheduleCommon.findProvider(opt.participants);
@@ -136,8 +140,8 @@ var isUnEditable = data.isReadOnly || false;
 
                     var clinicianPersonId = opt.clinicianPersonId ? opt.clinicianPersonId : clinicianID;
 
-                    this.patientsSelector = this.isReadOnly ?
-                        $itemSelector.emptySelector({
+                    this.patientsSelector = this._isPatientSelectorLocked() ?
+                        $itemSelector.emptySelector({ 
                             defaultItem: defaultPatient,
                             htmlContainerId: "#itemSelector_patientsList",
                             scrollableElementClass: ".itemSelector_scrollable"
@@ -148,6 +152,15 @@ var isUnEditable = data.isReadOnly || false;
                             htmlContainerId: "#itemSelector_patientsList",
                             scrollableElementClass: ".itemSelector_scrollable"
                         });
+
+                    this.encounterMethodSelector = $encounterMethodSelector.createSelector({
+                        appointmentTypeCode: this.appointmentTypeCode
+                    });
+                    this.encounterMethodSelector.bind($encounterMethodSelector.events.onMethodSelected, function(encounterTypeCode) {
+                        scope.encounterTypeCode = encounterTypeCode;
+                        scope.trigger("change", { field: "isPhone" });
+                        scope._onDataChange();
+                    });
                 };
 
                 this.getOptions = function () {
@@ -191,7 +204,7 @@ var isUnEditable = data.isReadOnly || false;
                         end: this.end,
                         availabilityBlockId: this.availabilityBlockId,
                         isNow: this.isNow,
-                        appointmentTypeCode: $scheduleCommon.appointmentTypeCode.patientScheduled,
+                        appointmentTypeCode: this.appointmentTypeCode,
                         intakeMetadata: {
                             additionalNotes: this.additionalNotes,
                             concerns: concerns
@@ -210,37 +223,7 @@ var isUnEditable = data.isReadOnly || false;
                     $(".directory__opener").first().focus();
                 };
                 this._finishLoading = function () {
-                  scope = this;
-                  // 1 second timeout to prevent css issues
-                  // so that all styles will apply and conrtols will render
-                  window.setTimeout(function () {
-                      scope.set("vm_isLoading", false);
-                      scope.setInitialFocus();
-
-                      scope.trigger("change", { field: "vm_primaryConsernId" });
-                      scope.trigger("change", { field: "vm_secondaryConsernId" });
-                  }, 1000);
-              };
-              this._checkCurrentTime = function() {
-                  var dfd = $.Deferred();
-                  if (!this.isReadOnly && !this.vm_isNew()) {
-                      $userService.getUserCurrentTime().done(function(resp) {
-                          var userTime = $timeUtils.dateFromSnapDateString(resp.data[0]);
-                          scope.set("isReadOnly", scope.start < userTime);
-                          scope.patientsSelector.set("isSelectorLocked", scope.patientsSelector.isSelectorLocked || scope.isReadOnly);
-                          scope.trigger("change", {field: "vm_dialogTitle"});
-
-                          var userDNATime = userTime.setMinutes(userTime.getMinutes() - 30);
-                          scope.set("isFuture", userDNATime <= scope.end);
-                          dfd.resolve();
-                      });
-                  } else {
-                      dfd.resolve();
-                  }
-                  return dfd.promise();
-              }
-                this._finishLoading = function () {
-                    scope = this;
+                          scope = this;
                     // 1 second timeout to prevent css issues
                     // so that all styles will apply and conrtols will render
                     window.setTimeout(function () {
@@ -270,8 +253,8 @@ var isUnEditable = data.isReadOnly || false;
                     return dfd.promise();
                 }
                 this.load = function () {
-                   // this.set("isReadOnly", this.isReadOnly || !this.vm_isNew() && $scheduleCommon.isAppointmentReadOnly(this.appointmentStatusCode));
-                   scope = this;
+                    scope = this;
+
                     this._checkCurrentTime().always(function() {
                         // autosize textarea after changing readonly property
                         global.autosize($('.js-autoresize-textarea'));
@@ -282,27 +265,34 @@ var isUnEditable = data.isReadOnly || false;
                     this._areConcernsLoaded = false;
 
                     this.patientsSelector.loadSelector();
-                    this.patientsSelector.set("isSelectorLocked", this.isReadOnly);
+                    this.patientsSelector.set("isSelectorLocked", this._isPatientSelectorLocked());
+                    if (this.isClinicianDisabled) {
+                        var targetEl = $("#providerContainer");
+                        if (targetEl.length) {
+                            targetEl.kendoTooltip({
+                                position: "top",
+                                content: scope._providerDisabledReason
+                            });
+                        }
+                    }
+
                     this.set("vm_isAddNotesExpanded", !!this.additionalNotes.length);
 
                     this._updateProviderEventTime();
 
-                    this.refreshEncounterType();
+                    this.encounterMethodSelector.setReadonly(this.isReadOnly);
+
                     this.set("vm_isPhoneNumberFilled", $.trim(this.phoneNumber) !== "");
-                  //  this.set("vm_primaryConcernActive", this.vm_primaryConsernId !== null);
-                   // this.set("vm_secondaryConcernActive", this.vm_secondaryConsernId !== null);
                     this.set("vm_isAddNotesExpanded", !!this.additionalNotes.length);
 
                     this.trigger("change", {
                         field: "vm_isAddConcernButtonVisible"
                     });
                     this.trigger("change", {
-
-
                         field: "vm_dialogTitle"
                     });
 
-                                       $eventAggregator.unSubscribe("slotTray_slotClickCallback");
+                    $eventAggregator.unSubscribe("slotTray_slotClickCallback");
                     $eventAggregator.subscriber("slotTray_slotClickCallback", function () {
                         scope._onDataChange();
                         scope.patientsSelector.updateEventTime(scope.start, scope.end, scope.timeZoneId);
@@ -398,7 +388,7 @@ var isUnEditable = data.isReadOnly || false;
                             } else {
                                 scope.set("dataSecondaryConcernList", codeSetsDs.getCodeSetDataSource("secondary", snap.hospitalSession.hospitalId));
                             }
-
+                            
                             scope.dataSecondaryConcernList.read().then(function () {
                                 scope._secondaryConcernsAvailable = scope.dataSecondaryConcernList.data().length > 0;
                                 scope.trigger("change", { field: "vm_isAddConcernButtonVisible" });
@@ -426,22 +416,25 @@ var isUnEditable = data.isReadOnly || false;
 
 this._checkPatient = function(patient, data) {
                     if (scope.vm_isNew()) {
-                        var patientItem = scope.patientsSelector.getItemById(patient.id);
+                        var patientItem = scope.patientsSelector.getItemById(patient.id) || scope.patientsSelector.getFirstItem();
                         if (patientItem) {
                             scope.patientsSelector.selectHandler(patientItem);
-                        } else {
-                            scope.patientsSelector.selectHandler(scope.patientsSelector.getFirstItem());
                         }
                         data.patientProfileId = scope.patientsSelector.getSelectedItem().id;
                     }
-                    getPatientItem(data.patientProfileId).done(function (item) {
+                    getPatientItem(data.patientProfileId).then(function (item) {
                         if (item) {
                             scope.patientsSelector.selectInitialItem(item);
                         } else {
                             scope.set("isDisabled", true);
                             scope.trigger("change", { field: "vm_isNotDisabled" });
-                            scope.patientsSelector.disableSelectedItem();
+                            scope.patientsSelector.disableSelectedItem($errorHandler.getProfileDisabledReason());
                         }
+                    }, function(error) {
+                        scope.set("isDisabled", true);
+                        scope.trigger("change", { field: "vm_isNotDisabled" });
+                        scope.patientsSelector.disableSelectedItem($errorHandler.getProfileDisabledReason(error));
+                    }).always(function() {
                         scope._isPatientLoaded = true;
                         if (scope._areConcernsLoaded) {
                             scope._finishLoading();
@@ -449,12 +442,6 @@ this._checkPatient = function(patient, data) {
                         scope.set("vm_canShowTimeOffsets", scope.patientsSelector.getSelectedItem() !== null);
                     });
                 };
-
-
-
-
-
-
 
 
                 this.save = function () {
@@ -489,7 +476,7 @@ this._checkPatient = function(patient, data) {
                                 dfd.resolve();
                             }).fail(function(error) {
                                 dfd.reject(error);
-                            });
+                            });    
                         } else {
                             dfd.reject("Consultation is already paid by other user.");
                         }
@@ -497,6 +484,18 @@ this._checkPatient = function(patient, data) {
 
                     return dfd;
                 };
+
+                this.unlockSlot = function() {
+                    this._clearDeactivationTimeout();
+
+                    $patientSelfSchedulingHub.unlockSlot(this.availabilityBlockId, this.start, this.end);
+                };
+
+
+
+
+
+
 
                 this._checkPaymentStatus = function() {
                     var dfd = $.Deferred();
@@ -602,7 +601,7 @@ this._checkPatient = function(patient, data) {
                         }
                     });
 
-                    timer.start();
+                    availableTimeTimer.start();
                 };
 
                 this.vm_currentDate = function () {
@@ -675,16 +674,12 @@ this._checkPatient = function(patient, data) {
                     }
                 };
 
-                this.vm_onCloseClick = function (e) {
-                    this._clearDeactivationTimeout();
+                 this.vm_onCloseClick = function (e) {
                     $eventAggregator.published(fact.closeEvent, this);
 
-                    $snapNotification.hideAllConfirmations();
-
-                    $patientSelfSchedulingHub.unlockSlot(this.availabilityBlockId, this.start, this.end);
-                    //$("#localize-widget").hide();
-                    this.preventDefault();
+                    this.preventDefault(e);
                 };
+
 
                 this.vm_onRemoveClick = function () {
                     this._clearDeactivationTimeout();
@@ -872,6 +867,10 @@ this.vm_isNew = function () {
                     return this.appointmentId === 0;
                 };
 
+ this._isPatientSelectorLocked = function () {
+                    return this.isReadOnly || !this.vm_isNew();
+                };
+
                 this.vm_expandAddNotes = function(){
                     this.set("vm_isAddNotesExpanded", !this.vm_isAddNotesExpanded);
                    /*window.setTimeout(function () {
@@ -925,7 +924,7 @@ this.vm_isNew = function () {
                     return this.vm_secondaryConsernId === otherSecondaryConcernId;
                 };
 
-                this.vm_onPrimaryConcernChange = function () {
+                 this.vm_onPrimaryConcernChange = function () {
                     this.trigger("change", { field: "vm_isPrimaryConcernOtherSelected" });
                     this.trigger("change", { field: "vm_isAddConcernButtonVisible" });
 
@@ -938,16 +937,13 @@ this.vm_isNew = function () {
                     this.set("vm_primaryConcernActive", this.vm_primaryConsernId !== null);
 
                     var concern = this._formatConcernData(this.dataPrimaryConcernList, this.vm_primaryConsernId, true);
-
-                    if (!this.vm_isPrimaryConcernOtherSelected() && this.primaryConcernOtherText !== "") {
+                    var changedSelectedConcern = this.primaryConcern ? this.vm_primaryConsernId !== this.primaryConcern.customCode.code : true;
+                    if (changedSelectedConcern && this.primaryConcernOtherText !== "") {
                         this.set("primaryConcernOtherText", "");
                     }
 
                     if (this.vm_isPrimaryConcernOtherSelected()) {
-                        $('span.dialogbox-master__reason-dropdown').first().addClass('is-active');
                         concern.customCode.description = this.get("primaryConcernOtherText");
-                    } else {
-                        $('span.dialogbox-master__reason-dropdown').first().removeClass('is-active');
                     }
 
                     this.primaryConcern = concern;
@@ -959,7 +955,7 @@ this.vm_isNew = function () {
 
                 this.vm_secondaryConcernActive = false;
 
-                this.vm_onSecondaryConcernChange = function () {
+               this.vm_onSecondaryConcernChange = function () {
                     this.trigger("change", {
                         field: "vm_isSecondaryConcernOtherSelected"
                     });
@@ -974,15 +970,13 @@ this.vm_isNew = function () {
                     }
                     this.set("vm_secondaryConcernActive", this.vm_secondaryConsernId !== null);
 
-                    if (!this.vm_isSecondaryConcernOtherSelected() && this.secondaryConcernOtherText !== "") {
+                    var changedSelectedConcern = this.secondaryConcern ? this.vm_secondaryConsernId !== this.secondaryConcern.customCode.code : true;
+                    if (changedSelectedConcern && this.secondaryConcernOtherText !== "") {
                         this.set("secondaryConcernOtherText", "");
                     }
 
                     if (this.vm_isSecondaryConcernOtherSelected()) {
-                        $('span.dialogbox-master__reason-dropdown').last().addClass('is-active');
                         concern.customCode.description = this.get("secondaryConcernOtherText");
-                    } else {
-                        $('span.dialogbox-master__reason-dropdown').last().removeClass('is-active');
                     }
 
                     this.secondaryConcern = concern;
@@ -1121,16 +1115,19 @@ this.vm_isNew = function () {
 
                     var patient = $scheduleCommon.findPatient(opt.participants);
                     var patientId = patient.patientId || data.patientProfileId;
-                    if (patient) {
-                        this.patientsSelector.selectItem(
+                     if (patient) {
+                        this.patientsSelector.selectInitialItem(
                             $itemSelector.convertPersonToSelectorItem(patient.person, patientId, $itemSelector.personType.patient), true);
                     }
 
                     this.vm_isAddNotesExpanded = false;
                     this.phoneNumber = opt.phoneNumber;
                     this.phoneType = opt.phoneType || phoneTypeEnum.other;
-                    this.encounterTypeCode = opt.encounterTypeCode ? opt.encounterTypeCode : encounterTypeCodes.Video;
+
+                    this.encounterTypeCode = opt.encounterTypeCode || $encounterMethodHelper.getFirstEnabledEncounterMethod(this.appointmentTypeCode);
+                    this.encounterMethodSelector.select(this.encounterTypeCode);
                 };
+
 
                 this._selectNewAppointmentTime = function (timeSlot) {
                     $eventAggregator.published("apptvm_TimeSlotSelected", timeSlot);
@@ -1159,6 +1156,10 @@ this.vm_isNew = function () {
                         clearTimeout(this._deactivationTimeout);
                         this.set("isReadOnly", false);
                     }
+                    if (availableTimeTimer) {
+                        availableTimeTimer.stop();
+                        availableTimeTimer = null;
+                    }
                 };
                 this.isExpiredAppointment = false;
                 this._initDeactivationTimeout = function () {
@@ -1170,11 +1171,11 @@ this.vm_isNew = function () {
                     this._deactivationTimeout = setTimeout(function () {
                         that.set("isReadOnly", true);
                         that.set("isDisabled", true);
-						that.trigger("change", { field: "vm_isNotDisabled" });
+                        that.trigger("change", { field: "vm_isNotDisabled" });
                         that.set("vm_notification_msg", "This appointment has expired. Please close this dialogue and select a new time.");
                         that.set("vm_hideTimer", true);
 
-                        setTimeout(function() {
+                        setTimeout(function () {
                             that.set("isExpiredAppointment", true);
                         }, 1000);
 
@@ -1182,7 +1183,9 @@ this.vm_isNew = function () {
                     },
                     5 * 60 * 1000);
                 };
-this._initSelectors();
+
+                this._initSelectors();
+
                 this._setOptions(opt, data.clinicianCard);
 
                 function getPatientItem(patientProfileId) {

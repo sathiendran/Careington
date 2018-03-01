@@ -12,8 +12,11 @@
               <i ng-bind-html="drawSVGCIcon('video_camera')" class="ng-binding" ng-if="scheduledListData.encounterTypeCode == 3">
                 <svg class="iconImg-video_camera"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-video_camera"></use></svg>
               </i>
-              <i ng-bind-html="drawSVGCIcon('phone')" class="ng-binding" ng-if="scheduledListData.encounterTypeCode != 3">
+              <i ng-bind-html="drawSVGCIcon('phone')" class="ng-binding" ng-if="scheduledListData.encounterTypeCode == 2">
                 <svg class="iconImg-phone"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-phone"></use></svg>
+              </i>
+              <i ng-bind-html="drawSVGCIcon('users')" class="ng-binding" ng-if="scheduledListData.encounterTypeCode == 4">
+                <svg class="iconImg-users"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-users"></use></svg>
               </i>
               <span class="apptTime localizejs"><span class="localizejs">Appt</span> @ {{scheduledListData.scheduledTime | date: "hh:mm"}} {{scheduledListData.scheduledTime | date: "a"}}</span>
               <span class="apptDetailsInfo" ng-if="scheduledListData.appointmentStatusCode != 'Waiting' && scheduledListData.status != 71">

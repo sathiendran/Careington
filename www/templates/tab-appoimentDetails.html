@@ -88,7 +88,7 @@
                   <p class="patage localizejs" style="margin-top:-22px !important;"><span class="localizejs">{{scheduledDoctorDetails[0].gender}} </span><span> .</span> {{scheduledDoctorDetails[0].dob | ageFilter}}</p>
               </div>
            </a>
-           <a class="item item-avatar patavatar" ng-if="scheduledListDatas.encounterTypeCode != 3">
+           <a class="item item-avatar patavatar" ng-if="scheduledListDatas.encounterTypeCode == 2">
                 <!--<img ng-src="{{scheduledDoctorDetails[0].profileImagePath}}" class="patimage">-->
                 <div class="docAppointImage" ng-bind-html="drawImage(scheduledDoctorDetails[0].profileImagePath,scheduledDoctorDetails[0].firstName,scheduledDoctorDetails[0].lastName)"></div>
                  <div>
@@ -97,11 +97,26 @@
                      <span class="appfloat"><i class="icon ion-chevron-right " style="display: none;"></i></span>
                      <span class="encounterappticon" style="top: 2px !important;" >
                        <i  class="iconAlignment" ng-bind-html="drawSVGCIcon('phone')"></i> </span>
-                     <p class="patage localizejs" style="margin-top:-22px !important;"><span>{{scheduledDoctorDetails[0].gender}}  .</span> 
+                     <p class="patage localizejs" style="margin-top:-22px !important;"><span>{{scheduledDoctorDetails[0].gender}}  .</span>
                       <span>{{scheduledDoctorDetails[0].dob | ageFilter}}</span><span class="localizejs">{{scheduledDoctorDetails[0].dob | ageYearsStringFilter}}</span><span>{{scheduledDoctorDetails[0].dob | ageMonthFilter}}</span> <span>{{scheduledDoctorDetails[0].dob | ageDayFilter}}</span>
                     </p>
                  </div>
               </a>
+
+            <a class="item item-avatar patavatar" ng-if="scheduledListDatas.encounterTypeCode == 4">
+                 <!--<img ng-src="{{scheduledDoctorDetails[0].profileImagePath}}" class="patimage">-->
+                 <div class="docAppointImage" ng-bind-html="drawImage(scheduledDoctorDetails[0].profileImagePath,scheduledDoctorDetails[0].firstName,scheduledDoctorDetails[0].lastName)"></div>
+                  <div>
+                      <p class="pathead localizejs">With</p>
+                      <h2 class="appfname"><span >{{scheduledDoctorDetails[0].fullName}}</h2>
+                      <span class="appfloat"><i class="icon ion-chevron-right " style="display: none;"></i></span>
+                      <span class="encounterappticon" style="top: 2px !important;" >
+                        <i  class="iconAlignment" ng-bind-html="drawSVGCIcon('users')"></i> </span>
+                      <p class="patage localizejs" style="margin-top:-22px !important;"><span>{{scheduledDoctorDetails[0].gender}}  .</span> 
+                       <span>{{scheduledDoctorDetails[0].dob | ageFilter}}</span><span class="localizejs">{{scheduledDoctorDetails[0].dob | ageYearsStringFilter}}</span><span>{{scheduledDoctorDetails[0].dob | ageMonthFilter}}</span> <span>{{scheduledDoctorDetails[0].dob | ageDayFilter}}</span>
+                     </p>
+                  </div>
+               </a>
 
         <ion-item class="ionitem contalign" style="text-align:center;" >
            <div class="item item-text-wrap">

@@ -77,9 +77,13 @@
                         <a class="avatitem" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)">
                       </a>  <span class="encountericon ">  <i ng-bind-html="drawSVGCIcon('video_camera')"></i> </span>
                      </div>
-                     <div class="passedImage-{{deviceName}}" ng-if="passedData.encounterTypeCode != 3">
+                     <div class="passedImage-{{deviceName}}" ng-if="passedData.encounterTypeCode == 2">
                         <a class="avatitem" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)">
                       </a>   <span class="encountericon">  <i ng-bind-html="drawSVGCIcon('phone')"></i> </span>
+                     </div>
+                     <div class="passedImage-{{deviceName}}" ng-if="passedData.encounterTypeCode == 4">
+                        <a class="avatitem" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)">
+                      </a>   <span class="encountericon">  <i ng-bind-html="drawSVGCIcon('users')"></i> </span>
                      </div>
                      <div class="passedDate-{{deviceName}}">
                         <p class="colfamily consult localizejs"> {{passedData.consultationDate}}</p>

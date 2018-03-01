@@ -248,7 +248,7 @@
         this.getPatientList = function (providerId, opt) {
             var path = ["/api/v2.1/providers", providerId, "patients"].join("/");
             var parameters = opt || {};
-            
+
             return $http.get(path, parameters);
         };
 
@@ -290,7 +290,7 @@
             });
         };
         this.getPatientProfilesForPatient = function (opt) {
-            var path = "/api/v2.1/patients/authorized-patients";
+            var path = snap.baseUrl + "/api/v2.1/patients/authorized-patients";
             var parameters = opt || {};
 
             return $.ajax({
@@ -302,7 +302,7 @@
             });
         };
         this.getPatientProfileForPatient = function (patientId) {
-            var path = ["/api/v2.1/patients/authorized-patients", patientId].join("/");
+            var path = [snap.baseUrl + "/api/v2.1/patients/authorized-patients", patientId].join("/");
             return $.ajax({
                 type: "GET",
                 url: path,
@@ -328,6 +328,6 @@
             var path = "/api/v2/timezones";
             return $http.get(path);
         };
-        
+
     }).singleton();
 }(jQuery, window.snap = window.snap || {}));
