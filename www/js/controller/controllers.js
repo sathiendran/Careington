@@ -4598,6 +4598,7 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
 
         var params = {
             patientId: $rootScope.patientId,
+            primaryPatientId: $rootScope.primaryPatientId,
             accessToken: $rootScope.accessToken,
             success: function(data) {
                 if (data.data != 0) {
@@ -4614,14 +4615,15 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
                             'isDefaultPlan': index.isDefaultPlan,
                             'insuranceCompanyPhone': index.insuranceCompanyPhone,
                             'memberName': index.memberName,
+                            'members': index.members,
                             'subsciberId': index.subsciberId,
                             'payerId': index.payerId,
                             'policyNumberLong': index.policyNumber,
                             'policyNumber': index.policyNumber.substring(index.policyNumber.length - 4, index.policyNumber.length),
                         });
                     });
-
-                    $rootScope.patientHealthPlanList = $rootScope.allPatientHealthPlanList.filter(function(r) { var show = r.patientId == $rootScope.patientId; return show; });
+                    $rootScope.patientHealthPlanList  = $rootScope.allPatientHealthPlanList;
+                  //  $rootScope.patientHealthPlanList = $rootScope.allPatientHealthPlanList.filter(function(r) { var show = r.patientId == $rootScope.patientId; return show; });
                     if($rootScope.patientHealthPlanList.length !== 0) {
                          if ($rootScope.currState.$current.name === "tab.consultCharge") {
                              $rootScope.enableAddHealthPlan = "block";
@@ -4872,12 +4874,12 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
 			         $rootScope.currentplan ="";
                $rootScope.submitPayBack = $rootScope.currState.$current.name;
 			         $rootScope.currentplan = "tab.planDetails";
-               $scope.doGetHealthPlanProvider();
+               $scope.doGetHealthPlanProvider($rootScope.currentplan);
 		    }else if ($('option:selected', this).text() === 'Agregar un nuevo plan de salud') {
 			         $rootScope.currentplan ="";
                $rootScope.submitPayBack = $rootScope.currState.$current.name;
 			         $rootScope.currentplan = "tab.planDetails";
-               $scope.doGetHealthPlanProvider();
+               $scope.doGetHealthPlanProvider($rootScope.currentplan);
 		    }
          else if ($('option:selected', this).text() === 'Choose Your Health Plan') {
               $rootScope.editplan ="none";
@@ -4918,7 +4920,8 @@ $rootScope.planchange = function(){
 $scope.doGetInsuranceDetails = function(){
     $rootScope.insuranceList = [];
   var params = {
-    patientId: $rootScope.patientId,
+  //  patientId: $rootScope.patientId,
+    patientId: $rootScope.primaryPatientId,
     accessToken: $rootScope.accessToken,
     policyNumber:$scope.policynumber,
     success: function(data, status) {
@@ -4929,7 +4932,7 @@ $scope.doGetInsuranceDetails = function(){
       //  $rootScope.editinsDOB = $filter('date')(date, "dd-mm-yyyy");
         $rootScope.edithealthplanid =   $rootScope.insuranceList.healthPlanId;
         $rootScope.currentplan = "tab.planeditDetails";
-        $scope.doGetHealthPlanProvider();
+        $scope.doGetHealthPlanProvider($rootScope.currentplan);
       }
     },
         error: function(data, status) {
@@ -4946,7 +4949,7 @@ $scope.doGetInsuranceDetails = function(){
 //   // $rootScope.restage =getAge(patdob);
 // }
 
-    $scope.doGetHealthPlanProvider = function() {
+    $scope.doGetHealthPlanProvider = function(currentplan) {
         $rootScope.HealthPlanProvidersList = [];
         var params = {
             patientId: $rootScope.patientId,
@@ -4965,16 +4968,14 @@ $scope.doGetInsuranceDetails = function(){
                     });
                 });
                // $state.go('tab.planDetails');
-               if(typeof($rootScope.currentplan) === 'undefined') {
-                 $rootScope.currentplan = "tab.planDetails";
-               }
-               	var currentplandet = $rootScope.currentplan;
-                if(currentplandet === "tab.planDetails"){
+              /* if(typeof(currentplan) === 'undefined') {
+                 currentplan = "tab.planDetails";
+               }*/
+            //   	var currentplandet = $rootScope.currentplan;
+                if(currentplan === "tab.planDetails" || typeof currentplan === 'undefined' || currentplan == ''){
                     $state.go('tab.planDetails');
-                }else if(currentplandet === "tab.planeditDetails"){
-
+                }else if(currentplan === "tab.planeditDetails"){
                   $state.go('tab.planeditDetails');
-
 
                 }
             },
@@ -5016,7 +5017,8 @@ $scope.doGetInsuranceDetails = function(){
         $scope.insuranceCompanyNameId = $scope.insuranceCompanyNameId;
         $scope.isDefaultPlan = 'Y';
         $scope.insuranceCompanyPhone = '8888888888';
-        $scope.memberName = $scope.AddHealth.firstName + $scope.AddHealth.lastName;
+      //  $scope.memberName = $scope.AddHealth.firstName + ' '+ $scope.AddHealth.lastName;
+        $scope.memberName = $rootScope.PatientFirstName +' '+ $rootScope.PatientLastName;
         $scope.subsciberId = subsciberNewID // patient id
         $scope.policyNumber = $scope.AddHealth.policyNumber; //P20
         $scope.subscriberFirstName = $scope.AddHealth.firstName;
@@ -5024,11 +5026,18 @@ $scope.doGetInsuranceDetails = function(){
         $scope.subscriberDob = $scope.AddHealth.dateBirth;
         $scope.isActive = 'A';
         $scope.payerId = $scope.payerId;
+        $scope.Members = [];
+        $scope.Members.push({
+            "memberName": $scope.memberName,
+            "patientId": $rootScope.patientId,
+            "profileImagePath": $rootScope.PatientImageSelectUser,
+            "subscriberId": $scope.subsciberId,
+        });
 
         var params = {
             accessToken: $rootScope.accessToken,
-            healthPlanID: $rootScope.healthPlanID,
-            PatientId: $rootScope.patientId,
+          //  healthPlanID: $rootScope.healthPlanID,
+            PatientId: $rootScope.primaryPatientId,
             insuranceCompany: $scope.insuranceCompany,
             insuranceCompanyNameId: $scope.insuranceCompanyNameId,
             isDefaultPlan: $scope.isDefaultPlan,
@@ -5041,6 +5050,7 @@ $scope.doGetInsuranceDetails = function(){
             subscriberDob: $scope.subscriberDob,
             isActive: $scope.isActive,
             payerId: $scope.payerId,
+            Members: $scope.Members,
             success: function(data) {
                 $scope.NewHealthPlan = data;
                 if ($scope.NewHealthPlan.healthPlanID !== '') {
@@ -5091,7 +5101,8 @@ $scope.EditHealth = {};
         $scope.insuranceCompanyNameId = $scope.insuranceCompanyNameId;
         $scope.isDefaultPlan = 'Y';
         $scope.insuranceCompanyPhone = '8888888888';
-        $scope.memberName = $("#editfirstName").val() + $("#editlastName").val();
+      //  $scope.memberName = $("#editfirstName").val() +' '+ $("#editlastName").val();
+        $scope.memberName = $rootScope.PatientFirstName +' '+ $rootScope.PatientLastName;
         $scope.subsciberId = subsciberNewID // patient id
         $scope.policyNumber = $("#editpolicyNumber").val(); //P20
         $scope.subscriberFirstName = $("#editfirstName").val() ;
@@ -5100,10 +5111,18 @@ $scope.EditHealth = {};
         $scope.isActive = 'A';
         $scope.payerId = $scope.payerId;
 
+        $scope.Members = [];
+        $scope.Members.push({
+            "memberName": $scope.memberName,
+            "patientId": $rootScope.patientId,
+            "profileImagePath": $rootScope.PatientImageSelectUser,
+            "subscriberId": $scope.subsciberId,
+        });
+
         var params = {
             accessToken: $rootScope.accessToken,
             healthPlanID: $rootScope.edihealthPlanID ,
-            PatientId: $rootScope.patientId,
+            PatientId: $rootScope.primaryPatientId,
             insuranceCompany: $scope.insuranceCompany,
             insuranceCompanyNameId: $scope.insuranceCompanyNameId,
             isDefaultPlan: $scope.isDefaultPlan,
@@ -5116,7 +5135,7 @@ $scope.EditHealth = {};
             subscriberDob: $scope.subscriberDob,
             isActive: $scope.isActive,
             payerId: $scope.payerId,
-
+            Members: $scope.Members,
             success: function(data) {
                 $scope.NewHealtheditPlan = data;
                 if ($scope.NewHealtheditPlan.healthPlanID !== '') {
@@ -10300,7 +10319,7 @@ var currentLocalTimeZoneDateTime = new Date(serverDateTime);
     }
 
     $scope.backToEdiORAddPlan = function() {
-      if($rootScope.getHlthSctValue === 'Add a new health plan' || $rootScope.getHlthSctValue === 'Choose Your Health Plan' ||  $rootScope.providerName === '' || $rootScope.getHlthSctValue === 'Agregar un nuevo plan de salud' || $rootScope.getHlthSctValue === 'Elija su plan de salud') {
+      if(($rootScope.getHlthSctValue === 'Add a new health plan' || $rootScope.getHlthSctValue === 'Choose Your Health Plan' ||  $rootScope.providerName === '' || $rootScope.getHlthSctValue === 'Agregar un nuevo plan de salud' || $rootScope.getHlthSctValue === 'Elija su plan de salud') && $rootScope.chooseHealthShow == 'none') {
             $rootScope.editplan ="none";
         } else {
             $rootScope.editplan ="block";

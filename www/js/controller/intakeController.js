@@ -1715,6 +1715,7 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
 
             var params = {
                 patientId: $rootScope.patientId,
+                primaryPatientId: $rootScope.primaryPatientId,
                 accessToken: $rootScope.accessToken,
                 success: function (data) {
                     if (data.data != 0) {
@@ -1730,13 +1731,15 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
                                 'isDefaultPlan': index.isDefaultPlan,
                                 'insuranceCompanyPhone': index.insuranceCompanyPhone,
                                 'memberName': index.memberName,
+                                'members': index.members,
                                 'subsciberId': index.subsciberId,
                                 'payerId': index.payerId,
                                 'policyNumberLong': index.policyNumber,
                                 'policyNumber': index.policyNumber.substring(index.policyNumber.length - 4, index.policyNumber.length),
                             });
                         });
-                        $rootScope.patientHealthPlanList = $rootScope.allPatientHealthPlanList.filter(function (r) { var show = r.patientId == $rootScope.patientId; return show; });
+                        $rootScope.patientHealthPlanList  = $rootScope.allPatientHealthPlanList;
+                      //  $rootScope.patientHealthPlanList = $rootScope.allPatientHealthPlanList.filter(function (r) { var show = r.patientId == $rootScope.patientId; return show; });
                         if ($rootScope.patientHealthPlanList.length !== 0) {
                             if ($rootScope.currState.$current.name === "tab.consultCharge") {
                                 $rootScope.enableAddHealthPlan = "block";
