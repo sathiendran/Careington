@@ -34,11 +34,13 @@
          <div style="padding-right: 10%;">
             <div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
                <div class="consultTittle localizejs">Consultation Charge</div>
-               <div class="consultation_number"> <span>${{consultationAmount}}*</span></div>
+               <div class="consultation_number" ng-if="adminSetlocale == 'en-GB'"> <span>&pound;{{consultationAmount}}*</span></div>
+                <div class="consultation_number" ng-if="adminSetlocale != 'en-GB'"> <span>${{consultationAmount}}*</span></div>
             </div>
             <div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
                <div class="consultTittleCopay localizejs" >Your Copay</div>
-               <div class="consultation_numberCopay"> <span>${{copayAmount}}*</span></div>
+               <div class="consultation_numberCopay" ng-if="adminSetlocale == 'en-GB'"> <span>&pound;{{copayAmount}}*</span></div>
+               <div class="consultation_numberCopay" ng-if="adminSetlocale != 'en-GB'"> <span>${{copayAmount}}*</span></div>
             </div>
          </div>
          <div class="password_home contentPayHomeAddCard">

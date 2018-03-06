@@ -90,7 +90,7 @@ angular.element(document).ready(function () {
       $rootScope.NaviConfirmation = 'Confirmación:';
       $rootScope.YESMessageProviderSearch='Sí';
       }
- 
+
     else  {
     $rootScope.alertTimedout = "Your session timed out."
     $rootScope.alertokay = "Ok";
@@ -123,8 +123,8 @@ angular.element(document).ready(function () {
      $rootScope. NaviConfirmation = 'Confirmation:';
      $rootScope. YESMessageProviderSearch='Yes';
       }
- 
- 
+
+
      $('#localize-langs').click(function() {
        var isLang = $('#localize-langs .activated').text();
          console.log("lang "+isLang);
@@ -379,8 +379,13 @@ angular.element(document).ready(function () {
         }
 
         if ($rootScope.getIndividualPatScheduleDetails !== undefined && $rootScope.getIndividualPatScheduleDetails.length !== 0) {
-            var getReplaceTime2 = $rootScope.getIndividualPatScheduleDetails[0].scheduledTime;
-            var getReplaceTime3 = $scope.addMinutes(getReplaceTime2, -30);
+            if($rootScope.getIndividualPatScheduleDetails[0].encounterTypeCode != 4) {
+              var getReplaceTime2 = $rootScope.getIndividualPatScheduleDetails[0].scheduledTime;
+              var getReplaceTime3 = $scope.addMinutes(getReplaceTime2, -30);
+            } else {
+              var getReplaceTime2 = $rootScope.getIndividualPatScheduleDetails[0].scheduledTime;
+              var getReplaceTime3 = $scope.addMinutes(getReplaceTime2, -05);
+            }
             var currentUserHomeDate = currentUserHomeDate;
             if ((new Date(getReplaceTime3).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                 $scope.$on('timer-tick', function(event, args) {

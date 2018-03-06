@@ -544,8 +544,13 @@ $("#localize-widget").show();
                       //if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {}
                 //  }
                 //var getReplaceTime = new Date(getReplaceTime1.setMinutes(getReplaceTime1.getMinutes() - 30));
-                  var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
-                  var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
+                if($rootScope.scheduledListDatas.encounterTypeCode != 4) {
+                    var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
+                    var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
+                  } else {
+                    var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
+                    var getReplaceTime = $scope.addMinutes(getReplaceTime1, -05);
+                  }
                   var currentUserHomeDate = currentUserHomeDate;
                   if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
 
@@ -588,7 +593,7 @@ $("#localize-widget").show();
                       var d = new Date();
                     //  var currentUserHomeDate = CustomCalendar.getLocalTime(d);
                       var currentUserHomeDate = d;
-                      if($rootScope.scheduledListDatas.encounterTypeCode === 3) {
+                      if($rootScope.scheduledListDatas.encounterTypeCode === 3 || $rootScope.scheduledListDatas.encounterTypeCode === 4) {
                         if (getReplaceTime < currentUserHomeDate) {
                             $rootScope.timerCOlor = '#a2d28a';
                             $('.AvailableIn').hide();
@@ -656,10 +661,13 @@ $("#localize-widget").show();
 
     if ($rootScope.appointmentDisplay === "test") {
         $("#appointNotes").html($rootScope.appointNotes);
-
-        var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
-
-        var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
+        if($rootScope.scheduledListDatas.encounterTypeCode != 4) {
+            var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
+            var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
+        } else {
+            var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
+            var getReplaceTime = $scope.addMinutes(getReplaceTime1, -05);
+        }
 
         $rootScope.time = new Date(getReplaceTime).getTime();
 

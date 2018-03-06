@@ -273,6 +273,7 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
                     $rootScope.Hospital = data.data[0].brandName;
                     $rootScope.backColor = data.data[0].brandColor;
                     $rootScope.singleHospital = data.data[0].brandName;
+                    $rootScope.adminSetlocale = data.data[0].locale;
                     if (deploymentEnvLogout === 'Multiple') {
                         $rootScope.alertMsgName = 'Virtual Care';
                         $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();

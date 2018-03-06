@@ -36,13 +36,13 @@
                         isLoadingConsult = false;
                         dfd.reject();
                     } else {
-                        if (appointment.encounterTypeCode === $encounterTypeCode.Phone) {
-                            // phone-type consultation is automatically created in api
+                        if (appointment.encounterTypeCode === $encounterTypeCode.Phone || appointment.encounterTypeCode === $encounterTypeCode.InPerson) {
+                            // phone-type and in-person consultations are automatically created in api
                             var isHomePage = window.location.href.toLowerCase().indexOf(snap.getPatientHome().toLowerCase()) >= 0;
                             if (!isHomePage) {
                                 window.location.href = snap.getPatientHome();
-                                window.location.reload();
                             }
+                            isLoadingConsult = false;
                             dfd.resolve();
                         } else {
                             var appointmentId = appointment.appointmentId;
@@ -71,11 +71,10 @@
                                                     patientId: patientId,
                                                     personId: personId,
                                                     isScheduled: true,
-                                                    totalSteps: 3,
-                                                    currentStep: 0,
                                                     consultationAmount: consultationAmount,
                                                     patientQueueEntryId: respData.patientQueueEntryId,
                                                     meetingId: respData.meetingId,
+                                                    communicationMethod: consultationData.encounterTypeCode,
                                                     isUnder1: isUnder1
                                                 });
 
@@ -90,15 +89,16 @@
                                                     location.href = "/patient/Intake/#/Payment";
                                                 } else {
                                                     if (kendo.support.mobileOS) {
-                                                      //  snap.openMobileApp(parseInt(newConsultationId), function() {
-                                                            sessionStorage.setItem("consultationinitaction", "1");
+                                                        snap.openMobileApp(parseInt(newConsultationId), function() {
+                                                            sessionStorage.setItem("snap_consultationinitaction", "1");
                                                             location.href = "/patient/Main/#/Waiting";
-                                                      //  });
+                                                        });
                                                     } else {
-                                                        sessionStorage.setItem("consultationinitaction", "1");
+                                                        sessionStorage.setItem("snap_consultationinitaction", "1");
                                                         location.href = "/patient/Main/#/Waiting";
                                                     }
                                                 }
+                                                isLoadingConsult = false;
                                                 dfd.resolve();
                                             }
                                         });

@@ -196,8 +196,8 @@ var setUserVars = function() {
 (function($, snap, kendo) {
     "use strict";
 
-    snap.namespace("snap.patient.schedule").use(["snap.service.selfSchedulingService", "snap.admin.schedule.TimeUtils", "snap.common.overlay"])
-        .define("patientAppointmentService", function($selfSchedulingService, $timeUtils, $overlay) {
+    snap.namespace("snap.patient.schedule").use(["snap.service.selfSchedulingService", "snap.admin.schedule.TimeUtils", "snap.common.overlay", "snap.common.schedule.ScheduleCommon", "snap.patient.patientEnterConsultationHelper"])
+        .define("patientAppointmentService", function($selfSchedulingService, $timeUtils, $overlay, $scheduleCommon, $patientEnterConsultationHelper) {
             var formatErrorMessage = function(error) {
                 if (typeof(error) === "undefined" || error === null) {
                     return "Unknown error";
@@ -304,15 +304,20 @@ var setUserVars = function() {
                                         //$overlay.setSubTxt("Accept the consent to treat agreement to enter the waiting room.");
                                         $overlay.setSubTxt(" ");
                                     }
+
+                                    // window.setTimeout(function() {
+                                    //     $overlay.toggleOverlay();
+                                    // }, 2000);
+
                                     window.setTimeout(function() {
                                         Snap.Patient.PatientHomeNewViewModel().goToSchedConsultInternal(data, function() {
                                             window.setTimeout(function() {
-                                              //  $overlay.toggleOverlay();
+                                              // $overlay.toggleOverlay();
                                             }, 4000);
                                         });
                                     }, 2000);
 
- var patient = $scheduleCommon.findPatient(data.participants);
+                                  /*  var patient = $scheduleCommon.findPatient(data.participants);
                                     var opt = {
                                         patientId: data.patientId,
                                         patientPersonId: patient.personId,
@@ -325,7 +330,7 @@ var setUserVars = function() {
                                         }, 2000);
                                     }, function() {
                                         $overlay.toggleOverlay();
-                                    });
+                                    });*/
                                 },
                                 error: function () {
                                     snapError("Cannot find appointment.");
@@ -5296,10 +5301,12 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                     return;
                 }
 
-                if (data.encounterTypeCode === encounterTypeCode.Phone) {
+                if (data.encounterTypeCode === encounterTypeCode.Phone || data.encounterTypeCode === encounterTypeCode.InPerson) {
                     // phone-type consultation is automatically created in api
                     window.setTimeout(function() {
                         $overlay.toggleOverlay();
+                        $.connection.hub.qs = {};
+                        var hubs = [];
                     }, 2000);
 
                     if (callback && callback.call) {

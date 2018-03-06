@@ -1488,6 +1488,12 @@ $rootScope.checkAndChangeMenuIcon = function() {
                 $rootScope.brandColor = data.data[0].brandColor;
                 $rootScope.logo = data.data[0].hospitalImage;
                 $rootScope.Hospital = data.data[0].brandName;
+                $rootScope.adminSetlocale = data.data[0].locale;
+              /*  if(data.data[0].locale == 'en-GB') {
+                    $rootScope.adminSetlocale = '&pound;';
+                } else {
+                   $rootScope.adminSetlocale = '$';
+                }*/
                 if (deploymentEnvLogout === 'Multiple') {
                     $rootScope.alertMsgName = 'Virtual Care';
                     $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
@@ -1901,6 +1907,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
       					$rootScope.logo = data.data[0].hospitalImage;
       					$rootScope.Hospital = data.data[0].brandName;
+                $rootScope.adminSetlocale = data.data[0].locale;
       					if (deploymentEnvLogout === 'Single') {
       						$rootScope.alertMsgName = $rootScope.Hospital;
       						$rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
@@ -2511,6 +2518,7 @@ $rootScope.checkAndChangeMenuIcon = function() {
                 $rootScope.brandColor = data.data[0].brandColor;
                 $rootScope.logo = data.data[0].hospitalImage;
                 $rootScope.Hospital = data.data[0].brandName;
+                $rootScope.adminSetlocale = data.data[0].locale;
                 if (deploymentEnvLogout === 'Multiple') {
                     $rootScope.alertMsgName = 'Virtual Care';
                     $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
@@ -6977,11 +6985,30 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                                         'userHomeRecentAppointmentColor': '#a2d28a',
                                         'nextAppointmentDisplay': 'block'
                                    });
+                                   if(typeof $rootScope.scheduledListDatas != 'undefined' && $rootScope.scheduledListDatas != null && typeof $rootScope.inProgressConsultID != 'undefined' && $rootScope.inProgressConsultID != null) {
+                                      // if(($rootScope.inProgressConsultID == $rootScope.getScheduledList[0].consultationId) && ($rootScope.scheduledListDatas.patientId == $rootScope.getScheduledList[0].patientId)) {
+                                      var getConsultDetails = $filter('filter')($rootScope.getScheduledList, {
+                                            consultationId: $rootScope.inProgressConsultID
+                                        });
+                                        if(($rootScope.inProgressConsultID == getConsultDetails[0].consultationId) && ($rootScope.scheduledListDatas.patientId == getConsultDetails[0].patientId)) {
+                                           $(".appointInqueue").css({"display": "none" });
+                                           $(".appointInProgress").css({"display": "initial" });
+                                       } else {
+                                           $(".appointInqueue").css({"display": "initial" });
+                                           $(".appointInProgress").css({"display": "none" });
+                                       }
+                                   } else {
+                                       $(".appointInqueue").css({"display": "initial" });
+                                       $(".appointInProgress").css({"display": "none" });
+                                   }
                               }
                       });
+
                          $rootScope.activeInqueueAppoint = true;
                          $rootScope.doGetScheduledConsulatation(redirectToPage);
                     } else {
+                          $(".appointInqueue").css({"display": "initial" });
+                          $(".appointInProgress").css({"display": "none" });
                           $rootScope.activeInqueueAppoint = false;
                          $rootScope.doGetScheduledConsulatation(redirectToPage);
                     }
@@ -7158,15 +7185,15 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
          activeConsultConnection.start({
             withCredentials: false
          }).then(function() {
-              activeConsultConnection.disconnected(function() {
+              //activeConsultConnection.disconnected(function() {
                   // console.log("hhhh");
-                setTimeout(function() {
+              //  setTimeout(function() {
                     // if(activeConsultConnection && activeConsultConnection.start){
                       //   activeConsultConnection.start();
                          //console.log("iiii");
                   //   }
-                }, 5000);
-                });
+              //  }, 5000);
+              //  });
          });
 
 
@@ -7274,7 +7301,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
        activeRoomConHub.on("broadcastMessage", function(messageType, message) {
           // alert("notificationService: broadcastMessage");
-
+          $rootScope.inProgressConsultID = message;
           if(messageType == 'consultation_ended') {
              //  alert('gg2');
                navigator.notification.alert(
@@ -7285,10 +7312,11 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                          activeConsultConnection.qs = {};
                          activeConsultConnection = null;
                          activeRoomConHub = null;
-                         if($state.current.name == "tab.waitingRoom")
+                        if((($('.appointInProgress').is(':hidden') != true) && $state.current.name == "tab.appoimentDetails") || $state.current.name == "tab.waitingRoom") {
                             $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-                        else
+                        } else {
                             $rootScope.doGetScheduledNowPhoneConsulatation();
+                        }
                        return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7305,10 +7333,11 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                          activeConsultConnection.qs = {};
                          activeConsultConnection = null;
                          activeRoomConHub = null;
-                    if($state.current.name == "tab.waitingRoom")
-                         $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-                     else
-                        $rootScope.doGetScheduledNowPhoneConsulatation();
+                         if((($('.appointInProgress').is(':hidden') != true) && $state.current.name == "tab.appoimentDetails") || $state.current.name == "tab.waitingRoom") {
+                             $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                         } else {
+                             $rootScope.doGetScheduledNowPhoneConsulatation();
+                         }
                       return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7325,10 +7354,11 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                         activeConsultConnection.qs = {};
                         activeConsultConnection = null;
                         activeRoomConHub = null;
-                        if($state.current.name == "tab.waitingRoom")
+                        if((($('.appointInProgress').is(':hidden') != true) && $state.current.name == "tab.appoimentDetails") || $state.current.name == "tab.waitingRoom") {
                             $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-                        else
-                         $rootScope.doGetScheduledNowPhoneConsulatation();
+                        } else {
+                            $rootScope.doGetScheduledNowPhoneConsulatation();
+                        }
                       return;
                    },
                    $rootScope.alertMsgName, // title
@@ -7346,10 +7376,11 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                         activeConsultConnection.qs = {};
                         activeConsultConnection = null;
                         activeRoomConHub = null;
-                        if($state.current.name == "tab.waitingRoom")
-                             $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-                         else
-                             $rootScope.doGetScheduledNowPhoneConsulatation();
+                        if((($('.appointInProgress').is(':hidden') != true) && $state.current.name == "tab.appoimentDetails") || $state.current.name == "tab.waitingRoom") {
+                            $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                        } else {
+                            $rootScope.doGetScheduledNowPhoneConsulatation();
+                        }
                       return;
                    },
                    $rootScope.alertMsgName, // title
@@ -9493,8 +9524,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $window.localStorage.setItem('FlagForCheckingFirstLogin', '');
         cordova.plugins.diagnostic.requestCameraAuthorization(function(status) {
             if (status === '') {
-                $scope.settingsMessage = "This app requires camera and microphone access to function properly.";
-                $scope.titeName = 'Would Like to Access the Camera and Microphone';
+                $scope.settingsMessage = "This app requires microphone access in order to conduct audio/video consultations.";
+                $scope.titeName = 'Would Like to Access the Microphone';
                 onMicroPhoneAuthorizationDenied();
             } else if (status === cordova.plugins.diagnostic.permissionStatus.DENIED) {
                 cordova.plugins.diagnostic.requestMicrophoneAuthorization(function(status) {

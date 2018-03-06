@@ -35,15 +35,18 @@
             <div style="padding-right: 10%;">
                <div ng-if="cardPage != 'consultCharge'" class="consultation_head RegularFontStyle consultChargeNoPlanText" >
                   <div class="consultTittle localizejs">Consultation Charge</div>
-                  <div class="consultation_number"> <span>${{consultationAmount}}*</span></div>
+                  <div class="consultation_number" ng-if="adminSetlocale == 'en-GB'"> <span>&pound;{{consultationAmount}}*</span></div>
+                  <div class="consultation_number" ng-if="adminSetlocale != 'en-GB'"> <span>${{consultationAmount}}*</span></div>
                </div>
                <div ng-if="cardPage != 'consultCharge'" class="consultation_head RegularFontStyle consultChargeNoPlanText" >
                   <div class="consultTittleCopay localizejs">Your Copay</div>
-                  <div class="consultation_numberCopay"> <span>${{copayAmount}}*</span></div>
+                  <div class="consultation_numberCopay" ng-if="adminSetlocale == 'en-GB'"> <span>&pound;{{copayAmount}}*</span></div>
+                  <div class="consultation_numberCopay" ng-if="adminSetlocale != 'en-GB'"> <span>${{copayAmount}}*</span></div>
                </div>
                <div ng-if="cardPage == 'consultCharge'" class="consultation_head RegularFontStyle consultChargeNoPlanText" >
                   <div class="consultTittleCharge consultTittleChargeNew localizejs">Consultation Charge</div>
-                  <div><span class="consultation_number consultation-charge"> ${{consultationAmount}}*</span></div>
+                  <div><span class="consultation_number consultation-charge" ng-if="adminSetlocale == 'en-GB'">&pound;{{consultationAmount}}*</span></div>
+                  <div><span class="consultation_number consultation-charge" ng-if="adminSetlocale != 'en-GB'">${{consultationAmount}}*</span></div>
                </div>
             </div>
             <div class="password_home contentPayHome">

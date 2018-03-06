@@ -69,7 +69,7 @@ angular.module('starter.controllers')
       $rootScope.NaviConfirmation = 'Confirmación:';
       $rootScope.YESMessageProviderSearch='Sí';
       }
- 
+
     else  {
     $rootScope.alertTimedout = "Your session timed out."
     $rootScope.alertokay = "Ok";
@@ -102,8 +102,8 @@ angular.module('starter.controllers')
      $rootScope. NaviConfirmation = 'Confirmation:';
      $rootScope. YESMessageProviderSearch='Yes';
       }
- 
- 
+
+
      $('#localize-langs').click(function() {
        var isLang = $('#localize-langs .activated').text();
          console.log("lang "+isLang);
@@ -254,6 +254,7 @@ angular.module('starter.controllers')
                     $rootScope.Hospital = data.data[0].brandName;
                     $rootScope.backColor = data.data[0].brandColor;
                     $rootScope.singleHospital = data.data[0].brandName;
+                    $rootScope.adminSetlocale = data.data[0].locale;
                     if (deploymentEnvLogout === 'Multiple') {
                         $rootScope.alertMsgName = 'Virtual Care';
                         $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
