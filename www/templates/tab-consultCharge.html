@@ -75,10 +75,10 @@
                               </div>
                               <div style = "display: {{chooseHealthShow}};" class="viewport insuranceNameDisplayed healthSelectedValue">
                                 <!--<b>{{providerName +' '+ PolicyNo}}</b>-->
-                                <div class="insProviderName localizejs" style="width: 15em;padding-left: 17px;">
+                                <div class="insProviderName localizejs" >
                                   <span class="localizejs">{{providerName}}</span>
                                 </div>
-                                  <div class="insSubscriberName" style="padding-left: 17px;"><span class ="localizejs">Subscriber ID:</span><span class="loalizejs">{{PolicyNo}}</span></div>
+                                  <div class="insSubscriberName" ><span class ="localizejs">Subscriber ID:</span><span class="loalizejs">{{PolicyNo}}</span></div>
 
                               </div>
                               <select class="consultHealthPlanDropDown localizejs" id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan"  style="border: none;" ng-change="changedlanDisplay()">
@@ -118,7 +118,7 @@
                   <div style="display:{{disableAddHealthPlan}}">
                      <div class="healthPlan_header AddCardNoPlan"  >
                         <div class="healthPlan_text localizejs" style="margin-left:-17px;" >Select your health plan</div>
-                         <a ng-click="doGetHealthPlanProvider()" style="cursor: pointer;">
+                         <a ng-click="doGetHealthPlanProvider('tab.planDetails')" style="cursor: pointer;">
                            <div class="addHealthPlan_header AddCard" >
                               <i style="position: relative; top: -5px;text-align:center;color:#A3D38B;" 	 ng-bind-html="drawSVGCIcon('circle-with-plus')"></i><span class="addHealthPlan_text localizejs" >Add A Health Plan</span>
                            </div>

@@ -894,7 +894,8 @@ this.getPatientMedicalProfile = function(params){
 		var requestInfo = {
 			headers: util.getHeaders(params.accessToken),
 
-			url: apiCommonURL + '/api/v2/healthplans?patientId=' + params.patientId ,
+		//	url: apiCommonURL + '/api/v2/healthplans?patientId=' + params.patientId ,
+			url: apiCommonURL + '/api/v2/healthplans?patientId=' + params.primaryPatientId +'&filterMembers=true&memberPatientId='+ params.patientId,
 			//url: apiCommonURL + '/api/v2/healthplans',
 
 			method: 'get'
@@ -919,7 +920,7 @@ this.getPatientMedicalProfile = function(params){
             url: apiCommonURL + '/api/healthplan',
             method: 'POST',
 			data: {
-                healthPlanId: params.healthPlanID,
+              //  healthPlanId: params.healthPlanID,
 				patientId: params.PatientId,
 				insuranceCompany: params.insuranceCompany,
 				insuranceCompanyNameId: params.insuranceCompanyNameId,
@@ -932,7 +933,8 @@ this.getPatientMedicalProfile = function(params){
 				subscriberLastName: params.subscriberLastName,
 				subscriberDob: params.subscriberDob,
 				isActive: params.isActive,
-				payerId: params.payerId
+				payerId: params.payerId,
+				Members: params.Members
             }
 		};
 
@@ -970,7 +972,8 @@ this.getPatientMedicalProfile = function(params){
 				subscriberLastName: params.subscriberLastName,
 				subscriberDob: params.subscriberDob,
 				isActive: params.isActive,
-				payerId: params.payerId
+				payerId: params.payerId,
+				Members: params.Members
             }
 		};
 
