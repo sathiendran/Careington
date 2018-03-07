@@ -228,7 +228,7 @@ margin-top: 125px !important;
           font-size: 18px !important;
         }
         .accountHeaderReport {
-          margin-left: -30px !important;
+        //  margin-left: -30px !important;
         }
         .reportScreenHeader {
           margin-left: 0px !important;
@@ -1983,9 +1983,10 @@ color: #948E8E;
      font-family: Glober Regular;
      color: #888;
      line-height: 1.2;
-     margin-left: 20px;
+    //  margin-left: 20px;
+    padding-left: 5px;
     text-align: center;
-    width: 56%;
+    //width: 56%;
 }
 .alpha_sidebar {
 position: absolute;

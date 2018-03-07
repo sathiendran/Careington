@@ -26,7 +26,7 @@
                </h1>
             </div>
             <div class="circlenew" >
-               <div ng-if="newDependentImagePath == ''" ng-click="showCameraActions()" id="AddPicture" style="{{AddPicture}}">
+               <div ng-if="newDependentImagePath == ''"  ng-click="showCameraActions()" id="AddPicture" style="{{AddPicture}};">
                   <a class="circlecanh">
                   <i class="icon ion-camera circlecam"></i>
                   </a>
@@ -136,7 +136,7 @@
                      <i class="iconsize" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel  localizejs">Country</b><i class="ion-asterisk"></i></span>
                   </div>
                   <div class="col col-50 depGreyLabel">
-                     <select class="optionselect textdata" name="healthInfoCountry" id="dependentCountry" ng-model="addNewDependent.healthInfoCountry" >
+                     <select class="optionselect textdata localizejs" name="healthInfoCountry" id="dependentCountry" ng-model="addNewDependent.healthInfoCountry" >
                         <option ng-repeat="country in serviceCountries" value="{{country.code}}" ng-selected="country.code == primaryPatientDetails[0].countryCode" ><b class="localizejs">{{country.name}}</b></option>
                      </select>
                   </div>
