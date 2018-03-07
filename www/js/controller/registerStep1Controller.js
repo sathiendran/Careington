@@ -662,6 +662,11 @@ angular.module('starter.controllers')
         $scope.addressEditSave = function(){
            $('.regFooter').css("display","block");
           //if(document.getElementById('fullAddress').value != 'Please enter address' )
+          $scope.countryValue = document.getElementById('country').value;
+          if($scope.countryValue == '' || $scope.countryValue == null || $scope.countryValue == 'Select Country' ) {
+            $scope.ErrorMessage = "Please select Country!";
+            $rootScope.Validation($scope.ErrorMessage);
+          }
           if(document.getElementById('fullAddress').value != $rootScope.defaultAddressText )
           {
     		      var stateObj  = '';
@@ -1107,7 +1112,7 @@ $("#localize-widget").show();
       $rootScope.NaviConfirmation = 'Confirmación:';
       $rootScope.YESMessageProviderSearch='Sí';
       }
- 
+
     else  {
     $rootScope.alertTimedout = "Your session timed out."
     $rootScope.alertokay = "Ok";
@@ -1140,8 +1145,8 @@ $("#localize-widget").show();
      $rootScope. NaviConfirmation = 'Confirmation:';
      $rootScope. YESMessageProviderSearch='Yes';
       }
- 
- 
+
+
      $('#localize-langs').click(function() {
        var isLang = $('#localize-langs .activated').text();
          console.log("lang "+isLang);

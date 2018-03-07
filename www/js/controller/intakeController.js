@@ -814,7 +814,7 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
                     $scope.ErrorMessage = "Please choose if the patient was born vaginally or not?";
                     $rootScope.ValidationFunction1($scope.ErrorMessage);
                 } else if (typeof $("input[name='birthDischargedwithMother']:checked").val() === 'undefined' || $("input[name='birthDischargedwithMother']:checked").val() === ' ') {
-                    $scope.ErrorMessage = "Please choose if the patient was discharged with the Mother or not? ";
+                    $scope.ErrorMessage = "Please choose if the patient was discharged with the Mother or not?";
                     $rootScope.ValidationFunction1($scope.ErrorMessage);
                 } else if (typeof $("input[name='birthVaccination']:checked").val() === 'undefined' || $("input[name='birthVaccination']:checked").val() === ' ') {
                     $scope.ErrorMessage = "Please choose if the patients vaccinations are up-to-date or not?";

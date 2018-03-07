@@ -731,7 +731,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -5514,6 +5514,11 @@ $scope.EditHealth = {};
       /*  if($stateParams.getPage === 'CTT') {
             $state.go('tab.userhome');
         } else {*/
+        if($rootScope.chooseHealthShow == 'none') {
+            $rootScope.editplan ="none";
+        } else {
+            $rootScope.editplan ="block";
+        }
             if (($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode === 'on' && $rootScope.Cttonscheduled === 'on') || ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on' && $rootScope.Cttonscheduled === 'on')) {
                 $state.go('tab.ConsentTreat');
             } else if (($rootScope.healthPlanPage === "block" && $rootScope.Cttonscheduled === 'on') || ($rootScope.paymentBackPage === true && $rootScope.Cttonscheduled === 'on')) {

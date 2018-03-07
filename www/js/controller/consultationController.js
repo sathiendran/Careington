@@ -873,6 +873,11 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
                         $rootScope.reportScreenSecondaryConcern = "None Reported";
                     }
                     $rootScope.intake = $rootScope.existingConsultationReport.intake;
+                    if(typeof $rootScope.existingConsultationReport.intake.infantData != undefined && $rootScope.existingConsultationReport.intake.infantData != '') {
+                      $scope.showBirthInfo = true;
+                    } else {
+                      $scope.showBirthInfo = false;
+                    }
 
                     $rootScope.fullTerm = $rootScope.intake.infantData.fullTerm;
 

@@ -151,12 +151,22 @@ input#datepicker1
                                     <a href="#" class="localizejs js-edit-appt" data-bind="click: vm_onToggleEditDate, invisible: isReadOnly, html: vm_getDateAreaActionLabel"></a>
                                 </div>
 
-                                <div class="dialogbox-master__reschedule-appt" data-bind="visible: isDateAreaInEditMode">
+                              <!--  <div class="dialogbox-master__reschedule-appt" data-bind="visible: isDateAreaInEditMode">
                                     <button type="button" class="localizejs button button__yellow js-cancel-appt" data-bind="click: vm_onCancelEditDate">Cancel</button>
 
                                     <div class="dialogbox-master__datepicker">
                                         <label class="localizejs">Appt. Date</label>
                                         <input  class="appointmentDP" data-bind="value: startDate, events: {change: vm_startDateChange}" />
+                                    </div>
+                                    <div class="dialogbox-master__appt-times" data-bind="source: apptsSlotsTray, events: {change: vm_appointmentSlotsChanged}" data-template="patient_apptsSlotsTemplate">
+                                    </div>
+                                </div>-->
+                                <div class="dialogbox-master__reschedule-appt" data-bind="visible: isDateAreaInEditMode">
+                                    <button type="button" class="button button__yellow js-cancel-appt localizejs" data-bind="click: vm_onCancelEditDate">Cancel</button>
+
+                                    <div class="dialogbox-master__datepicker">
+                                        <label class="localizejs">Appt. Date</label>
+                                        <input data-role="datepicker" id="datepicker1" data-bind="value: startDate, events: {change: vm_startDateChange}, min: vm_currentDate" />
                                     </div>
                                     <div class="dialogbox-master__appt-times" data-bind="source: apptsSlotsTray, events: {change: vm_appointmentSlotsChanged}" data-template="patient_apptsSlotsTemplate">
                                     </div>
