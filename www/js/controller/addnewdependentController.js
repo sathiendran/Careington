@@ -157,7 +157,8 @@ angular.module('starter.controllers')
         var localizeCurrent = $('#localize-current').text();
 
          if(localizeCurrent == "Español"){
-              $scope.AddPicture = "margin-top: -10px;";
+              //$scope.AddPicture = "margin-top: -10px;";
+              $scope.AddPicture = "margin-top: 0px;";
 
            }
           else{
