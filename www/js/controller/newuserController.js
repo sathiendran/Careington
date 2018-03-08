@@ -342,7 +342,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
     }
 
     $scope.cancelcouser = function() {
-      $ionicScrollDelegate.$getByHandle('isScroll').scrollTo();
+      //$ionicScrollDelegate.$getByHandle('isScroll').scrollTo();
         $('#couserform')[0].reset();
         $('select').prop('selectedIndex', 0);
         history.back();
