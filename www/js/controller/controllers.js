@@ -6990,7 +6990,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                            if(index.status == 71) {
                                    $rootScope.getScheduledList.push({
                                         'consultantUserId': index.consultantUserId,
-                                        'scheduledTime': CustomCalendar.getLocalTime1(index.consultationDateInfo),
+                                        //'scheduledTime': CustomCalendar.getLocalTime1(index.consultationDateInfo),
+                                        'scheduledTime': CustomCalendar.getLocalTime(index.consultationDateInfo),
                                         'consultationId': index.consultationId,
                                         'createdDate': index.createdDate,
                                         'doctorStatus': index.doctorStatus,

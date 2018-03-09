@@ -45,7 +45,7 @@ angular.module('starter.controllers')
       $rootScope.NaviConfirmation = 'Confirmación:';
       $rootScope.YESMessageProviderSearch='Sí';
       }
- 
+
     else  {
     $rootScope.alertTimedout = "Your session timed out."
     $rootScope.alertokay = "Ok";
@@ -78,8 +78,8 @@ angular.module('starter.controllers')
      $rootScope. NaviConfirmation = 'Confirmation:';
      $rootScope. YESMessageProviderSearch='Yes';
       }
- 
- 
+
+
      $('#localize-langs').click(function() {
        var isLang = $('#localize-langs .activated').text();
          console.log("lang "+isLang);
@@ -2208,6 +2208,7 @@ angular.module('starter.controllers')
                 $scope.healthfootsave = true;
             }
             if ($rootScope.hasRequiredFields !== true) {
+              $('#HealthFooter').css({'display':'none'});
                 $scope.healthfootsave = false;
                 $scope.doneshow = false;
             }
@@ -2319,11 +2320,11 @@ angular.module('starter.controllers')
             }
         }
         $scope.getMedicalDetailsinHealthInfo = function () {
-            $scope.healthfoottab = true;
-            $('#HealthFooter').css({'display':'block'});
             $scope.healthfootsave = true;
             //$rootScope.patientAuthorize = false;
             if ($rootScope.hasRequiredFields === true) {
+              $scope.healthfoottab = true;
+              $('#HealthFooter').css({'display':'block'});
                 $scope.health();
             } else {
                 $scope.healthfootsave = false;
