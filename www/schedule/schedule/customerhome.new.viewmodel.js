@@ -2258,48 +2258,65 @@ var setUserVars = function() {
                 this.vm_getStartTime = function() {
                     return [kendo.toString(this.get("start"), "h:mm"), " <span>", kendo.toString(this.get("start"), "tt"), "</span>"].join("");
                 };
-
-
-                this.vm_getStartDate = function() {
 //venkat start
-                  var dateGet = kendo.toString(this.get("start"), "dddd, MMMM dd, yyyy");
-                  var apponitmentYear = kendo.toString(this.get("start"), "dd, yyyy");
-                  var apponitmentWeek = kendo.toString(this.get("start"), "dddd");
-                  var apponitmentMonth= kendo.toString(this.get("start"), "MMMM");
+  this.vm_getStartMonth = function() {
+    var apponitmentMonth= kendo.toString(this.get("start"), "MMMM");
+    return apponitmentMonth;
+  }
+  this.vm_getStartWeek = function() {
+    var apponitmentWeek = kendo.toString(this.get("start"), "dddd");
+      return apponitmentWeek;
+  }
+  this.vm_getStartDateYear = function() {
+    var apponitmentYear = kendo.toString(this.get("start"), "dd, yyyy");
+      return apponitmentYear;
+  }
 
-                   var localizeCurrent = $('#localize-current').text();
-
-                   var resultMonth = {"January":"enero","February":"febrero","March":"marzo","April":"abril","May":"Mayo","June":"junio","August":"agosto","September":"septiembre","October":"octubre","November":"noviembre","December":"diciembre"};
-                   $.each(resultMonth, function(k, v) {
-                   if(k === apponitmentMonth){
-                         if(localizeCurrent == "Español") {
-                               $(".apponitmentMonthSS").text(v);
-                             }
-                         if(localizeCurrent == "English (UK)") {
-                               $(".apponitmentMonthSS").text(k);
-                             }
-                         if(localizeCurrent == "English") {
-                               $(".apponitmentMonthSS").text(k);
-                             }
-                        }
-                   });
-
-                   var resultDay = {"Monday":"lunes","Tuesday":"martes","Wednesday":"miércoles","Thursday":"jueves","Friday":"viernes","Saturday":"sábado","Sunday":"domingo"};
-                     $.each(resultDay, function(k, v) {
-                     if(k === apponitmentWeek){
-                           if(localizeCurrent == "Español") {
-                                 $(".apponitmentWeekSS").text(v);
-                               }
-                           if(localizeCurrent == "English (UK)") {
-                                 $(".apponitmentWeekSS").text(k);
-                               }
-                           if(localizeCurrent == "English") {
-                                 $(".apponitmentWeekSS").text(k);
-                               }
-                          }
-                     });
-
-                     $(".apponitmentYearSS").text(apponitmentYear);
+  //venkat end
+                this.vm_getStartDate = function() {
+                //    console.log("5");
+//venkat start
+                  // var dateGet = kendo.toString(this.get("start"), "dddd, MMMM dd, yyyy");
+                  // var apponitmentYear = kendo.toString(this.get("start"), "dd, yyyy");
+                  // var apponitmentWeek = kendo.toString(this.get("start"), "dddd");
+                  // var apponitmentMonth= kendo.toString(this.get("start"), "MMMM");
+                  //
+                  //   console.log("apponitmentWeek ="+apponitmentWeek);
+                  //   console.log("apponitmentMonth ="+apponitmentMonth);
+                  //
+                  //  var localizeCurrent = $('#localize-current').text();
+                  //
+                  //  var resultMonth = {"January":"enero","February":"febrero","March":"marzo","April":"abril","May":"Mayo","June":"junio","August":"agosto","September":"septiembre","October":"octubre","November":"noviembre","December":"diciembre"};
+                  //  $.each(resultMonth, function(k, v) {
+                  //  if(k === apponitmentMonth){
+                  //        if(localizeCurrent == "Español") {
+                  //              $(".apponitmentMonthSS").text(v);
+                  //            }
+                  //        if(localizeCurrent == "English (UK)") {
+                  //              $(".apponitmentMonthSS").text(k);
+                  //            }
+                  //        if(localizeCurrent == "English") {
+                  //              $(".apponitmentMonthSS").text(k);
+                  //            }
+                  //       }
+                  //  });
+                  //
+                  //  var resultDay = {"Monday":"lunes","Tuesday":"martes","Wednesday":"miércoles","Thursday":"jueves","Friday":"viernes","Saturday":"sábado","Sunday":"domingo"};
+                  //    $.each(resultDay, function(k, v) {
+                  //    if(k === apponitmentWeek){
+                  //          if(localizeCurrent == "Español") {
+                  //                $(".apponitmentWeekSS").text(v);
+                  //              }
+                  //          if(localizeCurrent == "English (UK)") {
+                  //                $(".apponitmentWeekSS").text(k);
+                  //              }
+                  //          if(localizeCurrent == "English") {
+                  //                $(".apponitmentWeekSS").text(k);
+                  //              }
+                  //         }
+                  //    });
+                  //
+                  //    $(".apponitmentYearSS").text(apponitmentYear);
 //venkat
                     return kendo.toString(this.get("start"), "dddd, MMMM dd, yyyy");
                 };

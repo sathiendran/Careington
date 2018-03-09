@@ -177,8 +177,9 @@ input#datepicker1
                                         <span class="dialogbox-master__hour" data-bind="html: vm_getStartTime"></span>
                                         <spoan class="dialogbox-master__timezone" data-bind="text: timezone">pst</spoan>
                                     </div>
-
-                                    <div class="dialogbox-master__fulldate" data-bind="text: vm_getStartDate"></div>
+                                      <!-- <div class="dialogbox-master__fulldate" data-bind="text: vm_getStartDate"></div> -->
+                                    <div class="dialogbox-master__fulldate" >
+                                      <span class="localizejs" data-bind="text: vm_getStartWeek"></span><span>, </span><span class="localizejs" data-bind="text: vm_getStartMonth"></span><span> </span><span class="" data-bind="text: vm_getStartDateYear"></span></div>
                                 </div>
 
                             </div>
