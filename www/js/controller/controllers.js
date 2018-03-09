@@ -731,7 +731,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -2423,13 +2423,13 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
     }
 
-    $scope.textboxUp = function() {
+    // $scope.textboxUp = function() {
 
-        $timeout(function() {
-            $ionicScrollDelegate.scrollTo(0, 150, true);
+    //     $timeout(function() {
+    //         $ionicScrollDelegate.scrollTo(0, 150, true);
 
-        }, 900);
-    };
+    //     }, 900);
+    // };
 
     $scope.goBackProvider = function() {
         $state.go('tab.provider');
