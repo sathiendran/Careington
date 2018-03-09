@@ -3557,7 +3557,7 @@ angular.module('starter.controllers')
                     quality: 75,
                     allowEdit: 1,
                     correctOrientation: true,
-                    saveToPhotoAlbum: saveToPhotoAlbumFlag,
+                    //saveToPhotoAlbum: saveToPhotoAlbumFlag,
                     sourceType: cameraSourceType,
                     mediaType: cameraMediaType,
                 });
