@@ -8948,7 +8948,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                        else if($rootScope.is_iPadDeviceWidth >= 376 && $rootScope.is_iPadDeviceWidth <= 414)//iphone 7+
                            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 25% !important');
                        else if($rootScope.is_iPadDeviceWidth >= 415 && $rootScope.is_iPadDeviceWidth <= 767)
-                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 35% !important');           
+                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 35% !important');
                      else if($rootScope.is_iPadDeviceWidth >= 768 && $rootScope.is_iPadDeviceWidth <= 1024)
                            $('.userlistAccountHome-ios5').attr('style', 'margin-top: -20% !important');
                       // else
@@ -10341,6 +10341,12 @@ var currentLocalTimeZoneDateTime = new Date(serverDateTime);
 
     $scope.backToEdiORAddCard = function() {
       // $rootScope.iscancel = true;
+        if($rootScope.submitPayBack == 'tab.submitPayment') {
+          if(typeof $rootScope.userCardType == 'undefined') {
+              $rootScope.iscancel = true;
+              $rootScope.editCardStyle ="none";
+          }
+        }
         if($rootScope.isEditAvailable){
             $rootScope.isEditAvailable = true
         } else {
