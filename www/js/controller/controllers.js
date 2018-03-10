@@ -5491,6 +5491,17 @@ $scope.EditHealth = {};
   		  if($rootScope.userDefaultPaymentProfile == null || ($('#addNewCard').val() == 'Choose Your Card') || ($('#addNewCard').val() == 'Elija su Tarjeta'))
           {
             $rootScope.editCardStyle = "none";
+            $rootScope.iscancel = false;
+            var localizeCurrent = $('#localize-current').text();
+              if(localizeCurrent == "Español") {
+                  $('#addNewCard').val('Elija su Tarjeta');
+                  $("div.cardViewport").empty();
+                  $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Elija su Tarjeta</div>');
+              } else {
+                  $('#addNewCard').val('Choose Your Card');
+                  $("div.cardViewport").empty();
+                  $("div.cardViewport").html('<div class="insCHooseProviderName localizejs">Choose Your Card</div>');
+              }
           }else {
             $rootScope.editCardStyle = "block";
           }
@@ -5516,6 +5527,15 @@ $scope.EditHealth = {};
         } else {*/
         if($rootScope.chooseHealthShow == 'none') {
             $rootScope.editplan ="none";
+          var localizeCurrent = $('#localize-current').text();
+            if(localizeCurrent == "Español") {
+                $("#addHealthPlan").val('Elija su plan de salud');
+                $("div.viewport").html('<div class="insCHooseProviderName">Elija su plan de salud</div>');
+            } else {
+                $("#addHealthPlan").val('Choose Your Health Plan');
+                $("div.viewport").html('<div class="insCHooseProviderName">Choose Your Health Plan</div>');
+            }
+
         } else {
             $rootScope.editplan ="block";
         }
@@ -7210,15 +7230,15 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
          activeConsultConnection.start({
             withCredentials: false
          }).then(function() {
-              //activeConsultConnection.disconnected(function() {
+              activeConsultConnection.disconnected(function() {
                   // console.log("hhhh");
-              //  setTimeout(function() {
+                setTimeout(function() {
                     // if(activeConsultConnection && activeConsultConnection.start){
                       //   activeConsultConnection.start();
                          //console.log("iiii");
                   //   }
-              //  }, 5000);
-              //  });
+                }, 5000);
+                });
          });
 
 
