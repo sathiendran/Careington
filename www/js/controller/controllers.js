@@ -346,9 +346,9 @@ console.log("localizeCurrent ="+localizeCurrent);
             $scope.consentTitleFont = "font-size:17px !important";
             $(".newProviderSub").css("padding-bottom", "16px");
             $(".ConcernsFooter .FooterCenter a").css("padding-left", "1px");
-        } 
+        }
         else if(localizeCurrent == "English (UK)") {
-            $scope.whoNeedsText = "font-size:21px";            } 
+            $scope.whoNeedsText = "font-size:21px";            }
         else if(localizeCurrent == "English") {
             $scope.whoNeedsText = "font-size:21px";            }
         // else {
@@ -368,14 +368,14 @@ console.log("localizeCurrent ="+localizeCurrent);
                    $("#whoNeedsTextval").css("font-size", "17px");
                    $(".newProviderSub").css("padding-bottom", "16px");
                    $(".ConcernsFooter .FooterCenter a").css("padding-left", "1px");
-               } 
+               }
                else if(isLang == "English (UK)") {
                 $("#whoNeedsTextval").css("font-size", "21px");
-                } 
+                }
                else if(isLang == "English") {
                 $("#whoNeedsTextval").css("font-size", "21px");
                 }
-               
+
             //    else {
             //        $("#whoNeedsTextval").css("font-size", "21px");
             //        $(".newProviderSub").css("padding-bottom", "33px");
@@ -5534,7 +5534,7 @@ $scope.EditHealth = {};
       /*  if($stateParams.getPage === 'CTT') {
             $state.go('tab.userhome');
         } else {*/
-        if($rootScope.chooseHealthShow == 'none') {
+        if($rootScope.chooseHealthShow == 'none' || ($rootScope.providerName == '' || typeof $rootScope.providerName == 'undefined' || $rootScope.editplan == 'none')) {
             $rootScope.editplan ="none";
           var localizeCurrent = $('#localize-current').text();
             if(localizeCurrent == "Español") {

@@ -2561,9 +2561,18 @@ angular.module('starter.controllers')
            $scope.modal.remove();
            $rootScope.viewpatapiDisplay = 'flex';
            $rootScope.viewpatmodalDisplay = 'none';
-           if($rootScope.PatientsdetCount == 0) {
-            $ionicScrollDelegate.$getByHandle('scrollTopView').scrollTop();
+           if ($rootScope.PatientsdetCount == 0) {
+               $timeout(function () {
+                   $ionicScrollDelegate.scrollTop(true);
+               }, 300);
+           } else {
+               $timeout(function () {
+                   $ionicScrollDelegate.scrollBottom(true);
+               }, 300);
            }
+          /* if($rootScope.PatientsdetCount == 0) {
+            $ionicScrollDelegate.$getByHandle('scrollTopView').scrollTop();
+          }*/
         //   $ionicScrollDelegate.$getByHandle('scrollTopView').scrollTop();
       } else {
            $scope.updationListLength = 0;
@@ -3798,7 +3807,7 @@ angular.module('starter.controllers')
           $scope.fullAddressObj = res;
           //console.log($scope.fullAddressObj);
           if($scope.countryValue == '' || $scope.countryValue == null || $scope.countryValue == 'Select Country' ) {
-            
+
             } else {
              $scope.modal.remove()
                 .then(function () {
