@@ -658,14 +658,35 @@ angular.module('starter.controllers')
             };
             LoginService.getStatesForUS(params);
         }*/
+        $rootScope.ValidationReg = function ($a) {
+            $('.ContinueAddressBtn').css({'display':'none'});
+            function refresh_close() {
+                $('.close').click(function () {
+                    $(this).parent().fadeOut(200);
+                    setTimeout(function(){
+                    $('.ContinueAddressBtn').css({'display':'block'});
+                    },100)
+                });
+            }
+            refresh_close();
+            var top = '<div class="notifications-top-center notificationError" style="height: 58px;"><div class="ErrorContent localizejs" style="margin-top: 5px !important;"> <i class="ion-alert-circled" style="font-size: 23px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
+            $("#notifications-top-center").remove();
+            $(".ErrorMessageReg").append(top);
+            refresh_close();
+         }
 
         $scope.addressEditSave = function(){
            $('.regFooter').css("display","block");
           //if(document.getElementById('fullAddress').value != 'Please enter address' )
           $scope.countryValue = document.getElementById('country').value;
           if($scope.countryValue == '' || $scope.countryValue == null || $scope.countryValue == 'Select Country' ) {
-            $scope.ErrorMessage = "Please select Country!";
-            $rootScope.Validation($scope.ErrorMessage);
+            $scope.ErrorMessage = "Please select Country";
+            $rootScope.ValidationReg($scope.ErrorMessage);
+          } else if($scope.countryValue == 'Select Country') {
+            $scope.ErrorMessage = "Please select Country";
+            $rootScope.ValidationReg($scope.ErrorMessage);
+          } else {
+            $('.ContinueAddressBtn').css({'display':'block'});
           }
           if(document.getElementById('fullAddress').value != $rootScope.defaultAddressText )
           {
@@ -719,10 +740,14 @@ angular.module('starter.controllers')
 
               $rootScope.fullAddressObj = res;
               //console.log($rootScope.fullAddressObj);
-                 $scope.modal.remove()
+              if($scope.countryValue == '' || $scope.countryValue == null || $scope.countryValue == 'Select Country' ) {
+                
+                } else {
+                    $scope.modal.remove()
                     .then(function () {
                         $scope.modal = null;
                     });
+                }
               }
 
         }

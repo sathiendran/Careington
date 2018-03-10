@@ -11,12 +11,12 @@ if($rootScope.is_iPadDeviceWidth <= 360){
            $('.apponitmentdate').attr('style', 'width: 115% !important; padding-right: 15%; margin-top: 20px !important;');
          }
 
-           var enDay = {Monday:"lunes", Tuesday:"martes", Wednesday:"miércoles", Thursday:"jueves", Friday:"viernes", Saturday:"sábado", Sunday:"domingo"};
-           var spDay = {lunes:"Monday", martes:"Tuesday", miércoles:"Wednesday", jueves:"Thursday", viernes:"Friday", sábado:"Saturday", domingo:"Sunday"};
-           var enMonth = {January:"enero", February:"febrero", March:"marzo", April:"abril",May:"Mayo", June:"junio", July:"julio", August:"agosto", September:"septiembre",October:"octubre", November:"noviembre", December:"diciembre"};
-           var spMonth = {enero:"January", febrero:"February", marzo:"March", abril:"April",Mayo:"May", junio:"June", julio:"July", agosto:"August", septiembre:"September",octubre:"October", noviembre:"November", diciembre:"December"};
-
-
+           // var enDay = {Monday:"lunes", Tuesday:"martes", Wednesday:"miércoles", Thursday:"jueves", Friday:"viernes", Saturday:"sábado", Sunday:"domingo"};
+           // var spDay = {lunes:"Monday", martes:"Tuesday", miércoles:"Wednesday", jueves:"Thursday", viernes:"Friday", sábado:"Saturday", domingo:"Sunday"};
+           // var enMonth = {January:"enero", February:"febrero", March:"marzo", April:"abril",May:"Mayo", June:"junio", July:"julio", August:"agosto", September:"septiembre",October:"octubre", November:"noviembre", December:"diciembre"};
+           // var spMonth = {enero:"January", febrero:"February", marzo:"March", abril:"April",Mayo:"May", junio:"June", julio:"July", agosto:"August", septiembre:"September",octubre:"October", noviembre:"November", diciembre:"December"};
+           //
+           //
 
 //Language changer
 var localizeCurrent = $('#localize-current').text();
@@ -161,27 +161,27 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
 //end
 
 
-         $('#localize-langs').click(function() {
-                var isLang = $('#localize-langs .activated').text();
-                var apponitmentWeek = $(".apponitmentWeek").text();
-                var apponitmentMonth = $(".apponitmentMonth").text();
-
-
-
-                if(isLang == "Español") {
-                      $(".apponitmentWeek").text(enDay[apponitmentWeek]);
-                      $(".apponitmentMonth").text(enMonth[apponitmentMonth]);
-
-
-                    }
-              else
-              {
-                      $(".apponitmentWeek").text(spDay[apponitmentWeek]);
-                      $(".apponitmentMonth").text(spMonth[apponitmentMonth]);
-
-                    }
-
-      });
+      //    $('#localize-langs').click(function() {
+      //           var isLang = $('#localize-langs .activated').text();
+      //           var apponitmentWeek = $(".apponitmentWeek").text();
+      //           var apponitmentMonth = $(".apponitmentMonth").text();
+      //
+      //
+      //
+      //           if(isLang == "Español") {
+      //                 $(".apponitmentWeek").text(enDay[apponitmentWeek]);
+      //                 $(".apponitmentMonth").text(enMonth[apponitmentMonth]);
+      //
+      //
+      //               }
+      //         else
+      //         {
+      //                 $(".apponitmentWeek").text(spDay[apponitmentWeek]);
+      //                 $(".apponitmentMonth").text(spMonth[apponitmentMonth]);
+      //
+      //               }
+      //
+      // });
 //venkat end
   $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
 $("#localize-widget").show();
@@ -635,25 +635,25 @@ $("#localize-widget").show();
         LoginService.getSelectedappoimentDetails(params);
 
 //venkat start
-              var shdTime = $rootScope.scheduledListDatas.scheduledTime;
-              var shdDay = shdTime.getDay();
-              var shdMonth = shdTime.getMonth();
-                console.log("shdTime ="+shdTime);
-                console.log("shdMonth ="+shdMonth);
-
-               var spDay = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
-               var enDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-               var spMonth = ["enero", "febrero", "marzo", "abril","Mayo", "junio", "julio", "agosto", "septiembre","octubre", "noviembre", "diciembre"];
-               var enMonth = ["January", "February", "March", "April","May", "June", "July", "August", "September","October", "November", "December"];
-
-               var localizeCurrent = $('#localize-current').text();
-                if(localizeCurrent == "Español") {
-                      $(".apponitmentWeek").text(spDay[shdDay]);
-                      $(".apponitmentMonth").text(spMonth[shdMonth]);
-                    } else {
-                      $(".apponitmentWeek").text(enDay[shdDay]);
-                      $(".apponitmentMonth").text(enMonth[shdMonth]);
-                    }
+             // var shdTime = $rootScope.scheduledListDatas.scheduledTime;
+             //  var shdDay = shdTime.getDay();
+             //  var shdMonth = shdTime.getMonth();
+             //    console.log("shdTime ="+shdTime);
+             //    console.log("shdMonth ="+shdMonth);
+             //
+             //   var spDay = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
+             //   var enDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+             //   var spMonth = ["enero", "febrero", "marzo", "abril","Mayo", "junio", "julio", "agosto", "septiembre","octubre", "noviembre", "diciembre"];
+             //   var enMonth = ["January", "February", "March", "April","May", "June", "July", "August", "September","October", "November", "December"];
+             //
+             //   var localizeCurrent = $('#localize-current').text();
+             //    if(localizeCurrent == "Español") {
+             //          $(".apponitmentWeek").text(spDay[shdDay]);
+             //          $(".apponitmentMonth").text(spMonth[shdMonth]);
+             //        } else {
+             //          $(".apponitmentWeek").text(enDay[shdDay]);
+             //          $(".apponitmentMonth").text(enMonth[shdMonth]);
+             //        }
 //venkat start
 
 

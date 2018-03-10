@@ -123,7 +123,7 @@
               <div class="datecontent">
                  <h2 class="fdate"><span class="fname ftime apponitmentftime-{{devicename}}">{{scheduledListDatas.scheduledTime | date: "hh:mm"}}{{scheduledListDatas.scheduledTime | date: "a"}}</span> </h2>
                   <!-- <p class="fday apponitmentdate apponitmentfday-{{deviceName}}">{{scheduledListDatas.scheduledTime | date: "EEEE, MMMM dd, yyyy"}}</p>-->
-                   <p class="fday apponitmentdate apponitmentfday-{{deviceName}}"><span class="apponitmentWeek"></span>, <span class="apponitmentMonth"></span> <span class="">{{scheduledListDatas.scheduledTime | date: "dd, yyyy"}}</span></p>
+                   <p class="fday apponitmentdate apponitmentfday-{{deviceName}}"><span class="localizejs">{{scheduledListDatas.scheduledTime | date: "EEEE"}}</span>, <span class="localizejs">{{scheduledListDatas.scheduledTime | date: "MMMM"}}</span> <span class="">{{scheduledListDatas.scheduledTime | date: "dd, yyyy"}}</span></p>
                </div>
 
                <div class="appointEdit localizejs" ng-if="scheduledListDatas.appointmentTypeCode === 3 && scheduledListDatas.appointmentStatusCode != 'Waiting'" >

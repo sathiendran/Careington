@@ -3557,7 +3557,7 @@ angular.module('starter.controllers')
                     quality: 75,
                     allowEdit: 1,
                     correctOrientation: true,
-                    saveToPhotoAlbum: saveToPhotoAlbumFlag,
+                    //saveToPhotoAlbum: saveToPhotoAlbumFlag,
                     sourceType: cameraSourceType,
                     mediaType: cameraMediaType,
                 });
@@ -3721,8 +3721,36 @@ angular.module('starter.controllers')
             }
         }
 
+        $rootScope.ValidationReg = function ($a) {
+            $('.ContinueAddressBtn').css({'display':'none'});
+            function refresh_close() {
+                $('.close').click(function () {
+                    $(this).parent().fadeOut(200);
+                    setTimeout(function(){
+                    $('.ContinueAddressBtn').css({'display':'block'});
+                    },100)
+                });
+            }
+            refresh_close();
+            var top = '<div class="notifications-top-center notificationError" style="height: 58px;"><div class="ErrorContent localizejs" style="margin-top: 5px !important;"> <i class="ion-alert-circled" style="font-size: 23px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
+            $("#notifications-top-center").remove();
+            $(".ErrorMessageReg").append(top);
+            refresh_close();
+         }
+
         $scope.addressEditSave = function(){
           $scope.healthInfoModel.address =  document.getElementById('fullAddress').value;
+          $scope.countryValue = document.getElementById('country').value;
+          if($scope.countryValue == '' || $scope.countryValue == null || $scope.countryValue == 'Select Country' ) {
+            $scope.ErrorMessage = "Please select Country";
+            $rootScope.ValidationReg($scope.ErrorMessage);
+          } else if($scope.countryValue == 'Select Country') {
+            $scope.ErrorMessage = "Please select Country";
+            $rootScope.ValidationReg($scope.ErrorMessage);
+          } else {
+            $('.ContinueAddressBtn').css({'display':'block'});
+          }
+
           var stateObj  = '';
           var countryFetch  = '';
           var countryCodeFetch  = '';
@@ -3768,10 +3796,14 @@ angular.module('starter.controllers')
 
           $scope.fullAddressObj = res;
           //console.log($scope.fullAddressObj);
+          if($scope.countryValue == '' || $scope.countryValue == null || $scope.countryValue == 'Select Country' ) {
+            
+            } else {
              $scope.modal.remove()
                 .then(function () {
                     $scope.modal = null;
                 });
+            }
         }
 
         $scope.makeAddress=function(){
