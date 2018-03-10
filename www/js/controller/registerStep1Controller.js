@@ -660,11 +660,13 @@ angular.module('starter.controllers')
         }*/
         $rootScope.ValidationReg = function ($a) {
             $('.ContinueAddressBtn').css({'display':'none'});
+            $('.CancelAddressBtn').css({'display':'none'});
             function refresh_close() {
                 $('.close').click(function () {
                     $(this).parent().fadeOut(200);
                     setTimeout(function(){
                     $('.ContinueAddressBtn').css({'display':'block'});
+                    $('.CancelAddressBtn').css({'display':'block'});
                     },100)
                 });
             }
@@ -687,6 +689,7 @@ angular.module('starter.controllers')
             $rootScope.ValidationReg($scope.ErrorMessage);
           } else {
             $('.ContinueAddressBtn').css({'display':'block'});
+            $('.CancelAddressBtn').css({'display':'block'});
           }
           if(document.getElementById('fullAddress').value != $rootScope.defaultAddressText )
           {

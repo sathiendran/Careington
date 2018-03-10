@@ -339,39 +339,48 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
   $(".accoTitle-IOS").css("margin-top", "4px");
 
   var localizeCurrent = $('#localize-current').text();
-
+console.log("localizeCurrent ="+localizeCurrent);
    if($( window ).width()<= 375) {
         if(localizeCurrent == "Español") {
             $scope.whoNeedsText = "font-size:17px";
             $scope.consentTitleFont = "font-size:17px !important";
             $(".newProviderSub").css("padding-bottom", "16px");
             $(".ConcernsFooter .FooterCenter a").css("padding-left", "1px");
-        } else {
-            $scope.whoNeedsText = "font-size:21px";
-            $scope.consentTitleFont = "font-size:20px !important";
-            $(".newProviderSub").css("padding-bottom", "33px");
-            $(".ConcernsFooter .FooterCenter a").css("padding-left", "10px");
-        }
+        } 
+        else if(localizeCurrent == "English (UK)") {
+            $scope.whoNeedsText = "font-size:21px";            } 
+        else if(localizeCurrent == "English") {
+            $scope.whoNeedsText = "font-size:21px";            }
+        // else {
+        //     $scope.whoNeedsText = "font-size:21px";
+        //     $scope.consentTitleFont = "font-size:20px !important";
+        //     $(".newProviderSub").css("padding-bottom", "33px");
+        //     $(".ConcernsFooter .FooterCenter a").css("padding-left", "10px");
+        // }
        } else {
-           if(localizeCurrent == "Español"){
                  $scope.consentTitleFont = "font-size:21px !important";
-             }else{
-                 $scope.consentTitleFont = "font-size:21px !important";
-             }
        }
 
            $('#localize-langs').click(function() {
             if($( window ).width()<= 375){
              var isLang = $('#localize-langs .activated').text();
-               if(isLang == "Español") {
+             if(isLang == "Español") {
                    $("#whoNeedsTextval").css("font-size", "17px");
                    $(".newProviderSub").css("padding-bottom", "16px");
                    $(".ConcernsFooter .FooterCenter a").css("padding-left", "1px");
-               } else {
-                   $("#whoNeedsTextval").css("font-size", "21px");
-                   $(".newProviderSub").css("padding-bottom", "33px");
-                   $(".ConcernsFooter .FooterCenter a").css("padding-left", "10px");
-               }
+               } 
+               else if(isLang == "English (UK)") {
+                $("#whoNeedsTextval").css("font-size", "21px");
+                } 
+               else if(isLang == "English") {
+                $("#whoNeedsTextval").css("font-size", "21px");
+                }
+               
+            //    else {
+            //        $("#whoNeedsTextval").css("font-size", "21px");
+            //        $(".newProviderSub").css("padding-bottom", "33px");
+            //        $(".ConcernsFooter .FooterCenter a").css("padding-left", "10px");
+            //    }
              isLang = "";
            }
      });

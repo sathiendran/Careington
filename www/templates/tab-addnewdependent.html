@@ -30,7 +30,7 @@
                   <a class="circlecanh">
                   <i class="icon ion-camera circlecam"></i>
                   </a>
-                  <span class="circletext localizejs" >Change photo</span>
+                  <span class="circletext localizejs" style="padding-left: 12px;" >Add photo</span>
                </div>
                <div ng-if="newDependentImagePath != ''" ng-click="showCameraActions()">
                   <img style="width: 86px; height: 86px; border-radius: 50%;" src="{{newDependentImagePath}}" alt="{{newDependentImagePath}}" ng-src="{{newDependentImagePath}}" >
@@ -144,10 +144,10 @@
             <div class="item item-input validated" style="display: {{timezoneDisplay}};">
                   <div class="col col-50">
                      <span class="input-label labelcolor">
-                     <i class="iconsize" ng-bind-html="drawSVGCIcon('clock')"></i><b class="formlabel addDependentwrab localizejs">Timezone</b><i class="ion-asterisk"></i></span>
+                     <i class="iconsize" ng-bind-html="drawSVGCIcon('clock')"></i><b class="formlabel addDependentwrab localizejs" style="">Timezone</b><i class="ion-asterisk"></i></span>
                   </div>
-                  <div class="col col-50 depGreyLabel">
-                     <select class="optionselect textdata localizejs" name="healthInfoTimezone" id="dependentTimezone" >
+                  <div class="col col-50 depGreyLabel" style="height: 70px;">
+                     <select class="optionselect textdata localizejs" name="healthInfoTimezone" id="dependentTimezone" style="padding: 25px 5px 0 0;" >
                         <option value=""><b class="localizejs">Choose</b></option>
                         <option ng-repeat="timeZone in timeZones" value="{{timeZone.id}}" ><b class="localizejs">{{timeZone.name}}</b></option>
                      </select>
@@ -159,7 +159,7 @@
                      <i class="iconsize" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel addDependentwrab localizejs">Home Phone</b></span>
                   </div>
                   <div class="col col-50 depGreyLabel inputlabelclass">
-                     <input  class="textdata inputlabelval localizejs" id="homephone" type="tel" value=""  placeholder="Optional" ng-model="phone"   name="phone" style="padding:15px 5px;" phone-input ng-blur="phoneBlur()">
+                     <input  class="textdata inputlabelval localizejs" id="homephone" type="tel" value=""  placeholder="Optional" ng-model="phone"   name="phone"  phone-input ng-blur="phoneBlur()"> <!--style="padding:15px 5px;" -->
                      <span class="error localizejs" id="erphone" ng-show="myForm.phone.$error.pattern">Not a valid number!</span>
                   </div>
                </div>

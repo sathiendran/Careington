@@ -585,6 +585,7 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
                 $scope.modal.show();
             });
         };
+        var isOpenError = 0;
         $scope.closePrimaryConcerns = function () {
             $rootScope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {
                 checked: true
@@ -594,8 +595,12 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
                 $rootScope.codeId = $scope.PatientPrimaryConcernItem[0].codeId;
                 if (typeof $rootScope.PatientSecondaryConcern[0] !== 'undefined') {
                     if ($scope.PatientPrimaryConcernItem[0].text === $rootScope.PatientSecondaryConcern[0].text) {
-                        $scope.ErrorMessage = "Primary and Secondary Concerns must be different";
-                        $rootScope.ValidationFunction1($scope.ErrorMessage);
+                        if(isOpenError == 0) {
+                            $scope.ErrorMessage = "Primary and Secondary Concerns must be different";
+                            $rootScope.ValidationFunction1($scope.ErrorMessage);
+                            isOpenError += 1;
+                        }
+                        
                     } else {
                         $rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
                         $rootScope.IsValue = $scope.PatientPrimaryConcernItem.length;
@@ -926,6 +931,7 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
                 $scope.modal.show();
             });
         };
+        
         $scope.closeSecondaryConcerns = function () {
             $scope.PatientSecondaryConcernItem = $filter('filter')($scope.secondaryConcernList, {
                 checked: true
@@ -935,8 +941,12 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
                 $rootScope.SecondarycodeId = $scope.PatientSecondaryConcernItem[0].codeId;
                 if (typeof $rootScope.PatientPrimaryConcern[0] !== 'undefined') {
                     if ($scope.PatientSecondaryConcernItem[0].text === $rootScope.PatientPrimaryConcern[0].text) {
-                        $scope.ErrorMessage = "Primary and Secondary Concerns must be different";
-                        $rootScope.ValidationFunction1($scope.ErrorMessage);
+                        if(isOpenError == 0) {
+                            $scope.ErrorMessage = "Primary and Secondary Concerns must be different";
+                            $rootScope.ValidationFunction1($scope.ErrorMessage);
+                            isOpenError += 1;
+                        }
+                       
                     } else {
                         $rootScope.PatientSecondaryConcern = $scope.PatientSecondaryConcernItem;
                         $rootScope.secondaryConcernValueExist = $rootScope.PatientSecondaryConcern.length;
@@ -1429,6 +1439,7 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
             function refresh_close() {
                 $('.close').click(function () {
                     $(this).parent().fadeOut(200);
+                     isOpenError = 0; // by sakthi multi popup error msg
                 });
             }
             refresh_close();
