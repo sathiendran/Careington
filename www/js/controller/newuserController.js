@@ -397,7 +397,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                 destinationType: navigator.camera.DestinationType.FILE_URI,
                 quality: 75,
                 allowEdit: true,
-                saveToPhotoAlbum: saveToPhotoAlbumFlag,
+                //saveToPhotoAlbum: saveToPhotoAlbumFlag,
                 sourceType: cameraSourceType,
                 mediaType: cameraMediaType,
             });
