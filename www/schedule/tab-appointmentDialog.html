@@ -258,7 +258,7 @@ input#datepicker1
                                     data-bind="events: {click: vm_onAddConcernClick}, onEnterKey: vm_onAddConcernClick, css:{is-active: vm_isAddConcernButtonVisible}"><span class="icon_circle-with-plus" tabindex="9"></span> <span class="localizejs">Add another complaint </span> </div>
                             </div>
 
-                            <div class="dialogbox-master__box dialogbox-master__box--notes">
+                            <div class="dialogbox-master__box dialogbox-master__box--notes" style="padding-bottom: 25px;">
                                 <div class="consultation-note" data-bind="css:{is-expanded:vm_isAddNotesExpanded, is-readonly:isReadOnly}">
                                     <div class="consultation-note__main">
                                         <div class="consultation-note__icon">
@@ -269,7 +269,7 @@ input#datepicker1
                                             <span class="icon_plus"></span>
                                         </div>
                                     </div>
-                                    <div class="localizejs consultation-note__drop">
+                                    <div class="localizejs consultation-note__drop" style="padding-bottom: 10px;">
                                         <!--<textarea name="" id="" class="consultation-note__textarea js-autoresize-textarea" placeholder="Enter Additional Notes..." data-bind="value: additionalNotes, invisible: isReadOnly, events:{keyup: vm_onKeyUpAdditionalNotes}"></textarea>-->
                                         <textarea name="" id="" class="consultation-note__textarea js-autoresize-textarea localizejs" placeholder="Enter Additional Notes..." data-bind="value: additionalNotes, invisible: isReadOnly, events:{click:vm_enterNotes,keyup: vm_onKeyUpAdditionalNotes}" style="overflow: hidden; word-wrap: break-word; height: 160px;"></textarea>
                                         <!--<textarea disabled name="" id="" class="consultation-note__textarea js-autoresize-textarea" data-bind="html: additionalNotes, visible: isReadOnly"></textarea>-->
