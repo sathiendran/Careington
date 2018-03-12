@@ -740,7 +740,7 @@ console.log("localizeCurrent ="+localizeCurrent);
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if ($rootScope.AndroidDevice) {
+   } else if (!$rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -8885,6 +8885,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
                 else if($rootScope.is_iPadDeviceWidth == 412)
                     $('.userlistAccountHome-ios5').attr('style', 'margin-top: 15% !important');
+                else if($rootScope.is_iPadDeviceWidth == 414)
+                        $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
                 else if($rootScope.is_iPadDeviceWidth >= 376 && $rootScope.is_iPadDeviceWidth <= 414)//iphone 7+
                     $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
                 else if($rootScope.is_iPadDeviceWidth >= 415 && $rootScope.is_iPadDeviceWidth <= 767)
@@ -8929,7 +8931,9 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
               else if($rootScope.is_iPadDeviceWidth >= 366 && $rootScope.is_iPadDeviceWidth <= 375)
                   $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
               else if($rootScope.is_iPadDeviceWidth == 412)
-                $('.userlistAccountHome-ios5').attr('style', 'margin-top: 15% !important');
+                  $('.userlistAccountHome-ios5').attr('style', 'margin-top: 15% !important');
+              else if($rootScope.is_iPadDeviceWidth == 414)
+                  $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
               else if($rootScope.is_iPadDeviceWidth >= 376 && $rootScope.is_iPadDeviceWidth <= 414)//iphone 7+
                   $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
               else if($rootScope.is_iPadDeviceWidth >= 415 && $rootScope.is_iPadDeviceWidth <= 767)
@@ -8971,14 +8975,16 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                        else if($rootScope.is_iPadDeviceWidth >= 321 && $rootScope.is_iPadDeviceWidth <= 365)
                            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 25% !important');
                        else if($rootScope.is_iPadDeviceWidth >= 366 && $rootScope.is_iPadDeviceWidth <= 375)
-                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
-                       else if($rootScope.is_iPadDeviceWidth == 412)
-                        $('.userlistAccountHome-ios5').attr('style', 'margin-top: 25% !important');
+                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important'); 
+                           else if($rootScope.is_iPadDeviceWidth == 412)
+                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 25% !important');
+                       else if($rootScope.is_iPadDeviceWidth == 414)
+                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');   
                        else if($rootScope.is_iPadDeviceWidth >= 376 && $rootScope.is_iPadDeviceWidth <= 414)//iphone 7+
                            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 25% !important');
-                       else if($rootScope.is_iPadDeviceWidth >= 415 && $rootScope.is_iPadDeviceWidth <= 767)
+                      else if($rootScope.is_iPadDeviceWidth >= 415 && $rootScope.is_iPadDeviceWidth <= 767)
                            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 35% !important');
-                     else if($rootScope.is_iPadDeviceWidth >= 768 && $rootScope.is_iPadDeviceWidth <= 1024)
+                        else if($rootScope.is_iPadDeviceWidth >= 768 && $rootScope.is_iPadDeviceWidth <= 1024)
                            $('.userlistAccountHome-ios5').attr('style', 'margin-top: -20% !important');
                       // else
                        //    $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
