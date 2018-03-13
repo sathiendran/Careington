@@ -1,209 +1,208 @@
 angular.module('starter.controllers')
     .controller('healthinfoController', function ($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService, $window, $ionicBackdrop) {
-         $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+        $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
         $rootScope.drawSVGCIcon = function (iconName) {
             return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
         };
         $scope.init = function () {
 
-         $("#localize-widget").hide();
+            $("#localize-widget").hide();
 
-       };
+        };
 
-       //Language changer
-    var localizeCurrent = $('#localize-current').text();
-    console.log("lang "+localizeCurrent);
-      if(localizeCurrent == "Español") {
-      $rootScope.alertTimedout = "Su sesión ha expirado.";
-      $rootScope.alertokay = "De acuerdo";
-      $rootScope.alertupload = "No se puede cargar la foto. Por favor, inténtelo de nuevo más tarde.";
-      $rootScope.alertokay = "De acuerdo";
-      $rootScope.alertconstarted = "Su consulta ya se inició en otro dispositivo.";
-      $rootScope.alertconended = "Su consulta ya ha finalizado.";
-      $rootScope.alertDone = "Hecho";
-      $rootScope.alertconcancel = "Su consulta se cancela.";
-      $rootScope.alertconprogress = "Su consulta está en progreso en otro dispositivo.";
-      $rootScope.alertCancelMessageConsultation = "¿Estás seguro de que quieres cancelar esta consulta?";
-      $rootScope.YESMessageProviderSearch='Sí';
-      $rootScope.NaviConfirmation = 'Confirmación:';
-      $rootScope.alertTimedout = "Su sesión ha expirado.";
-      $rootScope.alertokay = "De acuerdo";
-      $rootScope.alertconsultationsave = "Consulta guardada exitosamente!";
-      $rootScope.alertconsultationfailed = "Error al guardar consulta!";
-      $rootScope.alertMsg = "Se ha enviado un correo electrónico de verificación al usuario.";
-      $rootScope.alertokay = "De acuerdo";
-      $rootScope.alertphoto = "La foto se puede subir solo después de activar la cuenta de co-usuario.";
-      $rootScope.alertMsgvideo = "¡La consulta terminó exitosamente!";
-      $rootScope.consultStartMsg = 'Su consulta ya se inició en otro dispositivo.';
-      $rootScope.consultEndMeg = 'Su consulta ya ha finalizado';
-      $rootScope.consultCancelMsg = 'Su consulta se cancela.';
-      $rootScope.consultProgMsg = 'Su consulta está en progreso en otro dispositivo.';
-      $rootScope.alertMsgConference = "¡La consulta terminó exitosamente!";
-      $rootScope.Buttonmsg = "Listo";
-      $rootScope.alertconfirm = "Actualmente tiene una consulta en curso. ¿Está seguro de que desea finalizar esta consulta?";
-      $rootScope.consultAlredComplMsg = 'Consulta ya completada!';
-      $rootScope.NaviConfirmation = 'Confirmación:';
-      $rootScope.YESMessageProviderSearch='Sí';
-      }
+        //Language changer
+        var localizeCurrent = $('#localize-current').text();
+        console.log("lang " + localizeCurrent);
+        if (localizeCurrent == "Español") {
+            $rootScope.alertTimedout = "Su sesión ha expirado.";
+            $rootScope.alertokay = "De acuerdo";
+            $rootScope.alertupload = "No se puede cargar la foto. Por favor, inténtelo de nuevo más tarde.";
+            $rootScope.alertokay = "De acuerdo";
+            $rootScope.alertconstarted = "Su consulta ya se inició en otro dispositivo.";
+            $rootScope.alertconended = "Su consulta ya ha finalizado.";
+            $rootScope.alertDone = "Hecho";
+            $rootScope.alertconcancel = "Su consulta se cancela.";
+            $rootScope.alertconprogress = "Su consulta está en progreso en otro dispositivo.";
+            $rootScope.alertCancelMessageConsultation = "¿Estás seguro de que quieres cancelar esta consulta?";
+            $rootScope.YESMessageProviderSearch = 'Sí';
+            $rootScope.NaviConfirmation = 'Confirmación:';
+            $rootScope.alertTimedout = "Su sesión ha expirado.";
+            $rootScope.alertokay = "De acuerdo";
+            $rootScope.alertconsultationsave = "Consulta guardada exitosamente!";
+            $rootScope.alertconsultationfailed = "Error al guardar consulta!";
+            $rootScope.alertMsg = "Se ha enviado un correo electrónico de verificación al usuario.";
+            $rootScope.alertokay = "De acuerdo";
+            $rootScope.alertphoto = "La foto se puede subir solo después de activar la cuenta de co-usuario.";
+            $rootScope.alertMsgvideo = "¡La consulta terminó exitosamente!";
+            $rootScope.consultStartMsg = 'Su consulta ya se inició en otro dispositivo.';
+            $rootScope.consultEndMeg = 'Su consulta ya ha finalizado';
+            $rootScope.consultCancelMsg = 'Su consulta se cancela.';
+            $rootScope.consultProgMsg = 'Su consulta está en progreso en otro dispositivo.';
+            $rootScope.alertMsgConference = "¡La consulta terminó exitosamente!";
+            $rootScope.Buttonmsg = "Listo";
+            $rootScope.alertconfirm = "Actualmente tiene una consulta en curso. ¿Está seguro de que desea finalizar esta consulta?";
+            $rootScope.consultAlredComplMsg = 'Consulta ya completada!';
+            $rootScope.NaviConfirmation = 'Confirmación:';
+            $rootScope.YESMessageProviderSearch = 'Sí';
+        }
 
-    else  {
-    $rootScope.alertTimedout = "Your session timed out."
-    $rootScope.alertokay = "Ok";
-    $rootScope.alertupload = "Unable to upload the photo. Please try again later.";
-    $rootScope.alertokay = "Ok";
-    $rootScope.alertconstarted = "Your consultation is already started on other device.";
-    $rootScope.alertconended = "Your consultation is already ended.";
-    $rootScope.alertDone = "Done";
-    $rootScope.alertconcancel = "Your consultation is cancelled.";
-    $rootScope.alertconprogress = "Your consultation is in progress on other device.";
-    $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cancel this consultation?";
-     $rootScope.YESMessageProviderSearch='Yes';
-     $rootScope.NaviConfirmation = 'Confirmation:';
-     $rootScope.alertTimedout = "Your session timed out.";
-     $rootScope.alertokay = "Ok";
-     $rootScope.alertconsultationsave = "Consultation saved successfully!" ;
-     $rootScope.alertconsultationfailed = "Failed to save consultation!";
-     $rootScope.alertMsg = "A verification email has been sent to the user.";
-     $rootScope.alertokay = "Ok";
-     $rootScope.alertphoto = "Photo can be uploaded only after activating co-user account.";
-     $rootScope.alertMsgvideo = "Consultation ended successfully!";
-     $rootScope.consultStartMsg = 'Your consultation is already started on other device.';
-     $rootScope.consultEndMeg = 'Your consultation is already ended.';
-     $rootScope.consultCancelMsg = 'Your consultation is cancelled.';
-     $rootScope.consultProgMsg = 'Your consultation is in progress on other device.';
-     $rootScope.sessAlertDone = 'Done';$rootScope.alertMsgConference = "Consultation ended successfully!";
-     $rootScope.Buttonmsg = "Done";
-     $rootScope.alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
-     $rootScope.consultAlredComplMsg = 'Consultation already completed!';
-     $rootScope. NaviConfirmation = 'Confirmation:';
-     $rootScope. YESMessageProviderSearch='Yes';
-      }
+        else {
+            $rootScope.alertTimedout = "Your session timed out."
+            $rootScope.alertokay = "Ok";
+            $rootScope.alertupload = "Unable to upload the photo. Please try again later.";
+            $rootScope.alertokay = "Ok";
+            $rootScope.alertconstarted = "Your consultation is already started on other device.";
+            $rootScope.alertconended = "Your consultation is already ended.";
+            $rootScope.alertDone = "Done";
+            $rootScope.alertconcancel = "Your consultation is cancelled.";
+            $rootScope.alertconprogress = "Your consultation is in progress on other device.";
+            $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cancel this consultation?";
+            $rootScope.YESMessageProviderSearch = 'Yes';
+            $rootScope.NaviConfirmation = 'Confirmation:';
+            $rootScope.alertTimedout = "Your session timed out.";
+            $rootScope.alertokay = "Ok";
+            $rootScope.alertconsultationsave = "Consultation saved successfully!";
+            $rootScope.alertconsultationfailed = "Failed to save consultation!";
+            $rootScope.alertMsg = "A verification email has been sent to the user.";
+            $rootScope.alertokay = "Ok";
+            $rootScope.alertphoto = "Photo can be uploaded only after activating co-user account.";
+            $rootScope.alertMsgvideo = "Consultation ended successfully!";
+            $rootScope.consultStartMsg = 'Your consultation is already started on other device.';
+            $rootScope.consultEndMeg = 'Your consultation is already ended.';
+            $rootScope.consultCancelMsg = 'Your consultation is cancelled.';
+            $rootScope.consultProgMsg = 'Your consultation is in progress on other device.';
+            $rootScope.sessAlertDone = 'Done'; $rootScope.alertMsgConference = "Consultation ended successfully!";
+            $rootScope.Buttonmsg = "Done";
+            $rootScope.alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
+            $rootScope.consultAlredComplMsg = 'Consultation already completed!';
+            $rootScope.NaviConfirmation = 'Confirmation:';
+            $rootScope.YESMessageProviderSearch = 'Yes';
+        }
 
 
-     $('#localize-langs').click(function() {
-       var isLang = $('#localize-langs .activated').text();
-         console.log("lang "+isLang);
-         if(isLang == "Español") {
-           $rootScope.alertTimedout = "Su sesión ha expirado.";
-           $rootScope.alertokay = "De acuerdo";
-           $rootScope.alertupload = "Unable to upload the photo. Please try again later.";
-           $rootScope.alertokay = "Ok";
-           $rootScope.alertconstarted = "Su consulta ya se inició en otro dispositivo.";
-           $rootScope.alertconended = "Su consulta ya ha finalizado.";
-           $rootScope.alertDone = "Hecho";
-           $rootScope.alertconcancel = "Su consulta se cancela.";
-           $rootScope.alertconprogress = "Su consulta está en progreso en otro dispositivo.";
-           $rootScope.alertCancelMessageConsultation = "¿Estás seguro de que quieres cancelar esta consulta?";
-           $rootScope.YESMessageProviderSearch='Sí';
-           $rootScope.NaviConfirmation = 'Confirmación:';
-           $rootScope.alertTimedout = "Su sesión ha expirado.";
-           $rootScope.alertokay = "De acuerdo";
-          $rootScope.alertconsultationsave = "Consulta guardada exitosamente!";
-          $rootScope.alertconsultationfailed = "Error al guardar consulta!";
-          $rootScope.alertMsg = "Se ha enviado un correo electrónico de verificación al usuario.";
-          $rootScope.alertokay = "De acuerdo";
-          $rootScope.alertphoto = "La foto se puede subir solo después de activar la cuenta de co-usuario.";
-          $rootScope.alertMsgvideo = "¡La consulta terminó exitosamente!";
-          $rootScope.consultStartMsg = 'Su consulta ya se inició en otro dispositivo.';
-          $rootScope.consultEndMeg = 'Su consulta ya ha finalizado';
-          $rootScope.consultCancelMsg = 'Su consulta se cancela.';
-          $rootScope.consultProgMsg = 'Su consulta está en progreso en otro dispositivo.';
-          $rootScope.alertMsgConference = "¡La consulta terminó exitosamente!";
-          $rootScope.Buttonmsg = "Listo";
-          $rootScope.alertconfirm = "Actualmente tiene una consulta en curso. ¿Está seguro de que desea finalizar esta consulta?";
-          $rootScope.consultAlredComplMsg = 'Consulta ya completada!';
-          $rootScope.NaviConfirmation = 'Confirmación:';
-          $rootScope.YESMessageProviderSearch='Sí';
-         }
-          else{
-              $rootScope.alertTimedout = "Your session timed out."
-              $rootScope.alertokay = "Ok";
-              $rootScope.alertupload = "Unable to upload the photo. Please try again later.";
-              $rootScope.alertokay = "Ok";
-              $rootScope.alertconstarted = "Your consultation is already started on other device.";
-              $rootScope.alertconended = "Your consultation is already ended.";
-              $rootScope.alertDone = "Done";
-              $rootScope.alertconcancel = "Your consultation is cancelled.";
-              $rootScope.alertconprogress = "Your consultation is in progress on other device.";
-              $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cancel this consultation?";
-               $rootScope.YESMessageProviderSearch='Yes';
-               $rootScope.NaviConfirmation = 'Confirmation:';
-               $rootScope.alertTimedout = "Your session timed out.";
-               $rootScope.alertokay = "Ok";
-               $rootScope.alertconsultationsave = "Consultation saved successfully!" ;
-               $rootScope.alertconsultationfailed = "Failed to save consultation!";
-               $rootScope.alertMsg = "A verification email has been sent to the user.";
-               $rootScope.alertokay = "Ok";
-               $rootScope.alertphoto = "Photo can be uploaded only after activating co-user account.";
-               $rootScope.alertMsgvideo = "Consultation ended successfully!";
-               $rootScope.consultStartMsg = 'Your consultation is already started on other device.';
-               $rootScope.consultEndMeg = 'Your consultation is already ended.';
-               $rootScope.consultCancelMsg = 'Your consultation is cancelled.';
-               $rootScope.consultProgMsg = 'Your consultation is in progress on other device.';
-               $rootScope.sessAlertDone = 'Done';
-               $rootScope.alertMsgConference = "Consultation ended successfully!";
-               $rootScope.Buttonmsg = "Done";
-               $rootScope.alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
-               $rootScope.consultAlredComplMsg = 'Consultation already completed!';
-               $rootScope. NaviConfirmation = 'Confirmation:';
-               $rootScope. YESMessageProviderSearch='Yes';
-          }
+        $('#localize-langs').click(function () {
+            var isLang = $('#localize-langs .activated').text();
+            console.log("lang " + isLang);
+            if (isLang == "Español") {
+                $rootScope.alertTimedout = "Su sesión ha expirado.";
+                $rootScope.alertokay = "De acuerdo";
+                $rootScope.alertupload = "Unable to upload the photo. Please try again later.";
+                $rootScope.alertokay = "Ok";
+                $rootScope.alertconstarted = "Su consulta ya se inició en otro dispositivo.";
+                $rootScope.alertconended = "Su consulta ya ha finalizado.";
+                $rootScope.alertDone = "Hecho";
+                $rootScope.alertconcancel = "Su consulta se cancela.";
+                $rootScope.alertconprogress = "Su consulta está en progreso en otro dispositivo.";
+                $rootScope.alertCancelMessageConsultation = "¿Estás seguro de que quieres cancelar esta consulta?";
+                $rootScope.YESMessageProviderSearch = 'Sí';
+                $rootScope.NaviConfirmation = 'Confirmación:';
+                $rootScope.alertTimedout = "Su sesión ha expirado.";
+                $rootScope.alertokay = "De acuerdo";
+                $rootScope.alertconsultationsave = "Consulta guardada exitosamente!";
+                $rootScope.alertconsultationfailed = "Error al guardar consulta!";
+                $rootScope.alertMsg = "Se ha enviado un correo electrónico de verificación al usuario.";
+                $rootScope.alertokay = "De acuerdo";
+                $rootScope.alertphoto = "La foto se puede subir solo después de activar la cuenta de co-usuario.";
+                $rootScope.alertMsgvideo = "¡La consulta terminó exitosamente!";
+                $rootScope.consultStartMsg = 'Su consulta ya se inició en otro dispositivo.';
+                $rootScope.consultEndMeg = 'Su consulta ya ha finalizado';
+                $rootScope.consultCancelMsg = 'Su consulta se cancela.';
+                $rootScope.consultProgMsg = 'Su consulta está en progreso en otro dispositivo.';
+                $rootScope.alertMsgConference = "¡La consulta terminó exitosamente!";
+                $rootScope.Buttonmsg = "Listo";
+                $rootScope.alertconfirm = "Actualmente tiene una consulta en curso. ¿Está seguro de que desea finalizar esta consulta?";
+                $rootScope.consultAlredComplMsg = 'Consulta ya completada!';
+                $rootScope.NaviConfirmation = 'Confirmación:';
+                $rootScope.YESMessageProviderSearch = 'Sí';
+            }
+            else {
+                $rootScope.alertTimedout = "Your session timed out."
+                $rootScope.alertokay = "Ok";
+                $rootScope.alertupload = "Unable to upload the photo. Please try again later.";
+                $rootScope.alertokay = "Ok";
+                $rootScope.alertconstarted = "Your consultation is already started on other device.";
+                $rootScope.alertconended = "Your consultation is already ended.";
+                $rootScope.alertDone = "Done";
+                $rootScope.alertconcancel = "Your consultation is cancelled.";
+                $rootScope.alertconprogress = "Your consultation is in progress on other device.";
+                $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cancel this consultation?";
+                $rootScope.YESMessageProviderSearch = 'Yes';
+                $rootScope.NaviConfirmation = 'Confirmation:';
+                $rootScope.alertTimedout = "Your session timed out.";
+                $rootScope.alertokay = "Ok";
+                $rootScope.alertconsultationsave = "Consultation saved successfully!";
+                $rootScope.alertconsultationfailed = "Failed to save consultation!";
+                $rootScope.alertMsg = "A verification email has been sent to the user.";
+                $rootScope.alertokay = "Ok";
+                $rootScope.alertphoto = "Photo can be uploaded only after activating co-user account.";
+                $rootScope.alertMsgvideo = "Consultation ended successfully!";
+                $rootScope.consultStartMsg = 'Your consultation is already started on other device.';
+                $rootScope.consultEndMeg = 'Your consultation is already ended.';
+                $rootScope.consultCancelMsg = 'Your consultation is cancelled.';
+                $rootScope.consultProgMsg = 'Your consultation is in progress on other device.';
+                $rootScope.sessAlertDone = 'Done';
+                $rootScope.alertMsgConference = "Consultation ended successfully!";
+                $rootScope.Buttonmsg = "Done";
+                $rootScope.alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
+                $rootScope.consultAlredComplMsg = 'Consultation already completed!';
+                $rootScope.NaviConfirmation = 'Confirmation:';
+                $rootScope.YESMessageProviderSearch = 'Yes';
+            }
         });
 
-//end
+        //end
 
-       $rootScope.currState = $state;
-       if ($rootScope.currState.$current.name == "tab.consultations" || $rootScope.currState.$current.name == "tab.healthinfo")
-       {
-           $("#localize-widget").hide();
-       }
-       else{
-         $("#localize-widget").show();
-       }
-        angular.element(document).ready(function () {
-            if( $scope.healthfootsave == true){
-
-                  $("#localize-widget").hide();
-            }
-            else{
+        $rootScope.currState = $state;
+        if ($rootScope.currState.$current.name == "tab.consultations" || $rootScope.currState.$current.name == "tab.healthinfo") {
+            $("#localize-widget").hide();
+        }
+        else {
             $("#localize-widget").show();
-          }
+        }
+        angular.element(document).ready(function () {
+            if ($scope.healthfootsave == true) {
+
+                $("#localize-widget").hide();
+            }
+            else {
+                $("#localize-widget").show();
+            }
         });
- var localizeCurrent = $('#localize-current').text();
-           if(localizeCurrent == "Español"){
-               $('.homePhoneInput').attr('style', 'margin-top: -20px !important');
-               if($rootScope.is_iPadDeviceWidth <= 320) {
-                  $scope.HealthinfoPatient = "width: 106% !important; margin-left: -10px; !important";
-             }
-           }else{
-                $('.homePhoneInput').attr('style', 'margin-top: -20px !important');
-            if($rootScope.is_iPadDeviceWidth >= 360) {
+        var localizeCurrent = $('#localize-current').text();
+        if (localizeCurrent == "Español") {
+            $('.homePhoneInput').attr('style', 'margin-top: -20px !important');
+            if ($rootScope.is_iPadDeviceWidth <= 320) {
+                $scope.HealthinfoPatient = "width: 106% !important; margin-left: -10px; !important";
+            }
+        } else {
+            $('.homePhoneInput').attr('style', 'margin-top: -20px !important');
+            if ($rootScope.is_iPadDeviceWidth >= 360) {
                 $('.homePhoneInputValue').attr('style', 'margin-top: 0px !important');
-            }else{
+            } else {
                 $('.homePhoneInput').attr('style', 'margin-top: -20px !important');
             }
-               // $scope.HealthinfoPatient = "font-size:20px !important";
-               //   $scope.HealthinfoPatient = "padding-top: 15px !important;"
-           }
-           $('#localize-langs').click(function() {
-               var isLang = $('#localize-langs .activated').text();
-                 if(isLang == "Español"){
-                      $('.homePhoneInput').attr('style', 'margin-top: -20px !important');
-                      if($rootScope.is_iPadDeviceWidth <= 320) {
-                          $scope.HealthinfoPatient = "width: 106% !important; margin-left: -10px; !important";
-                    }
-                 }else{
-                     if($rootScope.is_iPadDeviceWidth >= 360) {
-                         $('.homePhoneInputValue').attr('style', 'margin-top: 0px !important');
-                    }else{
-                         $('.homePhoneInputValue').attr('style', 'margin-top: -20px !important');
-                      }
-                     // $(".whoNeedsText").css("font-size", "23px");
-                     // $scope.HealthinfoPatient = "font-size:20px !important";
-                     //  $scope.HealthinfoPatient = "padding-top: 15px !important;"
-                 }
-               isLang = "";
-           });
+            // $scope.HealthinfoPatient = "font-size:20px !important";
+            //   $scope.HealthinfoPatient = "padding-top: 15px !important;"
+        }
+        $('#localize-langs').click(function () {
+            var isLang = $('#localize-langs .activated').text();
+            if (isLang == "Español") {
+                $('.homePhoneInput').attr('style', 'margin-top: -20px !important');
+                if ($rootScope.is_iPadDeviceWidth <= 320) {
+                    $scope.HealthinfoPatient = "width: 106% !important; margin-left: -10px; !important";
+                }
+            } else {
+                if ($rootScope.is_iPadDeviceWidth >= 360) {
+                    $('.homePhoneInputValue').attr('style', 'margin-top: 0px !important');
+                } else {
+                    $('.homePhoneInputValue').attr('style', 'margin-top: -20px !important');
+                }
+                // $(".whoNeedsText").css("font-size", "23px");
+                // $scope.HealthinfoPatient = "font-size:20px !important";
+                //  $scope.HealthinfoPatient = "padding-top: 15px !important;"
+            }
+            isLang = "";
+        });
 
         $scope.fetchPatientDetails = function () {
             $scope.firsttimecall = 0;
@@ -222,28 +221,28 @@ angular.module('starter.controllers')
             $scope.fullAddressObj = [];
 
 
-          var res = new Object();
-          res['city'] = $rootScope.addressInfoFetch[0].addressObject.city;
-          res['country'] = $rootScope.addressInfoFetch[0].addressObject.country;
-          res['countryCode'] = $rootScope.addressInfoFetch[0].addressObject.countryCode;
-          res['line1'] = $rootScope.addressInfoFetch[0].addressObject.line1;
-          res['line2'] = $rootScope.addressInfoFetch[0].addressObject.line2;
-          res['postalCode'] = $rootScope.addressInfoFetch[0].addressObject.postalCode;
-          res['state'] = $rootScope.addressInfoFetch[0].addressObject.state;
-          res['stateCode'] = $rootScope.addressInfoFetch[0].addressObject.stateCode;
-          $scope.fullAddressObj = res;
-           /* $scope.fullAddressObj.city = $rootScope.addressInfoFetch[0].addressObject.city;
-            $scope.fullAddressObj.country = $rootScope.addressInfoFetch[0].addressObject.country;
-            $scope.fullAddressObj.countryCode = $rootScope.addressInfoFetch[0].addressObject.countryCode;
-            $scope.fullAddressObj.line1 = $rootScope.addressInfoFetch[0].addressObject.line1;
-            $scope.fullAddressObj.line2 = $rootScope.addressInfoFetch[0].addressObject.line2;
-            $scope.fullAddressObj.postalCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
-            $scope.fullAddressObj.state = $rootScope.addressInfoFetch[0].addressObject.state;
-            $scope.fullAddressObj.stateCode = $rootScope.addressInfoFetch[0].addressObject.stateCode;*/
+            var res = new Object();
+            res['city'] = $rootScope.addressInfoFetch[0].addressObject.city;
+            res['country'] = $rootScope.addressInfoFetch[0].addressObject.country;
+            res['countryCode'] = $rootScope.addressInfoFetch[0].addressObject.countryCode;
+            res['line1'] = $rootScope.addressInfoFetch[0].addressObject.line1;
+            res['line2'] = $rootScope.addressInfoFetch[0].addressObject.line2;
+            res['postalCode'] = $rootScope.addressInfoFetch[0].addressObject.postalCode;
+            res['state'] = $rootScope.addressInfoFetch[0].addressObject.state;
+            res['stateCode'] = $rootScope.addressInfoFetch[0].addressObject.stateCode;
+            $scope.fullAddressObj = res;
+            /* $scope.fullAddressObj.city = $rootScope.addressInfoFetch[0].addressObject.city;
+             $scope.fullAddressObj.country = $rootScope.addressInfoFetch[0].addressObject.country;
+             $scope.fullAddressObj.countryCode = $rootScope.addressInfoFetch[0].addressObject.countryCode;
+             $scope.fullAddressObj.line1 = $rootScope.addressInfoFetch[0].addressObject.line1;
+             $scope.fullAddressObj.line2 = $rootScope.addressInfoFetch[0].addressObject.line2;
+             $scope.fullAddressObj.postalCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
+             $scope.fullAddressObj.state = $rootScope.addressInfoFetch[0].addressObject.state;
+             $scope.fullAddressObj.stateCode = $rootScope.addressInfoFetch[0].addressObject.stateCode;*/
 
             //delete $rootScope.addressInfoFetchModify['addressText'];
             console.log('$scope.fullAddressObj');
-            console.log( $scope.fullAddressObj);
+            console.log($scope.fullAddressObj);
             $scope.route = $rootScope.addressInfoFetch[0].addressObject.line1;
             $scope.address2 = $rootScope.addressInfoFetch[0].addressObject.line2;
             $scope.City = $rootScope.addressInfoFetch[0].addressObject.city;
@@ -253,21 +252,20 @@ angular.module('starter.controllers')
             $scope.Country = $rootScope.addressInfoFetch[0].addressObject.countryCode;
 
 
-/*            $scope.route = $rootScope.primaryPatientDetails[0].addressObject.line1;
-            $scope.address2 = $rootScope.primaryPatientDetails[0].addressObject.line2;
-            $scope.City = $rootScope.primaryPatientDetails[0].addressObject.city;
-            $scope.ZipCode = $rootScope.primaryPatientDetails[0].addressObject.postalCode;
-            $scope.State = $rootScope.primaryPatientDetails[0].addressObject.state;
-            $scope.state1 = $rootScope.primaryPatientDetails[0].addressObject.state;
-            $scope.Country = $rootScope.primaryPatientDetails[0].addressObject.countryCode;*/
+            /*            $scope.route = $rootScope.primaryPatientDetails[0].addressObject.line1;
+                        $scope.address2 = $rootScope.primaryPatientDetails[0].addressObject.line2;
+                        $scope.City = $rootScope.primaryPatientDetails[0].addressObject.city;
+                        $scope.ZipCode = $rootScope.primaryPatientDetails[0].addressObject.postalCode;
+                        $scope.State = $rootScope.primaryPatientDetails[0].addressObject.state;
+                        $scope.state1 = $rootScope.primaryPatientDetails[0].addressObject.state;
+                        $scope.Country = $rootScope.primaryPatientDetails[0].addressObject.countryCode;*/
 
             $rootScope.currentPatientDetails[0].address = $rootScope.addressInfoFetch[0].addressObject.addressText;
-            if($scope.Country == 'US')
-              {
+            if ($scope.Country == 'US') {
                 $scope.showCountrySelectBox = true;
-              }else{
+            } else {
                 $scope.showCountrySelectBox = false;
-              }
+            }
         };
         // $("#localize-widget").show();
         $scope.getOnlyNumbers = function (text) {
@@ -439,7 +437,7 @@ angular.module('starter.controllers')
         $scope.addmore = false;
         $scope.healthhide = true;
         $scope.healthfoottab = true;
-        $('#HealthFooter').css({'display':'block'});
+        $('#HealthFooter').css({ 'display': 'block' });
         $scope.healthfootsave = true;
         $scope.editshow = true;
         $scope.doneshow = true;
@@ -524,23 +522,22 @@ angular.module('starter.controllers')
             $scope.modal.remove();
         };
         $rootScope.editremovemodal = function () {
-          $("#localize-widget").show();
+            $("#localize-widget").show();
             $scope.modal.remove()
                 .then(function () {
                     $scope.healthInfoModel.address = $scope.oldfullAddress;
-                  $scope.route = $scope.oldroute;
-                  $scope.address2 = $scope.oldaddress2;
-                  $scope.City =  $scope.oldCity;
-                  $scope.ZipCode = $scope.oldZipCode;
-                  $scope.Country = $scope.oldCountry;
-                  if($scope.Country == 'US')
-                  {
-                    $scope.showCountrySelectBox = true;
-                  }else{
-                    $scope.showCountrySelectBox = false;
-                  }
-                  $scope.state1 = $scope.oldstate1;
-                  $scope.State =   $scope.oldState;
+                    $scope.route = $scope.oldroute;
+                    $scope.address2 = $scope.oldaddress2;
+                    $scope.City = $scope.oldCity;
+                    $scope.ZipCode = $scope.oldZipCode;
+                    $scope.Country = $scope.oldCountry;
+                    if ($scope.Country == 'US') {
+                        $scope.showCountrySelectBox = true;
+                    } else {
+                        $scope.showCountrySelectBox = false;
+                    }
+                    $scope.state1 = $scope.oldstate1;
+                    $scope.State = $scope.oldState;
                     $scope.modal = null;
                 });
             $('option').filter(function () {
@@ -548,8 +545,8 @@ angular.module('starter.controllers')
             }).remove();
 
         };
-         $rootScope.editremoveopenmodal = function () {
-          $("#localize-widget").show();
+        $rootScope.editremoveopenmodal = function () {
+            $("#localize-widget").show();
             $scope.modal.remove()
                 .then(function () {
                     $scope.modal = null;
@@ -588,43 +585,43 @@ angular.module('starter.controllers')
         }
         $scope.heighteditsave = function () {
             $rootScope.patHeightUnit = '';
-          //  $('#heightuser').val('');
+            //  $('#heightuser').val('');
             $rootScope.height1 = $('#healthInfoHeight').val();
             $rootScope.height2 = $('#healthInfoHeight2').val();
             if ($rootScope.height1 != 'undefined' && $rootScope.height1 != '') {
-            var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
-            var heightunitid = $("#healthInfoHeightUnit").val().split("@").slice(0, 1);
-            var getheightunitid = _.first(heightunitid);
-            $rootScope.patHeightUnit = getheightunitid;
-            var getheightunit = _.first(heightunit);
-            if (getheightunit === "ft/in") {
-                if ($rootScope.height1 !== '' && $rootScope.height2 !== '') {
-                    var heightdepval = $('#healthInfoHeight').val() + " " + "ft" + " " + $('#healthInfoHeight2').val() + " " + "in";
-                    $('#heightuser').val(heightdepval);
-                } else if ($rootScope.height1 !== '' && $rootScope.height2 === '') {
-                    var heightdepval = $('#healthInfoHeight').val() + " " + "ft" + " " + "0" + " " + "in";
-                    $('#heightuser').val(heightdepval);
+                var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
+                var heightunitid = $("#healthInfoHeightUnit").val().split("@").slice(0, 1);
+                var getheightunitid = _.first(heightunitid);
+                $rootScope.patHeightUnit = getheightunitid;
+                var getheightunit = _.first(heightunit);
+                if (getheightunit === "ft/in") {
+                    if ($rootScope.height1 !== '' && $rootScope.height2 !== '') {
+                        var heightdepval = $('#healthInfoHeight').val() + " " + "ft" + " " + $('#healthInfoHeight2').val() + " " + "in";
+                        $('#heightuser').val(heightdepval);
+                    } else if ($rootScope.height1 !== '' && $rootScope.height2 === '') {
+                        var heightdepval = $('#healthInfoHeight').val() + " " + "ft" + " " + "0" + " " + "in";
+                        $('#heightuser').val(heightdepval);
+                    }
+                    else {
+                        var heightdepval = $('#healthInfoHeight').val() + " " + "ft" + " " + "0" + " " + 'in';
+                        $('#heightuser').val(heightdepval);
+                    }
+                } else {
+                    if ($rootScope.height1 !== '' && $rootScope.height2 !== '') {
+                        var heightdepval = $('#healthInfoHeight').val() + " " + "m" + " " + $('#healthInfoHeight2').val() + " " + "cm";
+                        $('#heightuser').val(heightdepval);
+                    }
+                    else if ($rootScope.height !== '' && $rootScope.height === '') {
+                        var heightdepval = $('#healthInfoHeight').val() + " " + "m" + " " + "0" + " " + "cm";
+                        $('#heightuser').val(heightdepval);
+                    }
+                    else {
+                        var heightdepval = $('#healthInfoHeight').val() + " " + "m" + " " + "0" + " " + "cm";
+                        $('#heightuser').val(heightdepval);
+                    }
                 }
-                else {
-                    var heightdepval = $('#healthInfoHeight').val() + " " + "ft" + " " + "0" + " " + 'in';
-                    $('#heightuser').val(heightdepval);
-                }
-            } else {
-                if ($rootScope.height1 !== '' && $rootScope.height2 !== '') {
-                    var heightdepval = $('#healthInfoHeight').val() + " " + "m" + " " + $('#healthInfoHeight2').val() + " " + "cm";
-                    $('#heightuser').val(heightdepval);
-                }
-                else if ($rootScope.height !== '' && $rootScope.height === '') {
-                    var heightdepval = $('#healthInfoHeight').val() + " " + "m" + " " + "0" + " " + "cm";
-                    $('#heightuser').val(heightdepval);
-                }
-                else {
-                    var heightdepval = $('#healthInfoHeight').val() + " " + "m" + " " + "0" + " " + "cm";
-                    $('#heightuser').val(heightdepval);
-                }
+                document.getElementById("hunit").innerHTML = getheightunitid;
             }
-            document.getElementById("hunit").innerHTML = getheightunitid;
-        }
             if ($rootScope.height1 === 'undefined' || $rootScope.height1 === '') {
                 $scope.ErrorMessage = "Please enter min value 0 in required field";
                 $rootScope.ValidationFunction1($scope.ErrorMessage);
@@ -748,13 +745,13 @@ angular.module('starter.controllers')
             $rootScope.patientId = $rootScope.currentPatientDetails[0].profileId;
         }
         $scope.edittext = function () {
-          window.addEventListener('native.keyboardshow', function() {
-             $("#localize-widget").hide();
+            window.addEventListener('native.keyboardshow', function () {
+                $("#localize-widget").hide();
 
-          });
-          window.addEventListener('native.keyboardhide', function() {
-             $("#localize-widget").hide();
-          });
+            });
+            window.addEventListener('native.keyboardhide', function () {
+                $("#localize-widget").hide();
+            });
             //console.log("Patientlist" + $rootScope.PatientIdentifiers);
 
             $('#healthInfoEmail').attr('style', 'text-overflow: ellipsis !important');
@@ -880,29 +877,28 @@ angular.module('starter.controllers')
                 $('#healthInfoTimezone').val($scope.healthInfoModel.healthInfoTimezone);
                 $('#healthInfoCountry').val($scope.healthInfoModel.healthInfoCountry);
             }, 10);
-//$scope.doGetCountries();
-//$scope.getStatesForUS();
-//$scope.loadAddressData();
+            //$scope.doGetCountries();
+            //$scope.getStatesForUS();
+            //$scope.loadAddressData();
 
 
 
 
             //$scope.newupdatePatientDetails();
         }
-        $scope.loadAddressData = function(){
-                    $scope.route = $rootScope.addressInfoFetch[0].addressObject.line1;
-                    $scope.address2 = $rootScope.addressInfoFetch[0].addressObject.line2;
-                    $scope.City = $rootScope.addressInfoFetch[0].addressObject.city;
-                    $scope.ZipCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
-                    $scope.State = $rootScope.addressInfoFetch[0].addressObject.state;
-                    $scope.state1 = $rootScope.addressInfoFetch[0].addressObject.state;
-                    $scope.Country = $rootScope.addressInfoFetch[0].addressObject.countryCode;
-                    if($scope.Country == 'US')
-                      {
-                        $scope.showCountrySelectBox = true;
-                      }else{
-                        $scope.showCountrySelectBox = false;
-                      }
+        $scope.loadAddressData = function () {
+            $scope.route = $rootScope.addressInfoFetch[0].addressObject.line1;
+            $scope.address2 = $rootScope.addressInfoFetch[0].addressObject.line2;
+            $scope.City = $rootScope.addressInfoFetch[0].addressObject.city;
+            $scope.ZipCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
+            $scope.State = $rootScope.addressInfoFetch[0].addressObject.state;
+            $scope.state1 = $rootScope.addressInfoFetch[0].addressObject.state;
+            $scope.Country = $rootScope.addressInfoFetch[0].addressObject.countryCode;
+            if ($scope.Country == 'US') {
+                $scope.showCountrySelectBox = true;
+            } else {
+                $scope.showCountrySelectBox = false;
+            }
         }
 
         $scope.editDob = function () {
@@ -934,7 +930,7 @@ angular.module('starter.controllers')
             var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return expr.test(email);
         };
-        $scope.showEmail = function(){
+        $scope.showEmail = function () {
 
             $('#healthInfoEmail').attr('style', 'text-overflow: unset !important');
         }
@@ -958,6 +954,7 @@ angular.module('starter.controllers')
                 $rootScope.timezoneDisplay = 'none';
             }
         }
+
         $scope.putUpdatePatientDetails = function () {
 
             var selectDate = document.getElementById('healthInfoDOB').value;
@@ -1238,7 +1235,8 @@ angular.module('starter.controllers')
                         } else if (typeof $scope.healthInfoLastName === 'undefined' || $scope.healthInfoLastName === '') {
                             $scope.ErrorMessage = "Please enter Last Name";
                             $rootScope.Validation($scope.ErrorMessage);
-                        } else if (typeof $scope.healthInfoDOB === 'undefined' || $scope.healthInfoDOB === '') {
+                        }
+                        else if (typeof $scope.healthInfoDOB === 'undefined' || $scope.healthInfoDOB === '') {
                             $scope.ErrorMessage = "Please select DOB";
                             $rootScope.Validation($scope.ErrorMessage);
                         } else if (dt2 > dt1) {
@@ -1298,30 +1296,29 @@ angular.module('starter.controllers')
                             $rootScope.Validation($scope.ErrorMessage);
                         }
                         else if (typeof $scope.txtPlacesVal === 'undefined' || $scope.txtPlacesVal === '' || $scope.txtPlacesVal === null) {
-                             $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                             $rootScope.Validation($scope.ErrorMessage);
-                         }
-                           else if (typeof $scope.cityVal === 'undefined' || $scope.cityValVal === '' || $scope.cityValVal === null) {
-                             $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                             $rootScope.Validation($scope.ErrorMessage);
-                         }
-                          else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null))
-                             {
-                              //  if(typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)
-                               // {
-                                     $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                                     $rootScope.Validation($scope.ErrorMessage);
-                              //  }
+                            $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                            $rootScope.Validation($scope.ErrorMessage);
+                        }
+                        else if (typeof $scope.cityVal === 'undefined' || $scope.cityValVal === '' || $scope.cityValVal === null) {
+                            $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                            $rootScope.Validation($scope.ErrorMessage);
+                        }
+                        else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)) {
+                            //  if(typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)
+                            // {
+                            $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                            $rootScope.Validation($scope.ErrorMessage);
+                            //  }
 
-                             }
-                           else if (typeof $scope.zipcodeVal === 'undefined' || $scope.zipcodeVal === '' || $scope.zipcodeVal === null) {
-                             $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                             $rootScope.Validation($scope.ErrorMessage);
-                         }
-                           else if (typeof $scope.countryVal === 'undefined' || $scope.countryVal === '' || $scope.countryVal === null) {
-                             $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                             $rootScope.Validation($scope.ErrorMessage);
-                          }
+                        }
+                        else if (typeof $scope.zipcodeVal === 'undefined' || $scope.zipcodeVal === '' || $scope.zipcodeVal === null) {
+                            $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                            $rootScope.Validation($scope.ErrorMessage);
+                        }
+                        else if (typeof $scope.countryVal === 'undefined' || $scope.countryVal === '' || $scope.countryVal === null) {
+                            $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                            $rootScope.Validation($scope.ErrorMessage);
+                        }
 
                         else if (identifierTypeCode_ !== '') {
                             if (identifierTypeCode_.indexOf("Driver's license number") != -1) {
@@ -1334,7 +1331,7 @@ angular.module('starter.controllers')
                                 $scope.ErrorMessage = "Please enter Patient's Medicare number";
                             }
 
-                            else if  (identifierTypeCode_.indexOf("Número de licencia de conducir") != -1) {
+                            else if (identifierTypeCode_.indexOf("Número de licencia de conducir") != -1) {
                                 $scope.ErrorMessage = "Please enter Driver's license number";
                             } else if (identifierTypeCode_.indexOf("Número de Empleado") != -1) {
                                 $scope.ErrorMessage = "Please enter Employee number";
@@ -1349,7 +1346,13 @@ angular.module('starter.controllers')
                             if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
                                 $scope.healthInfoHeight2 = "0";
                             }
-                            $scope.doPutProfileUpdation();
+                            if ($scope.healthInfoFirstName.length <= 24 && $scope.healthInfoLastName.length <= 24) {
+                                $scope.doPutProfileUpdation();
+                            } else {
+                                debugger
+                                $scope.ErrorMessage = 'Max length for first / last name is 24';
+                                $rootScope.Validation($scope.ErrorMessage);
+                            }
                         }
                     } else {
                         if (typeof $scope.healthInfoFirstName === 'undefined' || $scope.healthInfoFirstName === '') {
@@ -1411,34 +1414,33 @@ angular.module('starter.controllers')
                             $rootScope.Validation($scope.ErrorMessage);
                         }
                         else if (typeof $scope.txtPlacesVal === 'undefined' || $scope.txtPlacesVal === '' || $scope.txtPlacesVal === null) {
-                             $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                             $rootScope.Validation($scope.ErrorMessage);
-                         }
-                           else if (typeof $scope.cityVal === 'undefined' || $scope.cityValVal === '' || $scope.cityValVal === null) {
-                             $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                             $rootScope.Validation($scope.ErrorMessage);
-                         }
-                           else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null))
-                             {
-                              //  if(typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)
-                               // {
-                                     $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                                     $rootScope.Validation($scope.ErrorMessage);
-                              //  }
+                            $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                            $rootScope.Validation($scope.ErrorMessage);
+                        }
+                        else if (typeof $scope.cityVal === 'undefined' || $scope.cityValVal === '' || $scope.cityValVal === null) {
+                            $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                            $rootScope.Validation($scope.ErrorMessage);
+                        }
+                        else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)) {
+                            //  if(typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)
+                            // {
+                            $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                            $rootScope.Validation($scope.ErrorMessage);
+                            //  }
 
-                             }
-                           else if (typeof $scope.zipcodeVal === 'undefined' || $scope.zipcodeVal === '' || $scope.zipcodeVal === null) {
-                             $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                             $rootScope.Validation($scope.ErrorMessage);
-                         }
-                           else if (typeof $scope.countryVal === 'undefined' || $scope.countryVal === '' || $scope.countryVal === null) {
-                             $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                             $rootScope.Validation($scope.ErrorMessage);
-                          }
-
+                        }
+                        else if (typeof $scope.zipcodeVal === 'undefined' || $scope.zipcodeVal === '' || $scope.zipcodeVal === null) {
+                            $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                            $rootScope.Validation($scope.ErrorMessage);
+                        }
+                        else if (typeof $scope.countryVal === 'undefined' || $scope.countryVal === '' || $scope.countryVal === null) {
+                            $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                            $rootScope.Validation($scope.ErrorMessage);
+                        }
 
 
-                          else if (identifierTypeCode_ !== '') {
+
+                        else if (identifierTypeCode_ !== '') {
                             if (identifierTypeCode_.indexOf("Driver's license number") != -1) {
                                 $scope.ErrorMessage = "Please enter Driver's license number";
                             } else if (identifierTypeCode_.indexOf("Employee number") != -1) {
@@ -1448,7 +1450,7 @@ angular.module('starter.controllers')
                             } else if (identifierTypeCode_.indexOf("Patient's Medicare number") != -1) {
                                 $scope.ErrorMessage = "Please enter Patient's Medicare number";
                             }
-                            else if  (identifierTypeCode_.indexOf("Número de licencia de conducir") != -1) {
+                            else if (identifierTypeCode_.indexOf("Número de licencia de conducir") != -1) {
                                 $scope.ErrorMessage = "Please enter Driver's license number";
                             } else if (identifierTypeCode_.indexOf("Número de Empleado") != -1) {
                                 $scope.ErrorMessage = "Please enter Employee number";
@@ -1462,7 +1464,13 @@ angular.module('starter.controllers')
                             if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
                                 $scope.healthInfoHeight2 = "0";
                             }
-                            $scope.doPutProfileUpdation();
+                            if ($scope.healthInfoFirstName.length <= 24 && $scope.healthInfoLastName.length <= 24) {
+                                $scope.doPutProfileUpdation();
+                            } else {
+                                debugger
+                                $scope.ErrorMessage = 'Max length for first / last name is 24';
+                                $rootScope.Validation($scope.ErrorMessage);
+                            }
                         }
                     }
                 } else {
@@ -1523,32 +1531,31 @@ angular.module('starter.controllers')
                         $rootScope.Validation($scope.ErrorMessage);
                     }
                     else if (typeof $scope.txtPlacesVal === 'undefined' || $scope.txtPlacesVal === '' || $scope.txtPlacesVal === null) {
-                         $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                         $rootScope.Validation($scope.ErrorMessage);
-                     }
-                       else if (typeof $scope.cityVal === 'undefined' || $scope.cityValVal === '' || $scope.cityValVal === null) {
-                         $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                         $rootScope.Validation($scope.ErrorMessage);
-                     }
-                       else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null))
-                 {
-                  //  if(typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)
-                   // {
-                         $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                         $rootScope.Validation($scope.ErrorMessage);
-                  //  }
+                        $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    }
+                    else if (typeof $scope.cityVal === 'undefined' || $scope.cityValVal === '' || $scope.cityValVal === null) {
+                        $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    }
+                    else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)) {
+                        //  if(typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)
+                        // {
+                        $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                        $rootScope.Validation($scope.ErrorMessage);
+                        //  }
 
-                 }
-                       else if (typeof $scope.zipcodeVal === 'undefined' || $scope.zipcodeVal === '' || $scope.zipcodeVal === null) {
-                         $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                         $rootScope.Validation($scope.ErrorMessage);
-                     }
-                       else if (typeof $scope.countryVal === 'undefined' || $scope.countryVal === '' || $scope.countryVal === null) {
-                         $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                         $rootScope.Validation($scope.ErrorMessage);
-                      }
+                    }
+                    else if (typeof $scope.zipcodeVal === 'undefined' || $scope.zipcodeVal === '' || $scope.zipcodeVal === null) {
+                        $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    }
+                    else if (typeof $scope.countryVal === 'undefined' || $scope.countryVal === '' || $scope.countryVal === null) {
+                        $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    }
 
-                      else if (identifierTypeCode_ !== '') {
+                    else if (identifierTypeCode_ !== '') {
                         if (identifierTypeCode_.indexOf("Driver's license number") != -1) {
                             $scope.ErrorMessage = "Please enter Driver's license number";
                         } else if (identifierTypeCode_.indexOf("Employee number") != -1) {
@@ -1558,7 +1565,7 @@ angular.module('starter.controllers')
                         } else if (identifierTypeCode_.indexOf("Patient's Medicare number") != -1) {
                             $scope.ErrorMessage = "Please enter Patient's Medicare number";
                         }
-                        else if  (identifierTypeCode_.indexOf("Número de licencia de conducir") != -1) {
+                        else if (identifierTypeCode_.indexOf("Número de licencia de conducir") != -1) {
                             $scope.ErrorMessage = "Please enter Driver's license number";
                         } else if (identifierTypeCode_.indexOf("Número de Empleado") != -1) {
                             $scope.ErrorMessage = "Please enter Employee number";
@@ -1572,7 +1579,12 @@ angular.module('starter.controllers')
                         if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
                             $scope.healthInfoHeight2 = "0";
                         }
-                        $scope.doPutProfileUpdation();
+                        if ($scope.healthInfoFirstName.length <= 24 && $scope.healthInfoLastName.length <= 24) {
+                            $scope.doPutProfileUpdation();
+                        } else {
+                            $scope.ErrorMessage = 'Max length for first / last name is 24';
+                            $rootScope.Validation($scope.ErrorMessage);
+                        }
                     }
 
                 }
@@ -1647,28 +1659,27 @@ angular.module('starter.controllers')
                     $rootScope.Validation($scope.ErrorMessage);
                 }
                 else if (typeof $scope.txtPlacesVal === 'undefined' || $scope.txtPlacesVal === '' || $scope.txtPlacesVal === null) {
-                     $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                     $rootScope.Validation($scope.ErrorMessage);
-                 }
-                   else if (typeof $scope.cityVal === 'undefined' || $scope.cityValVal === '' || $scope.cityValVal === null) {
-                     $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                     $rootScope.Validation($scope.ErrorMessage);
-                 }else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null))
-                 {
-                  //  if(typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)
-                   // {
-                         $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                         $rootScope.Validation($scope.ErrorMessage);
-                  //  }
+                    $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                    $rootScope.Validation($scope.ErrorMessage);
+                }
+                else if (typeof $scope.cityVal === 'undefined' || $scope.cityValVal === '' || $scope.cityValVal === null) {
+                    $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else if ((typeof $scope.state1Val === 'undefined' || $scope.state1Val === '' || $scope.state1Val === null) && (typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)) {
+                    //  if(typeof $scope.stateVal === 'undefined' || $scope.stateVal === '' || $scope.stateVal === null)
+                    // {
+                    $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                    $rootScope.Validation($scope.ErrorMessage);
+                    //  }
 
-                 }else if (typeof $scope.zipcodeVal === 'undefined' || $scope.zipcodeVal === '' || $scope.zipcodeVal === null) {
-                     $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                     $rootScope.Validation($scope.ErrorMessage);
-                 }
-                   else if (typeof $scope.countryVal === 'undefined' || $scope.countryVal === '' || $scope.countryVal === null) {
-                     $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
-                     $rootScope.Validation($scope.ErrorMessage);
-                  }
+                } else if (typeof $scope.zipcodeVal === 'undefined' || $scope.zipcodeVal === '' || $scope.zipcodeVal === null) {
+                    $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                    $rootScope.Validation($scope.ErrorMessage);
+                }
+                else if (typeof $scope.countryVal === 'undefined' || $scope.countryVal === '' || $scope.countryVal === null) {
+                    $scope.ErrorMessage = "Home address is incomplete, please review the address to continue";
+                    $rootScope.Validation($scope.ErrorMessage);
+                }
 
                 else if (identifierTypeCode_ !== '') {
                     if (identifierTypeCode_.indexOf("Driver's license number") != -1) {
@@ -1680,7 +1691,7 @@ angular.module('starter.controllers')
                     } else if (identifierTypeCode_.indexOf("Patient's Medicare number") != -1) {
                         $scope.ErrorMessage = "Please enter Patient's Medicare number";
                     }
-                    else if  (identifierTypeCode_.indexOf("Número de licencia de conducir") != -1) {
+                    else if (identifierTypeCode_.indexOf("Número de licencia de conducir") != -1) {
                         $scope.ErrorMessage = "Please enter Driver's license number";
                     } else if (identifierTypeCode_.indexOf("Número de Empleado") != -1) {
                         $scope.ErrorMessage = "Please enter Employee number";
@@ -1694,7 +1705,13 @@ angular.module('starter.controllers')
                     if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
                         $scope.healthInfoHeight2 = "0";
                     }
-                    $scope.doPutProfileUpdation();
+                    if ($scope.healthInfoFirstName.length <= 24 && $scope.healthInfoLastName.length <= 24) {
+                        $scope.doPutProfileUpdation();
+                    } else {
+                        debugger
+                        $scope.ErrorMessage = 'Max length for first / last name is 24';
+                        $rootScope.Validation($scope.ErrorMessage);
+                    }
                 }
             }
             //  $scope.patientAuthorize = true;
@@ -1739,25 +1756,25 @@ angular.module('starter.controllers')
             }
         }
 
-      /* window.addEventListener('native.keyboardshow', function () {
-            $scope.$apply(function() {
+        /* window.addEventListener('native.keyboardshow', function () {
+              $scope.$apply(function() {
+                  if($rootScope.flag == true) {
+                    $scope.healthfoottab = false;
+                  } else {
+                    $scope.healthfootsave = true;
+                  }
+               });
+  
+           });
+           window.addEventListener('native.keyboardhide', function () {
+              $scope.$apply(function() {
                 if($rootScope.flag == true) {
-                  $scope.healthfoottab = false;
+                  $scope.healthfoottab = true;
                 } else {
-                  $scope.healthfootsave = true;
+                  $scope.healthfootsave = false;
                 }
-             });
-
-         });
-         window.addEventListener('native.keyboardhide', function () {
-            $scope.$apply(function() {
-              if($rootScope.flag == true) {
-                $scope.healthfoottab = true;
-              } else {
-                $scope.healthfootsave = false;
-              }
-          });
-        });*/
+            });
+          });*/
 
         $rootScope.doPutProfileUpdation = function () {
 
@@ -1994,7 +2011,7 @@ angular.module('starter.controllers')
                         $rootScope.flag = true;
                         $scope.doneedit = false;
                         $scope.healthfoottab = true;
-                        $('#HealthFooter').css({'display':'block'});
+                        $('#HealthFooter').css({ 'display': 'block' });
                         $scope.healthfootsave = true;
                         var editvalues = angular.element(document.getElementsByTagName('input'));
                         var edittextarea = angular.element(document.getElementsByTagName('textarea'));
@@ -2020,7 +2037,7 @@ angular.module('starter.controllers')
                     } else if (data.statusText === "City is empty") {
                         $scope.ErrorMessage = "City is empty";
                         $rootScope.Validation($scope.ErrorMessage);
-                    }else if(data.status === 400){
+                    } else if (data.status === 400) {
                         $scope.ErrorMessage = data.data;
                         $rootScope.Validation($scope.ErrorMessage);
                     }
@@ -2070,7 +2087,7 @@ angular.module('starter.controllers')
             }
             var getDrawImage = $rootScope.drawImage($rootScope.PatientImageSelectUser, currentPatientDetails.patientName, currentPatientDetails.lastName);
             var myPopup = $ionicPopup.show({
-                title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname'>" + currentPatientDetails.lastName + "</span></div> <div class='fontcolor'>" + "<span class='localizejs'>" + $rootScope.userGender+ "</span>" + $scope.dob +"<span class='localizejs'>" + $scope.relationship + "</span></div>",
+                title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname'>" + currentPatientDetails.lastName + "</span></div> <div class='fontcolor'>" + "<span class='localizejs'>" + $rootScope.userGender + "</span>" + $scope.dob + "<span class='localizejs'>" + $scope.relationship + "</span></div>",
                 templateUrl: 'templates/healthUnauthorizedPopup.html',
                 scope: $scope,
                 buttons: [{
@@ -2111,7 +2128,7 @@ angular.module('starter.controllers')
             }
             var getDrawImage = $rootScope.drawImage($rootScope.PatientImageSelectUser, currentPatientDetails.patientName, currentPatientDetails.lastName);
             var myPopup = $ionicPopup.show({
-                title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname'>" + currentPatientDetails.lastName + "</span></div> <div class='fontcolor'>" + $rootScope.userGender + $scope.dob + $scope.relationship + "</div>",
+                title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname'>" + currentPatientDetails.lastName + "</span></div> <div class='fontcolor'>" + "<span class='localizejs'>" + $rootScope.userGender + "</span>" + $scope.dob + " <span class='localizejs'> " + $scope.relationship + "</span></div>",
                 templateUrl: 'templates/unauthorizedpopup.html',
                 scope: $scope,
                 buttons: [{
@@ -2204,11 +2221,11 @@ angular.module('starter.controllers')
                 $scope.editshow = true;
                 $scope.doneshow = true;
                 $scope.healthfoottab = true;
-                $('#HealthFooter').css({'display':'block'});
+                $('#HealthFooter').css({ 'display': 'block' });
                 $scope.healthfootsave = true;
             }
             if ($rootScope.hasRequiredFields !== true) {
-              $('#HealthFooter').css({'display':'none'});
+                $('#HealthFooter').css({ 'display': 'none' });
                 $scope.healthfootsave = false;
                 $scope.doneshow = false;
             }
@@ -2323,8 +2340,8 @@ angular.module('starter.controllers')
             $scope.healthfootsave = true;
             //$rootScope.patientAuthorize = false;
             if ($rootScope.hasRequiredFields === true) {
-              $scope.healthfoottab = true;
-              $('#HealthFooter').css({'display':'block'});
+                $scope.healthfoottab = true;
+                $('#HealthFooter').css({ 'display': 'block' });
                 $scope.health();
             } else {
                 $scope.healthfootsave = false;
@@ -2505,81 +2522,81 @@ angular.module('starter.controllers')
 
         }
 
-      $scope.patientdone = function(){
-          //  $rootScope.oldPatientIdentifiersDetails = $rootScope.PatientIdentifiers;
-          //  $rootScope.PatientidupdateList = [];
-         $scope.PatientsearchItem = $filter('filter')($rootScope.currentPatientsearchList, {
-             checked: true
-         });
-         $rootScope.checkedpatientdet = $scope.PatientsearchItem.length;
-         if ($scope.PatientsearchItem !== '') {
-          // $rootScope.PatientIdentifiers = [];
-             $rootScope.patientmedicationsSearch = $scope.PatientsearchItem;
-             $rootScope.PatientsdetCount = $scope.PatientsearchItem.length;
+        $scope.patientdone = function () {
+            //  $rootScope.oldPatientIdentifiersDetails = $rootScope.PatientIdentifiers;
+            //  $rootScope.PatientidupdateList = [];
+            $scope.PatientsearchItem = $filter('filter')($rootScope.currentPatientsearchList, {
+                checked: true
+            });
+            $rootScope.checkedpatientdet = $scope.PatientsearchItem.length;
+            if ($scope.PatientsearchItem !== '') {
+                // $rootScope.PatientIdentifiers = [];
+                $rootScope.patientmedicationsSearch = $scope.PatientsearchItem;
+                $rootScope.PatientsdetCount = $scope.PatientsearchItem.length;
 
-            if ($rootScope.PatientsdetCount == 0) {
-                  $rootScope.PatientidupdateList = [];
-              }
+                if ($rootScope.PatientsdetCount == 0) {
+                    $rootScope.PatientidupdateList = [];
+                }
 
-           for (var k = 0; k < $rootScope.PatientsdetCount; k++) {
+                for (var k = 0; k < $rootScope.PatientsdetCount; k++) {
 
-                 var status2="New";
-              for (var l = 0; l < $rootScope.PatientidupdateList.length; l++) {
-                       if($scope.PatientsearchItem[k].display == $scope.PatientidupdateList[l].display){
-                          status2="Exit";
+                    var status2 = "New";
+                    for (var l = 0; l < $rootScope.PatientidupdateList.length; l++) {
+                        if ($scope.PatientsearchItem[k].display == $scope.PatientidupdateList[l].display) {
+                            status2 = "Exit";
                         }
-                      }
-                if(status2=="New"){
-                 $rootScope.PatientidupdateList.push({
-                                 identifierTypeCode: $scope.PatientsearchItem[k].identifierTypeCode,
-                                 display: $scope.PatientsearchItem[k].display,
-                                 value:$scope.PatientsearchItem[k].value,
-                                 effectiveDate:$scope.PatientsearchItem[k].effectiveDate,
-                                 statusCode:$scope.PatientsearchItem[k].statusCode,
-                                 identifierTypeTitle: $scope.PatientsearchItem[k].identifierTypeTitle
-                             });
-                 }
+                    }
+                    if (status2 == "New") {
+                        $rootScope.PatientidupdateList.push({
+                            identifierTypeCode: $scope.PatientsearchItem[k].identifierTypeCode,
+                            display: $scope.PatientsearchItem[k].display,
+                            value: $scope.PatientsearchItem[k].value,
+                            effectiveDate: $scope.PatientsearchItem[k].effectiveDate,
+                            statusCode: $scope.PatientsearchItem[k].statusCode,
+                            identifierTypeTitle: $scope.PatientsearchItem[k].identifierTypeTitle
+                        });
+                    }
 
-             }
+                }
 
-           for (var i = 0; i < $rootScope.PatientidupdateList.length; i++) {
-                  var status1="New";
-             for (var j = 0; j < $rootScope.PatientsdetCount; j++) {
-                if($scope.PatientidupdateList[i].display == $scope.PatientsearchItem[j].display){
-                           status1="Exit";
+                for (var i = 0; i < $rootScope.PatientidupdateList.length; i++) {
+                    var status1 = "New";
+                    for (var j = 0; j < $rootScope.PatientsdetCount; j++) {
+                        if ($scope.PatientidupdateList[i].display == $scope.PatientsearchItem[j].display) {
+                            status1 = "Exit";
                         }
-                      }
-                        if(status1=="New"){
-                           $rootScope.PatientidupdateList.splice(i,1);
-                            i = i-1;
-                        }
-                  }
+                    }
+                    if (status1 == "New") {
+                        $rootScope.PatientidupdateList.splice(i, 1);
+                        i = i - 1;
+                    }
+                }
 
-           $scope.updationListLength = $rootScope.PatientidupdateList.length;
-        // $rootScope.PatientIdentifiers = $rootScope.PatientidupdateList;
+                $scope.updationListLength = $rootScope.PatientidupdateList.length;
+                // $rootScope.PatientIdentifiers = $rootScope.PatientidupdateList;
 
-           $scope.modal.remove();
-           $rootScope.viewpatapiDisplay = 'flex';
-           $rootScope.viewpatmodalDisplay = 'none';
-           if ($rootScope.PatientsdetCount == 0) {
-               $timeout(function () {
-                   $ionicScrollDelegate.scrollTop(true);
-               }, 300);
-           } else {
-               $timeout(function () {
-                   $ionicScrollDelegate.scrollBottom(true);
-               }, 300);
-           }
-          /* if($rootScope.PatientsdetCount == 0) {
-            $ionicScrollDelegate.$getByHandle('scrollTopView').scrollTop();
-          }*/
-        //   $ionicScrollDelegate.$getByHandle('scrollTopView').scrollTop();
-      } else {
-           $scope.updationListLength = 0;
+                $scope.modal.remove();
+                $rootScope.viewpatapiDisplay = 'flex';
+                $rootScope.viewpatmodalDisplay = 'none';
+                if ($rootScope.PatientsdetCount == 0) {
+                    $timeout(function () {
+                        $ionicScrollDelegate.scrollTop(true);
+                    }, 300);
+                } else {
+                    $timeout(function () {
+                        $ionicScrollDelegate.scrollBottom(true);
+                    }, 300);
+                }
+                /* if($rootScope.PatientsdetCount == 0) {
+                  $ionicScrollDelegate.$getByHandle('scrollTopView').scrollTop();
+                }*/
+                //   $ionicScrollDelegate.$getByHandle('scrollTopView').scrollTop();
+            } else {
+                $scope.updationListLength = 0;
 
-      }
+            }
 
-    }
+        }
 
         $scope.OnSelectPatientdet = function (currentpatientdet) {
             if (currentpatientdet.checked === true) {
@@ -3193,7 +3210,7 @@ angular.module('starter.controllers')
             LoginService.putPatientMedicalProfile(params);
         };
         $scope.hideSurgeryPopup = function (model) {
-          $("#localize-widget").hide();
+            $("#localize-widget").hide();
             $scope.modal.remove();
             $rootScope.showNewSurgeryAdd = false;
             $scope.showEditSurgery = false;
@@ -3210,7 +3227,7 @@ angular.module('starter.controllers')
         }, 100);
 
         $scope.showNewSurgeryAddScreen = function () {
-              $("#localize-widget").hide();
+            $("#localize-widget").hide();
             $scope.surgery = {};
             $timeout(function () {
                 $('select option').filter(function () {
@@ -3648,7 +3665,7 @@ angular.module('starter.controllers')
         //   alert(app);
         // }
         $scope.goTOSchedule = function () {
-        //  $("#localize-widget").show();
+            //  $("#localize-widget").show();
             $('<link/>', {
                 rel: 'stylesheet',
                 type: 'text/css',
@@ -3723,22 +3740,21 @@ angular.module('starter.controllers')
             }
         };
 
-        $scope.changeCountry = function(){
+        $scope.changeCountry = function () {
             var country = document.getElementById('country').value;
-            if(country == 'Select Country')
-            {
-              $scope.imageName = '';
+            if (country == 'Select Country') {
+                $scope.imageName = '';
             }
         }
 
         $rootScope.ValidationReg = function ($a) {
-            $('.ContinueAddressBtn').css({'display':'none'});
+            $('.ContinueAddressBtn').css({ 'display': 'none' });
             function refresh_close() {
                 $('.close').click(function () {
                     $(this).parent().fadeOut(200);
-                    setTimeout(function(){
-                    $('.ContinueAddressBtn').css({'display':'block'});
-                    },100)
+                    setTimeout(function () {
+                        $('.ContinueAddressBtn').css({ 'display': 'block' });
+                    }, 100)
                 });
             }
             refresh_close();
@@ -3746,104 +3762,97 @@ angular.module('starter.controllers')
             $("#notifications-top-center").remove();
             $(".ErrorMessageReg").append(top);
             refresh_close();
-         }
+        }
 
-        $scope.addressEditSave = function(){
-          $scope.healthInfoModel.address =  document.getElementById('fullAddress').value;
-          $scope.countryValue = document.getElementById('country').value;
-          if($scope.countryValue == '' || $scope.countryValue == null || $scope.countryValue == 'Select Country' ) {
-            $scope.ErrorMessage = "Please select Country";
-            $rootScope.ValidationReg($scope.ErrorMessage);
-          } else if($scope.countryValue == 'Select Country') {
-            $scope.ErrorMessage = "Please select Country";
-            $rootScope.ValidationReg($scope.ErrorMessage);
-          } else {
-            $('.ContinueAddressBtn').css({'display':'block'});
-          }
-
-          var stateObj  = '';
-          var countryFetch  = '';
-          var countryCodeFetch  = '';
-          var stateCodeFetch  = '';
-          //document.getElementById('fullAddress').value;
-          $scope.route = document.getElementById('txtPlaces').value;
-          $scope.address2 = document.getElementById('address2').value;
-          $scope.City = document.getElementById('city').value;
-            var element =  document.getElementById('state');
-            if (typeof(element) != 'undefined' && element != null)
-            {
-               $scope.State = document.getElementById('state').value;
-               stateCodeFetch = document.getElementById('state').options[document.getElementById('state').selectedIndex].getAttribute("data-state-code");
-               stateObj = $scope.State;
+        $scope.addressEditSave = function () {
+            $scope.healthInfoModel.address = document.getElementById('fullAddress').value;
+            $scope.countryValue = document.getElementById('country').value;
+            if ($scope.countryValue == '' || $scope.countryValue == null || $scope.countryValue == 'Select Country') {
+                $scope.ErrorMessage = "Please select Country";
+                $rootScope.ValidationReg($scope.ErrorMessage);
+            } else if ($scope.countryValue == 'Select Country') {
+                $scope.ErrorMessage = "Please select Country";
+                $rootScope.ValidationReg($scope.ErrorMessage);
+            } else {
+                $('.ContinueAddressBtn').css({ 'display': 'block' });
             }
-            var element =  document.getElementById('state1');
-            if (typeof(element) != 'undefined' && element != null)
-            {
-              $scope.state1 = document.getElementById('state1').value;
-              stateCodeFetch = $scope.state1;
-              stateObj = $scope.state1;
+
+            var stateObj = '';
+            var countryFetch = '';
+            var countryCodeFetch = '';
+            var stateCodeFetch = '';
+            //document.getElementById('fullAddress').value;
+            $scope.route = document.getElementById('txtPlaces').value;
+            $scope.address2 = document.getElementById('address2').value;
+            $scope.City = document.getElementById('city').value;
+            var element = document.getElementById('state');
+            if (typeof (element) != 'undefined' && element != null) {
+                $scope.State = document.getElementById('state').value;
+                stateCodeFetch = document.getElementById('state').options[document.getElementById('state').selectedIndex].getAttribute("data-state-code");
+                stateObj = $scope.State;
             }
-          $scope.ZipCode = document.getElementById('zipcode').value;
-          $scope.Country = document.getElementById('country').value;
-          if($scope.Country == 'US')
-          {
-            $scope.showCountrySelectBox = true;
-          }else{
-            $scope.showCountrySelectBox = false;
-          }
-          var countryFetch = document.getElementById('country').options[document.getElementById('country').selectedIndex].text;
-          var countryCodeFetch = document.getElementById('country').value;
+            var element = document.getElementById('state1');
+            if (typeof (element) != 'undefined' && element != null) {
+                $scope.state1 = document.getElementById('state1').value;
+                stateCodeFetch = $scope.state1;
+                stateObj = $scope.state1;
+            }
+            $scope.ZipCode = document.getElementById('zipcode').value;
+            $scope.Country = document.getElementById('country').value;
+            if ($scope.Country == 'US') {
+                $scope.showCountrySelectBox = true;
+            } else {
+                $scope.showCountrySelectBox = false;
+            }
+            var countryFetch = document.getElementById('country').options[document.getElementById('country').selectedIndex].text;
+            var countryCodeFetch = document.getElementById('country').value;
 
-          var res = new Object();
-          res['city'] = $scope.City;
-          res['country'] = countryFetch;
-          res['countryCode'] = countryCodeFetch;
-          res['line1'] = $scope.route;
-          res['line2'] = $scope.address2;
-          res['postalCode'] = $scope.ZipCode;
-          res['state'] = stateObj;
-          res['stateCode'] = stateCodeFetch;
+            var res = new Object();
+            res['city'] = $scope.City;
+            res['country'] = countryFetch;
+            res['countryCode'] = countryCodeFetch;
+            res['line1'] = $scope.route;
+            res['line2'] = $scope.address2;
+            res['postalCode'] = $scope.ZipCode;
+            res['state'] = stateObj;
+            res['stateCode'] = stateCodeFetch;
 
-          $scope.fullAddressObj = res;
-          //console.log($scope.fullAddressObj);
-          if($scope.countryValue == '' || $scope.countryValue == null || $scope.countryValue == 'Select Country' ) {
+            $scope.fullAddressObj = res;
+            //console.log($scope.fullAddressObj);
+            if ($scope.countryValue == '' || $scope.countryValue == null || $scope.countryValue == 'Select Country') {
 
             } else {
-             $scope.modal.remove()
-                .then(function () {
-                    $scope.modal = null;
-                });
+                $scope.modal.remove()
+                    .then(function () {
+                        $scope.modal = null;
+                    });
             }
         }
 
-        $scope.makeAddress=function(){
+        $scope.makeAddress = function () {
             var txtPlaces = document.getElementById('txtPlaces').value;
             var address2 = document.getElementById('address2').value;
             var city = document.getElementById('city').value
-            var element =  document.getElementById('state');
-            if (typeof(element) != 'undefined' && element != null)
-            {
-               if(document.getElementById('state').value != '' && document.getElementById('state').value != 'Select State')
-                var state = document.getElementById('state').value;
+            var element = document.getElementById('state');
+            if (typeof (element) != 'undefined' && element != null) {
+                if (document.getElementById('state').value != '' && document.getElementById('state').value != 'Select State')
+                    var state = document.getElementById('state').value;
             }
-            var element =  document.getElementById('state1');
-            if (typeof(element) != 'undefined' && element != null)
-            {
-               if(document.getElementById('state1').value != '' )
-                var state = document.getElementById('state1').value;
+            var element = document.getElementById('state1');
+            if (typeof (element) != 'undefined' && element != null) {
+                if (document.getElementById('state1').value != '')
+                    var state = document.getElementById('state1').value;
             }
             var zipcode = document.getElementById('zipcode').value;
-            if(document.getElementById('country').value != 'Select Country' )
-            {
+            if (document.getElementById('country').value != 'Select Country') {
 
-                        var country = document.getElementById('country').value;
-                        $scope.imageName = 'images/countries/flags/'+country+'-32.png';
+                var country = document.getElementById('country').value;
+                $scope.imageName = 'images/countries/flags/' + country + '-32.png';
             }
-            if(document.getElementById('country').value == 'US')
-            {
-              $scope.showCountrySelectBox  = true;
-            }else{
-              $scope.showCountrySelectBox  = false;
+            if (document.getElementById('country').value == 'US') {
+                $scope.showCountrySelectBox = true;
+            } else {
+                $scope.showCountrySelectBox = false;
             }
             var res = new Object();
             res['txtPlaces'] = txtPlaces;
@@ -3855,48 +3864,45 @@ angular.module('starter.controllers')
             var fullAddressCombo = '';
             var c = Object.keys(res).length;
             var count = 0;
-            for(var i in res)
-            {
+            for (var i in res) {
                 count++;
-             if(res[i] != '' && res[i] != undefined && res[i].indexOf('?') == -1)
-                 {
-                     if(count != c)
-                        {
-                              fullAddressCombo = fullAddressCombo+res[i]+', ';
-                        }else{
-                            fullAddressCombo = fullAddressCombo+res[i];
-                        }
+                if (res[i] != '' && res[i] != undefined && res[i].indexOf('?') == -1) {
+                    if (count != c) {
+                        fullAddressCombo = fullAddressCombo + res[i] + ', ';
+                    } else {
+                        fullAddressCombo = fullAddressCombo + res[i];
+                    }
 
-                 }
+                }
             }
 
-            if(fullAddressCombo.length != 0 && fullAddressCombo!=', ' && fullAddressCombo !=',' )
-                            document.getElementById('fullAddress').value = fullAddressCombo;
-            if(fullAddressCombo.length == 0 || fullAddressCombo == ', ' || fullAddressCombo ==',' )
-                            document.getElementById('fullAddress').value = "Please enter address";
+            if (fullAddressCombo.length != 0 && fullAddressCombo != ', ' && fullAddressCombo != ',')
+                document.getElementById('fullAddress').value = fullAddressCombo;
+            if (fullAddressCombo.length == 0 || fullAddressCombo == ', ' || fullAddressCombo == ',')
+                document.getElementById('fullAddress').value = "Please enter address";
         }
 
-/*
-    $scope.disableTap = function(){
-        document.getElementById('txtPlaces').addEventListener('keypress', function(e) {
-        if (event.which == 13 || event.keyCode == 13 && document.getElementsByClassName('pac-container:visible').length) {
-            return true;
-        }
-        return true;
-        });
-    }*/
+        /*
+            $scope.disableTap = function(){
+                document.getElementById('txtPlaces').addEventListener('keypress', function(e) {
+                if (event.which == 13 || event.keyCode == 13 && document.getElementsByClassName('pac-container:visible').length) {
+                    return true;
+                }
+                return true;
+                });
+            }*/
 
-                /*    $scope.route = $rootScope.currentPatientDetails[0].addressObject.line1;
-                    $scope.address2 = $rootScope.currentPatientDetails[0].addressObject.line2;
-                    $scope.City = $rootScope.currentPatientDetails[0].addressObject.city;
-                    $scope.ZipCode = $rootScope.currentPatientDetails[0].addressObject.postalCode;
-                    $scope.State = $rootScope.currentPatientDetails[0].addressObject.state;
-                    $scope.state1 = $rootScope.currentPatientDetails[0].addressObject.state;
-                    $scope.Country = $rootScope.currentPatientDetails[0].addressObject.countryCode;*/
+        /*    $scope.route = $rootScope.currentPatientDetails[0].addressObject.line1;
+            $scope.address2 = $rootScope.currentPatientDetails[0].addressObject.line2;
+            $scope.City = $rootScope.currentPatientDetails[0].addressObject.city;
+            $scope.ZipCode = $rootScope.currentPatientDetails[0].addressObject.postalCode;
+            $scope.State = $rootScope.currentPatientDetails[0].addressObject.state;
+            $scope.state1 = $rootScope.currentPatientDetails[0].addressObject.state;
+            $scope.Country = $rootScope.currentPatientDetails[0].addressObject.countryCode;*/
 
 
         $scope.addressEditModal = function () {
-          $("#localize-widget").hide();
+            $("#localize-widget").hide();
             $ionicModal.fromTemplateUrl('templates/tab-addressedittemplate.html', {
                 scope: $scope,
                 animation: 'slide-in-up',
@@ -3905,148 +3911,140 @@ angular.module('starter.controllers')
             }).then(function (modal) {
                 $scope.modal = modal;
                 $scope.modal.show().then(function () {
-                document.getElementById('fullAddress').value = $scope.healthInfoModel.address;
-                document.getElementById('country').value = $scope.Country;
-                if($scope.state1 == undefined)
-                    $scope.state1 = '';
-                if($scope.State == undefined)
-                    $scope.State = '';
-                $scope.oldfullAddress =  document.getElementById('fullAddress').value;
-                $scope.oldroute =  document.getElementById('txtPlaces').value;
-                $scope.oldaddress2 = document.getElementById('address2').value;
-                $scope.oldCity = document.getElementById('city').value;
-                $scope.oldZipCode = document.getElementById('zipcode').value;
-                $scope.oldCountry = document.getElementById('country').value;
-                $scope.imageName = 'images/countries/flags/'+$scope.oldCountry+'-32.png';
-                var element =  document.getElementById('state1');
-                        if (typeof(element) != 'undefined' && element != null)
-                        {
-                                document.getElementById('state1').value = $scope.state1;
-                                $scope.oldstate1 = document.getElementById('state1').value;
-                        }
-                 var element =  document.getElementById('state');
-                        if (typeof(element) != 'undefined' && element != null)
-                        {
-                                document.getElementById('state').value = $scope.State;
-                                $scope.oldState = document.getElementById('state').value;
-                        }
-                var autocomplete = new google.maps.places.Autocomplete(document.getElementById('txtPlaces'));
-                google.maps.event.addListener(autocomplete, 'place_changed', fillAddress);
-                setTimeout(function(){
-                    var container = document.getElementsByClassName('pac-container');
-                    container = angular.element(container);
-                    container.css('z-index', '5000');
-                    container.css('pointer-events', 'auto');
-                    container.attr('data-tap-disabled', 'true');
-                    container.on('click', function(e){
-                        //input.blur();
-                          e.preventDefault();
-                        document.getElementById('txtPlaces').blur();
-                    });
-                }, 2000);
-                function fillAddress()
-                {
-                var place = autocomplete.getPlace();
-                $scope.$apply(function() {
-                    $scope.route = '';
-                    $scope.address2 = '';
-                    $scope.City = '';
-                    $scope.ZipCode = '';
-                    $scope.State = '';
-                    $scope.state1 = '';
-                    $scope.Country = '';
-                    $scope.vsPlace = place;
-                    for(var k = 0; k < place.address_components.length; k++){
+                    document.getElementById('fullAddress').value = $scope.healthInfoModel.address;
+                    document.getElementById('country').value = $scope.Country;
+                    if ($scope.state1 == undefined)
+                        $scope.state1 = '';
+                    if ($scope.State == undefined)
+                        $scope.State = '';
+                    $scope.oldfullAddress = document.getElementById('fullAddress').value;
+                    $scope.oldroute = document.getElementById('txtPlaces').value;
+                    $scope.oldaddress2 = document.getElementById('address2').value;
+                    $scope.oldCity = document.getElementById('city').value;
+                    $scope.oldZipCode = document.getElementById('zipcode').value;
+                    $scope.oldCountry = document.getElementById('country').value;
+                    $scope.imageName = 'images/countries/flags/' + $scope.oldCountry + '-32.png';
+                    var element = document.getElementById('state1');
+                    if (typeof (element) != 'undefined' && element != null) {
+                        document.getElementById('state1').value = $scope.state1;
+                        $scope.oldstate1 = document.getElementById('state1').value;
+                    }
+                    var element = document.getElementById('state');
+                    if (typeof (element) != 'undefined' && element != null) {
+                        document.getElementById('state').value = $scope.State;
+                        $scope.oldState = document.getElementById('state').value;
+                    }
+                    var autocomplete = new google.maps.places.Autocomplete(document.getElementById('txtPlaces'));
+                    google.maps.event.addListener(autocomplete, 'place_changed', fillAddress);
+                    setTimeout(function () {
+                        var container = document.getElementsByClassName('pac-container');
+                        container = angular.element(container);
+                        container.css('z-index', '5000');
+                        container.css('pointer-events', 'auto');
+                        container.attr('data-tap-disabled', 'true');
+                        container.on('click', function (e) {
+                            //input.blur();
+                            e.preventDefault();
+                            document.getElementById('txtPlaces').blur();
+                        });
+                    }, 2000);
+                    function fillAddress() {
+                        var place = autocomplete.getPlace();
+                        $scope.$apply(function () {
+                            $scope.route = '';
+                            $scope.address2 = '';
+                            $scope.City = '';
+                            $scope.ZipCode = '';
+                            $scope.State = '';
+                            $scope.state1 = '';
+                            $scope.Country = '';
+                            $scope.vsPlace = place;
+                            for (var k = 0; k < place.address_components.length; k++) {
 
 
-                        if(place.address_components[k].types.indexOf("street_number") >= 0){
-                                $scope.street = place.address_components[k].long_name;
-                            }
-                            if(place.address_components[k].types.indexOf("route") >= 0){
-                                $scope.route = place.address_components[k].short_name;
-                                if($scope.street != '' && $scope.street != null && $scope.street != undefined)
-                                {
-                                      $scope.route = $scope.street + ' ' + $scope.route;
+                                if (place.address_components[k].types.indexOf("street_number") >= 0) {
+                                    $scope.street = place.address_components[k].long_name;
                                 }
-                            }
-                            if(place.address_components[k].types.indexOf("sublocality_level_1") >= 0){
-                                $scope.sublocality1 = place.address_components[k].long_name;
-                            }
-                            if(place.address_components[k].types.indexOf("locality") >= 0){
-                                $scope.City = place.address_components[k].long_name;
-                            }
-                            if(place.address_components[k].types.indexOf("administrative_area_level_2") >= 0){
-                                $scope.district = place.address_components[k].long_name;
-                            }
-                            if(place.address_components[k].types.indexOf("postal_code") >= 0){
-                                $scope.ZipCode = Number(place.address_components[k].long_name);
-                            }
-                            if(place.address_components[k].types.indexOf("administrative_area_level_1") >= 0){
-                                $scope.State = place.address_components[k].long_name;
-                                $scope.StateCode = place.address_components[k].short_name;
-                            }
-                            if(place.address_components[k].types.indexOf("country") >= 0){
-                                $scope.Country = place.address_components[k].short_name;
-                                if($scope.Country == "US")
-                                {
-                                   $scope.showCountrySelectBox = true;
-                                }else{
-                                    $scope.showCountrySelectBox = false;
-                                     $scope.state1 =  $scope.State;
-                                     $scope.State = '';
-                                }
-                            }
-                        }
-                        document.getElementById('txtPlaces').value = $scope.route;
-                        document.getElementById('city').value = $scope.City;
-                        document.getElementById('address2').value = '';
-                        var element =  document.getElementById('state');
-                        if (typeof(element) != 'undefined' && element != null)
-                                document.getElementById('state').value = $scope.State;
-                        var element =  document.getElementById('state1');
-                        if (typeof(element) != 'undefined' && element != null)
-                                document.getElementById('state1').value = $scope.state1;
-                        document.getElementById('zipcode').value = $scope.ZipCode;
-                        document.getElementById('country').value = $scope.Country;
-                        $scope.imageName = 'images/countries/flags/'+$scope.Country+'-32.png';
-                        if($scope.State != '')
-                            var state = $scope.StateCode;
-                        if($scope.state1 != '')
-                            var state = $scope.state1;
-                        var txtPlaces = $scope.route;
-                        var city = $scope.City;
-                        var zipcode = $scope.ZipCode;
-                        var country = $scope.Country;
-                        var res = new Object();
-                        //res['street'] = $scope.street;
-                        res['txtPlaces'] = txtPlaces;
-                        res['city'] = city;
-                        res['state'] = state;
-                        res['zipcode'] = zipcode;
-                        res['country'] = country;
-                        var fullAddressCombo = '';
-                        var c =  Object.keys(res).length;
-                        var count = 0;
-                        for(var i in res)
-                        {
-                         if(res[i] != ',' && res[i] != ' ,' && res[i] != '' && res[i] != undefined)
-                             {
-                                count++;
-                                if(count != c)
-                                    {
-                                          fullAddressCombo = fullAddressCombo+res[i]+', ';
-                                    }else{
-                                        fullAddressCombo = fullAddressCombo+res[i];
+                                if (place.address_components[k].types.indexOf("route") >= 0) {
+                                    $scope.route = place.address_components[k].short_name;
+                                    if ($scope.street != '' && $scope.street != null && $scope.street != undefined) {
+                                        $scope.route = $scope.street + ' ' + $scope.route;
                                     }
-                             }
-                        }
-                        if(fullAddressCombo.length != 0 && fullAddressCombo!=', ' && fullAddressCombo !=',' )
-                            document.getElementById('fullAddress').value = fullAddressCombo;
-                        if(fullAddressCombo.length == 0 || fullAddressCombo ==', ' || fullAddressCombo ==',' )
-                            document.getElementById('fullAddress').value = "Please enter address";
-                });
-             } // fillAddress closed
-        }); // modal closed
-     }); // then closed
-   } //addressEditModal closed
-});
+                                }
+                                if (place.address_components[k].types.indexOf("sublocality_level_1") >= 0) {
+                                    $scope.sublocality1 = place.address_components[k].long_name;
+                                }
+                                if (place.address_components[k].types.indexOf("locality") >= 0) {
+                                    $scope.City = place.address_components[k].long_name;
+                                }
+                                if (place.address_components[k].types.indexOf("administrative_area_level_2") >= 0) {
+                                    $scope.district = place.address_components[k].long_name;
+                                }
+                                if (place.address_components[k].types.indexOf("postal_code") >= 0) {
+                                    $scope.ZipCode = Number(place.address_components[k].long_name);
+                                }
+                                if (place.address_components[k].types.indexOf("administrative_area_level_1") >= 0) {
+                                    $scope.State = place.address_components[k].long_name;
+                                    $scope.StateCode = place.address_components[k].short_name;
+                                }
+                                if (place.address_components[k].types.indexOf("country") >= 0) {
+                                    $scope.Country = place.address_components[k].short_name;
+                                    if ($scope.Country == "US") {
+                                        $scope.showCountrySelectBox = true;
+                                    } else {
+                                        $scope.showCountrySelectBox = false;
+                                        $scope.state1 = $scope.State;
+                                        $scope.State = '';
+                                    }
+                                }
+                            }
+                            document.getElementById('txtPlaces').value = $scope.route;
+                            document.getElementById('city').value = $scope.City;
+                            document.getElementById('address2').value = '';
+                            var element = document.getElementById('state');
+                            if (typeof (element) != 'undefined' && element != null)
+                                document.getElementById('state').value = $scope.State;
+                            var element = document.getElementById('state1');
+                            if (typeof (element) != 'undefined' && element != null)
+                                document.getElementById('state1').value = $scope.state1;
+                            document.getElementById('zipcode').value = $scope.ZipCode;
+                            document.getElementById('country').value = $scope.Country;
+                            $scope.imageName = 'images/countries/flags/' + $scope.Country + '-32.png';
+                            if ($scope.State != '')
+                                var state = $scope.StateCode;
+                            if ($scope.state1 != '')
+                                var state = $scope.state1;
+                            var txtPlaces = $scope.route;
+                            var city = $scope.City;
+                            var zipcode = $scope.ZipCode;
+                            var country = $scope.Country;
+                            var res = new Object();
+                            //res['street'] = $scope.street;
+                            res['txtPlaces'] = txtPlaces;
+                            res['city'] = city;
+                            res['state'] = state;
+                            res['zipcode'] = zipcode;
+                            res['country'] = country;
+                            var fullAddressCombo = '';
+                            var c = Object.keys(res).length;
+                            var count = 0;
+                            for (var i in res) {
+                                if (res[i] != ',' && res[i] != ' ,' && res[i] != '' && res[i] != undefined) {
+                                    count++;
+                                    if (count != c) {
+                                        fullAddressCombo = fullAddressCombo + res[i] + ', ';
+                                    } else {
+                                        fullAddressCombo = fullAddressCombo + res[i];
+                                    }
+                                }
+                            }
+                            if (fullAddressCombo.length != 0 && fullAddressCombo != ', ' && fullAddressCombo != ',')
+                                document.getElementById('fullAddress').value = fullAddressCombo;
+                            if (fullAddressCombo.length == 0 || fullAddressCombo == ', ' || fullAddressCombo == ',')
+                                document.getElementById('fullAddress').value = "Please enter address";
+                        });
+                    } // fillAddress closed
+                }); // modal closed
+            }); // then closed
+        } //addressEditModal closed
+    });

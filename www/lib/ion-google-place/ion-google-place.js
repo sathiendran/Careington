@@ -207,7 +207,8 @@ angular.module('ion-google-place', [])
                                     scope.getCardDetails.State = location.address_components[k].short_name;
                                 }
                                 if(location.address_components[k].types.indexOf("country") >= 0){
-                                    scope.getCardDetails.Country = location.address_components[k].long_name;
+                                    scope.getCardDetails.Country = location.address_components[k].short_name;
+                                    scope.getCardDetails.CountryFullName = location.address_components[k].long_name;
                                 }
                                 if(location.address_components[k].types.indexOf("locality") >= 0){
                                     scope.getCardDetails.City = location.address_components[k].long_name;

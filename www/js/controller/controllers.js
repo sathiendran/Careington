@@ -609,7 +609,19 @@ console.log("localizeCurrent ="+localizeCurrent);
         $rootScope.reportHospitalUpperCase = 'Virtual Care';
     }
 
-
+    //Sakthi 
+        window.addEventListener('native.keyboardshow', function () {
+            $scope.$apply(function() {
+                $("#localize-widget").hide();
+            });
+            
+        })
+        window.addEventListener('native.keyboardhide', function () {
+                $scope.$apply(function() {
+                $("#localize-widget").show();
+            });
+        });
+    
     /******** Code to implement static brand color ends here **********/
 
     if ($rootScope.IOSDevice || $rootScope.isIPad) {
@@ -740,7 +752,7 @@ console.log("localizeCurrent ="+localizeCurrent);
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
         $rootScope.userAccNewTitle = "margin-top: -10px;"
-   } else if (!$rootScope.AndroidDevice) {
+   } else if ($rootScope.AndroidDevice) {
         $rootScope.online = navigator.onLine;
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -6556,7 +6568,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
     }
 
     $scope.doPostPaymentProfileDetails = function() {
-
+        debugger;
         $rootScope.iscancel = false;
 
         $rootScope.isEditAvailable = false;
@@ -6577,6 +6589,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $rootScope.ExpiryMonth = $scope.getCardDetails.CardExpireDatesMonth;
         $rootScope.ExpiryYear = $scope.getCardDetails.CardExpireDatesYear;
         $scope.Country = $scope.getCardDetails.Country;
+        $scope.CountryFullName = $scope.getCardDetails.CountryFullName;
 
 
 
