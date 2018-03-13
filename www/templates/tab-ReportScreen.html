@@ -91,7 +91,10 @@
                                     <span class="pc-report__data-list-title localizejs" style="
     width: 100%;
 ">AGE</span>
-                                    <span class="pc-report__data-list-desc">{{existingConsultationReport.ageFormat}}</span>
+                            <!-- <span class="pc-report__data-list-desc">{{existingConsultationReport.ageFormat}}</span> -->
+
+<span class="pc-report__data-list-desc localizejs"><span>{{existingConsultationReport.dob | ageFilter}}</span><span class="localizejs">{{existingConsultationReport.dob | ageYearsStringFilter}}</span><span>{{existingConsultationReport.dob | ageMonthFilter}}</span> <span>{{existingConsultationReport.dob | ageDayFilter}}</span> </span> 
+                            
                                 </div>
                             </div>
                             <div class="pc-report__data-list">
