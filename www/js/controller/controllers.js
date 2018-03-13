@@ -6568,7 +6568,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
     }
 
     $scope.doPostPaymentProfileDetails = function() {
-
+        debugger;
         $rootScope.iscancel = false;
 
         $rootScope.isEditAvailable = false;
@@ -6589,6 +6589,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $rootScope.ExpiryMonth = $scope.getCardDetails.CardExpireDatesMonth;
         $rootScope.ExpiryYear = $scope.getCardDetails.CardExpireDatesYear;
         $scope.Country = $scope.getCardDetails.Country;
+        $scope.CountryFullName = $scope.getCardDetails.CountryFullName;
 
 
 
