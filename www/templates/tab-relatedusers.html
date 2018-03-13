@@ -177,7 +177,7 @@
                      <div class="docAppointImage" ng-bind-html="drawImage(getDependentDetails.profileImagePath,getDependentDetails.patientFirstName,getDependentDetails.patientLastName)"></div>
                      <h2 class="relatedhead"><span class="sfont fname">{{getDependentDetails.patientFirstName}}</span> <span class="sname">{{getDependentDetails.patientLastName}}</span> </h2>
                      <!-- <p class="relatediconfont">{{getDependentDetails.gender}} .<span ng-if="getDependentDetails.birthdate != ''">  {{getDependentDetails.birthdate}}</span> <span ng-if="getDependentDetails.relationship != ''"> . {{getDependentDetails.relationship}} </span></p> -->
-                     <p class="relatediconfont localizejs">{{getDependentDetails.gender}} .<!-- <span ng-if="getDependentDetails.birthdate != ''">  {{getDependentDetails.modifiedBirthdate}}</span> --> 
+                     <p class="relatediconfont localizejs"><span class="localizejs">{{getDependentDetails.gender}} </span> .<!-- <span ng-if="getDependentDetails.birthdate != ''">  {{getDependentDetails.modifiedBirthdate}}</span> --> 
                         <span  ng-if="getDependentDetails.birthdate != ''"> <span>{{getDependentDetails.birthdate | ageFilter}}</span><span class="localizejs">{{getDependentDetails.birthdate | ageYearsStringFilter}}</span><span>{{getDependentDetails.birthdate | ageMonthFilter}}</span> <span>{{getDependentDetails.birthdate | ageDayFilter}}</span> </span>
                         <span class="localizejs" ng-if="getDependentDetails.relationship != ''"> . {{getDependentDetails.relationship}} </span></p>
                   </a>
