@@ -26398,7 +26398,7 @@ only screen and (min-width: 541px) {
     transition: border-color 0.3s ease
 }
 .consultation-type__item:hover .consultation-type__icon {
-    background-color: rgba(0, 146, 187, 0.25)
+    /*background-color: rgba(0, 146, 187, 0.25)*/
 }
 .consultation-type__item.is-active {
     color: #000;

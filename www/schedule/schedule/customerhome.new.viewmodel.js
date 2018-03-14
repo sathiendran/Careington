@@ -2108,21 +2108,26 @@ var setUserVars = function() {
                 };
 
                 this.vm_expandAddNotes = function() {
+                    debugger;
                     this.set("vm_isAddNotesExpanded", !this.vm_isAddNotesExpanded);
-                        $('.dialogbox-master__wrapper').animate({scrollTop : 1000},900);
+                        // $('.dialogbox-master__wrapper').animate({scrollTop : 1000},900);
+                    window.setTimeout(function () {
+                        $('.dialogbox-master__wrapper').animate({scrollTop : 1000},1900);
+                    }, 1000);
                 };
                 this.vm_enterNotes = function() {
-
-                        $('.dialogbox-master__wrapper').animate({scrollTop : 500},400);
+                    debugger;
+                    window.setTimeout(function () {
+                            $('.dialogbox-master__wrapper').animate({scrollTop : 500},400);
+                        }, 1000);
                 };
                 this.vm_enterNumber = function() {
-
-                        $('.dialogbox-master__wrapper').animate({scrollTop : 300},100);
+                        window.setTimeout(function () {
+                            $('.dialogbox-master__wrapper').animate({scrollTop : 1000},900);
+                        }, 1000);
                 };
 
-                this.vm_onKeyUpAdditionalNotes = function() {
-                    this._onDataChange();
-                };
+                //sakthi
 
                 this.vm_onAddConcernClick = function(e) {
                     this.preventDefault(e);

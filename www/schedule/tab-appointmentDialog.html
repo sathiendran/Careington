@@ -109,10 +109,10 @@ input#datepicker1
                             </div>
                         </div>-->
 
-                        <div class="dialogbox-master__box dialogbox-master__box--encounter-method"
-                            data-bind="source: encounterMethodSelector" data-template="encounterSelectorTemplate">
-                        </div>
-
+                            <div class="dialogbox-master__box dialogbox-master__box--encounter-method"
+                                data-bind="source: encounterMethodSelector" data-template="encounterSelectorTemplate">
+                            </div>
+                        
                         <div class="dialogbox-master__box dialogbox-master__box--phone js-show-phone" data-bind="css: {is-active: isPhone}">
                             <div class="dialogbox-master__subtitle localizejs">Provider will call patient at:</div>
 
@@ -124,7 +124,7 @@ input#datepicker1
                                     <input
                                         type="text"
                                         data-value-update="keyup"
-                                        data-bind="events: { keyup: vm_onPhoneNumberChange }, value: phoneNumber, disabled: isReadOnly"
+                                        data-bind="events: { click: vm_enterNumber, keyup: vm_onPhoneNumberChange }, value: phoneNumber, disabled: isReadOnly"
                                         class="localizejs consultation-phone__input js-phone-input"
                                         placeholder="Enter a phone number…"
                                         tabindex="5">
@@ -275,6 +275,8 @@ input#datepicker1
                                         <!--<textarea disabled name="" id="" class="consultation-note__textarea js-autoresize-textarea" data-bind="html: additionalNotes, visible: isReadOnly"></textarea>-->
                                         <textarea disabled="" name="" id="" class="consultation-note__textarea js-autoresize-textarea" data-bind="html: additionalNotes, visible: isReadOnly" style="overflow-x: hidden; word-wrap: break-word; overflow-y: visible; height: auto;"></textarea>
                                     </div>
+
+                                    <span class="TextareaHieght" style="height: 300px;display:none;"></span>
                                 </div>
                             </div>
 
@@ -317,3 +319,24 @@ input#datepicker1
         </div>
     </div>
 <!--</div>-->
+
+<script>
+
+$(document).ready(function(){
+     debugger;
+    $('.consultation-note__textarea').focus(function() {
+        $('.TextareaHieght').css({'display':'block'})
+   }).blur(function() {
+      $('.TextareaHieght').css({'display':'none'})
+   }); 
+
+   //  $('.consultation-phone__input').focus(function() {
+   //      $('.TextareaHieght').css({'display':'block'})
+   // }).blur(function() {
+   //    $('.TextareaHieght').css({'display':'none'})
+   // }); 
+
+});
+
+
+</script>
