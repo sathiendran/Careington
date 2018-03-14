@@ -7054,6 +7054,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                                    });
                                    if(typeof $rootScope.scheduledListDatas != 'undefined' && $rootScope.scheduledListDatas != null && typeof $rootScope.inProgressConsultID != 'undefined' && $rootScope.inProgressConsultID != null) {
                                       // if(($rootScope.inProgressConsultID == $rootScope.getScheduledList[0].consultationId) && ($rootScope.scheduledListDatas.patientId == $rootScope.getScheduledList[0].patientId)) {
+                                      
                                       var getConsultDetails = $filter('filter')($rootScope.getScheduledList, {
                                             consultationId: $rootScope.inProgressConsultID
                                         });
@@ -7365,7 +7366,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                          }
                       });
 
-
+                      var isOpenPopup = 0;
        activeRoomConHub.on("broadcastMessage", function(messageType, message) {
           // alert("notificationService: broadcastMessage");
           $rootScope.inProgressConsultID = message;
@@ -7435,6 +7436,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
            }
            else if(messageType == 'consultation_dismissed') {
              //  alert('gg1');
+            if(isOpenPopup == 0) {
+                isOpenPopup += 1;
                navigator.notification.alert(
                 // 'This consultation has been dismissed.If you feel this cancellation is in error, please contact your provider. ', // message
                     consultDismisMsg,
@@ -7443,8 +7446,10 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                         activeConsultConnection.qs = {};
                         activeConsultConnection = null;
                         activeRoomConHub = null;
-                        if((($('.appointInProgress').is(':hidden') != true) && $state.current.name == "tab.appoimentDetails") || $state.current.name == "tab.waitingRoom") {
+                       if((($('.appointInProgress').is(':hidden') != true) && $state.current.name == "tab.appoimentDetails") || $state.current.name == "tab.waitingRoom") {
                             $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                        } else if($state.current.name == "tab.userhome") {
+                            $scope.doRefreshUserHome();                            
                         } else {
                             $rootScope.doGetScheduledNowPhoneConsulatation();
                         }
@@ -7454,6 +7459,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                    'Ok' // buttonName
                );
                return false;
+            }
            } else {
                // alert('gg4');
                if($state.current.name == "tab.waitingRoom")
