@@ -581,7 +581,7 @@ console.log("localizeCurrent ="+localizeCurrent);
     $rootScope.monthsList = CustomCalendar.getMonthsList();
     $rootScope.EditSurgerymonthsList = CustomCalendar.getMonthsListforSurgery();
     $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
-
+    $window.localStorage.setItem('AndroidDevice', ionic.Platform.isAndroid());
     $rootScope.IOSDevice = ionic.Platform.isIOS();
     $rootScope.AndroidDevice = ionic.Platform.isAndroid();
     $rootScope.WindowsPhone = ionic.Platform.isWindowsPhone();
