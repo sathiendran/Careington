@@ -1279,7 +1279,7 @@ body {
 //Consult Charge page
 .consultCharge_subHeader {
     border-bottom: 1px solid #C5C5C5;
-    height: 60px;
+    //height: 60px;
     margin-top: 125px;
     font-size: 20px;
     font-weight: bold;
@@ -1287,7 +1287,8 @@ body {
     color: #666666;
     span {
         color: #666666;
-        font-size: 26px;
+        //font-size: 26px;
+        font-size: 20px;
         top: -8px;
         position: relative;
         left: 15px;
@@ -1305,10 +1306,10 @@ body {
     }
 }
 .paymentConSecton {
-    margin: 160px 0 0 0;
+  //  margin: 160px 0 0 0;
 }
 .addCardConScetion {
-     margin: 155px 0 0 0;
+//     margin: 155px 0 0 0;
 }
 .consultCharge_content {
     padding-bottom: 30px;
@@ -4591,7 +4592,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
         pointer-events: none;
         color: #60605D;
         position: absolute;
-        width: 87%;
+        width: 92%;
         height: 100%;
         z-index: 15;
         overflow: hidden;
@@ -4601,7 +4602,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
         text-overflow: ellipsis;
         font-size: 19px;
         padding: 6px;
-        left: 18px;
+        left: 13px;
         top: 8px;
         text-align: left;
         /*font-weight: bold;*/
