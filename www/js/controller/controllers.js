@@ -3715,6 +3715,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 accessToken: $rootScope.accessToken,
                 success: function (data) {
                     $rootScope.hasRequiredFields = data.data[0].hasRequiredFields;
+                    $rootScope.userRoleDescription = data.data[0].userRoleDescription;
                     $rootScope.currentPatientDetails = data.data;;
                     // $rootScope.Country_cod =  $rootScope.currentPatientDetails[0].mobilePhone;
                     if (typeof $rootScope.currentPatientDetails[0].mobilePhone != 'undefined') {
@@ -3884,6 +3885,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.addressInfoFetch = $scope.selectedPatientDetails;
                     $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
 
+                $rootScope.userline1 = $rootScope.addressInfoFetch[0].addressObject.line1;
+                $rootScope.userline2 = $rootScope.addressInfoFetch[0].addressObject.line2;
+                $rootScope.usercity = $rootScope.addressInfoFetch[0].addressObject.city;
+                $rootScope.userstate = $rootScope.addressInfoFetch[0].addressObject.state;
+                $rootScope.userstateCode = $rootScope.addressInfoFetch[0].addressObject.stateCode;
+                $rootScope.userpostalCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
+                $rootScope.usercountry = $rootScope.addressInfoFetch[0].addressObject.country;
+                $rootScope.usercountryCode = $rootScope.addressInfoFetch[0].addressObject.countryCode;
+                 
                     console.log("data");
                     console.log($rootScope.currentPatientDetails);
                     $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
