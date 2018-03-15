@@ -2497,7 +2497,8 @@ angular.module('starter.controllers')
             };
             LoginService.getListOfPatientids(params);
 
-            $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
+            $ionicScrollDelegate.$getByHandle('scrollTopView').scrollTop();
+            //$ionicScrollDelegate.scrollTop(true);
 
             $scope.alphabet = iterateAlphabet();
             var users = $rootScope.currentPatientsearchList;
@@ -2616,7 +2617,7 @@ angular.module('starter.controllers')
                 currentpatientdet.checked === false;
                 $scope.modal.remove();
             }
-
+            $ionicScrollDelegate.scrollTop(true);
         }
         $scope.healthsearch = function (patientmedications) {
             $scope.data.searchProvider = '';
@@ -3140,7 +3141,7 @@ angular.module('starter.controllers')
             var mm = today.getMonth() + 1;
             var yyyy = today.getFullYear();
             var isSurgeryDateIsFuture = true;
-            if ($scope.surgery.dateStringYear === yyyy) {
+            if (+$scope.surgery.dateStringYear === yyyy) {
                 if ($scope.surgery.dateStringMonth > mm) {
                     var isSurgeryDateIsFuture = false;
                 }

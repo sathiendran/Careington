@@ -1213,7 +1213,8 @@ angular.module('starter.controllers')
             };
             LoginService.getListOfPatientids(params);
 
-            // $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
+             $ionicScrollDelegate.$getByHandle('scrollTopView').scrollTop();
+            //$ionicScrollDelegate.scrollTop(true);
 
             $scope.alphabet = iterateAlphabet();
             var users = $rootScope.currentPatientIDlist;
@@ -1291,7 +1292,7 @@ angular.module('starter.controllers')
                 currentpatientdet.checked === false;
                 $scope.modal.remove();
             }
-
+            $ionicScrollDelegate.scrollTop(true);
         }
         $scope.clearSelectionAndRebindpatSelectionList = function (selectedListItem, mainListItem) {
             angular.forEach(mainListItem, function (item, key2) {
