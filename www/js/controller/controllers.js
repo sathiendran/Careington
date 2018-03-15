@@ -609,19 +609,19 @@ console.log("localizeCurrent ="+localizeCurrent);
         $rootScope.reportHospitalUpperCase = 'Virtual Care';
     }
 
-    //Sakthi 
+    //Sakthi
         window.addEventListener('native.keyboardshow', function () {
             $scope.$apply(function() {
                 $("#localize-widget").hide();
             });
-            
+
         })
         window.addEventListener('native.keyboardhide', function () {
                 $scope.$apply(function() {
                 $("#localize-widget").show();
             });
         });
-    
+
     /******** Code to implement static brand color ends here **********/
 
     if ($rootScope.IOSDevice || $rootScope.isIPad) {
@@ -3709,7 +3709,10 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
             accessToken: $rootScope.accessToken,
             success: function(data) {
                 $rootScope.hasRequiredFields = data.data[0].hasRequiredFields;
+                $rootScope.userRoleDescription = data.data[0].userRoleDescription;
                 $rootScope.currentPatientDetails = data.data;;
+
+                console.log("$rootScope.userRoleDescription 1111== "+$rootScope.userRoleDescription);
                   // $rootScope.Country_cod =  $rootScope.currentPatientDetails[0].mobilePhone;
                 if(typeof $rootScope.currentPatientDetails[0].mobilePhone != 'undefined') {
                   $rootScope.Country_codsplit = $rootScope.currentPatientDetails[0].mobilePhone.split('(');
@@ -3760,10 +3763,15 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
                     $rootScope.passwordPreviousPage = true;
                     $scope.GetUserAccountCondition(profileData.id);
                     $state.go('tab.userhome');
-
+                    $rootScope.fromUserlogin = false;
                   //  $rootScope.doGetPatientProfiles();
                     //  $rootScope.doGetRelatedPatientProfiles('tab.userhome');
                 } else {
+                  if($rootScope.userRoleDescription === 'User'){
+                    console.log("co User is login");
+                     $rootScope.fromUserlogin = true;
+                  }
+                  console.log("$rootScope.fromUserlogin = "+$rootScope.fromUserlogin);
                     $scope.doGetSingleHospitalRegistrationInformation();
                      $rootScope.checkedpatientdet = '';
                      $rootScope.PatientidupdateList = [];
@@ -3876,8 +3884,15 @@ $rootScope.doGetPrimaryPatientProfiles = function() {
                 $rootScope.addressInfoFetch = $scope.selectedPatientDetails;
                 $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
 
-                console.log("data");
-                console.log($rootScope.currentPatientDetails);
+                $rootScope.userline1 = $rootScope.addressInfoFetch[0].addressObject.line1;
+                $rootScope.userline2 = $rootScope.addressInfoFetch[0].addressObject.line2;
+                $rootScope.usercity = $rootScope.addressInfoFetch[0].addressObject.city;
+                $rootScope.userstate = $rootScope.addressInfoFetch[0].addressObject.state;
+                $rootScope.userstateCode = $rootScope.addressInfoFetch[0].addressObject.stateCode;
+                $rootScope.userpostalCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
+                $rootScope.usercountry = $rootScope.addressInfoFetch[0].addressObject.country;
+                $rootScope.usercountryCode = $rootScope.addressInfoFetch[0].addressObject.countryCode;
+               
                 $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
                 $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
                 if(chkPreviousPage === true) {
@@ -7054,7 +7069,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                                    });
                                    if(typeof $rootScope.scheduledListDatas != 'undefined' && $rootScope.scheduledListDatas != null && typeof $rootScope.inProgressConsultID != 'undefined' && $rootScope.inProgressConsultID != null) {
                                       // if(($rootScope.inProgressConsultID == $rootScope.getScheduledList[0].consultationId) && ($rootScope.scheduledListDatas.patientId == $rootScope.getScheduledList[0].patientId)) {
-                                      
+
                                       var getConsultDetails = $filter('filter')($rootScope.getScheduledList, {
                                             consultationId: $rootScope.inProgressConsultID
                                         });
@@ -7449,7 +7464,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                        if((($('.appointInProgress').is(':hidden') != true) && $state.current.name == "tab.appoimentDetails") || $state.current.name == "tab.waitingRoom") {
                             $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
                         } else if($state.current.name == "tab.userhome") {
-                            $scope.doRefreshUserHome();                            
+                            $scope.doRefreshUserHome();
                         } else {
                             $rootScope.doGetScheduledNowPhoneConsulatation();
                         }
@@ -8994,11 +9009,11 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                        else if($rootScope.is_iPadDeviceWidth >= 321 && $rootScope.is_iPadDeviceWidth <= 365)
                            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 25% !important');
                        else if($rootScope.is_iPadDeviceWidth >= 366 && $rootScope.is_iPadDeviceWidth <= 375)
-                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important'); 
+                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
                            else if($rootScope.is_iPadDeviceWidth == 412)
                            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 25% !important');
                        else if($rootScope.is_iPadDeviceWidth == 414)
-                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');   
+                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
                        else if($rootScope.is_iPadDeviceWidth >= 376 && $rootScope.is_iPadDeviceWidth <= 414)//iphone 7+
                            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 25% !important');
                       else if($rootScope.is_iPadDeviceWidth >= 415 && $rootScope.is_iPadDeviceWidth <= 767)
