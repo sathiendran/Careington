@@ -153,7 +153,7 @@
          <div class="consultation_head RegularFontStyle consultChargeNoPlanText" style="{{IpadInsurncepageContsultation}}" >
             <div class="consultTittleCharge consultTittleChargeNew localizejs">Consultation Charge</div>
             <div ng-if="adminSetlocale == 'en-GB'"><span class="consultation_number consultation-charge"> &pound;{{consultationAmount}}*</span></div>
-            <div ng-if="adminSetlocale != 'en-GB'"><span class="consultation_number consultation-charge"> ${{consultationAmount}}*</span></div>
+            <div ng-if="adminSetlocale != 'en-GB'"><span class="consultation_number consultation-charge"> {{currencySymbol}}{{consultationAmount}}*</span></div>
          </div>
          <div class="password_home contentPayHome">
             <div class="animated slideInRight" >
