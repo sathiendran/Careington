@@ -12,7 +12,7 @@
             <div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
                <div class="consultTittle localizejs">Consultation Charge</div>
                <div class="consultation_number" ng-if="adminSetlocale == 'en-GB'"> &pound;{{consultationAmount}}*</div>
-               <div class="consultation_number" ng-if="adminSetlocale != 'en-GB'"> ${{consultationAmount}}*</div>
+               <div class="consultation_number" ng-if="adminSetlocale != 'en-GB'"> {{currencySymbol}}{{consultationAmount}}*</div>
             </div>
             <div style="display: {{enableSubmitpayment}}">
                <div class="healthPlan_header"  >
