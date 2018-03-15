@@ -610,11 +610,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.reportHospitalUpperCase = 'Virtual Care';
         }
 
-<<<<<<< HEAD
+
     //Sakthi
-=======
+
         //Sakthi 
->>>>>>> 404459a0e97594656e7818294793c2d00c0459ad
+
         window.addEventListener('native.keyboardshow', function () {
             $scope.$apply(function () {
                 $("#localize-widget").hide();
@@ -627,84 +627,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             });
         });
 
-<<<<<<< HEAD
-    /******** Code to implement static brand color ends here **********/
 
-    if ($rootScope.IOSDevice || $rootScope.isIPad) {
-        $rootScope.online = navigator.onLine;
-        $rootScope.deviceName = "IOS";
-        $rootScope.appointCOntent = "margin-top: 175px; ";
-        $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
-        $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
-        $rootScope.loginSub = "height: 100px; top: 43px;";
-        $rootScope.loginSubTitle = "top: 31px;";
-        $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
-        $rootScope.password_sub_header = "password_sub_headerIOS";
-        $rootScope.password_header_content = "password_header_contentIOS";
-        $rootScope.header_image = "header_imageIOS";
-        $rootScope.title_patient = "title_patientIOS";
-        $rootScope.HeaderList = "HeaderListIOS";
-        $rootScope.menuiconIOS = "menuiconIOS";
-        $rootScope.sidemenuHome = "SidemenuHomeIOS";
-        $rootScope.calendarTitle = "calendarTitleIOS";
-        $rootScope.barsubheaderHomeUser = "bar-subheaderHomeUserIOS";
-       // $rootScope.patient_subHeaderTopMove = "margin-top: 1px !important;";
-        $rootScope.intakeTittle = "intakeTittleIOS";
-        $rootScope.MenuInnerStyle = "top: 0px;";
-        $rootScope.IntakeFormInnerStyleMedication = "margin-top: 0px;";
-        $rootScope.PatientCalentarInnerStyle = "margin-top: 1px;";
-        $rootScope.PatientCalentarSchedule = "top: 7px;position: relative; height: 49px;";
-        $rootScope.PatientCalentarScheduleItem = "top: 45px;"
-        $rootScope.PatientCalentarInnerStyleDetail = "margin-top: 1px;";
-        $rootScope.PatientCalentarInnerStyleAppointmentWith = "margin-top: -16px !important;";
-        $rootScope.appoinmentStyle = "  margin-top: -5px;";
-        $rootScope.appointContent = "margin: 85px 0 0 0;";
-        $rootScope.MenuIconBottom = "top: 4px;";
-        $rootScope.patientsubHeaderInnerStyle = "margin-top: 0px;";
-        $rootScope.waitingContentIos = "margin-top: 124px; ";
-        $rootScope.BackBotton = "top: 7px; position: relative;";
-        $rootScope.Appoinmentwaitcenter = "left: -27px;";
-        $rootScope.PaymentStyle = "padding: 0px; margin-top: 132px;	background-color: #fff; top: 15px;";
-        $rootScope.HeadercardDetails = "height: 69px;";
-        $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
-        $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
-        $rootScope.AddHealthPlanCancel = "margin-top: 6px";
-        $rootScope.ReportScreen = "top: 1px; position: relative;";
-        $rootScope.PlanDetails = "margin-top: 22px;";
-        $rootScope.SubDetailsPlanDetails = "margin-top: -16px;";
-        $rootScope.PatientTitle = "margin-left:-40px;";
-        $rootScope.MenuIconBottomRecipt = "top: -4px;";
-        $rootScope.PatientConcerns = "margin-top: 90px;";
-        $rootScope.GoogleSearchStyle = "top: 24px;";
-        $rootScope.BackgroundColorGoogle = "background-color: #fff;";
-        $rootScope.GoogleSearchContent = "top: 55px;";
-        $rootScope.NextButtonReduce = "right: 5px;";
-        $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 13px;";
-        $rootScope.IntakeFormInnerStyleTitle = "top: 18px;position: relative;";
-        $rootScope.ContentOverlop = "margin: 147px 0 0 0;";
-        $rootScope.ContentConsultCharge = "margin: 141px 0 0 0; padding-top: 43px;";
-        $rootScope.usHomeCOntent = "margin: 75px 0 0 0 !important;";
-        if ($rootScope.IOSDevice) {
-            $rootScope.patientConternFontStyle = "patientConternFontStyle-ios";
-            $rootScope.concernListTitleStyle = "concernListTitle-ios";
-            $rootScope.concernListDoneStyle = "concernListDone-ios";
-            //$rootScope.PrimaryConcernPopupH = "height: 66px;";
-            $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
-            $rootScope.PrimaryConcernPopupTitle = "margin-top: 7px; font-family: 'Glober SemiBold'; ";
-            $rootScope.PrimaryConcernPopupDone = "margin-top: 10px; padding-right: 0px; padding-left: 0px;padding: 0px;";
-            $rootScope.surgeryConcernPopupDone = "padding-right: 0px; padding-left: 0px;padding: 0px;";
-            $rootScope.PriorSurgeryPopupTitle = "margin-top: 16px;";
-            $rootScope.PriorSurgeryPopupDone = "margin-top: 21px;";
-            $rootScope.PriorSurgeryPopupCancel = "margin-top: 3px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
-            $rootScope.ChronicConditionPopupTitle = "margin-top: 13px;";
-            $rootScope.ChronicConditionPopupDone = "margin-top: 13px;";
-          //  $rootScope.NextIntakeForm = "margin-left: -21px;";
-            $rootScope.LoginContant = "padding-top: 43px !important; margin: 99px 0 0 0;"; //margin: 30px 0 0 0 remove
-            $rootScope.LoginContantDiv = "height: 50px;"; //95px
-            $rootScope.PasswordOverlop = "margin: 105px 0 0 0 !important;";
-            $rootScope.PriorSurgeryPopupTextBox = "margin-top: 0px;";
-            $rootScope.PriorSurgeryPopupTextBox = "margin-top: 0px;";
-=======
         /******** Code to implement static brand color ends here **********/
 
         if ($rootScope.IOSDevice || $rootScope.isIPad) {
@@ -758,7 +681,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.NextButtonReduce = "right: 5px;";
             $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 13px;";
             $rootScope.IntakeFormInnerStyleTitle = "top: 18px;position: relative;";
->>>>>>> 404459a0e97594656e7818294793c2d00c0459ad
+
             $rootScope.ContentOverlop = "margin: 147px 0 0 0;";
             $rootScope.ContentConsultCharge = "margin: 141px 0 0 0; padding-top: 43px;";
             $rootScope.usHomeCOntent = "margin: 75px 0 0 0 !important;";
@@ -3781,60 +3704,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             LoginService.getPatientFilledAllRequirements(params);
         }
 
-<<<<<<< HEAD
-    $scope.chkPatientFilledAllRequirements = function() {
-      $rootScope.primaryPatSSDetails = '';
-      $scope.doGetConutriesList();
-      $rootScope.doGetLocations();
-      $rootScope.doGetCountries();
-      $rootScope.getStatesForUS();
-
-        var params = {
-            accessToken: $rootScope.accessToken,
-            success: function(data) {
-                $rootScope.hasRequiredFields = data.data[0].hasRequiredFields;
-                $rootScope.userRoleDescription = data.data[0].userRoleDescription;
-                $rootScope.currentPatientDetails = data.data;;
-
-                console.log("$rootScope.userRoleDescription 1111== "+$rootScope.userRoleDescription);
-                  // $rootScope.Country_cod =  $rootScope.currentPatientDetails[0].mobilePhone;
-                if(typeof $rootScope.currentPatientDetails[0].mobilePhone != 'undefined') {
-                  $rootScope.Country_codsplit = $rootScope.currentPatientDetails[0].mobilePhone.split('(');
-                  $rootScope.countrycodevalue = $rootScope.Country_codsplit[0];
-                } else {
-                  $rootScope.Country_codsplit = '';
-                  $rootScope.countrycodevalue = '';
-                }
-                var profileData = {};
-                profileData.firstName = data.data[0].firstName;
-                profileData.fullName = data.data[0].fullName;
-                profileData.name = data.data[0].fullName;
-                profileData.gender = data.data[0].gender;
-                profileData.lastName = data.data[0].lastName;
-                profileData.profileId = data.data[0].profileId;
-                profileData.id = data.data[0].profileId;
-                profileData.userId = data.data[0].userId;
-                profileData.personId = data.data[0].userId;
-                profileData.timeZone = data.data[0].timeZone;
-                profileData.timeZoneId = data.data[0].timeZoneId;
-                profileData.hasRequiredFields = data.data[0].hasRequiredFields;
-                profileData.contactNumber = data.data[0].mobilePhone;
-                profileData.info = data.data[0].mobilePhone;
-                profileData.dob = data.data[0].dob;
-                profileData.isLogouted = false;
-
-                /*  profileData.profileImage = data.data[0].profileImagePath
-                      || getDefaultProfileImageForPatient(data.data[0].gender);*/
-
-
-                if (data.data[0].profileImage.indexOf("api") <= 0) {
-                    profileData.profileImage = 'images/default-user.jpg';
-                    profileData.imageSource = 'images/default-user.jpg';
-                } else {
-                    profileData.profileImage = data.data[0].profileImage;
-                    profileData.imageSource = data.data[0].profileImage;
-                }
-=======
         $scope.chkPatientFilledAllRequirements = function () {
             $rootScope.primaryPatSSDetails = '';
             $scope.doGetConutriesList();
@@ -3884,35 +3753,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         profileData.profileImage = data.data[0].profileImage;
                         profileData.imageSource = data.data[0].profileImage;
                     }
->>>>>>> 404459a0e97594656e7818294793c2d00c0459ad
+
 
                     var userProfileJsonData = JSON.stringify(profileData);
                     $rootScope.primaryPatSSDetails = userProfileJsonData;
                     $window.localStorage.setItem('snap_patientprofile_session', userProfileJsonData);
                     $rootScope.passwordPreviousPage = false;
 
-<<<<<<< HEAD
-                if ($rootScope.hasRequiredFields === true) {
-                    $rootScope.cuttlocations = "";
-                    $rootScope.viewmyhealthDisplay = 'block';
-                    $rootScope.viewhealthDisplay = 'none';
-                    $rootScope.passwordPreviousPage = true;
-                    $scope.GetUserAccountCondition(profileData.id);
-                    $state.go('tab.userhome');
-                    $rootScope.fromUserlogin = false;
-                  //  $rootScope.doGetPatientProfiles();
-                    //  $rootScope.doGetRelatedPatientProfiles('tab.userhome');
-                } else {
-                  if($rootScope.userRoleDescription === 'User'){
-                    console.log("co User is login");
-                     $rootScope.fromUserlogin = true;
-                  }
-                  console.log("$rootScope.fromUserlogin = "+$rootScope.fromUserlogin);
-                    $scope.doGetSingleHospitalRegistrationInformation();
-                     $rootScope.checkedpatientdet = '';
-                     $rootScope.PatientidupdateList = [];
-                    $rootScope.primaryPatientId = $rootScope.currentPatientDetails[0].profileId;
-=======
                     if ($rootScope.hasRequiredFields === true) {
                         $rootScope.cuttlocations = "";
                         $rootScope.viewmyhealthDisplay = 'block';
@@ -3935,7 +3782,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         }
                         $scope.GetUserAccountCondition(profileData.id);
                         $state.go('tab.healthinfo');
->>>>>>> 404459a0e97594656e7818294793c2d00c0459ad
+
 
                     }
 
@@ -4029,48 +3876,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             'addresses': angular.fromJson(index.addresses),
                             'addressObject': angular.fromJson(index.addressObject),
                         });
-<<<<<<< HEAD
-                });
-                $scope.selectedPatientDetails[0].address = ($scope.selectedPatientDetails[0].address != '' ? $scope.selectedPatientDetails[0].address : $scope.selectedPatientDetails[0].addressObject.addressText );
-                $rootScope.addressInfoFetch[0].address = ($rootScope.addressInfoFetch[0].address != '' ? $rootScope.addressInfoFetch[0].address : $rootScope.addressInfoFetch[0].addressObject.addressText );
-                $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
-                $rootScope.addressInfoFetch = $scope.selectedPatientDetails;
-                $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
 
-                $rootScope.userline1 = $rootScope.addressInfoFetch[0].addressObject.line1;
-                $rootScope.userline2 = $rootScope.addressInfoFetch[0].addressObject.line2;
-                $rootScope.usercity = $rootScope.addressInfoFetch[0].addressObject.city;
-                $rootScope.userstate = $rootScope.addressInfoFetch[0].addressObject.state;
-                $rootScope.userstateCode = $rootScope.addressInfoFetch[0].addressObject.stateCode;
-                $rootScope.userpostalCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
-                $rootScope.usercountry = $rootScope.addressInfoFetch[0].addressObject.country;
-                $rootScope.usercountryCode = $rootScope.addressInfoFetch[0].addressObject.countryCode;
-               
-                $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
-                $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
-                if(chkPreviousPage === true) {
-                  $rootScope.PatientImageSelectUser = $rootScope.currentPatientDetails[0].account.profileImage;
-                  $rootScope.PatientImage = $rootScope.PatientImageSelectUser;
-                  $rootScope.primaryPatientName = $rootScope.currentPatientDetails[0].patientName;
-                  $rootScope.primaryPatientLastName = $rootScope.currentPatientDetails[0].lastName;
-                  $rootScope.dob = $rootScope.currentPatientDetails[0].dob;
-                  $rootScope.getHealtPageForFillingRequiredDetails();
-                } else {
-                  $rootScope.GoToPatientDetails(cutlocations,$rootScope.currentPatientDetails[0].account.profileImagePath, $rootScope.currentPatientDetails[0].patientName, $rootScope.currentPatientDetails[0].lastName, $rootScope.currentPatientDetails[0].dob, $rootScope.currentPatientDetails[0].guardianName, $rootScope.patientId, authen, ' ');
-                }
-            },
-            error: function(data, status) {
-                if (status === 0) {
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-                } else if (status === 401) {
-                    $scope.ErrorMessage = "You are not authorized to view this account";
-                    $rootScope.Validation($scope.ErrorMessage);
-                } else if(status === 503) {
-                    $scope.callServiceUnAvailableError();
-                } else {
-                    $rootScope.serverErrorMessageValidation();
-=======
                     });
                     $scope.selectedPatientDetails[0].address = ($scope.selectedPatientDetails[0].address != '' ? $scope.selectedPatientDetails[0].address : $scope.selectedPatientDetails[0].addressObject.addressText);
                     $rootScope.addressInfoFetch[0].address = ($rootScope.addressInfoFetch[0].address != '' ? $rootScope.addressInfoFetch[0].address : $rootScope.addressInfoFetch[0].addressObject.addressText);
@@ -4105,7 +3911,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     } else {
                         $rootScope.serverErrorMessageValidation();
                     }
->>>>>>> 404459a0e97594656e7818294793c2d00c0459ad
+
                 }
             };
 
@@ -7158,100 +6964,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                     'status': index.status
                                 });
                             })
-<<<<<<< HEAD
-                    //    }
-                    });
-                    $rootScope.scheduledList = $filter('filter')($filter('orderBy')($rootScope.getScheduledList, "scheduledTime"), "a");
-                  //  $rootScope.primaryAppointDetails = $rootScope.scheduledList.filter(function(r) { var show = r.patientId == $rootScope.primaryPatientId; return show; });
 
-                     $rootScope.inqueueAppoint = true;
-                    // $rootScope.doGetScheduledConsulatation(redirectToPage);
-                     $rootScope.doGetScheduledAvailableConsultation(redirectToPage);
-
-                } else {
-                   $rootScope.inqueueAppoint = false;
-                  // $rootScope.doGetScheduledConsulatation(redirectToPage);
-                   $rootScope.doGetScheduledAvailableConsultation(redirectToPage);
-                }
-            },
-            error: function(status) {
-              if (status === 0) {
-                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                  $rootScope.Validation($scope.ErrorMessage);
-              } else if(status === 503) {
-                $scope.callServiceUnAvailableError();
-              } else {
-                    $rootScope.serverErrorMessageValidation();
-                }
-            }
-        };
-        //LoginService.getScheduledConsulatation(params);
-        LoginService.getScheduledNowPhoneConsulatation(params);
-    }
-
-    $rootScope.doGetScheduledAvailableConsultation = function(redirectToPage) {
-         if(!$rootScope.inqueueAppoint) {
-            $rootScope.scheduledConsultationList = '';
-            $rootScope.getScheduledList = [];
-            $rootScope.scheduleParticipants = [];
-            $rootScope.scheduledList = '';
-            $rootScope.scheduledConsultationList = [];
-         }
-        var params = {
-            patientId: $rootScope.primaryPatientId,
-            accessToken: $rootScope.accessToken,
-            userTimeZoneId: $rootScope.userTimeZoneId,
-            success: function(data) {
-                // $rootScope.inprogressConsultationList = [];
-                 if(data.total > 0) {
-                      if(!$rootScope.inqueueAppoint) {
-                          $rootScope.getScheduledList = [];
-                          $rootScope.scheduleParticipants = [];
-                      }
-                      angular.forEach(data.data, function(index) {
-                           if(index.status == 71) {
-                                   $rootScope.getScheduledList.push({
-                                        'consultantUserId': index.consultantUserId,
-                                        //'scheduledTime': CustomCalendar.getLocalTime1(index.consultationDateInfo),
-                                        'scheduledTime': CustomCalendar.getLocalTime(index.consultationDateInfo),
-                                        'consultationId': index.consultationId,
-                                        'createdDate': index.createdDate,
-                                        'doctorStatus': index.doctorStatus,
-                                        'encounterTypeCode':index.encounterTypeCode,
-                                        'expireDate': index.expireDate,
-                                        'expireDateInfo': index.expireDateInfo,
-                                        'isTimeConverted': index.isTimeConverted,
-                                        'meetingId': index.meetingId,
-                                        'patFirstName': index.patientFirstName,
-                                        'patLastName': index.patientLastName,
-                                        'patientId': index.patientId,
-                                        'patientName': $scope.patientName,
-                                        'patientStatus': index.patientStatus,
-                                        'personId': index.personId,
-                                        'status': index.status,
-                                        'userHomeRecentAppointmentColor': '#a2d28a',
-                                        'nextAppointmentDisplay': 'block'
-                                   });
-                                   if(typeof $rootScope.scheduledListDatas != 'undefined' && $rootScope.scheduledListDatas != null && typeof $rootScope.inProgressConsultID != 'undefined' && $rootScope.inProgressConsultID != null) {
-                                      // if(($rootScope.inProgressConsultID == $rootScope.getScheduledList[0].consultationId) && ($rootScope.scheduledListDatas.patientId == $rootScope.getScheduledList[0].patientId)) {
-
-                                      var getConsultDetails = $filter('filter')($rootScope.getScheduledList, {
-                                            consultationId: $rootScope.inProgressConsultID
-                                        });
-                                        if(($rootScope.inProgressConsultID == getConsultDetails[0].consultationId) && ($rootScope.scheduledListDatas.patientId == getConsultDetails[0].patientId)) {
-                                           $(".appointInqueue").css({"display": "none" });
-                                           $(".appointInProgress").css({"display": "initial" });
-                                       } else {
-                                           $(".appointInqueue").css({"display": "initial" });
-                                           $(".appointInProgress").css({"display": "none" });
-                                       }
-                                   } else {
-                                       $(".appointInqueue").css({"display": "initial" });
-                                       $(".appointInProgress").css({"display": "none" });
-                                   }
-                              }
-                      });
-=======
                             //    }
                         });
                         $rootScope.scheduledList = $filter('filter')($filter('orderBy')($rootScope.getScheduledList, "scheduledTime"), "a");
@@ -7260,7 +6973,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $rootScope.inqueueAppoint = true;
                         // $rootScope.doGetScheduledConsulatation(redirectToPage);
                         $rootScope.doGetScheduledAvailableConsultation(redirectToPage);
->>>>>>> 404459a0e97594656e7818294793c2d00c0459ad
+
 
                     } else {
                         $rootScope.inqueueAppoint = false;
@@ -7698,11 +7411,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         activeRoomConHub = null;
                         if ((($('.appointInProgress').is(':hidden') != true) && $state.current.name == "tab.appoimentDetails") || $state.current.name == "tab.waitingRoom") {
                             $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
-<<<<<<< HEAD
-                        } else if($state.current.name == "tab.userhome") {
-                            $scope.doRefreshUserHome();
-=======
->>>>>>> 404459a0e97594656e7818294793c2d00c0459ad
+
                         } else {
                             $rootScope.doGetScheduledNowPhoneConsulatation();
                         }
@@ -9296,31 +9005,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                           }*/
                     }
 
-<<<<<<< HEAD
-                       }
-                       else if($rootScope.is_iPadDeviceWidth >= 321 && $rootScope.is_iPadDeviceWidth <= 365)
-                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 25% !important');
-                       else if($rootScope.is_iPadDeviceWidth >= 366 && $rootScope.is_iPadDeviceWidth <= 375)
-                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
-                           else if($rootScope.is_iPadDeviceWidth == 412)
-                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 25% !important');
-                       else if($rootScope.is_iPadDeviceWidth == 414)
-                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
-                       else if($rootScope.is_iPadDeviceWidth >= 376 && $rootScope.is_iPadDeviceWidth <= 414)//iphone 7+
-                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 25% !important');
-                      else if($rootScope.is_iPadDeviceWidth >= 415 && $rootScope.is_iPadDeviceWidth <= 767)
-                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 35% !important');
-                        else if($rootScope.is_iPadDeviceWidth >= 768 && $rootScope.is_iPadDeviceWidth <= 1024)
-                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: -20% !important');
-                      // else
-                       //    $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
 
-
-                    /*  var beforAppointmentTime = getReplaceTime;
-                      var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
-
-                      if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {
-=======
                     if ($rootScope.getIndividualPatScheduleDetails != '') {
                         var getReplaceTime1 = $rootScope.getIndividualPatScheduleDetails[0].scheduledTime;
                     } else {
@@ -9329,7 +9014,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
                     var currentUserHomeDate = currentUserHomeDate;
                     if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
->>>>>>> 404459a0e97594656e7818294793c2d00c0459ad
+
 
                         $rootScope.time = new Date(getReplaceTime).getTime();
 
