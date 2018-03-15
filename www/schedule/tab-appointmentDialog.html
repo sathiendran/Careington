@@ -315,7 +315,7 @@
         $(document).ready(function () {
             debugger;
             var AndroidDevice = localStorage.getItem('AndroidDevice');
-            if (!AndroidDevice) {
+           if (AndroidDevice == "false") {
                 $('.consultation-note__textarea').focus(function () {
                     $('.TextareaHieght').css({ 'display': 'block', 'height': '300px' })
                 }).blur(function () {

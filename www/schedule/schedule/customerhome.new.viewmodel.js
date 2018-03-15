@@ -2123,7 +2123,7 @@ var setUserVars = function () {
                 this.vm_enterNumber = function () {
                     var AndroidDevice = localStorage.getItem('AndroidDevice');
                     window.setTimeout(function () {
-                        if (!AndroidDevice) {
+                        if (AndroidDevice == "false") {
                             $('.dialogbox-master__wrapper').animate({ scrollTop: 1000 }, 900);
                         }
                         else {
