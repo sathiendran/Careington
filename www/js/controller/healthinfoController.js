@@ -205,6 +205,7 @@ angular.module('starter.controllers')
         });
 
         $scope.fetchPatientDetails = function () {
+          console.log("fetchPatientDetails enter");
             $scope.firsttimecall = 0;
             $rootScope.patientAuthorize = true;
             $rootScope.patientUnAuthorize = false;
@@ -243,14 +244,25 @@ angular.module('starter.controllers')
             //delete $rootScope.addressInfoFetchModify['addressText'];
             console.log('$scope.fullAddressObj');
             console.log($scope.fullAddressObj);
-            $scope.route = $rootScope.addressInfoFetch[0].addressObject.line1;
-            $scope.address2 = $rootScope.addressInfoFetch[0].addressObject.line2;
-            $scope.City = $rootScope.addressInfoFetch[0].addressObject.city;
-            $scope.ZipCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
-            $scope.State = $rootScope.addressInfoFetch[0].addressObject.state;
-            $scope.state1 = $rootScope.addressInfoFetch[0].addressObject.state;
-            $scope.Country = $rootScope.addressInfoFetch[0].addressObject.countryCode;
 
+
+              if($rootScope.userRoleDescription == 'User' && $rootScope.hasRequiredFields != true) {
+                    $scope.route = $rootScope.userline1;
+                    $scope.address2 = $rootScope.userline2;
+                    $scope.City = $rootScope.usercity;
+                    $scope.ZipCode = $rootScope.userpostalCode;
+                    $scope.State = $rootScope.userstateCode;
+                    $scope.state1 = $rootScope.userstate;
+                    $scope.Country = $rootScope.usercountryCode;
+              }else{
+                    $scope.route = $rootScope.addressInfoFetch[0].addressObject.line1;
+                    $scope.address2 = $rootScope.addressInfoFetch[0].addressObject.line2;
+                    $scope.City = $rootScope.addressInfoFetch[0].addressObject.city;
+                    $scope.ZipCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
+                    $scope.State = $rootScope.addressInfoFetch[0].addressObject.state;
+                    $scope.state1 = $rootScope.addressInfoFetch[0].addressObject.state;
+                    $scope.Country = $rootScope.addressInfoFetch[0].addressObject.countryCode;
+              }
 
             /*            $scope.route = $rootScope.primaryPatientDetails[0].addressObject.line1;
                         $scope.address2 = $rootScope.primaryPatientDetails[0].addressObject.line2;
@@ -1764,7 +1776,7 @@ angular.module('starter.controllers')
                     $scope.healthfootsave = true;
                   }
                });
-  
+
            });
            window.addEventListener('native.keyboardhide', function () {
               $scope.$apply(function() {
@@ -3912,7 +3924,18 @@ angular.module('starter.controllers')
             }).then(function (modal) {
                 $scope.modal = modal;
                 $scope.modal.show().then(function () {
-                    document.getElementById('fullAddress').value = $scope.healthInfoModel.address;
+
+document.getElementById('fullAddress').value = $scope.healthInfoModel.address;
+            if($rootScope.userRoleDescription === 'User' && $rootScope.hasRequiredFields != true){
+                $scope.route = $rootScope.userline1;
+                $scope.address2 = $rootScope.userline2;
+                $scope.City = $rootScope.usercity;
+                $scope.ZipCode = $rootScope.userpostalCode;
+                $scope.State = $rootScope.userstateCode;
+                $scope.state1 = $rootScope.userstate;
+                $scope.Country = $rootScope.usercountryCode;
+              }
+
                     document.getElementById('country').value = $scope.Country;
                     if ($scope.state1 == undefined)
                         $scope.state1 = '';

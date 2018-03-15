@@ -610,7 +610,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.reportHospitalUpperCase = 'Virtual Care';
         }
 
+
+    //Sakthi
+
         //Sakthi 
+
         window.addEventListener('native.keyboardshow', function () {
             $scope.$apply(function () {
                 $("#localize-widget").hide();
@@ -622,6 +626,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $("#localize-widget").show();
             });
         });
+
 
         /******** Code to implement static brand color ends here **********/
 
@@ -676,6 +681,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.NextButtonReduce = "right: 5px;";
             $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 13px;";
             $rootScope.IntakeFormInnerStyleTitle = "top: 18px;position: relative;";
+
             $rootScope.ContentOverlop = "margin: 147px 0 0 0;";
             $rootScope.ContentConsultCharge = "margin: 141px 0 0 0; padding-top: 43px;";
             $rootScope.usHomeCOntent = "margin: 75px 0 0 0 !important;";
@@ -3709,6 +3715,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 accessToken: $rootScope.accessToken,
                 success: function (data) {
                     $rootScope.hasRequiredFields = data.data[0].hasRequiredFields;
+                    $rootScope.userRoleDescription = data.data[0].userRoleDescription;
                     $rootScope.currentPatientDetails = data.data;;
                     // $rootScope.Country_cod =  $rootScope.currentPatientDetails[0].mobilePhone;
                     if (typeof $rootScope.currentPatientDetails[0].mobilePhone != 'undefined') {
@@ -3748,6 +3755,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         profileData.imageSource = data.data[0].profileImage;
                     }
 
+
                     var userProfileJsonData = JSON.stringify(profileData);
                     $rootScope.primaryPatSSDetails = userProfileJsonData;
                     $window.localStorage.setItem('snap_patientprofile_session', userProfileJsonData);
@@ -3775,6 +3783,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         }
                         $scope.GetUserAccountCondition(profileData.id);
                         $state.go('tab.healthinfo');
+
 
                     }
 
@@ -3868,6 +3877,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             'addresses': angular.fromJson(index.addresses),
                             'addressObject': angular.fromJson(index.addressObject),
                         });
+
                     });
                     $scope.selectedPatientDetails[0].address = ($scope.selectedPatientDetails[0].address != '' ? $scope.selectedPatientDetails[0].address : $scope.selectedPatientDetails[0].addressObject.addressText);
                     $rootScope.addressInfoFetch[0].address = ($rootScope.addressInfoFetch[0].address != '' ? $rootScope.addressInfoFetch[0].address : $rootScope.addressInfoFetch[0].addressObject.addressText);
@@ -3875,6 +3885,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.addressInfoFetch = $scope.selectedPatientDetails;
                     $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
 
+                $rootScope.userline1 = $rootScope.addressInfoFetch[0].addressObject.line1;
+                $rootScope.userline2 = $rootScope.addressInfoFetch[0].addressObject.line2;
+                $rootScope.usercity = $rootScope.addressInfoFetch[0].addressObject.city;
+                $rootScope.userstate = $rootScope.addressInfoFetch[0].addressObject.state;
+                $rootScope.userstateCode = $rootScope.addressInfoFetch[0].addressObject.stateCode;
+                $rootScope.userpostalCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
+                $rootScope.usercountry = $rootScope.addressInfoFetch[0].addressObject.country;
+                $rootScope.usercountryCode = $rootScope.addressInfoFetch[0].addressObject.countryCode;
+                 
                     console.log("data");
                     console.log($rootScope.currentPatientDetails);
                     $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
@@ -3902,6 +3921,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     } else {
                         $rootScope.serverErrorMessageValidation();
                     }
+
                 }
             };
 
@@ -6954,6 +6974,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                     'status': index.status
                                 });
                             })
+
                             //    }
                         });
                         $rootScope.scheduledList = $filter('filter')($filter('orderBy')($rootScope.getScheduledList, "scheduledTime"), "a");
@@ -6962,6 +6983,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $rootScope.inqueueAppoint = true;
                         // $rootScope.doGetScheduledConsulatation(redirectToPage);
                         $rootScope.doGetScheduledAvailableConsultation(redirectToPage);
+
 
                     } else {
                         $rootScope.inqueueAppoint = false;
@@ -7399,6 +7421,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         activeRoomConHub = null;
                         if ((($('.appointInProgress').is(':hidden') != true) && $state.current.name == "tab.appoimentDetails") || $state.current.name == "tab.waitingRoom") {
                             $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+
                         } else {
                             $rootScope.doGetScheduledNowPhoneConsulatation();
                         }
@@ -8992,6 +9015,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                           }*/
                     }
 
+
                     if ($rootScope.getIndividualPatScheduleDetails != '') {
                         var getReplaceTime1 = $rootScope.getIndividualPatScheduleDetails[0].scheduledTime;
                     } else {
@@ -9000,6 +9024,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
                     var currentUserHomeDate = currentUserHomeDate;
                     if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
+
 
                         $rootScope.time = new Date(getReplaceTime).getTime();
 
