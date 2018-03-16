@@ -7059,9 +7059,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                         consultationId: $rootScope.inProgressConsultID
                                     });
 
-                                    $scope.doRefreshUserHome();
-
-                                    if (($rootScope.inProgressConsultID == getConsultDetails[0].consultationId) && ($rootScope.scheduledListDatas.patientId == getConsultDetails[0].patientId)) {
+                                   if (($rootScope.inProgressConsultID == getConsultDetails[0].consultationId) && ($rootScope.scheduledListDatas.patientId == getConsultDetails[0].patientId)) {
                                         $(".appointInqueue").css({ "display": "none" });
                                         $(".appointInProgress").css({ "display": "initial" });
                                     } else {
@@ -7071,7 +7069,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                 } else {
                                     $(".appointInqueue").css({ "display": "initial" });
                                     $(".appointInProgress").css({ "display": "none" });
-                                    $scope.doRefreshUserHome();
+                                   
                                 }
                             }
                         });
@@ -7372,8 +7370,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
         var isOpenPopup = 0;
         activeRoomConHub.on("broadcastMessage", function (messageType, message) {
-            // alert("notificationService: broadcastMessage");
-            $rootScope.inProgressConsultID = message;
+            $scope.doRefreshUserHome();
+           $rootScope.inProgressConsultID = message;
             if (messageType == 'consultation_ended') {
                 debugger;
                 //  alert('gg2');
@@ -7387,6 +7385,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         activeRoomConHub = null;
                         if ((($('.appointInProgress').is(':hidden') != true) && $state.current.name == "tab.appoimentDetails") || $state.current.name == "tab.waitingRoom") {
                             $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                        } else if ($state.current.name == "tab.userhome") {
+                            $scope.doRefreshUserHome();
                         } else {
                             $rootScope.doGetScheduledNowPhoneConsulatation();
                         }
@@ -7408,10 +7408,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         activeRoomConHub = null;
                         if ((($('.appointInProgress').is(':hidden') != true) && $state.current.name == "tab.appoimentDetails") || $state.current.name == "tab.waitingRoom") {
                             $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                        } else if ($state.current.name == "tab.userhome") {
                             $scope.doRefreshUserHome();
                         } else {
                             $rootScope.doGetScheduledNowPhoneConsulatation();
-                            $scope.doRefreshUserHome();
                         }
                         return;
                     },
