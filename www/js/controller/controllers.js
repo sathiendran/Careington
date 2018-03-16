@@ -7071,6 +7071,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                 } else {
                                     $(".appointInqueue").css({ "display": "initial" });
                                     $(".appointInProgress").css({ "display": "none" });
+                                    $scope.doRefreshUserHome();
                                 }
                             }
                         });
@@ -7407,8 +7408,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         activeRoomConHub = null;
                         if ((($('.appointInProgress').is(':hidden') != true) && $state.current.name == "tab.appoimentDetails") || $state.current.name == "tab.waitingRoom") {
                             $rootScope.doGetScheduledNowPhoneConsulatation('tab.userhome');
+                            $scope.doRefreshUserHome();
                         } else {
                             $rootScope.doGetScheduledNowPhoneConsulatation();
+                            $scope.doRefreshUserHome();
                         }
                         return;
                     },
