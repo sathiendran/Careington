@@ -759,7 +759,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
             $rootScope.calendarBackStyle = "top: 13px !important;";
             $rootScope.userAccNewTitle = "margin-top: -10px;"
-        } else if (!$rootScope.AndroidDevice) {
+        } else if ($rootScope.AndroidDevice) {
             $rootScope.online = navigator.onLine;
             $rootScope.deviceName = "Android";
             $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -2105,6 +2105,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
 
         $rootScope.doCheckExistingConsulatationStatus = function (CurrentPage) {
+            debugger;
             var params = {
                 consultationId: $rootScope.consultationId,
                 accessToken: $rootScope.accessToken,
@@ -2121,6 +2122,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.consultationAmount = $rootScope.consultionInformation.consultationAmount;
                     $rootScope.copayAmount = $rootScope.consultationAmount;
                     $rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
+                    debugger;
                     if (!angular.isUndefined($rootScope.consultationStatusId)) {
                         if ($rootScope.consultationStatusId === 71) {
                             //  $rootScope.doGetScheduledNowPhoneConsulatation();
@@ -2464,6 +2466,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         };
         $scope.mobileloc = false;
         $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme = function () {
+            debugger;
             $rootScope.paymentMode = '';
             $rootScope.insuranceMode = '';
             $rootScope.onDemandMode = '';
@@ -7055,6 +7058,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                     var getConsultDetails = $filter('filter')($rootScope.getScheduledList, {
                                         consultationId: $rootScope.inProgressConsultID
                                     });
+
+                                    $scope.doRefreshUserHome();
+
                                     if (($rootScope.inProgressConsultID == getConsultDetails[0].consultationId) && ($rootScope.scheduledListDatas.patientId == getConsultDetails[0].patientId)) {
                                         $(".appointInqueue").css({ "display": "none" });
                                         $(".appointInProgress").css({ "display": "initial" });
@@ -7368,6 +7374,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             // alert("notificationService: broadcastMessage");
             $rootScope.inProgressConsultID = message;
             if (messageType == 'consultation_ended') {
+                debugger;
                 //  alert('gg2');
                 navigator.notification.alert(
                     //'Consultation is ended.', // message
@@ -9723,6 +9730,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
 
         $rootScope.GoToPatientDetails = function (Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
+           debugger;
             $rootScope.checkpatid = P_Id;
             if ($rootScope.patientSearchKey !== '' && typeof $rootScope.patientSearchKey !== "undefined") {
                 //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
@@ -9960,6 +9968,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
         $scope.GoToConsultCharge = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
+            debugger;
             $rootScope.PatientImageSelectUser = P_img;
             $rootScope.PatientFirstName = P_Fname;
             $rootScope.PatientLastName = P_Lname;
