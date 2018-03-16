@@ -2043,6 +2043,16 @@ var setUserVars = function () {
                     this._onDataChange();
                 };
 
+                //Sakthi
+                this.vm_onKeyUpAdditionalNotes = function () {
+                                 this.set("vm_isPhoneNumberFilled", $.trim(this.phoneNumber) !== "");
+                                        if (this.phoneType !== phoneTypeEnum.other) {
+                                            this.set("phoneType", phoneTypeEnum.other);
+                                        }
+                                        this._onDataChange();
+                                    };
+               
+
                 this.vm_phoneClick = function () {
                     window.scrollTo(0, 150);
                     debugger;
