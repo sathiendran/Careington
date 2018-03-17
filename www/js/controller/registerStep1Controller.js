@@ -850,7 +850,7 @@ angular.module('starter.controllers')
      $("#localize-widget").show();
    }
         $scope.addressEditModal = function () {
-          // $("#localize-widget").show();
+           $("#localize-widget").hide();
             //$('#healthInfoHeightUnit').val("");
             $('#regDOB').blur();
             $ionicModal.fromTemplateUrl('templates/tab-addressedittemplate.html', {
