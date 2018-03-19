@@ -1289,7 +1289,7 @@ body {
         color: #666666;
         //font-size: 26px;
         font-size: 25px;
-        top: -13px;
+        top: -16px !important;
         position: relative;
         left: 15px;
         font-family: $fontFamily_semibold;
@@ -1395,7 +1395,7 @@ body {
 
 .consultation_head {
     font-size: 164%;
-    padding-top: 22px;
+    padding-top: 34px;
     color: #2A2A2A;
     width: 110%;
     .consultation_number {
@@ -2416,15 +2416,15 @@ select {
             font-weight: bold;
             padding: 10px;
             font-size: 17px;
-            color: #FFFFFF;
+            color: #FFFFFF;   
             font-family: $fontFamily_bold;
         }
         .newProCancel {
             font-family: $fontFamily_regular;
             color: #999999;
-            font-weight: normal;       
+            font-weight: normal;          
         }
-    }   
+    }      
     .FooterRight {
         .ion-chevron-right:before {
             content: "\f125";

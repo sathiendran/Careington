@@ -664,7 +664,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.waitingContentIos = "margin-top: 124px; ";
             $rootScope.BackBotton = "top: 7px; position: relative;";
             $rootScope.Appoinmentwaitcenter = "left: -27px;";
-            $rootScope.PaymentStyle = "padding: 0px; margin-top: 132px;	background-color: #fff; top: 15px;";
+            $rootScope.PaymentStyle = "padding: 0px; margin-top: 132px;	background-color: #fff; top: 23px;";
             $rootScope.HeadercardDetails = "height: 69px;";
             $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
             $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
