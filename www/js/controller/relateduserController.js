@@ -414,7 +414,7 @@ angular.element(document).ready(function () {
                 $scope.userAge = ageFilter.getDateFilter($scope.dobAge);
                 var myPopup = $ionicPopup.show({
 
-                    title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span></div> <div class='fontcolor'>" + "<span class='localizes'>" + dependentDetails.gender + "</span>"  + " . " + $scope.userAge + "<span class='localizejs'>" + $scope.relationship + "</span></div> ",
+                    title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span></div> <div class='fontcolor'>" + "<span class='localizejs'>" + dependentDetails.gender + "</span>"  + " . " + $scope.userAge + "<span class='localizejs'>" + $scope.relationship + "</span></div> ",
                     templateUrl: 'templates/unauthorizedpopup.html',
                     scope: $scope,
                     buttons: [{

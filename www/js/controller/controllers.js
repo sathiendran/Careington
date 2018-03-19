@@ -9643,7 +9643,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     } else if (getCurrentFuncName === "SearchProvidePage") {
                         $scope.chkSearchProviderPage($rootScope.LogCurrentPage);
                     }
-                    /*cordova.plugins.diagnostic.requestMicrophoneAuthorization(function(status) {
+                    cordova.plugins.diagnostic.requestMicrophoneAuthorization(function(status) {
                         if (status === cordova.plugins.diagnostic.permissionStatus.DENIED) {
                             $scope.titeName = 'Would Like to Access the Microphone';
                             $scope.settingsMessage = "This app requires microphone access in order to conduct audio/video consultations.";
@@ -9660,7 +9660,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         }
                     }, function() {
     
-                    })*/
+                    })
                 }
             }, function () {
 
@@ -10392,6 +10392,24 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 activeConsultConnection = null;
                 activeRoomConHub = null;
             }
+            cordova.plugins.diagnostic.requestMicrophoneAuthorization(function(status) {
+                                    if (status === cordova.plugins.diagnostic.permissionStatus.DENIED) {
+                                        $scope.titeName = 'Would Like to Access the Microphone';
+                                        $scope.settingsMessage = "This app requires microphone access in order to conduct audio/video consultations.";
+                                        onMicroPhoneAuthorizationDenied();
+                                    } else { //authorized
+                                        $window.localStorage.setItem('FlagForCheckingAuthorization', 'Authorized');
+                                        if (getCurrentFuncName === 'GeneralLoginFun') {
+                                            $scope.GetLoginFunctionDetails();
+                                        } else if (getCurrentFuncName === 'SingleFuncLogin') {
+                                            $scope.GetSingleLoginDetailsFOrCheckingMic();
+                                        } else if(getCurrentFuncName === "SearchProvidePage") {
+                                              $scope.chkSearchProviderPage($rootScope.LogCurrentPage);
+                                        }
+                                    }
+                                }, function() {
+                
+                                });
             $state.go('tab.waitingRoom');
         }
 
