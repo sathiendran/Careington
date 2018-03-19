@@ -1836,7 +1836,7 @@ var setUserVars = function () {
                     return this.vm_isNew() ? true : this.isReadOnly ? true : false;
                 };
 
-                $("#localize-widget").show();
+                $("#localize-widget").hide();
                 this.vm_onSubmitClick = function () {
                     //debugger;
                     var that = this;
