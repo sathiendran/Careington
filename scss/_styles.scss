@@ -731,12 +731,12 @@ body {
     @include font($fontFamily_light, bold, 19px);
     color: #fff;
     border-radius: 7px;
-    width: 105px;
+    width: 105px; 
     min-height: 38px;
     margin: 0 0 0 10px;
     text-decoration: none;
     cursor: pointer;
-    margin-right: 16px;
+    //margin-right: 16px;
 }
 .ion-chevron-left::before {
     color: #fff;
@@ -1265,8 +1265,8 @@ body {
     font-size:16px !important;
 }
 .ssooptionTimezone{
-    width: 100%;
-    border: none;
+    width: 100%;  
+    border: none;     
     background-color: #F3F3F3;
     padding: 5px;
     margin-left: -6px;
@@ -1281,15 +1281,15 @@ body {
     border-bottom: 1px solid #C5C5C5;
     //height: 60px;
     margin-top: 125px;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     line-height: 3;
     color: #666666;
     span {
         color: #666666;
         //font-size: 26px;
-        font-size: 20px;
-        top: -8px;
+        font-size: 25px;
+        top: -13px;
         position: relative;
         left: 15px;
         font-family: $fontFamily_semibold;
@@ -2424,7 +2424,7 @@ select {
             color: #999999;
             font-weight: normal;
         }
-    }
+    }   
     .FooterRight {
         .ion-chevron-right:before {
             content: "\f125";
@@ -2432,14 +2432,17 @@ select {
             margin-top: -2px;
             position: absolute;
             top: -4px;
-            right: 18px;
+            right: 12px;
+
         }
-        text-align:right;
-        float:left;
+        text-align:center;
+        float:right;
         width:33%;
         position: relative;
         top: -4px;
-        left: 5px;
+        //left: 5px;
+        margin: 0 auto !important;
+
         a {
             cursor: pointer;
             font-weight: bold;
@@ -2450,7 +2453,8 @@ select {
             margin-left: -42px;
             position: relative;
             top: -3px;
-            left: -18px;
+            right: 25px;
+            float:right;
             //margin-left: -44px;margin-right: 25px;position: relative;top: -4px;left: -20px;
         }
     }
@@ -4113,12 +4117,12 @@ form.ng-submitted input.ng-valid + i.icon.error {
             margin-left: 83px;
         }
     }
-}
+}       
 .bar .button.button-clear .icon:before,
 .bar .button.button-clear.icon:before,
 .bar .button.button-clear.icon-left:before,
 .bar .button.button-clear.icon-right:before {
-    font-size: 30px !important;
+    font-size: 30px !important;   
 }
 .bar .button.button-clear.icon:before {
     font-size: 30px !important;
@@ -4126,11 +4130,11 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .iconsize {
     font-size: 26px !important;
 }
-.HeaderListIOS {
+.HeaderListIOS {    
     font-size: 20px;
     text-align: center;
     width: 100%;
-    margin-top: 13px;
+    margin-top: 11px;
 }
 .HeaderListAndroid {
     font-size: 20px;
@@ -5642,8 +5646,9 @@ hr {
             }
         }
         .authorcont {
-              margin-top: -5px;//0
-            margin-left: 14px;
+            float: left;
+            margin-top: -5px;//0
+            margin-left: 9px;
             font-size: 11px !important;
         }
     }

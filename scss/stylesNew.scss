@@ -47,7 +47,7 @@ margin-top: 125px !important;
   .concernListHeader {
     height: 60px !important;
   .concernListTitle-ios {
-  margin-top: 12px !important;
+  margin-top: 13px !important;
   font-size:18px !important;
   margin-left: 3px !important;
   }
@@ -204,8 +204,8 @@ margin-top: 125px !important;
               }
           }
         .mobileInput-Ios5 {
-                   padding-left: 32px !important;
-                   float: right !important;
+                  // padding-left: 32px !important;
+                   float: left !important;
               }
         .button_new {
               margin-right: 15px !important;
@@ -220,7 +220,7 @@ margin-top: 125px !important;
 
         }
         .ConsultChargeCancel {
-          .button_newios{
+          .ios{
                 margin-right: -200px !important;
           }
         }
@@ -300,7 +300,7 @@ margin-top: 125px !important;
     .healthViewDetails {
         margin-left: -7px;
     }
-}
+}  
 .passedImage-IOS {
     width: 24% !important;
 }
@@ -316,7 +316,7 @@ margin-top: 125px !important;
     margin-left: 5px !important;
 }
 .passedDetails-IOS {
-    width: 25% !important;
+    width: 27% !important;
     margin-left: 0px !important;
     color: #666666;
     font-family: Glober Regular;
@@ -1986,7 +1986,7 @@ color: #948E8E;
     //  margin-left: 20px;
     padding-left: 5px;
     text-align: center;
-    //width: 56%;
+    width: 75px;
 }
 .alpha_sidebar {
 position: absolute;
@@ -3527,7 +3527,7 @@ opacity: 1 !important;
 .accountHeader-IOS {
 //margin-right: 48px;
     margin-right: 100px;
-    margin-top: 15px;
+    margin-top: 16px;
 }
 .accountHeader-Android {
 //margin-right: 30px;
@@ -3570,7 +3570,7 @@ padding: 14px 0px 11px 0px !important;
 margin-left: 0px;
 }
 .healthTitle-IOS {
-margin-top: 13px !important;
+margin-top: 11px !important;
 }
 .healthTitle-Android {
 margin-top: 22px !important;
@@ -4306,7 +4306,7 @@ h3 {
 }
 .logProvider {
     position: relative;
-    top: 3px;
+    top: -11px;
 }
 }
 .reg2-Android {
@@ -4640,7 +4640,7 @@ padding: 20px 0px 20px;
 text-align:center;
 }
 .newProviderSub {
-padding: 33px;
+padding-top: 46px;
 }
 .newProContent {
      margin-top: 228px;
@@ -7158,13 +7158,13 @@ background-color: rgb(245,245,245);
 
 .emailDependent {
   height: 55px;
-}
+}   
 
 .leftHeaderIcon{
     float: left;
     /* left: -15px; */
     position: relative;
-    margin-top: 10px;
+    margin-top: 13px;
     cursor: pointer;
 }
 
@@ -7172,7 +7172,7 @@ background-color: rgb(245,245,245);
         float: right;
     right: 5px;
     position: absolute;
-    margin-top: 10px;
+    margin-top: 13px;
     cursor: pointer;
 }
 
@@ -7196,8 +7196,8 @@ background-color: rgb(245,245,245);
 
 @media (min-width:321px) and (max-width:365px) {
   .mobileInput-Ios5 {
-    padding-left: 50px !important;
-    float: right !important;
+    //padding-left: 50px !important;
+    float: left !important;
   }
 
 }
@@ -7210,8 +7210,8 @@ background-color: rgb(245,245,245);
       }
   }
   .mobileInput-Ios5 {
-    padding-left: 58px !important;
-    float: right !important;
+    //padding-left: 58px !important;
+    float: left !important;
   }
   .ReportEthnicity {
     width: 35.333% !important;
@@ -7247,8 +7247,8 @@ top:15px !important;
 }
 @media (min-width:376px) and (max-width:414px) {
   .mobileInput-Ios5 {
-    padding-left: 74px !important;
-    float: right !important;
+    //padding-left: 74px !important;
+    float: left !important;
   }
   .mobileInputNo-Ios5 {
         margin-left: 0px !important;
@@ -7256,9 +7256,9 @@ top:15px !important;
 }
 @media (min-width:415px) and (max-width:767px) {
   .mobileInput-Ios5 {
-      width: 5% !important;
-      margin-left: 44% !important;
-      float: right !important;
+     // width: 5% !important;
+      //margin-left: 44% !important;
+      float: left !important;
   }
   .mobileInputNo-Ios5 {
     margin-left: 15px !important;
@@ -7266,16 +7266,16 @@ top:15px !important;
 }
 @media (min-width:1024px) and (max-width:1360px) {
 .mobileInput-Ios5 {
-    width: 5% !important;
-    margin-left: 34% !important;
-    float: right !important;
+    //width: 5% !important;
+   // margin-left: 34% !important;
+    float: left !important;
 }
 }
 @media (min-width:768px) and (max-width:1020px) {
 .mobileInput-Ios5 {
-    width: 5% !important;
-    margin-left: 31% !important;
-    float: right !important;
+   // width: 5% !important;
+   // margin-left: 31% !important;
+    float: left !important;
 }
 .mobileInputNo-Ios5 {
 //  margin-left: 15px !important;
@@ -7388,6 +7388,7 @@ padding-top: 3px;
     text-overflow: inherit;
     white-space: normal;
     display: inline-flex;
+    width:55%;
 }
 .userHmeInPerson {
   .icon-users{
@@ -7395,3 +7396,31 @@ padding-top: 3px;
     top: -3px;
   }
 }
+
+@media (min-width:414px){     
+  .concernListHeader {
+    height: 64px !important;
+}
+.concernListHeader .concernListTitle-ios {
+    font-size: 18px !important;
+    color: #FFFFFF !important;
+    font-family: "Glober SemiBold";
+    margin-top: 18px !important;
+}
+.rightHeaderIcon {
+    margin-top: 18px;
+}
+.leftHeaderIcon {
+    margin-top: 18px;
+}
+}
+
+@media (min-width:375px){   
+.rightHeaderIcon {
+    margin-top: 18px;
+}
+.leftHeaderIcon {
+    margin-top: 18px;
+}
+}
+
