@@ -2423,13 +2423,13 @@ $rootScope.checkAndChangeMenuIcon = function() {
 
     }
 
-    $scope.textboxUp = function() {
+    // $scope.textboxUp = function() {
 
-        $timeout(function() {
-            $ionicScrollDelegate.scrollTo(0, 150, true);
+    //     $timeout(function() {
+    //         $ionicScrollDelegate.scrollTo(0, 150, true);
 
-        }, 900);
-    };
+    //     }, 900);
+    // };
 
     $scope.goBackProvider = function() {
         $state.go('tab.provider');
@@ -8853,6 +8853,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                     $('.userlistAccountHome-ios5').attr('style', 'margin-top: 15% !important');
                 else if($rootScope.is_iPadDeviceWidth >= 366 && $rootScope.is_iPadDeviceWidth <= 375)
                     $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
+                else if($rootScope.is_iPadDeviceWidth == 412)
+                    $('.userlistAccountHome-ios5').attr('style', 'margin-top: 15% !important');
                 else if($rootScope.is_iPadDeviceWidth >= 376 && $rootScope.is_iPadDeviceWidth <= 414)//iphone 7+
                     $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
                 else if($rootScope.is_iPadDeviceWidth >= 415 && $rootScope.is_iPadDeviceWidth <= 767)
@@ -8896,6 +8898,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                   $('.userlistAccountHome-ios5').attr('style', 'margin-top: 15% !important');
               else if($rootScope.is_iPadDeviceWidth >= 366 && $rootScope.is_iPadDeviceWidth <= 375)
                   $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
+              else if($rootScope.is_iPadDeviceWidth == 412)
+                $('.userlistAccountHome-ios5').attr('style', 'margin-top: 15% !important');
               else if($rootScope.is_iPadDeviceWidth >= 376 && $rootScope.is_iPadDeviceWidth <= 414)//iphone 7+
                   $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
               else if($rootScope.is_iPadDeviceWidth >= 415 && $rootScope.is_iPadDeviceWidth <= 767)
@@ -8925,7 +8929,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                       $('.subheaderheightOne').attr('style', 'height: 160px !important');
                       $('.userAccHeaderTitle').attr('style', 'margin-top: 0px !important');
                       $('.userlistAccountHome').attr('style', 'margin-top: 0px !important');
-
+                        console.log('$rootScope.is_iPadDeviceWidth '+$rootScope.is_iPadDeviceWidth);
                       if($rootScope.is_iPadDeviceWidth <= 320) {
                         $('.UserAccountProfileImage').attr('style', 'margin-top: 0% !important');
                          $('.userlistAccountHome-ios5').attr('style', 'margin-top: 18% !important');
@@ -8938,14 +8942,16 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
                            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 25% !important');
                        else if($rootScope.is_iPadDeviceWidth >= 366 && $rootScope.is_iPadDeviceWidth <= 375)
                            $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
+                       else if($rootScope.is_iPadDeviceWidth == 412)
+                        $('.userlistAccountHome-ios5').attr('style', 'margin-top: 25% !important');
                        else if($rootScope.is_iPadDeviceWidth >= 376 && $rootScope.is_iPadDeviceWidth <= 414)//iphone 7+
-                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
+                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 25% !important');
                        else if($rootScope.is_iPadDeviceWidth >= 415 && $rootScope.is_iPadDeviceWidth <= 767)
-                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 35% !important');
-                       else if($rootScope.is_iPadDeviceWidth >= 768 && $rootScope.is_iPadDeviceWidth <= 1024)
+                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 35% !important');           
+                     else if($rootScope.is_iPadDeviceWidth >= 768 && $rootScope.is_iPadDeviceWidth <= 1024)
                            $('.userlistAccountHome-ios5').attr('style', 'margin-top: -20% !important');
-                       else
-                           $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
+                      // else
+                       //    $('.userlistAccountHome-ios5').attr('style', 'margin-top: 0% !important');
 
 
                     /*  var beforAppointmentTime = getReplaceTime;
