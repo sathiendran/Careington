@@ -1,0 +1,18 @@
+<ion-header-bar align-title="left" class="Comm-bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}}">
+   <div class="buttons" >
+     <!--  <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span> -->
+   </div>
+    <h1 class="Comm-calendarTitle localizejs" style="" >Patient Intake</h1>
+   <div class="bar Comm-bar-subheaderHomeUser Comm-patient_subHeader Comm-calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
+      <div class="Comm-calendar_subHeader Comm-paymentSubHeader" >
+         <div class="Comm-subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
+         <div class="Comm-subHeader_content-{{deviceName}} ellipsis" >
+            <div class="Comm-subHeader_content_name ellipsis" >
+               <span class="Comm-PatintHeaderFontStyle Comm-patientName ellipsis">Jonathan </span>
+               <span class="Comm-PatintHeaderFontStyleInner Comm-patientLastName ellipsis">Fitzpatrick</span>
+            </div>
+            <div class="Comm-subHeader_content_age Comm-PatintHeaderFontStyleSub ellipsis"><span class="localizejs">Male <span class="age-dot">.</span></span> 29yrs <span ng-if="primaryPatientId != patientId" class="localizejs"> <span class="age-dot">.</span></span></div>
+         </div>
+      </div>
+   </div>
+</ion-header-bar>

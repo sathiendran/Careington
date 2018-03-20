@@ -1,0 +1,1467 @@
+<style>
+
+
+#overlay {
+    margin-top: 65px;
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.85);
+    //z-index: 2;
+    cursor: pointer;
+    z-index:99999;
+}
+
+#text{
+    /*font-family: "GloberBold";
+    position: absolute;
+    top: 70px;;
+    left: 50%;
+    font-size: 24px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    width: 225px;
+    height: 60px;*/
+
+    font-family: "GloberBold";
+    position: relative;
+    top: 40px;
+
+    font-size: 24px;
+
+    height: 60px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    text-align: center;
+    margin: 0 auto;
+    vertical-align: middle;
+    color: #ffffff;
+}
+.base_progress_1  {
+    width: 124px;
+    height: 124px;
+    border: solid 14px #a2d28a;
+    border-radius: 50%;
+    margin-top: 60px;
+    margin-left: 26%;
+    margin-right: 26%;
+    //border: solid 14px var(--snap-success);
+}
+/*
+:root {
+  --borderWidth: 14px;
+  --borderRightWidth:5px;
+  --height: 64px;
+  --width: 30px;
+  --text-align:center;
+  --borderColor: #a2d28a;
+}
+
+.check {
+  display: inline-block;
+  position: relative;
+  transform: rotate(25deg);
+  height: var(--height);
+  width: var(--width);
+  border-bottom: var(--borderWidth) solid var(--borderColor);
+  border-right: var(--borderWidth) solid var(--borderColor);
+  margin-left: 35px;
+  margin-top: :10px;
+}
+*/
+
+.overlayContent {
+  //width: 288px;
+  height: 48px;
+  font-family: "Glober";
+  font-size: 18px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  padding-left: 16px;
+  padding-right: 16px;
+  //color: var(--snap-white);
+  margin-top: 23px;
+
+}
+
+.ion-checkmark-round:before {
+    font-size: 86px;
+    /* width: 92%; */
+    height: 91%;
+    color: #a2d28a;
+    margin-left: 30px;
+    margin-top: 20px;
+}
+.btnReturnHome {
+  width: 90%;
+  height: 44px;
+  border-radius: 4px;
+  border: solid 1px #ffffff;
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-top: 100px;
+}
+.returnHometxt{
+  width: 48px;
+  height: 28px;
+  font-family: Glober;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+}
+.dialogbox-master__hour span {
+  //width: 63px;
+  //height: 24px;
+  font-family: "Glober";
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  text-align: left;
+  color: rgba(0, 0, 0, 0.75);
+}
+.ItemList {
+  background-color: #a2d28a !important;
+}
+.userHomeTitle {
+ font-family: Glober;
+ font-size: 20px;
+ font-weight: bold;
+ font-style: normal;
+ font-stretch: normal;
+ line-height: 1.4;
+ letter-spacing: normal;
+ text-align: center;
+ color: #ffffff;
+}
+
+.dialogbox-master__box--encounter-method-intake {
+  padding-top: 12px;
+}
+.dialogbox-master__box-intake {
+  padding: 0 15px;
+
+overflow: hidden;
+}
+.dialogbox-master__subtitle-intake {
+  display: block;
+  font-family: "GloberRegular", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+  font-size: 16px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.54);
+  margin: 0 0 8px 0;
+}
+.consultation-type__list {
+  display: flex;
+    flex-flow: row nowrap;
+
+}
+.consultation-type__item.is-active {
+  color: #000;
+font-family: "GloberSemiBold", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+}
+.consultation-type__item:first-child {
+  margin-left: 0;
+}
+.consultation-type__item {
+  flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 0;
+    padding-bottom: 8px;
+    position: relative;
+    text-align: center;
+    font-size: 12px;
+    line-height: 16px;
+    margin: 0 0 0 24px;
+    cursor: pointer;
+    transition: font .3s ease;
+    outline: none;
+}
+.consultation-type__item.is-active .consultation-type__icon {
+
+//  width: 98px;
+  height: 44px;
+  border-radius: 4px;
+  background-color: #a2d28a;
+}
+.consultation-type__item .consultation-type__icon {
+  //  width: 103px;
+    height: 44px;
+    border-radius: 4px;
+    background-color: #eeeeee;
+}
+.span.icon_video_camera {
+  font-size: 30px;
+}
+.consultation-type__title {
+  margin: 5px 0;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.consultation-type__item::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-bottom: 8px solid transparent;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -6px;
+    transition: border-color 0.3s ease;
+}
+
+// .videoIcon {
+//      position: relative;
+//       vertical-align: middle;
+//       margin: 0 auto;
+//       top: 10px;
+// }
+h1.title.ChronicCondition.concernsSubTit.localizejs {
+    text-align: center;
+    margin: 0 auto;
+    vertical-align: middle;
+    white-space: initial;
+    padding: 20px 17px;
+    overflow: visible !important;
+    width: 100%;
+}
+span.ng-binding.comm-Icon {
+      position: relative;
+      vertical-align: middle;
+      margin: 0 auto;
+      top: 10px;
+      color: rgba(0, 0, 0, 0.38);
+}
+span.ng-binding.comm-Icon.is-active {
+    color: #ffffff;
+}
+.comm-provider-call-Icon {
+    font-size: 30px;
+    //padding-right: 16px;
+    // top: 15px;
+    position: relative;
+    margin-left: 16px;
+}
+.provider-phone-type {
+  padding-left: 23px;
+}
+
+p.Choosecommunication {
+    // width: 290px;
+    // height: 20px;
+    font-family: "Glober";
+    font-size: 14px !important;
+    // font-weight: normal;
+    // font-style: normal;
+    // font-stretch: normal;
+    // line-height: 1.43;
+    // letter-spacing: 0.1px;
+    // text-align: center;
+    color: rgba(0, 0, 0, 0.54);
+
+    //text-align: center;
+    //margin: 0 auto;
+    //vertical-align: middle;
+    //white-space: initial;
+    /* padding: 20px 17px; */
+    //overflow: visible !important;
+    width: 100% !important;
+
+    margin: 0 auto !important;
+    position: relative;
+    text-align: center;
+    padding: 0px 15px 10px 15px;
+}
+
+.consultation-type__item::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-bottom: 8px solid transparent;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -6px;
+    transition: border-color 0.3s ease;
+}
+.provider-phone-icon.comm-Icon{
+      padding-left: 16px;
+}
+.provider-phone-input input {
+
+  width: 84%;
+  height: 48px;
+  font-family: "GloberSemiBold";
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.75);
+
+
+}
+
+.provider-phone-input {
+  border-bottom: 1px solid;
+  color: #eeeeee;
+  margin-left: 48px;
+
+}
+    .dialogbox-master__subtitle-intake-provider {
+        margin-left: 28px;
+        margin-top: 13px;
+        display: block;
+        font-family: "GloberRegular", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+        font-size: 16px;
+        line-height: 20px;
+        color: rgba(0, 0, 0, 0.54);
+
+    }
+ .phone-error {
+    //width: 194px;
+    //height: 20px;
+    font-family: "Glober";
+    font-size: 14px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #ef4b27;
+    margin-left: 38px;
+ }
+
+.provider-phone-icon-error {
+      padding-right: 16px;
+    position: relative;
+}
+
+.provider-content{
+  padding:0 15px;
+}
+
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+  width:60%;
+  margin-left: 23px;
+      /*margin: 35%;*/
+          border-bottom: 1px solid #eee;
+}
+
+.dd-button {
+  display: inline-block;
+  //border: 1px solid gray;
+  border-radius: 4px;
+  padding: 7px 30px 10px 0px;
+  background-color: #ffffff;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.dd-button:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid black;
+}
+
+.dd-button:hover {
+  background-color: #eeeeee;
+}
+
+
+.dd-input {
+  display: none;
+}
+
+.dd-menu {
+  position: absolute;
+  top: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0;
+  margin: 2px 0 0 0;
+  box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);
+  background-color: #ffffff;
+  list-style-type: none;
+}
+.dd-menu:after{
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+
+  border-top: 20px solid #f00;
+}
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+
+  border-top: 20px solid #f00;
+}
+
+.dd-input + .dd-menu {
+  display: none;
+}
+
+.dd-input:checked + .dd-menu {
+  display: block;
+}
+
+.dd-menu li {
+  padding: 10px 20px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+
+.dd-menu li a {
+  display: block;
+  margin: -10px -20px;
+  padding: 10px 20px;
+}
+
+.dd-menu li.divider{
+  padding: 0;
+  border-bottom: 1px solid #cccccc;
+}
+
+.square:before {
+    content:"";
+    position: absolute;
+    left: 11px;
+    top: -10px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent #fae0bb transparent;
+    z-index:9999;
+}
+.square:after {
+    content:"";
+    position: absolute;
+    left: 4px;
+    top: -17px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 17px 17px 17px;
+    border-color: transparent transparent #ffffff transparent;
+    z-index:9998;
+}
+.square {
+    border: 1px solid #fffefe;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+    float: left;
+    margin: 0;
+    z-index: 99999;
+}
+ion-grid {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+        padding: 0 0 20px 0;
+}
+
+ion-row {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+ion-col {
+    position: relative;
+    padding: 5px;
+    width: 100%;
+    margin: 0;
+    min-height: 1px;
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+
+}
+[col-8] {
+    -webkit-flex: 0 0 66.66667%;
+    -ms-flex: 0 0 66.66667%;
+    flex: 0 0 66.66667%;
+    width: 66.66667%;
+    max-width: 66.66667%;
+}
+[col-2] {
+    -webkit-flex: 0 0 16.66667%;
+    -ms-flex: 0 0 16.66667%;
+    flex: 0 0 16.66667%;
+    width: 16.66667%;
+    max-width: 16.66667%;
+}
+[col-4] {
+    -webkit-flex: 0 0 33.33333%;
+    -ms-flex: 0 0 33.33333%;
+    flex: 0 0 33.33333%;
+    width: 33.33333%;
+    max-width: 33.33333%;
+}
+[col-3] {
+    -webkit-flex: 0 0 24.99999%;
+    -ms-flex: 0 0 24.99999%;
+    flex: 0 0 24.99999%;
+    width: 24.99999%;
+    max-width: 24.99999%;
+}
+[col-1] {
+    -webkit-flex: 0 0 8.33333%;
+    -ms-flex: 0 0 8.33333%;
+    flex: 0 0 8.33333%;
+    width: 8.33333%;
+    max-width: 8.33333%;
+}
+.Combined-Shape {
+  width: 4px;
+  height: 12px;
+  border-radius: 100px;
+  background-color: #ffffff;
+
+}
+.info-with-circle {
+  width: 20px;
+  height: 20px;
+  background-color: #ef4b27;
+  margin-left: 15px;
+      border-radius: 10px;
+}
+.black-light {
+  font-size: 18px;
+  text-align: left;
+  font-family: GloberSemiBold;
+}
+.btn-encounterLabel{
+  width: 39px;
+  height: 24px;
+  font-family: Glober;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: 0.1px;
+  text-align: center;
+  color: #ffffff;
+}
+.btn-encounterFull{
+  width: 64px;
+ height: 32px;
+ border-radius: 4px;
+ background-color: #a2d28a;
+ box-shadow: 1px 2px 1px 0 rgba(0, 0, 0, 0.3);
+ float: right;
+}
+.grey-darker{
+  width: 320px;
+  height: 48px;
+  background-color: #4a4a4a;
+}
+.grey-darkerPatientdata{
+    width: 160px;
+    height: 48px;
+    //background-color: #2c6ebf;
+
+}
+.chatIcon{
+  width: 18px;
+  height: 14.5px;
+  opacity: 0.7;
+  border-radius: 2px;
+}
+.personIcon{
+  width: 20px;
+  height: 16px;
+}
+.footerIntake{
+
+}
+
+.chatEncounter-sectionTitle {
+
+  height: 56px;
+  background-color: #eeeeee;
+  border-bottom: 1px solid;
+  border-color: rgba(0, 0, 0, 0.38);
+}
+
+.chatEncounter-sectionTitle span{
+    width:296px;
+    height: 22px;
+    color: rgba(0,0,0,0.54);
+    font-size: 16px;
+    font-family: "GloberSemiBold";
+    padding-left: 12px;
+    /* padding-top: 43px; */
+    position: relative;
+    top: 30px;
+}
+.patientDataQuestion{
+  width: 320px;
+  height: 48px;
+  padding: 24px 17px 16px 0px;
+}
+.patientDataQuestion span{
+  font-family: GloberSemiBoldItalic;
+  font-size: 16px;
+  align:left;
+      color: rgba(0, 0, 0, 0.54);
+}
+.patientDataQuestionpart{
+  width: 320px;
+  height: 40px;
+}
+.patientDataQuestionpart span{
+  width: 320px;
+  height: 40px;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.75);
+  font-family: "GloberSemiBold";
+  padding: 0px 0px 0px 22px;
+}
+.patientDataQuestionpart1{
+  width: 320px;
+  height: 72px;
+}
+
+ .UserHmelistImgView {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #999999;
+}
+
+.iconImage{
+
+width: 13.3px;
+height: 20px;
+background-color: #333333;
+}
+.patientDataQuestionpart1Span{
+  width: 320px;
+  height: 40px;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.75);
+  font-family: "GloberSemiBold";
+  padding: 0px 0px 0px 24px;
+}
+.subHeaderName{
+  width: 187px;
+  height: 30px;
+}
+svg.icon-chat {
+    width: 17px !important;
+    height: 14.5px !important;
+    color: #ffffff;
+}
+svg.icon-vcard{
+  color: #ffffff;
+}
+.tabs-icon-bottom {
+  .tab-nav{
+        height: 56px;
+        .icon{
+          height: 20px;
+        }
+  }
+}
+tr{
+      border: 1px solid rgba(0, 0, 0, 0.12);
+}
+td{
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      width: 33.33%;
+      height: 56px;
+}
+table {
+      width: 100%;
+}
+.demographics-col-patient{
+    // width: 50%;
+    background-color: #ffffff;
+}
+.demographics-col-data{
+    font-family: GloberSemiBold;
+    font-size: 18px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.75);
+    position: absolute;
+    padding: 27px 0px 0px 6px;
+    position: relative;
+    padding: 0px 0px 0px 12px;
+    //top:-5px;
+}
+.tab-itemnew.active .icon{
+  color: #333333 !important;
+}
+.tab-itemnew.active{
+  color: #333333 !important;
+}
+.tabcolorlabel{
+  width: 120px;
+  height: 22px;
+  font-family: GloberSemiBold;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.57;
+  letter-spacing: normal;
+  text-align: center;
+  color: #333333;
+}
+.demographics-col-lable{
+      font-size: 12px;
+      width:100%;
+      padding-left: 12px;
+}
+.indicator-box {
+ float: left;
+}
+.patient-Question {
+  padding-left: 8px;
+}
+.indicator-box-content {
+  width: 16px;
+  height: 16px;
+  background-color: #d8d8d8;
+}
+// .HeaderTitle {
+//   width: 100%;
+//   margin-top: 23px !important;
+//   height: 28px;
+//   font-family: "Glober Bold";
+//   font-size: 20px;
+//   /*font-weight: bold;*/
+//   font-style: normal;
+//   font-stretch: normal;
+//   line-height: 1.4;
+//   letter-spacing: normal;
+//   text-align: center;
+//   color: #ffffff;
+//   margin-right: 50px;
+// }
+//
+// .waitingChatFooter {
+//     height: 56px;
+//     background-color: #eeeeee;
+//     box-shadow: inset 0 1px 0 0 rgba(0, 0, 0, 0.12);
+//     padding: 0px;
+// }
+// .chatTextLable {
+//   font-family: Glober Regular !important;
+//   height: 40px;
+//   border-radius: 4px;
+//   background-color: #ffffff;
+//   border: solid 1px #999999;
+//   margin: 8px 7px 8px 8px;
+//   vertical-align: middle;
+//   padding-top: 10px;
+//   }
+//
+// .sendButton {
+//   height: 32px;
+//   border-radius: 4px;
+//   background-color: #cccccc;
+//   border-color: #cccccc;
+// }
+//   .buttonlabel {
+//     font-family: "Glober Bold";
+//     font-size: 16px;
+//     font-style: normal;
+//     font-stretch: normal;
+//     font-weight: bold;
+//     line-height: 2;
+//     letter-spacing: 0.1px;
+//     text-align: center;
+//     color: #ffffff;
+//     width: 100%;
+//   }
+//
+//     .hint-text {
+//       /*width: 173px;*/
+//       height: 22px !important;
+//       font-family: "Glober Regular";
+//       font-size: 16px !important;
+//       font-weight: normal;
+//       font-style: normal;
+//       font-stretch: normal;
+//       line-height: 1.38 !important;
+//       letter-spacing: normal;
+//       text-align: left;
+//       margin-left: -8px !important;
+//       /* margin-top: -3px !important; */
+//       margin-top: 8px !important;
+//       color: rgba(0, 0, 0, 0.38) !important;
+//       }
+//
+//   .closeButton {
+//     font-size: 18px;
+//     float: left;
+//     color: #fff;
+//     margin-top: 20px !important;
+//     margin-left: 10px;
+//     line-height: 24px;
+//     font-family: GlobersemiBold;
+//     }
+//
+//   ion-item.item {
+//     border-style: none !important;
+//   }
+//   .chatUserImage {
+//     width: 40px;
+//     height: 40px;
+//     font-family: Globerx;
+//     font-size: 16px;
+//     font-weight: bold;
+//     font-style: normal;
+//     font-stretch: normal;
+//     line-height: 1.25;
+//     letter-spacing: normal;
+//     text-align: center;
+//     color: #ffffff;
+//     margin-top: -5px;
+//   }
+//   .ContentBackground {
+//     float: left;
+//     width: 75%;
+//     border-radius: 4px;
+//     background-color: rgba(0, 0, 0, 0.12);
+//     margin-left: 15px;
+//     margin-top: 1px;
+//   }
+//   .pContent {
+//     font-family: "Glober SemiBold";
+//     font-size: 14px !important;
+//     /*font-weight: 600;*/
+//     font-style: normal;
+//     font-stretch: normal;
+//     line-height: 1.43;
+//     letter-spacing: 0.1px;
+//     text-align: left;
+//     color: rgba(0, 0, 0, 0.60) !important;
+//     padding: 9px;
+//   }
+//   .UserHmelistImgView {
+//     width: 36px;
+//     height: 36px;
+//     border-radius: 50%;
+//     border: 2px solid #999999;
+//     margin-top: 2px;
+// }
+// .concernListContent {
+//     margin-top: 0px !important;
+//     margin-bottom: 10px;
+// }
+//
+//     .arrow_box {
+//     	position: relative;
+//       /*background: #CCC;
+//       border: 5px solid #EFEFEF;
+//       padding: 10px;
+//       margin-top: -5px;*/
+//     }
+//     .arrow_box:after, .arrow_box:before {
+//     	right: 100%;
+//     	border: solid transparent;
+//     	content: " ";
+//     	height: 0;
+//     	width: 0;
+//     	position: absolute;
+//     	pointer-events: none;
+//     }
+//     .arrow_box:before {
+//       /*border-color: rgba(0, 0, 0, 0.12);*/
+//       border-right-color:rgba(0, 0, 0, 0.12);
+//       /*border-right-color: #000000 !important;*/
+//       border-width: 7px;
+//       top: 9px;
+//     }
+//     p.wordWrap {
+//         white-space: normal;
+//     }
+//     .nametext {
+//       margin-left: 40px;
+//       color: rgba(0, 0, 0, 0.54);
+//       font-size: 12px;
+//       line-height: 16px;
+//       font-family: Glober Regular !important;
+//       margin-top: 3px;
+//     }
+//     .dateTimeStle {
+//       font-family: Glober Regular !important;
+//       float: left;
+//       width: 7%;
+//       padding: 5px 5px 5px 5px;
+//       color: rgba(0, 0, 0, 0.54);
+//       font-size: 12px;
+//       line-height: 16px;
+//       margin-left: 0px;
+//       margin-top: -5px;
+//     }
+//
+//     .patProfileImage {
+//       width: 40px;
+//       height: 40px;
+//       border-radius: 50%;
+//       text-align: center;
+//       font-family: Glober XBold;
+//       font-size: 16px;
+//       border: 2px solid #fff !important;
+//       margin-top: -7px;
+//       margin-right: 9px;
+//     }
+//     .patProfileImage span {
+//       position: relative;
+//       top: 11px;
+//       color: #fff !important;
+//     }
+//     @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
+//         .hint-text {
+//             padding-right: 85px !important;
+//         }
+//     }
+//
+//     .has-header {
+//     bottom: 50px !important;
+//     top: 72px;
+//     }
+//     .item {
+// padding: 0px 16px 5px 16px !important;
+// }
+
+.ion-col-border{
+  //border:solid;
+  //border-width: 1px;
+  //border-color: #C4C5C3;
+  //height: 56px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+ion-grid{
+      padding-bottom: 0px;
+}
+.tab-nav.tabs {
+      height: 56px;
+
+}
+.active-Tab-chat {
+
+  background-color: #2c6ebf;
+
+span.label-Chat{
+     color: #ffffff;
+    }
+}
+
+
+.label-Chat{
+  padding: 0px 0px 0px 11px;
+  top: 6px;
+  width: 33px;
+  height: 22px;
+  font-family: Glober;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.38;
+  letter-spacing: 0.1px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.tabs-striped.tabs-positive .tabs {
+     background-color: #f5f5f5 !important;
+}
+
+</style>
+
+<div ng-include src="'templates/chatEncounterHeader.html'"></div>
+<ion-view title="Health Info Details" >
+   <ion-content class="ioncontentalign healthHeight" style="top: -38px;">
+<!-- Third Page Starts -->
+<!-- <ion-list reorder="true" style="display: flex;flex-direction: column;margin-top: auto" no-lines >
+              <ion-item  no-lines style="border: none;display: inline-grid;padding-top: 0;">
+
+                <div style="margin-top: 8px;" class="chat-list-row">
+                    <div class="nametext">
+                      <span>Firstname</span> <span>Lastname</span>
+                    </div>
+                    <div style="width:100%;">
+                    <div style="float:left;margin-top: -30px;margin-left: -11px;position: relative;top: 30px;">
+                        <div class="subHeader_image chatUserImage" ><img ng-src="https://emerald.qa1.snapvcm.com/api/v2.1/images/a872f5d9-30b1-4a18-955c-2b8f4cccedb8" src="https://emerald.qa1.snapvcm.com/api/v2.1/images/a872f5d9-30b1-4a18-955c-2b8f4cccedb8" class='UserHmelistImgView'></div>
+                    </div>
+                    <div class="chat-msg-content">
+                      <!-- <div class="userName">{{msg.Name}}</div> -->
+                        <!-- <div class="arrow_box ContentBackground" >
+                          <p class="pContent wordWrap"> Just so, from the ship's steep side, did I hold Queequeg down there in the sea, by what is technically called in the fishery a monkey-rope,  </p>
+                        </div>
+                    </div>
+
+                    <div class="dateTimeStle">
+                      <span>12:19pm</span>
+
+                    </div>
+                  </div>
+            </div>
+
+              </ion-item>
+              <ion-item  no-lines style="border: none;display: inline-grid;padding-top: 0;">
+          <div style="margin-top: 8px;" class="chat-list-row">
+                   <div class="nametext">
+                      <span>Firstname</span> <span>Lastname</span>
+                    </div>
+                    <div style="width:100%;">
+                    <div style="float:left;margin-top: -30px;margin-left: -11px;position: relative;top: 30px;">
+                        <div class="subHeader_image chatUserImage" ><img ng-src="https://emerald.qa1.snapvcm.com/api/v2.1/images/a872f5d9-30b1-4a18-955c-2b8f4cccedb8" src="https://emerald.qa1.snapvcm.com/api/v2.1/images/a872f5d9-30b1-4a18-955c-2b8f4cccedb8" class='UserHmelistImgView'></div>
+                    </div>
+                    <div class="chat-msg-content">
+
+                        <div class="arrow_box ContentBackground" >
+                          <p class="pContent wordWrap"> Just so, from the ship's steep side, did I hold Queequeg down there in the sea, by what is technically called in the fishery a monkey-rope,  </p>
+                        </div>
+                    </div>
+
+                    <div class="dateTimeStle">
+                      <span>12:19pm</span>
+
+                    </div>
+                  </div>
+            </div>
+              </ion-item>
+
+            </ion-list>  -->
+<!-- Third Page Ends -->
+<!-- Second page starts -->
+<div style="display:{{PatientDataContent}}">
+ <div class="chatEncounter-sectionTitle">
+       <span>PATIENT DEMOGRAPHICS</span>
+       </div>
+
+
+       <ion-grid>
+         <ion-row>
+           <ion-col col-6 class="ion-col-border" >
+             <lable class="demographics-col-lable">DATE OF BIRTH</lable>
+             <div class="demographics-col-data">09/19/1999</div>
+           </ion-col>
+           <ion-col col-6 class="ion-col-border" >
+             <lable class="demographics-col-lable">GENDER</lable>
+             <div class="demographics-col-data">Female</div>
+           </ion-col>
+
+           <ion-col col-6 class="ion-col-border" >
+             <lable class="demographics-col-lable">HEIGHT</lable>
+             <div class="demographics-col-data">5' 8''</div>
+           </ion-col>
+           <ion-col col-6 class="ion-col-border" >
+             <lable class="demographics-col-lable">WEIGHT</lable>
+             <div class="demographics-col-data">145lbs</div>
+           </ion-col>
+
+
+           <ion-col col-6 class="ion-col-border" >
+             <lable class="demographics-col-lable">EYE COLOR</lable>
+             <div class="demographics-col-data">Green</div>
+           </ion-col>
+           <ion-col col-6 class="ion-col-border" >
+             <lable class="demographics-col-lable">HAIR COLOR</lable>
+             <div class="demographics-col-data">Red</div>
+           </ion-col>
+
+           <ion-col col-6 class="ion-col-border" >
+             <lable class="demographics-col-lable">ETHNICITY</lable>
+             <div class="demographics-col-data">Caucasian</div>
+           </ion-col>
+           <ion-col col-6 class="ion-col-border" >
+             <lable class="demographics-col-lable">BLOOD TYPE</lable>
+             <div class="demographics-col-data">I do not know</div>
+           </ion-col>
+
+         </ion-row>
+        </ion-grid>
+
+<div class="chatEncounter-sectionTitle">
+       <span>CONTACT INFORMATION</span>
+       </div>
+
+       <ion-grid>
+         <ion-row>
+           <ion-col class="ion-col-border" >
+             <lable class="demographics-col-lable">ADDRESS</lable>
+             <p class="demographics-col-data" style="position:none;position: relative;width: 79%;" >600 S Fair Oaks Avenue
+Pasadena, CA, US, 91103</p>
+           </ion-col>
+           </ion-row>
+
+           <ion-row>
+             <ion-col class="ion-col-border" >
+               <lable class="demographics-col-lable">HOME PHONE</lable>
+               <p class="demographics-col-data" style="position:none;position: relative;width: 79%;" >600 S Fair Oaks Avenue
+  Pasadena, CA, US, 91103</p>
+             </ion-col>
+             </ion-row>
+
+             <ion-row>
+               <ion-col class="ion-col-border" >
+                 <lable class="demographics-col-lable">CELL PHONE</lable>
+                 <p class="demographics-col-data" style="position:none;position: relative;width: 79%;" >626-123-4567</p>
+               </ion-col>
+               </ion-row>
+
+               <ion-row>
+                 <ion-col class="ion-col-border" >
+                   <lable class="demographics-col-lable">EMAIL</lable>
+                   <p class="demographics-col-data" style="position:none;position: relative;width: 100%;" >female@franco-mauritian.com</p>
+                 </ion-col>
+                 </ion-row>
+       </ion-grid>
+
+       <!-- <table>
+       <tr>
+         <td class="demographics-col-patient" style="width: 100%;height: 100%;">
+             <lable class="demographics-col-lable">ADDRESS</lable>
+             <p class="demographics-col-data" style="position:none;position: relative;width: 79%;" >600 S Fair Oaks Avenue
+Pasadena, CA, US, 91103</p>
+         </td>
+         <td class="demographics-col-patient" style="width: 100%;height: 100%;">
+             <lable class="demographics-col-lable">HOME PHONE</lable>
+             <div class="demographics-col-data">626-987-6543</div>
+         </td>
+         <td class="demographics-col-patient" style="width: 100%;height: 100%;">
+             <lable class="demographics-col-lable">CELL PHONE</lable>
+             <div class="demographics-col-data">626-123-4567</div>
+         </td>
+         <td class="demographics-col-patient" style="width: 100%;height: 100%;">
+             <lable class="demographics-col-lable">EMAIL</lable>
+             <div class="demographics-col-data">female@franco-mauritian.com</div>
+         </td>
+       </tr>
+     </table> -->
+
+    <div class="chatEncounter-sectionTitle">
+           <span>CARE INFORMATION</span>
+           </div>
+
+           <ion-grid>
+             <ion-row>
+               <ion-col class="ion-col-border" >
+                 <lable class="demographics-col-lable">PREFFERRED PROVIDER</lable>
+                 <p class="demographics-col-data" style="position:none;position: relative;width: 79%;" >
+                   DR.John Posey <br> 999-999-999</p>
+               </ion-col>
+               </ion-row>
+
+               <ion-row>
+                 <ion-col class="ion-col-border" >
+                   <lable class="demographics-col-lable">SPECIALIST PROVIDER</lable>
+                   <p class="demographics-col-data" style="position:none;position: relative;width: 79%;" >
+                     None specified</p>
+                 </ion-col>
+                 </ion-row>
+
+                 <ion-row>
+                   <ion-col class="ion-col-border" >
+                     <lable class="demographics-col-lable">PREFERRED PHARMACY</lable>
+                     <p class="demographics-col-data" style="position:none;position: relative;width: 79%;" >600S S Fair Oaks Avenue asjhafs, ajksdhasd,asdhasdh dsfhash</p>
+                   </ion-col>
+                   </ion-row>
+
+                   <ion-row>
+                     <ion-col class="ion-col-border" >
+                       <lable class="demographics-col-lable">GUARDIANS</lable>
+                       <div class="demographics-col-data">Jon Karne</div>
+                       <div class="demographics-col-data">Jane Karne</div>
+                    </ion-col>
+                     </ion-row>
+
+                     <ion-row>
+                       <ion-col class="ion-col-border" >
+                         <lable class="demographics-col-lable">CHRONIC MEDICAL CONDITIONS</lable>
+                         <p class="demographics-col-data" style="position:none;position: relative;width: 79%;" >600S S Fair Oaks Avenue asjhafs, ajksdhasd,asdhasdh dsfhash</p>
+                       </ion-col>
+                       </ion-row>
+
+                       <ion-row>
+                         <ion-col class="ion-col-border" >
+                           <lable class="demographics-col-lable">HEIGHT</lable>
+                           <p class="demographics-col-data" style="position:none;position: relative;width: 79%;" >5' 8''</p>
+                         </ion-col>
+                         </ion-row>
+
+
+           </ion-grid>
+
+           <!-- <table>
+           <tr>
+             <td class="demographics-col-patient" style="width: 100%;height: 100%;">
+                 <lable class="demographics-col-lable">PREFFERRED PROVIDER</lable>
+
+                 <div class="demographics-col-data" style="width: 100%;">DR.John Posey <br> 999-999-999</div>
+             </td>
+             <td class="demographics-col-patient" style="width: 100%;height: 100%;">
+                 <lable class="demographics-col-lable">SPECIALIST PROVIDER</lable>
+                 <div class="demographics-col-data">None specified</div>
+             </td>
+             <td class="demographics-col-patient" style="width: 100%;height: 100%;">
+                 <lable class="demographics-col-lable">PREFERRED PHARMACY</lable>
+                 <p class="demographics-col-data" style="position:none;position: relative;">600S S Fair Oaks Avenue asjhafs, ajksdhasd,asdhasdh dsfhash</p>
+             </td>
+             <td class="demographics-col-patient" style="width: 100%;height: 100%;">
+                 <lable class="demographics-col-lable">GUARDIANS</lable>
+                 <div class="demographics-col-data">Jon Karne</div>
+                 <div class="demographics-col-data">Jane Karne</div>
+             </td>
+             <td class="demographics-col-patient" style="width: 100%;height: 100%;">
+                 <lable class="demographics-col-lable">CHRONIC MEDICAL CONDITIONS</lable>
+                 <div class="demographics-col-data">600S S Fair Oaks Avenue</div>
+             </td>
+
+           </tr>
+           <tr>
+             <td class="demographics-col-patient" style="width: 100%;height: 100%;">
+               <lable class="demographics-col-lable">HEIGHT</lable>
+               <div class="demographics-col-data">5' 8''</div>
+             </td>
+           </tr>
+     </table> -->
+
+            <div class="chatEncounter-sectionTitle">
+                   <span>CHRONIC MEDICAL CONDITIONS</span>
+                   </div>
+                   <div class="patientDataQuestion">
+                     <div class="indicator-box"><div class="indicator-box-content"></div></div>
+                     <span class="patient-Question">If any,list the patients chronic medical conditions.</span>
+                   </div>
+                   <div style="padding: 27px 0px 0px 0px;">
+                   <div class="patientDataQuestionpart" style="padding: 0px 0px 0px 5px;">
+                     <span>– Medication 1</span>
+                   </div>
+                   <div class="patientDataQuestionpart" style="padding: 0px 0px 0px 5px;">
+                     <span>– Medication 2</span>
+                   </div>
+                   <div class="patientDataQuestionpart" style="padding: 0px 0px 0px 5px;">
+                     <span>– Medication 3</span>
+                   </div>
+                   <div class="patientDataQuestionpart" style="padding: 0px 0px 0px 5px;">
+                     <span>– Medication 4</span>
+                   </div>
+                 </div>
+                   <div class="chatEncounter-sectionTitle">
+                          <span>PRIOR SURGERIES</span>
+                          </div>
+                          <div style="padding: 27px 0px 0px 0px;">
+                          <div class="patientDataQuestionpart" style="padding: 0px 0px 0px 5px;">
+                            <span>– Surgery 1 (January 2011)</span>
+                          </div>
+                          <div class="patientDataQuestionpart" style="padding: 0px 0px 0px 5px;">
+                            <span>– Surgery 2 (July 2012)</span>
+                          </div>
+                          <div class="patientDataQuestionpart" style="padding: 0px 0px 0px 5px;">
+                            <span>– Surgery 3 (September 1946)</span>
+                          </div>
+                        </div>
+
+                <div class="chatEncounter-sectionTitle">
+                       <span>MEDICAL ALLERGIES</span>
+                       </div>
+                       <div class="patientDataQuestion">
+                         <div class="indicator-box"><div class="indicator-box-content"></div></div>
+                         <span  class="patient-Question">If any,list the patients chronic medical conditions.</span>
+                       </div>
+                    <div style="padding: 27px 0px 0px 0px;">
+                       <div class="patientDataQuestionpart" style="padding: 0px 0px 0px 5px;">
+                         <span>– Medication 1</span>
+                       </div>
+                       <div class="patientDataQuestionpart" style="padding: 0px 0px 0px 5px;">
+                         <span>– Medication 2</span>
+                       </div>
+                       <div class="patientDataQuestionpart" style="padding: 0px 0px 0px 5px;">
+                         <span>– Medication 3</span>
+                       </div>
+                       <div class="patientDataQuestionpart" style="padding: 0px 0px 0px 5px;">
+                         <span>– Medication 4</span>
+                       </div>
+                    </div>
+                    <div class="chatEncounter-sectionTitle">
+                           <span>CURRENT MEDICATIONS</span>
+                           </div>
+                           <div class="patientDataQuestion">
+                             <div class="indicator-box"><div class="indicator-box-content"></div></div>
+                             <span  class="patient-Question">If any,list the patients chronic medical conditions.</span>
+                           </div>
+                          <div style="padding: 27px 0px 0px 0px;">
+                           <div class="patientDataQuestionpart" style="padding: 0px 0px 0px 5px;">
+                             <span>– Medication 1</span>
+                           </div>
+                           <div class="patientDataQuestionpart" style="padding: 0px 0px 0px 5px;">
+                             <span>– Medication 2</span>
+                           </div>
+                           <div class="patientDataQuestionpart" style="padding: 0px 0px 0px 5px;">
+                             <span>– Medication 3</span>
+                           </div>
+                           <div class="patientDataQuestionpart" style="padding: 0px 0px 0px 5px;">
+                             <span>– Medication 4</span>
+                           </div>
+                         </div>
+
+                      </div>
+
+      <!-- Second page ends  -->
+
+<!-- First Page starts -->
+<div style="display:{{chatContent}}">
+     <div class="chatEncounter-sectionTitle">
+       <span>SECTION TITLE</span>
+       </div>
+
+   <div>
+    <div class="patientDataQuestion">
+      <div class="indicator-box"><div class="indicator-box-content"></div></div>
+
+      <span  class="patient-Question">Why oh why oh why?</span>
+    </div>
+    <div class="patientDataQuestionpart" style="padding: 0px 0px 0px 5px;">
+      <span>Patient Answer</span>
+    </div>
+
+    <div class="patientDataQuestion">
+      <div class="indicator-box"><div class="indicator-box-content"></div></div>
+      <span  class="patient-Question">Why oh why oh why?</span>
+      </div>
+      <div class="patientDataQuestionpart1" style="padding: 0px 0px 0px 24px;">
+        <span class="patientDataQuestionpart1Span" style="width: 320px;height: 40px;font-size: 18px;color: rgba(0, 0, 0, 0.75);font-family:GloberSemiBold;padding: 0px 0px 0px 2px;display:table-cell">Multiline patient answer displays here right below the question.</span>
+      </div>
+
+  </div>
+  <div class="chatEncounter-sectionTitle">
+    <span>SECTION TITLE</span>
+    </div>
+
+<div>
+ <div class="patientDataQuestion">
+<div class="indicator-box"><div class="indicator-box-content"></div></div>
+   <span  class="patient-Question">Why oh why oh why?</span>
+ </div>
+ <div class="patientDataQuestionpart" style="padding: 0px 0px 0px 5px;">
+   <span>Patient Answer</span>
+ </div>
+
+ <div class="patientDataQuestion">
+   <div class="indicator-box"><div class="indicator-box-content"></div></div>
+   <span  class="patient-Question">Why oh why oh why?</span>
+   </div>
+   <div class="patientDataQuestionpart1" style="padding: 0px 0px 0px 24px;">
+     <span class="patientDataQuestionpart1Span" style="width: 320px;height: 40px;font-size: 18px;color: rgba(0, 0, 0, 0.75);font-family:GloberSemiBold;padding: 0px 0px 0px 2px;display:table-cell">Multiline patient answer displays here right below the question.</span>
+   </div>
+
+</div>
+</div>
+
+  <div class="chatEncounter-sectionTitle">
+    <span>SECTION TITLE</span>
+    </div>
+
+  </div>
+
+   </ion-content>
+
+</ion-view>
+<ion-footer>
+   <div id="HealthFooter" >
+      <ion-tabs class="tabs-icon-top tabs-icon-bottom" style="background-color: #eeeeee;">
+        <a class="tab-item tab-itemnew active" ng-href="#/tab/relatedusers" style="max-width: 100%;padding-top: 9px;">
+        <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')" style="height: unset;"></i>
+        <span class="tabcolor tabcolorlabel"> Intake</span>
+        </a>
+
+        <a class="tab-item tab-itemnew" ng-href="#/tab/consultations" style="max-width: 100%;padding-top: 9px;">
+        <i class="icon tabfont" ng-bind-html="drawSVGCIcon('user')" style="height: unset;"></i>
+        <span class="tabcolor tabcolorlabel">Profile</span>
+        </a>
+
+      </ion-tabs>
+   </div>
+  </ion-footer>
+<!-- Firstpage ends -->
+
+<!-- <div id="HealthFooter" >
+   <ion-tabs class=" tabs-icon-top" >
+     <div class="row" >
+    <div class="col col-50">
+      <span style="text-align:center">
+     <a class="tab-item" ng-href="#/tab/relatedusers" >
+     <i class="icon tabfont iconImage" ng-bind-html="drawSVGCIcon('users')"></i> <span class="tabcolor footerIntake">Intake</span>
+     </a>
+    </span>
+   </div>
+   <div class=col col-50>
+     <a class="tab-item" ng-href="#/tab/consultations">
+     <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i> <span class="tabcolor" >Profile</span>
+     </a>
+   </div>
+ </div>
+
+
+   </ion-tabs>
+</div> -->

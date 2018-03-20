@@ -1,0 +1,632 @@
+<ion-side-menus>
+    <ion-side-menu-content>
+       <div ng-include src="'templates/PatientIntakeHeaderTablet.html'"></div>
+       <ion-view title="Prior Surgeries" cache-view="false">
+          <ion-content class="ContentHomeUser chatEncounter-ConcernsContent" >
+
+
+
+            <ion-grid>
+              <ion-row>
+                <ion-col col-5 class="chatEncounter-chat-content">
+
+
+
+<ion-list reorder="true" style="display: block;flex-direction: column;margin-top: auto" no-lines>
+              <ion-item  no-lines style="border: none;display: inline-grid;padding-top: 0;">
+
+                <div style="margin-top: 8px;" class="chat-list-row">
+                    <div class="nametext">
+                      <span>Firstname</span> <span>Lastname</span>
+                    </div>
+                    <div style="width:100%;">
+                    <div style="float:left;margin-top: -30px;margin-left: -11px;position: relative;top: 30px;">
+                        <div class="subHeader_image chatUserImage" ><img ng-src="https://emerald.qa1.snapvcm.com/api/v2.1/images/a872f5d9-30b1-4a18-955c-2b8f4cccedb8" src="https://emerald.qa1.snapvcm.com/api/v2.1/images/a872f5d9-30b1-4a18-955c-2b8f4cccedb8" class='UserHmelistImgView'></div>
+                    </div>
+                    <div class="chat-msg-content">
+                      <!-- <div class="userName">{{msg.Name}}</div> -->
+                        <div class="arrow_box ContentBackground" >
+                          <p class="pContent wordWrap"> Just so, from the ship's steep side, did I hold Queequeg down there in the sea, by what is technically called in the fishery a monkey-rope,  </p>
+                        </div>
+                    </div>
+
+                    <div class="dateTimeStle">
+                      <span>12:19pm</span>
+
+                    </div>
+                  </div>
+            </div>
+
+              </ion-item>
+              <ion-item  no-lines style="border: none;display: inline-grid;padding-top: 0;">
+          <div style="margin-top: 8px;" class="chat-list-row">
+                   <div class="nametext">
+                      <span>Firstname</span> <span>Lastname</span>
+                    </div>
+                    <div style="width:100%;">
+                    <div style="float:left;margin-top: -30px;margin-left: -11px;position: relative;top: 30px;">
+                        <div class="subHeader_image chatUserImage" ><img ng-src="https://emerald.qa1.snapvcm.com/api/v2.1/images/a872f5d9-30b1-4a18-955c-2b8f4cccedb8" src="https://emerald.qa1.snapvcm.com/api/v2.1/images/a872f5d9-30b1-4a18-955c-2b8f4cccedb8" class='UserHmelistImgView'></div>
+                    </div>
+                    <div class="chat-msg-content">
+
+                        <div class="arrow_box ContentBackground" >
+                          <p class="pContent wordWrap"> Just so, from the ship's steep side, did I hold Queequeg down there in the sea, by what is technically called in the fishery a monkey-rope,  </p>
+                        </div>
+                    </div>
+
+                    <div class="dateTimeStle">
+                      <span>12:19pm</span>
+
+                    </div>
+                  </div>
+            </div>
+              </ion-item>
+
+            </ion-list>
+
+
+      <ion-footer-bar keyboard-attach class="bar bar-footer  waitingChatFooter bar-stable item-input-inset" style="display: block">
+
+
+        <section class="flexbox flexbox1  " style="width:100%">
+             <div class="" style="width: 35px;">
+                            <i class="icon-users2">
+                               <svg class="icon-users2">
+                                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-users2"></use>
+                               </svg>
+                            </i>
+                      </div>
+              <div class="stretch stretch1">
+                <label class="item item-input chatTextLable">
+                  <input type = "text" style="padding-left: 1px;" placeholder = "Chat with your provider..." />
+                </label>
+              </div>
+            <div style=" float: left;margin: 13px 10px 0px 0px;" >
+                <div class="normal sendButton">
+                    <button type="submit" class="buttonlabel sendButton localizejs" id="btnClick">  <span class="Textlabel" style="position: relative;top: -5px;">  Send </span> </button>
+                </div>
+            </div>
+        </section>
+
+      </ion-footer-bar>
+
+
+
+
+
+
+
+
+    <style>
+
+.Header_grey-darker {
+  /* height: 48px !important; */
+  background-color: #4a4a4a !important;
+  }
+  .userIcon {
+    /* margin-right: 12px; */
+    color: white;
+    /* margin-top: 10px; */
+  }
+  .close_bg {
+    height: 32px !important;
+    border-radius: 5px !important;
+    border: solid 1px #ffffff !important;
+  }
+  .close_lable {
+    width: 39px;
+  height: 24px;
+  font-family: "Glober Bold";
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: 0.1px;
+  text-align: center;
+  color: #ffffff;
+  }
+  .PatientTitle{
+    top: 14px;
+    position: relative
+  }
+  .closeButton {
+    top: 20px;
+    position: relative;
+  }
+  .userIcons{
+    top: 25px;
+    position: relative;
+  }
+  .patient-bg {
+  /* width: 319px;
+  height: 64px; */
+  background-color: #4a4a4a;
+  /* -webkit-box-shadow: 0px 4px 3px #A8A6A6;
+    box-shadow: 0px 4px 3px #A8A6A6; */
+    padding-top: 26px;
+    padding-bottom: 10px;
+    padding-right: 208px;
+    padding-left: 15px;
+    border-bottom: none;
+    height:64px;
+}
+
+.patientBackgroun-bg {
+  /* width: 319px;
+  height: 72px; */
+  background-color: #777777;
+}
+
+.Section-Title {
+  /* width: 96px;
+  height: 28px; */
+  font-family: "Glober SemiBold";
+  font-size: 20px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ffffff;
+}
+
+.PatientName {
+  /* width: 178px;
+  height: 28px; */
+  font-family: "Glober SemiBold";
+  font-size: 20px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.4;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ffffff !important;
+  padding-left: 7px;
+}
+.Supplemental-info{
+  //padding-left: 17px;
+  left: 7px;
+  text-align: left !important;
+  position: relative;
+  margin-top: -3px;
+}
+.profile-image {
+  width: 48px;
+  height: 48px;
+  border: solid 2px #ffffff;
+}
+
+.UserHmelistImgView {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+.HrefListView1{
+    margin-top: -3px;
+    margin-left: 4px;
+}
+.emailAddress_patient {
+  /* width: 186px;
+  height: 22px; */
+  font-family: "Glober SemiBold";
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.38;
+  letter-spacing: 0.1px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+
+}
+.title_patientIOS {
+    font-family: "Glober SemiBold";
+}
+.bar-positiveHomeUser {
+  height: 76px !important;
+}
+.has-header {
+    top: 35px;
+}
+.CrossIcon {
+   vertical-align: middle;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    text-align: center;
+    opacity: 0.5;
+    background-color: #ffffff;
+    color: #000;
+    /* font-size: 21px; */
+}
+/* .userHomeImageMainPat {
+    float: left;
+    width: 55px !important;
+    margin-top: -5px;
+} */
+.patProfileImage {
+  width: 48px;
+  height: 48px;
+}
+    </style>
+    <ion-header-bar style="display:none;" align-title="left" class="bar-positiveHomeUser Header_grey-darker" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+
+            <div class="row" >
+                <div class="col col-10 userIcons">
+                        <div class="buttons {{menuicon}}" >
+                                <i class="iconfontSVG userIcon" ng-bind-html="drawSVGCIconForVideo('users')" style="margin-right: 12px;" ></i>
+                        </div>
+                </div>
+                <div class="col col-70 PatientTitle">
+                        <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} userhomePlusIcon" style="position: relative;;left: 0px;">
+                           <span class="localizejs" style="float: left;"> Participants </span>
+                        </h1>
+                </div>
+                <div class="col col-20 closeButton">
+                    <button type="submit" class="button button-clear close_bg localizejs" style="font-size: 18px !important;float: right;width:64px;"  ><span class="close_lable" >Close </span></button>
+                </div>
+            </div>
+
+
+
+
+    </ion-header-bar>
+
+    <ion-view title="Participants" style="display:none;">
+            <ion-content class="ContentUserHome UserHme" style="margin: 40px 0 0 0;background-color:#777777;border-bottom: 1px solid #C4C5C3;height: 100%;" >
+                 <ion-list>
+                        <ion-item class="patient-bg">
+                                <div class="HrefListView1">
+                                   <div class="">
+                                        <div class= "Section-Title" >Patient</div>
+                                   </div>
+                                </div>
+                        </ion-item>
+                    </ion-list>
+                <ion-list>
+                      <ion-item class="UserHomeHeader patientBackgroun-bg" style="height:68px;border: none;">
+                                 <div class="UserhmePatientDetails">
+                                       <div class="userHomeImageMainPat" ng-bind-html="drawImage(PatientImage,primaryPatientName,primaryPatientLastName)"></div>
+                                       <div class= "ellipsis PatientName" style="padding-top: 12px;padding-bottom: 20px;" >Firstname Lastname</div>
+                                   </div>
+
+                        </ion-item>
+                </ion-list>
+
+                <ion-list>
+                        <ion-item class="patient-bg" style="border: none;height: 70px;margin-top: 5px;">
+                                <div class="HrefListView1" style="margin-top: 3px; ">
+                                   <div class="">
+                                        <div class= "Section-Title" >Provider</div>
+                                   </div>
+                                </div>
+                        </ion-item>
+                    </ion-list>
+
+                    <ion-list>
+                            <ion-item class="UserHomeHeader patientBackgroun-bg" style="height:68px;border: none;">
+                               <div class="UserhmePatientDetails">
+                                             <div class="userHomeImageMainPat" ng-bind-html="drawImage(PatientImage,primaryPatientName,primaryPatientLastName)"></div>
+                                             <div class= "ellipsis PatientName" style="padding-top: 0px;padding-bottom: 3px;" >Firstname Lastname</div>
+                                             <div class= "emailAddress_patient Supplemental-info" style="" >Supplemental information </div>
+                                         </div>
+
+                              </ion-item>
+                      </ion-list>
+
+                      <ion-list>
+                            <ion-item class="patient-bg" style="border: none;height: 70px; margin-top: 5px;">
+                                    <div class="HrefListView1" style="margin-top: 3px; ">
+                                       <div class="">
+                                            <div class= "Section-Title" >Guests</div>
+                                       </div>
+                                    </div>
+                            </ion-item>
+                        </ion-list>
+
+
+                        <ion-list>
+                                <ion-item class="UserHomeHeader patientBackgroun-bg" style="height:72px;border-color: #4a4a4a;
+                            }">
+                            <div style="float:right;margin-top: -11px;margin-right: -8px;">
+                                <svg class="icon-cross CrossIcon "><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-cross"></use></svg></div>
+                                           <div class="UserhmePatientDetails">
+                                                 <div class="userHomeImageMainPat" style=" margin-top: -5px;" ng-bind-html="drawImage(PatientImage,primaryPatientName,primaryPatientLastName)"></div>
+                                                 <div class= "ellipsis PatientName" style="padding-top: 0px;padding-bottom: 3px;" >Firstname Lastname</div>
+                                                 <div class= "emailAddress_patient Supplemental-info" style="" >Supplemental information </div>
+                                             </div>
+
+                                  </ion-item>
+                                  <ion-item class="UserHomeHeader patientBackgroun-bg" style="height:72px;border-color: #4a4a4a;
+                                }">
+                                <div style="float:right;margin-top: -11px;margin-right: -8px;">
+                                    <svg class="icon-cross  CrossIcon "><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+                                </div>
+                                        <div class="UserhmePatientDetails">
+                                              <div class="userHomeImageMainPat" style=" margin-top: -5px;" ng-bind-html="drawImage(PatientImage,primaryPatientName,primaryPatientLastName)"></div>
+                                              <div class= "ellipsis PatientName" style="padding-top: 0px;padding-bottom: 3px;" >Firstname Lastname</div>
+                                              <div class= "emailAddress_patient Supplemental-info" style="" >Supplemental information </div>
+                                          </div>
+
+                               </ion-item>
+                          </ion-list>
+            </ion-content>
+    </ion-view>
+
+
+
+
+
+                </ion-col>
+                <ion-col col-7 class="chatEncounter-patient-content" style="padding: 0px;">
+                    <div class="row" style="padding: 0px;">
+                        <div class="col col-50 chatEncounter-Intake activeTab">
+                          <div class="chatEncounter-IntakeIcon">
+                            <i class="iconfontSVG icon-clipboard">
+                               <svg class="icon-clipboardr">
+                                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-clipboard"></use>
+                               </svg>
+                            </i>
+                      </div>
+                          <div class="chatEncounter-IntakeText tab-title">Intake</div>
+                        </div>
+                         <div class="col col-50 chatEncounter-Profile">
+                            <div class="chatEncounter-ProfileIcon" >
+                            <i class="iconfontSVG">
+                               <svg class="icon-user">
+                                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-user"></use>
+                               </svg>
+                            </i>
+                            </div>
+                          <div class="chatEncounter-ProfileText tab-title">Profile</div>
+                        </div>
+                    </div>
+
+
+  <div class="chatEncounter-Profile-content" style="display: block;">
+
+<div class="row chatEncounter-demographics"  style="background-color: #eeeeee;"><span>PATIENT DEMOGRAPHICS</span></div>
+
+
+<table>
+      <tr>
+        <td class="demographics-col">
+            <lable class="demographics-col-lable">DATE OF BIRTH</lable>
+            <div class="demographics-col-data"><span style="color: rgba(0, 0, 0, 0.75);">09/19/199</span></div>
+        </td>
+        <td class="demographics-col">
+         <lable class="demographics-col-lable">GENDER</lable>
+         <div class="demographics-col-data">Female</div>
+        </td>
+        <td class="demographics-col">
+          <lable class="demographics-col-lable">HEIGHT</lable>
+          <div class="demographics-col-data">5' 8''</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="demographics-col">
+          <lable class="demographics-col-lable">WEIGHT</lable>
+          <div class="demographics-col-data">145lbs</div>
+        </td>
+        <td class="demographics-col">
+          <lable class="demographics-col-lable">EYE COLOR</lable>
+          <div class="demographics-col-data">Green</div>
+        </td>
+        <td class="demographics-col">
+            <lable class="demographics-col-lable">HAIR COLOR</lable>
+            <div class="demographics-col-data">Red</div>
+               </td>
+      </tr>
+      <tr>
+        <td class="demographics-col" colspan="2">
+            <lable class="demographics-col-lable">ETHNICITY</lable>
+            <div class="demographics-col-data">Caucasian</div>
+                </td>
+        <td class="demographics-col">
+            <lable class="demographics-col-lable">BLOOD TYPE</lable>
+            <div class="demographics-col-data">I do not know</div>
+                </td>
+      </tr>
+</table>
+
+ <div class="row chatEncounter-demographics" ><span>CONTACT INFORMATION</span></div>
+
+<table>
+      <tr>
+        <td class="demographics-col">
+            <lable class="demographics-col-lable">ADDRESS</lable>
+            <div class="demographics-col-data" style="width: 50%;">600 S Fair Oaks Avenue Pasadena, CA, US, 91103</div>
+        </td>
+      </tr>
+    <tr>
+        <td class="demographics-col">
+            <lable class="demographics-col-lable">HOME PHONE</lable>
+            <div class="demographics-col-data"><span style="color: rgba(0, 0, 0, 0.75);">626-987-6543</span></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+            <lable class="demographics-col-lable">CELL PHONE</lable>
+            <div class="demographics-col-data"><span style="color: rgba(0, 0, 0, 0.75);">626-123-4567</span></div>
+        </td>
+      </tr>
+    <tr>
+        <td class="demographics-col">
+            <lable class="demographics-col-lable">EMAIL</lable>
+            <div class="demographics-col-data">female@caucasian.com</div>
+        </td>
+      </tr>
+  </table>
+
+<div class="row chatEncounter-demographics" ><span>CARE INFORMATION</span></div>
+
+<table>
+      <tr>
+        <td class="demographics-col">
+            <lable class="demographics-col-lable">PREFERRED PROVIDER</lable>
+            <div class="demographics-col-data">Dr. John Posey</div>
+            <div class="demographics-col-data"><span style="color: rgba(0, 0, 0, 0.75);">999-999-9999</span></div>
+        </td>
+      </tr>
+    <tr>
+        <td class="demographics-col">
+            <lable class="demographics-col-lable">SPECIALIST PROVIDER</lable>
+            <div class="demographics-col-data">None specified</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+            <lable class="demographics-col-lable">PREFERRED PHARMACY</lable>
+            <div class="demographics-col-data" style="width: 215px;">Central Avenue Pharmacy 119 W California Ave Glendale, CA, US, 91203</div>
+        </td>
+      </tr>
+
+  </table>
+
+</div>
+
+
+
+
+
+<div class="chatEncounter-Intake-content" style="display: block;">
+
+<div class="row chatEncounter-demographics" style="background-color: #eeeeee;"><span>SECTION TITLE</span></div>
+
+  <div class="chatEncounter-section-content">
+    <div class="indicator-box"><div class="indicator-box-content"></div></div>
+    <div><span class="section-content-question">Why oh why oh why?</span></div>
+</div>
+ <div class="section-content-answer">Patient answer</div>
+
+  <div class="chatEncounter-section-content">
+    <div>
+       <div class="indicator-box"><div class="indicator-box-content"></div></div>
+      <span class="section-content-question">Why oh why oh why?</span>
+    </div>
+    <div class="section-content-answer">Multiline patient answer displays here right below the question.</div>
+</div>
+
+ <div class="row chatEncounter-demographics" ><span>SECTION TITLE</span></div>
+
+  <div class="chatEncounter-section-content">
+    <div>
+       <div class="indicator-box"><div class="indicator-box-content"></div></div>
+      <span class="section-content-question">If any, list the patient's current medications.</span>
+      </div>
+      <div class="section-content-answer"><p>-One</p>
+           <p>-Two</p>
+           <p>-Three</p>
+      </div>
+  </div>
+
+
+<div class="row chatEncounter-demographics" ><span>SECTION TITLE</span></div>
+
+  <div class="chatEncounter-section-content">
+       <div class="indicator-box"><div class="indicator-box-content"></div></div>
+      <span class="section-content-question">Why oh why oh why?</span>
+  </div>
+  <div class="section-content-answer">Patient answer</div>
+
+  <div class="chatEncounter-section-content">
+       <div class="indicator-box"><div class="indicator-box-content"></div></div>
+      <span class="section-content-question">Why oh why oh why?</span>
+  </div>
+  <div class="section-content-answer">Patient answer</div>
+    <div class="chatEncounter-section-content">
+       <div class="indicator-box"><div class="indicator-box-content"></div></div>
+      <span class="section-content-question">Why oh why oh why?</span>
+  </div>
+  <div class="section-content-answer">Patient answer</div>
+</div>
+
+
+
+
+
+
+
+
+          </ion-col>
+      </ion-row>
+   </ion-grid>
+
+
+
+
+           <!--   <ion-list>
+
+             <ion-item class="PrimaryList" style="{{IntakeFormInnerStyle}}">
+                <div class="Step1 localizejs"><span class="localizejs">Step</span> <b style="color:#535353;">3</b><span class="localizejs"> of</span> <b class="localizejs" style="color:#535353;">{{userAgeForIntake}}</b></div>
+                <div  ng-click="getSurgeryPopup();" >
+                   <div class="PrimaryContent">
+                      <h1 class="title ChronicCondition concernsSubTit localizejs" >Prior Surgeries</h1>
+                      <p class="patientConternFontStyle localizejs">
+                         List any prior surgeries
+                         <br/>
+                         <span class="patientConternFontStyleSubTitle localizejs">Enter up to three</span>
+                      </p>
+                      <div>
+                         <i class="addBtn" ng-bind-html="drawSVGCIcon('circle-with-plus')"></i>
+                      </div>
+                   </div>
+                </div>
+               <div ng-if="IsToPriorCount == 3" >
+                   <div class="PrimaryContent">
+                      <h1 class="title ChronicCondition concernsSubTit">Prior Surgeries</h1>
+                      <p>
+                         List any prior surgeries.
+                         <br/>
+                         Enter up to three
+                      </p>
+                      <div>
+                         <i class="addBtn disabled" ng-bind-html="drawSVGCIcon('circle-with-plus')"></i>
+                      </div>
+                   </div>
+                </div>
+             </ion-item>
+             <div class="list surgeryList" style="margin-top: 3px;">
+                <a class="item item-avatar" ng-repeat="surgery in patientSurgeriess" show-delete="data.showDelete" >
+                   <div class="surgeryDetails">
+                      <div class="surgeryName">
+                         <p class="localizejs">{{surgery.Name}}</p>
+                      </div>
+                      <div class="surgeryDate">{{surgery.Date | date: "MMMM yyyy"}}</div>
+
+
+                   </div>
+                   <div class="surgerydelete" ng-click="removePriorSurgeries($index)" >
+                      <i class="delBtn" ng-bind-html="drawSVGCIcon('circle-with-cross')"></i>
+                   </div>
+                </a>
+             </div>
+           </ion-list> -->
+
+
+
+
+
+
+          </ion-content>
+       </ion-view>
+      <!--  <ion-footer-bar  class="footer">
+          <span class="ConcernsFooter">
+          <div class="FooterLeft" ng-click="BackToChronicCondition(ChronicCountValidCount);">
+             <a class="button_new icon ion-chevron-left"  ><span class="localizejs"> Back</span></a>
+          </div>
+          <div class="FooterCenter" ng-click="clearRootScopeConce()">
+             <a class="button_new icon localizejs" >Cancel</a>
+          </div>
+          <div class="FooterRight" style="{{NextIntakeForm}};" ng-click="GoToMedicationAllegies(AllegiesCountValid)">
+             <a class="button_new icon ion-chevron-right localizejs" > <span class="ConcernFooterNext" style="{{ConcernFooterNextIOS}};">Next<span> </a>
+          </div>
+          </span>
+       </ion-footer-bar> -->
+    </ion-side-menu-content>
+    <!--Side Menu File Include --->
+    <div ng-include src="'templates/SideMenu.html'"></div>
