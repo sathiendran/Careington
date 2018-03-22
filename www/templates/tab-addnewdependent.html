@@ -124,9 +124,9 @@
                   </div>
                   <div class="col col-50 depGreyLabel">
                      <div class="dependHeigh-{{deviceName}}">
-                        <input id="weight" class="usertext textdata localizejs" type="tel" value="" placeholder="Required"  name="weight" ng-keyup="weight1len()" >
+                        <input id="weight" class="usertext textdata localizejs" type="tel" style="padding-left: 0px;" value="" placeholder="Required"  name="weight" ng-keyup="weight1len()" >
                      </div>
-                     <div class="dependHeighUnit-{{deviceName}}" style="width: 50%;">
+                     <div class="dependHeighUnit-{{deviceName}}" style="width: 33%;">
                         <select class="optionselect textdata dependwetUnit-{{deviceName}} localizejs" style="margin-left: -5px;" name="weightunit" id="weightunit" ng-model="weightunits" >
                            <option ng-repeat="getWeightunit in listOfWeightunit[0].codes" value="{{getWeightunit.codeId + '@' + getWeightunit.text}}"><b class="localizejs">{{getWeightunit.text}}</b></option>
                         </select>
@@ -298,7 +298,7 @@
                   <span class="input-label labelcolor"  id="pattext_{{ $index + 1 }}" style=" white-space: normal;" ><i  class="iconfontSVG" ng-bind-html="drawSVGCIcon('vcard')"></i><b style="max-width: 78%;" class="formlabel addDependentwrab  labelfont localizejs">{{patientdisplay.display}}</b></span>
                   <span class="healthViewDetails depGreyLabel localizejs">
                    <input type="hidden" value="{{patientdisplay.identifierTypeCode+','+ patientdisplay.identifierTypeTitle +','+ patientdisplay.effectiveDate +','+ patientdisplay.statusCode}}" name="patIndentifierDetails[]" id="identifierTypeCode_{{ $index + 1 }}">
-                   <input type="text" style="height: 64px;padding: 43px 0px 36px 10px;" name="healthInfoEmail ellipsis" id="patval_{{ $index + 1 }}"   value="{{patientdisplay.value}}" class="textdata localizejs" placeholder="Required" >
+                   <input type="text" style="height: auto;padding: 43px 0px 36px 10px;" name="healthInfoEmail ellipsis" id="patval_{{ $index + 1 }}" maxlength="64"  value="{{patientdisplay.value}}" class="textdata localizejs" placeholder="Required" >
                   </span>
                </div>
                <div ng-click="doGetPatientIdList();">

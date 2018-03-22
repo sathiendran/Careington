@@ -220,7 +220,7 @@
 
                   <label class="item item-input itemtab validated"  ng-repeat="patientidentifi in PatientIdentifiers">
                     <div class="col col-45">
-                    <span class="input-label labelcolor" style=" white-space: normal;"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('vcard')"></i><b class="formlabel labelfont localizejs">{{patientidentifi.identifierTypeTitle}}</b> </span></div>
+                    <span class="input-label labelcolor" style=" white-space: normal;"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('vcard')"></i><b class="formlabel labelfont localizejs addDependentwrab">{{patientidentifi.identifierTypeTitle}}</b> </span></div>
                      <div class="healthViewDetails" ng-if="userGender">{{patientidentifi.value}}
                      </div>
                   </label>
@@ -372,10 +372,10 @@
                     <div class="col col-45">
                     <span class="input-label labelcolor" style=" white-space: normal;"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('weight')"></i><b class="formlabel labelfont localizejs">Weight</b><i class="ion-asterisk"></i></span></div>
                      <div class="healthViewDetails">
-                        <div class="healthWeight-{{deviceName}}" style="float: left;">
-                           <input type="tel" ng-model="weight" name="healthInfoWeight" id="healthInfoWeight"  class="textdata localizejs textdatawieghtios" ng-change="weightunitchange()"  ng-keyup="weightunit()" style="width: 90px;line-height:23px; margin-right: 10px;" placeholder="Required">
+                        <div class="healthWeight-{{deviceName}}" style="float: left;width:67%;">
+                           <input type="tel" ng-model="weight" name="healthInfoWeight" id="healthInfoWeight"  class="textdata localizejs textdatawieghtios" ng-change="weightunitchange()"  ng-keyup="weightunit()" style="width: 90px;line-height:23px; margin-right: 10px;padding-left: 0px" placeholder="Required">
                         </div>
-                        <div class="healthWeight1-{{deviceName}}">
+                        <div class="healthWeight1-{{deviceName}}" style="width:33%;">
                            <select class="textdata optionselect localizejs" name="healthInfoWeightUnit" id="healthInfoWeightUnit" style="width: 115%;padding-top:10px !important;">
                               <option ng-repeat="getUserweightunit in listOfWeightunit[0].codes" value="{{getUserweightunit.codeId + '@' + getUserweightunit.text}}" ng-selected="getUserweightunit.text == currentPatientDetails[0].anatomy.weightUnit"><b class="localizejs">{{getUserweightunit.text}}</b></option>
                            </select>
@@ -443,10 +443,10 @@
                   <div class="item item-input itemtab validated" ng-repeat="patientdisplay in PatientidupdateList" style="display: {{viewpatapiDisplay}};">
                     <div class="col col-45">
 
-                     <span class="input-label labelcolor"  id="pattext_{{ $index + 1 }}" style=" white-space: normal;" ><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('vcard')"></i><b class="formlabel labelfont localizejs">{{patientdisplay.display}}</b></span></div>
+                     <span class="input-label labelcolor"  id="pattext_{{ $index + 1 }}" style=" white-space: normal;" ><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('vcard')"></i><b class="formlabel labelfont localizejs addDependentwrab">{{patientdisplay.display}}</b></span></div>
                      <span class="healthViewDetails" >
                       <input type="hidden" value="{{patientdisplay.identifierTypeCode+','+ patientdisplay.identifierTypeTitle +','+ patientdisplay.effectiveDate +','+ patientdisplay.statusCode}}" name="patIndentifierDetails[]" id="identifierTypeCode_{{ $index + 1 }}" >
-                      <input type="text" name="healthInfoEmail ellipsis" id="patval_{{ $index + 1 }}" maxlength="64" value="{{patientdisplay.value}}" class="textdata localizejs" placeholder="Required" style="padding: 27px 1px 34px 4px;">
+                      <input type="text" name="healthInfoEmail ellipsis" maxlength="64" id="patval_{{ $index + 1 }}" maxlength="64" value="{{patientdisplay.value}}" class="textdata localizejs" placeholder="Required" style="padding: 27px 1px 34px 4px; height: auto;">
                      </span>
                   </div>
 
@@ -454,10 +454,10 @@
                   <div class="item item-input itemtab validated" ng-repeat="patientidentifi in PatientIdentifiers" style="display: {{viewpatmodalDisplay}};"  >
                     <div class="col col-45">
 
-                     <span class="input-label labelcolor" id="patModText_{{ $index + 1 }}" style=" white-space: normal;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('vcard')"></i><b class="formlabel labelfont localizejs">{{patientidentifi.identifierTypeTitle}}</b></span></div>
+                     <span class="input-label labelcolor" id="patModText_{{ $index + 1 }}" style=" white-space: normal;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('vcard')"></i><b class="formlabel labelfont localizejs addDependentwrab">{{patientidentifi.identifierTypeTitle}}</b></span></div>
                      <span class="healthViewDetails" >
                        <input type="hidden" value="{{patientidentifi.identifierTypeCode+','+ patientidentifi.identifierTypeTitle +','+ patientidentifi.effectiveDate +','+ patientidentifi.statusCode}}" name="patientidentifiDetails[]" id="identifierTypeCode_{{ $index + 1 }}" style="padding-top: 31px;padding-bottom: 31px;">
-                       <input type="text" name="healthInfoEmail ellipsis" id="helthPatVal_{{ $index + 1 }}" maxlength="64"  value="{{patientidentifi.value}}" class="textdata localizejs" placeholder="Required" style="padding-top: 31px;padding: 27px 1px 34px 4px;">
+                       <input type="text" name="healthInfoEmail ellipsis" id="helthPatVal_{{ $index + 1 }}" maxlength="64"  value="{{patientidentifi.value}}" class="textdata localizejs" placeholder="Required" style="padding-top: 31px;padding: 27px 1px 34px 4px;height:auto;">
 
 
                      </span>

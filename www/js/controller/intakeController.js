@@ -631,7 +631,7 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
         $scope.openOtherPrimaryConcernView = function () {
             $scope.data = {}
             $ionicPopup.show({
-                template: '<div class="PopupError_Message ErrorMessageDiv" ></div><textarea name="comment" id="comment-textarea" maxlength="500" ng-model="data.PrimaryConcernOther" class="textAreaPop">',
+                template: '<div class="PopupError_Message ErrorMessageDiv" ></div><textarea name="comment" id="comment-textarea" maxlength="230" ng-model="data.PrimaryConcernOther" class="textAreaPop">',
                 title: '<span class="localizejs">Enter Primary Concern</span>',
                 subTitle: '',
                 scope: $scope,
@@ -977,7 +977,7 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
         $scope.openOtherSecondaryConcernView = function () {
             $scope.data = {}
             $ionicPopup.show({
-                template: '<textarea name="comment" id="comment-textarea" ng-model="data.SecondaryConcernOther" class="textAreaPop">',
+                template: '<textarea name="comment" id="comment-textarea" maxlength="230" ng-model="data.SecondaryConcernOther" class="textAreaPop">',
                 title: '<span class="localizejs">Enter Secondary Concern</span>',
                 subTitle: '',
                 scope: $scope,

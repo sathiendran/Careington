@@ -811,15 +811,18 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
                     var xD = new Date(startTimeISOString);
                     var DateString = xD.toString();
                     var dateSplit = DateString.split('(');
-                    var rSpaceofString = dateSplit[1] .split(' ');
+                   // var rSpaceofString = dateSplit[1] .split(' ');
+                    var rSpaceofString = $rootScope.systemTimeZoneID.split(' ');
                     if(dateSplit[1].length > 5)
                         {
-                            var rLastofString = rSpaceofString[2].split(')');
-                            var SystemTimeZone = rSpaceofString[0].charAt(0)+rSpaceofString[1].charAt(0)+rLastofString[0].charAt(0)
+                            //var rLastofString = rSpaceofString[2].split(')');
+                            var SystemTimeZone = rSpaceofString[0].charAt(0)+rSpaceofString[1].charAt(0)+rSpaceofString[2].charAt(0)
                         }
                         else {
-                            var rLastofString = rSpaceofString[0].split(')');
-                            var SystemTimeZone = rLastofString[0].replace(/\"/g, "");
+                            //var rLastofString = rSpaceofString[0].split(')');
+                            //var SystemTimeZone = rLastofString[0].replace(/\"/g, "");
+                            var SystemTimeZone = rSpaceofString[0].charAt(0)+rSpaceofString[1].charAt(0)+rSpaceofString[2].charAt(0)
+
                         }
 
                      $rootScope.sysTimeZone = SystemTimeZone;
