@@ -2458,18 +2458,18 @@ select {
             //margin-left: -44px;margin-right: 25px;position: relative;top: -4px;left: -20px;
         }
     }
-}
-
+}     
 .concernListHeader {
-    height: 55px;
+    height: 55px;   
     .concernListTitle {
-        top: 8px !important;
-        font-size: 20px !important;
+        //top: 8px !important;
+        top: 13px !important;   
+        font-size: 20px !important;   
         color: #FFFFFF !important;
         font-family: $fontFamily_semibold;
-    }
+    }  
     .concernListDone {
-        top: 7px !important;
+        //top: 7px !important;
         font-size: 18px !important;
         font-family: $fontFamily_regular;
         padding: 9px !important;

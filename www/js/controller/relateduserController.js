@@ -375,7 +375,7 @@ angular.element(document).ready(function () {
         $scope.showPopup = function(dependentDetails, relateDependentAuthorize) {
             $rootScope.authorised = relateDependentAuthorize;
             if (!angular.isUndefined(dependentDetails.birthdate) && dependentDetails.birthdate !== '') {
-                $scope.dob = " . " + dependentDetails.birthdate;
+               // $scope.dob = " . " + dependentDetails.birthdate; 
                 $scope.dobAge = dependentDetails.birthdate;
             } else {
                 $scope.dob = '';

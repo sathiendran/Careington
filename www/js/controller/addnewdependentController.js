@@ -618,6 +618,19 @@ angular.module('starter.controllers')
                 $rootScope.timezoneDisplay = 'none';
             }
         }
+
+        window.addEventListener('native.keyboardshow', function () {
+            $scope.$apply(function () {
+                $("#localize-widget").hide();
+            });
+
+        })
+        window.addEventListener('native.keyboardhide', function () {
+            $scope.$apply(function () {
+                $("#localize-widget").show();
+            });
+        });
+        
         $scope.isDisabled = false;
 
         $scope.postDependentDetails = function () {
