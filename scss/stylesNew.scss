@@ -174,7 +174,7 @@ margin-top: 125px !important;
                 margin-left: -5px !important;
             }
             .FooterCenter {
-              width: 35% !important;
+             // width: 35% !important;
             }
 	          .accMainContent .accOndemandCon .accOnVisit {
 	               margin-top: -27px !important;
@@ -200,21 +200,21 @@ margin-top: 125px !important;
               margin-top: 32% !important;
               #accountMngeProfile-IOS {
                   padding: 19px 10px;
-              }
+              }   
           }
         .mobileInput-Ios5 {
                   // padding-left: 32px !important;
                    float: left !important;
               }
-        .button_new {
-              margin-right: 15px !important;
+        .button_new {      
+          //    margin-right: 15px !important;
         }
         .FooterCenter {
           .button_new {
-                margin-right: 0px !important;
+            //    margin-right: 0px !important;
           }
           .button_newios{
-               margin-right: -200px !important;
+            //   margin-right: -200px !important;
          }
 
         }
@@ -367,14 +367,14 @@ margin-top: 125px !important;
     width: 146px;
     font-size: 15px;
 }
-.userAccountPanel {
+.userAccountPanel {   
    .hometext {
          margin-left: -10px !important;
    }
  }
  .ConsultChargeFooter {
    .ConsultChargeCancel{
-         width: 40% !important;
+        // width: 40% !important;
      }
    }
    .ReportEthnicity {
@@ -3664,6 +3664,10 @@ top: -3px;
 left: 10px;
 position: relative;
 }
+.relatedUserTitle{
+top: -3px;
+position: relative;
+}
 #patientAuthorize {
 font-size: 18px;
 }
@@ -4165,11 +4169,11 @@ text-align: right;
     .col {
         margin-left: 3px;
     }
-}
+}   
 }
 .dependHeigh-IOS {
-width: 67%;
-padding-right: 6px;
+width: 67%;   
+//padding-right: 6px;
 float: left;
 input {
     margin-left: 2px !important;
@@ -4640,6 +4644,7 @@ text-align:center;
 }
 .newProviderSub {
 padding-top: 46px;
+padding-bottom: 14px;
 }
 .newProContent {
      margin-top: 228px;

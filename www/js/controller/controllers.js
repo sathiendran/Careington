@@ -3720,6 +3720,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.hasRequiredFields = data.data[0].hasRequiredFields;
                     $rootScope.userRoleDescription = data.data[0].userRoleDescription;
                     $rootScope.currentPatientDetails = data.data;;
+                    $rootScope.systemTimeZoneID = data.data[0].timeZoneSystemId;
                     // $rootScope.Country_cod =  $rootScope.currentPatientDetails[0].mobilePhone;
                     if (typeof $rootScope.currentPatientDetails[0].mobilePhone != 'undefined') {
                         $rootScope.Country_codsplit = $rootScope.currentPatientDetails[0].mobilePhone.split('(');

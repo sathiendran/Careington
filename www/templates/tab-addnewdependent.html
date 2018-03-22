@@ -69,7 +69,7 @@
                      <span class="input-label labelcolor">
                      <i class="iconsize" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel localizejs" >D.O.B</b><i class="ion-asterisk"></i></span>
                   </div>
-                  <div class="col col-50 depGreyLabel">               
+                  <div class="col col-50 depGreyLabel">
                      <input class="usertext dobDependent-{{deviceName}} inputlabelval localizejs"  id="dob" type="date"  placeholder="Required"   name="dob" ng-blur="ngBlur()" style="padding-top: 14px; padding:15px 5px;">
                   </div>
                </div>
@@ -124,9 +124,9 @@
                   </div>
                   <div class="col col-50 depGreyLabel">
                      <div class="dependHeigh-{{deviceName}}">
-                        <input id="weight" class="usertext textdata localizejs" type="tel" value="" placeholder="Required"  name="weight" ng-keyup="weight1len()" >
+                        <input id="weight" class="usertext textdata localizejs" type="tel" style="padding-left: 0px;" value="" placeholder="Required"  name="weight" ng-keyup="weight1len()" >
                      </div>
-                     <div class="dependHeighUnit-{{deviceName}}" style="width: 50%;">
+                     <div class="dependHeighUnit-{{deviceName}}" style="width: 33%;">
                         <select class="optionselect textdata dependwetUnit-{{deviceName}} localizejs" style="margin-left: -5px;" name="weightunit" id="weightunit" ng-model="weightunits" >
                            <option ng-repeat="getWeightunit in listOfWeightunit[0].codes" value="{{getWeightunit.codeId + '@' + getWeightunit.text}}"><b class="localizejs">{{getWeightunit.text}}</b></option>
                         </select>

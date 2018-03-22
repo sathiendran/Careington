@@ -542,14 +542,14 @@ body {
     background-image: none;
 }
 .terms_footer_a {
-    margin-left: 20px !important;
+    //margin-left: 20px !important;
     font-weight: bold !important;
     cursor: pointer;
     span {
         top: -2px;
         position: relative;
         font-size: 17px;
-        padding-left: 3px;
+        //padding-left: 3px;
     }
 }
 .provider_item {
@@ -731,7 +731,7 @@ body {
     @include font($fontFamily_light, bold, 19px);
     color: #fff;
     border-radius: 7px;
-    width: 105px; 
+    width: 105px;
     min-height: 38px;
     margin: 0 0 0 10px;
     text-decoration: none;
@@ -1265,8 +1265,8 @@ body {
     font-size:16px !important;
 }
 .ssooptionTimezone{
-    width: 100%;  
-    border: none;     
+    width: 100%;
+    border: none;
     background-color: #F3F3F3;
     padding: 5px;
     margin-left: -6px;
@@ -2386,7 +2386,7 @@ select {
             margin-top: 0px;
         }
         float:left;
-        width:33%;
+        width:33.33%;
         cursor:pointer;
         position: relative;
         top: -10px;
@@ -2406,7 +2406,7 @@ select {
     .FooterCenter {
         text-align: center;
         float: left;
-        width: 33%;
+        width: 33.33%;
         position: relative;
         top: -6px;
         a {
@@ -2416,15 +2416,18 @@ select {
             font-weight: bold;
             padding: 10px;
             font-size: 17px;
-            color: #FFFFFF;   
+            color: #FFFFFF;
             font-family: $fontFamily_bold;
+            text-align: center;
+            margin: 0 auto;
+            padding-left: 15px;
         }
         .newProCancel {
             font-family: $fontFamily_regular;
             color: #999999;
-            font-weight: normal;          
+            font-weight: normal;
         }
-    }      
+    }
     .FooterRight {
         .ion-chevron-right:before {
             content: "\f125";
@@ -2437,7 +2440,7 @@ select {
         }
         text-align:center;
         float:right;
-        width:33%;
+        width:33.33%;
         position: relative;
         top: -4px;
         //left: 5px;
@@ -2458,16 +2461,16 @@ select {
             //margin-left: -44px;margin-right: 25px;position: relative;top: -4px;left: -20px;
         }
     }
-}     
+}
 .concernListHeader {
-    height: 55px;   
+    height: 55px;
     .concernListTitle {
         //top: 8px !important;
-        top: 13px !important;   
-        font-size: 20px !important;   
+        top: 13px !important;
+        font-size: 20px !important;
         color: #FFFFFF !important;
         font-family: $fontFamily_semibold;
-    }  
+    }
     .concernListDone {
         //top: 7px !important;
         font-size: 18px !important;
@@ -2479,6 +2482,12 @@ select {
       font-size: 20px !important;
       color: #FFFFFF !important;
       font-family: $fontFamily_semibold;
+    }
+    .concernListTitle-Android {
+        font-family: 'Glober SemiBold';
+        margin: 0 auto;
+        text-align: center;
+        top: 13px;
     }
     .concernListDone-ios {
         top: 5px !important;
@@ -4117,12 +4126,12 @@ form.ng-submitted input.ng-valid + i.icon.error {
             margin-left: 83px;
         }
     }
-}       
+}
 .bar .button.button-clear .icon:before,
 .bar .button.button-clear.icon:before,
 .bar .button.button-clear.icon-left:before,
 .bar .button.button-clear.icon-right:before {
-    font-size: 30px !important;   
+    font-size: 30px !important;
 }
 .bar .button.button-clear.icon:before {
     font-size: 30px !important;
@@ -4130,7 +4139,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .iconsize {
     font-size: 26px !important;
 }
-.HeaderListIOS {    
+.HeaderListIOS {
     font-size: 20px;
     text-align: center;
     width: 100%;
