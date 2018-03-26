@@ -3,11 +3,11 @@
     font-family: 'Glober Black Italic';
     src: url("Glober Black Italic.otf");
 }
-  
+
 @font-face {
-    font-family: 'Glober Black';
+    font-family: 'Glober Black';     
     src: url("Glober Black.otf");
-}   
+}
 @font-face {
     font-family: 'Glober Bold Italic';
     src: url("Glober Bold Italic.otf");
@@ -716,7 +716,7 @@ body {
 }
 .login {
     text-align: center;
-      padding-top: 40px;    
+      padding-top: 40px;
     margin-bottom: 10px;
 }
 .forgot_password_text {
@@ -725,16 +725,19 @@ body {
     a {
         text-decoration: none;
         font-size: 14px;
-    }      
+    }
 }
 
 .button_new {
     @include font($fontFamily_light, bold, 19px);
     color: #fff;
     border-radius: 7px;
+
     // width: 105px; 
     // min-height: 38px;
     // margin: 0 0 0 10px;
+
+
     text-decoration: none;
     cursor: pointer;
     //margin-right: 16px;
@@ -1266,18 +1269,18 @@ body {
     color: #666;
     font-size:16px !important;
 }
-.ssooptionTimezone{        
-    width: 100%;  
-    border: none;     
-    background-color: #F3F3F3;     
-    padding: 5px;     
+.ssooptionTimezone{
+    width: 100%;
+    border: none;
+    background-color: #F3F3F3;
+    padding: 5px;
     margin-left: -6px;
     color: #666;
     font-size:16px !important;
 }
 .ssoaddress{
   font-size:16px !important;
-}  
+}
 //Consult Charge page
 .consultCharge_subHeader {
     border-bottom: 1px solid #C5C5C5;
@@ -1291,7 +1294,7 @@ body {
         color: #666666;
         //font-size: 26px;
         font-size: 25px;
-        top: -16px !important;    
+        top: -16px !important;
         position: relative;
         left: 15px;
         font-family: $fontFamily_semibold;
@@ -2418,7 +2421,7 @@ select {
             font-weight: bold;
             padding: 10px;
             font-size: 17px;
-            color: #FFFFFF;   
+            color: #FFFFFF;
             font-family: $fontFamily_bold;
             text-align: center;
             margin: 0 auto;
@@ -2427,9 +2430,9 @@ select {
         .newProCancel {
             font-family: $fontFamily_regular;
             color: #999999;
-            font-weight: normal;          
+            font-weight: normal;
         }
-    }      
+    }
     .FooterRight {
         .ion-chevron-right:before {
             content: "\f125";
@@ -2464,27 +2467,27 @@ select {
         }
     }
 }
-
 .concernListHeader {
     height: 55px;
     .concernListTitle {
-        top: 8px !important;
+        //top: 8px !important;
+        top: 13px !important;
         font-size: 20px !important;
         color: #FFFFFF !important;
-        font-family: $fontFamily_semibold;              
+        font-family: $fontFamily_semibold;
     }
     .concernListDone {
-       // top: 7px !important;
+        //top: 7px !important;
         font-size: 18px !important;
         font-family: $fontFamily_regular;
-        padding: 9px !important;     
+        padding: 9px !important;
     }
     .concernListTitle-ios {
     //  top: 8px !important;
       font-size: 20px !important;
       color: #FFFFFF !important;
       font-family: $fontFamily_semibold;
-    }  
+    }
     .concernListTitle-Android {
         font-family: 'Glober SemiBold';
         margin: 0 auto;
@@ -4132,12 +4135,12 @@ form.ng-submitted input.ng-valid + i.icon.error {
             margin-left: 83px;
         }
     }
-}       
+}
 .bar .button.button-clear .icon:before,
 .bar .button.button-clear.icon:before,
 .bar .button.button-clear.icon-left:before,
 .bar .button.button-clear.icon-right:before {
-    font-size: 30px !important;   
+    font-size: 30px !important;
 }
 .bar .button.button-clear.icon:before {
     font-size: 30px !important;
@@ -4145,7 +4148,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .iconsize {
     font-size: 26px !important;
 }
-.HeaderListIOS {    
+.HeaderListIOS {
     font-size: 20px;
     text-align: center;
     width: 100%;

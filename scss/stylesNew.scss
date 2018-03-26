@@ -11,11 +11,10 @@ margin-top: 125px !important;
 .emailext{
   text-align:center;
   font-size:21pz !important;
-}
+} 
 .userlistAccountHome-ios5{
     //margin-top: 0px !important;fv
 }
-
 @media (max-width: 320px) and (min-width: 315px) {
   .showNewSurgeryAddios {
       //  margin-top: -30px !important;
@@ -7055,7 +7054,7 @@ background-color: rgb(245,245,245);
     width: 100%;
 }
 .userAccountbackBtn{
-    width: 102px;
+    width: 30%;
     padding-top: 0px;
     color: rgb(255,255,255);
     font-size: 19px;
@@ -7326,10 +7325,12 @@ padding-top: 3px;
   font-family: "GloberBold" !important;
   font-size: 20pt;
   line-height: 24pt;
-  width: 272pt;
-  height: 48pt;
+  //width: 272pt;
+  width: 100%;
+  //height: 48pt;
   margin-bottom: 12pt;
   color: rgba(0, 0, 0, 0.75);
+  text-align: left;
 }
 
 .termscontent p strong span {
@@ -7393,7 +7394,7 @@ padding-top: 3px;
     text-overflow: inherit;
     white-space: normal;
     display: inline-flex;
-    width:90px;
+    width:100px;
 }
 .userHmeInPerson {
   .icon-users{
@@ -7414,15 +7415,22 @@ padding-top: 3px;
 }
 .rightHeaderIcon {
     margin-top: 18px;
+    
 }
 .leftHeaderIcon {
     margin-top: 18px;
 }
-}
 
+    .termsCondition {
+        display: block !important;
+    }
+    .terms {
+        display: none !important;
+    }
+} 
 @media (min-width:375px){   
 .rightHeaderIcon {
-    margin-top: 18px;
+    margin-top: 18px; 
 }
 .leftHeaderIcon {
     margin-top: 18px;

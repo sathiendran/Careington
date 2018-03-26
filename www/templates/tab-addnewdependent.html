@@ -16,7 +16,7 @@
          <!--<h1 class= "{{title_patient}} {{HeaderList}} {{intakeTittle}} "><span class="newUserTitle-{{deviceName}} localizejs" > New User </span> <span >
             <a  ng-click="canceldependent()" class="headerval localizejs"  >Cancel</a></span>
          </h1>-->
-         <h1 class="healthTitle-{{deviceName}} chronic title_patientAndroid HeaderListAndroid intakeTittleAndroid" style = "margin-top: 32px !important;">
+         <h1 class="healthTitle-{{deviceName}} chronic title_patientAndroid HeaderListAndroid intakeTittleAndroid" style = "margin-top: 25px !important;">
             <div class="HealthTitle-{{deviceName}} localizejs" style="display: block;">New User</div>
             <span class="headerval healthLeft-{{deviceName}} localizejs" ng-click="canceldependent()" style="right: 10px;">Cancel</span>
         </h1>
@@ -69,7 +69,7 @@
                      <span class="input-label labelcolor">
                      <i class="iconsize" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel localizejs" >D.O.B</b><i class="ion-asterisk"></i></span>
                   </div>
-                  <div class="col col-50 depGreyLabel">               
+                  <div class="col col-50 depGreyLabel">
                      <input class="usertext dobDependent-{{deviceName}} inputlabelval localizejs"  id="dob" type="date"  placeholder="Required"   name="dob" ng-blur="ngBlur()" style="padding-top: 14px; padding:15px 5px;">
                   </div>
                </div>
@@ -147,7 +147,7 @@
             <div class="item item-input validated" style="display: {{timezoneDisplay}};">
                   <div class="col col-50">
                      <span class="input-label labelcolor">
-                     <i class="iconsize" ng-bind-html="drawSVGCIcon('clock')"></i><b class="formlabel addDependentwrab localizejs" style="">Timezone</b><i class="ion-asterisk"></i></span>
+                     <i class="iconsize" ng-bind-html="drawSVGCIcon('clock')"></i><b class="formlabel  localizejs" style="">Timezone</b><i class="ion-asterisk"></i></span>
                   </div>
                   <div class="col col-50 depGreyLabel" style="height: 70px;">
                      <select class="optionselect textdata localizejs" name="healthInfoTimezone" id="dependentTimezone" style="padding: 25px 5px 0 0;" >
@@ -212,7 +212,7 @@
                <div class="item item-input validated" ng-if="OrganizationLocation === 'on'">
                   <div class="col col-50">
                      <span class="input-label labelcolor">
-                     <i class="iconsize" ng-bind-html="drawSVGCIcon('group')"></i><b class="formlabel  localizejs">Organization</b></span>
+                     <i class="iconsize" ng-bind-html="drawSVGCIcon('group')"></i><b class="formlabel localizejs">Organization</b></span>
                   </div>
                   <div class="col col-50 depGreyLabel">
                      <select class="textdata optionselect localizejs"  name="healthInfoOrganization" id="organization" ng-model="addNewDependent.healthInfoOrganization" >
@@ -298,7 +298,7 @@
                   <span class="input-label labelcolor"  id="pattext_{{ $index + 1 }}" style=" white-space: normal;" ><i  class="iconfontSVG" ng-bind-html="drawSVGCIcon('vcard')"></i><b style="max-width: 78%;" class="formlabel addDependentwrab  labelfont localizejs">{{patientdisplay.display}}</b></span>
                   <span class="healthViewDetails depGreyLabel localizejs">
                    <input type="hidden" value="{{patientdisplay.identifierTypeCode+','+ patientdisplay.identifierTypeTitle +','+ patientdisplay.effectiveDate +','+ patientdisplay.statusCode}}" name="patIndentifierDetails[]" id="identifierTypeCode_{{ $index + 1 }}">
-                   <input type="text" style="height: auto;padding: 43px 0px 36px 10px;" name="healthInfoEmail ellipsis" id="patval_{{ $index + 1 }}" maxlength="64"  value="{{patientdisplay.value}}" class="textdata localizejs" placeholder="Required" >
+                   <input type="text" style="height: auto;padding: 43px 0px 36px 10px;" name="healthInfoEmail ellipsis" id="patval_{{ $index + 1 }}" maxlength="64"   value="{{patientdisplay.value}}" class="textdata localizejs" placeholder="Required" >
                   </span>
                </div>
                <div ng-click="doGetPatientIdList();">

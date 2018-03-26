@@ -557,7 +557,6 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
                          //var rLastofString = rSpaceofString[0].split(')');
                          //var SystemTimeZone = rLastofString[0].replace(/\"/g, "");
                          var SystemTimeZone = rSpaceofString[0].charAt(0)+rSpaceofString[1].charAt(0)+rSpaceofString[2].charAt(0)
-
                      }
                   $rootScope.sysTimeZone = SystemTimeZone;
                  // End Time Zone //

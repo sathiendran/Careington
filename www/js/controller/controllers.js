@@ -11435,3 +11435,45 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             return $sce.trustAsHtml(htmlCode);
         }
     }])
+    .directive('noSpecialChar', function() {
+        return {
+          require: 'ngModel',
+          restrict: 'A',
+          link: function(scope, element, attrs, modelCtrl) {
+            modelCtrl.$parsers.push(function(inputValue) {
+              if (inputValue == undefined)
+                return ''
+              //cleanInputValue = inputValue.replace(/[^\w\s]/gi, '');
+              cleanInputValue1 = inputValue.replace(/[^\w\s]/gi, '');
+              cleanInputValue2 =  cleanInputValue1.replace(/\s/g, '');
+              cleanInputValue =  cleanInputValue2.replace(/^[A-z]/g, '');
+              if (cleanInputValue != inputValue) {
+                modelCtrl.$setViewValue(cleanInputValue);
+                modelCtrl.$render();
+              }
+              return cleanInputValue;
+            });
+          }
+        }
+      })
+.directive('noSpecialChar', function() {
+        return {
+          require: 'ngModel',
+          restrict: 'A',
+          link: function(scope, element, attrs, modelCtrl) {
+            modelCtrl.$parsers.push(function(inputValue) {
+              if (inputValue == undefined)
+                return ''
+              //cleanInputValue = inputValue.replace(/[^\w\s]/gi, '');
+              cleanInputValue1 = inputValue.replace(/[^\w\s]/gi, '');
+              cleanInputValue2 =  cleanInputValue1.replace(/\s/g, '');
+              cleanInputValue =  cleanInputValue2.replace(/^[A-z]/g, '');
+              if (cleanInputValue != inputValue) {
+                modelCtrl.$setViewValue(cleanInputValue);
+                modelCtrl.$render();
+              }
+              return cleanInputValue;
+            });
+          }
+        }
+      })

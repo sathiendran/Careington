@@ -9,7 +9,7 @@
     <div id="Error_Message" class="ErrorMessageDiv" ></div>
     <div class="Server_Error ErrorMessageDiv" ></div>
     <div class="Error_Message ErrorMessageDiv" ></div>
-      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} reportscreenTitle-{{deviceName}}" style="top: 18px !important;"> <span class="headerfont _accountHeader-{{deviceName}} localizejs reportScreenHeader">Post-Encounter Report</span>
+      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} reportscreenTitle-{{deviceName}}" style="top: 6px !important;"> <span class="headerfont _accountHeader-{{deviceName}} localizejs reportScreenHeader">Post-Encounter Report</span>
          <span> <a class="headerval _accountCancel-{{deviceName}} localizejs" ng-click="EnableBackButton();" >Done</a>
 
          </span>
@@ -162,7 +162,7 @@
 
                             <div class="pc-report__data-list pc-report__data-list-item">
                                 <div class="pc-report__data-list-title enStatus localizejs">length</div>
-                                <div class="pc-report__data-list-desc1" ng-if="displayCOnsultationDuration != 'none'">{{consultDurationMinutes}}:{{consultDurationSeconds}} <strong>min</strong></div>
+                                <div class="pc-report__data-list-desc1" ng-if="displayCOnsultationDuration != 'none'">{{consultDurationMinutes}}:{{consultDurationSeconds}} <!--<strong>min</strong>--><span>min</span></span></div>
                             </div>
 
                             <div class="pc-report__data-list pc-report__data-list-item">
