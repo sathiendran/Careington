@@ -13,7 +13,7 @@
     src: url("Glober Bold Italic.otf");
 }
 @font-face {
-    font-family: 'Glober Bold';
+    font-family: 'Glober Bold';   
     src: url("Glober Bold.otf");
 }
 @font-face {
@@ -506,7 +506,7 @@ body {
     color: #fff;
     background-color: #4D4D4D !important;
     border-color: #4D4D4D !important;
-    padding: 20px 0px 20px 0px;
+    //padding: 20px 0px 20px 0px;
     @include font($fontFamily_light, bold, 11px);
     border-top-width: -1px;
     border-top: -1px;
@@ -727,17 +727,19 @@ body {
         font-size: 14px;
     }      
 }
+
 .button_new {
     @include font($fontFamily_light, bold, 19px);
     color: #fff;
     border-radius: 7px;
-    width: 105px;     
-    min-height: 38px;
-    margin: 0 0 0 10px;
+    // width: 105px; 
+    // min-height: 38px;
+    // margin: 0 0 0 10px;
     text-decoration: none;
     cursor: pointer;
     //margin-right: 16px;
 }
+
 .ion-chevron-left::before {
     color: #fff;
     margin: 3px;
@@ -3272,9 +3274,13 @@ a {
     font-family: $fontFamily_regular;
 }
 .ContentUserHome {
-    margin: 70px 0 0 0;
+    //margin: 70px 0 0 0;
     font-family: $fontFamily_regular;
     border-top: 1px solid #C4C5C3;
+    margin: 12px 0 0 0;
+    clear: both;
+
+
 }
 .listImgView {
     width: 45px !important;
