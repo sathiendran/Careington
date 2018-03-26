@@ -1,3 +1,58 @@
+<style>
+    .titleLineheight {
+        line-height: 48px !important;
+    }
+    .backText {
+        font-family: "Glober Book";
+        font-size: 16px !important;
+        font-weight: 400 !important;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.38;
+        letter-spacing: 0.5px;
+        color: #ffffff;
+    }
+
+    .cancelText {
+        font-family: "Glober Light";
+        font-size: 16px !important;
+        font-weight: 400 !important;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.38;
+        letter-spacing: 0.5px;
+        color: #ffffff;
+        position: relative;
+        top:4px;
+    }
+    .nextText {
+        font-family: "Glober Book";
+        font-size: 16px !important;
+        font-weight: 400 !important;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 39px !important;
+        position: relative;
+        left: -8px !important;
+        letter-spacing: 0.7px;
+        color: #ffffff;
+        top: 2px;
+    }
+    .bar .button.button-clear .icon:before, .bar .button.button-clear.icon:before, .bar .button.button-clear.icon-left:before, .bar .button.button-clear.icon-right:before{
+        font-size: 21px !important;
+        margin-top: 2.5px;
+    }
+    .iconVer{
+        vertical-align: middle !important;
+    }
+    .ion-chevron-right:before{
+        float: right;
+    }
+    /* .cancelTop{
+        position: relative;top:2px;
+    } */
+</style>
+
 <ion-view>
    <ion-header-bar class="bg" style="background-color: {{backColor}}">
       <div id="Error_Message" ></div>
@@ -24,7 +79,7 @@
       </div>
    </ion-content>
    <!-- Start Footer -->
-   <ion-footer-bar align-title="left" class="footer">
+  <!--  <ion-footer-bar align-title="left" class="footer">
       <div class="ConcernsFooter">
          <div class="FooterLeft">
             <a class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/login"><span class="localizejs">Back</span></a>
@@ -33,6 +88,17 @@
             <a class="button_new icon localizejs" ng-href="#/tab/login" style="font-size: 18px;">Cancel</a>
          </div>
       </div>
-   </ion-footer-bar>
+   </ion-footer-bar> -->
+
+   <div class="bar bar-footer footer">
+       <div class="button button-clear">
+           <a class="button_new icon ion-chevron-left iconVer" style="position: relative;top:-2px;" ng-href="#/tab/login">
+               <span class="localizejs backText"> Back</span>
+           </a>
+       </div>
+       <div class="title titleLineheight" style="height:auto;">
+           <a class="button_new icon localizejs cancelText iconVer " style="{{PatientConcernCancel}}" ng-href="#/tab/login" >
+               <span>Cancel</span></a>
+       </div>
    <!-- End Footer -->
 </ion-view>

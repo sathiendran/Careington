@@ -728,6 +728,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.concernListTitleiosprior = "top: 14px !important;"
                 $rootScope.surgeryTopAddButtonIOS = "top: 23px !important;height: 30px !important;";
                 $rootScope.termsCondtion = "margin-top: 9px !important;";
+                $rootScope.HomeHeaderIOS = "top: 9px !important";
+                $rootScope.HomeBackIOS = "top: 4px; !important";
+                $rootScope.HomeUserIconIOS = "top: 22px; !important";
 
             }
             if ($rootScope.isIPad) {

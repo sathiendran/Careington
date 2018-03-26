@@ -1,11 +1,63 @@
 
-
+<style>
+	.headerbg {
+		background-color: #333fe2;
+		border-color: #333fe2;
+		background-image: none;
+		align-items: center;
+		vertical-align: middle;
+		height: auto;
+		padding-bottom: 0;
+	}
+ /* ios css */
+	/* .title-head {
+		position: relative;
+		margin: 0 auto;
+		text-align: center;
+		font-size: 20px !important;
+		font-family: "Glober Bold";
+		font-weight: normal;
+		color: rgb(255, 255, 255);
+		left: -28px;
+		top: 9px
+	} */
+	.title-head {
+		position: relative;
+		margin: 0 auto;
+		text-align: center;
+		font-size: 20px !important;
+		font-family: "Glober Bold";
+		font-weight: normal;
+		color: rgb(255, 255, 255);
+		left: -28px;
+		top: 0px
+	}
+ /* ios css */
+	/* #BackButtonIcon {
+		left: -5px;
+		top: 4px;
+	} */
+	#BackButtonIcon {
+		left: -5px;
+		top: -5px;
+	}
+	/* ios css */
+	/* .add-user-icon {
+		height: 30px;
+		right: 8px;
+	} */
+	.add-user-icon {
+		height: 30px;
+		right: 8px;
+		top: 11px;
+	}
+</style>
 <ion-side-menus>
 	<ion-side-menu-content>
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
-		<div class="buttons {{menuicon}}" >
-			<!--<button class="button icon button-clear ion-navicon-round UserHomeIcon {{menuicon}}" id="BackButtonIcon" style="{{MenuIconBottom}}" ng-click="toggleLeft()" ></button>-->
+		<!-- <div class="buttons {{menuicon}}" >
+		
 			<span class="button icon button-clear UserHomeIcon {{menuicon}}" id="BackButtonIcon" style="{{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
 		</div>
 
@@ -27,6 +79,20 @@
 					<div class="SearchImage" ng-click="showSearchInput();">
 						<i class="ion-search" style="float: right; font-size: 23px;color: #666666;"></i>
 					</div>
+			</div> -->
+
+			<div class="bar bar-header headerbg">
+				<div class="buttons button-icon">
+					<span class="button icon button-clear" style="{{HomeBackIOS}}" id="BackButtonIcon" ng-click="toggleLeft()">
+						<i ng-bind-html="drawSVGCIcon('menu')"></i>
+					</span>
+				</div>
+				<div class="h1 title-head localizejs" style="{{HomeHeaderIOS}}">Patient list</div>
+				<a ng-if="cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'" class="add-user-icon" style="{{HomeUserIconIOS}}" ng-if="customerSso != 'Mandatory'"
+				 ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')"
+				 _ng-href="#/tab/addnewuser">
+					<i class="icon ion-plus"></i>
+				</a>
 			</div>
 
 
