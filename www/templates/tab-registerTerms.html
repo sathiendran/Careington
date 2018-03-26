@@ -27,7 +27,8 @@
   <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};height: 64px !important;">
 
      <button class="button button-clear {{concernListDoneStyle}} localizejs" style="font-size: 20px !important; padding:10 0 0 0 !important;{{termsCondtion}}" ng-click="backtoPreviousPageFromTerms(registerCurrentPage)">Close</button>
-     <h1 class="title {{concernListTitleStyle}} localizejs" style="margin-right: 30px !important;margin-top: 6px !important;top: 12px !important; font-size:20pt !important; ">Terms</h1>
+     <h1 class="title {{concernListTitleStyle}} localizejs terms" style="margin-right: 30px !important;margin-top: 6px !important;top: 12px !important; font-size:20pt !important; ">Terms</h1>
+     <h1 class="title {{concernListTitleStyle}} localizejs termsCondition" style="margin-right: 30px !important;margin-top: 6px !important;top: 12px !important; font-size:20pt !important; display:none; ">Terms & Conditions</h1>
 
   </header>
 
@@ -35,7 +36,8 @@
 <ion-view title="Terms&Conditions">
    <ion-content class="ContentList_terms-{{deviceName}} ionic-scroll  has-header has-footer" style="font-size: 19px; color: #4D4D4D; "  >
       <div class="singleTermsconContent-{{deviceName}} TC-content" style="top: -110px; padding-top: 200px;" >
-        <span class="terms-Hospitaltitle localizejs">{{Hospital}}</span>
+        <!-- <span class="terms-Hospitaltitle localizejs">{{Hospital}}</span> -->
+        <p class="terms-Hospitaltitle localizejs">{{Hospital}}</p>
          <div class="termscontent localizejs" style="margin-top: 16pt;text-align: justify;"  ng-bind-html="termsandCOnditionsContent | sanitize"></div>
       </div>
    </ion-content>

@@ -7325,10 +7325,12 @@ padding-top: 3px;
   font-family: "GloberBold" !important;
   font-size: 20pt;
   line-height: 24pt;
-  width: 272pt;
-  height: 48pt;
+  //width: 272pt;
+  width: 100%;
+  //height: 48pt;
   margin-bottom: 12pt;
   color: rgba(0, 0, 0, 0.75);
+  text-align: left;
 }
 
 .termscontent p strong span {
@@ -7418,6 +7420,13 @@ padding-top: 3px;
 .leftHeaderIcon {
     margin-top: 18px;
 }
+
+    .termsCondition {
+        display: block !important;
+    }
+    .terms {
+        display: none !important;
+    }
 } 
 @media (min-width:375px){   
 .rightHeaderIcon {

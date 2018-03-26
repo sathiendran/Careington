@@ -777,7 +777,7 @@ angular.module('starter.controllers')
                                 },
                                 $rootScope.alertMsgName, // title
 
-                                $rootScope.alertDone, // buttonName
+                                $rootScope.alertDone // buttonName
 
                             );
                             return false;
@@ -793,7 +793,7 @@ angular.module('starter.controllers')
                                 },
                                 $rootScope.alertMsgName, // title
 
-                                $rootScope.alertDone, // buttonName
+                                $rootScope.alertDone // buttonName
 
                             );
                             return false;
@@ -809,7 +809,7 @@ angular.module('starter.controllers')
                                 },
                                 $rootScope.alertMsgName, // title
 
-                                $rootScope.alertDone, // buttonName
+                                $rootScope.alertDone // buttonName
 
                             );
                             return false;
