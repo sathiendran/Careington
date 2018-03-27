@@ -7,27 +7,28 @@
     font-family: "Glober SemiBold";
     width: 58% !important;
     text-align: right;
-    font-size: 16pt;
+    font-size: 23px;
 }
 .consultation_number {
     font-family: "Glober SemiBold";
-    font-size: 16pt;
+    font-size: 23px;
     color: #666666;
-    text-align: center;
+    text-align: left;
     text-decoration: line-through;
 }
 .consultation_numberCopy {
     font-family: "Glober SemiBold";
-    font-size: 16pt;
+    font-size:23px;
     color: #666666;
-    text-align: center;
+    text-align: left;
     color: red;
+    position: relative; 
 }
 .consultTittleCopay {
     color: #666666;
     font-family: "Glober SemiBold";
-    font-size: 14pt;
-    text-align: right;
+    font-size:17px;
+    text-align: center;
     margin: 0 auto;
     vertical-align: middle;
     line-height: 7px;
@@ -35,35 +36,41 @@
 
 .consultCharge_subHeader span {
     color: #666666;
-    font-size: 24pt;
-    top: -30px !important;
     position: relative;
     left: 15px;
     font-family: "Glober SemiBold";
     font-weight: normal;
 }
 .pt34{
-  padding-top: 34px;
-  margin-bottom: 30px;
+  padding-top: 20px;
+  margin-bottom: 15px;
+}
+.contentPayHomeAddCard{
+  padding-top: 6% !important;
 }
 @media only screen and (min-device-width: 710px) and (max-device-width: 1280px) {
   .consultTittle{
-    font-size: 24pt !important;
+    font-size: 23px !important;
     text-align: center !important;
   }
   .consultTittleCopay{
-    font-size: 16pt !important;
+    font-size: 17px !important;
     text-align: center !important;
-    padding-left: 172px;
+    padding-left: 120px;
   }
   .consultation_numberCopy{
     text-align: left !important;
-    font-size: 18pt !important;
+    font-size: 23px !important;
+    position: relative;
+    left: 0px;
   }
   .consultation_number{
     text-align: left;
-    font-size: 24pt;
+    font-size: 23px;
   }
+  .has-header {
+    top: 60px;
+}
 }
 </style>
 <div id="Error_Message" class="ErrorMessageDiv localizejs" ></div>
@@ -108,14 +115,16 @@
       <ion-content class="consultCharge_contentPayment consultConPaymentMargin addCardConScetion">
         <div class="row pt34">
         <div class="col-67 consultTittle localizejs">Consultation Charge</div>
-        <div class="col-33">
+        <div class="col-10">&nbsp;</div>
+        <div class="col">
           <div class="consultation_number" ng-if="adminSetlocale == 'en-GB'"> <span>&pound;{{consultationAmount}}*</span></div>
            <div class="consultation_number" ng-if="adminSetlocale != 'en-GB'"> <span>{{currencySymbol}}{{consultationAmount}}*</span></div>
         </div>
       </div>
       <div class="row">
         <div class="col col-67 consultTittleCopay localizejs">Your Copay</div>
-        <div class="col-33">
+        <div class="col-10">&nbsp;</div>
+        <div class="col">
           <div class="consultation_numberCopy" ng-if="adminSetlocale == 'en-GB'"> <span>&pound;{{copayAmount}}*</span></div>
           <div class="consultation_numberCopy" ng-if="adminSetlocale != 'en-GB'"> <span>{{currencySymbol}}{{copayAmount}}*</span></div>
         </div>

@@ -8,7 +8,9 @@
 		height: auto;
 		padding-bottom: 0;
 	}
- /* ios css */
+
+	/* ios css */
+
 	/* .title-head {
 		position: relative;
 		margin: 0 auto;
@@ -20,6 +22,7 @@
 		left: -28px;
 		top: 9px
 	} */
+
 	.title-head {
 		position: relative;
 		margin: 0 auto;
@@ -31,29 +34,37 @@
 		left: -28px;
 		top: 0px
 	}
- /* ios css */
+
+	/* ios css */
+
 	/* #BackButtonIcon {
 		left: -5px;
 		top: 4px;
 	} */
+
 	#BackButtonIcon {
 		left: -5px;
 		top: -5px;
 	}
+
 	/* ios css */
+
 	/* .add-user-icon {
 		height: 30px;
 		right: 8px;
 	} */
+
 	.add-user-icon {
 		height: 30px;
 		right: 8px;
 		top: 11px;
 	}
-	.subHeaderTop{
+
+	.subHeaderTop {
 		top: unset !important;
 	}
-	.SearchImage{
+
+	.SearchImage {
 		float: right !important;
 		top: -18px !important;
 		margin-top: -18px !important;
@@ -78,8 +89,8 @@
 					</span>
 				</div>
 				<div class="h1 title-head localizejs" style="{{HomeHeaderIOS}}">Patient list</div>
-				<a ng-if="cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'" class="add-user-icon" style="{{HomeUserIconIOS}}" ng-if="customerSso != 'Mandatory'"
-				 ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')"
+				<a ng-if="cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'" class="add-user-icon" style="{{HomeUserIconIOS}}"
+				 ng-if="customerSso != 'Mandatory'" ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')"
 				 _ng-href="#/tab/addnewuser">
 					<i class="icon ion-plus"></i>
 				</a>
@@ -137,10 +148,10 @@
 					</div>
 				</div>
 				<div class="col subHeaderTop UserNeeds">
-						<div id="whoNeedsTextval" class="TitleHomeUser_Sub localizejs lang-font whoNeedsText" style="{{whoNeedsText}}">Who Needs Care Today?</div>
-						<div class="SearchImage" ng-click="showSearchInput();">
-							<i class="ion-search" style="float: right; font-size: 23px;color: #666666;"></i>
-						</div>
+					<div id="whoNeedsTextval" class="TitleHomeUser_Sub localizejs lang-font whoNeedsText" style="{{whoNeedsText}}">Who Needs Care Today?</div>
+					<div class="SearchImage" ng-click="showSearchInput();">
+						<i class="ion-search" style="float: right; font-size: 23px;color: #666666;"></i>
+					</div>
 					<!-- <div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds" style="height: auto;">
 
 

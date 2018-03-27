@@ -1,34 +1,123 @@
+<style>
+  .titleLineheight {
+    line-height: 48px !important;
+  }
+
+  .backText {
+    font-family: "Glober Book";
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.38;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+  }
+
+  .cancelText {
+    font-family: "Glober Light";
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.38;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    position: relative;
+    top: 4px;
+  }
+
+  .nextText {
+    font-family: "Glober Book";
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 39px !important;
+    position: relative;
+    left: -8px !important;
+    letter-spacing: 0.7px;
+    color: #ffffff;
+    top: 0px;
+  }
+
+  .bar .button.button-clear .icon:before,
+  .bar .button.button-clear.icon:before,
+  .bar .button.button-clear.icon-left:before,
+  .bar .button.button-clear.icon-right:before {
+    font-size: 21px !important;
+    margin-top: 2.5px;
+  }
+
+  .iconVer {
+    vertical-align: middle !important;
+  }
+
+  .ion-chevron-right:before {
+    float: right;
+  }
+
+  /* .cancelTop{
+      position: relative;top:2px;
+  } */
+</style>
 <ion-side-menus>
-<ion-side-menu-content>
-   <div ng-include src="'templates/intakeHeader.html'"></div>
-   <ion-view title="Chronic Condition">
-      <ion-content class="ContentHomeUser ConcernsContent" >
-         <ion-list>
-            <ion-item class="PrimaryList" style="{{IntakeFormInnerStyle}}">
-               <div class="Step1 localizejs"><span class="localizejs">Step </span><b style="color:#535353;">2</b> <span class ="localizejs">of</span> <b style="color:#535353;">{{userAgeForIntake}}</b></div>
-               <div ng-click="loadChronicCondition();">
-                  <div class="PrimaryContent">
-                     <h1 class="title ChronicCondition concernsSubTit localizejs">Chronic Conditions2</h1>
-                     <p class="patientConternFontStyle localizejs">Select any chronic medical conditions
-                        <br/>
-                        <span class="patientConternFontStyleSubTitle localizejs">Select up to four</span>
-                     </p>
-                     <div><i class="addBtn" ng-bind-html="drawSVGCIcon('circle-with-plus')"></i></div>
-                  </div>
-               </div>
-            </ion-item>
-            <ion-item ng-repeat="item in PatientChronicCondition">
-               <div class="PrimaryConcernList">
-                  <p class="intakeNote localizejs">{{item.text}}</p>
-                  <div  ng-click="removeChronicCondition($index, item);" style=" cursor: pointer;">
-                     <i class="delBtn" ng-bind-html="drawSVGCIcon('circle-with-cross')"></i>
-                  </div>
-               </div>
-            </ion-item>
-         </ion-list>
+  <ion-side-menu-content>
+    <div ng-include src="'templates/intakeHeader.html'"></div>
+    <ion-view title="Chronic Condition">
+      <ion-content class="ContentHomeUser ConcernsContent">
+        <ion-list>
+          <ion-item class="PrimaryList" style="{{IntakeFormInnerStyle}}">
+            <div class="Step1 localizejs">
+              <span class="localizejs">Step </span>
+              <b style="color:#535353;">2</b>
+              <span class="localizejs">of</span>
+              <b style="color:#535353;">{{userAgeForIntake}}</b>
+            </div>
+            <div ng-click="loadChronicCondition();">
+              <div class="PrimaryContent">
+                <h1 class="title ChronicCondition concernsSubTit localizejs">Chronic Conditions2</h1>
+                <p class="patientConternFontStyle localizejs">Select any chronic medical conditions
+                  <br/>
+                  <span class="patientConternFontStyleSubTitle localizejs">Select up to four</span>
+                </p>
+                <div>
+                  <i class="addBtn" ng-bind-html="drawSVGCIcon('circle-with-plus')"></i>
+                </div>
+              </div>
+            </div>
+          </ion-item>
+          <ion-item ng-repeat="item in PatientChronicCondition">
+            <div class="PrimaryConcernList">
+              <p class="intakeNote localizejs">{{item.text}}</p>
+              <div ng-click="removeChronicCondition($index, item);" style=" cursor: pointer;">
+                <i class="delBtn" ng-bind-html="drawSVGCIcon('circle-with-cross')"></i>
+              </div>
+            </div>
+          </ion-item>
+        </ion-list>
       </ion-content>
-   </ion-view>
-   <ion-footer-bar  class="footer">
+    </ion-view>
+
+    <div class="bar bar-footer footer">
+      <div class="button button-clear" ng-click="goBackButton('patientConcerns')">
+          <a class="button_new icon ion-chevron-left iconVer" style="position: relative;top:-2px;">
+              <span class="localizejs backText"> Back</span>
+          </a>
+      </div>
+      <div class="title titleLineheight" ng-click="clearRootScopeConce()" style="height:auto;">
+          <a class="button_new icon localizejs cancelText iconVer " style="{{PatientConcernCancel}}">
+              <span>Cancel</span>
+          </a>
+      </div>
+      <div class="button button-clear" style="right:6px;" ng-click="GoTopriorSurgery(PriorSurgeryValidCount)">
+          <a class="button_new icon ion-chevron-right iconVer">
+              <span class="localizejs nextText">Next
+                  <span>
+          </a>
+      </div>
+  </div>
+    <!-- <ion-footer-bar  class="footer">
       <span class="ConcernsFooter">
       <div class="FooterLeft">
          <a class="button_new icon ion-chevron-left" href="#/tab/patientConcerns" style="cursor: pointer;">
@@ -39,10 +128,9 @@
       </div>
       <div class="FooterRight" style="{{NextIntakeForm}};"  ng-click="GoTopriorSurgery(PriorSurgeryValidCount)">
          <a class="button_new icon ion-chevron-right" > <span class="ConcernFooterNext localizejs" style="">Next<span> </a>
-           <!--  <a class="button_new icon ion-chevron-right" > <span class="ConcernFooterNext localizejs" style="{{ConcernFooterNextIOS}};">Next<span> </a> -->
       </div>
       </span>
-   </ion-footer-bar>
-</ion-side-menu-content>
-<!--Side Menu File Include --->
-<div ng-include src="'templates/SideMenu.html'"></div>
+   </ion-footer-bar> -->
+  </ion-side-menu-content>
+  <!--Side Menu File Include --->
+  <div ng-include src="'templates/SideMenu.html'"></div>

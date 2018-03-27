@@ -343,6 +343,11 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
             LoginService.getHospitalInfo(params);
         }
 
+        $rootScope.goBackButton = function(page) {
+            debugger;
+            $state.go('tab.'+ page);
+        }
+
         $rootScope.ClearRootScope = function () {
             $rootScope.cuttlocations = '';
             $window.localStorage.setItem('tokenExpireTime', '');

@@ -2,6 +2,7 @@
     .titleLineheight {
         line-height: 48px !important;
     }
+
     .backText {
         font-family: "Glober Book";
         font-size: 16px !important;
@@ -23,8 +24,9 @@
         letter-spacing: 0.5px;
         color: #ffffff;
         position: relative;
-        top:4px;
+        top: 4px;
     }
+
     .nextText {
         font-family: "Glober Book";
         font-size: 16px !important;
@@ -36,18 +38,25 @@
         left: -8px !important;
         letter-spacing: 0.7px;
         color: #ffffff;
-        top: 2px;
+        top: 0px;
     }
-    .bar .button.button-clear .icon:before, .bar .button.button-clear.icon:before, .bar .button.button-clear.icon-left:before, .bar .button.button-clear.icon-right:before{
+
+    .bar .button.button-clear .icon:before,
+    .bar .button.button-clear.icon:before,
+    .bar .button.button-clear.icon-left:before,
+    .bar .button.button-clear.icon-right:before {
         font-size: 21px !important;
         margin-top: 2.5px;
     }
-    .iconVer{
+
+    .iconVer {
         vertical-align: middle !important;
     }
-    .ion-chevron-right:before{
+
+    .ion-chevron-right:before {
         float: right;
     }
+
     /* .cancelTop{
         position: relative;top:2px;
     } */
@@ -121,15 +130,16 @@
 
         <div class="bar bar-footer footer">
             <div class="button button-clear" ng-click="goBackFromConcern();">
-                <a class="button_new icon ion-chevron-left iconVer" style="position: relative;top:-2px;" >
+                <a class="button_new icon ion-chevron-left iconVer" style="position: relative;top:-2px;">
                     <span class="localizejs backText"> Back</span>
                 </a>
             </div>
             <div class="title titleLineheight" ng-click="clearRootScopeConce()" style="height:auto;">
                 <a class="button_new icon localizejs cancelText iconVer " style="{{PatientConcernCancel}}">
-                    <span>Cancel</span></a>
+                    <span>Cancel</span>
+                </a>
             </div>
-            <div class="button button-clear" style="right:12px;" ng-click="PatientConcernsDirectory(ChronicCountValidCount)">
+            <div class="button button-clear" style="right:6px;" ng-click="PatientConcernsDirectory(ChronicCountValidCount)">
                 <a class="button_new icon ion-chevron-right iconVer">
                     <span class="localizejs nextText">Next
                         <span>

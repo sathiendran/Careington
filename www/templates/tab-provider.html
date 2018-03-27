@@ -16,13 +16,16 @@
 
     .cancelText {
         font-family: "GloberRegular";
-        font-size: 15pt !important;
+        font-size: 17px !important;
         font-weight: 400 !important;
         font-style: normal;
         font-stretch: normal;
         letter-spacing: 0.5px;
         color: rgb(153, 153, 153) !important;
         position: relative;
+    }
+    .ion-chevron-left:before{
+        font-size: 19px !important;
     }
     .nextText {
         font-family: "Glober Book";
@@ -48,7 +51,7 @@
         float: right;
     }
     .terms_footer_a span{
-        font-size: 17pt !important;
+        font-size: 17px !important;
         top: -1px !important;
     }
     .FooterLeft{
@@ -94,12 +97,6 @@
       </div>
    </ion-footer-bar> -->
    <div class="bar bar-footer footer">
-       <!-- <div class="button button-clear">
-           <a ng-href="#/tab/login" class="button_new icon ion-chevron-left iconVer" style="position: relative;top:-2px;" >
-               <span class="localizejs backText"> Back</span>
-           </a>
-       </div> -->
-    
        <div class="title titleLineheight" style="height:auto;">
            <a class="button_new icon localizejs cancelText iconVer " style="{{PatientConcernCancel}}" ng-href="#/tab/login" >
                <span>Cancel</span></a>

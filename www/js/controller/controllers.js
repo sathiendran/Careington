@@ -664,7 +664,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.waitingContentIos = "margin-top: 124px; ";
             $rootScope.BackBotton = "top: 7px; position: relative;";
             $rootScope.Appoinmentwaitcenter = "left: -27px;";
-            $rootScope.PaymentStyle = "padding: 0px; margin-top: 132px;	background-color: #fff; top: 23px;";
+            $rootScope.PaymentStyle = "padding: 0px; margin-top: 132px;	background-color: #fff; top: 13px;";
             $rootScope.HeadercardDetails = "height: 69px;";
             $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
             $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
@@ -731,6 +731,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.HomeHeaderIOS =	"top: 9px !important";
                 $rootScope.HomeBackIOS =	"top: 4px; !important";
                 $rootScope.HomeUserIconIOS =	"top: 19px; !important";
+                $rootScope.TitleHeadIOS =	"top: 7px; !important";
             }
             if ($rootScope.isIPad) {
                 $rootScope.PrimaryConcernPopupH = "height: 66px;";
