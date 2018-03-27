@@ -11,7 +11,7 @@
          </div>
          <div class="buttons" style="width: 50%; display: {{cardDisplay}};" >
             <div style="width: 100%; text-align: right;" ng-if="CardForm.$invalid">
-               <button type="submit" class="button_new icon PlanNext localizejs" style="color:#999;{{CardDetailsNextButton}};right: -10px;"   ng-disabled="CardForm.$invalid" >
+               <button type="submit" class="button_new icon PlanNext localizejs" style="color:#999;{{CardDetailsNextButton}};right: 0px;"   ng-disabled="CardForm.$invalid" >
                Next
                </button>
             </div>
@@ -65,7 +65,7 @@
                <div class="item item-input" ng-if="AndroidDevice !== true">
                   <span class="input-label cardfont localizejs" >CVV Code</span>
                   <!--<input type="password" pattern="[0-9]*" inputmode="numeric" style="{{invalidCVV}}" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>-->
-                 <input style="-webkit-text-security: disc; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type="password" pattern="[0-9]*" inputmode="numeric" class="localizejs" placeholder="Required" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>
+                 <input style="-webkit-text-security: disc; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type="password" pattern="[0-9]*" inputmode="numeric" class="localizejs" placeholder="Required" maxlength="4" ng-trim="false" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" no-special-char required/>
                 <!--  <input style="-webkit-text-security: disc; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" class ="localizejs" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>-->
                </div>
                <div class="item item-input" ng-if="AndroidDevice === true">
@@ -74,7 +74,7 @@
                   <!-- <input style="font-size: 18px; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/> -->
                 <!--  <input style="font-size: 18px; -webkit-text-security: disc; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "number" id="password" pattern="[0-9]*" inputmode="numeric"  placeholder="Required" class= "localizejs" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>-->
                 <!-- <input style="font-size: 18px; -webkit-text-security: disc; line-height: 20px; {{invalidCVV}}" type="tel" class="localizejs" placeholder="Required" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" maxlength="4"  phone-input> -->
-                <input style="font-size: 18px; -webkit-text-security: disc; line-height: 20px; {{invalidCVV}}" type="tel" class="localizejs" placeholder="Required" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" maxlength="4">                
+                <input style="font-size: 18px; -webkit-text-security: disc; line-height: 20px; {{invalidCVV}}" type="tel" class="localizejs" placeholder="Required" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" maxlength="4" ng-trim="false" no-special-char>                
                </div>
                <div class="item item-input" >
                   <span class="input-label cardfont localizejs" style="white-space: normal;">Billing Address</span>

@@ -618,6 +618,19 @@ angular.module('starter.controllers')
                 $rootScope.timezoneDisplay = 'none';
             }
         }
+
+        window.addEventListener('native.keyboardshow', function () {
+            $scope.$apply(function () {
+                $("#localize-widget").hide();
+            });
+
+        })
+        window.addEventListener('native.keyboardhide', function () {
+            $scope.$apply(function () {
+                $("#localize-widget").show();
+            });
+        });
+        
         $scope.isDisabled = false;
 
         $scope.postDependentDetails = function () {
@@ -1815,6 +1828,7 @@ angular.module('starter.controllers')
             }).then(function (modal) {
                 $scope.modal = modal;
                 $scope.modal.show().then(function () {
+                    $("#localize-widget").hide();
                     document.getElementById('fullAddress').value = $scope.addNewDependent.homeadd;
                     document.getElementById('country').value = $scope.Country;
                     if ($scope.state1 == undefined)

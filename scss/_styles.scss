@@ -5,7 +5,7 @@
 }
 
 @font-face {
-    font-family: 'Glober Black';
+    font-family: 'Glober Black';     
     src: url("Glober Black.otf");
 }
 @font-face {   
@@ -13,7 +13,7 @@
     src: url("Glober Bold Italic.otf");
 }
 @font-face {
-    font-family: 'Glober Bold';
+    font-family: 'Glober Bold';   
     src: url("Glober Bold.otf");
 }
 @font-face {
@@ -506,7 +506,7 @@ body {
     color: #fff;
     background-color: #4D4D4D !important;
     border-color: #4D4D4D !important;
-    // padding: 20px 0px 20px 0px;
+    //padding: 20px 0px 20px 0px;
     @include font($fontFamily_light, bold, 11px);
     border-top-width: -1px;
     border-top: -1px;
@@ -542,14 +542,14 @@ body {
     background-image: none;
 }
 .terms_footer_a {
-    margin-left: 20px !important;
+    //margin-left: 20px !important;
     font-weight: bold !important;
     cursor: pointer;
     span {
         top: -2px;
         position: relative;
         font-size: 17px;
-        padding-left: 3px;
+        //padding-left: 3px;
     }
 }
 .provider_item {
@@ -727,17 +727,22 @@ body {
         font-size: 14px;
     }
 }
+
 .button_new {
     @include font($fontFamily_light, bold, 19px);
     color: #fff;
     border-radius: 7px;
-    // width: 105px;
+
+    // width: 105px; 
     // min-height: 38px;
     // margin: 0 0 0 10px;
+
+
     text-decoration: none;
     cursor: pointer;
     //margin-right: 16px;
 }
+
 .ion-chevron-left::before {
     color: #fff;
     margin: 3px;
@@ -2386,7 +2391,7 @@ select {
             margin-top: 0px;
         }
         float:left;
-        width:33%;
+        width:33.33%;
         cursor:pointer;
         position: relative;
         top: -10px;
@@ -2406,7 +2411,7 @@ select {
     .FooterCenter {
         text-align: center;
         float: left;
-        width: 33%;
+        width: 33.33%;
         position: relative;
         top: -6px;
         a {
@@ -2418,6 +2423,9 @@ select {
             font-size: 17px;
             color: #FFFFFF;
             font-family: $fontFamily_bold;
+            text-align: center;
+            margin: 0 auto;
+            padding-left: 15px;
         }
         .newProCancel {
             font-family: $fontFamily_regular;
@@ -2437,7 +2445,7 @@ select {
         }
         text-align:center;
         float:right;
-        width:33%;
+        width:33.33%;
         position: relative;
         top: -4px;
         //left: 5px;
@@ -2459,17 +2467,17 @@ select {
         }
     }
 }
-
 .concernListHeader {
     height: 55px;
     .concernListTitle {
-        top: 8px !important;
+        //top: 8px !important;
+        top: 13px !important;
         font-size: 20px !important;
         color: #FFFFFF !important;
         font-family: $fontFamily_semibold;
     }
     .concernListDone {
-        top: 7px !important;
+        //top: 7px !important;
         font-size: 18px !important;
         font-family: $fontFamily_regular;
         padding: 9px !important;
@@ -2479,6 +2487,12 @@ select {
       font-size: 20px !important;
       color: #FFFFFF !important;
       font-family: $fontFamily_semibold;
+    }
+    .concernListTitle-Android {
+        font-family: 'Glober SemiBold';
+        margin: 0 auto;
+        text-align: center;
+        top: 13px;
     }
     .concernListDone-ios {
         top: 5px !important;
@@ -3263,11 +3277,13 @@ a {
     font-family: $fontFamily_regular;
 }
 .ContentUserHome {
-   // margin: 70px 0 0 0;
-    margin: 12px 0 0 0;
+    //margin: 70px 0 0 0;
     font-family: $fontFamily_regular;
     border-top: 1px solid #C4C5C3;
+    margin: 12px 0 0 0;
     clear: both;
+
+
 }
 .listImgView {
     width: 45px !important;
