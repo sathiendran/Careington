@@ -1,148 +1,114 @@
-
-
 <ion-view title="Card Details">
+   <form ng-submit="doPostPaymentProfileDetails()" name="CardForm" novalidate=''>
+      <ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" style="background-color:{{brandColor}};border-color:{{brandColor}}; {{backgroundimage}}; {{HeadercardDetails}}" >
+         <div id="Error_Message" class="ErrorMessageDiv localizejs" ></div>
+         <div class="Server_Error ErrorMessageDiv localizejs" ></div>
+         <div class="buttons localizejs" style="width: 50%; display: {{cardDisplay}}; {{HeadercardDetailsBack}}" >
+            <!-- <site-header2 class ="localizejs" back="Cancel"></site-header2> -->
+            <a class="button_new icon PlanCancel" ng-click="backToEdiORAddCard();" >
+            <span class="localizejs">Cancel</span>
+          </a>
+         </div>
+         <div class="buttons" style="width: 50%; display: {{cardDisplay}};" >
+            <div style="width: 100%; text-align: right;" ng-if="CardForm.$invalid">
+               <button type="submit" class="button_new icon PlanNext localizejs" style="color:#999;{{CardDetailsNextButton}};right: -10px;"   ng-disabled="CardForm.$invalid" >
+               Next
+               </button>
+            </div>
+            <div style="width: 100%; text-align: right;" ng-if="!CardForm.$invalid">
+               <button type="submit" class="button_new icon PlanNext localizejs"  style="{{CardDetailsNextButton}};right: -10px;"  ng-disabled="CardForm.$invalid" >                   Next
+               </button>
+            </div>
+         </div>
+      </ion-header-bar>
+      <ion-content class="planDetails_content" >
+         <div>
+            <div class="healthPlan_text cardDetailsHeading localizejs" style="display: {{cardDisplay}}">
+               Card Details
+            </div>
+            <div class="CardInformation localizejs" style="display: {{cardDisplay}}" >
+               Enter your card information below
+            </div>
+            <div class="healthPlan_text verifyPlanHeading localizejs" style="display: {{verifyCardDisplay}}">
+               Verifying Card
+            </div>
+            <div class="verifyCardDisplay" style="display: {{verifyCardDisplay}}" >
+            </div>
+            <div class="list" style="opacity:{{planverify}};">
+               <div class="item item-input" >
+                  <span class="input-label cardfont localizejs" >First Name</span>
+                  <input type="text" class="localizejs" placeholder="Required" ng-model="getCardDetails.FirstName" name="FirstName" id="FirstName" required>
+               </div>
+               <div class="item item-input cards" >
+                  <span class="input-label cardfont localizejs" >Last Name</span>
+                  <input type="text" class ="localizejs" placeholder="Required" ng-model="getCardDetails.LastName" name="LastName" id="LastName" required>
+               </div>
+               <div class="item item-input ">
+                  <span class="input-label cardfont localizejs" style="white-space: normal;">Card Number</span>
+                  <!--<input type="number" style="{{invalidCard}}" placeholder="Required" ng-model="getCardDetails.CardNumber" name="CardNumber" id="CardNumber" maxlength="19" required> -->
+                  <input style="padding-top: 10px; font-size: 18px; line-height: 20px; {{invalidCard}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" class ="localizejs" ng-model="getCardDetails.CardNumber" name="CardNumber" id="CardNumber" maxlength="19" required/>
+               </div>
+               <div class="item item-input">
+                  <span class="input-label cardfont localizejs">Expiration Date</span>
+                  <select id="CardExpireDatesMonth" name="CardExpireDatesMonth" ng-model="getCardDetails.CardExpireDatesMonth" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px; font-size: 18px;{{invalidMonth}}{{CardDetailmonth}}" required>
+                     <option ng-repeat="month in monthsList" value="{{month.value}}" ng-selected="{{month.selected}}">
+                        <b><span class="localizejs">{{month.text}}</span></b>
+                     </option>
+                  </select>
+                  <span> /{{validCC}}</span>
+                  <select id="CardExpireDatesYear" name="CardExpireDatesYear" ng-model="getCardDetails.CardExpireDatesYear" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px; font-size: 18px;{{invalidMonth}}{{CardDetailYear}}" required>
+                     <option ng-repeat="ccYear in ccYearsList" value="{{ccYear.value}}">
+                        <b><span class="localizejs">{{ccYear.text }}</span></b>
+                     </option>
+                  </select>
+               </div>
+               <div class="item item-input" ng-if="AndroidDevice !== true">
+                  <span class="input-label cardfont localizejs" >CVV Code</span>
+                  <!--<input type="password" pattern="[0-9]*" inputmode="numeric" style="{{invalidCVV}}" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>-->
+                 <input style="-webkit-text-security: disc; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type="password" pattern="[0-9]*" inputmode="numeric" class="localizejs" placeholder="Required" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>
+                <!--  <input style="-webkit-text-security: disc; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" class ="localizejs" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>-->
+               </div>
+               <div class="item item-input" ng-if="AndroidDevice === true">
+                  <span class="input-label cardfont localizejs" >CVV Code</span>
+                  <!--<input type="password" pattern="[0-9]*" inputmode="numeric" style="{{invalidCVV}}" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>-->
+                  <!-- <input style="font-size: 18px; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/> -->
+                <!--  <input style="font-size: 18px; -webkit-text-security: disc; line-height: 20px; {{invalidCVV}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "number" id="password" pattern="[0-9]*" inputmode="numeric"  placeholder="Required" class= "localizejs" maxlength="4" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required/>-->
+                <!-- <input style="font-size: 18px; -webkit-text-security: disc; line-height: 20px; {{invalidCVV}}" type="tel" class="localizejs" placeholder="Required" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" maxlength="4"  phone-input> -->
+                <input style="font-size: 18px; -webkit-text-security: disc; line-height: 20px; {{invalidCVV}}" type="tel" class="localizejs" placeholder="Required" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" maxlength="4">                
+               </div>
+               <div class="item item-input" >
+                  <span class="input-label cardfont localizejs" style="white-space: normal;">Billing Address</span>
+                  <input type="text" class="localizejs" placeholder="Required" ng-model="getCardDetails.BillingAddress"  name="BillingAddress" id="BillingAddress" required>
+               </div>
+               <div class="item item-input" >
+                  <span class="input-label cardfont localizejs" >City</span>
+                  <ion-google-place style="font-size: 18px !important;" placeholder="Required" class="localizejs" ng-model="getCardDetails.City" required/>
+               </div>
+               <div class="item item-input">
+                  <span class="input-label cardfont localizejs" >State</span>
+                  <input type="text" class="localizejs" placeholder="Required"  ng-model="getCardDetails.State"  name="State" id="State" required>
+               </div>
+               <div class="item item-input" >
+                  <span class="input-label cardfont localizejs" >Country</span>
+                  <input type="text" class="localizejs" placeholder="Required" ng-model="getCardDetails.CountryFullName"  name="Country" id="Country" required>
+               </div>
+               <div class="item item-input" >
+                  <span class="input-label cardfont localizejs" >Zip</span>
+                  <input type="text" style="{{invalidZip}}" placeholder="Required"  ng-model="getCardDetails.CardZipCode"  class="localizejs" input-max-length-number maxlength="10" name="Zip" id="Zip" required/>
+               </div>
+            </div>
+            <div class="planDetails" ng-if="addCardStatus !== 200" style="opacity:{{planverify}};">
+               <p class="carddetails localizejs">When you add a credit card, information about your card, will be sent to Authorize.net and your card issuer.</p>
+            </div>
+            <div class="privacy" style="opacity:{{planverify}};">
+              <!-- <a class="hospitalDynamicLink localizejs" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">
+              About {{Hospital}} Privacy</a> -->
 
-    <form ng-submit="doPostPaymentProfileDetails()" name="CardForm" novalidate=''>
-
-       <ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" style="background-color:{{brandColor}};border-color:{{brandColor}}; {{backgroundimage}}; {{HeadercardDetails}}" >
-			<div id="Error_Message" class="ErrorMessageDiv" ></div>
-			 <div class="Server_Error ErrorMessageDiv" ></div>
-<div class="buttons" style="width: 50%; display: {{cardDisplay}}; {{HeadercardDetailsBack}}" >
-				<!--<a class="button_new icon PlanCancel" ng-href="#/tab/consultChargeNoPlan" >
-					<span>Cancel</span>
-				</a>-->
-				<site-header2 back="Cancel"></site-header2>
-
-			</div>
-
-			<div class="buttons" style="width: 50%; display: {{cardDisplay}};" >
-
-				<div style="width: 100%; text-align: right;" ng-if="CardForm.$invalid">
-                    <button type="submit" class="button_new icon PlanNext" style="color:#999;{{CardDetailsNextButton}};"   ng-disabled="CardForm.$invalid" >
-                        Next
-                    </button>
-                </div>
-                <div style="width: 100%; text-align: right;" ng-if="!CardForm.$invalid">
-                    <button type="submit" class="button_new icon PlanNext"  style="{{CardDetailsNextButton}}"  ng-disabled="CardForm.$invalid" >                   Next
-</button>
-                </div>
-
-                <!-- <div ng-if="CardForm.$invalid" class="disabled" >
-                    <button type="submit" class="button_new icon PlanNext" >
-                                <span style="color:#999;">Next</span>
-                    </button>
-                </div>
-                <div ng-if="!CardForm.$invalid">
-                    <button type="submit" class="button_new icon PlanNext" >
-                              <span>Next</span>
-                    </button>
-                </div> -->
-
-
-
-			</div>
-		</ion-header-bar>
-
-	<ion-content class="planDetails_content" >
-
-		<div>
-			<div class="healthPlan_text cardDetailsHeading" style="display: {{cardDisplay}}">
-				Card Details
-			</div>
-
-			<div class="CardInformation" style="display: {{cardDisplay}}" >
-				Enter your card information below
-			</div>
-
-			<div class="healthPlan_text verifyPlanHeading" style="display: {{verifyCardDisplay}}">
-				Verifying Card
-			</div>
-
-			<div class="verifyCardDisplay" style="display: {{verifyCardDisplay}}" >
-			</div>
-
-
-			<div class="list" style="opacity:{{planverify}};">
-
-                <div class="item item-input" >
-					<span class="input-label cardfont" >First Name</span>
-					<input type="text" placeholder="Required" ng-model="getCardDetails.FirstName" name="FirstName" id="FirstName" required>
-				</div>
-
-				<div class="item item-input cards" >
-					<span class="input-label cardfont" >Last Name</span>
-					<input type="text" placeholder="Required" ng-model="getCardDetails.LastName" name="LastName" id="LastName" required>
-				</div>
-
-				<div class="item item-input ">
-					<span class="input-label cardfont" >Card Number</span>
-					<input type="number" style="{{invalidCard}}" placeholder="Required" ng-model="getCardDetails.CardNumber" name="CardNumber" id="CardNumber" maxlength="19" required>
-				</div>
-				<!--
-				<label class="item item-input" >
-					<span class="input-label" >Expiration Date</span>
-					<input placeholder="Required"  type="text"  id="ExpireDate" name="ExpireDates" maxlength="7" ng-Model="getCardDetails.CardExpireDates"  credit-card-expiration-entry required>
-
-			    </label>
-                -->
-                <div class="item item-input">
-                    <span class="input-label cardfont">Expiration Date</span>
-                    <select id="CardExpireDatesMonth" name="CardExpireDatesMonth" ng-model="getCardDetails.CardExpireDatesMonth" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px; font-size: 18px;{{invalidMonth}}{{CardDetailmonth}}" required>
-                          <option ng-repeat="month in monthsList" value="{{month.value}}" ng-selected="{{month.selected}}">
-                              <b><span>{{month.text}}</span></b></option>
-                      </select>
-                     <span> /{{validCC}}</span>
-                      <select id="CardExpireDatesYear" name="CardExpireDatesYear" ng-model="getCardDetails.CardExpireDatesYear" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px; font-size: 18px;{{invalidMonth}}{{CardDetailYear}}" required>
-                          <option ng-repeat="ccYear in ccYearsList" value="{{ccYear.value}}">
-                              <b><span>{{ccYear.text }}</span></b>
-                          </option>
-                      </select>
-                </div>
-                <div class="item item-input" >
-					<span class="input-label cardfont" >Security Code</span>
-					<!--<input type="number"  style="-webkit-text-security: disc; text-security:disc; -mox-text-security:disc;{{invalidCVV}}" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>-->
-					<input type="password" pattern="[0-9]*" inputmode="numeric" style="{{invalidCVV}}" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>
-
-				</div>
-
-				<div class="item item-input" >
-					<span class="input-label cardfont" >Billing Address</span>
-					<input type="text" placeholder="Required" ng-model="getCardDetails.BillingAddress"  name="BillingAddress" id="BillingAddress" required>
-				</div>
-
-
-                <div class="item item-input" >
-					<span class="input-label cardfont" >City</span>
-			         <ion-google-place placeholder="Required" ng-model="getCardDetails.City" />
-			    </div>
-
-			<div class="item item-input">
-					<span class="input-label cardfont" >State</span>
-
-                         <input type="text" placeholder="Required"  ng-model="getCardDetails.State"  name="State" id="State" required>
-				</div>
-
-                <div class="item item-input" >
-					<span class="input-label cardfont" >Country</span>
-					<input type="text" placeholder="Required" ng-model="getCardDetails.Country"  name="Country" id="Country" required>
-				</div>
-				<div class="item item-input" >
-					<span class="input-label cardfont" >Zip</span>
-			    <input type="number" style="{{invalidZip}}" placeholder="Required"  ng-model="getCardDetails.CardZipCode"  input-max-length-number maxlength="5" name="Zip" id="Zip" required/>
-				</div>
-
-
+              <a class="localizejs" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" >
+                About {{Hospital}} Privacy</a>
 
             </div>
-
-			<div class="planDetails"  style="opacity:{{planverify}};">
-				<p class="carddetails">When you add a credit card, information about your card, will be sent to Authorize.net and your card issuer.</p>
-			</div>
-			<!--<div class="privacy" ><a href="#" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" onclick="window.open('https://docyourway.connectedcare.md/public/#/userTerms', '_system', 'location=yes'); return false;">About Connected Care Privacy</a></div>-->
-				<div class="privacy" style="opacity:{{planverify}};"><a class="hospitalDynamicLink" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">About {{Hospital}} Privacy</a></div>
-			<!--<div class="privacy" ><a href="#" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" onclick="window.open('https://connectedcare.md/Main/#/UserTerms', '_system', 'location=yes'); return false;">About Connected Care Privacy</a></div>-->
-		</div>
-
-	</ion-content>
-</form>
+         </div>
+      </ion-content>
+   </form>
 </ion-view>

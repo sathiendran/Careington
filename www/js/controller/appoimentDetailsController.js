@@ -756,6 +756,7 @@ angular.module('starter.controllers')
                                 //  'Your consultation is already started on other device.', // message
 
                                 function () {
+                                  debugger;
                                     $state.go('tab.userhome');
                                     return;
                                 },

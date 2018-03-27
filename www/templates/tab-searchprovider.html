@@ -1,54 +1,69 @@
 <style>
-.has-footer{
-  bottom: 0px!important;
-}
+  .has-footer {
+    bottom: 0px!important;
+  }
+
+  .ConcernsFooter {
+    font-family: GloberRegular;
+    font-size: 15pt;
+    color: rgb(153, 153, 153) !important;
+  }
 </style>
 <ion-view>
-   <ion-header-bar class="bg">
-      <div id="Error_Message" ></div>
-      <div class="Server_Error" ></div>
-      <h2 class="providerHead-ios" style="margin-top: 15px!important;">Virtual Care</h2>
-      <div class="bar bar-subheader-provider searchbox searchAccount">
-         <h3 class="localizejs">Find your provider</h3>
-         <p class="localizejs">Search for your provider to create an account.</p>
-         <div class="item-input-inset">
-            <label class="item-input-wrapper">
-            <i style="display: {{iconDisplay}}" class="icon placeholder-icon" ng-bind-html="drawSVGCIcon('magnifying-glass')"></i>
-            <input type="search" class="localizejs" placeholder="Search" ng-model="data.searchProvider">
-            </label>
-         </div>
+  <ion-header-bar class="bg">
+    <div id="Error_Message"></div>
+    <div class="Server_Error"></div>
+    <h2 class="providerHead-ios" style="margin-top: 15px!important;">Virtual Care</h2>
+    <div class="bar bar-subheader-provider searchbox searchAccount">
+      <h3 class="localizejs">Find your provider</h3>
+      <p class="localizejs">Search for your provider to create an account.</p>
+      <div class="item-input-inset">
+        <label class="item-input-wrapper">
+          <i style="display: {{iconDisplay}}" class="icon placeholder-icon" ng-bind-html="drawSVGCIcon('magnifying-glass')"></i>
+          <input type="search" class="localizejs" placeholder="Search" ng-model="data.searchProvider">
+        </label>
       </div>
-   </ion-header-bar>
-   <ion-content class="content-height">
-      <div id="providerListDiv" class="list has-subheader provider" >
-         <a class="item item-avatar item-icon-right" ng-repeat="providerList in searchProviderList" ng-click="goToRegisterStep1(providerList)">
-            <div class="searchProvFirstLetterDiv newProImage" ng-if="!providerList.chkImageorNot" style="background-color: {{providerList.brandColor}}" >
-               <p class="localizejs">{{providerList.firstCharactOfHosName}}</p>
-            </div>
-            <div class="searchProvFirstLetterDiv newProImage" ng-if="providerList.chkImageorNot"><img ng-src="{{providerList.firstCharactOfHosName}}"  ></div>
-            <h2 class="localizejs">{{providerList.brandName}}</h2>
-            <i class="icon ion-chevron-right"></i>
-         </a>
-      </div>
-      <div id="startSearchProvider" class="list has-subheader provider">
-         <p><i  ng-bind-html="drawSVGCIcon('arrow-with-circle-up')"></i> </p>
-         <p class="startTyping localizejs">Start typing the name of your provider. </p>
-         <p class="startTypingSubHeader localizejs">Be sure to use the organization name and not the individual doctor.</p>
-      </div>
-      <div id="emptyProvider" class="list has-subheader provider" >
-         <p class="startTyping localizejs">No results were found for your search</p>
-         <p class="startTypingSubHeader localizejs">Please be sure to search by the organization name and not the individual doctor.</p>
-      </div>
-      <div ng-controller="LoginCtrl">
-      </div>
-   </ion-content>
-   <!-- <div class="hide-on-keyboard-open"> -->
-      <ion-footer-bar class="footer" hide-on-keyboard="true">
+    </div>
+  </ion-header-bar>
+  <ion-content class="content-height">
+    <div id="providerListDiv" class="list has-subheader provider">
+      <a class="item item-avatar item-icon-right" ng-repeat="providerList in searchProviderList" ng-click="goToRegisterStep1(providerList)">
+        <div class="searchProvFirstLetterDiv newProImage" ng-if="!providerList.chkImageorNot" style="background-color: {{providerList.brandColor}}">
+          <p class="localizejs">{{providerList.firstCharactOfHosName}}</p>
+        </div>
+        <div class="searchProvFirstLetterDiv newProImage" ng-if="providerList.chkImageorNot">
+          <img ng-src="{{providerList.firstCharactOfHosName}}">
+        </div>
+        <h2 class="localizejs">{{providerList.brandName}}</h2>
+        <i class="icon ion-chevron-right"></i>
+      </a>
+    </div>
+    <div id="startSearchProvider" class="list has-subheader provider">
+      <p>
+        <i ng-bind-html="drawSVGCIcon('arrow-with-circle-up')"></i>
+      </p>
+      <p class="startTyping localizejs">Start typing the name of your provider. </p>
+      <p class="startTypingSubHeader localizejs">Be sure to use the organization name and not the individual doctor.</p>
+    </div>
+    <div id="emptyProvider" class="list has-subheader provider">
+      <p class="startTyping localizejs">No results were found for your search</p>
+      <p class="startTypingSubHeader localizejs">Please be sure to search by the organization name and not the individual doctor.</p>
+    </div>
+    <div ng-controller="LoginCtrl">
+    </div>
+  </ion-content>
+  <!-- <div class="hide-on-keyboard-open"> -->
+  <!-- <ion-footer-bar class="footer" hide-on-keyboard="true">
          <div class="ConcernsFooter">
             <div class="FooterCenter" style="width: 100%;" ng-click="cancelProviderSearch()">
                <a class="button_newios icon localizejs" style="font-size: 18px;">Cancel</a>
             </div>
          </div>
-      </ion-footer-bar>
-   <!-- </div> -->
+      </ion-footer-bar> -->
+  <div class="bar bar-footer footer"  hide-on-keyboard="true">
+    <div class="title" ng-click="cancelProviderSearch()">
+      <a class="localizejs ConcernsFooter" >Cancel</a>
+    </div>
+  </div>
+  <!-- </div> -->
 </ion-view>

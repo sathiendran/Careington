@@ -613,7 +613,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     //Sakthi
 
-        //Sakthi 
+        //Sakthi
 
         window.addEventListener('native.keyboardshow', function () {
             $scope.$apply(function () {
@@ -664,7 +664,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.waitingContentIos = "margin-top: 124px; ";
             $rootScope.BackBotton = "top: 7px; position: relative;";
             $rootScope.Appoinmentwaitcenter = "left: -27px;";
-            $rootScope.PaymentStyle = "padding: 0px; margin-top: 132px;	background-color: #fff; top: 23px;";
+            $rootScope.PaymentStyle = "padding: 0px; margin-top: 132px;	background-color: #fff; top: 13px;";
             $rootScope.HeadercardDetails = "height: 69px;";
             $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
             $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
@@ -728,10 +728,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.concernListTitleiosprior = "top: 14px !important;"
                 $rootScope.surgeryTopAddButtonIOS = "top: 23px !important;height: 30px !important;";
                 $rootScope.termsCondtion = "margin-top: 9px !important;";
-                $rootScope.HomeHeaderIOS = "top: 9px !important";
-                $rootScope.HomeBackIOS = "top: 4px; !important";
-                $rootScope.HomeUserIconIOS = "top: 22px; !important";
-
+                $rootScope.HomeHeaderIOS =	"top: 9px !important";
+                $rootScope.HomeBackIOS =	"top: 4px; !important";
+                $rootScope.HomeUserIconIOS =	"top: 19px; !important";
+                $rootScope.TitleHeadIOS =	"top: 7px; !important";
             }
             if ($rootScope.isIPad) {
                 $rootScope.PrimaryConcernPopupH = "height: 66px;";
@@ -902,7 +902,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 }
             }
         }
-    
+
         $rootScope.toggleLeft = function() {
             $rootScope.statename = $rootScope.currState.$current.name;
             $ionicSideMenuDelegate.toggleLeft();
@@ -912,7 +912,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             }
             if ($rootScope.statename === "tab.userhome") {
                 $('.sideuserhome').addClass("uhome");
-    
+
             }
             if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle") {
                 checkAndChangeMenuIcon = $interval(function() {
@@ -3900,7 +3900,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.userpostalCode = $rootScope.addressInfoFetch[0].addressObject.postalCode;
                 $rootScope.usercountry = $rootScope.addressInfoFetch[0].addressObject.country;
                 $rootScope.usercountryCode = $rootScope.addressInfoFetch[0].addressObject.countryCode;
-                 
+
                     console.log("data");
                     console.log($rootScope.currentPatientDetails);
                     $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
@@ -7073,7 +7073,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                 } else {
                                     $(".appointInqueue").css({ "display": "initial" });
                                     $(".appointInProgress").css({ "display": "none" });
-                                   
+
                                 }
                             }
                         });
@@ -8675,7 +8675,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         var date = new Date($scope.individualScheduledConsultationList.dob);
                         $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
                         $rootScope.appointmentsPatientDOB = $filter('date')(date, "yyyy-MM-dd");
-    
+
                         if ($rootScope.userDOB !== "" && !angular.isUndefined($rootScope.userDOB)) {
                             var ageDifMs = Date.now() - new Date($rootScope.userDOB).getTime(); // parse string to date
                             var ageDate = new Date(ageDifMs); // miliseconds from epoch
@@ -8704,7 +8704,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             $rootScope.userGender = '';
                             $rootScope.isCheckedFemale = '';
                         }
-    
+
                         if ($scope.individualScheduledConsultationList.account.patientId !== $rootScope.primaryPatientId) {
                             if (!angular.isUndefined($scope.individualScheduledConsultationList.account.relationship)) {
                                 $rootScope.patRelationShip = $scope.individualScheduledConsultationList.account.relationship;
@@ -8717,7 +8717,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         } else {
                             $rootScope.patRelationShip = '';
                         }
-    
+
                         $rootScope.getIndividualScheduledList = [];
                         $rootScope.individualScheduleParticipants = [];
                         var currentDate = new Date();
@@ -8760,10 +8760,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                 })
                             }
                         });
-    
+
                         $rootScope.individualScheduledList = $filter('filter')($filter('orderBy')($rootScope.getIndividualScheduledList,"scheduledTime"), "a");
                         $rootScope.getIndividualScheduleDetails = $rootScope.individualScheduledList;
-    
+
                         var d = new Date();
                         d.setHours(d.getHours() + 12);
                         //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
@@ -8776,8 +8776,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         if ($rootScope.individualScheduledList != '') {
                             var getReplaceTime = $rootScope.individualScheduledList[0].scheduledTime;
                             var currentUserHomeDate = currentUserHomeDate;
-    
-    
+
+
                             if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                                 $rootScope.accountClinicianFooter = 'none';
                                 $rootScope.individualNextAppointmentDisplay = 'block';
@@ -8787,25 +8787,25 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                 $rootScope.appointmentsPatientId = $rootScope.patientId;
                                 var beforAppointmentTime = getReplaceTime;
                                 var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
-    
-    
+
+
                                 if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {
-    
+
                                 }
                             }
-    
+
                             var getReplaceTime1 = $rootScope.individualScheduledList[0].scheduledTime;
                             var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
                             var currentUserHomeDate = currentUserHomeDate;
                             if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
-    
+
                                 $rootScope.time = new Date(getReplaceTime).getTime();
-    
+
                                 $timeout(function() {
                                     //document.getElementsByTagName('timer')[0].stop();
                                     document.getElementsByTagName('timer')[0].start();
                                 }, 10);
-    
+
                                 $scope.$on('timer-tick', function(event, args) {
                                     if (args.days === 0) {
                                         $rootScope.hourDisplay = 'initial';
@@ -9023,9 +9023,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
                         /*  var beforAppointmentTime = getReplaceTime;
                           var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
-    
+
                           if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {
-    
+
                           }*/
                     }
 
@@ -9663,7 +9663,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             }
                         }
                     }, function() {
-    
+
                     })
                 }
             }, function () {
@@ -10412,7 +10412,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                         }
                                     }
                                 }, function() {
-                
+
                                 });
             $state.go('tab.waitingRoom');
         }

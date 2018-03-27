@@ -1,324 +1,940 @@
-<div id="Error_Message" class="ErrorMessageDiv" ></div>
-	 <div class="Server_Error ErrorMessageDiv" ></div>
-	 <div class="Error_Message ErrorMessageDiv" ></div>
-<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};" >
+
+<ion-view title="Add Card">
+<!-- <ion-side-menus>
+<ion-side-menu-content> -->
+   <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};height: 67px;padding-top: 0px;" >
+     <!-- <div class="buttons">
+         <span class="button icon button-clear {{menuiconIOS}}  reportIconBack-{{deviceName}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
+    </div>-->
+    <div id="Error_Message" class="ErrorMessageDiv" ></div>
+    <div class="Server_Error ErrorMessageDiv" ></div>
+    <div class="Error_Message ErrorMessageDiv" ></div>
+      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} reportscreenTitle-{{deviceName}}" style="top: 18px !important;"> <span class="headerfont _accountHeader-{{deviceName}} localizejs reportScreenHeader">Post-Encounter Report</span>
+         <span> <a class="headerval _accountCancel-{{deviceName}} localizejs" ng-click="EnableBackButton();" >Done</a>
+
+         </span>
+      </h1>
+      <!--<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
+         <div class="calendar_subHeader" >
+            <div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
+            <div class="subHeader_content-{{deviceName}} ellipsis" >
+               <div class="ellipsis subHeader_content_name" >
+                  <span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
+                  <span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
+               </div>
+               <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"> . {{patRelationShip}}</span></div>
+            </div>
+         </div>
+      </div>-->
+   </ion-header-bar>
+   <ion-view title="Post Consult Report">
+      <ion-content class="ReportContent">
+ <div>
+            <ion-refresher on-refresh="doRefreshReportDetails()"  >
+            </ion-refresher>
+         </div>
+        <div class="roundedCornersWindow">
+            <div id="reportConsulationWin"
+                 class="popup claim-area"
+                 data-role="window"
+                 data-modal="true"
+                 data-pinned="false"
+                 data-draggable="false"
+                 draggable
+                 data-resizable="false"
+                 data-visible="false"
+                 data-title="false"
+                 data-max-width="800"
+                 data-min-width="660"
+                 data-append-to=".roundedCornersWindow"
+                 data-position="{top:'100px'}"
+                 data-actions="['Close']"
+                 date-bind="{resize:reportWindowResize}">
 
 
-    <!--<div class="backButtonDiv">
-       <a ng-click="EnableBackButton()"> <Span  style="float:left;margin: 13px 0 0 17px;font-size:20px;color:#fff;"><B>Done</B></Span></a>
-		</div>-->
+                <div class="pc-report" id="claimcontent">
 
-		 <div class="buttons" style="{{ReportScreen}};">
-				<a class="button_new icon ReportDone" style="{{reportDone}}" ng-click="EnableBackButton()"  >
-					<span>Done</span>
-				</a>
-		  </div>
+                    <div class="pc-report__logo">
+                      <img src="{{hospitalImage}}">
+                    </div>
 
-		<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} ReportTittle" style="{{reportTitletop}};">Consult Report</h1>
+                    <div class="pc-report__company-info">
+                        <h2 class="localizejs" style="width: 142px;">{{reportBrandName}}</h2>
+                        <p>{{reportHospitalAddress}}</p>
+                        <hr>
+                        <h2 class="localizejs"ng-if="OrganizationLocation === 'on'"  style="color: #666;">Organization</h2>
+                        <p class="localizejs" ng-if="OrganizationLocation === 'on'"> {{organization}}</p>
 
+                        <h2 class="localizejs" ng-if="OrganizationLocation === 'on'"  style="color: #666;">Location</h2>
+                        <p class="localizejs" ng-if="OrganizationLocation === 'on'">{{location}}</p>
+                    </div>
 
-	<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
-		<div class="calendar_subHeader" >
-			<div class="subHeader_image" >
-				<img src="{{PatientImageSelectUser}}"  class="listImgView"  />
-			</div>
-			<div class="subHeader_content-{{deviceName}} ellipsis" >
-				<div class="ellipsis subHeader_content_name" >
-					<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
-					<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
-				</div>
-                <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"> . {{patRelationShip}} </span></div>
-			</div>
-		</div>
-	</div>
+                    <div class="pc-report__title localizejs">Encounter Summary</div>
+
+                    <div class="pc-report__encounter-summary">
+                        <!-- Patient Info -->
+                        <div class="pc-report__patient-info">
+                            <div class="pc-report__sub-section-title localizejs">Patient Information</div>
+                            <div class="pc-report__name pc-report__name--patient">{{reportPatientName}} {{reportLastName}} </div>
+                            <div  ng-if="existingConsultationReport.guardianName !=undefined" class="pc-report__name-details"><span class="guardian localizejs">Guardian</span>: {{reportGuardian}}</div>
 
 
-</ion-header-bar>
+                            <!-- report chart -->
+                            <div class="pc-report__data-list">
+                                <div class="pc-report__data-list-item pc-report__data-list-item--small" style="width: 88% !important;">
+                                    <span class="pc-report__data-list-title localizejs" style="
+    width: 100%;
+">ID</span>
+                                    <span class="pc-report__data-list-desc">{{reportpatientid}}</span>
+                                </div>
+                                <div class="pc-report__data-list-item pc-report__data-list-item--small">
+                                    <span class="pc-report__data-list-title localizejs" style="
+    width: 100%;
+">AGE</span>
+                            <!-- <span class="pc-report__data-list-desc">{{existingConsultationReport.ageFormat}}</span> -->
 
-<ion-view title="Report Details">
+<span class="pc-report__data-list-desc localizejs"><span>{{existingConsultationReport.dob | ageFilter}}</span><span class="localizejs">{{existingConsultationReport.dob | ageYearsStringFilter}}</span><span>{{existingConsultationReport.dob | ageMonthFilter}}</span> <span>{{existingConsultationReport.dob | ageDayFilter}}</span> </span>
 
-<ion-content class="ReportContent"  >
-	<div style="margin: 0 3%;">
-		<div><ion-refresher on-refresh="doRefreshReportDetails()"  >
-    </ion-refresher></div>
-		<div>
-			<div class="reportLogo">
-			   <!--<img ng-src="{{ReportHospitalImage}}">-->
-				<img style="max-height: 70px; max-width: 250px;" src="{{hospitalImage}}">
-			</div>
-			<div class="providerAddress">
-				<div>{{reportHospitalAddress}} <span style="display: none;" ng-if="contactNumber != ''">| {{contactNumber}}</span></div>
-				<div ng-if="OrganizationLocation === 'on'" class="reportOrganization" ><b>Organization:</b> {{organization}}</div>
-				<div ng-if="OrganizationLocation === 'on'" ><b>Location:</b> {{location}} </div>
-			</div>
-		</div>
-		<div class="ConnectedCareDetails" >
-			<div class="ConnectedCareTitle">
-				<h1 class="ReportTitle">{{reportHospitalUpperCase}} CONSULTATION REPORT</h1>
-			</div>
+                                </div>
+                            </div>
+                            <div class="pc-report__data-list">
+                                <div class="pc-report__data-list-item pc-report__data-list-item--small" style="width: 88% !important;">
+                                    <span class="pc-report__data-list-title localizejs" style="
+    width: 100%;
+">SEX</span>
+                                    <span class="pc-report__data-list-desc localizejs">{{gender}}</span>
+                                </div>
+                                <div class="pc-report__data-list-item pc-report__data-list-item--small">
+                                    <span class="pc-report__data-list-title localizejs" style="
+    width: 100%;
+">DOB</span>
+                                    <span class="pc-report__data-list-desc">{{reportdob | date :  "MM/dd/yyyy" }}</span>
+                                </div>
+                           </div>
 
-			<div class="Roundcircle CCAttachment">
-				<img ng-src="img/attached.png">
-				<p><b>{{attachmentLength}}</b></p>
-			</div>
+                            <div class="pc-report__data-list pc-report__data-list-item">
+                                <span class="pc-report__data-list-title localizejs">RACE</span>
+                                <span class="pc-report__data-list-desc1 localizejs">N/R</span>
+                            </div>
+                               <div class="pc-report__data-list pc-report__data-list-item">
+                                <span class="pc-report__data-list-title localizejs ReportEthnicityVal" style="height: auto;">ETHNICITY</span>
+                                <span class="pc-report__data-list-desc1 localizejs" style="height: auto; width: 67%;">{{reportethnicity}}</span>
+                            </div>
 
-		</div>
-		<div class="attachmentSpace">&nbsp </div>
+                            <div class="pc-report__data-list pc-report__data-list-item">
+                                <span class="pc-report__data-list-title localizejs">LANGUAGE</span>
+                                <span class="pc-report__data-list-desc1 localizejs">N/R</span>
+                            </div>
+                            <!--// report chart -->
 
-		<div class="reportPatientDetails">
-			<div  class="reportPatient">
-				<div><b>Patient :</b></div>
-				<div>{{reportPatientName}} {{reportLastName}} </div>
-				<div ng-if="existingConsultationReport.patientAddress != ''">{{reportPatientAddress}}</div>
-				<div>Home: {{reportHomePhone}} </div>
-				<div>Cell: {{existingConsultationReport.mobilePhone}} </div>
-			</div>
-			<div class="reportEncounter"  >
-				<div><b>Encounter Date:</b></div>
-				<div>{{consultationDate | date:'MMM dd, yyyy h:mm a'}}</div>
-				<div><b>Clinician:</b> </div>
-				<div>{{reportDoctorFirstName}} {{reportDoctorLastName}} {{reportMedicalSpeciality}} </div>
-				<div ng-if="displayCOnsultationDuration == 'display'"><b>Consultation Duration:</b> </div>
-				<div ng-if="displayCOnsultationDuration == 'display'">{{consultDurationMinutes}}:{{consultDurationSeconds}}</div>
-			</div>
-		</div>
-		<div class="reportPatientStatistics" >
-			<table  class="PatientStatistic" >
-				<tr>
-					<td colspan="6" class="statisticsTitle"  ><b>Patient Statistics</b>
-						<div></div>
-					</td>
-				</tr>
-				<tr >
-					<td class="statisticAge"><b>Age: </b></td>
-					<td ng-if="existingConsultationReport.dob != ''"><b><input type="text" style="" readonly value="{{existingConsultationReport.dob  | ageFilter}}"></b></td>
-					<td ng-if="existingConsultationReport.dob == ''"><b><input type="text" style="" readonly value="NA"></b></td>
-					<td>&nbsp </td>
-					<td><b>Height: </b></td>
-					<td><b> <input type="text" style="" readonly value="{{reportHeight}}"></b></td>
-					<td>&nbsp </td>
-				</tr>
+                            <div class="pc-report__complaints-block">
+                                <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin localizejs">Chief Complaints</div>
 
-				<tr>
-					<td class="statisticGender"><b>Gender:&nbsp </b></td>
-					<td><b> <input type="text" style="" readonly value="{{gender}}"></b></td>
-					<td>&nbsp </td>
-					<td><b> Weight: &nbsp</b></td>
-					<td><b> <input type="text" style="" readonly value="{{reportWeight}}"></b></td>
-					<td>&nbsp </td>
-				</tr>
+                                <ol class="pc-report__complaints">
+                                    <li class="localizejs">1. <span class="localizejs">{{reportScreenPrimaryConcern}}</span></li>
+                                    <li class="localizejs">2. <span class="localizejs">{{reportScreenSecondaryConcern}}</span></li>
+                                </ol>
 
-			</table>
+                                <p ng-if="repadditionalnotes !== 'N/R'"  class="pc-report__add-notes"><strong><span class="localizejs">Additional Notes:</span></strong> <span>{{repadditionalnotes}}</span></p>
 
-		</div>
-		<div class="reportPatientConcerns">
-			<div class="concernTitle"><b>PATIENT CONCERNS</b></div>
-			<div class="concernUnderline" >	</div>
+                            </div>
+                        </div>
+                        <!--// Patient Info -->
+                        <!-- Encounter Info -->
+                        <div class="pc-report__encounter-info">
+                            <div class="pc-report__sub-section-title localizejs">Encounter Information</div>
+                            <div class="pc-report__name pc-report__name--provider">{{reportDoctorFirstName}} {{reportDoctorLastName}}</div>
+                            <div class="pc-report__name-details"><span class="guardian localizejs">Department</span>
+                            :{{providerDepartment}}</div>
+                            <!--:{{reportMedicalSpeciality}}</div> -->
 
-			<div class="reportConcerns" ng-if="reportScreenPrimaryConcern != ''">
-				<div class="concernNumber"> <span>1</span> </div>
-				<div class="primaryConcernText"> {{reportScreenPrimaryConcern}}</div>
-			</div>
-			<div class="reportConcerns"  >
-				<div class="concernNumber"> <span>2</span> </div>
-				<div class="primaryConcernText"> {{reportScreenSecondaryConcern}}</div>
-			</div>
+                            <!-- Report Chart -->
+                            <div class="pc-report__data-list pc-report__data-list-item">
+                                <span class="pc-report__data-list-title enStatus localizejs">Status</span>
+                                <span ng-if="consultstatus == 72" class="pc-report__data-list-desc1 pc-report__data-list-desc--successful localizejs">{{reportStatus}}</span>
+                                <span ng-if="consultstatus == 79" class="pc-report__data-list-desc1 pc-report__data-list-desc--canceled localizejs">{{reportStatus}}</span>
+                                  <span ng-if="consultstatus == 81" class="pc-report__data-list-desc1 pc-report__data-list-desc--canceled localizejs">{{reportStatus}}</span>
+                            </div>
+                               <div class="pc-report__data-list pc-report__data-list-item">
+                                <span class="pc-report__data-list-title enStatus localizejs">encounter</span>
+                                <span class="pc-report__data-list-desc1">{{consultationDate | date: "MMM dd, yyyy"}}, {{consultationDate | date: "hh:mma" | lowercase}}  {{sysTimeZone}}</span>
+                            </div>
 
-		</div>
+                            <div class="pc-report__data-list pc-report__data-list-item">
+                                <div class="pc-report__data-list-title enStatus localizejs">length</div>
+                                <div class="pc-report__data-list-desc1" ng-if="displayCOnsultationDuration != 'none'">{{consultDurationMinutes}}:{{consultDurationSeconds}} <strong>min</strong></div>
+                            </div>
 
-		<div class="reportSubjective" >
-			<!--<div class="subjectiveTitle"><b>SUBJECTIVE</b></div>
-			<div class="subjectiveUnderline">	</div>-->
-			<div>
-				<div class="intakeTitle">
-					<div><b>Intake Form Information</b></div>
-					<div class="intakeUnderline"></div>
-				</div>
-				<div class="intakeMedication">
-					<div>
-						<div class="medicationTitle"><b>Current Medication</b></div>
-						<div class="medicationUnderline"></div>
-					</div>
-					<div class="medicationList" ng-repeat="getMedicationList in ReportMedications">
-						<span> <b>{{getMedicationList.Number}}</b> </span>
-						<span>{{getMedicationList.description}}</span>
-					</div>
-					<div ng-if="intake.medications == ''" class="medicationNone" >None Reported</div>
+                            <div class="pc-report__data-list pc-report__data-list-item">
+                                <span class="pc-report__data-list-title enStatus localizejs">APPT. TYPE</span>
+                                <span class="pc-report__data-list-desc1 localizejs">{{reportservicetype}}</span>
+                            </div>
 
-				</div>
+                            <div class="pc-report__data-list">
+                               <div class="pc-report__data-list-item pc-report__data-list-item--small" style="width: 136% !important;">
+                                   <span class="pc-report__data-list-title localizejs departmentClass" style="width: 26.333%;{{departmentClass}}">class</span>
+                                   <span class="pc-report__data-list-desc localizejs departmentClassVal" style="width: 67.666%%;">{{appointmenttype}}</span>
+                               </div>
 
-				<div class="intakeMedication">
-					<div>
-						<div class="medicationTitle"><b>Chronic Medication</b></div>
-						<div class="medicationUnderline"></div>
-					</div>
-					<div class="medicationList" ng-repeat="getmedicalConditionsList in ReportMedicalConditions" >
-						<span> <b>{{getmedicalConditionsList.Number}}</b> </span>
-						<span>{{getmedicalConditionsList.description}}</span>
-					</div>
-					<div ng-if="intake.medicalConditions == ''" class="medicationNone" >None Reported</div>
-				</div>
+                          </div>
+                          <div class="pc-report__data-list">
+                            <div class="pc-report__data-list-item pc-report__data-list-item--small" style="width: 23%">
+                                <span class="pc-report__data-list-title localizejs departmentClass" style="margin-left: 1px;width: 26.333%;padding-left: 3px;{{departmentClass}}">VIA</span>
+                                <span class="pc-report__data-list-desc pc-report__data-list-desc--video localizejs" ng-if="encountercode == 3" style="width: 72.666%;">Video</span>
+                                <span class="pc-report__data-list-desc pc-report__data-list-desc--phone localizejs" ng-if="encountercode == 2" style="width: 72.666%;">Phone</span>
+                                <span class="pc-report__data-list-desc pc-report__data-list-desc--in-person localizejs" ng-if="encountercode == 4" style="width: 72.666%;">In-Office</span>
+                                <!--<span class="pc-report__data-list-desc pc-report__data-list-desc--video">{{encountertype}}</span> -->
+                            </div>
+                          </div>
 
-				<div class="intakeMedication" >
-					<div>
-						<div class="medicationTitle"><b>Prior Surgeries</b></div>
-						<div class="medicationUnderline"></div>
-					</div>
-					<div class="medicationList" ng-repeat="getSurgeryList in ReportSurgeries">
-						<span> <b>{{getSurgeryList.Number}}</b> </span>
-						<span>{{getSurgeryList.description}} - {{getSurgeryList.month}} / {{getSurgeryList.year}}</span>
-					</div>
-					<div ng-if="intake.surgeries == ''" class="medicationNone" >None Reported</div>
-				</div>
+                            <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin localizejs">Other Attendees</div>
 
-				<div class="intakeMedication" >
-					<div>
-						<div class="medicationTitle"><b>Medication Allergies</b></div>
-						<div class="medicationUnderline"></div>
-					</div>
-					<div class="medicationList" ng-repeat="getAllergyList in ReportMedicationAllergies">
-						<span> <b>{{getAllergyList.Number}}</b> </span>
-						<span>{{getAllergyList.description}}</span>
-					</div>
-					<div ng-if="intake.medicationAllergies == ''" class="medicationNone" >None Reported</div>
-				</div>
+                            <div class="pc-report__attendees">
+                                   <div  ng-if="existconsultationparticipants != ''" class="pc-report__table-title pc-report__table-title--left">
+                                       <span class="localizejs">Name</span>
+                                       <span class="localizejs">Joined</span>
+                                       <span class="localizejs">Departed</span>
+                                   </div>
 
-				<div class="intakeMedication"  >
-					<div>
-						<div class="medicationTitle"><b>Birth Info</b></div>
-						<div class="medicationUnderline"></div>
-					</div>
-					<div class="medicationList" ng-if="userReportDOB < 1" >
-						<span>Child born at full term : {{fullTerm}}</span><br>
-						<span>Child born vaginally : {{vaginalBirth}}</span><br>
-						<span>Child discharged with mother : {{dischargedWithMother}}</span><br>
-						<span>Child vaccinations up-to-date : {{vaccinationsCurrent}}</span><br>
-					</div>
-					<div ng-if="userReportDOB >= 1" class="medicationNone" >None Reported</div>
-					<!--<div class="medicationNone" >None Reported</div>-->
-				</div>
+                                   <div class="pc-report__table-row pc-report__table-row--left" ng-repeat="getAttendeelist in AttendeeList">
+                                       <span>{{getAttendeelist.attedeename}} {{getAttendeelist.secondname}}</span>
+                                       <span>{{getAttendeelist.consultstart | date: "hh:mm"}}{{getAttendeelist.consultstart | date: "a"}}</span>
+                                       <span>{{getAttendeelist.consultend | date: "hh:mm"}}{{getAttendeelist.consultend | date: "a"}}</span>
+                                   </div>
+                                    <div class="pc-report__notes localizejs" style="font-size: 13px;" ng-if="existconsultationparticipants == ''">
+                                      None Reported
+                                    </div>
 
-			</div>
-			<!--<div>
-				<p class="intakeParagraph"> {{reportSubjective}}</p>
-			</div>-->
+                            </div>
+                         </div>
+                         <!--// Encounter Info -->
+                    </div>
 
-		</div>
-		<div id="soapReport">
-			<div class="reportObjective">
-				<div class="objectiveTitle" ><b>SUBJECTIVE</b></div>
-				<div class="objectiveUnderline">	</div>
-				<div>
-					<p ng-if="reportSubjective != 'None Reported'" id="reportSubjective" ></p>
-					<p ng-if="reportSubjective == 'None Reported'">{{reportSubjective}}</p>
-				</div>
-			</div>
+                    <!-- visit patient Info -->
+                     <!--<div class="pc-report__section-title pc-report__section-title--visit">Visit &amp; Patient Information</div>
 
-			<div class="reportObjective">
-				<div class="objectiveTitle" ><b>OBJECTIVE</b></div>
-				<div class="objectiveUnderline">	</div>
-				<div>
-					<p ng-if="reportObjective != 'None Reported'" id="reportObjective"></p>
-					 <p ng-if="reportObjective == 'None Reported'">{{reportObjective}}</p>
-				</div>
-			</div>
+            <ul class="pc-report__totals-values">
+                <li><span class="icon_medication"></span>0</li>
+                <li><span class="icon_attachment"></span>{{attachmentLength}}</li>
+                <li><span class="icon_images"></span>0</li>
+            </ul>
 
-			<div class="reportObjective">
-				<div class="objectiveTitle" ><b>ASSESSMENT</b></div>
-				<div class="objectiveUnderline">	</div>
-				<div>
-					<p ng-if="reportAssessment != 'None Reported'" id="reportAssessment"></p>
-				   <p ng-if="reportAssessment == 'None Reported'">{{reportAssessment}}</p>
-				</div>
-			</div>
+            <ul class="pc-report__totals-titles">
+                <li><span class="icon_medication"></span> Prescriptions</li>
+                <li><span class="icon_attachment"></span> Attachments</li>
+                <li><span class="icon_images"></span> Snapshots</li>
+            </ul>
 
-			<div class="reportObjective">
-				<div class="objectiveTitle" ><b>PLAN</b></div>
-				<div class="objectiveUnderline">	</div>
-				<div>
-					<p ng-if="reportPlan != 'None Reported'" id="reportPlan"></p>
-					 <p ng-if="reportPlan == 'None Reported'">{{reportPlan}}</p>
-				</div>
-			</div>
-		</div>
-		<div class="reportObjective">
-			<div class="objectiveTitle" ><b>RX</b></div>
-			<div class="objectiveUnderline">	</div>
-			<div>
-				<p>{{reportrx}}  </p>
-                 <!--<p>None Reported</p>-->
-			</div>
-		</div>
+                     <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Vitals &amp; Social History</div>
 
-		<div class="reportObjective">
-			<div class="objectiveTitle" ><b>CHAT TRANSCRIPT</b></div>
-			<div class="objectiveUnderline"> </div>
-			<div>
-				<p ng-if="chatTranscript.length"><li ng-repeat = "chatTranscript in chatTranscript">{{chatTranscript.ChatMessage}}</li></p>
-				<p ng-if="!chatTranscript.length">None Reported</p>
-			</div>
-		</div>
+                     <div class="pc-report__vitals-container">
+                         <div class="pc-report__vital pc-report__vital--large">
+                             <span class="pc-report__vital-title">Patient Reported</span>
 
-		<!--<div class="reportObjective">
-			<div class="objectiveTitle" ><b>MEDICAL CODES</b></div>
-			<div class="objectiveUnderline"> </div>
-			<div class="objectiveTitle" ><b>CPT Code</b></div>
-			<div>
-				<p>None Reported</p>
-			</div>
-			<div class="objectiveTitle" ><b>ICD-10-DX Code</b></div>
-			<div>
-				<p>None Reported</p>
-			</div>
-		</div>	-->
+                             <div class="pc-report__vital-box">
+                                 <span class="pc-report__vital-data">N/R</span>
+                                 <div class="pc-report__vital-type">Blood Pressure</div>
+                             </div>
+                         </div>
 
-		<div class="reportObjective" >
-					<div>
-						<div class="objectiveTitle"><b>MEDICAL CODES</b></div>
-						<div class="objectiveUnderline"></div>
-					</div>
-					<div ng-if="reportMedicalCodeDetails != ''">
-						<div ng-if="reportMediCPT != ''">
-							<div class="objectiveTitle" style="padding-top: 5%;"><b>CPT Code</b></div>
-							<div ng-repeat="reportMediCPT in reportMediCPT" style="margin-left: 10%;">
-								<p>{{reportMediCPT.shortDescription}}</p>
-							</div>
-						</div>
+                         <div class="pc-report__vital">
+                             <span class="pc-report__vital-title">Apple Health</span>
 
-						<div ng-if="reportMediICD != ''">
-							<div class="objectiveTitle"><b>ICD-10-DX Code</b></div>
-							<div ng-repeat="reportMediICD in reportMediICD"  style="margin-left: 10%;">
-								<p>{{reportMediICD.shortDescription}}</b>
-							</div>
-						</div>
-					</div>
-					<div ng-if="reportMedicalCodeDetails == ''"><p>None Reported</p></div>
-				</div>
+                             <div class="pc-report__vital-box">
+                                 <span class="pc-report__vital-data">N/R</span>
+                                 <div class="pc-report__vital-type">Pulse</div>
+                             </div>
+                         </div>
 
-		<div class="reportObjective">
-			<div class="objectiveTitle" ><b>FILE  ATTACHMENT</b></div>
-			<div class="objectiveUnderline"></div>
-			<div ng-if="getAttachmentList != ''">
+                         <div class="pc-report__vital">
+                             <span class="pc-report__vital-title">Provider Entered</span>
 
-					<div ng-repeat="getAttachment in getAttachmentList" ng-click="doGetAttachmentURL({{getAttachment.id}});" style="height: 60px;">
-						<div style="float: left;position: relative;top: 7px; padding-right: 10px;">
-							<img style="width: 40px; height: 45px;" src="{{APICommonURL}}/images/filetypes/png/{{getAttachment.image}}.png" alt="" >
-						</div>
-						<div style="font-size: 14px;position: relative;top: 22px;" class="ellipsis">{{getAttachment.name}}</div>
-					</div>
+                             <div class="pc-report__vital-box">
+                                 <span class="pc-report__vital-data">N/R</span>
+                                 <div class="pc-report__vital-type">Temperature</div>
+                             </div>
+                         </div>
+                     </div>
 
-			</div>
-			<div ng-if="getAttachmentList == ''"> <p>No Attachment</p></div>
+                     <div class="pc-report__vitals-container">
+                         <div class="pc-report__vital">
+                             <span class="pc-report__vital-title">Chat Thread</span>
 
-		</div>
+                             <div class="pc-report__vital-box">
+                                 <span class="pc-report__vital-data">N/R</span>
+                                 <div class="pc-report__vital-type">SpO2</div>
+                             </div>
+                         </div>
+
+                         <div class="pc-report__vital">
+                             <span class="pc-report__vital-title">Google Fit</span>
+
+                             <div class="pc-report__vital-box">
+                                 <span class="pc-report__vital-data">{{reportWeight}} <span class="pc-report__vital-data--small">{{reportWeightunit}}</span></span>
+                                 <div class="pc-report__vital-type">Weight</div>
+                             </div>
+                         </div>
+
+                         <div class="pc-report__vital">
+                             <span class="pc-report__vital-title">Philips Device</span>
+
+                             <div class="pc-report__vital-box">
+                                 <span class="pc-report__vital-data">
+                                     <span>{{reportheight1}}</span>
+                                     <span class="pc-report__vital-data--small">{{reportheightunit1}}</span>
+                                     <span>{{reportheight2}}</span>
+                                     <span class="pc-report__vital-data--small">{{reportheightunit2}}</span>
+                                 </span>
+                                 <div class="pc-report__vital-type">Height</div>
+                             </div>
+                         </div>
+
+                         <div class="pc-report__vital">
+                             <span class="pc-report__vital-title">Philips Device</span>
+
+                             <div class="pc-report__vital-box">
+                                 <span class="pc-report__vital-data">N/R</span>
+                                 <div class="pc-report__vital-type">BMI</div>
+                             </div>
+                         </div>
+                     </div>
+
+                     <div class="pc-report__socials-container">
+                         <div class="pc-report__social">
+                             <div class="pc-report__social-icon pc-report__social-icon--drink"></div>
+                             <div class="pc-report__social-block">
+                                 <span class="pc-report__social-title">Alcohol Use</span>
+                                 <span class="pc-report__social-desc">N/R</span>
+                             </div>
+                         </div>
+                         <div class="pc-report__social">
+                             <div class="pc-report__social-icon"></div>
+                             <div class="pc-report__social-block">
+                                 <span class="pc-report__social-title">Smoking Tobacco Use</span>
+                                 <span class="pc-report__social-desc">N/R</span>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="pc-report__socials-container">
+                         <div class="pc-report__social">
+                             <span class="pc-report__social-title">Smokeless Tobacco Use</span>
+                             <span class="pc-report__social-desc">N/R</span>
+                         </div>
+                         <div class="pc-report__social">
+                             <span class="pc-report__social-title">Comments:</span>
+                             <span class="pc-report__social-desc"></span>
+                         </div>
+                     </div>
+
+                     <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin-lg">Patient Instructions</div>
+                     <div class="pc-report__notes">Type Something</div>
+
+                     <!--// visit patient Info -->
+
+                     <!-- provider notes -->
+                     <div class="pc-report__section-title localizejs">Provider notes</div>
+
+                     <!-- <div class="pc-report__complaints-block pc-report__complaints-block--width">
+                         <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Chief Complaints</div>
+
+                        <ol class="pc-report__complaints">
+                          <li>1.{{reportScreenPrimaryConcern}}</li>
+                          <li>2.{{reportScreenSecondaryConcern}}</li>
+                        </ol>
+
+                        <p class="pc-report__add-notes"><strong>Additional Notes:</strong> <span>{{repadditionalnotes}}</span></p>
+                    </div> -->
+
+                    <div class="pc-report__sub-section-title pc-report__sub-section-title--border-solid pc-report__sub-section-title--margin localizejs">Subjective</div>
+                     <div ng-if="reportSubjective != 'None Reported'" id="reportSubjective" class="pc-report__notes"></div>
+                      <div ng-if="reportSubjective == 'None Reported'" class="pc-report__notes localizejs">{{reportSubjective}}</div>
+
+                     <div class="pc-report__sub-section-title pc-report__sub-section-title--border-solid pc-report__sub-section-title--margin localizejs">Objective</div>
+                     <div ng-if="reportObjective != 'None Reported'" id="reportObjective" class="pc-report__notes"></div>
+                     <div ng-if="reportObjective == 'None Reported'" id="reportObjective" class="pc-report__notes localizejs">{{reportObjective}}</div>
+
+                     <div class="pc-report__sub-section-title pc-report__sub-section-title--border-solid pc-report__sub-section-title--margin localizejs">Assessment</div>
+                     <div class="pc-report__notes"  ng-if="reportAssessment != 'None Reported'" id="reportAssessment"> </div>
+                     <div class="pc-report__notes localizejs"  ng-if="reportAssessment == 'None Reported'" >{{reportAssessment}} </div>
+
+                     <div class="pc-report__sub-section-title pc-report__sub-section-title--border-solid pc-report__sub-section-title--margin localizejs">Plan</div>
+                     <div ng-if="reportPlan != 'None Reported'" id="reportPlan" class="pc-report__notes"></div>
+                     <div ng-if="reportPlan == 'None Reported'" class="pc-report__notes localizejs">{{reportPlan}}</div>
+
+                     <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin-lg localizejs">Encounter Codes</div>
+                     <div class="pc-report__encounter-codes">
+                           <div ng-if = "existingConsultationReport.medicalCodeDetails != ''  || undefined" class="pc-report__table-title pc-report__table-title--right">
+                               <span class="localizejs">Category</span>
+                               <span class="localizejs">Code</span>
+                               <span class="localizejs">Description</span>
+                           </div>
+                           <div ng-if = "medicalCodeDetails != ''">
+                            <div class="pc-report__table-row pc-report__table-row--right" ng-if="reportMediCPT != ''"
+                           ng-repeat="reportMediCPT in reportMediCPT" >
+                                <span  class="localizejs">CPT</span>
+                                <span class="localizejs">{{reportMediCPT.EnCPTCode}}</span>
+                                <span class="localizejs">{{reportMediCPT.EnICDDescription}}</span>
+                            </div>
+
+                            <div class="pc-report__table-row pc-report__table-row--right"  ng-if="reportMediICD != ''"
+                            ng-repeat="reportMediICD in reportMediICD">
+                                <span class="localizejs">ICD-10-DX</span>
+                                <span class="localizejs">{{reportMediICD.EnICDcode}}</span>
+                                <span class="localizejs">{{reportMediICD.EnICDDescription}}</span>
+                            </div>
+
+                            <div class="pc-report__table-row pc-report__table-row--right"  ng-if="reportMediICD9 != ''"
+                            ng-repeat="reportMediICD9 in reportMediICD9">
+                                <span class="localizejs">ICD-9-DX</span>
+                                <span class="localizejs">{{reportMediICD9.EnICD9code}}</span>
+                                <span class="localizejs">{{reportMediICD9.EnICD9Description}}</span>
+                            </div>
+
+                            <div class="pc-report__table-row pc-report__table-row--right"  ng-if="reportSNOMED != ''"
+                            ng-repeat="reportSNOMED in reportSNOMED">
+                                <span class="localizejs">SNOMED-CT</span>
+                                <span class="localizejs">{{reportSNOMED.SNOMEDcode}}</span>
+                                <span class="localizejs">{{reportSNOMED.SNOMEDcodeDescription}}</span>
+                            </div>
+                       </div>
+                          <div class="pc-report__notes"  ng-if = "existingConsultationReport.medicalCodeDetails == '' || undefined">
+                            <p class="localizejs">None Reported</p>
+                          </div>
+                     </div>
+
+                     <!--// provider notes -->
+
+                     <!-- Prescription -->
+                     <div class="pc-report__section-title localizejs">Prescriptions</div>
+
+                     <div class="pc-report__prescriptions">
+                         <div class="pc-report__table-title pc-report__table-title--50x50" ng-if="existconsultationprescriptions != '' && existconsultationprescriptions != null">
+                                <span class="localizejs">Name</span>
+                               <span class="localizejs">Dosage</span>
+                           </div>
+
+                          <div class="pc-report__notes" ng-if="!existconsultationprescriptions.length">
+                            <p class="localizejs">None Reported</p>
+                          </div>
+
+                         <div class="pc-report__table-row pc-report__table-row--50x50" ng-repeat="prescriptions in existconsultationprescriptions">
+                               <span class="localizejs">{{prescriptions.drugName}}</span>
+                               <span class="localizejs">{{prescriptions.drugDosage}}</span>
+                           </div>
+                     </div>
+                     <!--// Prescription -->
+
+                     <!-- chat -->
+                     <div class="pc-report__section-title localizejs">Chat</div>
+
+                     <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin localizejs">Waiting Room</div>
+
+                     <!-- <p class="pc-report__chat-transcript">[1:04:52 PM] Ben: @dejan can you give me a quick list of what is working and what is not for all the items included in this hotfix?<br>[1:13:51 PM] Dejan Zivanovic: it's in chetna report<br>[1:13:54 PM] Dejan Zivanovic: and in new column</p> -->
+                     <p class="pc-report__chat-transcript" ng-if="waitingRoomChatTranscript.length">
+                     <span class="localizejs" ng-repeat = "waitingRoomChatTranscript in waitingRoomChatTranscript" style="font-size: 12px;">{{waitingRoomChatTranscript.ChatMessage}}</span>
+                     </p>
+                     <p class="pc-report__notes localizejs" ng-if="!waitingRoomChatTranscript.length">None Reported</p>
 
 
-		<div ng-click="EnableBackButton()" class="reportDOne">
-			<button class="button button-block button-balanced ReportButton">
-				<b style="top: 4px;position: relative;">Done</b>
-			</button>
-		</div>
-	</div>
-</ion-content>
+
+
+                     <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin localizejs">Consultation</div>
+                     <p class="pc-report__chat-transcript" ng-if="chatTranscript.length">
+                     <span class="localizejs" ng-repeat = "chatTranscript in chatTranscript" style="font-size: 12px;">{{chatTranscript.ChatMessage}}</span>
+                     </p>
+                     <p class="pc-report__chat-transcript localizejs" ng-if="!chatTranscript.length">None Reported</p>
+                     <!--// chat -->
+
+
+                     <!-- medical history -->
+                     <div class="pc-report__section-title localizejs">Basic Medical History</div>
+
+                     <div class="pc-report__med-history">
+                         <div class="pc-report__med-history-left">
+                             <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width localizejs">Current Medications</div>
+
+                             <div ng-if="intake.medications != ''" class="pc-report__list-title localizejs">Name</div>
+                             <ul class="pc-report__med-list localizejs" ng-repeat="getMedicationList in ReportMedications">
+                                 <li class="localizejs">{{getMedicationList.description}}</li>
+                             </ul>
+                           <!--   <ul class="pc-report__med-list" ng-if="intake.medications == ''">
+                                 <li>None Reported</li>
+                             </ul> -->
+                            <div class="pc-report__chat-transcript" ng-if="intake.medications == ''">
+                                <p class="localizejs">None Reported</p>
+                              </div>
+
+
+
+                             <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width localizejs">Medication Allergies<span class="pc-report__sub-section-date">As of {{todayDateForReport  | date :  "MM/dd/yyyy"}}</span></div>
+                             <div ng-if="intake.medicationAllergies != ''" class="pc-report__list-title localizejs">Name</div>
+                             <ul class="pc-report__med-list localizejs" ng-repeat="getAllergyList in ReportMedicationAllergies">
+                                 <li class="localizejs">{{getAllergyList.description}}</li>
+                             </ul>
+                             <!-- <ul class="pc-report__med-list" ng-if="intake.medicationAllergies == ''">
+                                 <li>None Reported</li>
+                             </ul> -->
+                              <div class="pc-report__chat-transcript" ng-if="intake.medicationAllergies == ''">
+                                         <p class="localizejs">None Reported</p>
+                                    </div>
+                         </div>
+
+                         <div class="pc-report__med-history-right">
+                             <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width localizejs">Chronic Conditions</div>
+
+                             <div ng-if="intake.medicalConditions != ''" class="pc-report__list-title localizejs">Name</div>
+                             <ul class="pc-report__med-list localizejs" ng-repeat="getmedicalConditionsList in ReportMedicalConditions">
+                                 <li class="localizejs">{{getmedicalConditionsList.description}}</li>
+                             </ul>
+                             <!-- <ul class="pc-report__med-list" ng-if="intake.medicalConditions == ''">
+                                 <li>None Reported</li>
+                             </ul>
+                             <div class="pc-report__chat-transcript" ng-if="intake.medicalConditions == Prescriptions">
+                                         <p>None Reported</p>
+                                    </div> -->
+                            <div class="pc-report__chat-transcript" ng-if="intake.medicalConditions == ''">
+                                       <p class="localizejs">None Reported</p>
+                                  </div>
+
+
+                             <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--width localizejs">Prior Surgeries</div>
+
+                             <div class="pc-report__prior-surgeries">
+                                 <div ng-if="intake.surgeries != ''" class="pc-report__table-title pc-report__table-title--50x50">
+                                     <span class="localizejs">Name</span>
+                                       <span class="localizejs">Date</span>
+                                   </div>
+
+                                   <div class="pc-report__table-row pc-report__table-row--50x50" ng-repeat="getSurgeryList in ReportSurgeries">
+                                       <span class="localizejs">{{getSurgeryList.description}}</span>
+                                       <span>{{getSurgeryList.month | date:'MMM'}}. {{getSurgeryList.year}}</span>
+                                   </div>
+                                   <!-- <div class="pc-report__table-row pc-report__table-row--50x50"  ng-if="intake.surgeries == ''">
+                                       None Reported
+                                   </div> -->
+
+                                   <div class="pc-report__notes localizejs" ng-if="intake.surgeries == ''">
+                                         <p class="localizejs">None Reported</p>
+                                    </div>
+                               </div>
+                         </div>
+                     </div>
+
+                    <!--  <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin">Birth Info <span class="pc-report__sub-section-child">(Child < 1yr)</div>
+
+                     <div class="pc-report__table-title pc-report__table-title--50x50-qa">
+                         <span>Question</span>
+                           <span>Response</span>
+                       </div>
+
+                       <div class="pc-report__table-row pc-report__table-row--50x50-qa" ng-if="userReportDOB < 1" >
+                          <span>Child born at full term : {{fullTerm}}</span><br>
+                          <span>Child born vaginally : {{vaginalBirth}}</span><br>
+                          <span>Child discharged with mother : {{dischargedWithMother}}</span><br>
+                          <span>Child vaccinations up-to-date : {{vaccinationsCurrent}}</span><br>
+                       </div>
+                       <div ng-if="userReportDOB >= 1" class="pc-report__table-row pc-report__table-row--50x50-qa" >None Reported</div> -->
+                     <!--// medical history -->
+
+<div ng-if="userReportDOB < 1 && showBirthInfo">
+                     <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin localizejs"><span class="localizejs">Birth Info</span> <span class="pc-report__sub-section-child localizejs"><span class="localizejs">(Child < 1yr)</span></span></div>
+
+                     <div class="pc-report__table-title pc-report__table-title--50x50-qa">
+                         <span class="localizejs">Question</span>
+                           <span class="localizejs">Response</span>
+                       </div>
+
+                       <div class="pc-report__table-row pc-report__table-title--50x50-qa" style="font-weight: bold;">
+                           <span class="localizejs">Child born at full term ?</span>
+                             <span class="localizejs">{{fullTerm}}</span>
+                         </div>
+                         <div class="pc-report__table-row pc-report__table-title--50x50-qa" style="font-weight: bold;">
+                         <span class="localizejs">Child born vaginally ?</span>
+                               <span class="localizejs">{{vaginalBirth}}</span>
+                           </div>
+                           <div class="pc-report__table-row pc-report__table-title--50x50-qa" style="font-weight: bold;">
+                          <span class="localizejs">Child discharged with mother ?</span>
+                           <span class="localizejs">{{dischargedWithMother}}</span>
+                             </div>
+                             <div class="pc-report__table-row pc-report__table-title--50x50-qa" style="font-weight: bold;">
+                             <span class="localizejs">Child vaccinations up-to-date ?</span>
+                                   <span class="localizejs">{{vaccinationsCurrent}}</span>
+                               </div>
+                            </div>
+                     <!-- Files -->
+                     <div class="pc-report__section-title localizejs">Attached Files</div>
+                    <!-- <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed">Snapshots</div>
+
+                     <ul class="pc-report__snapshot-list"  ng-repeat="getAttachment in getAttachmentLi">
+                         <li><img src="{{APICommonURL}}/images/filetypes/png/{{getAttachment.image}}.png"></li>
+
+                     </ul> -->
+
+                     <div class="pc-report__attachments">
+                         <div ng-if="getAttachmentList != '' && undefined" class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed localizejs">Other Attachments</div>
+
+                         <ul class="pc-report__other-atmts" ng-if="getAttachmentList != ''">
+                             <li  ng-repeat="getAttachment in getAttachmentList" ng-click="doGetAttachmentURL({{getAttachment.id}});" >
+                                 <span class="pc-report__atmt-icon"><img src="{{APICommonURL}}/images/filetypes/png/{{getAttachment.image}}.png"></span>
+                                 <div class="pc-report__atmt-block">
+                                     <span class="pc-report__atmt-name">{{getAttachment.name}}</span>
+                                     <span class="pc-report__atmt-details">{{foldersize}}    {{foldercreation}}</span>
+                                 </div>
+
+                             </li>
+
+                         </ul>
+                         <!--  <ul class="pc-report__other-atmts" ng-if="getAttachmentList == '' || undefined">
+                            <p> No Attachments</p>
+                          </ul> -->
+                           <div class="pc-report__notes" style="padding-top: 10px;" ng-if="getAttachmentList == '' || undefined">
+                            <p class="localizejs">No Attachments</p>
+                          </div>
+
+                     </div>
+                     <!--// Files -->
+                </div>
+                <!-- END .claim-content -->
+
+            <!--    <div class="pc-report__footer">
+                    <ul>
+                        <li><a href="#" id="ancPrintConsulReport" data-bind="events:{ click: onPrint}"><span class="icon_print"></span> Print</a></li>
+                        <li><a href="#" id="ancDownloadConsulReport" data-bind="events:{ click: onPrintPdf}"><span class="icon_download"></span> Download as PDF</a></li>
+                    </ul>
+
+                    <a href="#" class="button button__gray" data-bind=" events:{ click: Close}"><span>CLOSE</span></a>
+                    <input type="hidden" id="hdnConsultReportConsultationID" value="" />
+                </div>
+-->
+
+           </div>
+        </div>
+      </ion-content>
+   </ion-view>
+<!-- </ion-side-menu-content> -->
+<!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
 
 </ion-view>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div id="Error_Message" class="ErrorMessageDiv" ></div>
+<div class="Server_Error ErrorMessageDiv" ></div>
+<div class="Error_Message ErrorMessageDiv" ></div>
+<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};" >
+   <div class="buttons" style="{{ReportScreen}};">
+      <a class="button_new icon ReportDone" style="{{reportDone}}" ng-click="EnableBackButton()"  >
+      <span>Done</span>
+      </a>
+   </div>
+   <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} ReportTittle" style="{{reportTitletop}};">Consult Report</h1>
+   <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
+      <div class="calendar_subHeader" >
+         <div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
+         <div class="subHeader_content-{{deviceName}} ellipsis" >
+            <div class="ellipsis subHeader_content_name" >
+               <span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
+               <span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
+            </div>
+            <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"> . {{patRelationShip}} </span></div>
+         </div>
+      </div>
+   </div>
+</ion-header-bar>
+<ion-view title="Report Details">
+   <ion-content class="ReportContent"  >
+      <div style="margin: 0 3%;">
+         <div>
+            <ion-refresher on-refresh="doRefreshReportDetails()"  >
+            </ion-refresher>
+         </div>
+         <div>
+            <div class="reportLogo">
+               <img style="max-height: 70px; max-width: 250px;" src="{{hospitalImage}}">
+            </div>
+            <div class="providerAddress">
+               <div>{{reportHospitalAddress}} <span style="display: none;" ng-if="contactNumber != ''">| {{contactNumber}}</span></div>
+               <div ng-if="OrganizationLocation === 'on'" class="reportOrganization" ><b>Organization:</b> {{organization}}</div>
+               <div ng-if="OrganizationLocation === 'on'" ><b>Location:</b> {{location}} </div>
+            </div>
+         </div>
+         <div class="ConnectedCareDetails" >
+            <div class="ConnectedCareTitle">
+               <h1 class="ReportTitle">{{reportHospitalUpperCase}} CONSULTATION REPORT</h1>
+            </div>
+            <div class="Roundcircle CCAttachment">
+               <img ng-src="img/attached.png">
+               <p><b>{{attachmentLength}}</b></p>
+            </div>
+         </div>
+         <div class="attachmentSpace"> </div>
+         <div class="reportPatientDetails">
+            <div  class="reportPatient">
+               <div><b>Patient:</b></div>
+               <div>{{reportPatientName}} {{reportLastName}} </div>
+               <div ng-if="existingConsultationReport.guardianName != undefined"><b>Guardian:</b></div>
+               <div ng-if="existingConsultationReport.guardianName != undefined">{{reportGuardian}}</div>
+               <div ng-if="existingConsultationReport.patientAddress != ''">{{reportPatientAddress}}</div>
+               <div>Home: {{reportHomePhone}} </div>
+               <div>Cell: {{existingConsultationReport.mobilePhone}} </div>
+            </div>
+            <div class="reportEncounter"  >
+               <div><b>Encounter Date:</b></div>
+               <div>{{consultationDate | date:'MMM dd, yyyy h:mm a'}}</div>
+               <div><b>Provider:</b> </div>
+               <div>{{reportDoctorFirstName}} {{reportDoctorLastName}} {{reportMedicalSpeciality}} </div>
+               <div ng-if="displayCOnsultationDuration == 'display'"><b>Consultation Duration:</b> </div>
+               <div ng-if="displayCOnsultationDuration == 'display'">{{consultDurationMinutes}}:{{consultDurationSeconds}}</div>
+            </div>
+         </div>
+         <div ng-if="AttendeeList.length != 0" class="reportPatientConcerns" style="clear:both;padding-top:10px !important;">
+            <div class="concernTitle" style="font-size: 18px;"><b>Attendee Details</b></div>
+            <div class="concernUnderline" >	</div>
+            <div class="reportConcerns" style="padding-top:10px !important; font-size:15px !important;">
+               <table  style="width:100%;" >
+                  <tr ng-repeat="getAttendeelist in AttendeeList">
+                     <td class="statisticAge"><b>{{getAttendeelist.attedeename}} {{getAttendeelist.secondname}}</b></td>
+                     <td>&nbsp </td>
+                     <td>&nbsp </td>
+                     <td>&nbsp </td>
+                     <td><b>{{getAttendeelist.consultstart | date: "hh:mm"}}{{getAttendeelist.consultstart | date: "a"}}</b></td>
+                     <td>&nbsp </td>
+                     <td><b>{{getAttendeelist.consultend | date: "hh:mm"}}{{getAttendeelist.consultend | date: "a"}}</b></td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+         <div class="reportPatientStatistics" >
+            <table  class="PatientStatistic" >
+               <tr>
+                  <td colspan="6" class="statisticsTitle"  >
+                     <b>Patient Statistics</b>
+                     <div></div>
+                  </td>
+               </tr>
+               <tr >
+                  <td class="statisticAge"><b>Age: </b></td>
+                  <td ng-if="existingConsultationReport.dob != ''"><b><input type="text" style="" readonly value="{{existingConsultationReport.dob  | ageFilter}}"></b></td>
+                  <td ng-if="existingConsultationReport.dob == ''"><b><input type="text" style="" readonly value="NA"></b></td>
+                  <td>&nbsp </td>
+                  <td><b>Height: </b></td>
+                  <td><b> <input type="text" style="" readonly value="{{reportHeight}}"></b></td>
+                  <td>&nbsp </td>
+               </tr>
+               <tr>
+                  <td class="statisticGender"><b>Gender:&nbsp </b></td>
+                  <td><b> <input type="text" style="" readonly value="{{gender}}"></b></td>
+                  <td>&nbsp </td>
+                  <td><b> Weight: &nbsp</b></td>
+                  <td><b> <input type="text" style="" readonly value="{{reportWeight}}"></b></td>
+                  <td>&nbsp </td>
+               </tr>
+            </table>
+         </div>
+         <div class="reportPatientConcerns">
+            <div class="concernTitle"><b>PATIENT CONCERNS</b></div>
+            <div class="concernUnderline" >	</div>
+            <div class="reportConcerns" ng-if="reportScreenPrimaryConcern != ''">
+               <div class="concernNumber"> <span>1</span> </div>
+               <div class="primaryConcernText"> {{reportScreenPrimaryConcern}}</div>
+            </div>
+            <div class="reportConcerns"  >
+               <div class="concernNumber"> <span>2</span> </div>
+               <div class="primaryConcernText"> {{reportScreenSecondaryConcern}}</div>
+            </div>
+         </div>
+         <div class="reportSubjective" >
+            <div>
+               <div class="intakeTitle">
+                  <div><b>Intake Form Information</b></div>
+                  <div class="intakeUnderline"></div>
+               </div>
+               <div class="intakeMedication">
+                  <div>
+                     <div class="medicationTitle"><b>Current Medication</b></div>
+                     <div class="medicationUnderline"></div>
+                  </div>
+                  <div class="medicationList" ng-repeat="getMedicationList in ReportMedications">
+                     <span> <b>{{getMedicationList.Number}}</b> </span>
+                     <span>{{getMedicationList.description}}</span>
+                  </div>
+                  <div ng-if="intake.medications == ''" class="medicationNone" >None Reported</div>
+               </div>
+               <div class="intakeMedication">
+                  <div>
+                     <div class="medicationTitle"><b>Chronic Medication</b></div>
+                     <div class="medicationUnderline"></div>
+                  </div>
+                  <div class="medicationList" ng-repeat="getmedicalConditionsList in ReportMedicalConditions" >
+                     <span> <b>{{getmedicalConditionsList.Number}}</b> </span>
+                     <span>{{getmedicalConditionsList.description}}</span>
+                  </div>
+                  <div ng-if="intake.medicalConditions == ''" class="medicationNone" >None Reported</div>
+               </div>
+               <div class="intakeMedication" >
+                  <div>
+                     <div class="medicationTitle"><b>Prior Surgeries</b></div>
+                     <div class="medicationUnderline"></div>
+                  </div>
+                  <div class="medicationList" ng-repeat="getSurgeryList in ReportSurgeries">
+                     <span> <b>{{getSurgeryList.Number}}</b> </span>
+                     <span>{{getSurgeryList.description}} - {{getSurgeryList.month}} / {{getSurgeryList.year}}</span>
+                  </div>
+                  <div ng-if="intake.surgeries == ''" class="medicationNone" >None Reported</div>
+               </div>
+               <div class="intakeMedication" >
+                  <div>
+                     <div class="medicationTitle"><b>Medication Allergies</b></div>
+                     <div class="medicationUnderline"></div>
+                  </div>
+                  <div class="medicationList" ng-repeat="getAllergyList in ReportMedicationAllergies">
+                     <span> <b>{{getAllergyList.Number}}</b> </span>
+                     <span>{{getAllergyList.description}}</span>
+                  </div>
+                  <div ng-if="intake.medicationAllergies == ''" class="medicationNone" >None Reported</div>
+               </div>
+               <div class="intakeMedication"  >
+                  <div>
+                     <div class="medicationTitle"><b>Birth Info</b></div>
+                     <div class="medicationUnderline"></div>
+                  </div>
+                  <div class="medicationList" ng-if="userReportDOB < 1" >
+                     <span>Child born at full term : {{fullTerm}}</span><br>
+                     <span>Child born vaginally : {{vaginalBirth}}</span><br>
+                     <span>Child discharged with mother : {{dischargedWithMother}}</span><br>
+                     <span>Child vaccinations up-to-date : {{vaccinationsCurrent}}</span><br>
+                  </div>
+                  <div ng-if="userReportDOB >= 1" class="medicationNone" >None Reported</div>
+               </div>
+            </div>
+         </div>
+         <div id="soapReport">
+           <div class="reportObjective">
+              <div class="objectiveTitle" ><b>COMMUNICATION METHOD</b></div>
+              <div class="objectiveUnderline">	</div>
+              <div>
+                 <p >{{encountertype}}</p>
+                 <p ng-if="encountercode != 3">Phone Type:{{consultationphone}}</p>
+
+                 <p ng-if="encountercode != 3">Phone Number:{{phonetype}}</p>
+              </div>
+
+           </div>
+            <div class="reportObjective">
+               <div class="objectiveTitle" ><b>SUBJECTIVE</b></div>
+               <div class="objectiveUnderline">	</div>
+               <div>
+                  <p ng-if="reportSubjective != 'None Reported'" id="reportSubjective" ></p>
+                  <p ng-if="reportSubjective == 'None Reported'">{{reportSubjective}}</p>
+               </div>
+            </div>
+            <div class="reportObjective">
+               <div class="objectiveTitle" ><b>OBJECTIVE</b></div>
+               <div class="objectiveUnderline">	</div>
+               <div>
+                  <p ng-if="reportObjective != 'None Reported'" id="reportObjective"></p>
+                  <p ng-if="reportObjective == 'None Reported'">{{reportObjective}}</p>
+               </div>
+            </div>
+            <div class="reportObjective">
+               <div class="objectiveTitle" ><b>ASSESSMENT</b></div>
+               <div class="objectiveUnderline">	</div>
+               <div>
+                  <p ng-if="reportAssessment != 'None Reported'" id="reportAssessment"></p>
+                  <p ng-if="reportAssessment == 'None Reported'">{{reportAssessment}}</p>
+               </div>
+            </div>
+            <div class="reportObjective">
+               <div class="objectiveTitle" ><b>PLAN</b></div>
+               <div class="objectiveUnderline">	</div>
+               <div>
+                  <p ng-if="reportPlan != 'None Reported'" id="reportPlan"></p>
+                  <p ng-if="reportPlan == 'None Reported'">{{reportPlan}}</p>
+               </div>
+            </div>
+         </div>
+         <div class="reportObjective">
+            <div class="objectiveTitle" ><b>RX</b></div>
+            <div class="objectiveUnderline">	</div>
+            <div>
+               <p>{{reportrx}}  </p>
+
+            </div>
+         </div>
+         <div class="reportObjective">
+            <div class="objectiveTitle" ><b>CHAT TRANSCRIPT</b></div>
+            <div class="objectiveUnderline"> </div>
+            <div>
+               <p ng-if="chatTranscript.length">
+               <li ng-repeat = "chatTranscript in chatTranscript">{{chatTranscript.ChatMessage}}</li>
+               </p>
+               <p ng-if="!chatTranscript.length">None Reported</p>
+            </div>
+         </div>
+         <div class="reportObjective" >
+            <div>
+               <div class="objectiveTitle"><b>MEDICAL CODES</b></div>
+               <div class="objectiveUnderline"></div>
+            </div>
+            <div ng-if="reportMedicalCodeDetails != ''">
+               <div ng-if="reportMediCPT != ''">
+                  <div class="objectiveTitle" style="padding-top: 5%;"><b>CPT Code</b></div>
+                  <div ng-repeat="reportMediCPT in reportMediCPT" style="margin-left: 10%;">
+                     <p>{{reportMediCPT.shortDescription}}</p>
+                  </div>
+               </div>
+               <div ng-if="reportMediICD != ''">
+                  <div class="objectiveTitle"><b>ICD-10-DX Code</b></div>
+                  <div ng-repeat="reportMediICD in reportMediICD"  style="margin-left: 10%;">
+                     <p>{{reportMediICD.shortDescription}}</b>
+                  </div>
+               </div>
+               <div ng-if="reportMediICD9 != ''">
+                          <div class="objectiveTitle"><b>ICD-9-DX Code</b></div>
+                          <div ng-repeat="reportMediICD9 in reportMediICD9"  style="margin-left: 10%;">
+                             <p>{{reportMediICD9.shortDescription}}</b>
+                          </div>
+                       </div>
+                       <div ng-if="reportSNOMED!= ''">
+                         <div class="objectiveTitle"><b>SNOMED-CT Code</b></div>
+                         <div ng-repeat="reportSNOMED in reportSNOMED"  style="margin-left: 10%;">
+                            <p>{{reportSNOMED.shortDescription}}</b>
+                         </div>
+                      </div>
+            </div>
+            <div ng-if="reportMedicalCodeDetails == ''">
+               <p>None Reported</p>
+            </div>
+         </div>
+         <div class="reportObjective">
+            <div class="objectiveTitle" ><b>FILE  ATTACHMENT</b></div>
+            <div class="objectiveUnderline"></div>
+            <div ng-if="getAttachmentList != ''">
+               <div ng-repeat="getAttachment in getAttachmentList" ng-click="doGetAttachmentURL({{getAttachment.id}});" style="height: 60px;">
+                  <div style="float: left;position: relative;top: 7px; padding-right: 10px;">
+                     <img style="width: 40px; height: 45px;" src="{{APICommonURL}}/images/filetypes/png/{{getAttachment.image}}.png" alt="" >
+                  </div>
+                  <div style="font-size: 14px;position: relative;top: 22px;" class="ellipsis">{{getAttachment.name}}</div>
+               </div>
+            </div>
+            <div ng-if="getAttachmentList == ''">
+               <p>No Attachment</p>
+            </div>
+         </div>
+         <div ng-click="EnableBackButton()" class="reportDOne">
+            <button class="button button-block button-balanced ReportButton">
+            <b style="top: 4px;position: relative;">Done</b>
+            </button>
+         </div>
+      </div>
+   </ion-content>
+</ion-view> -->
