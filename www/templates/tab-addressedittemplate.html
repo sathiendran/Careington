@@ -28,25 +28,35 @@
                <div id="googleLocationText">
                </div>
             </div> -->
-                  <div class="row addressRow" style="    height: 70px;">
+                  <div class="row addressRow" style="  height: auto;">
                      <div class="col-5" style="width: 50px;background-color:white;padding-right: 12px;">
                         <div class="directionIcon">
-                            <i ng-bind-html="drawSVGCIcon('address');"></i>
+                            <i ng-bind-html="drawSVGCIcon('address');" style="top: 10px;position: relative;"></i>
                         </div>
                      </div>
-                     <div class="col-95">
+                     <div class="col-95" style="height:auto; width:100%;">
                         <label class="localizejs homelabel">Home Address</label>
                         <!-- <div class="localizejs" id="fullAddress" style="overflow:scroll;"></div> -->
-                        <input type="text" name="fulladdress" style="display: block;
-    overflow: hidden;
-    box-sizing: border-box;
-    width: calc(186% - 57px);
-    position: relative;
-    left: -12px;
-    padding-left: 18px;
-    padding-right: 15px;
-    cursor: text;
-    background-color: transparent !important;overflow:scroll;" id="fullAddress" readonly >
+                        <!-- <input type="text" name="fulladdress" style="display: block;
+                        overflow: hidden;
+                        box-sizing: border-box;
+                        width: calc(186% - 57px);
+                        position: relative;
+                        left: -12px;
+                        padding-left: 18px;
+                        padding-right: 15px;
+                        cursor: text;
+                        background-color: transparent !important;overflow:scroll;" id="fullAddress" readonly > -->
+                        <textarea name="text" id="fullAddress" readonly rows="0" cols="0" wrap="soft" maxlength="40" style="overflow:hidden; resize:none;display: block;
+                        overflow: hidden;
+                        box-sizing: border-box;
+                        width: calc(186% - 57px);
+                        position: relative;
+                        left: -12px;
+                        padding-left: 18px;
+                        padding-right: 15px;
+                        cursor: text;
+                        background-color: transparent !important;overflow:scroll;height:auto;width:100%;padding-bottom: 10px;top: 6px;"></textarea>
                      </div>
                   </div>
                   <div class="row addressRow">

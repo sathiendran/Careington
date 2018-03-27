@@ -1828,6 +1828,7 @@ angular.module('starter.controllers')
             }).then(function (modal) {
                 $scope.modal = modal;
                 $scope.modal.show().then(function () {
+                    $("#localize-widget").hide();
                     document.getElementById('fullAddress').value = $scope.addNewDependent.homeadd;
                     document.getElementById('country').value = $scope.Country;
                     if ($scope.state1 == undefined)

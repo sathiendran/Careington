@@ -3924,7 +3924,7 @@ angular.module('starter.controllers')
             }).then(function (modal) {
                 $scope.modal = modal;
                 $scope.modal.show().then(function () {
-
+                $("#localize-widget").hide();
 document.getElementById('fullAddress').value = $scope.healthInfoModel.address;
             if($rootScope.userRoleDescription === 'User' && $rootScope.hasRequiredFields != true){
                 $scope.route = $rootScope.userline1;

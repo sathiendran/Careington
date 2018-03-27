@@ -861,7 +861,7 @@ angular.module('starter.controllers')
             }).then(function (modal) {
                 $scope.modal = modal;
                 $scope.modal.show().then(function () {
-
+                $("#localize-widget").hide();
                   var AddrText = '';
 
                   if(document.getElementById('regaddress').value == '')
