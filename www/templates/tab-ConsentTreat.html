@@ -2,10 +2,21 @@
 <ion-side-menus>
 <ion-side-menu-content>
      <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};">
-        <div class="buttons" >
+        <!-- <div class="buttons" >
            <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
         </div>
-         <h1 class="{{title_patient}} calendarTitle localizejs" style="{{PatientTitle}}" >Intake Form</h1>
+         <h1 class="{{title_patient}} calendarTitle localizejs" style="{{PatientTitle}}" >Intake Form</h1> -->
+
+         <div class="bar bar-header headerbg">
+           <div class="buttons button-icon">
+             <span class="button icon button-clear" style="{{HomeBackIOS}}" id="BackButtonIcon" ng-click="toggleLeft()">
+               <i ng-bind-html="drawSVGCIcon('menu')"></i>
+             </span>
+           </div>
+           <div class="h1 title-head localizejs" style="{{HomeHeaderIOS}}">Intake Form</div>
+
+         </div>
+
         <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
            <div class="calendar_subHeader paymentSubHeader" >
               <div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>

@@ -756,6 +756,7 @@ angular.module('starter.controllers')
                                 //  'Your consultation is already started on other device.', // message
 
                                 function () {
+                                  debugger;
                                     $state.go('tab.userhome');
                                     return;
                                 },
@@ -777,7 +778,7 @@ angular.module('starter.controllers')
                                 },
                                 $rootScope.alertMsgName, // title
 
-                                $rootScope.alertDone, // buttonName
+                                $rootScope.alertDone // buttonName
 
                             );
                             return false;
@@ -793,7 +794,7 @@ angular.module('starter.controllers')
                                 },
                                 $rootScope.alertMsgName, // title
 
-                                $rootScope.alertDone, // buttonName
+                                $rootScope.alertDone // buttonName
 
                             );
                             return false;
@@ -809,7 +810,7 @@ angular.module('starter.controllers')
                                 },
                                 $rootScope.alertMsgName, // title
 
-                                $rootScope.alertDone, // buttonName
+                                $rootScope.alertDone // buttonName
 
                             );
                             return false;

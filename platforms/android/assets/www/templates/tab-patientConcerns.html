@@ -1,119 +1,156 @@
-<div class="Error_Message ErrorMessageDiv" ></div>
-<div class="Server_Error ErrorMessageDiv" ></div>
-<ion-side-menus> >
-	<ion-side-menu-content>
+<style>
+    .titleLineheight {
+        line-height: 48px !important;
+    }
+    .backText {
+        font-family: "Glober Book";
+        font-size: 16px !important;
+        font-weight: 400 !important;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.38;
+        letter-spacing: 0.5px;
+        color: #ffffff;
+    }
 
-	<div ng-include src="'templates/intakeHeader.html'"></div>
+    .cancelText {
+        font-family: "Glober Light";
+        font-size: 16px !important;
+        font-weight: 400 !important;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.38;
+        letter-spacing: 0.5px;
+        color: #ffffff;
+        position: relative;
+        top:4px;
+    }
+    .nextText {
+        font-family: "Glober Book";
+        font-size: 16px !important;
+        font-weight: 400 !important;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 39px !important;
+        position: relative;
+        left: -8px !important;
+        letter-spacing: 0.7px;
+        color: #ffffff;
+        top: 2px;
+    }
+    .bar .button.button-clear .icon:before, .bar .button.button-clear.icon:before, .bar .button.button-clear.icon-left:before, .bar .button.button-clear.icon-right:before{
+        font-size: 21px !important;
+        margin-top: 2.5px;
+    }
+    .iconVer{
+        vertical-align: middle !important;
+    }
+    .ion-chevron-right:before{
+        float: right;
+    }
+    /* .cancelTop{
+        position: relative;top:2px;
+    } */
+</style>
+<div class="Error_Message ErrorMessageDiv"></div>
+<div class="Server_Error ErrorMessageDiv"></div>
+<ion-side-menus>
+    <ion-side-menu-content>
+        <div ng-include src="'templates/intakeHeader.html'"></div>
+        <ion-view title="Patient Concerns">
+            <ion-content class="ContentHomeUser ConcernsContent">
+                <ion-list>
+                    <ion-item class="PrimaryList" style="{{IntakeFormInnerStyle}}">
+                        <div class="Step1 localizejs">
+                            <span class="loclizejs">Step</span>
+                            <b style="color:#535353;">1</b>
+                            <span class="localizejs">of</span>
+                            <b style="color:#535353;">{{userAgeForIntake}}</b>
+                        </div>
+                        <div ng-click="loadPrimaryConcerns();">
+                            <div class="PrimaryContent">
+                                <h1 class="title ChronicCondition concernsSubTit localizejs">Primary Concern</h1>
+                                <p class="{{patientConternFontStyle}} localizejs">What is the reason for today's visit?
+                                    <br/>
+                                    <span class="patientConternFontStyleSubTitle"></span>
+                                </p>
+                                <div style="margin-top: -48px;">
+                                    <i class="addBtn" ng-bind-html="drawSVGCIcon('circle-with-plus')"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </ion-item>
+                    <ion-item ng-repeat="item in PatientPrimaryConcern">
+                        <div class="PrimaryConcernList">
+                            <p class="intakeNote localizejs">{{item.text}} </p>
+                            <div ng-click="removePrimaryConcern($index, item);">
+                                <i class="delBtn" ng-bind-html="drawSVGCIcon('circle-with-cross')"></i>
+                            </div>
+                        </div>
+                    </ion-item>
+                    <ion-item class="SecondaryList">
+                        <div ng-if="secondaryConcernList.length != 0" ng-click="loadSecondaryConcerns();">
+                            <div class="SecondaryContent">
+                                <h1 class="title ChronicCondition concernsSubTit localizejs">Secondary Concern</h1>
+                                <p class="{{patientConternFontStyle}} localizejs">Any additional reason(s) to add?</p>
+                                <div style="margin-top: -48px;">
+                                    <i class="addBtn" ng-bind-html="drawSVGCIcon('circle-with-plus')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="localizejs" ng-if="secondaryConcernList.length == 0">
+                            Secondary concerns are not available.
+                        </div>
+                    </ion-item>
+                    <ion-item ng-repeat="item in PatientSecondaryConcern">
+                        <div class="PrimaryConcernList">
+                            <p class="intakeNote localizejs">{{item.text}} </p>
+                            <div ng-click="removeSecondaryConcern($index, item);">
+                                <i class="delBtn" ng-bind-html="drawSVGCIcon('circle-with-cross')"></i>
+                            </div>
+                        </div>
+                    </ion-item>
+                    <ion-item ng-show="locat">
+                        <div class="">
+                            <input type="text" id="backloc" ng-model="locationdet">
+                        </div>
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+        </ion-view>
 
-<ion-view title="Patient Concerns">
-	<ion-content class="ContentHomeUser ConcernsContent" >
-		<ion-list>
-			<ion-item class="PrimaryList" style="{{IntakeFormInnerStyle}}">
-				<div class="Step1">Step <b style="color:#535353;">1</b> of <b style="color:#535353;">{{userAgeForIntake}}</b></div>
-				<div ng-click="loadPrimaryConcerns();" >
-					<div class="PrimaryContent">
-						<h1 class="title ChronicCondition concernsSubTit">Primary Concern</h1>
-						<p class="{{patientConternFontStyle}}">What is the reason for today's visit?
-							<br/>
-							<span class="patientConternFontStyleSubTitle"></span>
-						</p>
-						<div style="margin-top: -48px;">
-							<!--<i class="ion-plus-circled addBtn">  </i>-->
-							<i class="addBtn"  ng-bind-html="drawSVGCIcon('circle-with-plus')"></i>
-						</div>
-					</div>
-				</div>
-			</ion-item>
-		   <!-- <ion-item ng-show="PatientPrimaryConcern != ''">
-				<div>
-					<div style="width: 92%;"><p class="intakeNote" >{{PatientPrimaryConcern}} </p></div>
-					<div style="float:right;left: 0px; position: relative;"><i class="ion-close-circled delBtn" ng-click="removePrimaryConcern();" ></i></div>
-				</div>
-			</ion-item> -->
-
-			 <ion-item ng-repeat="item in PatientPrimaryConcern">
-				<div class="PrimaryConcernList"  >
-					<p class="intakeNote">{{item.text}} </p>
-					<div  ng-click="removePrimaryConcern($index, item);">
-                         <!--<i class="ion-close-circled delBtn" ></i>-->
-												 	<i class="delBtn" ng-bind-html="drawSVGCIcon('circle-with-cross')"></i>
-                     </div>
-				</div>
-			</ion-item>
-
-
-			<ion-item class="SecondaryList">
-				<!--<div style="color:#888;float:right;margin-right: 10px; margin-top: 10px;">Step <b>1</b> of <b>7</b></div> -->
-				<div ng-click="loadSecondaryConcerns();" >
-					<div class="SecondaryContent">
-						<h1 class="title ChronicCondition concernsSubTit">Secondary Concern</h1>
-						<p class="{{patientConternFontStyle}}">Any additional reason(s) you want to mention?</p>
-						<div style="margin-top: -48px;">
-							<!--<i class="ion-plus-circled addBtn">  </i>-->
-							<i class="addBtn" ng-bind-html="drawSVGCIcon('circle-with-plus')"></i>
-						</div>
-					</div>
-				</div>
-
-			</ion-item>
-			<!-- <ion-item ng-show="PatientSecondaryConcern != ''">
-				<div>
-					<div style="width: 92%;"><p class="intakeNote" >{{PatientSecondaryConcern}} </p></div>
-					<div style="float:right;left: 0px; position: relative;">
-						<i  class="ion-close-circled delBtn" ng-click="removeSecondaryConcern();"></i>
-					</div>
-				</div>
-			</ion-item> -->
-
-		 <ion-item ng-repeat="item in PatientSecondaryConcern">
-				<div class="PrimaryConcernList"  >
-					<p class="intakeNote" >{{item.text}} </p>
-					<div  ng-click="removeSecondaryConcern($index, item);" >
-
-                            <!--<i class="ion-close-circled delBtn"></i>-->
-														<i class="delBtn" ng-bind-html="drawSVGCIcon('circle-with-cross')"></i>
-
-                    </div>
-				</div>
-
-			</ion-item>
-				 <ion-item ng-show="locat">
-
-   <div class="" >
-
-<input  type="text" id="backloc" ng-model="locationdet">
-
-</div>
-				 </ion-item>
-		</ion-list>
-	</ion-content>
-
-</ion-view>
-
-	<ion-footer-bar  class="footer">
-		<span class="ConcernsFooter">
-			<!--<div class="FooterLeft">
-				<a class="button_new icon" href="#/tab/patientDetail" ></a>
-			</div>-->
-			<div class="FooterLeft">
-				<a class="button_new icon ion-chevron-left"  ng-click="goBackFromConcern()" ><span> Back</span></a>
-				<!--<site-header-concern-back  back="Back"></site-header-concern-back>-->
-			</div>
-
-			<div class="FooterCenter" ng-click="clearRootScopeConce()">
-				<a class="button_new icon"  >Cancel</a>
-			</div>
-
-
-                    <div class="FooterRight" style="{{NextIntakeForm}};"  ng-click="PatientConcernsDirectory(ChronicCountValidCount)">
-                <a class="button_new icon ion-chevron-right" style="margin-top:3px;">
-					<!--<span class="ConcernFooterNext" style="{{FootNextButton}};{{FootNextButtonRight}}">Next<span>-->
-					<span class="ConcernFooterNext" style="{{ConcernFooterNextIOS}};">Next<span>
-				</a>
-			</div>
-
-		</span>
-	</ion-footer-bar>
-</ion-side-menu-content>
- <!--Side Menu File Include --->
-<div ng-include src="'templates/SideMenu.html'"></div>
+        <div class="bar bar-footer footer">
+            <div class="button button-clear" ng-click="goBackFromConcern();">
+                <a class="button_new icon ion-chevron-left iconVer" style="position: relative;top:-2px;" >
+                    <span class="localizejs backText"> Back</span>
+                </a>
+            </div>
+            <div class="title titleLineheight" ng-click="clearRootScopeConce()" style="height:auto;">
+                <a class="button_new icon localizejs cancelText iconVer " style="{{PatientConcernCancel}}">
+                    <span>Cancel</span></a>
+            </div>
+            <div class="button button-clear" style="right:12px;" ng-click="PatientConcernsDirectory(ChronicCountValidCount)">
+                <a class="button_new icon ion-chevron-right iconVer">
+                    <span class="localizejs nextText">Next
+                        <span>
+                </a>
+            </div>
+        </div>
+        <!-- <ion-footer-bar  class="footer">
+      <span class="ConcernsFooter">
+      <div class="FooterLeft" ng-click="goBackFromConcern();">
+         <a class="button_new icon ion-chevron-left" ><span class="localizejs"> Back</span></a>
+      </div>
+      <div class="FooterCenter" ng-click="clearRootScopeConce()">
+           <a class="button_new icon localizejs"  style="{{PatientConcernCancel}}">Cancel</a>
+      </div>
+      <div class="FooterRight" style="{{NextIntakeForm}};"  ng-click="PatientConcernsDirectory(ChronicCountValidCount)">
+         <a class="button_new icon ion-chevron-right" style="margin-top:3px;">
+         <span class="ConcernFooterNext localizejs" style="">Next<span>
+         </a>
+      </div>
+      </span>
+   </ion-footer-bar> -->
+    </ion-side-menu-content>
+    <!--Side Menu File Include --->
+    <div ng-include src="'templates/SideMenu.html'"></div>

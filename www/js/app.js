@@ -551,8 +551,9 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                                          return;
                                      },
                                      $rootScope.alertMsgName, // title
+                                      alertokay // buttonName
   );
-                                     alertokay // buttonName
+
                                  return false;
                              }else{
                                $rootScope.editremovemodal();
@@ -578,7 +579,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                                        $rootScope.ClearRootScope();
                                        return;
                                    },
-                                   $rootScope.alertMsgName, // title
+                                   $rootScope.alertMsgName // title
 
                                );
                                return false;

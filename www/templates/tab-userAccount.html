@@ -1,76 +1,349 @@
+<style media="screen">
+.item-text-wrap {
+    background-color: #f4f4f4;
+}
+.headerbg {
+  background-color: #333fe2;
+  border-color: #333fe2;
+  background-image: none;
+  align-items: center;
+  vertical-align: middle;
+  height: 48pt;
+  padding-bottom: 0;
+}
+/* ios css */
+/* .title-head {
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 20px !important;
+  font-family: "Glober Bold";
+  font-weight: normal;
+  color: rgb(255, 255, 255);
+  left: -28px;
+  top: 9px
+} */
+.title-head {
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 20px !important;
+  font-family: "Glober Bold";
+  font-weight: normal;
+  color: rgb(255, 255, 255);
+  left: -28px;
+  top: 0px
+}
+/* ios css */
+/* #BackButtonIcon {
+  left: -5px;
+  top: 4px;
+} */
+#userBackButtonIcon {
+  left: -5px;
+  top: -5px;
+}
+/* ios css */
+/* .add-user-icon {
+  height: 30px;
+  right: 8px;
+} */
+.add-user-icon {
+  height: 30px;
+  right: 8px;
+  top: 11px;
+}
+  .usercontent-IOS{
+    top: 3%;
+    margin: 0 auto;
+    position: absolute;
+    vertical-align: middle;
+  }
+  .cardBorder{
+    border-width: 1pt;
+    border-color: #eeeeee;
+    border-radius: 13px;
+    box-shadow: 0pt 2pt 2pt 0pt rgba(0, 0, 0, 0.3);
+    background-color: whitesmoke;
+    margin: 0 auto;
+    position: relative;
+    vertical-align: middle;
+    border: 1pt solid #eee;
+  }
+  .cardh1{
+    font-family: "GloberBold"  !important;
+    font-weight: bold  !important;
+    font-size: 21pt !important;
+    line-height: 27pt  !important;
+    text-align: center  !important;
+    color: #707070  !important;
+    padding-top: 0px !important;
+    letter-spacing: 0px  !important;
+    margin: 0 auto  !important;
+    vertical-align: middle  !important;
+  }
+  .cardP{
+    font-family: "GloberRegular"  !important;
+    font-weight: normal !important;
+    font-size: 12pt  !important;
+    color: rgba(0, 0, 0, 0.54) !important;
+    text-align: center  !important;
+    line-height: 22pt  !important;
+    letter-spacing: 0.1pt !important;
+    margin: 0 auto  !important;
+    vertical-align: middle !important;
+    text-align: center  !important;
+  }
+  .cardP2{
+    font-family: "GloberRegular";
+    font-weight: normal  !important;
+    font-size: 12pt  !important;
+    color: rgba(0, 0, 0, 0.54) !important;
+    text-align: center  !important;
+    line-height: 18pt  !important;
+    letter-spacing: 0.1pt  !important;
+    margin: 0 auto  !important;
+    vertical-align: middle  !important;
+    text-align: center  !important;
+    padding-bottom: 22px;
+  }
+  .btnMarign{
+    margin: 25px 15px 20px 15px !important;
+  }
+  .button.button-balanced{
+    min-height: 100% !important;
+    line-height: 53px !important;
+  }
+  .bar-dark .button{
+    min-height: 100% !important;
+    line-height: 24px !important;
+    font-weight: normal !important;
+    border-radius: 4pt !important;
+    font-size: 22px !important;
+    text-decoration: none !important;
+    font-family: "Glober Bold" !important;
+    width: auto;
+    text-align: center;
+    margin: 0 auto;
+    padding: 17px 35px 17px 35px !important;
+  }
+  .userAccountbackBtn{
+    margin: 0 auto !important;
+    width: 100%;
+    margin-bottom: 8px;
+
+  }
+  .subheaderheightTwo{
+    top: 0px !important;
+  }
+  .subheaderheight{
+    top: unset !important;
+  }
+  .bar-subheader{
+    top: unset !important;
+  }
+  .mr-b30{
+    margin-bottom: 30px;
+  }
+  /* .card{
+    margin: 0 auto !important;
+    width: 80%;
+  } */
+  @media (max-width: 768px) and (min-width: 641px) {
+    .usercontent-IOS{
+      padding-top: 0px !important;
+      top: 0px !important;
+    }
+
+  }
+</style>
 <ion-side-menus>
 <ion-side-menu-content>
-   <ion-header-bar align-title="left" class="homeheader bar-positiveHomeUser animated slideInUp" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} accoTitle-{{deviceName}} userAccTitle">
+   <ion-header-bar align-title="left" class="homeheader bar-positiveHomeUser animated slideInUp" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+      <!-- <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} accoTitle-{{deviceName}} userAccTitle">
           <a ng-href="#/tab/userhome" class="userAccountbackBtn"> <i  class="iconfontSVG ng-binding" ng-bind-html="drawSVGCIcon('chevron-left')"><svg class="icon-chevron-left"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-left"></use></svg></i> <span class="localizejs">Back</span></a>
           <div class="headerfont accountHeader-{{deviceName}} localizejs userAccountTitle"> Patient</div>
-       </h1>
+       </h1> -->
+       <!-- <div class="bar bar-header headerbg">
+ 				<div class="buttons button-icon">
+ 					<span class="button icon button-clear" style="{{HomeBackIOS}}" id="userBackButtonIcon" >
+ 					<a ng-href="#/tab/userhome" class="userAccountbackBtn"> <i  class="iconfontSVG ng-binding" ng-bind-html="drawSVGCIcon('chevron-left')"><svg class="icon-chevron-left"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-left"></use></svg></i> <span class="localizejs">Back</span></a>
+ 					</span>
+ 				</div>
+ 				<div class="h1 title-head localizejs" style="{{HomeHeaderIOS}}">Patient</div>
+ 			</div> -->
 
-      <div class="bar bar-subheader bar-dark subheaderheight subheaderheightOne">
-        <div class="bar bar-subheader bar-dark subheaderheight subheaderheightTwo" style="display: {{individualNextAppointmentDisplay}}; " ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData, 'userAccount')" ng-show="$first">
-            <p class="userAccApptInfo">
-              <i ng-bind-html="drawSVGCIcon('video_camera')" class="ng-binding" ng-if="scheduledListData.encounterTypeCode == 3">
-                <svg class="iconImg-video_camera"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-video_camera"></use></svg>
-              </i>
-              <i ng-bind-html="drawSVGCIcon('phone')" class="ng-binding" ng-if="scheduledListData.encounterTypeCode == 2">
-                <svg class="iconImg-phone"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-phone"></use></svg>
-              </i>
-              <i ng-bind-html="drawSVGCIcon('users')" class="ng-binding" ng-if="scheduledListData.encounterTypeCode == 4">
-                <svg class="iconImg-users"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-users"></use></svg>
-              </i>
-              <span class="apptTime localizejs"><span class="localizejs">Appt</span> @ {{scheduledListData.scheduledTime | date: "hh:mm"}} {{scheduledListData.scheduledTime | date: "a"}}</span>
-              <span class="apptDetailsInfo" ng-if="scheduledListData.appointmentStatusCode != 'Waiting' && scheduledListData.status != 71">
-                  <a class="appviewinfo-{{deviceName}} localizejs">View Details</a>
-                  <i class="iconfontSVG ng-binding appViewicons" ng-bind-html="drawSVGCIcon('chevron-right')"><svg class="icon-chevron-right"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-right"></use></svg></i>
-              </span>
-              <span class="apptDetailsInfo" ng-if="scheduledListData.appointmentStatusCode == 'Waiting' && scheduledListData.status != 71">
-                  <a class="appviewinfo-{{deviceName}} localizejs">In queue</a>
-                  <i class="iconfontSVG ng-binding appViewicons" ng-bind-html="drawSVGCIcon('chevron-right')"><svg class="icon-chevron-right"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-right"></use></svg></i>
-              </span>
-              <span class="apptDetailsInfo" ng-if="scheduledListData.status == 71">
-                <a class="appviewinfo-{{deviceName}} localizejs">In progress</a>
-                <i class="iconfontSVG ng-binding appViewicons" ng-bind-html="drawSVGCIcon('chevron-right')"><svg class="icon-chevron-right"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-right"></use></svg></i>
-              </span>
-            </p>
+      <div class="bar bar-header headerbg">
+        <div class="buttons button-icon">
+          <a ng-href="#/tab/userhome" class="userAccountbackBtn"> <i  class="iconfontSVG ng-binding" ng-bind-html="drawSVGCIcon('chevron-left')">
+            <svg class="icon-chevron-left">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-left"></use>
+            </svg></i> <span class="localizejs">Back</span></a>
         </div>
-         <div class="row">
-            <h1 class="headertitle userAccHeaderTitle">
-               <div class="ellipsis subHeader_content_name" >
-                  <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">{{PatientFirstName}}</span>
-                  <span class="patientLastName ellipsis lnamefont" >{{PatientLastName}}</span>
-               </div>
-            </h1>
-         </div>
-         <div class="row userAccountPanel userAccountPanelNew">
-            <div class="col col-33 uAPHomeIcon" style="visibility: hidden;">
-               <a ng-href='#/tab/userAccount'>
-                  <div class="icon homeicon">
-                     <div class="buttons">
-                        <span><i ng-bind-html="drawSVGCIcon('home');"></i></span>
-                     </div>
-                  </div>
-                  <div>
-                     <p class="hometext localizejs">Account Home</p>
-                  </div>
-               </a>
-            </div>
-            <div class="col col-33 uAPlProfileImage UserAccountProfileImage" style="cursor: pointer;" ng-click="getManageProfile(currentPatientDetails)" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
-            <div class="col col-33 uAPChangePatient" style="visibility: hidden;">
-               <a ng-click="changeptienthome()">
-                  <div class="icon groupicon">
-                     <div class="buttons">
-                        <span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
-                     </div>
-                  </div>
-                  <p class="grouptext localizejs">Change Patient</p>
-               </a>
-            </div>
-         </div>
+        <div class="h1 title-head localizejs" style="{{HomeHeaderIOS}}">Patient</div>
+
       </div>
+
    </ion-header-bar>
    <ion-view title="User Account Details" ng-init="doGetScheduledNowPhoneConsulatation()">
-      <ion-content padding="true"  title="User Account" class="usercontent-{{deviceName}} scroll-content ionic-scroll  has-header animated slideInUp" >
-        <ion-list>
+      <ion-content padding="true"  title="User Account" class="scroll-content ionic-scroll  has-header animated slideInUp" >
+
+        <div class="bar bar-subheader bar-dark subheaderheight subheaderheightOne">
+          <div class="bar bar-subheader bar-dark subheaderheight subheaderheightTwo" style="display: {{individualNextAppointmentDisplay}}; " ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData, 'userAccount')" ng-show="$first">
+              <p class="userAccApptInfo">
+                <i ng-bind-html="drawSVGCIcon('video_camera')" class="ng-binding" ng-if="scheduledListData.encounterTypeCode == 3">
+                  <svg class="iconImg-video_camera"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-video_camera"></use></svg>
+                </i>
+                <i ng-bind-html="drawSVGCIcon('phone')" class="ng-binding" ng-if="scheduledListData.encounterTypeCode == 2">
+                  <svg class="iconImg-phone"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-phone"></use></svg>
+                </i>
+                <i ng-bind-html="drawSVGCIcon('users')" class="ng-binding" ng-if="scheduledListData.encounterTypeCode == 4">
+                  <svg class="iconImg-users"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-users"></use></svg>
+                </i>
+                <span class="apptTime localizejs"><span class="localizejs">Appt</span> @ {{scheduledListData.scheduledTime | date: "hh:mm"}} {{scheduledListData.scheduledTime | date: "a"}}</span>
+                <span class="apptDetailsInfo" ng-if="scheduledListData.appointmentStatusCode != 'Waiting' && scheduledListData.status != 71">
+                    <a class="appviewinfo-{{deviceName}} localizejs">View Details</a>
+                    <i class="iconfontSVG ng-binding appViewicons" ng-bind-html="drawSVGCIcon('chevron-right')"><svg class="icon-chevron-right"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-right"></use></svg></i>
+                </span>
+                <span class="apptDetailsInfo" ng-if="scheduledListData.appointmentStatusCode == 'Waiting' && scheduledListData.status != 71">
+                    <a class="appviewinfo-{{deviceName}} localizejs">In queue</a>
+                    <i class="iconfontSVG ng-binding appViewicons" ng-bind-html="drawSVGCIcon('chevron-right')"><svg class="icon-chevron-right"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-right"></use></svg></i>
+                </span>
+                <span class="apptDetailsInfo" ng-if="scheduledListData.status == 71">
+                  <a class="appviewinfo-{{deviceName}} localizejs">In progress</a>
+                  <i class="iconfontSVG ng-binding appViewicons" ng-bind-html="drawSVGCIcon('chevron-right')"><svg class="icon-chevron-right"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-right"></use></svg></i>
+                </span>
+              </p>
+          </div>
+           <div class="">
+              <h1 class="headertitle userAccHeaderTitle">
+                 <div class="ellipsis subHeader_content_name" >
+                    <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">{{PatientFirstName}}</span>
+                    <span class="patientLastName ellipsis lnamefont" >{{PatientLastName}}</span>
+                 </div>
+              </h1>
+              <div class="row userAccountPanel userAccountPanelNew">
+                 <div class="col col-33 uAPHomeIcon" style="visibility: hidden;">
+                    <a ng-href='#/tab/userAccount'>
+                       <div class="icon homeicon">
+                          <div class="buttons">
+                             <span><i ng-bind-html="drawSVGCIcon('home');"></i></span>
+                          </div>
+                       </div>
+                       <div>
+                          <p class="hometext localizejs">Account Home</p>
+                       </div>
+                    </a>
+                 </div>
+                 <div class="col col-33 uAPlProfileImage UserAccountProfileImage" style="cursor: pointer;" ng-click="getManageProfile(currentPatientDetails)" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
+                 <div class="col col-33 uAPChangePatient" style="visibility: hidden;">
+                    <a ng-click="changeptienthome()">
+                       <div class="icon groupicon">
+                          <div class="buttons">
+                             <span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
+                          </div>
+                       </div>
+                       <p class="grouptext localizejs">Change Patient</p>
+                    </a>
+                 </div>
+              </div>
+
+                <!-- START Col cards -->
+              <div class="col">
+                <!-- START Col 1 cards -->
+
+
+
+
+
+                <div class="card accMainContent mr-b30"  ng-if="P_isAuthorized && providerAvailability == true">
+                  <div class="item item-text-wrap">
+                    <h1 class="localizejs cardh1">On-demand visit</h1>
+                    <p class="localizejs cardP">See the next available</p>
+                    <p class="localizejs cardP2">provider on-call.</p>
+                    <button type="submit" class="button button-block button-balanced user-button-position" ng-click="goToPatientConcerns(currentPatientDetails)">
+                       <span class="localizejs">See a provider now</span>
+                    </button>
+                  </div>
+                </div>
+                <!-- END Col cards -->
+
+                <!-- START Col 2  cards -->
+
+
+                <div class="card cardBorder mr-b30" ng-if="providerAvailability != true && providerOnDemandEnabled != false">
+                  <div class="item item-text-wrap">
+                    <h1 class="localizejs cardh1">On-demand visit</h1>
+                    <p class="localizejs cardP">See the next available</p>
+                    <p class="localizejs cardP">provider on-call.</p>
+                    <p class="localizejs cardP">Service is currently unavailable.</p>
+                    <p class="localizejs cardP2">Questions? Please call
+                    <a class="localizejs accOnCall2 accOnQuestion phoneNumColor" ng-click="callPhone()">{{appointmentsContactNumber}}</a></p>
+
+                    <!-- <button type="submit" class="button button-block button-balanced user-button-position" ng-click="goToPatientConcerns(currentPatientDetails)">
+                       <span class="localizejs">See a provider now</span>
+                    </button> -->
+                  </div>
+                </div>
+                <!-- End Col 2 cards -->
+                <!-- START Col 3 cards -->
+
+
+
+                <div class="card cardBorder mr-b30"  ng-if="online == true && onSSAvailability == 'on' && chkAvailabiltyOfSS == true">
+                  <div class="item item-text-wrap">
+                    <h1 class="localizejs cardh1">Create appointment</h2hidden>
+                    <p class="localizejs cardP">Schedule a visit</p>
+                     <p class="localizejs cardP2">with a specific provider.</p>
+
+                     <button type="submit" class="button button-Search-providers user-button-position" ng-click="goTOSchedule()" >
+                        <span class="localizejs">Search providers</span>
+                     </button>
+                  </div>
+                </div>
+                <!-- END Col 3 cards -->
+
+                <!-- START Col 4 cards -->
+
+
+
+                <div class="card cardBorder mr-b30" ng-if="onSSAvailability == 'on' && chkAvailabiltyOfSS != true">
+                  <div class="item item-text-wrap">
+                    <h2 class="localizejs cardh1">Create appointment</h2>
+                    <p class="localizejs cardP">Schedule a visit</p>
+                    <p class="localizejs cardP">with a specific provider</p>
+                    <p class="localizejs cardP">Service is currently unavailable.</p>
+                    <p class="localizejs cardP">Questions? Please call
+                   <a class="localizejs accOnCall2 accOnQuestion phoneNumColor cardP" ng-click="callPhone()">{{appointmentsContactNumber}}</a></p>
+                  </div>
+                </div>
+                <!-- END Col 4 cards -->
+
+
+
+                <ion-item ng-if="BlankUserAccount == true" class="noneSchedule localizejs noapptviewResult item" style="white-space: normal;">
+                  <div>
+                    <i class="noneScheduleImg" ng-bind-html="drawSVGCIcon('new_calendar_item')"></i>
+                    <div class="noneScheduleTextBox">
+                    <p class="noneScheduleText">Please call us to schedule an </p>
+                    <p class="noneScheduleText">appointment.</p>
+                    </div>
+                    <p class="noneScheduleNumber">
+                      <a class="localizejs accOnCall2 accOnQuestion phoneNumColor" ng-click="callPhone()">{{appointmentsContactNumber}}</a>
+                    </p>
+                  </div>
+                </ion-item>
+
+
+              </div>
+              <!-- End Col cards -->
+           </div>
+
+        </div>
+
+
+        <!-- <ion-list>
+
             <div class="list userlistAccountHome userlistAccountHome-ios5 {{accountStyle}}">
                 <div class="card accMainContent" ng-if="P_isAuthorized && providerAvailability == true" >
                    <div class="accOndemandCon">
@@ -81,25 +354,21 @@
 
                    <div class="btn1 accSeeNext">
                      <button type="submit" class="button button-block button-balanced user-button-position" ng-click="goToPatientConcerns(currentPatientDetails)">
-                      <!-- ng-click="goToPatientConcerns(currentPatientDetails)" -->
                         <span class="localizejs">See a provider now</span>
                      </button>
                    </div>
-                </div> <!--{{providerAvailability}} -- {{onSSAvailability}} --- {{chkAvailabiltyOfSS}} ---{{providerOnDemandEnabled}} -->
+                </div>
                 <div class="card cardNew accMainContentNew" ng-if="providerAvailability != true && providerOnDemandEnabled != false">
                      <div class="accOndemandCon accOndemandConNew">
                         <h2 class="localizejs accOnVisit accOnVisitNew">On-demand visit</h2>
                         <p class="localizejs accOnCall accOnCallNew">See the next available </p>
                         <p class="localizejs accOnCall2 accOnCallNew">provider on-call.</p>
-                      <!--  <p class="localizejs accOnCall2 accOnServiceDate">Service will resume at</p>-->
                         <p class="localizejs accOnCall2 accOnServiceDate">Service is currently unavailable.</p>
                         <p class="localizejs accOnCall2 accOnQuestion">Questions? Please call
-                        <!--<a class="localizejs accOnCall2 accOnQuestion" ng-href="tel: {{appointmentsContactNumber}}">{{appointmentsContactNumber}}</a></p>-->
                         <a class="localizejs accOnCall2 accOnQuestion phoneNumColor" ng-click="callPhone()">{{appointmentsContactNumber}}</a></p>
                      </div>
                   </div>
                 <div class="card accMainContent" ng-if="online == true && onSSAvailability == 'on' && chkAvailabiltyOfSS == true">
-                  <!-- ng-if="online == true && onSSAvailability == 'on'" -->
                    <div class="accOndemandCon">
                       <h2 class="localizejs accOnVisit">Create appointment</h2>
                       <p class="localizejs accOnCall">Schedule a visit</p>
@@ -107,7 +376,7 @@
                    </div>
 
                    <div class="btn1 accSeeNext">
-                     <button type="submit" class="button button-Search-providers user-button-position" ng-click="goTOSchedule()" > <!--ng-click="goTOSchedule()"-->
+                     <button type="submit" class="button button-Search-providers user-button-position" ng-click="goTOSchedule()" >
                         <span class="localizejs">Search providers</span>
                      </button>
                    </div>
@@ -120,11 +389,9 @@
                         <p class="localizejs accOnCall2 accOnCallNew">with a specific provider</p>
                         <p class="localizejs accOnCall2 accOnServiceDate">Service is currently unavailable.</p>
                         <p class="localizejs accOnCall2 accOnQuestion accOnQuestionNew">Questions? Please call
-                      <!--  <a class="localizejs accOnCall2 accOnQuestion accOnQuestionNew" ng-href="tel: {{appointmentsContactNumber}}">{{appointmentsContactNumber}}</a></p>-->
                        <a class="localizejs accOnCall2 accOnQuestion phoneNumColor" ng-click="callPhone()">{{appointmentsContactNumber}}</a></p>
                      </div>
                   </div>
-<!-- <ion-item ng-if="onSSAvailability != 'on' && chkAvailabiltyOfSS == false && providerAvailability != true && providerOnDemandEnabled != true" class="noneSchedule localizejs noapptviewResult item" style="white-space: normal;"> -->
                   <ion-item ng-if="BlankUserAccount == true" class="noneSchedule localizejs noapptviewResult item" style="white-space: normal;">
                     <div>
                       <i class="noneScheduleImg" ng-bind-html="drawSVGCIcon('new_calendar_item')"></i>
@@ -133,14 +400,13 @@
                       <p class="noneScheduleText">appointment.</p>
                       </div>
                       <p class="noneScheduleNumber">
-                      <!--<a class="noneScheduleNumber" ng-href="tel: {{appointmentsContactNumber}}">{{appointmentsContactNumber}}</a>-->
                         <a class="localizejs accOnCall2 accOnQuestion phoneNumColor" ng-click="callPhone()">{{appointmentsContactNumber}}</a>
                       </p>
                     </div>
                   </ion-item>
 
             </div>
-         </ion-list>
+         </ion-list> -->
       </ion-content>
    </ion-view>
   <!-- <ion-view title="User Account Details" ng-init="doGetScheduledNowPhoneConsulatation()" ng-if="appointmentsPatientId == patientId"  >

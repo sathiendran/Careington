@@ -1,0 +1,6158 @@
+@import "variable";
+@font-face {
+    font-family: 'Glober Black Italic';
+    src: url("Glober Black Italic.otf");
+}
+
+@font-face {
+    font-family: 'Glober Black';
+    src: url("Glober Black.otf");
+}
+@font-face {
+    font-family: 'Glober Bold Italic';
+    src: url("Glober Bold Italic.otf");
+}
+@font-face {
+    font-family: 'Glober Bold';
+    src: url("Glober Bold.otf");
+}
+@font-face {
+    font-family: 'Glober Book Italic';
+    src: url("Glober Book Italic.otf");
+}
+@font-face {
+    font-family: 'Glober Book';
+    src: url("Glober Book.otf");
+}
+@font-face {
+    font-family: 'Glober Heavy Italic';
+    src: url("Glober Heavy Italic.otf");
+}
+@font-face {
+    font-family: 'Glober Heavy';
+    src: url("Glober Heavy.otf");
+}
+@font-face {
+    font-family: 'Glober Light Italic';
+    src: url("Glober Light Italic.otf");
+}
+@font-face {
+    font-family: 'Glober Light';
+    src: url("Glober Light.otf");
+}
+@font-face {
+    font-family: 'Glober Regular Italic';
+    src: url("Glober Regular Italic.otf");
+}
+@font-face {
+    font-family: 'Glober Regular';
+    src: url("Glober Regular.otf");
+}
+@font-face {
+    font-family: 'Glober SemiBold Italic';
+    src: url("Glober SemiBold Italic.otf");
+}
+@font-face {
+    font-family: 'Glober SemiBold';
+    src: url("Glober SemiBold.otf");
+}
+@font-face {
+    font-family: 'Glober Thin Italic';
+    src: url("Glober Thin Italic.otf");
+}
+@font-face {
+    font-family: 'Glober Thin';
+    src: url("Glober Thin.otf");
+}
+@font-face {
+    font-family: 'Glober xBold Italic';
+    src: url("Glober xBold Italic.otf");
+}
+@font-face {
+    font-family: 'Glober xBold';
+    src: url("Glober xBold.otf");
+}
+
+@font-face {
+    font-family: 'icomoon';
+    src: url('fonts/icomoon.eot?o8g2tt');
+    src: url('../fonts/icomoon.eot?o8g2tt#iefix') format('embedded-opentype'), url('../fonts/icomoon.ttf?o8g2tt') format('truetype'), url('../fonts/icomoon.woff?o8g2tt') format('woff'), url('../fonts/icomoon.svg?o8g2tt#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal
+}
+
+@font-face {
+    font-family: 'GloberBlack';
+    src: url('../fonts/glober/GloberBlack.eot');
+    src: url('../fonts/glober/GloberBlack.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberBlack.woff') format('woff'), url('../fonts/glober/GloberBlack.ttf') format('truetype'), url('../fonts/glober/GloberBlack.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'GloberBook';
+    src: url('../fonts/glober/GloberBook.eot');
+    src: url('../fonts/glober/GloberBook.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberBook.woff') format('woff'), url('../fonts/glober/GloberBook.ttf') format('truetype'), url('../fonts/glober/GloberBook.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'GloberBold';
+    src: url('../fonts/glober/GloberBold.eot');
+    src: url('../fonts/glober/GloberBold.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberBold.woff') format('woff'), url('../fonts/glober/GloberBold.ttf') format('truetype'), url('../fonts/glober/GloberBold.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'GloberBoldItalic';
+    src: url('../fonts/glober/GloberBoldItalic.eot');
+    src: url('../fonts/glober/GloberBoldItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberBoldItalic.woff') format('woff'), url('../fonts/glober/GloberBoldItalic.ttf') format('truetype'), url('../fonts/glober/GloberBoldItalic.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'GloberBlackItalic';
+    src: url('../fonts/glober/GloberBlackItalic.eot');
+    src: url('../fonts/glober/GloberBlackItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberBlackItalic.woff') format('woff'), url('../fonts/glober/GloberBlackItalic.ttf') format('truetype'), url('../fonts/glober/GloberBlackItalic.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'GloberBookItalic';
+    src: url('../fonts/glober/GloberBookItalic.eot');
+    src: url('../fonts/glober/GloberBookItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberBookItalic.woff') format('woff'), url('../fonts/glober/GloberBookItalic.ttf') format('truetype'), url('../fonts/glober/GloberBookItalic.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'GloberHeavy';
+    src: url('../fonts/glober/GloberHeavy.eot');
+    src: url('../fonts/glober/GloberHeavy.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberHeavy.woff') format('woff'), url('../fonts/glober/GloberHeavy.ttf') format('truetype'), url('../fonts/glober/GloberHeavy.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'GloberHeavyItalic';
+    src: url('../fonts/glober/GloberHeavyItalic.eot');
+    src: url('../fonts/glober/GloberHeavyItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberHeavyItalic.woff') format('woff'), url('../fonts/glober/GloberHeavyItalic.ttf') format('truetype'), url('../fonts/glober/GloberHeavyItalic.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'GloberLight';
+    src: url('../fonts/glober/GloberLight.eot');
+    src: url('../fonts/glober/GloberLight.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberLight.woff') format('woff'), url('../fonts/glober/GloberLight.ttf') format('truetype'), url('../fonts/glober/GloberLight.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'GloberRegular';
+    src: url('../fonts/glober/GloberRegular.eot');
+    src: url('../fonts/glober/GloberRegular.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberRegular.woff') format('woff'), url('../fonts/glober/GloberRegular.ttf') format('truetype'), url('../fonts/glober/GloberRegular.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'GloberLightItalic';
+    src: url('../fonts/glober/GloberLightItalic.eot');
+    src: url('../fonts/glober/GloberLightItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberLightItalic.woff') format('woff'), url('../fonts/glober/GloberLightItalic.ttf') format('truetype'), url('../fonts/glober/GloberLightItalic.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'GloberRegularItalic';
+    src: url('../fonts/glober/GloberRegularItalic.eot');
+    src: url('../fonts/glober/GloberRegularItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberRegularItalic.woff') format('woff'), url('../fonts/glober/GloberRegularItalic.ttf') format('truetype'), url('../fonts/glober/GloberRegularItalic.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'GloberSemiBold';
+    src: url('../fonts/glober/GloberSemiBold.eot');
+    src: url('../fonts/glober/GloberSemiBold.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberSemiBold.woff') format('woff'), url('../fonts/glober/GloberSemiBold.ttf') format('truetype'), url('../fonts/glober/GloberSemiBold.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'GloberSemiBoldItalic';
+    src: url('../fonts/glober/GloberSemiBoldItalic.eot');
+    src: url('../fonts/glober/GloberSemiBoldItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberSemiBoldItalic.woff') format('woff'), url('../fonts/glober/GloberSemiBoldItalic.ttf') format('truetype'), url('../fonts/glober/GloberSemiBoldItalic.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'GloberThin';
+    src: url('../fonts/glober/GloberThin.eot');
+    src: url('../fonts/glober/GloberThin.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberThin.woff') format('woff'), url('../fonts/glober/GloberThin.ttf') format('truetype'), url('../fonts/glober/GloberThin.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'GloberThinItalic';
+    src: url('../fonts/glober/GloberThinItalic.eot');
+    src: url('../fonts/glober/GloberThinItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberThinItalic.woff') format('woff'), url('../fonts/glober/GloberThinItalic.ttf') format('truetype'), url('../fonts/glober/GloberThinItalic.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'GloberxBoldItalic';
+    src: url('../fonts/glober/GloberxBoldItalic.eot');
+    src: url('../fonts/glober/GloberxBoldItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberxBoldItalic.woff') format('woff'), url('../fonts/glober/GloberxBoldItalic.ttf') format('truetype'), url('../fonts/glober/GloberxBoldItalic.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'GloberxBold';
+    src: url('../fonts/glober/GloberxBold.eot');
+    src: url('../fonts/glober/GloberxBold.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberxBold.woff') format('woff'), url('../fonts/glober/GloberxBold.ttf') format('truetype'), url('../fonts/glober/GloberxBold.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'Glober';
+    font-weight: normal;
+    font-style: normal;
+    src: url('../fonts/glober/GloberRegular.eot');
+    src: url('../fonts/glober/GloberRegular.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberRegular.woff') format('woff'), url('../fonts/glober/GloberRegular.ttf') format('truetype'), url('../fonts/glober/GloberRegular.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'Glober';
+    font-weight: normal;
+    font-style: italic;
+    src: url('../fonts/glober/GloberRegularItalic.eot');
+    src: url('../fonts/glober/GloberRegularItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberRegularItalic.woff') format('woff'), url('../fonts/glober/GloberRegularItalic.ttf') format('truetype'), url('../fonts/glober/GloberRegularItalic.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'Glober';
+    font-weight: bold;
+    font-style: normal;
+    src: url('../fonts/glober/GloberxBold.eot');
+    src: url('../fonts/glober/GloberxBold.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberxBold.woff') format('woff'), url('../fonts/glober/GloberxBold.ttf') format('truetype'), url('../fonts/glober/GloberxBold.svg#wf') format('svg')
+}
+
+@font-face {
+    font-family: 'Glober';
+    font-weight: bold;
+    font-style: italic;
+    src: url('../fonts/glober/GloberxBoldItalic.eot');
+    src: url('../fonts/glober/GloberxBoldItalic.eot?#iefix') format('embedded-opentype'), url('../fonts/glober/GloberxBoldItalic.woff') format('woff'), url('../fonts/glober/GloberxBoldItalic.ttf') format('truetype'), url('../fonts/glober/GloberxBoldItalic.svg#wf') format('svg')
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    @font-face {
+        font-family: 'GloberBlack';
+        src: url('../fonts/glober/GloberBlack.svg#wf') format('svg')
+    }
+    @font-face {
+        font-family: 'GloberBook';
+        src: url('../fonts/glober/GloberBook.svg#wf') format('svg')
+    }
+    @font-face {
+        font-family: 'GloberBold';
+        src: url('../fonts/glober/GloberBold.svg#wf') format('svg')
+    }
+    @font-face {
+        font-family: 'GloberBoldItalic';
+        src: url('../fonts/glober/GloberBoldItalic.svg#wf') format('svg')
+    }
+    @font-face {
+        font-family: 'GloberBlackItalic';
+        src: url('../fonts/glober/GloberBlackItalic.svg#wf') format('svg')
+    }
+    @font-face {
+        font-family: 'GloberBookItalic';
+        src: url('../fonts/glober/GloberBookItalic.svg#wf') format('svg')
+    }
+    @font-face {
+        font-family: 'GloberHeavy';
+        src: url('../fonts/glober/GloberHeavy.svg#wf') format('svg')
+    }
+    @font-face {
+        font-family: 'GloberHeavyItalic';
+        src: url('../fonts/glober/GloberHeavyItalic.svg#wf') format('svg')
+    }
+    @font-face {
+        font-family: 'GloberLight';
+        src: url('../fonts/glober/GloberLight.svg#wf') format('svg')
+    }
+    @font-face {
+        font-family: 'GloberRegular';
+        src: url('../fonts/glober/GloberRegular.svg#wf') format('svg')
+    }
+    @font-face {
+        font-family: 'GloberLightItalic';
+        src: url('../fonts/glober/GloberLightItalic.svg#wf') format('svg')
+    }
+    @font-face {
+        font-family: 'GloberRegularItalic';
+        src: url('../fonts/glober/GloberRegularItalic.svg#wf') format('svg')
+    }
+    @font-face {
+        font-family: 'GloberSemiBold';
+        src: url('../fonts/glober/GloberSemiBold.svg#wf') format('svg')
+    }
+    @font-face {
+        font-family: 'GloberSemiBoldItalic';
+        src: url('../fonts/glober/GloberSemiBoldItalic.svg#wf') format('svg')
+    }
+    @font-face {
+        font-family: 'GloberThin';
+        src: url('../fonts/glober/GloberThin.svg#wf') format('svg')
+    }
+    @font-face {
+        font-family: 'GloberThinItalic';
+        src: url('../fonts/glober/GloberThinItalic.svg#wf') format('svg')
+    }
+    @font-face {
+        font-family: 'GloberxBoldItalic';
+        src: url('../fonts/glober/GloberxBoldItalic.svg#wf') format('svg')
+    }
+    @font-face {
+        font-family: 'GloberxBold';
+        src: url('../fonts/glober/GloberxBold.svg#wf') format('svg')
+    }
+}
+
+html,
+body,
+video,
+.OT_video-container {
+    background: transparent !important;
+}
+[class^="icon-"],
+[class*=" icon-"] {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+}
+.icon-search-users {
+    width: 1.1513671875em;
+}
+div {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+body {
+    font-family: $fontFamily_regular;
+}
+html,
+body {
+    background: transparent !important;
+}
+.bar.bar-positive {
+    background-color: $Flamingo;
+    height: 40px;
+    background-image: linear-gradient(0deg, $Flamingo, $Flamingo 50%, transparent 50%);
+    border-color: #B03A21;
+    border-width: 0px 0px 3px 0px;
+    border-style: solid;
+}
+.login_sub_header {
+    @include measurement(0, 0, auto, 100px);
+    @include font($fontFamily_xBold, bold, 28px);
+    text-align: center;
+    color: $Flamingo;
+    position: relative;
+    box-shadow: 0px 3px 3px #ADABAB;
+    -moz-box-shadow: 0px 3px 3px #ADABAB;
+    -webkit-box-shadow: 0px 3px 3px #ADABAB;
+    after {
+        right: 10px;
+        left: auto;
+        -webkit-transform: skew(8deg) rotate(3deg);
+        -moz-transform: skew(8deg) rotate(3deg);
+        -ms-transform: skew(8deg) rotate(3deg);
+        -o-transform: skew(8deg) rotate(3deg);
+        transform: skew(8deg) rotate(3deg);
+    }
+    div {
+        position: relative;
+      }
+}
+.login_sub_header:before,
+.login_sub_header:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    -webkit-box-shadow: 0 0 9px rgba(165, 165, 165, 0.8);
+    -moz-box-shadow: 0 0 9px rgba(165, 165, 165, 0.8);
+    box-shadow: 0 0 9px rgba(165, 165, 165, 0.8);
+    top: 1px;
+    bottom: 0;
+    left: 1px;
+    right: 1px;
+}
+.bar .button-bar > .button {
+    line-height: 35px !important;
+}
+.login_content {
+    margin: 92px 0 0 0;
+    padding-top: 90px;
+    .login_home {
+        padding: 0 12%;
+        .item-input {
+            border: 1px solid $Altoa;
+            border-radius: 8px;
+            height: 52px;
+            font-weight: bold;
+            background-color: #999999;
+            padding: 6px 0 2px 16px;
+            ::-webkit-input-placeholder {
+                /* WebKit browsers */
+                color: #111 !important;
+                font-size: 20px !important;
+                padding-top: 5px !important;
+            }
+            :-moz-placeholder {
+                /* Mozilla Firefox 4 to 18 */
+                color: #111 !important;
+                font-size: 20px !important;
+                padding-top: 5px !important;
+                opacity: 1;
+            }
+            ::-moz-placeholder {
+                /* Mozilla Firefox 19+ */
+                color: #111 !important;
+                font-size: 20px !important;
+                padding-top: 5px !important;
+                opacity: 1;
+            }
+            :-ms-input-placeholder {
+                /* Internet Explorer 10+ */
+                color: #111 !important;
+                font-size: 20px !important;
+                padding-top: 5px !important;
+            }
+            input {
+                font-size: 20px;
+            }
+        }
+    }
+}
+/* SQUARED TWO */
+.squaredCheckbox {
+	@include measurement(0, 1em 0.5em 0.25em 0.3em, 26px, 26px);
+	float: left;
+	border: 2px solid $Camouflage_Green;
+	border-radius: 4px;
+	position: relative;
+		label {
+			@include measurement(0, 0, 22px, 22px);
+			cursor: pointer;
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			background: -webkit-linear-gradient(top, #A2D28A 0%, #A2D28A 100%);
+			background: -moz-linear-gradient(top, #A2D28A 0%, #A2D28A 100%);
+			background: -o-linear-gradient(top, #A2D28A 0%, #A2D28A 100%);
+			background: -ms-linear-gradient(top, #A2D28A 0%, #A2D28A 100%);
+			background: linear-gradient(top, #A2D28A 0%, #A2D28A 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#A2D28A', endColorstr='#A2D28A',GradientType=0 );
+		}
+			label:after {
+				@include measurement(0, 0, 20px, 8px);
+				-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+				filter: alpha(opacity=0);
+				opacity: 0;
+				content: '';
+				position: absolute;
+				background: transparent;
+				top: 5px;
+				left: 2px;
+				border: 4px solid #fcfff4;
+				border-top: none;
+				border-right: none;
+				-webkit-transform: rotate(-50deg);
+				-moz-transform: rotate(-50deg);
+				-o-transform: rotate(-50deg);
+				-ms-transform: rotate(-50deg);
+				transform: rotate(-50deg);
+			}
+				input[type=checkbox]:checked + label:after {
+					-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+					filter: alpha(opacity=100);
+					opacity: 1;
+				}
+}
+.remember {
+    padding-top: 2px;
+    color: #999999;
+    font-size: 12px; //13px;
+    font-family: $fontFamily_regular;
+}
+.continue {
+    text-align: center;
+    padding-top: 40px;
+    margin-bottom: 50px;
+}
+.relationalign {
+    margin-left: 51px !important;
+    color: #666666;
+    font-family: $fontFamily_bold;
+}
+.item-input {
+    .ellipsis {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        line-height: 24pt;
+        // width: 9em;
+        // white-space: normal;
+    }
+}
+.item {}
+.button.button-positive.button-outline {
+    @include buttons(#A2D28A, normal, 5px, 19px, 35px);
+    color: #fff;
+    width: 111px;
+    line-height: 35px;
+    padding-top: 5px;
+    background: linear-gradient(#A2D28A, #A2D28A);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+.button.button-outline.button-positive.activated {
+    background-color: #A2D28A;
+    border-color: #A2D28A;
+}
+
+.footer {
+    color: #fff;
+    background-color: #4D4D4D !important;
+    border-color: #4D4D4D !important;
+    padding: 20px 0px 20px 0px;
+    @include font($fontFamily_light, bold, 11px);
+    border-top-width: -1px;
+    border-top: -1px;
+    background-image: none;
+    .terms {
+        @include font($fontFamily_light, bold, 11px);
+        text-align: left;
+        width: 50%;
+        a {
+            text-decoration: none;
+            color: #fff;
+            position: relative;
+            top: -5px;
+            margin-left: 11px !important;
+        }
+    }
+    .powerdBySnapMD {
+        @include font($fontFamily_light, bold, 11px);
+        text-align: right;
+        width: 70%;
+        a {
+            color: #fff;
+            text-decoration: none;
+            position: relative;
+            top: -5px;
+            padding: 10px;
+        }
+    }
+}
+.bar-footer {
+    background-position: 0px 40px;
+    height: 48px;
+    background-image: none;
+}
+.terms_footer_a {
+    margin-left: 20px !important;
+    font-weight: bold !important;
+    cursor: pointer;
+    span {
+        top: -2px;
+        position: relative;
+        font-size: 17px;
+        padding-left: 3px;
+    }
+}
+.provider_item {
+    color: #888 !important;
+    font-size: 20px !important;
+    cursor: pointer;
+}
+//Password Page
+.password {
+    background-color: $Shiraz;
+    height: auto;
+    border-color: $Shiraz;
+    background-image: linear-gradient(0deg, $Shiraz, $Shiraz 50%, transparent 50%);
+    box-shadow: 0px 3px 0px 0px #800F1B;
+    -moz-box-shadow: 0px 3px 0px 0px #800F1B;
+    -webkit-box-shadow: 0px 3px 0px 0px #800F1B;
+}
+.header_image {
+    margin-top: 23px;
+    text-align: center;
+    width: 100%;
+    border-color: #B03A21;
+    border-width: 0px 0px 3px 0px;
+    }
+.header_imageIOS {
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+    border-color: #B03A21;
+    border-width: 0px 0px 3px 0px;
+}
+.header_imageAndroid {
+
+    margin-top: 24px;
+    text-align: center;
+    width: 100%;
+    border-color: #B03A21;
+    border-width: 0px 0px 3px 0px;
+
+}
+.password_sub_headerIOS {
+    @extend .login_sub_header;
+    margin-top: -99px;
+    color: $Shiraz;
+    .password_header_contentIOS {
+      margin-top: 99px;
+        .subHospital {
+            position: relative;
+            top: -10px;
+        }
+        span {
+            color: #C4C4C4;
+            font-size: 15px;
+            position: relative;
+            top: -20px;
+            font-family: $fontFamily_regular;
+        }
+    }
+}
+.password_sub_headerAndroid {
+    @extend .login_sub_header;
+    color: $Shiraz;
+    .password_header_contentAndroid {
+        margin-top: 108px;
+        .subHospital {
+            position: relative;
+            top: -4px;
+        }
+        span {
+            color: #C4C4C4;
+            font-size: 15px;
+            position: relative;
+            top: -5px;
+            font-family: $fontFamily_regular;
+        }
+    }
+}
+.userpic--main-nav{
+
+  .UserHmelistImgView{
+    width: 100%;
+    height: 100%;
+    border: 0px solid #fff;
+  }
+}
+.user-info {
+.user-info--main-nav{
+  .UserHmelistImgView{
+    width:100%;
+    heigth:100%;
+  }
+}
+}
+
+.password_content {
+      background-color: #EFEFED;
+    .passwordtop {
+        padding: 6px 0 6px 16px;
+    }
+    .item-input {
+        border: 1px solid $Altoa;
+        border-radius: 8px;
+        height: 50px;
+        line-height: normal;
+        font-weight: bold;
+        background-color: #E6E6E2;
+        ::-webkit-input-placeholder {
+            /* WebKit browsers */
+            color: $Tundora !important;
+            font-size: 20px !important;
+            padding-top: 2px !important;
+            opacity: 1;
+        }
+        :-moz-placeholder {
+            /* Mozilla Firefox 4 to 18 */
+            color: $TundoraPWD !important;
+            font-size: 20px !important;
+            padding-top: 2px !important;
+            opacity: 1;
+        }
+        ::-moz-placeholder {
+            /* Mozilla Firefox 19+ */
+            color: $TundoraPWD !important;
+            font-size: 20px !important;
+            padding-top: 2px !important;
+            opacity: 1;
+        }
+        :-ms-input-placeholder {
+            /* Internet Explorer 10+ */
+            color: $TundoraPWD !important;
+            font-size: 20px !important;
+            padding-top: 2px !important;
+            opacity: 1;
+        }
+        input {
+            font-size: 17px;
+            line-height: 30px;
+        }
+    }
+}
+.password_home {
+    padding: 0 12%;
+}
+.password_home_top {
+    margin-top: 56px;
+}
+.password_icon {
+    float: left;
+    margin: 8px 10px 0 0;
+    left: -12px;
+    position: relative;
+}
+.pass_reset_content {
+    font-size: 19px;
+    color: #4D4D4D;
+    padding-top: 12px;
+    line-height: 24px;
+}
+.reset-Android {
+    padding-top: 54px !important;
+}
+.colmore {
+    margin-left: 0px;
+}
+.login {
+    text-align: center;
+      padding-top: 40px;
+    margin-bottom: 10px;
+}
+.forgot_password_text {
+    text-align: center;
+    padding-top: 8px;
+    a {
+        text-decoration: none;
+        font-size: 14px;
+    }
+}
+.button_new {
+    @include font($fontFamily_light, bold, 19px);
+    color: #fff;
+    border-radius: 7px;
+    width: 105px; 
+    min-height: 38px;
+    margin: 0 0 0 10px;
+    text-decoration: none;
+    cursor: pointer;
+    //margin-right: 16px;
+}
+.ion-chevron-left::before {
+    color: #fff;
+    margin: 3px;
+}
+.bar-positiveHomeUser {
+    background-color: #A80532;
+    background-image: linear-gradient(0deg, #A80532, #A80532 50%, transparent 50%);
+    height: auto;
+    border-bottom: none;
+}
+.backButtonDiv {
+    float: left;
+    margin-left: -3px;
+}
+.bar .button.button-clear.icon-left:before {
+    font-size: 20px;
+    line-height: 28px;
+    padding-right: 4px;
+}
+.centerIntake-IOS {
+    left: -12px;
+}
+.title_patientIOS {
+    @include font($fontFamily_bold, normal, 25px);
+    color: #FFFFFF;
+    text-align: center;
+    left: 7px;
+    right: 0px;
+    height: 45px;
+    min-width: 30px;
+    position: relative;
+    text-align: center;
+    top: 4px;
+    margin-top: 23px;
+}
+.title_patientAndroid {
+    @include font($fontFamily_bold, normal, 25px);
+    color: #FFFFFF;
+    text-align: center;
+    left: 0px;
+    right: 0px;
+    min-width: 30px;
+    position: relative;
+    text-align: center;
+    top: -4px;
+}
+.patient_subHeader {
+    display: block;
+    height: auto;
+    top: 100%;
+    margin-top: -10px;
+    background-color: #333333;
+    color: #fff;
+    .subHeader_image {
+        padding: 5px;
+        float: left;
+        margin-top: -4px;
+    }
+    .subHeader_content {
+        margin-left: 45px;
+        margin-top: 1px;
+        .sub_username {
+            font-family: $fontFamily_bold;
+        }
+        .sub_user_subname {
+            @include font($fontFamily_thin, normal, 21px);
+            color: #fff;
+        }
+        .sub_age {
+            color: #fff;
+            font-size: 11px;
+            font-family: $fontFamily_thin;
+        }
+    }
+}
+.patient_content {
+  margin: 17px 0 0 0;
+    padding-top: 95px;
+}
+.button.button-energized {
+    @include buttons($Sun, bold, 5px, 23px, 35px);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+.scheduled_appointments_text {
+    color: #747474;
+    font-size: 14px;
+    text-align: center;
+    font-family: $fontFamily_regular;
+}
+.button.button-balanced {
+    @include buttons($Feijoa, bold, 5px, 22px, 35px);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);
+    line-height: 35px;
+    span {
+        position: relative;
+        top: 2px;
+    }
+}
+.button.button-balanced.activated {
+    background-color: $Feijoa;
+    border-color: $Feijoa;
+}
+//Patient Calendar page
+.calendarBack {
+    padding-top: 7px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 68px;
+    position: absolute;
+    z-index: 1;
+    top: 11px;
+    span {
+        margin-top: 7px;
+        position: relative;
+        margin-left: -1px;
+        top: -1px;
+    }
+}
+.AppointBack {
+    top: 0px;
+}
+.alpha_sidebar li {
+    color: #49afcd;
+    margin-bottom: 0px;
+    cursor: pointer;
+}
+.alpha{
+    color: red !important;
+    margin-bottom: 0px;
+    cursor: pointer;
+}
+.alpha_list {
+    padding-right: 22px;
+}
+.calendarTitle {
+    font-size: 20px;
+    text-align: center;
+    width: 100%;
+}
+.calendar_subHeader_height {
+    top: 65px !important;
+    height: auto !important;
+    padding-bottom: 7px;
+    .calendar_subHeader {
+        margin: 3px 7px;
+        .subHeader_image {
+           margin-left: -5px;
+            margin-top: -13px;
+            position: relative;
+            top: 9px;
+            .patProfileImage {
+              margin-top: -2px;
+            }
+        }
+        .subHeader_content-Android {
+            .subHeader_content_name {
+                font-size: 21px;
+                margin-left: 7px;
+                margin-top: 9px;
+                .patientName {
+                    font-weight: bold;
+                    font-family: Glober Bold !important;
+                }
+                .patientLastName {
+                    font-family: Glober Regular !important;
+                }
+            }
+            .subHeader_content_age {
+                font-size: 13px;
+                font-weight: bold;
+                margin-left: 10px;
+                margin-top: 1px;
+                margin-bottom: 3px;
+            }
+        }
+        .subHeader_content-IOS {
+            .subHeader_content_name {
+                font-size: 22px;
+                margin-left: 7px;
+                margin-top: 9px;
+                .patientName {
+                    font-weight: bold;
+                    font-family: Glober Bold !important;
+                }
+                .patientLastName {
+                    font-weight: normal;
+                    font-family: Glober Regular !important;
+                }
+            }
+            .subHeader_content_age {
+                font-size: 12px;
+                font-weight: bold;
+                margin-left: 10px;
+                margin-top: -2px;
+            }
+        }
+    }
+}
+.patientDo-Android {
+    margin-top: 134px;
+    margin-top: 122px;
+    text-align: center;
+    height: 48px;
+    border-bottom: 1px solid #A9ABA7;
+    .patient_Do_sub-Android {
+        margin-left: 18px;
+        margin-top: 10px;
+        width: 100%;
+    }
+}
+.patientDo-IOS {
+    margin-top: 134px;
+    margin-top: 122px;
+    text-align: center;
+    height: 53px;
+    border-bottom: 1px solid #A9ABA7;
+    .patient_Do_sub-IOS {
+        margin-top: 15px;
+        width: 100%;
+    }
+}
+.patientCalendar_subHeader {
+    background-color: #e6e6e6;
+    color: #565656;
+    height: 50px;
+    margin-top: 121px;
+
+}
+.patientCalendar_watch {
+    padding: 10px;
+    float: left;
+    margin-top: 6px;
+    img {
+        width: 20px;
+    }
+}
+.patientCalendar_text {
+    padding: 17px;
+    color: $MineShaft;
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: -8px;
+    font-family: $fontFamily_semibold;
+    position: relative;
+    top: 6px;
+    left: -2px;
+}
+.patientCalendar_Content {
+    margin: 128px 0 0 0;
+    top: 42px;
+    .list {
+        .item {
+            padding: 10px;
+            height: 64px;
+        }
+    }
+}
+.patient_appointment {
+    float: left;
+    .appointment_text {
+        font-size: 14px;
+        color: #888 !important;
+        position: relative;
+        top: -2px;
+    }
+    .appointment_text_time {
+        font-size: 22px;
+        color: #706A67 !important;
+        span {
+            font-size: 18px;
+        }
+    }
+    .appointment_time {
+        font-size: 22px;
+        color: #706A67 !important;
+        margin-top: 16px;
+        span {
+            font-size: 18px;
+        }
+    }
+}
+.BackPatientViewDetails {
+    position: relative;
+    top: 3px;
+    font-weight: normal;
+    text-align: right;
+    font-size: 14px;
+    color: #888 !important;
+    .icon.ion-chevron-right {
+        line-height: 3;
+        font-size: 15px;
+        padding-left: 7px;
+        position: relative;
+        top: 5px;
+    }
+    .ion-chevron-right:before {
+        content: "\f125";
+        font-size: 19px;
+        position: relative;
+        top: 1px;
+    }
+}
+.Appointment_heading {
+    top: 12px;
+    border-color: #9e9e9e;
+    margin-top: -15px;
+}
+.doctor_details {
+    padding: 8px;
+    top: -2px;
+    border-color: #9e9e9e;
+    height: 75px;
+    a {
+        margin: -4px;
+        .doctorName {
+            top: -18px;
+            margin-left: 10px;
+            .ion-chevron-right:before {
+                content: "\f125";
+                font-size: 20px;
+                margin-top: 2px;
+              color: #898989;
+            }
+        }
+        .doctorArrow {
+            color: #888;
+            margin-top: 21px;
+        }
+    }
+}
+.appointmentTimeDetails {
+    padding: 25px;
+    top: -5px;
+    text-align: center;
+    height: 100px;
+    border-color: #9e9e9e;
+    div {
+        margin-top: 4px;
+        .appinmentTime {
+            margin-top: -9px;
+            font-size: 45px;
+            color: #706A67;
+            font-family: $fontFamily_semibold;
+        }
+        .appinmentTimeAM {
+            color: #706A67 !important;
+            font-size: 29px;
+            font-family: $fontFamily_semibold;
+        }
+        .appinmentTimeDate {
+            color: #706A67;
+            position: relative;
+            top: 5px;
+            font-size: 20px;
+        }
+    }
+}
+.concernsItem {
+    padding: 11px;
+    top: -12px;
+    border-color: #9e9e9e;
+    p {
+        font-size: 18px;
+        text-overflow: unset;
+        white-space: normal;
+        text-align: justify;
+        margin-left: 32px;
+        color: #000;
+        line-height: 25px;
+    }
+    span {
+        margin-right: 13px;
+        margin-left: 14px;
+        font-family: Glober xBold;
+        font-size: 21px;
+        color: #989998;
+        float: left;
+        position: relative;
+        top: 3px;
+    }
+    div {
+        position: relative;
+        top: 2px;
+    }
+    .pre_consultant {
+        span {
+            margin-right: 27px;
+            margin-left: 14px;
+        }
+    }
+}
+.concernsItemNotes {
+    padding: 11px;
+    top: -12px;
+    border-color: #9e9e9e;
+    p {
+        font-size: 18px;
+        text-overflow: unset;
+        white-space: normal;
+        margin-left: 15px;
+        color: #000;
+    }
+    em {
+        font-style: italic;
+    }
+    div {
+        position: relative;
+        top: 2px;
+    }
+    .pre_consultant {
+        span {
+            margin-right: 27px;
+            margin-left: 14px;
+        }
+    }
+}
+.enterAppoinment {
+    background-color: #A2D28A !important;
+    border: none !important;
+  -moz-box-shadow: 0 0px 8px 3px #333 !important;
+    -webkit-box-shadow: 0 0px 8px 3px #333 !important;
+    background-size: 100% 0 !important;
+    .EnterText {
+        font-size: 25px !important;
+        margin-top: 2px !important;
+        font-weight: bold !important;
+    }
+}
+.AvailableIn {
+    background-color: #FFC609 !important;
+    border: none !important;
+    box-shadow: 0 0px 8px 3px #333 !important;
+    -moz-box-shadow: 0 0px 8px 3px #333 !important;
+    -webkit-box-shadow: 0 0px 8px 3px #333 !important;
+    background-size: 100% 0 !important;
+    .availableImage {
+        font-size: 22px;
+        margin-top: 17px;
+        .AvailableText {
+            float: left;
+            text-align: right;
+            width: 54%;
+            font-family: $fontFamily_semibold;
+            font-weight: bold;
+            color: #fff;
+        }
+        .AvailableTimer {
+            float: left;
+            text-align: left;
+            width: 45%;
+            padding-left: 10px;
+            font-family: $fontFamily_semibold;
+            font-weight: bold;
+        }
+    }
+}
+.ErrorMessageDiv {
+    position: fixed;
+    z-index: 2;
+    top: 0px;
+    left: 0px;
+}
+.intakeTittleAndroid {
+    top: -4px !important;
+
+}
+.intakeTittleIOS {
+    top: 17px !important;
+}
+.accoTitle-IOS{
+    top: -4px !important;
+}
+.PatientDetailsHome {
+    padding: 4%;
+    span {
+        position: relative;
+        top: 4px;
+    }
+    .PatientNextAvailable {
+        padding-top: 40px;
+    }
+}
+.labelfont {
+    font-size: 17px;
+}
+.optionselect {
+    width: 100%;
+    color: #7c7c7c;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    background-color: white;
+    margin-top: -3px;
+    font-size: 20px;
+    padding: 5px;
+
+}
+.ssooption{
+    width: 100%;
+    border: none;
+    background-color: #F3F3F3;
+    padding: 5px;
+    margin-left: -6px;
+    color: #666;
+    font-size:16px !important;
+}
+.ssooptionCountry{
+  .planlist {
+    option{
+      font-size: 16px;
+      color: #fcfcfc;
+    }
+  }
+    width: 100%;
+    border: none;
+    background-color: #F3F3F3;
+    padding: 5px;
+    margin-left: -6px;
+    color: #666;
+    font-size:16px !important;
+}
+.ssooptionTimezone{        
+    width: 100%;  
+    border: none;     
+    background-color: #F3F3F3;
+    padding: 5px;
+    margin-left: -6px;
+    color: #666;
+    font-size:16px !important;
+}
+.ssoaddress{
+  font-size:16px !important;
+}
+//Consult Charge page
+.consultCharge_subHeader {
+    border-bottom: 1px solid #C5C5C5;
+    //height: 60px;
+    margin-top: 125px;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 3;
+    color: #666666;
+    span {
+        color: #666666;
+        //font-size: 26px;
+        font-size: 25px;
+        top: -16px !important;    
+        position: relative;
+        left: 15px;
+        font-family: $fontFamily_semibold;
+        font-weight: normal;
+    }
+}
+.consultConMargin {
+    margin: 206px 0 0 0;
+}
+.consultConPaymentMargin {
+    margin: 139px 0 0 0;
+    .AddCard {
+        margin-top: 7px;
+    }
+}
+.paymentConSecton {
+  //  margin: 160px 0 0 0;
+}
+.addCardConScetion {
+//     margin: 155px 0 0 0;
+}
+.consultCharge_content {
+    padding-bottom: 30px;
+    padding-top: 36px;
+    .consultChargeNoPlanText {
+        padding-top: 5px;
+    }
+    .NoPlanHeader {
+        color: #5C5C5C;
+        text-align: center;
+    }
+    .NoPlanText {
+        margin-left: 20px !important;
+        padding-top: 30px;
+        font-size: 16px;
+        color: #888585;
+        text-align: left;
+    }
+    .NoPlanAddCardDropdown {
+        text-align: left;
+        .demo {
+            margin-left: 50px;
+            option {
+                padding: 10px;
+            }
+        }
+    }
+    .AddCardNoPlan {
+        padding-top: 60px;
+        .healthPlan_text {
+            margin-left: -160px;
+        }
+        .AddCard {
+              margin-top: 7px;
+            img {
+                width: 30px;
+                height: 30px;
+            }
+            span {
+                margin-left: 0px;
+            }
+        }
+    }
+    .AddCardDetails {
+        .healthPlan_text {
+            margin-left: -160px;
+        }
+        .AddCard {
+            margin-left: 8px;
+            margin-top: 7px;
+            img {
+                width: 30px;
+                height: 30px;
+            }
+            span {
+                margin-left: 0px;
+            }
+        }
+    }
+    .NoPlanBottomText {
+        text-align: justify;
+        padding-bottom: 50px;
+        margin: 0 -15px;
+    }
+}
+.button.button-royal {
+    @include buttons($Nobel, bold, 5px, 22px, 35px);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    line-height: 35px;
+    span {
+        position: relative;
+        top: 2px;
+    }
+}
+.button.button-royal.activated {
+    background-color: $Nobel;
+    border-color: $Nobel;
+}
+
+
+
+.consultation_head {
+    font-size: 164%;
+    padding-top: 34px;
+    color: #2A2A2A;
+    width: 110%;
+    .consultation_number {
+        margin-right: 17px;
+        font-family: $fontFamily_semibold;
+        color: #666666;
+        text-align: left;
+        width: 110%;
+        span {
+            text-decoration: line-through; //color: red;
+            margin-left: 35px;
+            font-size: 22px;
+        }
+    }
+    .consultation_numberCopay {
+        //margin-right: 17px;
+        font-family: $fontFamily_semibold;
+        color: #666666;
+        text-align: left;
+        padding-right: 16px;
+        width: 110%;
+        span {
+            color: red;
+            font-size: 22px;
+            margin-left: 35px;
+        }
+    }
+    .consultTittleCharge {
+        color: #666666;
+        font-family: $fontFamily_semibold;
+        margin-left: 10%;
+        float: left;
+        font-size: 24px;
+        padding: 0 0 0 30px;
+    }
+    .consultTittleChargeNew {
+      margin-left: 10%;
+      font-size: 24px;
+      padding: 0 0 0 30px;
+    }
+    .consultTittle {
+        color: #666666;
+        font-family: $fontFamily_semibold;
+        margin-left: -3%;
+        float: left;
+        width: 63%;
+        text-align: right;
+        font-size: 24px;
+    }
+    .consultTittleCopay {
+        color: #666666;
+        font-family: $fontFamily_semibold;
+        margin-left: -10px;
+        float: left;
+        width: 63%;
+        text-align: right;
+        font-size: 19px;
+    }
+    .Plancovers {
+        font-size: 12px;
+        color: #C2C2C2;
+    }
+    .consultation-charge{
+        margin-left: 35px;
+        font-size: 24px ;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 568px) {
+  .consultation_head {
+    .consultTittle {
+      font-size: 20px !important;
+    }
+    .consultTittleCopay {
+    //  font-size: 14px !important;
+    }
+    .consultation_number {
+      width: 110% !important;
+        span {
+          font-size: 20px !important;
+        }
+    }
+    .consultation_numberCopay {
+      width: 110% !important;
+        span {
+            font-size: 20px !important;
+        }
+    }
+    .consultTittleChargeNew {
+      margin-left:3% !important;
+      font-size: 20px !important;
+      padding: 0 0 0 0px !important;
+    }
+    .consultation-charge{
+      font-size: 20px !important;
+    }
+ }
+}
+
+
+.UseHealthPlan {
+    padding-top: 45px;
+    a {
+        text-decoration: none;
+        span {
+            position: relative;
+            top: 3px;
+        }
+    }
+}
+.SkipToPayment {
+    padding-top: 15px;
+    padding-bottom: 5px;
+    span {
+        position: relative;
+        top: 3px;
+    }
+}
+.ConsultChargeFooter {
+    width: 100%;
+    .ConsultChargeBack {
+        float: left;
+        width: 33%;
+        position: relative;
+        top: -10px;
+        a {
+            padding: 10px 10px 10px 0px;
+            span {
+                top: -2px;
+                position: relative;
+                font-size: 17px;
+            }
+        }
+        .ion-chevron-left:before {
+            content: "\f124";
+            font-size: 22px;
+            margin-top: 0px;
+            padding-left: 10px;
+        }
+    }
+    .ConsultChargeCancel {
+        text-align: center;
+        float: left;
+        width: 33%;
+        margin-top: -6px;
+        a {
+            color: #FFFFFF;
+            font-weight: bold;
+            padding: 10px;
+            font-size: 17px;
+            font-family: Glober Bold;
+        }
+    }
+}
+//consultChargeNoPlan
+.consultChargeNoPlanContent {
+    margin: 140px 0 0 0;
+    padding-top: 36px; //176px
+    .consultChargeNoPlanText {
+        padding-top: 5px;
+    }
+    .NoPlanHeader {
+        color: #5C5C5C;
+        text-align: center;
+    }
+    .NoPlanText {
+        margin-left: 20px !important;
+        padding-top: 30px;
+        font-size: 16px;
+        color: #888585;
+        text-align: left;
+    }
+    .NoPlanAddCardDropdown {
+        text-align: left;
+        .demo {
+            margin-left: 50px;
+            option {
+                padding: 10px;
+            }
+        }
+    }
+    .AddCardNoPlan {
+        padding-top: 60px;
+        .healthPlan_text {
+            margin-left: -160px;
+        }
+        .AddCard {
+            margin-left: 8px;
+            margin-top: 7px;
+            img {
+                width: 30px;
+                height: 30px;
+            }
+            span {
+                margin-left: 0px;
+            }
+        }
+    }
+    .AddCardDetails {
+        .healthPlan_text {
+            margin-left: -160px;
+        }
+        .AddCard {
+            margin-left: 8px;
+            margin-top: 7px;
+            img {
+                width: 30px;
+                height: 30px;
+            }
+            span {
+                margin-left: 0px;
+            }
+        }
+    }
+    .NoPlanBottomText {
+        text-align: justify;
+        padding-bottom: 50px;
+        margin: 0 -15px;
+    }
+}
+.cardSubmitPayment {
+    background-color: #DADADA !important;
+    border-color: #DADADA !important;
+    background-image: linear-gradient(0deg, #DADADA, #DADADA 50%, transparent 50%) !important;
+}
+//add health plan
+.consultInsurance {
+  margin-left: -17%;
+  margin-right: -16%;
+  margin-top: 30px;
+}
+.consultCard {
+  margin-left: -17%;
+  margin-right: -16%;
+}
+.healthPlan_header {
+    -webkit-animation-duration: 20s !important;
+    -moz-animation-duration: 20s !important;
+    -o-animation-duration: 20s !important;
+    animation-duration: 20s !important;
+    //padding-top: 12px;
+    padding-top: 0px;
+    text-align: center;
+    color: #5C5C5C;
+    .healthPlan_text {
+        font-size: 14px;
+        color: #666666;
+        margin-left: -100px;
+        font-family: $fontFamily_regular;
+    }
+    .payCardText {
+        padding-bottom: 5px;
+    }
+    .addHealthPlan_header {
+        .addHealthPlan_text {
+            font-size: 20px;
+            font-weight: bold;
+            left: 7px;
+            position: relative;
+            top: -13px;
+            color: #666666;
+        }
+    }
+}
+.bar .button.button-icon .icon:before,
+.bar .button.button-icon:before,
+.bar .button.button-icon.icon-left:before,
+.bar .button.button-icon.icon-right:before {
+    font-size: 70px;
+    margin-top: 7px;
+    width: 25px;
+}
+//plan details page
+.PlanHeader {
+    height: 58px;
+    .PlanCancel {
+        font-weight: normal;
+        font-family: Glober Regular;
+        color: #FFFFFF;
+        font-size: 19px;
+        cursor: pointer;
+        width: 68px;
+        span {
+            margin-top: 17px;
+            position: absolute;
+        }
+    }
+    .PlanNext {
+        padding-top: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        width: auto;
+        position: relative;
+        right: 10px;
+        background: none;
+        border: none;
+        span {
+            margin-top: -7px;
+            position: absolute;
+            left: 15px;
+        }
+    }
+}
+.item-input {
+    .cardfont {
+        color: #444444 !important;
+        font-size: 19px !important;
+        font-family: Glober Bold !important;
+    }
+    .cards {
+        ::-webkit-input-placeholder {
+            /* WebKit browsers */
+            color: #CBCBCB !important;
+            font-size: 18px !important;
+            font-family: Glober Regular !important;
+        }
+        :-moz-placeholder {
+            /* Mozilla Firefox 4 to 18 */
+            color: #CBCBCB !important;
+            font-size: 18px !important;
+            font-family: Glober Regular !important;
+        }
+        ::-moz-placeholder {
+            /* Mozilla Firefox 19+ */
+            color: #CBCBCB !important;
+            font-size: 18px !important;
+            font-family: Glober Regular !important;
+        }
+        :-ms-input-placeholder {
+            /* Internet Explorer 10+ */
+            color: #CBCBCB !important;
+            font-size: 18px !important;
+            font-family: Glober Regular !important;
+        }
+    }
+}
+.carddetails {
+    color: #666666;
+    font-family: Glober Regular;
+}
+.planDetails_content {
+    padding-top: 32px;
+    margin-top: 12px;
+    .healthPlan_text {
+        font-size: 34px;
+        text-align: center;
+        color: #666666;
+        font-weight: normal;
+        font-family: Glober Regular;
+    }
+    .planInformation {
+        color: #666666;
+        font-size: 18px;
+        font-weight: normal;
+        font-family: Glober Regular;
+    }
+    .provider {
+        margin-left: 45px;
+        padding-top: 20px;
+        font-size: 15px;
+        text-align: left;
+        font-family: Glober Regular;
+        color: #666666;
+    }
+    .ProviderList {
+        margin-left: 50px;
+        option {
+            padding: 10px;
+        }
+    }
+    .verifyPlanHeading {
+        padding-top: 35px;
+    }
+    input[type="text"],
+    input[type="number"],
+    input[type="password"] {
+        font-size: 18px;
+        line-height: 30px;
+        padding-top: 9px;
+    }
+    .planDetails {
+        padding: 0 5px 0 15px;
+        text-align: center;
+        ;
+        font-size: 14px;
+        font-weight: normal;
+        font-family: Glober Regular;
+        margin-top: -5px;
+        color: #666666;
+    }
+    .privacy {
+        color: $Scooter;
+        font-size: 14px;
+        padding: 0 5px 50px 15px;
+        margin-top: -5px;
+        font-family: Glober Regular;
+        text-align: center;
+    }
+    .list {
+        padding-top: 12px;
+    }
+    .item.item-input {
+        padding: 10px 16px 10px 16px;
+    }
+    .input-label {
+        font-weight: bold;
+        font-size: 23px;
+        width: 47%;
+        padding: 10px 10px 7px 0px;
+        color: #666666;
+    }
+    .cardDetailsHeading {
+        padding-top: 30px;
+    }
+    .CardInformation {
+        padding-top: 18px;
+        padding-bottom: 20px;
+        color: #666666;
+        text-align: center;
+        font-size: 18px;
+        font-family: Glober Regular;
+    }
+    .verifyCardDisplay {
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+    .CountryDetails {
+        border: 0px;
+        margin-left: -10px;
+        width: auto;
+        background: none;
+        box-shadow: none;
+        color: #111;
+        option {
+            padding: 10px;
+            color: #111;
+        }
+    }
+}
+//Verify Plan
+.verifyPlan_subHeader {
+    padding-top: 40px;
+    color: #5C5C5C;
+    text-align: center;
+    font-size: 27px;
+    font-weight: bold;
+}
+.select_div {
+    margin: 33px 10px 5px 47px;
+}
+.demo select {
+    //border: 0 !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #ccc url(../img/select-arrow.png) no-repeat 95% center;
+    width: 93%;
+    text-indent: 0.01px;
+    text-overflow: "";
+    color: #515151;
+    border-radius: 7px;
+    margin-left: 8px;
+    padding: 6px;
+    box-shadow: inset 0 0 5px rgba(000, 000, 000, 0.5);
+    -moz-box-shadow: inset 0 0 5px rgba(000, 000, 000, 0.5);
+    -webkit-box-shadow: inset 0 0 5px rgba(000, 000, 000, 0.5);
+    height: 45px;
+    font-size: 18px;
+    border: none;
+}
+select {
+    overflow: hidden;
+    white-space: pre;
+    text-overflow: ellipsis;
+}
+//Receipt
+.ReceiptContent {
+    margin: 117px 0 0 0;
+    padding-top: 20px;
+    .PaymentSuccess {
+        font-size: 35px;
+        text-align: center;
+        padding-top: 41px;
+        color: #60605D;
+        .PaymentConfirmation {
+            font-size: 20px;
+            padding-top: 20px;
+            color: #F3795D;
+            .ConfirmationReceipt {
+                font-size: 12px;
+                color: black;
+            }
+        }
+    }
+    .CreditSuccess {
+        font-size: 35px;
+        text-align: center;
+        padding-top: 20px;
+        color: #60605D;
+        .PaymentConfirmation {
+            font-size: 30px;
+            padding-top: 20px;
+            color: #666666;
+            font-family: $fontFamily_semibold;
+            .ConfirmationReceipt {
+                font-size: 20px;
+                color: #EF4B27;
+                padding-top: 15px;
+                font-family: $fontFamily_regular;
+                span {
+                    font-family: $fontFamily_heavy;
+                }
+            }
+        }
+    }
+    .EnterWaitingRoom {
+        padding: 60px 8% 25px 8%;
+        span {
+            position: relative;
+            top: 3px;
+        }
+    }
+    .ReceiptRedirect {
+        font-size: 12px;
+        color: #666666;
+        text-align: center;
+        font-family: $fontFamily_regular;
+    }
+}
+#SidemenuHomeAndroid {
+    margin-top: 10px;
+    border: none;
+    color: #7E807E;
+    font-family: Glober regular !important;
+  //  background-color: #464644;
+  background-color: #d8d8d8 !important;
+    span {
+        top: 0px;
+        position: relative;
+        font-size: 23px;
+        padding-left: 15px;
+        //color: rgba(248, 248, 248, 0.57);
+        color: #666;
+        font-weight: normal !important;
+    }
+}
+#SidemenuHomeIOS {
+    margin-top: 18px;
+    border: none;
+    color: #7E807E;
+    font-family: Glober regular !important;
+  //  background-color: #464644;
+  background-color: #d8d8d8 !important;
+    span {
+        top: 0px;
+        position: relative;
+        font-size: 23px;
+        padding-left: 15px;
+      //  color: rgba(248, 248, 248, 0.57);
+      color: #666;
+    }
+}
+.sidemenuContent {
+    position: absolute;
+    bottom: 64px;
+    width: 100%;
+    .ion-ios-list:before {
+        font-size: 31px;
+    }
+}
+.SidemenuLogOut {
+    width: 100%;
+    color: #7E807E;
+    bottom: 0px;
+    position: absolute;
+    .LogOutText {
+        border: none;
+        color: #7E807E;
+        margin-left: -4px;
+        font-family: Glober regular !important;
+        background-color: #464644;
+        span {
+            position: relative;
+            font-size: 23px;
+            padding-left: 15px;
+            font-weight: normal !important;
+        }
+    }
+    .item {
+        border-color: #979797;
+    }
+    .ion-power:before {
+        font-size: 27px;
+    }
+}
+.sidemenuContent1 {
+    width: 100%;
+    .ion-ios-list:before {
+        font-size: 31px;
+    }
+}
+.SidemenuLogOut1 {
+    width: 100%;
+    color: #7E807E;
+    .ListTextTitle {
+        color: #fff;
+        span {
+            color: #fff;
+        }
+    }
+    .ListHomeUser_pTitle {
+        color: #999999;
+    }
+    .LogOutText {
+        color: #7E807E;
+        margin-left: -4px;
+        font-family: Glober regular !important;
+      //  background-color: #464644;
+        background-color: #d8d8d8 !important;
+        margin-top: 18px;
+        bottom: 13px;
+        span {
+            position: relative;
+            font-size: 23px;
+            padding-left: 15px;
+            color: rgba(248, 248, 248, 0.57);
+            font-weight: normal !important;
+        }
+    }
+    .item {
+        border-color: #464644;
+    }
+    .ion-power:before {
+        font-size: 27px;
+    }
+}
+.ReportTittle {
+    margin-left: 22px !important;
+    top: -4px !important;
+}
+.ReportDone {
+    padding-top: 21px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 68px;
+    position: absolute;
+    z-index: 1;
+    top: 3px;
+    margin-left: 16px;
+}
+.ReportContent {
+    margin: 81px 0px 0 0px;
+    padding-top: 20px;
+    font-family: 'Glober Regular';
+    z-index: 999;
+    padding-top: 20px;
+    top: 0px;
+    em {
+        font-style: italic;
+    }
+    .reportLogo {
+      img {  }
+    }
+    .providerAddress {
+        text-align: right;
+        .reportOrganization {
+            padding-top: 2px;
+        }
+    }
+    .ConnectedCareDetails {
+        .ConnectedCareTitle {
+            width: 100%;
+            float: left;
+            margin-top: 10px;
+        }
+        .CCAttachment {
+            float: right;
+            margin-top: -50px;
+            img {
+                margin: 0 -8px 7px -14px;
+                width: 25px;
+            }
+            p {
+                color: #fff;
+                margin: -40px 0 0 8px;
+            }
+        }
+        .attachmentSpace {
+            border-bottom: 2px solid #ccc;
+            position: relative;
+            top: -37px;
+        }
+    }
+    .reportPatientDetails {
+        margin-top: -20px;
+        .reportPatient {
+            width: 55%;
+            float: left;
+            padding-right: 35px;
+        }
+        .reportEncounter {
+            /*padding-left: 20px;*/
+
+            float: right;
+            width: 40%;
+        }
+    }
+    #soapReport {
+        ol {
+            list-style-type: decimal;
+            margin-left: 5%;
+        }
+        ul {
+            list-style: initial;
+            margin-left: 5%;
+        }
+    }
+    .reportPatientStatistics {
+        clear: both;
+        padding-top: 20px;
+        .PatientStatistic {
+            background-color: #E5E5E5;
+            width: 100%;
+            font-size: 18px;
+            input[type="text"] {
+                background-color: #CCCCCC;
+                width: 85px;
+                font-size: 14px;
+                height: 30px;
+                font-weight: bold;
+                padding-left: 2px;
+            }
+            tr {
+                font-size: 14px;
+            }
+            .statisticsTitle {
+                padding: 7px;
+                font-size: 18px;
+                div {
+                    border-bottom: 1px solid #ccc;
+                    position: relative;
+                    top: -5px;
+                }
+            }
+            .statisticAge {
+                padding-left: 7px;
+            }
+            .statisticGender {
+                padding-left: 7px;
+                padding-top: 10px;
+                padding-bottom: 7px;
+            }
+        }
+    }
+    .reportPatientConcerns {
+        padding-top: 20px;
+        font-size: 20px;
+        .concernTitle {
+            background-color: #E5E5E5;
+            padding-top: 7px;
+            padding-bottom: 0px;
+        }
+        .concernUnderline {
+            border-bottom: 1px solid;
+            position: relative;
+            top: -4px;
+        }
+        .reportConcerns {
+            padding-top: 20px;
+            font-weight: bold;
+            .concernNumber {
+                float: left;
+                span {
+                    background-color: #ccc;
+                    padding: 4px 7px 0px 7px;
+                }
+            }
+            .primaryConcernText {
+                position: relative;
+                top: 3px;
+                left: 20px;
+                width: 93%;
+                text-align: justify;
+            }
+        }
+    }
+    .reportSubjective {
+        padding-top: 20px;
+        font-size: 18px;
+        .subjectiveTitle {
+            padding-top: 7px;
+        }
+        .subjectiveUnderline {
+            border-bottom: 2px solid #CCC;
+            position: relative;
+            top: -4px;
+        }
+        .intakeTitle {
+            background-color: #E5E5E5;
+            padding: 10px 7px 7px 7px;
+            .intakeUnderline {
+                border-bottom: 1px solid #ccc;
+                position: relative;
+                top: -5px;
+            }
+        }
+        .intakeMedication {
+            background-color: #E5E5E5;
+            padding: 10px 7px 7px 7px;
+            font-size: 16px;
+            .medicationTitle {
+                font-style: italic;
+            }
+            .medicationUnderline {
+                border-bottom: 1px solid #ccc;
+                position: relative;
+                top: -5px;
+            }
+            .medicationList {
+                background-color: #ccc;
+                padding-left: 7px;
+                padding-top: 5px;
+                margin-bottom: 5px;
+            }
+            .medicationNone {
+                padding-top: 10px;
+                padding-left: 10px;
+            }
+        }
+        .intakeParagraph {
+            text-align: justify;
+            font-size: 14px;
+            padding-top: 10px;
+        }
+    }
+    .reportObjective {
+        padding-top: 10px;
+        font-size: 18px;
+        .objectiveTitle {
+            padding-top: 7px;
+        }
+        .objectiveUnderline {
+            border-bottom: 2px solid #CCC;
+            position: relative;
+            top: -4px;
+        }
+        p {
+            text-align: justify;
+            font-size: 14px;
+            padding-top: 10px;
+        }
+        li {
+            text-align: justify;
+            font-size: 14px;
+        }
+    }
+    .reportDOne {
+        padding-bottom: 10px;
+        padding-top: 20px;
+    }
+}
+//Patient ConcernsContent
+.ConcernsContent {
+    margin-top: 129px !important;
+    .PrimaryList {
+        top: 3px;
+        padding: 1px;
+        cursor: pointer;
+        .Step1 {
+            color: #888;
+            float: right;
+            margin-right: 10px;
+            margin-top: 17px;
+            font-family: $fontFamily_regular;
+        }
+        .PrimaryContent {
+            margin-top: 30px;
+            h1 {
+                font-size: 25px;
+                margin-bottom: 2px;
+                width: 100%;
+                position: relative;
+                top: -6px;
+                padding-top: 5px;
+            }
+            p {
+                margin-left: 19px;
+                margin-bottom: 10px;
+                font-size: 16px;
+                margin-top: -7px;
+                width: 80%;
+                white-space: normal;
+            }
+            div {
+                float: right;
+                left: -15px;
+                position: relative;
+                margin-top: -55px;
+                cursor: pointer;
+            }
+        }
+    }
+    .PrimaryConcernList {
+        p {
+            width: 84%;
+            padding-top: 6px;
+            font-family: $fontFamily_regular;
+            font-size: 19px;
+        }
+        div {
+            float: right;
+            left: 0px;
+            position: relative;
+        }
+    }
+    .SecondaryList {
+        padding: 1px;
+        cursor: pointer;
+        .SecondaryContent {
+            margin-top: 10px;
+            h1 {
+                font-size: 25px;
+                margin-bottom: 2px;
+            }
+            p {
+                margin-left: 19px;
+                margin-bottom: 10px;
+                font-size: 16px;
+                width: 75%;
+                white-space: initial;
+            }
+            div {
+                float: right;
+                left: -15px;
+                position: relative;
+                margin-top: -55px;
+            }
+        }
+    }
+    .surgeryList {
+        font-family: $fontFamily_regular;
+        margin-top: 8px;
+        a {
+            padding-left: 15px;
+            .surgeryDetails {
+                float: left;
+                width: 80%;
+                .surgeryName {
+                    font-size: 20px;
+                    p {
+                        font-size: 20px;
+                        white-space: pre-wrap;
+                        padding-top: 3px;
+                        font-family: $fontFamily_regular;
+                    }
+                }
+                .surgeryDate {
+                    padding-top: 5px;
+                    font-size: 15px;
+                    color: #666666;
+                }
+            }
+            .surgerydelete {
+                text-align: right;
+                margin-right: -1px;
+                margin-top: 10px;
+            }
+        }
+    }
+}
+.searchdata {
+    text-align: center;
+    font-family: Glober Bold;
+    font-size: 20px;
+   // margin-top: 90px;
+}
+.platform-ios {
+    .ConcernsFooter {
+        opacity: 2;
+        font-weight: 600;
+    }
+}
+.ConcernsFooter {
+    width: 100%;
+    .FooterLeft {
+        .ion-chevron-left:before {
+            content: "\f124";
+            font-size: 22px;
+            margin-top: 0px;
+        }
+        float:left;
+        width:33%;
+        cursor:pointer;
+        position: relative;
+        top: -10px;
+        left: 0px;
+        span {
+            // top: -2px;
+            // position: relative;
+            position:absolute;
+            top:3px;
+            font-weight: bold;
+        }
+        a {
+            padding: 10px 10px 10px 0px;
+            font-size: 17px;
+        }
+    }
+    .FooterCenter {
+        text-align: center;
+        float: left;
+        width: 33%;
+        position: relative;
+        top: -6px;
+        a {
+            /*color:#b8b8b8;*/
+
+            cursor: pointer;
+            font-weight: bold;
+            padding: 10px;
+            font-size: 17px;
+            color: #FFFFFF;   
+            font-family: $fontFamily_bold;
+        }
+        .newProCancel {
+            font-family: $fontFamily_regular;
+            color: #999999;
+            font-weight: normal;          
+        }
+    }      
+    .FooterRight {
+        .ion-chevron-right:before {
+            content: "\f125";
+            font-size: 22px !important;
+            margin-top: -2px;
+            position: absolute;
+            top: -4px;
+            right: 12px;
+
+        }
+        text-align:center;
+        float:right;
+        width:33%;
+        position: relative;
+        top: -4px;
+        //left: 5px;
+        margin: 0 auto !important;
+
+        a {
+            cursor: pointer;
+            font-weight: bold;
+            padding: 10px 0px 10px 47px;
+            font-size: 17px;
+        }
+        .ConcernFooterNext {
+            margin-left: -42px;
+            position: relative;
+            top: -3px;
+            right: 25px;
+            float:right;
+            //margin-left: -44px;margin-right: 25px;position: relative;top: -4px;left: -20px;
+        }
+    }
+}
+
+.concernListHeader {
+    height: 55px;
+    .concernListTitle {
+        top: 8px !important;
+        font-size: 20px !important;
+        color: #FFFFFF !important;
+        font-family: $fontFamily_semibold;
+    }
+    .concernListDone {
+        top: 7px !important;
+        font-size: 18px !important;
+        font-family: $fontFamily_regular;
+        padding: 9px !important;
+    }
+    .concernListTitle-ios {
+    //  top: 8px !important;
+      font-size: 20px !important;
+      color: #FFFFFF !important;
+      font-family: $fontFamily_semibold;
+    }
+    .concernListDone-ios {
+        top: 5px !important;
+        font-size: 15px !important;
+        font-family: $fontFamily_semibold;
+    }
+}
+.srchlist{margin-top:10px;}
+.concernListContent {
+    margin-top: 60px;
+    .concernListSearch {
+        padding: 11px 0px;
+        top: 0px;
+        border: 0px;
+        .concernListSearchHome {
+            padding: 20px 11px 16px 11px;
+            top: 0px;
+            .SearchLabel-Android {
+                margin-top: -19px;
+                .SearchBox {
+                    color: #535353;
+                    font-weight: normal;
+                    margin-top: 0px;
+                }
+                ::-webkit-input-placeholder {
+                    /* WebKit browsers */
+
+                    color: $Tundora !important;
+                    font-size: 19px !important;
+                    padding-top: 5px !important;
+                }
+                :-moz-placeholder {
+                    /* Mozilla Firefox 4 to 18 */
+
+                    color: $Tundora !important;
+                    font-size: 19px !important;
+                    padding-top: 5px !important;
+                    opacity: 1;
+                }
+                ::-moz-placeholder {
+                    /* Mozilla Firefox 19+ */
+
+                    color: $Tundora !important;
+                    font-size: 19px !important;
+                    padding-top: 5px !important;
+                    opacity: 1;
+                }
+                :-ms-input-placeholder {
+                    /* Internet Explorer 10+ */
+
+                    color: $Tundora !important;
+                    font-size: 19px !important;
+                    padding-top: 5px !important;
+                }
+            }
+            .SearchLabel-IOS {
+                margin-top: -19px;
+                .SearchBox {
+                    color: #535353;
+                    font-weight: normal;
+                    margin-top: 0px;
+                    position: relative;
+                    top: 2px;
+                }
+                ::-webkit-input-placeholder {
+                    /* WebKit browsers */
+
+                    color: $Tundora !important;
+                    font-size: 19px !important;
+                    padding-top: 5px !important;
+                    position: relative;
+                    top: -1px;
+                    font-weight: normal;
+                }
+                :-moz-placeholder {
+                    /* Mozilla Firefox 4 to 18 */
+
+                    color: $Tundora !important;
+                    font-size: 19px !important;
+                    padding-top: 5px !important;
+                    opacity: 1;
+                    position: relative;
+                    top: -1px;
+                    font-weight: normal;
+                }
+                ::-moz-placeholder {
+                    /* Mozilla Firefox 19+ */
+
+                    color: $Tundora !important;
+                    font-size: 19px !important;
+                    padding-top: 5px !important;
+                    opacity: 1;
+                    position: relative;
+                    top: -1px;
+                    font-weight: normal;
+                }
+                :-ms-input-placeholder {
+                    /* Internet Explorer 10+ */
+                    color: $Tundora !important;
+                    font-size: 19px !important;
+                    padding-top: 5px !important;
+                    position: relative;
+                    top: -1px;
+                    font-weight: normal;
+                }
+            }
+        }
+    }
+    .UserHmeSub {
+        padding: 12px 10px 5px 10px;
+        .item-input {
+            margin-top: 5px;
+            background: #E6E6E2;
+            margin-left: 5px;
+            margin-right: 5px;
+            border-radius: 9px;
+            border: 1px solid $Altoa;
+            ::-webkit-input-placeholder {
+                /* WebKit browsers */
+                color: $Tundora !important;
+                font-size: 18px !important;
+                padding-top: 5px !important;
+            }
+            :-moz-placeholder {
+                /* Mozilla Firefox 4 to 18 */
+                color: $Tundora !important;
+                font-size: 18px !important;
+                padding-top: 5px !important;
+                opacity: 1;
+            }
+            ::-moz-placeholder {
+                /* Mozilla Firefox 19+ */
+                color: $Tundora !important;
+                font-size: 18px !important;
+                padding-top: 5px !important;
+                opacity: 1;
+            }
+            :-ms-input-placeholder {
+                /* Internet Explorer 10+ */
+                color: $Tundora !important;
+                font-size: 18px !important;
+                padding-top: 5px !important;
+            }
+            input {
+                font-size: 17px;
+                color: #616462;
+                height: 26px;
+                margin-top: 0px;
+                font-family: $fontFamily_regular;
+            }
+        }
+    }
+    .concernListDetails {
+        font-size: 19px;
+        font-family: $fontFamily_regular;
+        color: #666666;
+    }
+}
+.SurgeryHeader {
+    height: 50px;
+    .SurgeryCancel {
+        top: -2px;
+        font-size: 15px !important;
+    }
+    .SurgeryTitle {
+        top: 4px !important;
+        font-size: 16px !important;
+    }
+    .SurgeryDone {
+        top: 1px !important;
+        font-size: 15px !important;
+    }
+}
+.SurgeryContent {
+    margin-top: 48px;
+    span.input-label {
+        font-size: 19px;
+        color: #666;
+        padding-top: 10px;
+    }
+    .validated input {
+        font-size: 19px;
+        line-height: 36px;
+    }
+}
+.archeight {
+    height: 81px;
+}
+.aligncentericon {
+    margin-top: 5px;
+    text-align: center
+}
+.dotrow {
+    background-color: white;
+    height: 54px;
+    padding: 0px;
+}
+.dotcol {
+    background-color: #A2D28A;
+    height: 50px;
+    margin-left: -4px;
+}
+.dotcont {
+    color: white;
+    font-size: 10px;
+    margin-top: -10px !important;
+}
+.doticon {
+    font-size: 22px;
+    color: #888888;
+    .icon-magnifying-glass {
+        font-size: 18px !important;
+        margin-right: 22px !important;
+    }
+}
+.item-input-wrapper {
+    .icon-magnifying-glass {
+        font-size: 22px;
+        margin-right: 22px !important;
+    }
+}
+.dotfont {
+    font-size: 10px;
+    font-family: Glober Regular;
+    color: #666666;
+    margin-top: -7px;
+}
+.colmore {
+    margin-left: 5px;
+    padding: 0px;
+    background-color: #f3f2ea;
+    height: 50px;
+}
+.colpad {
+    width: 73px;
+    padding: 0px;
+    background-color: #f3f2ea;
+    height: 50px;
+    margin-top: 0px !important;
+    margin-left: 0px !important;
+}
+.moretab {
+    width: 25%;
+    background-color: #A2D28A;
+    text-align: center;
+    .moralign {
+        margin-top: -15px;
+        .moreicon {
+            font-size: 22px;
+            margin-left: 35px;
+            color: #888888;
+        }
+        .morecont {
+            font-size: 11px;
+            margin-top: -12px;
+            color: #666666;
+        }
+    }
+}
+.tabmoreicon {
+    margin-top: -4px;
+    font-size: 20px !important;
+    color: white;
+}
+.statuscol {
+    background-color: #ECECEC;
+    width: 37%;
+    .status {
+        margin-left: 10px;
+        font-size: 11px;
+        margin-top: -10px;
+    }
+    .statuscont {
+        margin-left: -31px;
+        font-size: 12px;
+        font-family: Glober SemiBold;
+    }
+}
+.relationcol {
+    background-color: #F4F4F4;
+    width: 40%;
+    .relation {
+        margin-left: 10px;
+        font-size: 10px;
+        color: #999999;
+    }
+    .relationcont {
+        margin-top: -12px;
+        color: #666666;
+        font-size: 16px;
+        margin-left: 9px;
+        font-family: Glober SemiBold;
+    }
+}
+.listarchieved {
+    background-color: rgba(12, 96, 238, 0.78);
+    margin-left: -5px;
+    margin-right: -4px;
+    margin-top: -5px !important;
+    margin-bottom: -5px;
+    color: white;
+}
+#couserlist {
+    margin-top: -2px !important;
+}
+#dependuserlist {
+    margin-top: -2px !important;
+}
+.conTreatSubHead-Android {
+  .consentTitle {
+    margin-top: 136px !important;
+    font-size: 25px !important;
+    margin-left: 15px !important;
+    width: 100%;
+    padding-top: 32px;
+  }
+  .consentSubTitle {
+      margin-top: -10px;
+      margin-left: 16px;
+      padding-bottom: 0px;
+      font-family: $fontFamily_semibold;
+      color: #888888;
+      padding-right: 12%;
+  }
+}
+.conTreatSubHead-IOS {
+  .consentTitle {
+      margin-top: 136px !important;
+      font-size: 25px !important;
+      margin-left: 15px !important;
+      width: 100%;
+      padding-top: 7px;
+  }
+    .consentSubTitle {
+        margin-top: 22px;
+        margin-left: 16px;
+        padding-bottom: 0px;
+        font-family: $fontFamily_semibold;
+        color: #888888;
+        padding-right: 12%;
+    }
+}
+.ConsentSteps {
+    color: #888;
+    float: right;
+    margin-right: 15px;
+    margin-top:20px;
+    font-size: 16px;
+}
+
+.consentSubTitle {
+    margin-top: 22px;
+    margin-left: 16px;
+    padding-bottom: 0px;
+    font-family: $fontFamily_semibold;
+    color: #888888;
+    padding-right: 12%;
+}
+
+
+.consentLine {
+    border-bottom: 1px solid #A9ABA7;
+}
+.ConsentContent {
+    margin-top: 195px !important;
+    .ConsentMessageFirst {
+        border-bottom: 1px solid #ddd;
+        margin: 12px 10px 10px 10px;
+        p {
+            text-overflow: clip;
+            white-space: normal;
+            text-align: justify;
+            padding: 0.5em 0 0.5em 0;
+            color: #000;
+        }
+    }
+    .ConsentMessageSecond {
+        border-bottom: 1px solid #ddd;
+        margin: 10px 10px 10px 10px;
+        p {
+            text-overflow: clip;
+            white-space: normal;
+            text-align: justify;
+            padding: 0.5em 0 0.5em 0;
+            color: #595959;
+        }
+    }
+    .ConsentMessageAgree {
+        margin: 17px 15% 10px 15%;
+    }
+    .ConsentMessageAgreeText {
+        margin: 17px 10px 10px 17px;
+        p {
+            text-overflow: clip;
+            white-space: normal;
+            text-align: justify;
+            padding: 0.5em 0 0.5em 0;
+            color: #919191;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        .ConsentCancel {
+            background-color: #fff;
+            border: none;
+            font-size: 16px;
+            color: #999999;
+          }
+    }
+}
+.UserHomeIcon {
+    color: #999999;
+    margin-top: -40px;
+}
+.UserNeeds {
+    border-bottom: 1px solid #9D9E9C;
+    border-bottom-right-radius: 1px;
+    .SearchImage {
+        width: 10%;
+        margin-right: 17px;
+        .searchIcon {
+            float: right;
+            width: 20px;
+        }
+    }
+}
+// from Sakthi
+a {
+    text-decoration: none;
+}
+.bar.bar-positiveLess {
+    background-color: #F04E29;
+    background-image: linear-gradient(0deg, #F04E29, #F04E29 50%, transparent 50%);
+    border-color: #F04E29;
+}
+.bar-headerLess {
+    border-bottom-width: 0px;
+    border-top-width: 0;
+    top: 0;
+    background-color: #DD472D;
+    background-image: linear-gradient(0deg, #DD472D, #DD472D 50%, transparent 50%);
+    box-shadow: inset 0 -13px 8px -13px #000;
+    -moz-box-shadow: inset 0 -13px 8px -13px #000;
+    -webkit-box-shadow: inset 0 -13px 8px -13px #000;
+}
+.bar-subheaderLessAndroid {
+    display: block;
+    height: 88px;
+    top: 47px;
+    -moz-box-shadow: 0px 4px 3px #A8A6A6;
+    -webkit-box-shadow: 0px 4px 3px #A8A6A6;
+    box-shadow: 0px 4px 3px #A8A6A6;
+    border-top: none;
+}
+.bar-subheaderLessIOS {
+    display: block;
+    height: 95px;
+    top: 48px;
+    -moz-box-shadow: 0px 3px 5px #A8A6A6;
+    -webkit-box-shadow: 0px 3px 5px #A8A6A6;
+    box-shadow: 0px 3px 5px #A8A6A6;
+    border-top: none;
+}
+.head_titleLessAndroid {
+    @include font($fontFamily_xBold, bold, 32px);
+    text-align: center;
+    color: $Flamingo;
+    position: relative;
+    top: 24px;
+}
+.head_titleLessIOS {
+    @include font($fontFamily_xBold, bold, 33px);
+    text-align: center;
+    color: $Flamingo;
+    position: relative;
+    top: 26px;
+}
+.bar-TitleLess-Android {
+    display: block;
+    background-color: #EFEFED;
+    height: 63px;
+    position: relative;
+    top: 141px;
+}
+.bar-TitleLess-IOS {
+    display: block;
+    background-color: #EFEFED;
+    height: 70px;
+    margin-top: 144px;
+}
+.bar-TitleLess-terms-Android {
+    display: block;
+    background-color: #EFEFED;
+    height: 63px;
+    position: relative;
+    top: 141px;
+}
+.bar-TitleLess-terms-IOS {
+    display: block;
+    background-color: #EFEFED;
+    height: 63px;
+    margin-top: 147px;
+}
+.TitleLess {
+    @include font($fontFamily_bold, normal, 23px);
+    text-align: left;
+    position: relative;
+    top: 25px;
+    margin: 12px;
+    Color: #4D4D4D;
+}
+.ContentList_provider-Android {
+    margin: 153px 0 0 0;
+      background-color: #EFEFED;
+    .item {
+        padding: 42px 18px 27px 35px;
+        color: #787878;
+        font-size: 22px;
+        font-family: $fontFamily_regular;
+        .ion-chevron-right.ListLinkHref {
+            font-size: 28px;
+            margin-top: -8px;
+        }
+    }
+}
+.ContentList_provider-IOS {
+    margin: 167px 0 0 0;
+    background-color: #EFEFED;
+    .item {
+        padding: 42px 18px 27px 35px;
+        color: #787878;
+        font-size: 22px;
+        font-family: $fontFamily_regular;
+        .ion-chevron-right.ListLinkHref {
+            font-size: 28px;
+            margin-top: -8px;
+        }
+    }
+}
+.ContentList_terms-IOS {
+    margin: 166px 0 0 0;
+  //  background-color: #EFEFED;
+    .item {
+        padding: 42px 18px 27px 35px;
+        color: #787878;
+        font-size: 22px;
+        font-family: $fontFamily_regular;
+        .ion-chevron-right.ListLinkHref {
+            font-size: 28px;
+            margin-top: -8px;
+        }
+    }
+}
+.ContentList_terms-Android {
+
+    background-color: #EFEFED;
+
+    margin: 160px 0 0 0;
+
+    .item {
+        padding: 42px 18px 27px 35px;
+        Color: #787878;
+        font-size: 22px;
+        font-family: $fontFamily_regular;
+        .ion-chevron-right.ListLinkHref {
+            font-size: 28px;
+            margin-top: -8px;
+        }
+    }
+}
+.authorcont {
+    .ion-chevron-right:before {
+        font-size: 13px !important;
+        margin-left: 2px;
+        color: #888;
+        top: 0px;
+    }
+}
+.unauthorrelationship {
+    .ion-chevron-right:before {
+        font-size: 14px;
+    }
+}
+.ContentList {
+    margin: 138px 0 0 0;
+}
+.bar .buttons > .button {
+    min-height: 29px;
+    line-height: 45px;
+    color: #FFFFFF;
+    position: relative;
+    top: -4px;
+}
+.ListLinkHref {
+    float: right;
+}
+.ListLinkHref a {
+    text-decoration: none;
+}
+.regularfamily {
+    font-family: GloberRegular;
+    line-height: 16pt;
+}
+.lnamefont {
+    font-family: Glober Regular;
+    font-size: 138%;
+}
+.fnamefont {
+    font-family: Glober Bold;
+    font-size: 138%;
+}
+.headerheight {
+    height: 128px !important;
+}
+.healthSubHeight {
+     height: 197px !important;padding: 0px;     background-image: none;
+     .healthSubRow {
+          background-color: #444444;
+          height: 111px;
+          .healthSubNameHeader {
+                   padding-top: 6px;
+          }
+     }
+}
+
+.subheaderheight {
+    top: 64px;
+    height: 111px;
+    border-color: #5D5959 !important;
+      border-bottom: none;
+    .item {
+        margin: -5px;
+    }
+    .button-bar{
+      padding:2px 1%;
+    }
+
+    .userAccountPanel {
+          margin-top: -7px !important;
+          .uAPlProfileImage {
+                margin-top: -2px;
+
+          }
+    }
+}
+.healthTab {
+         padding: 0 3%;
+}
+.usersubheaderheight {
+    top: 65px;
+    height: 109px;
+    border-color: #444444 !important;
+    background-color: #444444 !important;
+}
+.avatpad {
+    padding: 14px !important;
+}
+.relatedhead {
+    margin-top: 9px !important;
+}
+.itemiconcolor {
+    background-color: #444444;
+}
+.bar .title {
+    text-align: center
+}
+.pationcontent {
+    margin-top: 110px;
+}
+.itemtextwap {
+    margin-top: 0px !important;
+}
+.itemtext {
+    padding-left: 29px;
+    border: none;
+}
+.patavatar {
+    padding-left: 20px;
+    border-top: none;
+    padding-top: 10px !important;
+}
+.patimage {
+    max-width: 50px !important;
+    max-height: 50px !important;
+    top: 5px !important;
+}
+.pattime {
+    margin: 0 0 11px 0;
+    font-size: 55px;
+    font-family: Glober Bold;
+    margin-left: 24px;
+}
+.patdate {
+    font-size: 31px;
+    margin-top: 4px;
+    font-family: Glober Regular;
+}
+.patage {
+    margin-top: -5px;
+    font-size: 14px !important;
+    color: #999999 !important;
+    ;
+}
+.appfname {
+    height: 24px;
+    font-size: 20px !important;
+    font-family: Glober Bold;
+    color: #666666 !important;
+    margin-top: -13px !important;
+}
+.appfloat {
+    float: right;
+    font-size: 18px !important;
+    margin-top: -16px !important;
+}
+.healthhead {
+    margin-top: 4px;
+    text-align: center;
+    color: #666666;
+    font-size: 172%;
+    font-family: Glober Bold;
+}
+.appmarg {
+    float: right;
+    margin-top: 0px;
+    font-size: 14px !important;
+}
+.pathead {
+    font-family: Glober SemiBold;
+    color: #888888 !important;
+    margin-top: -10px !important;
+    margin-bottom: 11px !important;
+}
+.pataptdetails {
+    margin-left: -22px;
+    line-height: 1.5;
+    margin-top: -20px;
+}
+.patno {
+    background-color: rgba(204, 204, 204, 0.46);
+    color: #585858;
+    font-family: Glober SemiBold;
+}
+.patcontent {
+    color: #555555 !important;
+    font-family: Glober SemiBold;
+}
+.bar-headerHomeUser {
+    border-bottom-width: 1px;
+    border-top-width: 0;
+    top: 0;
+    background-color: $pinkPipe;
+    background-image: linear-gradient(0deg, $pinkPipe, $pinkPipe 50%, transparent 50%);
+    height: 52px;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+}
+.head_titleHomeUser {
+    @include font($fontFamily_thin, bold, 22px);
+    text-align: center;
+    color: $light;
+    display: inline-block;
+    position: relative;
+    top: 7px;
+    margin-left: -55px;
+}
+.bar-subheaderHomeUser {
+    height: 63%;
+    top: 80px;
+    margin-top: -1px;
+}
+.TitleHomeUser_Sub {
+    @include font($fontFamily_bold, bold, 23px);
+    position: relative;
+    margin-left: 7px;
+    top: 3px;
+    width: 90%;
+    color: #666666;
+}
+.ContentHomeUser {
+    margin: 81px 0 0 0;
+    font-family: $fontFamily_regular;
+}
+.ContentUserHome {
+    margin: 70px 0 0 0;
+    font-family: $fontFamily_regular;
+    border-top: 1px solid #C4C5C3;
+}
+.listImgView {
+    width: 45px !important;
+    height: 45px;
+    border-radius: 50%;
+    margin-top: 1px;
+    margin-left: 8px;
+    border: 2px solid white;
+}
+.UserAccountProfileImage img{
+    margin-top: 50px;
+}
+.UserAccountProfileImage .patProfileImage{
+    margin-top: 50px;
+}
+.UserHmelistImgView {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid rgb(153, 153, 153);
+}
+.HrefListView {
+    @include font($fontFamily_thin, normal, 21px);
+    color: #000;
+    font-size: 21px;
+    margin: 2px 12px 6px 12px;
+    .ion-chevron-right:before {
+        content: "\f125";
+        font-size: 19px;
+        margin-top: 2px;
+    }
+}
+.HrefListViewDependent {
+    @include font($fontFamily_thin, normal, 21px);
+    color: #000;
+    font-size: 21px;
+    margin: 0px 12px 6px 12px;
+}
+.ListText {
+    position: relative;
+    top: -28px;
+    margin-left: 10px;
+    font-family: $fontFamily_semibold;
+}
+.ListTextTitle {
+    position: relative;
+    top: 10px;
+    margin-left: 71px;
+    font-family: Glober Bold;
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 18pt;
+}
+.listTitle {
+    position: relative;
+    top: -48px;
+    left: 68px;
+    width: 67%;
+    font-size: 24px;
+}
+.DateFormateStyle {
+    font-family: $fontFamily_regular;
+}
+.ItemList {
+    padding: 8px;
+    background-color: #FEEDE1;
+    -webkit-box-shadow: inset 0 20px 12px -20px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: inset 0 20px 12px -20px rgba(0, 0, 0, 0.8);
+    box-shadow: inset 0 20px 12px -20px rgba(0, 0, 0, 0.8);
+}
+.ListHomeUser_p {
+    color: #706A67;
+    font-size: 14px;
+    margin-bottom: -1px;
+    margin-left: 73px;
+    margin-top: -29px;
+}
+.ListHomeUser_pTitle {
+    color: #999999 !important;
+    font-size: 14px;
+    margin-bottom: -1px;
+    margin-left: 71px;
+    padding-top: 8px;
+}
+.SubTitleSpan {
+    /*@include font($ fontFamily_regular, normal, 100%);
+    color: #666666;*/
+
+    font-family: "Glober Regular";
+    font-weight: normal;
+    font-size: 18pt;
+    color: rgba(0, 0, 0, 0.54);
+}
+.docName {
+    width: 63%;
+    position: relative;
+    top: -23px;
+    left: 102px;
+}
+.popupfont {
+    font-family: $fontFamily_regular;
+    color: #999999 !important;
+}
+.ion-search::before {
+    margin-left: 10px;
+}
+.place_hold::-webkit-input-placeholder {
+    color: #FF0000;
+}
+.appointment_with {
+    @include font($fontFamily_semibold, bold, 18px);
+    text-align: center;
+    color: #888;
+    position: relative;
+    top: -2px;
+}
+.primary {
+    background-color: #F2F0EE;
+    margin: -13px -15px 12px -12px;
+    padding: 5px;
+    font-size: 16px;
+    color: #777A78;
+    padding-top: 8px;
+}
+.secondary {
+    background-color: #F2F0EE;
+    margin: 8px -15px 11px -12px;
+    padding: 5px;
+    font-size: 16px;
+    color: #777A78;
+}
+.ptagprimary {
+    @include font($fontFamily_regular, normal, 20px);
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.pre_consultant {
+    background-color: #F2F0EE;
+    margin: -13px -15px 11px -12px;
+    padding: 5px;
+    font-size: 16px;
+    color: #777A78;
+    padding-top: 8px;
+}
+.optionList {
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+}
+.select_div {
+    margin: 33px 10px 5px 47px;
+}
+.ChronicCondition {
+    @include font($fontFamily_bold, bold, 30px);
+    color: #535353;
+    margin-left: 16px;
+}
+.alignchronic {
+    @include font($fontFamily_bold, bold, 30px);
+    color: #535353;
+    text-align: center;
+  }
+.PragraphContent {
+    @include font($fontFamily_regular, normal, 16px);
+}
+.ReportTitle {
+    @include font($fontFamily_regular, Bold, 22px);
+    width: 85%;
+    position: relative;
+}
+.Roundcircle {
+    position: relative;
+    width: 25px;
+    height: 23px;
+    background: #000;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+}
+.patientstatics {
+    background-color: #ccc;
+    height: 100px;
+    margin: 10px;
+    position: relative;
+    top: 84px;
+}
+.checkbox input:checked:before,
+.checkbox input:checked + .checkbox-icon:before {
+    background: $Feijoa;
+    border-color: $Feijoa;
+}
+.popup-title {
+    float: left;
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.checkbox input,
+.checkbox-icon {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    cursor: pointer;
+    display: block;
+    height: 28px;
+    position: relative;
+    width: 28px;
+    float: right;
+}
+.checkbox input::before,
+.checkbox-icon::before {
+    background: none repeat scroll 0 0 #fff;
+    border-radius: 28px;
+    border-style: none;
+    border-width: 1px;
+    content: "";
+    display: table;
+    height: 100%;
+    transition: background-color 20ms ease-in-out 0s;
+    width: 100%;
+}
+.item-checkbox .checkbox {
+    left: 8px;
+    margin-right: 12px;
+    margin-top: -21px;
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    z-index: 3;
+}
+.disable-pointer-events {
+    margin-left: -47px;
+    pointer-events: none;
+    width:17em;
+    white-space: normal;
+}
+.ContentSearchHomeUser {
+    @extend .login_content;
+    margin: -20px 0 0 0;
+    .item-input {
+        border: 1px solid $Altoa;
+        border-radius: 8px;
+        height: 45px;
+        font-weight: bold;
+        background-color: #E6E6E6;
+        ::-webkit-input-placeholder {
+            /* WebKit browsers */
+            color: $Tundora !important;
+            font-size: 19px !important;
+            padding-top: 3px !important;
+        }
+        :-moz-placeholder {
+            /* Mozilla Firefox 4 to 18 */
+            color: $Tundora !important;
+            font-size: 19px !important;
+            padding-top: 3px !important;
+            opacity: 1;
+        }
+        ::-moz-placeholder {
+            /* Mozilla Firefox 19+ */
+            color: $Tundora !important;
+            font-size: 19px !important;
+            padding-top: 3px !important;
+            opacity: 1;
+        }
+        :-ms-input-placeholder {
+            /* Internet Explorer 10+ */
+            color: $Tundora !important;
+            font-size: 19px !important;
+            padding-top: 3px !important;
+        }
+        input {
+            font-size: 19px;
+        }
+    }
+}
+.PatintHeaderFontStyle {}
+#guardian {
+    display: none;
+}
+.PatintHeaderFontStyleInner {
+    font-family: $fontFamily_thin;
+}
+.PatintHeaderFontStyleSub {
+    font-family: $fontFamily_regular;
+    font-weight: normal !important;
+}
+.ItalicSemiBoldStyle {
+    font-family: $fontFamily_light;
+}
+.RegularFontStyle {
+    font-family: $fontFamily_regular;
+}
+.iconfont {
+    font-size: 20px;
+}
+.headerfont {
+   // font-family: Glober SemiBold;
+}
+//Styles for validation
+form i.icon.error {
+    color: #ef4e3a;
+}
+form input + i.icon.error {
+    display: none;
+    margin-left: 8px;
+}
+s form.ng-submitted input.ng-invalid + i.icon.error {
+    display: block;
+}
+form .has-error {
+    border-left: 0px solid #cc2511;
+    border-right: 0px solid #cc2511;
+}
+form .has-success {
+    border-left: 0px solid #3d8b3d;
+    border-right: 0px solid #3d8b3d;
+}
+form.ng-submitted input.ng-valid + i.icon.error {
+    display: none;
+}
+.validated {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+}
+
+.validated input {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 60%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 60%;
+    -ms-flex: 0 0 60%;
+    flex: 0 0 60%;
+  }
+.validated error {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 10%;
+    -moz-box-flex: 0;
+    -moz-flex: 0 0 10%;
+    -ms-flex: 0 0 10%;
+    flex: 0 0 10%;
+    max-width: 10%;
+}
+.item-radio input:checked ~ .radio-icon {
+    visibility: visible;
+    color: red;
+}
+//end Validation styles
+#healthInfoDOB {
+    line-height: 33px;
+}
+#healthInfoEmail {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: normal;
+}
+.ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: normal;
+
+}
+.textAreaPop {
+    margin: -5px -13.609375px 0px 0px;
+    width: 380px;
+    height: 80px;
+    margin-left: 0px;
+}
+.popup-container .popup {
+    width: 80%;
+    max-width: 100%;
+    max-height: 90%;
+    border-radius: 0px;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+.popup-head {
+    padding: 8px 10px;
+    border-bottom: 1px solid #888;
+    text-align: left;
+    margin-top: 14px;
+}
+.popup-body {
+    padding: 10px;
+}
+.checkbox input:after,
+.checkbox-icon:after {
+    -webkit-transition: opacity 0.05s ease-in-out;
+    transition: opacity 0.05s ease-in-out;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    position: absolute;
+    top: 33%;
+    left: 25%;
+    display: table;
+    width: 14px;
+    height: 6px;
+    border: 1px solid #fff;
+    border-top: 0;
+    border-right: 0;
+    opacity: 0;
+}
+.platform-android .checkbox-platform input:before,
+.platform-android .checkbox-platform .checkbox-icon:before,
+.checkbox-square input:before,
+.checkbox-square .checkbox-icon:before {
+    border-radius: 28px;
+    width: 100%;
+    height: 100%;
+    margin-top: -10%;
+    margin-left: 0%;
+    border-width: 2px;
+}
+.grade-c .checkbox input:after,
+.grade-c .checkbox-icon:after {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+    top: -1px;
+    left: 7px;
+    border: none;
+    color: #fff;
+    content: '\2713';
+    font-weight: bold;
+    font-size: 20px;
+}
+.popupSearch {
+    border: 1px solid #DADADA;
+    border-radius: 8px;
+    height: 37px;
+    font-weight: bold;
+    background-color: #E6E6E6;
+}
+.innerSearchPop {
+    border: 1px solid #DADADA;
+    border-radius: 8px;
+    height: 37px;
+    font-weight: bold;
+    background-color: #E6E6E6;
+}
+.userhead {
+    text-align: center;
+    color: #666666;
+    font-size: 23px;
+    font-family: Glober Bold;
+    margin-top: 10px !important;
+    margin-bottom: 5px !important;
+}
+.deticon {
+    font-size: 16px;
+    margin-left: 8px;
+}
+.moredet {
+    font-family: Glober Regular;
+    margin-left: 23px;
+    padding-bottom: 75px;
+    color: #5c5c5c;
+    font-size: 18px;
+    font-weight: normal;
+}
+.lessdet {
+    font-family: Glober Regular;
+    margin-left: 20px;
+    font-size: 18px;
+    font-weight: normal;
+    color: #5c5c5c;
+}
+.intakeNote {
+    width: 93%;
+    float: left;
+    white-space: normal !important;
+}
+.intakeNoteDelete {
+    float: right;
+}
+.addBtn {
+    //color: rgb(255,255,255);
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+    .icon-circle-with-plus {
+        font-size: 34px !important;
+    }
+}
+.AddCard {
+    .icon-circle-with-plus {
+        font-size: 30px !important;
+    }
+}
+.delBtn {
+    color: red;
+    font-size: 30px;
+    cursor: pointer;
+    .icon-circle-with-cross {
+        font-size: 34px !important;
+    }
+}
+.disabled {
+    color: #AAAAAA;
+    cursor: default;
+    pointer-events: none;
+    text-decoration: none;
+}
+/* Add the following classes to your stylesheet if you want to use data attributes for inserting your icons */
+
+.iconb:before,
+.icona:after {
+    content: attr(data-icon);
+}
+.ion-close-round:before {
+    color: #9C1C1C;
+}
+.waitingRoomImage {
+    background: url(../img/wait.png) no-repeat;
+    background-position: center center;
+    -webkit-background-size: 200px 300px;
+    ;
+    -moz-background-size: 200px 300px;
+    ;
+    -o-background-size: 200px 300px;
+    ;
+    background-size: 200px 300px;
+    padding-top: 100px;
+    .WaitingContent {
+        color: #858585;
+        .WaitingMessage {
+            font-size: 32px;
+            text-align: center;
+            padding-top: 40px;
+            .ClinicianMessage {
+                padding-top: 25px;
+                line-height: normal;
+            }
+            .ThankyouMessage {
+                padding-top: 25px;
+                color: #CECECE;
+                font-size: 20px;
+            }
+        }
+    }
+}
+.spinner svg {
+    width: 28px;
+    height: 28px;
+    stroke: #444;
+    fill: #444;
+}
+#publisher,
+.OT_mirrored OT_root OT_publisher OT_fit-mode-cover {
+    float: left;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    z-index: 3000;
+    right: 10px;
+}
+#subscriber {
+    position: relative;
+    z-index: 30;
+    float: left;
+}
+#subscriberScreen {
+    position: relative;
+    z-index: 30;
+    float: left;
+}
+.callIcons {
+    font-size: 30px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    position: relative;
+    top: 10px;
+}
+.activeCallIcon {
+    color: red;
+}
+.userSearch-Android {
+    position: relative;
+    top: 113px;
+}
+.userSearch-IOS {
+    position: relative;
+    top: 113px;
+}
+.UserHme {
+    padding: 0 0%;
+    .UserHmeSub-Android {
+        padding: 20px 10px 9px 10px;
+        .userhmeSeach {
+            position: fixed;
+            text-align: center;
+            width: 100%;
+            margin-top: 2px;
+            padding-right: 89px;
+            font-size: 16px;
+            color: #8e8e93;
+            padding-top: 7px !important;
+        }
+        .icon-magnifying-glass {
+            margin-right: 53px !important;
+            font-size: 16px;
+            position: relative;
+            top: 0px;
+            margin-bottom: 7px;
+        }
+        .item-input {
+            margin-top: 1px;
+            background: #e3e4e6;
+            margin-left: 5px;
+            margin-right: 5px;
+            border-radius: 9px;
+            border-radius: 6px;
+            height: 33px;
+          ::-webkit-input-placeholder {
+                /* WebKit browsers */
+                color: #999999 !important;
+                font-size: 14px !important;
+                padding-top: 5px !important;
+                font-family: $fontFamily_regular;
+            }
+            ::-moz-placeholder {
+                /* Mozilla Firefox 4 to 18 */
+                color: #999999 !important;
+                font-size: 14px !important;
+                padding-top: 5px !important;
+                opacity: 1;
+                font-family: $fontFamily_regular;
+            }
+            input:-moz-placeholder {
+                /* Mozilla Firefox 19+ */
+                color: #999999 !important;
+                font-size: 14px !important;
+                padding-top: 5px !important;
+                opacity: 1;
+                font-family: $fontFamily_regular;
+            }
+            :-ms-input-placeholder {
+                /* Internet Explorer 10+ */
+                color: #999999 !important;
+                font-size: 14px !important;
+                padding-top: 5px !important;
+                font-family: $fontFamily_regular;
+            }
+            input {
+                font-size: 14px;
+                color: #616462;
+                height: 28px;
+                margin-top: 3px;
+                font-family: $fontFamily_regular;
+                text-align: center;
+            }
+        }
+    }
+    .UserHmeSub-IOS {
+        padding: 15px 10px 9px 10px;
+        .userhmeSeach {
+            position: fixed;
+            text-align: center;
+            width: 100%;
+            margin-top: 2px;
+            padding-right: 65px;
+            font-size: 16px;
+            color: #8e8e93;
+            padding-top: 5px !important;
+        }
+        .icon-magnifying-glass {
+            margin-right: 47px !important;
+            font-size: 16px;
+            position: relative;
+            right: 7px;
+            top: -1px;
+        }
+        .item-input {
+            margin-top: 1px;
+            background: #e3e4e6;
+            margin-left: 5px;
+            margin-right: 5px;
+            border-radius: 6px;
+            padding: 0px;
+            ::-webkit-input-placeholder {
+                /* WebKit browsers */
+                color: #999999 !important;
+                font-size: 14px !important;
+                padding-top: 5px !important;
+                font-family: $fontFamily_regular;
+               // position: relative;
+               // top: 0px;
+            }
+            ::-moz-placeholder {
+                /* Mozilla Firefox 4 to 18 */
+                color: #999999 !important;
+                font-size: 14px !important;
+                font-family: $fontFamily_regular;
+               // position: relative;
+               // top: 0px;
+                padding-top: 5px !important;
+            }
+            input:-moz-placeholder {
+                /* Mozilla Firefox 19+ */
+                color: #999999 !important;
+                font-size: 14px !important;
+                font-family: $fontFamily_regular;
+               // position: relative;
+               // top: 0px;
+                padding-top: 5px !important;
+            }
+            :-ms-input-placeholder {
+                /* Internet Explorer 10+ */
+                color: #999999 !important;
+                font-size: 14px !important;
+                font-family: $fontFamily_regular;
+               // position: relative;
+               // top: 0px;
+                padding-top: 5px !important;
+            }
+            input {
+                font-size: 14px;
+                color: #616462;
+                height: 23px;
+                margin-top: -1px;
+                font-family: $fontFamily_regular;
+               // position: relative;
+                //top: 2px;
+                text-align: center;
+            }
+        }
+    }
+}
+
+.UserHomePatient {
+    cursor: pointer;
+    .UserHomeHeader {
+        top: 8px;
+        padding: 11px;
+        // height: 80px;
+        margin-bottom: -28px;
+        .UserhmePatientDetails {
+            margin-left: 0px;
+            margin-top: -10px !important;
+            div, p {
+
+            }
+            .User{
+                color: #999999;
+                margin-top: -34px;
+            }
+            .ion-chevron-right:before {
+                content: "\f125";
+                font-size: 19px;
+                margin-top: -2px;
+            }
+        }
+    }
+}
+.sfont {
+    margin-left: 10px;
+}
+.UserHomeNextAppointment {
+    top: 22px;
+    height: 54px;
+    .icon-video_camera {
+        font-size: 30px !important;
+    }
+    .icon-phone {
+        position: relative;
+        top: -3px;
+    }
+    a {
+        margin-left: 10px;
+        .UHomeNextAppoinment {
+            font-size: 14px;
+            top: 1px;
+            color: #888;
+            margin-left: -5px;
+        }
+        h2 {
+            margin-left: 4px;
+            margin-top: -20px;
+            font-size: 22px;
+            color: rgb(255, 255, 255);
+            font-family: GloberBold;
+            .NextAppointTime {
+                font-size: 18px;
+            }
+            .NextAppointAMorPM {
+                font-size: 14px;
+            }
+        }
+        .nextList {
+            /*color: white;
+            margin-right: 12px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            border: solid 1px white;
+            margin-top: -31px;
+            padding: 5px 12px;
+            border-radius: 50%;
+                color: white;
+                margin-right: 12px;
+                -moz-border-radius: 50%;
+                border: solid 1px white;
+                margin-top: -25px;
+                padding: 0px 7px;
+                border-radius: 50%;*/
+
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            padding-left: 7px;
+            margin-top: -23px;
+            border: 1px solid white;
+            color: white;
+            margin-right: 12px;
+        }
+        .AppointmentView {
+                    float: right;
+                    font-size: 14px;
+                    margin-right: 39px;
+                    color: white;
+                    margin-top: -26px;
+                    font-family: GloberSemiBold;
+        }
+    }
+}
+.DependentList {
+    padding: 11px;
+    top: 25px;
+    height: 71px;
+    a {
+        cursor: pointer;
+        p {
+            margin-left: 83px;
+        }
+    }
+}       
+.bar .button.button-clear .icon:before,
+.bar .button.button-clear.icon:before,
+.bar .button.button-clear.icon-left:before,
+.bar .button.button-clear.icon-right:before {
+    font-size: 30px !important;   
+}
+.bar .button.button-clear.icon:before {
+    font-size: 30px !important;
+}
+.iconsize {
+    font-size: 26px !important;
+}
+.HeaderListIOS {    
+    font-size: 20px;
+    text-align: center;
+    width: 100%;
+    margin-top: 11px;
+}
+.HeaderListAndroid {
+    font-size: 20px;
+    text-align: center;
+    width: 100%;
+    top: -1px; // margin-left: -32px;;
+}
+.menuiconIOS {
+    position: relative;
+    top: 4px;
+    font-size: 22px !important;
+}
+.subHeaderTop {
+    top: 70px;
+    padding-top: 19px;
+    height: 56px;
+}
+#BackButtonIcon {
+    color: white;
+    font-size: 12px !important;
+    margin-top: 15px;
+    display: block !important;
+}
+#SearchBackButtonIcon {
+    color: #444444;
+    font-size: 12px !important;
+    margin-top: 15px;
+    display: block !important;
+}
+.iconbackbutton {
+    top: 0px !important;
+}
+#WhoNeeds {
+    font-size: 24px;
+    width: 85%;
+    color: rgba(0,0,0,0.75);
+}
+.BackButton {
+    padding-top: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 68px;
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+}
+.ion-chevron-left:before {
+    content: "\f124";
+    font-size: 22px;
+    margin-top: 0px;
+}
+.providerName {
+    width: 85%;
+    position: relative;
+    top: -5px;
+}
+.providerIcon {
+    .ion-chevron-right:before {
+        content: "\f125";
+        font-size: 27px;
+        margin-top: -4px;
+        Color: #898989;
+    }
+}
+.ion-chevron-right:before {
+    content: "\f125";
+    font-size: 25px;
+    margin-top: -2px;
+}
+.popupnotification {
+    position: relative !important;
+}
+
+.ErrorContent {
+    text-align: center;
+    width: 93% !important;
+    margin-top: 22px !important;
+    margin-bottom: -30px;
+}
+.NoticationClose {
+    position: relative;
+    width: 7% !important;
+    float: right !important;
+    margin-top: -4px !important;
+}
+.noticationIcon {
+    left: 0px;
+    position: relative;
+    top: 19px !important;
+}
+.pac-item > span:last-child {
+    display: none;
+}
+.confCamera {
+    float: left;
+    width: 30%;
+    border-right: 1px solid gray;
+    margin-top: -20px;
+    margin-bottom: 13px;
+    cursor: pointer;
+}
+.confEndCall {
+    width: 39%;
+    border-right: 1px solid gray;
+    float: left;
+    font-size: 18px;
+    /*margin-top: 2px;*/
+
+    margin-top: -20px;
+    margin-bottom: 13px;
+    cursor: pointer;
+}
+.confMute {
+    width: 30%;
+    float: left;
+    margin-top: -20px;
+    margin-bottom: 13px;
+    cursor: pointer;
+}
+.doctorImgeSize {
+    width: 50px !important;
+    height: 50px;
+    margin-top: 1px;
+}
+.passwordSubHeader {
+    height: auto;
+    line-height: 1.0em;
+    padding-top: 47px;
+    box-shadow: 0px 3px 3px #ADABAB;
+    -moz-box-shadow: 0px 3px 3px #ADABAB;
+    -webkit-box-shadow: 0px 3px 3px #ADABAB;
+}
+.consentIAgree {
+    position: relative;
+    top: 3px;
+}
+
+.regContainer {
+     height: 49px;
+     position: fixed;
+  .regDropDownContainer {
+    /*position: relative;
+    height: 33px;*/
+    .viewport {
+        pointer-events: none;
+        color: #60605D;
+        position: absolute;
+        width: 83%;
+        height: 100%;
+        z-index: 15;
+        overflow: hidden;
+        white-space: nowrap;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        text-align: left;
+        padding-top: 6px;
+      }
+
+      .consultHealthPlanDropDown {
+          z-index: 2;
+          position: relative;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          text-indent: 0.01px;
+          text-overflow: "";
+          color: transparent;
+          option {
+              color: #666666;
+          }
+      }
+      ::-webkit-input-placeholder {
+          /* WebKit browsers */
+
+          font-size: 14px !important;
+      }
+      :-moz-placeholder {
+          /* Mozilla Firefox 4 to 18 */
+
+          font-size: 14px !important;
+          opacity: 1;
+      }
+      ::-moz-placeholder {
+          /* Mozilla Firefox 19+ */
+
+          font-size: 14px !important;
+          opacity: 1;
+      }
+      :-ms-input-placeholder {
+          /* Internet Explorer 10+ */
+
+          font-size: 14px !important;
+      }
+
+  }
+}
+
+.noPlanContainer-Android {
+    .dropdownContainer {
+        .healthPlanDropDown {
+          //  z-index: 2;
+            position: relative;
+           -webkit-appearance: none;
+           -moz-appearance: none;
+            background: #E6E6E6 url(../img/select-arrow.png) no-repeat 95% center;
+      //      width: 102%;
+           width: 100%;
+            padding-right: 37px;
+          //  text-indent: 0.01px;
+          // text-overflow: "";
+            border-radius: 7px;
+           // margin-left: 8px;
+        //  padding: 6px;
+            //border: 1px solid #666666! important;
+            border: 1px solid #CDCACA !important;
+            height: 42px;
+            font-size: 18px;
+            border: none;
+            color: #666666;
+            //color: transparent;
+            padding: 10px 33px 10px 10px;
+        }
+
+        .consultHealthPlanDropDown {
+            z-index: 2;
+            position: relative;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: #fff url(../img/select-arrow.png) no-repeat 95% center;
+            width: 102%;
+            text-indent: 0.01px;
+            text-overflow: "";
+          //  border-radius: 7px;
+            margin-left: 8px;
+            padding: 6px;
+            border-bottom: 1px solid #666666! important;
+            border-top: 1px solid #666666! important;
+            height: 60px;
+            font-size: 18px;
+            color: transparent;
+            option {
+                color: #666666;
+            }
+        }
+        ::-webkit-input-placeholder {
+            /* WebKit browsers */
+
+            font-size: 14px !important;
+        }
+        :-moz-placeholder {
+            /* Mozilla Firefox 4 to 18 */
+
+            font-size: 14px !important;
+            opacity: 1;
+        }
+        ::-moz-placeholder {
+            /* Mozilla Firefox 19+ */
+
+            font-size: 14px !important;
+            opacity: 1;
+        }
+        :-ms-input-placeholder {
+            /* Internet Explorer 10+ */
+
+            font-size: 14px !important;
+        }
+    }
+    .healthPlanDropDown {
+      //  color: transparent;
+        background: none;
+    }
+    .dropdownContainer {
+        position: relative;
+        height: 50px;
+        margin-left: -4px;
+        margin-right: 16px;
+    }
+    .viewport {
+        pointer-events: none;
+        color: #60605D;
+        position: absolute;
+        width: 83%;
+        height: 100%;
+        z-index: 15;
+        overflow: hidden;
+        white-space: nowrap;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        font-size: 19px;
+        padding: 6px;
+        left: 18px;
+        top: 8px;
+        text-align: left;
+        /*font-weight: bold;*/
+    }
+    .viewport1 {
+        pointer-events: none;
+        color: #666666;
+        position: absolute;
+        width: 60%;
+        height: 100%;
+        //z-index: 15;
+        overflow: hidden;
+        white-space: nowrap;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        font-size: 16px;
+        padding: 6px;
+        left: 25px;
+        top: 8px;
+        /*font-weight: bold;*/
+
+        text-align: left;
+    }
+    .cardViewport {
+        pointer-events: none;
+        color: #60605D;
+        position: absolute;
+        width: 95%;
+        height: 100%;
+        z-index: 15;
+        overflow: hidden;
+        white-space: nowrap;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        font-size: 19px;
+        padding: 6px;
+        left: 14px;
+        top: 8px;
+        text-align: left;
+        /*font-weight: bold;*/
+    }
+    .healthPlanDropDown {
+        option {
+            color: #666666;
+        }
+    }
+}
+.noPlanContainer-IOS {
+    .dropdownContainer {
+        .healthPlanDropDown {
+            width: 100%;
+            z-index: 2;
+            position: relative;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: #E6E6E6 url(../img/select-arrow.png) no-repeat 95% center;
+          //  background: #fff url(../img/select-arrow.png) no-repeat 95% center;
+            text-indent: 0.01px;
+            text-overflow: "";
+            border-radius: 7px;
+            padding: 6px;
+            border: 1px solid #CDCACA !important;
+            //border: 1px solid #666666 !important;
+            height: 42px;
+            font-size: 18px;
+            border: none;
+              padding: 10px 39px 10px 10px;
+           // color: transparent;
+        }
+        .consultHealthPlanDropDown {
+            z-index: 2;
+            position: relative;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: #fff url(../img/select-arrow.png) no-repeat 95% center;
+            width: 102%;
+            text-indent: 0.01px;
+            text-overflow: "";
+          //  border-radius: 7px;
+          //  margin-left: 8px;
+            padding: 6px;
+            border-bottom: 1px solid #666666! important;
+            border-top: 1px solid #666666! important;
+            height: 60px;
+            font-size: 18px;
+            color: transparent;
+            option {
+                color: #666666;
+            }
+        }
+        ::-webkit-input-placeholder {
+            /* WebKit browsers */
+
+            font-size: 14px !important;
+        }
+        :-moz-placeholder {
+            /* Mozilla Firefox 4 to 18 */
+
+            font-size: 14px !important;
+            opacity: 1;
+        }
+        ::-moz-placeholder {
+            /* Mozilla Firefox 19+ */
+
+            font-size: 14px !important;
+            opacity: 1;
+        }
+        :-ms-input-placeholder {
+            /* Internet Explorer 10+ */
+
+            font-size: 14px !important;
+        }
+    }
+    .healthPlanDropDown {
+      //  color: transparent;
+        background: none;
+    }
+
+    .dropdownContainer {
+        position: relative;
+        height: 50px;
+        text-align: center;
+        //margin-left: 4px;
+        margin-right: 4px;
+        //	margin-left: 50px;
+    }
+    .viewport {
+        pointer-events: none;
+        color: #60605D;
+        position: absolute;
+        width: 83%;
+        height: 100%;
+        z-index: 15;
+        overflow: hidden;
+        white-space: nowrap;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        font-size: 19px;
+        padding: 6px;
+        left: 18px;
+        top: 8px;
+        text-align: left;
+        /*font-weight: bold;*/
+    }
+    .viewport1 {
+        pointer-events: none;
+        color: #60605D;
+        position: absolute;;
+        width: 60%;
+        height: 100%;
+        z-index: 15;
+        overflow: hidden;
+        white-space: nowrap;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        font-size: 19px;
+        padding: 6px;
+        margin-left: 20%;
+        top: 8px;
+      text-align: left;
+    }
+    .cardViewport {
+        pointer-events: none;
+        color: #60605D;
+        position: absolute;
+        width: 92%;
+        height: 100%;
+        z-index: 15;
+        overflow: hidden;
+        white-space: nowrap;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        font-size: 19px;
+        padding: 6px;
+        left: 13px;
+        top: 8px;
+        text-align: left;
+        /*font-weight: bold;*/
+    }
+    .healthPlanDropDown {
+        option {
+            color: #60605D;
+        }
+    }
+}
+.bar .button.button-clear.icon:before {
+    font-size: 40px;
+}
+.BacgroundColorContent {
+    background-color: #EFEFED;
+}
+.NeedanAcount_android {
+    text-align: center;
+    font-family: $fontFamily_bold;
+}
+.NeedanAcount_ios {
+    text-align: center;
+    font-family: $fontFamily_bold;
+    top: 25px;
+    float: none;
+    position: relative;
+}
+.needanaccountPragraph {
+    font-family: $fontFamily_regular;
+    margin-left: -10px;
+}
+.footerBackButton {
+    top: 11px;
+    position: absolute;
+}
+.headertime {
+    max-width: 60px;
+    margin-left: 20px;
+}
+.headerprovider {
+    margin-left: 3px;
+}
+.subheaderTitle {
+    margin-top: 3px;
+    margin-left: 7px
+}
+.chronictext {
+    text-align: center;
+    margin-top: 3px;
+}
+.PatientDetailsYor {
+    font-family: $fontFamily_semibold;
+}
+input,
+button,
+select,
+textarea {
+    font-family: $fontFamily_regular;
+}
+.item {
+    border-color: #C4C5C3;
+  //  border-bottom: none;
+}
+
+.patientConternFontStyle {
+    font-family: $fontFamily_semibold;
+    color: #888888 !important;
+    font-size: 15px !important;
+}
+.patientConternFontStyle-ios {
+    font-family: $fontFamily_semibold;
+    font-size: 15px;
+}
+.patientConternFontStyleSubTitle {
+    font-family: $fontFamily_regular;
+}
+.concernsItempTag {
+    top: 6px;
+    position: relative;
+}
+.ion-navicon-round:before {
+    content: "\f20d";
+    font-size: 40px;
+    color: #352D2D;
+}
+.icon-cross:before {
+    content: "\f12a";
+    font-size: 33px !important;
+    color: #352D2D;
+}
+.has-footer {
+    bottom: 48px;
+}
+.currMedicationList {
+    top: -5px !important;
+}
+.ion-android-time:before {
+    font-size: 25px;
+}
+.ion-plus-round:before {
+    color: white;
+    background-color: #A3D38B;
+    padding: 2px;
+    border-radius: 5px;
+    font-size: 25px;
+    width: 30px;
+}
+.animated {
+    -webkit-animation-duration: 0.4s !important;
+    -moz-animation-duration: 0.4s !important;
+    -o-animation-duration: 0.4s !important;
+    animation-duration: 0.4s !important;
+}
+.datePlaceholder {
+    ::-webkit-input-placeholder {
+        /* WebKit browsers */
+        position: relative;
+        top: 5px !important;
+    }
+    ::-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        position: relative;
+        top: 5px !important;
+    }
+    input:-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        position: relative;
+        top: 5px !important;
+    }
+    :-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        position: relative;
+        top: 5px !important;
+    }
+}
+.userDateofbirth {
+    font-size: 18px !important;
+    line-height: 30px !important;
+    position: relative;
+    top: -5px;
+}
+.userDateofbirth_android {
+    font-size: 20px !important;
+    line-height: 30px !important;
+    position: relative;
+    top: -5px;
+}
+.noResult {
+    text-align: center;
+    border: none;
+    color: #616462;
+    font-weight: bold;
+    font-size: 19px;
+  //  margin-top: -35px;
+  margin-top: 35%;
+}
+.noapptResult {
+    text-align: center;
+    border: none;
+    color: #616462;
+    font-weight: bold;
+    font-size: 19px;
+    top: 75px;
+}
+.noapptviewResult {
+    text-align: center;
+    border: none;
+    color: #616462;
+    font-weight: bold;
+    font-size: 19px;
+    top: 95px;
+}
+.noapptuserResult {
+    text-align: center;
+    border: none;
+    color: #616462;
+    font-weight: bold;
+    font-size: 19px;
+    margin-top: 95px;
+}
+.dobRequired {
+//  color: #CBCBCB;
+    width: 0;
+    height: 100%;
+    z-index: 15;
+    top: 24px;
+    font-size: 20px;
+    color : transparent;
+}
+.brand {
+    text-align: center;
+}
+.itemtab {
+    padding: 6px !important;
+}
+.paticoncontent {
+    margin-top: 197px;
+}
+.userrow {
+    margin-top: -12px !important;
+}
+.headercont {
+    margin-left: 38px !important;
+}
+.item-image-icon {
+    height: 102px !important;
+}
+.singleTermsTitle-Android {
+    border-bottom: none;
+    position: relative;
+    top: -143px;
+}
+.singleTermsTitle-IOS {
+    border-bottom: none;
+    position: relative;
+    top: -110px;
+}
+.singleTermsLine-Android {
+    border-top: 1px solid #A9ABA7;
+    position: relative;
+    top: -122px;
+}
+.singleTermsLine-IOS {
+    border-top: 1px solid #A9ABA7;
+    position: relative;
+    top: -90px;
+}
+.singleTermsContent-Android {
+    padding: 190px 7px 7px 7px;
+    font-size: 19px;
+    color: #4D4D4D;
+    text-align: justify;
+    position: relative;
+  //  top: -153px;
+}
+.singleTermsContent-IOS {
+    padding: 326px 7px 7px 7px;
+    font-size: 19px;
+    color: #4D4D4D;
+    text-align: justify;
+    position: relative;
+    top: -115px;
+}
+.singleTermsconContent-Android {
+//    padding: 50px 7px 7px 7px;
+//padding: 159px 7px 7px 7px;
+padding: 200px 7px 7px 7px;
+    font-size: 19px;
+    color: #4D4D4D;
+  //  text-align: justify;
+    position: relative;
+//    top: -31px;
+}
+.singleTermsconContent-IOS {
+    padding: 180px 7px 7px 7px;
+    font-size: 19px;
+    color: #4D4D4D;
+    text-align: justify;
+    position: relative;
+    top: 31px;
+}
+.sublogo {
+    margin-top: 205px;
+}
+.SubHeadIOS {
+    margin-top: 82px !important;
+    background-color: #FFF !important;
+    position: relative !important;
+    top: 10px !important;
+    box-shadow: 0px 3px 3px #ADABAB !important;
+    -moz-box-shadow: 0px 3px 3px #ADABAB !important;
+    -webkit-box-shadow: 0px 3px 3px #ADABAB !important;
+}
+.bar .buttons > .button {
+    line-height: 45px;
+}
+.button-rounded {
+    display: block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid white;
+    border-radius: 52%;
+    color: black;
+    text-align: center;
+    font-size: 22px;
+    background-color: #444444 !important;
+}
+.ionstyle {
+    color: #ccc !important;
+}
+.imgposition {
+    margin-right: 520px;
+}
+.iconname {
+    margin-top: 20px;
+    color: #b2b2b2;
+    font-size: 14px;
+}
+.usercontent-IOS {
+    margin-top: 46%;
+}
+.usercontentpat-IOS {
+    margin-top: 34%;
+}
+.usercontent-Android {
+    margin-top: 120px;
+}
+.usercontentpat-Android {
+    margin-top: 74px;
+}
+.healthcontentsearch-Android {
+    margin-top: 108px;
+}
+.healthcontentsearch-IOS {
+    position: relative;
+    top: 168px;
+}
+.userappcontent {
+    margin-top: 170px !important;
+}
+.contwidth {
+    margin-top: 258px !important;
+}
+.profileSpan {
+    .profileicon {
+        margin-left: -18px;
+        font-size: 30px;
+        position: relative;
+        left: -55px;
+    }
+}
+.content {
+    margin-left: 38px;
+    font-size: 138%;
+    a {
+        color: rgba(5, 4, 9, 0.54)!important;
+        border: none !important;
+    }
+}
+.footercontent {
+    color: white;
+    margin-left: 540px;
+}
+
+.homecontent {
+    padding-top: 25px;
+    font-size: 75% !important;
+    color: #444444 !important;
+}
+.patientcontent {
+    padding-top: 19px;
+    margin-left: -21px;
+    font-size: 12px !important;
+    margin-top: 7px;
+    color: #444444 !important;
+}
+.headertitle {
+    font-size: 20px;
+    text-align: center;
+    width: 100%;
+    top: 3px;
+    //top: 55px;
+    color: #FFFFFF;
+    position: relative;
+}
+.headertitle-Android {
+    font-size: 20px;
+    text-align: center;
+    width: 100%;
+    top: 5px;
+    color: white;
+}
+.headertitle-IOS {
+    font-size: 20px;
+    margin-left: 120px;
+    top: 5px;
+    color: white;
+}
+.canceltitle-IOS {
+    margin-left: 97px;
+    font-size: 17px;
+}
+.canceltitle {
+    font-size: 20px;
+    color: white;
+    margin-top: 21px;
+}
+.iconbutton {
+    display: inline-block !important;
+    width: 3% !important;
+    height: 13% !important;
+    border: 1px solid white !important;
+    color: black;
+    text-align: center !important;
+    font-size: 12px !important;
+    background-color: rgba(222, 208, 208, 0.38) !important;
+}
+.bhealth {
+    margin-top: -10px;
+    background-color: #b5b5b5 !important;
+    color: #d0d0d0 !important;
+}
+#hometitle {
+    width: 45%;
+}
+.imagesposition {
+    width: 43% !important;
+    margin-right: 10px;
+}
+.footer-color {
+    background-color: #A2D28A !important;
+    border-color: #A2D28A !important;
+}
+#footleft {
+    width: 42px;
+}
+.usersubheader {
+    top: 64px;
+    height: 100px;
+    background-color: #444444 !important;
+    .userAccountPanel  {
+      margin-top: -9px !important;
+    }
+}
+#centercolor {
+    color: white;
+    margin-top: 23px !important;
+    font-size: 145%;
+    font-family: Glober Bold;
+}
+#centercolorforEnterAppointment {
+    color: white;
+    margin-top: 3px !important;
+    font-size: 145%;
+    font-family: Glober Bold;
+    .icon-video_camera {
+        font-size: 33px !important;
+    }
+    .enterTextAppoint {
+        position: relative;
+        top: -6px;
+    }
+}
+.iconAlignment{
+    position: relative;
+    left: 0.5px;
+    top: 2px;
+}
+.userionitem {
+    padding: 10px;
+}
+.userlist {
+    padding-top: 105px;
+}
+.lefthome {
+    padding-left: 30px;
+}
+.rightpatient {
+    float: right;
+    margin-top: -89px;
+}
+.formlabel {
+    margin-left: 10px;
+    color: #666666 !important;
+    font-family: Glober Bold;
+    font-weight: normal !important;
+    font-size: 18px;
+}
+.newusercontent {
+    margin-top: 166px;
+}
+.circle {
+    position: relative;
+    display: block;
+    margin: 2em 0;
+    background-color: transparent;
+    color: #222;
+    text-align: center;
+}
+.avatarclass {
+    margin-top: 2px;
+    margin-left: -34px; //-34
+}
+.avatlefticon {
+    float: left;
+    margin-left: -18px;
+    color: #A2D28A;
+    font-size: 16 px!important;
+}
+.circle:after {
+    display: block;
+    padding-bottom: 30%;
+    width: 30%;
+    height: 0;
+    border-radius: 50%;
+    background-color: #ddd;
+    content: "";
+}
+.headerrightend {
+    float: right;
+    font-weight: normal;
+    font-size: 16px;
+}
+.circle__inner {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 30%;
+    height: 30%;
+}
+.circle__wrapper {
+    display: table;
+    width: 40%;
+    height: 40%;
+}
+.circle__content {
+    display: table-cell;
+    padding: 1em;
+    vertical-align: middle;
+}
+.appalignrighticon {
+    color: #fff;
+    font-size: 95%;
+    font-family: Glober Regular;
+}
+.aslignspan {
+    margin-left: 3px;
+}
+#viewicon {
+    float: right;
+    color: white;
+    font-size: 12px !important;
+    text-align: right
+}
+.typealign {
+    margin-left: 54px;
+}
+.labelcolor {
+    color: #cccccc;
+    margin-left: 5px;
+    width: 70%;
+    max-width: 50%;
+    .iconsize {
+        font-size: 25px;
+    }
+}
+.imgsize {
+    max-width: 50px !important;
+    max-height: 50px !important;
+}
+.hidetab {
+    display: none;
+}
+.btn-first {
+    font-size: 14px !important;
+    height: 0px;
+}
+.backbtn {
+    width: 2%;
+}
+.btcolor {
+    background-color: #23B4D6 !important;
+    color: #FFFFFF !important;
+    border-color: #23B4D6 !important;
+}
+.btnextcolor {
+    background-color: #FFFFFF !important;
+    color: #23B4D6 !important;
+    border-color: #23B4D6 !important;
+}
+hr {
+    height: 1px;
+    color: #888;
+    background-color: #888;
+}
+.dothr {
+    border: none;
+    border-top: 2px dotted #888;
+    color: #fff;
+    background-color: #fff;
+    height: 1px;
+}
+.item-input .textalign {
+    margin-left: 12px;
+}
+.aligntext {
+    margin-left: 12px;
+    font-weight: normal;
+    font-size: 24px;
+    font-family: Glober Regular;
+}
+.alignnexttext {
+    margin-left: 12px;
+    font-size: 18px;
+    font-family: Glober bold;
+    color: #666666;
+}
+.icondown {
+    float: right;
+    margin-right: 16px;
+    margin-top: 7px;
+    font-size: 14px;
+    color: #414141;
+}
+.alvalue {
+    color: #666666;
+    font-size: 18px;
+    margin-left: 28px;
+    //line-height: 1.5;
+    line-height: 24pt;
+    //font-family: Glober Regular;
+    font-family: GloberSemiBold;
+}
+.chronic {
+    margin-top: 12px;
+    left: 15px;
+}
+.h4align {
+    margin-top: -3px !important;
+    padding-top: 7px;
+}
+.hrbasic {
+    background-color: rgba(186, 186, 186, 0.95) !important;
+    margin-top: -8px;
+}
+.editicons {
+  float: right;
+  margin-right: 9px;
+  margin-top: -50px;
+  padding: 15px 8px 9px 14px;
+}
+.closeicon {
+    float: right;
+    color: #888 !important;
+}
+.contright {
+    float: right;
+    color: #666666;
+    font-family: Glober Regular;
+    white-space: nowrap;
+    .ion-chevron-right:before {
+        font-size: 12px !important;
+    }
+}
+.currentedit {
+  float: right;
+  margin-right: 9px;
+  //margin-top: 10px;
+  padding: 0px 11px 2px 7px;
+}
+
+.currenteditHealthInfo {
+  float: right;
+  margin-right: 9px;
+  margin-top: -4px;
+  padding: 0px 11px 2px 7px;
+
+}
+
+.editicon {
+  float: right;
+  margin-right: 2px;
+  margin-top: -50px;
+  padding: 17px 18px 15px 11px;
+}
+.dotalign {
+    margin-top: -8px;
+}
+.tab-item.active {
+    color: #23B5D6 !important;
+}
+.tab-item.active {
+    color: #23B5D6 !important;
+    .icon {
+        color: #23B5D6 !important;
+    }
+}
+.tab-item .icon {
+    color: #999999;
+}
+.newuserdetails {
+    border-top: none;
+    padding: 0px !important;
+}
+.newuserp {
+    text-align: center;
+    [class^="icon-user-add"], [class*=" icon-user-add"] {
+        font-size: 40px;
+    }
+}
+.newusertopcontent {
+    text-align: center;
+}
+.newusertoph2 {}
+.usertopfont {
+    font-size: 30px !important;
+    font-family: Glober Bold;
+    color: #888888 !important;
+}
+.topp {
+    color: #999999 !important;
+    font-size: 14px;
+    line-height: 18px;
+}
+.donebutton {
+    margin-bottom: 50px;
+    height: 20px;
+    width: 32%;
+    border-radius: 8px !important;
+    box-shadow: 2px 2px 3px #a7a7a7 !important;
+    border: none;
+    .donetext {
+        line-height: 2.4;
+        color: white;
+        font-family: Glober Bold;
+        font-size: 21px;
+    }
+}
+.tabcontent {
+    color: #11c1f3;
+}
+.popupalign {
+    margin-left: -20px;
+}
+.popupname {
+    font-size: 21px;
+    font-family: Glober Bold;
+    color: #666666;
+}
+.fname {
+    //font-size: 21px;
+    //font-family: Glober Bold;
+    //color: #666666;
+    font-size: 25px;
+    font-family: GloberBold !important;
+    color: rgba(0, 0, 0, 0.75);
+    line-height: 30pt;
+}
+.sname {
+    font-size: 21px !important;
+    color: #666666;
+    font-family: Glober Regular;
+}
+.fontsymbol {
+    //color: #686868;
+    letter-spacing: 0.1pt;
+    font-size: 14px;
+    line-height: 20pt;
+    color: rgba(0, 0, 0, 0.38);
+    font-family: GloberRegular;
+    top: -4px;
+    position: relative;
+}
+.appalign {
+    margin: 12px 0 0 0 !important;
+}
+.fonttime {
+    font-size: 17px;
+    color: #686868;
+    font-family: Glober SemiBold;
+}
+.apptdetails {
+    background-color: #ffc900;
+    height: 80px;
+    padding: 10px !important;
+    position: fixed;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+}
+.appth3 {
+    margin: 20px 0px 0px 0px !important;
+}
+.list {
+    .archieve {
+        background-color: rgba(12, 96, 238, 0.78);
+        margin-left: -5px;
+        margin-right: -4px;
+        margin-top: -5px;
+        margin-bottom: -4px;
+        color: white;
+        .aligncenicon {
+            text-align: center;
+            margin-top: 10px;
+        }
+    }
+    .col-75 {
+        margin-top: -9px;
+        margin-left: -9px;
+    }
+    .archiveCoUser {
+        height: 75px;
+        .relatediconfont {
+            padding-left: 0px;
+            margin-top: -2px;
+        }
+        .docAppointImage {
+            margin-top: 5px;
+            position: relative;
+            top: -5px;
+        }
+    }
+    .footheight {
+        height: 83px !important;
+        background-image: none;
+    }
+    .iconbox {
+        font-size: 30px !important;
+    }
+    .icontext {
+        font-size: 10px;
+    }
+    .nonarchieve {
+        margin-top: -9px;
+        margin-left: -19px;
+    }
+    .aligncenicon {
+        margin-left: 22px;
+        margin-top: 13px;
+    }
+    .unlink {
+       color: white;
+        background-color: #D0021B !important;
+        line-height: 22px !important;
+    }
+    .icons {
+        margin-left: 12px;
+        font-size: 25px;
+    }
+    .unlinkicons{
+      margin-left: -17px;
+      font-size: 25px;
+    }
+    .tabicon {
+        margin-left: 6px;
+        margin-top: -14px; //-16
+        color: white;
+        font-size: 26px;
+    }
+    .fadediv {
+        opacity: 0.6;
+    }
+    .apticons {
+        font-size: 26px;
+        margin-left: -18px;
+    }
+    .aptviewicons {
+        font-size: 26px;
+        margin-left: -18px;
+    }
+    .apptimage {
+        margin-top: -7px;
+    }
+    .contalign {
+        margin-top: -12px;
+    }
+    .textwrap {
+        padding-left: 55px;
+        border: none;
+    }
+    .fdate {
+        margin-top: 8px !important
+    }
+    .ftime {
+          margin: 0 0 11px 0;
+        font-size: 60px;
+        font-family: Glober Bold;
+        text-transform: lowercase;
+    }
+    .fday {
+        font-size: 25px;
+        margin-top: 10px;
+        font-family: Glober Regular;
+        color: #666666;
+    }
+    .apptitem {
+        background-color: #ffc900;
+        height: 80px;
+        padding: 10px!important;
+        position: fixed;
+        bottom: 50px;
+        left: 0;
+        right: 0;
+    }
+    .ionitem {
+        padding: 0px!important;
+    }
+    .sionitem {
+        padding: 2px!important;
+    }
+    .contacticon {
+        margin-left: 22px;
+        font-size: 21px;
+        color: white;
+    }
+    .avataricon {
+        float: right;
+        font-size: 26px;
+        margin-left: 23px;
+    }
+    .relatediconfont {
+        margin-top: -4px;
+        color: #999999 !important;
+        padding-left: 11px;
+    }
+    .relatediconfontforCoUser {
+        margin-top: -8px;
+        color: #999999 !important;
+        padding-left: 11px;
+    }
+    .tabvalue {
+        text-align: center;
+        margin-top: 7px;
+        color: #888;
+        .firstval {
+            margin: 0;
+            margin-right: 277px;
+        }
+        p {
+            float: left;
+            .avatarlefticon {
+                margin-left: -12px;
+                color: #A2D28A;
+            }
+            .avaticon {
+                margin-left: -15px;
+                color: #FDD8C5 !important;
+            }
+        }
+    }
+    .list:last-child {}
+    .consimg {
+        max-width: 30px !important;
+        max-height: 30px !important;
+        margin-top: -15px;
+    }
+    .avatclass {
+        margin-top: 10px;
+        margin-left: -36px;
+    }
+    .avatrelationclass {
+        margin-top: 5px;
+        margin-left: -38px;
+    }
+    .righticon {
+        margin-right: -12px;
+        color: #A2D28A;
+        margin-bottom: 15px;
+    }
+    .contentvalue {
+        font-size: 20px;
+        color: black;
+        .contentalign {
+            float: left;
+            margin-left: 14px;
+            font-size: 15px;
+        }
+        .contentalignment {
+            margin-left: 8px !important;
+        }
+    }
+    .popupaligned {
+        margin-left: -12px;
+    }
+    .popupimage{
+      top:14px !important;
+      max-width: 55px !important;
+      max-height: 55px !important;
+    }
+    .listtype {
+        padding-top: 29px !important;
+    }
+    .thumpsicon {
+        color: #23B4D6;
+        margin-left: 22px;
+        font-size: 24px;
+    }
+    .conticon {
+        margin-top: 5px;
+        color: #888;
+    }
+    .contvalue {
+        margin-top: -9px;
+        margin-left: 17px;
+    }
+    .authorizedval {
+        background-color: #FDD8C5;
+        height: 40px;
+        .authorizedicon {
+            margin-top: -16px; //-28
+            color: white;
+            margin-left: 17px;
+            font-size: 20px;
+        }
+        .authorizedcont {
+            font-size: 12px !important;
+            color: #999999;
+            margin-top: -5px;
+        }
+        .authorizedupdate {
+            margin-bottom: 4px;
+            float: right;
+            color: #666666;
+            font-size: 11px !important;
+            position: relative;
+            top: -25px;
+            [class^="icon-chevron-right"], [class*=" icon-chevron-right"] {
+                font-size: 19px;
+                position: relative;
+                top: 6px;
+            }
+            .ion-chevron-right {
+                position: relative;
+                top: 1px;
+                color: #444444;
+            }
+        }
+    }
+    .authorupdate {
+        background-color: #FDD8C5 !important;
+    }
+    .authorizedview {
+        height: 55px;//60
+        margin-left: -5px;
+        margin-top: 0px;
+        width: 103%;
+        padding: 0px;
+        .authortab {
+            margin-top: -17px !important;
+            margin-left: 0px;
+            font-size: 20px !important;
+            .ion-chevron-down {
+                position: relative;
+                top: 3px;
+            }
+        }
+        .authorcont {
+            float: left;
+            margin-top: -5px;//0
+            margin-left: 9px;
+            font-size: 11px !important;
+        }
+    }
+    .statustab {
+        background-color: #e3e3e3; //max-width: 130px;
+        .unstatus {
+            margin-left: 5px;
+            font-size: 10px;
+            margin-top: -4px;
+            color: #999999 !important;
+        }
+        .unstatuscont {}
+    }
+    .thumbsdownicon {
+        float: right;
+        margin-left: 12px;
+        font-size: 22px;
+        margin-top: -7px; //margin-top:-8px;margin-left:16px;
+    }
+    .relationtab {
+        background-color: #ededed;
+        .relationstatus {
+            margin-left: 18px;
+            font-size: 10px;
+            color: #999999 !important;
+        }
+        .unauthorrelationship {
+            margin-top: -13px;
+            color: #666666;
+            font-size: 16px;
+            margin-left: 9px;
+            font-family: Glober SemiBold;
+        }
+    }
+    .fontcolor {
+        color: #999999 !important;
+    }
+    .tabcolor {
+        color: #929292;
+    }
+    .relatedfont {
+        margin-top: -9px; //-12
+        color: #888 !important;
+        margin-left: 66px !important;
+    }
+    .ionappointment {
+        height: 75px !important;
+        .appointment {
+            font-size: 22px;
+        }
+    }
+    @media only screen and (max-device-width: 480px) {
+        .col-25 {
+            min-width: 46% !important;
+        }
+        .firstval {
+            margin-left: 6px !important;
+        }
+        .contentvalue {
+            margin-left: 6px !important;
+        }
+    }
+}
+.cousers {
+  .item-complex .item-content{
+    padding:0px !important;
+  }
+}
+// @media screen and (min-width: 320px) and (max-width:568px) {
+//   .listprofileEdit .labelsize {
+//   width: 51%;
+//   }
+//   .health_wid{
+//     width: 44px;
+//   }
+//   .code6{
+//    width: 70%;
+//    left: -5px;
+//   }
+// }
+/*.select_list{
+    background-color: #fff;
+    border: 1px solid #b3b3b3;
+    cursor: pointer;
+    height: 21px;
+    line-height: 21px;
+    padding: 3px 5px;
+    position: relative;
+    vertical-align: middle;
+    width: 250px;
+}
+.select_list:after{
+    content:"▼";
+    position:absolute;
+    right:3px;
+    color:#b3b3b3;
+}
+.consultHealthPlanDropDown > .options{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:-1px;
+    width:100%;
+    border:1px solid #666;
+    padding:0;
+    margin:0;
+}
+
+.consultHealthPlanDropDown.active > .options{
+    display:block;
+}
+
+.consultHealthPlanDropDown > span, .consultHealthPlanDropDown > .options li {
+    background-position: 5px center;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    list-style:none;
+    color: #666666;
+    z-index: 1;
+    margin-bottom: 5px;
+}
+
+.consultHealthPlanDropDown > .options li:hover {
+    background-color:#4494fc;
+}
+
+.options{
+    background-color: white;
+    border: solid 1px black;
+}*/
+
+.cardlogo{
+    width:65px;
+    height:35px;
+}
+
+.outside
+{
+     margin-top: 4px;
+
+}
+
+.inside
+{
+    width: 0px;
+    /* position: relative; */
+    height: 0px;
+    border-style: solid;
+    margin: auto;
+    border-width: 6px 14px 0 14px !important;
+    border-color: white transparent transparent transparent;
+    line-height: 0px;
+    z-index: 2000;
+    left: 49%;
+    /* width: 100px; */
+    /* height: 50px; */
+    position: absolute;
+    top: 76px;
+}
+
+.regCountryOpt {
+    font-family: Glober Regular !important;
+    font-size: 16px;
+    padding-top: 2px;
+}
+.appointInQueueTitle {
+    font-family: GloberRegular;
+    font-size: 14pt;
+    letter-spacing: 0.1pt;
+    color: #999999 !important;
+    margin-top: 21px;
+    padding-bottom: 5px;
+    background-color: rgb(238,238,238);
+    height: 29px;
+    padding-top: 5px;
+    padding-left: 18px;
+}
+.appointInQueueMainDiv{
+  padding-bottom: 15px;
+}
+.appointScheduledMainDiv {
+    font-family: GloberRegular;
+    font-size: 14pt;
+    letter-spacing: 0.1pt;
+    color: #999999 !important;
+    margin-top: -7px;
+    //padding-left: 3%;
+    padding-bottom: 5px;
+    background-color: rgb(238,238,238);
+    height: 29px;
+    padding-top: 5px;
+    padding-left: 18px;
+}
+
+.UserHomeNextAppointment1 {
+    top: 16px;
+    height: 54px;
+    position:relative;
+    .icon-video_camera {
+        font-size: 30px !important;
+    }
+    .icon-phone {
+        position: relative;
+        top: -3px;
+    }
+    a {
+        margin-left: 10px;
+        .UHomeNextAppoinment {
+            font-size: 14px;
+            top: 1px;
+            color: #888;
+            margin-left: -5px;
+        }
+        h2 {
+            margin-left: 4px;
+            margin-top: -20px;
+            font-size: 22px;
+            color: rgb(255, 255, 255);
+            font-family: GloberBold;
+            .NextAppointTime {
+                font-size: 18px;
+            }
+            .NextAppointAMorPM {
+                font-size: 14px;
+            }
+        }
+        .nextList {
+            /*color: white;
+            margin-right: 12px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            border: solid 1px white;
+            margin-top: -31px;
+            padding: 5px 12px;
+            border-radius: 50%;
+                color: white;
+                margin-right: 12px;
+                -moz-border-radius: 50%;
+                border: solid 1px white;
+                margin-top: -25px;
+                padding: 0px 7px;
+                border-radius: 50%;*/
+
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            padding-left: 7px;
+            margin-top: -23px;
+            border: 1px solid white;
+            color: white;
+            margin-right: 12px;
+        }
+        .AppointmentView {
+                    float: right;
+                    font-size: 14px;
+                    margin-right: 39px;
+                    color: white;
+                    margin-top: -26px;
+                    font-family: GloberSemiBold;
+        }
+    }
+}
+
+
+.inside1
+{
+    width: 0px;
+    position: relative;
+    height: 0px;
+    border-style: solid;
+    margin: auto;
+    border-width: 6px 14px 0 14px !important;
+    border-color: white transparent transparent transparent;
+    line-height: 0px;
+    z-index: 2000;
+    left: 4%;
+    /* width: 100px; */
+    /* height: 50px; */
+    /* position: absolute; */
+    top: 25px;
+}
+.reportBrandName{
+    //margin-left: -35px !important;
+    font-size: 12px !important;
+    font-family: GloberBold !important;
+    font-color: #333333 !important;
+    text-align:right;
+}
+.guardianName{
+    font-size: 14px;
+    font-family: GloberRegular;
+    height: 20px;
+    color: #000000;
+}
+.guardian{
+    font-size: 17px;
+    font-family: GloberSemiBold;
+    height: 20px;
+    color: #000000;
+}
+
+.pc-report__sub-section-date {
+    float: right;
+    padding: 5px;
+    font-size: 8px !important;
+}
+
+.pc-report__table-row span {
+    float: left;
+    line-height: 1;
+    display: block;
+    font-family: GloberBold !important;
+    color: #333;
+}
+
+
+
+.pc-report__sub-section-date{
+    font-size: 10px !important;
+     font-family: GloberRegular !important;
+}
+    .pc-report__table-row {
+    font-size: 13px;
+    font-family: "Glober Bold","Helvetica Neue",Helvetica,Arial,Sans-Serif;
+    line-height: 2;
+    color: #444;
+    padding-bottom: 22px !important;
+}
+
+
+.pc-report__sub-section-title {
+         margin: 0;
+         padding: 0;
+         border: 0;
+         vertical-align: baseline;
+         font: inherit;
+         font-family: Glober !important;
+         font-size: 13px !important;
+         font-weight: bold !important;
+        margin-top: 4px !important;
+    }
+
+    .reportTitle-Android {
+        top: 3px !important;
+    }
+    .reportTitle-IOS {
+        top: 20px !important;
+      //  margin-left: 23px !important;
+    }
+
+    .reportscreenTitle-Android {
+        top: 12px !important;
+    }
+    .reportscreenTitle-IOS {
+        top: 27px !important;
+        margin-left: 23px !important;
+    }
+
+    .reportIconBack-Android {
+       top: 0px !important;
+    }
+    .reportIconBack-IOS {
+         top: 9px !important;
+    }
+
+
+
+.report__data-list-desc1{
+  font-size: 16px !important;
+
+}
+.pc-report__data-list-item{
+    flex-grow: 1 !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    order: 1 !important;
+    border: solid 1px #e6e6e6 !important;
+    font-family: GloberRegular !important;
+    font-size: 14px !important;
+}
+
+.pc-report__name-details strong{
+
+  font-size: 17px !important;
+  font-weight: bold !important;
+  font-family: GloberSemiBold !important;
+}
+
+.pc-report__name-details{
+
+    font-family: Glober !important;
+  font-size: 17px !important;
+  padding-top: 1px;
+
+}
+
+.pc-report__name--provider{
+        font-size: 25px !important;
+        line-height: 1.33 !important;
+        height: 37px;
+        color: #444;
+        margin-top: -4px !important;
+        padding-bottom: 5px;
+        font-family: Glober !important;
+        font-weight: bold !important;
+}
+
+
+.pc-report__med-list {
+    font-size: 13px !important;
+   font-family: GloberSemiBold !important;
+    color: #444;
+    margin: 0;
+    padding: 0;
+    font-weight: 600 !important;
+}
+
+.pc-report__list-title {
+    color: #666;
+    margin-top: 5px;
+    line-height: 2;
+    font-size: 11px !important;
+    font-family: Glober !important;
+}
+
+.pc-report__table-title span{
+     color: #666;
+    margin-top: 5px;
+    line-height: 2;
+    font-size: 11px !important;
+    font-family: Glober !important;
+}
+.pc-report__name--patient {
+     font-size: 31px !important;
+}
+.pc-report__data-list-desc {
+     font-size: 17px !important;
+     font-family: GloberBold !important;
+     position: relative;
+    top: 0px;
+    border: none !important;
+    padding-top: 0px !important;
+}
+.pc-report__data-list-desc1 {
+     padding-left: 5px;
+     position: relative;
+     //top: 4px;
+     font-size: 17px !important;
+}
+.pc-report__complaints li {
+     font-size: 14px !important;
+}
+.pc-report__add-notes strong {
+     font-size: 14px !important;
+}
+.pc-report__add-notes span {
+     font-size: 14px !important;
+}
+.pc-report__data-list-desc--successful {
+     top: 1px !important;
+     width: 74%;
+     //padding-top: 3px;
+}
+.pc-report__data-list-title {
+     height: auto !important;
+}
+.enStatus {
+     width: 26.333% !important;
+}
+.pc-report__table-row span{
+     font-family: GloberSemiBold !important;
+}
+.pc-report__company-info h2 {
+     font-size: 12px !important;
+}
+.pc-report__company-info p {
+     font-size: 12px !important;
+     padding-top: 2px;
+}
+.pc-report {
+     padding: 0px 16px !important;
+}
+.bg h2 {
+      margin-top: -15px !important;
+    }
+@media (max-width: 320px) and (min-width: 315px) {
+.bg h2 {
+      margin-top: -45px !important;
+    }
+  }
+
+.bg {
+      height: 150px !important;
+     }
+.icon_star{
+    position: relative;
+    top: -2px;
+    left: -2px;
+}
+.UserhmePatientDetails{
+  margin-left: 0px;
+  margin-top: -5px !important;
+}
+.headertitle1{
+  top: 57px;
+}

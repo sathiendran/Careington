@@ -1,77 +1,233 @@
-
+<style>
+	.headerbg {
+		background-color: #333fe2;
+		border-color: #333fe2;
+		background-image: none;
+		align-items: center;
+		vertical-align: middle;
+		height: auto;
+		padding-bottom: 0;
+	}
+ /* ios css */
+	/* .title-head {
+		position: relative;
+		margin: 0 auto;
+		text-align: center;
+		font-size: 20px !important;
+		font-family: "Glober Bold";
+		font-weight: normal;
+		color: rgb(255, 255, 255);
+		left: -28px;
+		top: 9px
+	} */
+	.title-head {
+		position: relative;
+		margin: 0 auto;
+		text-align: center;
+		font-size: 20px !important;
+		font-family: "Glober Bold";
+		font-weight: normal;
+		color: rgb(255, 255, 255);
+		left: -28px;
+		top: 0px
+	}
+ /* ios css */
+	/* #BackButtonIcon {
+		left: -5px;
+		top: 4px;
+	} */
+	#BackButtonIcon {
+		left: -5px;
+		top: -5px;
+	}
+	/* ios css */
+	/* .add-user-icon {
+		height: 30px;
+		right: 8px;
+	} */
+	.add-user-icon {
+		height: 30px;
+		right: 8px;
+		top: 11px;
+	}
+	.subHeaderTop{
+		top: unset !important;
+	}
+	.SearchImage{
+		float: right !important;
+		top: -18px !important;
+		margin-top: -18px !important;
+	}
+</style>
 
 <ion-side-menus>
 	<ion-side-menu-content>
-	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+		<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+			<!-- <div class="bar bar-header headerbg">
+				<div class="row">
+					<div class="col-10">dgfadgf</div>
+					<div class="col-80"><h1 class="title-head"> Patient list</h1></div>
+					<div class="col-10">.col</div>
+				</div>
 
-		<div class="buttons {{menuicon}}" >
-			<!--<button class="button icon button-clear ion-navicon-round UserHomeIcon {{menuicon}}" id="BackButtonIcon" style="{{MenuIconBottom}}" ng-click="toggleLeft()" ></button>-->
-			<span class="button icon button-clear UserHomeIcon {{menuicon}}" id="BackButtonIcon" style="{{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
-		</div>
-
-
-		<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} userhomePlusIcon">
-			<div class="Server_Error ErrorMessageDiv" ></div>
-	 <div id="Error_Message"></div
-			<span> Patient list </span>
-	</h1>
-		<span class="UserhomeSpanPlusIcon-{{deviceName}}" > <a class="headerval" ng-click = "GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" ><i class="icon ion-plus"></i></a></span>
-
-	<!--	<h1 class="{{title_patient}} {{HeaderList}} userTit-{{deviceName}}" style="margin-left: -38px;">Patient List</h1>
-	<span>
-			<a class="headerval" ng-click = "GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" style="position: relative; top:12px;">-->
-
-			<!--	<i class="iconfontSVG" style="font-size:145% !important;" ng-bind-html="drawSVGCIcon('plus')"></i>
-			</a>
-		</span>-->
-
-
-			<div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds">
-				<div class="TitleHomeUser_Sub" id="WhoNeeds">Who Needs Care Today:</div>
-
-					<div class="SearchImage" ng-click="showSearchInput();">
-						<i class="ion-search" style="float: right; font-size: 23px;color: #666666;"></i>
-					</div>
+			</div> -->
+			<div class="bar bar-header headerbg">
+				<div class="buttons button-icon">
+					<span class="button icon button-clear" style="{{HomeBackIOS}}" id="BackButtonIcon" ng-click="toggleLeft()">
+						<i ng-bind-html="drawSVGCIcon('menu')"></i>
+					</span>
+				</div>
+				<div class="h1 title-head localizejs" style="{{HomeHeaderIOS}}">Patient list</div>
+				<a ng-if="cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'" class="add-user-icon" style="{{HomeUserIconIOS}}" ng-if="customerSso != 'Mandatory'"
+				 ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')"
+				 _ng-href="#/tab/addnewuser">
+					<i class="icon ion-plus"></i>
+				</a>
+			</div>
+			<!-- <div class="buttons {{menuicon}}">
+				<span class="button icon button-clear UserHomeIcon {{menuicon}}" id="BackButtonIcon" style="{{MenuIconBottom}}" ng-click="toggleLeft()">
+					<i ng-bind-html="drawSVGCIcon('menu')"></i>
+				</span>
 			</div>
 
 
-	</ion-header-bar>
+			<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">
+				<div class="Server_Error ErrorMessageDiv"></div>
+				<div id="Error_Message"></div>
+				<span class="localizejs"> Patient list </span>
+			</h1>
+			<a ng-if="cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'" class="add-user-icon add-user-icon-{{deviceName}}"
+			 ng-if="customerSso != 'Mandatory'" ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')"
+			 _ng-href="#/tab/addnewuser">
+				<i class="icon ion-plus"></i>
+			</a>
 
 
 
-
-<ion-view title="User Home">
-<div id="divSearchInput" class="UserHme userSearch-{{deviceName}}" style="display: none;">
-	<div  class="UserHmeSub-{{deviceName}}">
-        <label class="item-input"  ><i style="display: {{homeMagnifyDisplay}}" class="iconfontSVG userhmeSeach" ng-bind-html="drawSVGCIcon('magnifying-glass')"></i>
-            <input type="search" placeholder="Search" id="searchQuery" ng-model="data.searchQuery"  >
-        </label>
-	</div>
-</div>
+			<div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds" style="height: auto;">
 
 
-<ion-content class="ContentUserHome UserHme" ng-controller="LoginCtrl" >
- 	<ion-list>
+				<div id="whoNeedsTextval" class="TitleHomeUser_Sub localizejs lang-font whoNeedsText" style="{{whoNeedsText}}">Who Needs Care Today?</div>
 
-	<div><ion-refresher on-refresh="doRefreshUserHome()"  >
-    </ion-refresher></div>
-
-	<a ng-if="primaryPatientName != ''" class="UserHomePatient"  ng-click = "GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'patientClick')">
-		<ion-item class="UserHomeHeader" ng-hide="data.searchQuery" style="border-top: none; top: -2px; height: 79px;">
-			 <div class="HrefListView">
-				<div class="UserhmePatientDetails">
-					<img ng-src="{{PatientImage}}" class="UserHmelistImgView">
-					<div class= "ListTextTitle ellipsis userHomeFullName" > <b class="ng-binding firstname"> {{primaryPatientName}} </b><span class="SubTitleSpan ellipsis"> {{primaryPatientLastName}}</span></div>
-					<!--<p class="ListText listTitle" style="font-size: 24px;overflow: auto;"><b>Login Details Welcome</b> <span class="SubTitleSpan">Sathiendran <span></p> -->
-					<p class="ListHomeUser_pTitle DateFormateStyle"><span ng-if="primaryPatGender != ''">{{primaryPatGender}} . </span>{{dob | ageFilter}} <!--<span ng-if="primaryPatientGuardianName"> | Guardain : {{primaryPatientGuardianName}}</span>--></p>
-					<!--<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>-->
-					<i class="iconfontSVG ListLinkHref UserHomeIcon" ng-bind-html="drawSVGCIcon('chevron-right')"></i>
+				<div class="SearchImage" ng-click="showSearchInput();">
+					<i class="ion-search" style="float: right; font-size: 23px;color: #666666;"></i>
 				</div>
-			 </div>
-		</ion-item>
-	</a>
+			</div> -->
 
-	<!--<ion-item class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-click="GoToPatientDetails()">
+
+
+
+		</ion-header-bar>
+
+
+
+
+		<ion-view title="User Home">
+
+
+
+
+			<ion-content class="ContentUserHome UserHme" ng-controller="LoginCtrl" ng-init="loadDependent(); doRefreshUserHome();">
+				<div id="divSearchInput" class="UserHme userSearch-{{deviceName}}" style="display: none;">
+					<div class="UserHmeSub-{{deviceName}}">
+						<label class="item-input">
+							<i style="display: {{homeMagnifyDisplay}}" class="iconfontSVG userhmeSeach" ng-bind-html="drawSVGCIcon('magnifying-glass')"></i>
+							<input type="search" class="localizejs" placeholder="Search" id="searchQuery" ng-model="data.searchQuery">
+						</label>
+					</div>
+				</div>
+				<div class="col subHeaderTop UserNeeds">
+						<div id="whoNeedsTextval" class="TitleHomeUser_Sub localizejs lang-font whoNeedsText" style="{{whoNeedsText}}">Who Needs Care Today?</div>
+						<div class="SearchImage" ng-click="showSearchInput();">
+							<i class="ion-search" style="float: right; font-size: 23px;color: #666666;"></i>
+						</div>
+					<!-- <div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds" style="height: auto;">
+
+
+					</div>  -->
+				</div>
+
+				<!-- <div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds" style="height: auto;">
+				<div id="whoNeedsTextval" class="TitleHomeUser_Sub localizejs lang-font whoNeedsText" style="{{whoNeedsText}}">Who Needs Care Today?</div>
+				<div class="SearchImage" ng-click="showSearchInput();">
+					<i class="ion-search" style="float: right; font-size: 23px;color: #666666;"></i>
+				</div>
+				</div> -->
+				<ion-list>
+					<div>
+						<ion-refresher on-refresh="doRefreshUserHome()">
+						</ion-refresher>
+					</div>
+
+					<a ng-if="primaryPatientName != ''" class="UserHomePatient" ng-click="GetUserAccountCondition(primaryPatientId);GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'patientClick')">
+						<ion-item class="UserHomeHeader" ng-hide="data.searchQuery" style="border: none;border-bottom: 1px solid #9D9E9C;">
+							<div class="HrefListView">
+								<div class="UserhmePatientDetails">
+									<!--	<img ng-src="{{PatientImage}}" src="{{PatientImage}}" class="UserHmelistImgView">-->
+									<div class="userHomeImageMainPat" ng-bind-html="drawImage(PatientImage,primaryPatientName,primaryPatientLastName)"></div>
+									<div class="ListTextTitle ellipsis userHomeFullName">
+										<b class="ng-binding firstname">{{primaryPatientName}} </b>
+										<span class="SubTitleSpan ellipsis"> {{primaryPatientLastName}}</span>
+									</div>
+									<!--<p class="ListText listTitle" style="font-size: 24px;overflow: auto;"><b>Login Details Welcome</b> <span class="SubTitleSpan">Sathiendran <span></p> -->
+									<p class="ListHomeUser_pTitle DateFormateStyle">
+										<span ng-if="primaryPatGender != ''" class="localizejs">{{primaryPatGender}}</span> .
+										<span>{{dob | ageFilter}}</span>
+										<span class="localizejs">{{dob | ageYearsStringFilter}}</span>
+										<span>{{dob | ageMonthFilter}}</span>
+										<span>{{dob | ageDayFilter}}</span>
+										<!--<span ng-if="primaryPatientGuardianName"> | Guardain : {{primaryPatientGuardianName}}</span>-->
+									</p>
+									<!--<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>-->
+									<i class="iconfontSVG ListLinkHref UserHomeIcon" ng-bind-html="drawSVGCIcon('chevron-right')"></i>
+								</div>
+							</div>
+						</ion-item>
+					</a>
+					<div style="display: none;">
+						<timer end-time="time"></timer>
+					</div>
+
+					<div class="inside" ng-hide="data.searchQuery" ng-if="primaryAppointDetails != ''" style="display: {{primaryAppointDetails[0].nextAppointmentDisplay}};"></div>
+					<ion-item ng-hide="data.searchQuery" class="UserHomeNextAppointment ItemList outside" ng-repeat="scheduledListData in primaryAppointDetails"
+					 ng-click="GoToappoimentDetailsFromUserHome(scheduledListData, 'userHome')" ng-if="$first" style="background-color: {{scheduledListData.userHomeRecentAppointmentColor}}; border-top: none; display: {{scheduledListData.nextAppointmentDisplay}}; margin-bottom: 17px;">
+						<a class="HrefListView">
+							<h2>
+								<i ng-if="scheduledListData.encounterTypeCode == 3" ng-bind-html="drawSVGCIcon('video_camera')" class="ng-binding">
+									<svg class="iconImg-video_camera">
+										<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-video_camera"></use>
+									</svg>
+								</i>
+								<i ng-if="scheduledListData.encounterTypeCode == 2" ng-bind-html="drawSVGCIcon('phone')" class="ng-binding" style="font-size: 30px;">
+									<svg class="iconImg-phone">
+										<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-phone"></use>
+									</svg>
+								</i>
+								<i ng-if="scheduledListData.encounterTypeCode == 4" ng-bind-html="drawSVGCIcon('users')" class="ng-binding userHmeInPerson"
+								 style="font-size: 30px;">
+									<svg class="iconImg-users">
+										<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-users"></use>
+									</svg>
+								</i>
+								<span style="top: -7px;position: relative;padding-left: 5px;" class="localizejs">
+									<span class="localizejs">Appt</span> @
+									<b> {{scheduledListData.scheduledTime | date: "hh:mm a" | lowercase}}</b>
+								</span>
+							</h2>
+							<list class="ion-chevron-right ListLinkHref nextList" style="top: -7px !important; position: relative !important; font-size: 21px  !important;"></list>
+							<span ng-if="scheduledListData.appointmentStatusCode == 'Waiting' && scheduledListData.status != 71" class="DateFormateStyle AppointmentView localizejs"
+							 style="top: -5px; position: relative;">In queue</span>
+							<span ng-if="scheduledListData.appointmentStatusCode != 'Waiting' && scheduledListData.status != 71" class="DateFormateStyle AppointmentView localizejs"
+							 style="top: -5px; position: relative;">View Details</span>
+							<span ng-if="scheduledListData.status == 71" class="DateFormateStyle AppointmentView localizejs" style="top: -5px; position: relative;">In progress</span>
+
+						</a>
+					</ion-item>
+
+
+
+
+					<!--<ion-item class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-click="GoToPatientDetails()">
 			<a class="HrefListView"  >
 			   <span class = "ListText UHomeNextAppoinment">Next Appointment:</span>
 			   <h2 class="DateFormateStyle"><b>OCT 12 </b> <span class="NextAppointTime"><sup>@</sup></span> <b>12:15</b><span class="NextAppointAMorPM">PM</span></h2>
@@ -79,43 +235,86 @@
 			   <span class="DateFormateStyle AppointmentView" >View Details</span>
 		    </a>
 		</ion-item>-->
-		<div style="display: none;"><timer end-time="time"  ></timer></div>
-
-		<ion-item style="background-color: {{userHomeRecentAppointmentColor}}; border-top: none; display: {{nextAppointmentDisplay}}"  class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData, userHome)" ng-if="$first">
-			<a class="HrefListView"  >
-			   <span class = "ListText UHomeNextAppoinment">Next Appointment:</span>
-			   <h2 class="DateFormateStyle"><b>{{scheduledListData.scheduledTime | date: "MMM dd"}} </b> <span class="NextAppointTime"><sup>@</sup></span> <b>{{scheduledListData.scheduledTime | date: "hh:mm"}}</b><span class="NextAppointAMorPM"  style="font-size: 15px; font-weight: bold;">{{scheduledListData.scheduledTime | date: "a"}}</span></h2>
-			   <list class="ion-chevron-right ListLinkHref nextList"></list>
-			   <span class="DateFormateStyle AppointmentView" >View Details</span>
-
-		    </a>
-		</ion-item>
 
 
 
-		<ion-item class="DependentList" style="top: -2px;" ng-repeat="dependentDetails in (filteredResult = (RelatedPatientProfiles | filter: data.searchQuery))" ng-if="dependentDetails.isAuthorized !== false"  ng-click= "GoToPatientDetails(location,dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,dependentDetails.patientId, dependentDetails.isAuthorized, 'patientClick')">
-			<!-- <a class="HrefListView">   -->
-			 <div class="HrefListViewDependent">
-				<div class="UserhmePatientDetails">
-					<img ng-src="{{dependentDetails.profileImagePath}}" class="UserHmelistImgView">
-					<div class= "ListTextTitle ellipsis userHomeFullName" ><b>{{dependentDetails.patientFirstName}} </b> <span class="SubTitleSpan">{{dependentDetails.patientLastName}}</span></div>
-					<p class="ListHomeUser_pTitle DateFormateStyle"><span ng-if="dependentDetails.gender != ''">{{dependentDetails.gender}} .</span> {{dependentDetails.birthdate | ageFilter}} <span ng-if="dependentDetails.depRelationShip != ''">. {{dependentDetails.depRelationShip}} </span><!--<span ng-if="primaryPatientId != dependentDetails.patientId">| Guardian : {{dependentDetails.guardianName}}</span>--></p>
-					<!--<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>-->
-						<i class="iconfontSVG ListLinkHref UserHomeIcon" ng-bind-html="drawSVGCIcon('chevron-right')"></i>
-				</div>
-			</div>
-			<!-- </a>-->
 
-		</ion-item>
+					<div style="top: -2px;" ng-repeat="dependentDetails in (filteredResult = (RelatedPatientProfiles | filter: data.searchQuery))"
+					 ng-if="dependentDetails.isAuthorized !== false">
 
-		<ion-item ng-if="searched == true && filteredResult == ''" class="noResult" > Search result not found! </ion-item>
-		<div ng-controller="appoimentDetailsCtrl">
-		</div>
+						<div class="DependentList item">
+							<div class="HrefListViewDependent" ng-click="GetUserAccountCondition(dependentDetails.patientId);GoToPatientDetails(location,dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,dependentDetails.patientId, dependentDetails.isAuthorized, 'patientClick')">
+								<div class="UserhmePatientDetails">
+									<!--	<img ng-src="{{dependentDetails.profileImagePath}}" src="{{dependentDetails.profileImagePath}}" class="UserHmelistImgView">-->
+									<div class="userHomeImage" ng-bind-html="drawImage(dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName)"></div>
+									<div class="ListTextTitle ellipsis userHomeFullName">
+										<b>{{dependentDetails.patientFirstName}} </b>
+										<span class="SubTitleSpan">{{dependentDetails.patientLastName}}</span>
+									</div>
+									<p class="ListHomeUser_pTitle DateFormateStyle">
+										<span ng-if="dependentDetails.gender != ''" class="localizejs">
+											<span class="localizejs">{{dependentDetails.gender}}</span> . </span>
+										<span>{{dependentDetails.birthdate | ageFilter}}</span>
+										<span class="localizejs">{{dependentDetails.birthdate | ageYearsStringFilter}}</span>
+										<span>{{dependentDetails.birthdate | ageMonthFilter}}</span>
+										<span>{{dependentDetails.birthdate | ageDayFilter}}</span>
+										<span ng-if="dependentDetails.depRelationShip != ''" class="localizejs">. {{dependentDetails.depRelationShip}} </span>
+										<!--<span ng-if="primaryPatientId != dependentDetails.patientId">| Guardian : {{dependentDetails.guardianName}}</span>-->
+									</p>
+									<!--<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>-->
+									<i class="iconfontSVG ListLinkHref UserHomeIcon" ng-bind-html="drawSVGCIcon('chevron-right')"></i>
+								</div>
+							</div>
+						</div>
 
-	</ion-list>
-</ion-content>
-</ion-side-menu-content>
- <!--Side Menu File Include --->
+
+						<div class="inside1" ng-if="dependentDetails.patientId == dependentDetails.appoint.patientId" style="display: {{dependentDetails.appoint.nextAppointmentDisplay}};"></div>
+						<div ng-if="dependentDetails.patientId == dependentDetails.appoint.patientId" style="background-color: {{dependentDetails.appoint.userHomeRecentAppointmentColor}}; border-top: none; display: {{dependentDetails.appoint.nextAppointmentDisplay}}; margin-bottom: 17px;"
+						 class="UserHomeNextAppointment1 ItemList outside" ng-click="GoToappoimentDetailsFromUserHome(dependentDetails.appoint, 'userHome')">
+							<a class="HrefListView">
+								<h2>
+									<i ng-if="dependentDetails.appoint.encounterTypeCode == 3" ng-bind-html="drawSVGCIcon('video_camera')" class="ng-binding">
+										<svg class="iconImg-video_camera">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-video_camera"></use>
+										</svg>
+									</i>
+									<i ng-if="dependentDetails.appoint.encounterTypeCode == 2" ng-bind-html="drawSVGCIcon('phone')" class="ng-binding" style="font-size: 30px;">
+										<svg class="iconImg-phone">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-phone"></use>
+										</svg>
+									</i>
+									<i ng-if="dependentDetails.appoint.encounterTypeCode == 4" ng-bind-html="drawSVGCIcon('users')" class="ng-binding userHmeInPerson"
+									 style="font-size: 30px;">
+										<svg class="iconImg-users">
+											<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-users"></use>
+										</svg>
+									</i>
+									<span style="top: -7px;position: relative;padding-left: 5px;">
+										<span class="localizejs">Appt</span> @
+										<b>{{dependentDetails.appoint.scheduledTime | date: "hh:mm a" | lowercase}}</b>
+									</span>
+								</h2>
+								<list class="ion-chevron-right ListLinkHref nextList" style="top: -13px !important; position: relative !important; font-size: 21px  !important;"></list>
+								<span ng-if="dependentDetails.appoint.appointmentStatusCode == 'Waiting' && dependentDetails.appoint.status != 71" class="DateFormateStyle AppointmentView localizejs"
+								 style="top: -10px; position: relative;">In queue</span>
+								<span ng-if="dependentDetails.appoint.appointmentStatusCode != 'Waiting' && dependentDetails.appoint.status != 71" class="DateFormateStyle AppointmentView localizejs"
+								 style="top: -10px; position: relative;">View Details</span>
+								<span ng-if="dependentDetails.appoint.status == 71" class="DateFormateStyle AppointmentView localizejs" style="top: -10px; position: relative;">In progress</span>
+							</a>
+						</div>
+					</div>
+
+					<ion-item ng-if="searched == true && filteredResult == ''" class="noResult localizejs"> Search result not found! </ion-item>
+					<div ng-controller="appoimentDetailsCtrl">
+					</div>
+					<i style="visibility:hidden;" class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('video_camera_mute')"></i>
+					<i style="visibility:hidden;" class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('cross')"></i>
+					<i style="visibility:hidden;" class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('circle-with-plus')"></i>
+
+				</ion-list>
+			</ion-content>
+	</ion-side-menu-content>
+	<!--Side Menu File Include --->
 	<!--<ion-side-menu side="left" style="background-color: #464644;">
         <a ng-click="toggleLeft()" class="sidemenuContent" >
 			<ion-list>
@@ -137,7 +336,7 @@
 	</ion-side-menu>
 </ion-side-menus>-->
 
-<div ng-include src="'templates/primaryPatientSideMenu.html'"></div>
+	<div ng-include src="'templates/primaryPatientSideMenu.html'"></div>
 
 </ion-side-menus>
 

@@ -62506,3 +62506,73 @@ input:checked+.slider:before {
         font-size: 30px;
     }
   }
+
+  @media only screen and (min-width: 800px) {
+      .provider-search-page .header__avatar {
+          display: block
+      }
+      .provider-search-page .header__provider-search {
+          display: none
+      }
+      .provider-search-page__content {
+          padding: 20px;
+          padding-top: 0
+      }
+      .provider-search-page__content .drawer-card {
+          margin-top: 10px
+      }
+      .provider-search-page__left-col {
+          background-color: transparent;
+          -webkit-transition: height 0.3s ease;
+          -moz-transition: height 0.3s ease;
+          -ms-transition: height 0.3s ease;
+          -o-transition: height 0.3s ease;
+          transition: height 0.3s ease
+      }
+      .provider-search-page__left-col.is-notification {
+          height: calc(100vh - 150px);
+          -webkit-transition: height 0.3s ease;
+          -moz-transition: height 0.3s ease;
+          -ms-transition: height 0.3s ease;
+          -o-transition: height 0.3s ease;
+          transition: height 0.3s ease
+      }
+      .provider-search-page__right-col.is-notification .provider-search-page__container {
+          height: calc(100vh - 150px);
+          -webkit-transition: height 0.3s ease;
+          -moz-transition: height 0.3s ease;
+          -ms-transition: height 0.3s ease;
+          -o-transition: height 0.3s ease;
+          transition: height 0.3s ease
+      }
+      .provider-search-page__container {
+          height: calc(100vh - 44px - 58px);
+          -webkit-transition: height 0.3s ease;
+          -moz-transition: height 0.3s ease;
+          -ms-transition: height 0.3s ease;
+          -o-transition: height 0.3s ease;
+          transition: height 0.3s ease
+      }
+      .provider-search-page__container .km-listview-wrapper {
+          display: -webkit-flex;
+          display: -moz-flex;
+          display: -ms-flex;
+          display: -o-flex;
+          display: flex;
+          flex-grow: 1
+      }
+  }
+  @media only screen and (min-width: 800px) {
+.left-col {
+    position: relative;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    height: calc(100vh - 44px - 58px);
+    background-color: #f9f9f9;
+}
+#searchFilter {
+      display: block !important;
+}
+}

@@ -2,6 +2,69 @@
 .has-footer{
   bottom: 0px!important;
 }
+.consultTittle {
+    color: #666666;
+    font-family: "Glober SemiBold";
+    width: 58% !important;
+    text-align: right;
+    font-size: 16pt;
+}
+.consultation_number {
+    font-family: "Glober SemiBold";
+    font-size: 16pt;
+    color: #666666;
+    text-align: center;
+    text-decoration: line-through;
+}
+.consultation_numberCopy {
+    font-family: "Glober SemiBold";
+    font-size: 16pt;
+    color: #666666;
+    text-align: center;
+    color: red;
+}
+.consultTittleCopay {
+    color: #666666;
+    font-family: "Glober SemiBold";
+    font-size: 14pt;
+    text-align: right;
+    margin: 0 auto;
+    vertical-align: middle;
+    line-height: 7px;
+}
+
+.consultCharge_subHeader span {
+    color: #666666;
+    font-size: 24pt;
+    top: -30px !important;
+    position: relative;
+    left: 15px;
+    font-family: "Glober SemiBold";
+    font-weight: normal;
+}
+.pt34{
+  padding-top: 34px;
+  margin-bottom: 30px;
+}
+@media only screen and (min-device-width: 710px) and (max-device-width: 1280px) {
+  .consultTittle{
+    font-size: 24pt !important;
+    text-align: center !important;
+  }
+  .consultTittleCopay{
+    font-size: 16pt !important;
+    text-align: center !important;
+    padding-left: 172px;
+  }
+  .consultation_numberCopy{
+    text-align: left !important;
+    font-size: 18pt !important;
+  }
+  .consultation_number{
+    text-align: left;
+    font-size: 24pt;
+  }
+}
 </style>
 <div id="Error_Message" class="ErrorMessageDiv localizejs" ></div>
 <div class="Error_Message ErrorMessageDiv localizejs" ></div>
@@ -10,10 +73,22 @@
    <ion-side-menus>
    <ion-side-menu-content>
       <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-         <div class="buttons" >
+         <!-- <div class="buttons" >
             <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
          </div>
-         <h1 class="{{title_patient}} calendarTitle localizejs" style="{{PatientTitle}}" >Patient</h1>
+         <h1 class="{{title_patient}} calendarTitle localizejs" style="{{PatientTitle}}" >Patient</h1> -->
+
+         <div class="bar bar-header headerbg">
+           <div class="buttons button-icon">
+             <span class="button icon button-clear" style="{{HomeBackIOS}}" id="BackButtonIcon" ng-click="toggleLeft()">
+               <i ng-bind-html="drawSVGCIcon('menu')"></i>
+             </span>
+           </div>
+           <div class="h1 title-head localizejs" style="{{HomeHeaderIOS}}">Patient</div>
+
+         </div>
+
+
          <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
             <div class="calendar_subHeader paymentSubHeader" >
                <div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
@@ -30,9 +105,24 @@
             <span class="localizejs">Payment</span>
          </div>
       </ion-header-bar>
-      <ion-content class="consultCharge_contentPayment consultConPaymentMargin addCardConScetion"  >
-         <div style="padding-right: 10%;">
-            <div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
+      <ion-content class="consultCharge_contentPayment consultConPaymentMargin addCardConScetion">
+        <div class="row pt34">
+        <div class="col-67 consultTittle localizejs">Consultation Charge</div>
+        <div class="col-33">
+          <div class="consultation_number" ng-if="adminSetlocale == 'en-GB'"> <span>&pound;{{consultationAmount}}*</span></div>
+           <div class="consultation_number" ng-if="adminSetlocale != 'en-GB'"> <span>{{currencySymbol}}{{consultationAmount}}*</span></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-67 consultTittleCopay localizejs">Your Copay</div>
+        <div class="col-33">
+          <div class="consultation_numberCopy" ng-if="adminSetlocale == 'en-GB'"> <span>&pound;{{copayAmount}}*</span></div>
+          <div class="consultation_numberCopy" ng-if="adminSetlocale != 'en-GB'"> <span>{{currencySymbol}}{{copayAmount}}*</span></div>
+        </div>
+      </div>
+
+         <!-- <div class="col">
+            <div class="consultation_head RegularFontStyle consultChargeNoPlanText">
                <div class="consultTittle localizejs">Consultation Charge</div>
                <div class="consultation_number" ng-if="adminSetlocale == 'en-GB'"> <span>&pound;{{consultationAmount}}*</span></div>
                 <div class="consultation_number" ng-if="adminSetlocale != 'en-GB'"> <span>{{currencySymbol}}{{consultationAmount}}*</span></div>
@@ -42,7 +132,7 @@
                <div class="consultation_numberCopay" ng-if="adminSetlocale == 'en-GB'"> <span>&pound;{{copayAmount}}*</span></div>
                <div class="consultation_numberCopay" ng-if="adminSetlocale != 'en-GB'"> <span>{{currencySymbol}}{{copayAmount}}*</span></div>
             </div>
-         </div>
+         </div> -->
          <div class="password_home contentPayHomeAddCard">
             <div class="healthPlan_header consultCard" style="display: {{enableSubmitpaymentAddCard}} " >
                   <h4 class="insurancelist">

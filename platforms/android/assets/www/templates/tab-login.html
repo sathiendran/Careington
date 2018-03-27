@@ -1,101 +1,90 @@
-
+<style>
+.has-footer{
+  bottom: 0px!important;
+}
+</style>
 <ion-view>
-    <div id="Error_Message" ></div>
-    <div class="Server_Error" ></div>
-
-	<ion-content class="register loginEmail" style="background-color: #EF4B27;">
-		<div >
-			<h2><span>Virtual Care</span></h2>
-		</div>
-
-		<form ng-submit="LoginFunction()">
-			<div class="card" id="loginEmail" style="display: block;">
-					<div class="regcontent">
-						<h2><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i></h2>
-						<p class="enterEmailText newLogEmai">Enter Your Email Address</p>
-            <p class="enterEmailTextStart newLogEmai">To Get Started</p>
-					</div>
-					<div class="item-input-inset">
-						<label class="item-input-wrapper place loginPlace">
-						<input style="{{loginLineHeight}}" type="email" placeholder="email address" ng-model="userLogin.UserEmail" name="UserEmail" id="UserEmail" >
-						</label>
-					</div>
-					<div class="item-input-inset" style="display: none;">
-              <div class="squaredCheckbox" ng-if="chkedchkbox == true">
-                           <input type="checkbox" name="remember" id="squaredCheckbox" ng-click="rememberMe()" checked="true">
-      				<label for="squaredCheckbox"></label>
-      				</div>
-
-      				<div class="squaredCheckbox" ng-if="chkedchkbox != true">
-                           <input type="checkbox" name="remember" id="squaredCheckbox" ng-click="rememberMe()"  >
-      				<label for="squaredCheckbox"></label>
-      				</div>
-              <div class="remember"> Remember my email</div>
-					</div>
-          <div class="checkbox" ng-if="chkedchkbox == true">
-              <input type="checkbox" name="remember" id="squaredCheckbox" class="isRemChecked" ng-click="rememberMe()" checked="true">
-              <span for="squaredCheckbox" class="checkbox__control"></span>
-              <span class="remember">Remember my email</span>
-          </div>
-
-          <div class="checkbox" ng-if="chkedchkbox != true">
-              <input type="checkbox" name="remember" id="squaredCheckbox" class="isRemChecked" ng-click="rememberMe()" >
-              <span for="squaredCheckbox" class="checkbox__control"></span>
-              <span class="remember">Remember my email</span>
+   <div id="Error_Message" ></div>
+   <div class="Server_Error" ></div>
+   <ion-content class="register loginEmail regLogin" style="background-color: {{backColor}}">
+      <div >
+           <h2 ng-if="cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'"><span>Virtual Care</span></h2>
+           <h2 ng-if="cobrandApp_New == 'MDAmerica' && deploymentEnv_New == 'Single'"><span>{{singleHospital}}</span></h2>
+      </div>
+      <form ng-submit="LoginFunction()">
+         <div class="card" id="loginEmail" style="display: block;">
+            <div class="regcontent newLogPageCont">
+               <h2><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i></h2>
+               <p class="enterEmailText newLogEmai localizejs" >Enter Your Email Address</p>
+               <p class="enterEmailTextStart newLogEmai localizejs">To Get Started</p>
             </div>
-
-					<div class="btn1 newLogBut">
-						<button type="submit" class="button" ng-click="LoginFunction()">
-								Continue
-						</button>
-
-
-					</div>
-			</div>
-		</form>
-
-    <div class="card" id="verifyEmail" style="display: none;">
-        <div class="regcontent">
-          <h2><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i></h2>
-          <p class="enterEmailText newLogVerify">Verifying</p>
-        </div>
-        <div class="newVerifyEmailId">
+            <div class="item-input-inset">
+               <label class="item-input-wrapper place loginPlace">
+               <input style="{{loginLineHeight}}" class="localizejs" type="email" placeholder="email address" ng-model="userLogin.UserEmail" name="UserEmail" id="UserEmail" >
+               </label>
+            </div>
+            <div class="item-input-inset" style="display: none;">
+               <div class="squaredCheckbox" ng-if="chkedchkbox == true">
+                  <input type="checkbox" name="remember" id="squaredCheckbox" ng-click="rememberMe()" checked="true">
+                  <label for="squaredCheckbox"></label>
+               </div>
+               <div class="squaredCheckbox" ng-if="chkedchkbox != true">
+                  <input type="checkbox" name="remember" id="squaredCheckbox" ng-click="rememberMe()"  >
+                  <label for="squaredCheckbox"></label>
+               </div>
+               <div class="remember localizejs"> Remember my email</div>
+            </div>
+            <div class="checkbox" ng-if="chkedchkbox == true">
+               <input type="checkbox" name="remember" id="squaredCheckbox" class="isRemChecked" ng-click="rememberMe()" checked="true">
+               <span for="squaredCheckbox" class="checkbox__control"></span>
+               <span class="remember localizejs">Remember my email</span>
+            </div>
+            <div class="checkbox" ng-if="chkedchkbox != true">
+               <input type="checkbox" name="remember" id="squaredCheckbox" class="isRemChecked" ng-click="rememberMe()" >
+               <span for="squaredCheckbox" class="checkbox__control"></span>
+               <span class="remember localizejs">Remember my email</span>
+            </div>
+            <div class="btn1 newLogBut">
+               <button type="submit" class="button localizejs" ng-click="LoginFunction()">
+               Continue
+               </button>
+            </div>
+         </div>
+      </form>
+      <div class="card" id="verifyEmail" style="display: none;">
+         <div class="regcontent newLogPageCont">
+            <h2><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i></h2>
+            <p class="newLogVerify localizejs">Verifying</p>
+         </div>
+         <div class="newVerifyEmailId">
             {{userLogin.UserEmail}}
+         </div>
+         <div class="btn1 logCircle">
+            <!--<i class="iconfontSVG" ng-bind-html="drawSVGCIcon('circle')"></i>-->
+            <i class="ion-ios-circle-outline" style="display: none;"></i>
+         </div>
+      </div>
+      <div class="acinfo1-{{deviceName}}" ng-if="(deploymentEnv == 'Multiple' || deploymentEnv == 'Single' || deploymentEnv == 'QA') && cobrandApp_New != 'MDAmerica'">
+         <h4 class="localizejs">Need an account?</h4>
+      </div>
+      <div class="acinfo1-{{deviceName}} newLogProviderSecDiv-{{deviceName}}" ng-if="(deploymentEnv == 'Multiple' || deploymentEnv == 'Single' || deploymentEnv == 'QA') && cobrandApp_New != 'MDAmerica'">
+         <h4><span class="localizejs" ng-click="goToSearchProvider('login');">Click here to find your provider.</span></h4>
+      </div>
+   </ion-content>
+
+
+   <!-- Footer Start-->
+   <!-- <div class="hide-on-keyboard-open"> -->
+      <ion-footer-bar class="footer"  hide-on-keyboard="true" style="background-color: {{backColor}} !important; border-color: {{backColor}} !important">
+         <div class="terms" >
+            <a ng-if="deploymentEnv == 'Multiple' || deploymentEnv=='QA'" class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/chooseEnvironment"><span class="localizejs">Back</span></a>
+            <a ng-if="deploymentEnv != 'Multiple' && cobrandApp_New !== 'MDAmerica' && deploymentEnv !=='QA'" ng-href="#/tab/terms"><b class="localizejs">Terms & Conditions</b></a>
+           <a ng-if="deploymentEnv != 'Multiple' && cobrandApp_New === 'MDAmerica'" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.login');"><b class="localizejs">Terms & Conditions</b></a>
         </div>
-        <div class="btn1 logCircle">
-          <!--<i class="iconfontSVG" ng-bind-html="drawSVGCIcon('circle')"></i>-->
-          <i class="ion-ios-circle-outline" style="display: none;"></i>
-        </div>
-    </div>
-
-
-		<div class="acinfo1-{{deviceName}}">
-			<h4>Need an account?</h4>
-		</div>
-		<div class="acinfo1-{{deviceName}}">
-			<h4 style="padding-top: 14px;"><span ng-click="goToSearchProvider('login');">Click here to find your provider.</span></h4>
-		</div>
-
-
-	</ion-content>
-
-    <!-- Footer Start-->
-    <div class="hide-on-keyboard-open">
-      <ion-footer-bar class="footer" style="background-color: #EF4B27 !important; border-color: #EF4B27 !important">
-       <div class="terms" >
-         <a ng-if="deploymentEnv == 'Multiple'" class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/chooseEnvironment"><span>Back</span></a>
-         <a ng-if="deploymentEnv != 'Multiple'" ng-href="#/tab/terms"><b>Terms & Conditions</b></a>
-        </div>
-
-
-        <div class="powerdBySnapMD">
-        <!--<a href="#" onclick="window.open('http://snap.md/', '_system', 'location=yes'); return false;"><b>v1.3.4<b></a>-->
-
-        <a><b>v7.1.12<b></a>
-
-        </div>
+         <div class="powerdBySnapMD">
+            <a><b>v9.0.4<b></a>
+         </div>
       </ion-footer-bar>
-    </div>
-    <!-- Footer End-->
-
+   <!-- </div> -->
+   <!-- Footer End-->
 </ion-view>
