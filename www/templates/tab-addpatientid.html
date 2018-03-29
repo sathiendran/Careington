@@ -43,7 +43,7 @@
          <button class="button button-clear {{concernListDoneStyle}} localizejs" style="{{PrimaryConcernPopupDone}};" ng-click="patientdone()" >Done</button>
       </header> -->
 
-        <div class="bar bar-header bar-blue concernListHeader">
+        <div class="bar bar-header bar-blue concernListHeader" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
             <div class="ErrorMessage ErrorMessageDiv"></div>
             <div class="button button-icon closeIcon" ng-click="removePatientIdmodal()">
                 <i class="addBtn" ng-bind-html="drawSVGCIcon('cross')"></i>
