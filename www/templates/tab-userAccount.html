@@ -224,7 +224,7 @@
  				<div class="h1 title-head localizejs" style="{{HomeHeaderIOS}}">Patient</div>
  			</div> -->
 
-      <div class="bar bar-header headerbg">
+      <div class="bar bar-header headerbg" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
         <div class="buttons button-icon" style="left: -5px;position: fixed;{{Useraccount}}">
           <a ng-href="#/tab/userhome" class="userAccountbackBtn">
             <i class="iconfontSVG ng-binding" ng-bind-html="drawSVGCIcon('chevron-left')">
@@ -294,7 +294,7 @@
           </div>
           <div class="">
             <h1 class="headertitle userAccHeaderTitle">
-              <div class="ellipsis subHeader_content_name">
+              <div class="ellipsis subHeader_content_name" style="    position: relative; top: 2px;">
                 <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">{{PatientFirstName}}</span>
                 <span class="patientLastName ellipsis lnamefont">{{PatientLastName}}</span>
               </div>

@@ -2,13 +2,26 @@
 .has-footer{
   bottom: 0px!important;
 }
+
+
+
+    .terms1 {
+    font-family: "Glober Light";
+    font-weight: bold;
+    font-size: 11px;
+    text-align: left;
+     width: 50%;
+     position: relative;
+    top: 4px;
+    }   
+
 </style>
 <ion-view>
    <div id="Error_Message" ></div>
    <div class="Server_Error" ></div>
    <ion-content class="register loginEmail regLogin" style="background-color: {{backColor}}">
       <div >
-           <h2 ng-if="cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'"><span>Virtual Care Sakthi</span></h2>
+           <h2 ng-if="cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'"><span>Virtual Care</span></h2>
            <h2 ng-if="cobrandApp_New == 'MDAmerica' && deploymentEnv_New == 'Single'"><span>{{singleHospital}}</span></h2>
       </div>
       <form ng-submit="LoginFunction()">
@@ -76,13 +89,13 @@
    <!-- Footer Start-->
    <!-- <div class="hide-on-keyboard-open"> -->
       <ion-footer-bar class="footer"  hide-on-keyboard="true" style="background-color: {{backColor}} !important; border-color: {{backColor}} !important">
-         <div class="terms" >
+         <div class="terms1" >
             <a ng-if="deploymentEnv == 'Multiple' || deploymentEnv=='QA'" class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/chooseEnvironment"><span class="localizejs">Back</span></a>
             <a ng-if="deploymentEnv != 'Multiple' && cobrandApp_New !== 'MDAmerica' && deploymentEnv !=='QA'" ng-href="#/tab/terms"><b class="localizejs">Terms & Conditions</b></a>
            <a ng-if="deploymentEnv != 'Multiple' && cobrandApp_New === 'MDAmerica'" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.login');"><b class="localizejs">Terms & Conditions</b></a>
         </div>
          <div class="powerdBySnapMD">
-            <a><b>v9.0.4<b></a>
+            <a style="top: 10px; position: relative;"><b>v9.0.4<b></a>
          </div>
       </ion-footer-bar>
    <!-- </div> -->

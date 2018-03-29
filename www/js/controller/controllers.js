@@ -2085,23 +2085,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
 
 
-        if ($stateParams.getPage === 'CTT') {
-            $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-            if ($rootScope.chkSSPageEnter) {
-                $ionicSideMenuDelegate.toggleLeft();
-                $rootScope.chkSSPageEnter = false;
-            }
-            $rootScope.patientId = JSON.parse(sessionStorage.getItem("appointPatId"));
-            $rootScope.appointmentwaivefee = JSON.parse(sessionStorage.getItem("waivefee"));
-            $rootScope.userhome = true;
-            $rootScope.SSPage = true;
-            $rootScope.appointmentsPage = true;
-            $rootScope.consultationId = $stateParams.getconsultId;
-            $rootScope.P_isAuthorized = true;
-            //$(".overlay").css({"display": "none" });
-            $rootScope.concentToTreatPreviousPage = "tab.userhome";
-            $rootScope.doGetpatDetailsForSS($rootScope.patientId, "Now");
-        }
 
         if ($stateParams.getPage === 'CTT') {
             $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
@@ -3032,203 +3015,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             $rootScope.chkedchkbox = false;
                         }
                     }
-                }
-            };
-
-            LoginService.getUserTimezone(params);
-        }
-
-        $scope.doGetToken = function () {
-            if ($('#password').val() === '') {
-                $scope.ErrorMessage = "Please enter your password";
-                $rootScope.Validation($scope.ErrorMessage);
-            } else {
-
-                $('#loginPwd').hide();
-                $('#loginPwdVerify').show();
-                $rootScope.registedPwd = $scope.pass.password;
-                var params = {
-                    email: $rootScope.UserEmail,
-                    password: $scope.pass.password,
-                    userTypeId: 1,
-                    hospitalId: $rootScope.hospitalId,
-                    success: function (data) {
-                        $rootScope.accessToken = data.data[0].access_token;
-
-                        var userData = {};
-                        userData.apiDeveloperId = util.getHeaders()["X-Developer-Id"];
-                        userData.apiKey = util.getHeaders()["X-Api-Key"];
-                        userData.token = data.data[0].access_token;
-                        userData.snapLogin = true;
-                        var userDataJsonData = JSON.stringify(userData);
-                        $window.localStorage.setItem('snap_user_session', userDataJsonData);
-
-                        $scope.getCurrentTimeForSessionLogout = new Date();
-                        $rootScope.addMinutesForSessionLogout = $scope.addMinutes($scope.getCurrentTimeForSessionLogout, 20);
-                        $window.localStorage.setItem('tokenExpireTime', $rootScope.addMinutesForSessionLogout);
-                        if (typeof data.data[0].access_token === 'undefined') {
-                            $('#loginPwdVerify').hide();
-                            $('#loginPwd').show();
-                            $scope.ErrorMessage = "Incorrect Password. Please try again";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        } else {
-                            $scope.tokenStatus = 'alert-success';
-                            $scope.getPatDetailsForSession();
-                            // $scope.doGetUserTimezone();
-                            // $scope.doGetCodesSet();
-                            // $scope.chkPatientFilledAllRequirements();
-                        }
-                        window.localStorage.setItem('rootScope', angular.fromJson($rootScope));
-                    },
-                    error: function (data, status) {
-                        $('#loginPwdVerify').hide();
-                        $('#loginPwd').show();
-
-                        if (status === '401' || status === '403') {
-                            $scope.ErrorMessage = "We are unable to log you in. Please contact customer support regarding your account";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        } else if (status === 503) {
-                            $scope.callServiceUnAvailableError();
-                        } else if (status === 0) {
-                            $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        } else {
-                            $scope.ErrorMessage = "Incorrect Password. Please try again";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        }
-                        //  }
-                    }
-                };
-                LoginService.getToken(params);
-            }
-        }
-
-
-
-        $scope.$on('IdleStart', function () {
-
-        });
-        $scope.$on('IdleWarn', function () { });
-        $scope.$on('IdleTimeout', function () {
-
-            if (window.localStorage.getItem("tokenExpireTime") !== null && window.localStorage.getItem("tokenExpireTime") !== "") {
-                if ($rootScope.currState.$current.name !== "tab.waitingRoom" && $rootScope.currState.$current.name !== "videoConference") {
-
-                    navigator.notification.alert(
-                        SessTimedOutMsg, // message
-                        null,
-                        $rootScope.alertMsgName,
-                        SessTimedOk // buttonName
-                    );
-                    $rootScope.ClearRootScope();
-                }
-            }
-        });
-
-        $scope.$on('IdleEnd', function () {
-            // the user has come back from AFK and is doing stuff. if you are warning them, you can use this to hide the dialog
-
-        });
-
-        $scope.$on('Keepalive', function () {
-            // do something to keep the user's session alive
-
-        });
-
-        $scope.emailType = 'resetpassword';
-
-        $scope.doPostSendPasswordResetEmail = function () {
-
-            if (deploymentEnv === "Single" && cobrandApp !== 'MDAmerica') {
-                $scope.userEmailId = $('#UserEmail').val();
-            } else if (deploymentEnv === "Single" && cobrandApp === 'MDAmerica') {
-                $scope.userEmailId = $rootScope.UserEmail;
-            } else {
-                $scope.userEmailId = $rootScope.UserEmail;
-            }
-            if ($scope.userEmailId === '') {
-
-                $scope.ErrorMessage = "Please enter an email!";
-                $rootScope.Validation($scope.ErrorMessage);
-            } else {
-
-                $scope.ValidateEmail = function (email) {
-                    var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                    return expr.test(email);
-                };
-                if (!$scope.ValidateEmail($scope.userEmailId)) {
-                    $scope.ErrorMessage = "Please enter a valid email address";
-                    $rootScope.Validation($scope.ErrorMessage);
-                } else {
-                    if (deploymentEnv === "Single" && cobrandApp !== 'MDAmerica') {
-                        if (deploymentEnvLogout === 'Single') {
-                            if (deploymentEnvForProduction === 'Production') {
-                                //   if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
-                                if ((appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) || (appStoreTestUserEmail2 !== '' && $("#UserEmail").val() === appStoreTestUserEmail2)) {
-                                    $rootScope.hospitalId = singleStagingHospitalId;
-                                    apiCommonURL = 'https://snap-stage.com';
-                                    api_keys_env = 'Staging';
-                                    $rootScope.APICommonURL = 'https://snap-stage.com';
-                                } else {
-
-                                    $rootScope.hospitalId = singleHospitalId;
-                                    apiCommonURL = 'https://connectedcare.md';
-                                    api_keys_env = 'Production';
-                                    $rootScope.APICommonURL = 'https://connectedcare.md';
-                                }
-                            } else if (deploymentEnvForProduction === 'Staging') {
-                                $rootScope.hospitalId = singleStagingHospitalId;
-                                api_keys_env = "Staging";
-                            } else if (deploymentEnvForProduction === 'QA') {
-                                $rootScope.hospitalId = singleQAHospitalId;
-                                api_keys_env = "QA";
-                            } else if (deploymentEnvForProduction === 'Sandbox') {
-                                $rootScope.hospitalId = singleSandboxHospitalId;
-                                api_keys_env = "Sandbox";
-                            }
-                        }
-                        var convertedemail = $scope.userLogin.UserEmail.toString();
-                        if ($("#squaredCheckbox").prop('checked') === true) {
-                            $window.localStorage.setItem('username', $("#UserEmail").val());
-                            $window.localStorage.oldEmail = convertedemail;
-                            $rootScope.UserEmail = convertedemail;
-                            $rootScope.chkedchkbox = true;
-
-                        } else {
-                            $rootScope.UserEmail = convertedemail;
-                            $window.localStorage.oldEmail = '';
-                            $window.localStorage.setItem('username', "");
-                            $rootScope.chkedchkbox = false;
-                        }
-                    }
-
-                    if ($rootScope.customerSso === "Mandatory" && $rootScope.ssopatientforgetpwd != "") {
-
-                        var params = {
-                            email: $rootScope.UserEmail,
-                            apiSsoURL: $rootScope.ssopatientforgetpwd,
-                            success: function (data) {
-                                $scope.PasswordResetEmail = data;
-                                $state.go('tab.resetPassword');
-                            },
-                            error: function (data, status) {
-                                if (status === '404') {
-                                    $scope.ErrorMessage = "Email Address not Found";
-                                    $rootScope.Validation($scope.ErrorMessage);
-                                } else if (status == null) {
-                                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                                    $rootScope.Validation($scope.ErrorMessage);
-                                } else if (status === 0) {
-                                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                                    $rootScope.Validation($scope.ErrorMessage);
-                                } else if (status === 503) {
-                                    $scope.callServiceUnAvailableError();
-                                } else {
-                                    $rootScope.serverErrorMessageValidation();
-                                }
-                            }
-                        };
-                        LoginService.ssoPasswordReset(params);
 
                     if ($rootScope.customerSso === "Mandatory" && $rootScope.ssopatientforgetpwd != "") {
 
@@ -4482,8 +4268,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     } else {
                         $rootScope.patRelationShip = '';
                     }
-                }
-            };
 
                     $.getScript("lib/jquery.signalR-2.1.2.js", function (data, textStatus, jqxhr) {
 
@@ -4769,7 +4553,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.appointmentsPatientFirstName = angular.element('<div>').html(data.data[0].patientName).text();
                     $rootScope.appointmentsPatientLastName = angular.element('<div>').html(data.data[0].lastName).text();
 
-        };
 
                 },
                 error: function (data, status) {

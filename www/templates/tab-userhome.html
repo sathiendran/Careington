@@ -1,7 +1,7 @@
 <style>
 	.headerbg {
-		background-color: #333fe2;
-		border-color: #333fe2;
+		/* background-color: #333fe2;
+		border-color: #333fe2; */
 		background-image: none;
 		align-items: center;
 		vertical-align: middle;
@@ -82,7 +82,7 @@
 				</div>
 
 			</div> -->
-			<div class="bar bar-header headerbg">
+			<div class="bar bar-header headerbg" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 				<div class="buttons button-icon">
 					<span class="button icon button-clear" style="{{HomeBackIOS}}" id="BackButtonIcon" ng-click="toggleLeft()">
 						<i ng-bind-html="drawSVGCIcon('menu')"></i>
