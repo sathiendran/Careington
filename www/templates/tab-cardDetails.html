@@ -96,8 +96,8 @@
                   
                   <span class="input-label cardfont localizejs" >Zip</span>
                   <!-- <input ng-if="!getCardDetails"  type="text" style="{{invalidZip}}" placeholder="Required"  ng-model="getCardDetails.CardZipCode"  class="localizejs" input-max-length-number maxlength="10" name="Zip" id="Zip" required/> -->
-                  <input ng-if="getCardDetails.Country == 'US'"  type="text" style="{{invalidZip}}" placeholder="Required"  ng-model="getCardDetails.CardZipCode"  class="localizejs" input-max-length-number maxlength="10" name="Zip" id="Zip" required/>
-                  <input ng-if="getCardDetails.Country != 'US'" type="text" style="{{invalidZip}}"   ng-model="getCardDetails.CardZipCode"  class="localizejs" input-max-length-number maxlength="10" name="Zip" id="Zip" />
+                  <input ng-if="getCardDetails.Country == 'United States'"  type="text" style="{{invalidZip}}" placeholder="Required"  ng-model="getCardDetails.CardZipCode"  class="localizejs" input-max-length-number maxlength="10" name="Zip" id="Zip" required/>
+                  <input ng-if="getCardDetails.Country != 'United States'" type="text" style="{{invalidZip}}"   ng-model="getCardDetails.CardZipCode"  class="localizejs" input-max-length-number maxlength="10" name="Zip" id="Zip" />
                 </div>
             </div>
             <div class="planDetails" ng-if="addCardStatus !== 200" style="opacity:{{planverify}};">

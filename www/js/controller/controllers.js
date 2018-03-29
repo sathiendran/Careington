@@ -6401,7 +6401,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $scope.ErrorMessage = "Country can't be empty";
                 $rootScope.Validation($scope.ErrorMessage);
 
-            } else if ($('#editZip').val() === '') {
+            } else if ($('#editZip').val() == '' && ($('#editCountry').val() == 'US' || $('#editCountry').val() == 'United States')) {
                 $scope.ErrorMessage = "Zip can't be empty";
                 $rootScope.Validation($scope.ErrorMessage);
 
@@ -6417,7 +6417,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $scope.ErrorMessage = "Invalid Expiry Month";
 
                 $rootScope.Validation($scope.ErrorMessage);
-            } else if (editzipCount <= 4 && $scope.editCountry == 'US') {
+            } else if (editzipCount <= 4 && ($scope.editCountry == 'US' || $('#editCountry').val() == 'United States')) {
                 $scope.invalidMonth = "";
                 $scope.invalidCard = "";
                 $scope.invalidCVV = "";

@@ -1,11 +1,60 @@
+<style>
+    .concernListHeader .concernListTitle {
+       top: 11px !important;
+   }
+
+   .bar-blue {
+       background-color: #333fe2;
+       border-color: #333fe2;
+       background-image: none;
+       height: 64px !important;
+       color: rgb(255, 255, 255) !important;
+   }
+
+   .barTitle {
+       text-align: center;
+       color: rgb(255, 255, 255) !important;
+       vertical-align: middle;
+       line-height: 63px !important;
+       font-family: "GloberSemiBold";
+       font-size: 20px !important;
+   }
+
+   .closeIcon {
+       vertical-align: middle;
+       align-items: center;
+       line-height: 65px !important;
+       color: rgb(255, 255, 255) !important;
+   }
+
+   .rightIcon {
+       right: 15px;
+       margin: 0 auto !important;
+       vertical-align: middle;
+       line-height: 70px !important;
+   }
+</style>
+
 <div class="modal">
    <ion-view>
-      <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+      <!-- <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
          <div class="ErrorMessage ErrorMessageDiv"  ></div>
          <button class="button button-clear {{concernListDoneStyle}} localizejs" style="{{PriorSurgeryPopupCancel}};" ng-click="removemodal()" >Cancel</button>
          <h1 class="title {{concernListTitleStyle}} localizejs" style="{{PrimaryConcernPopupTitle}};top: 10px !important;">Height</h1>
          <button class="button button-clear {{concernListDoneStyle}} localizejs" style="{{PrimaryConcernPopupDone}};" ng-click="heightsave()" >Save</button>
-      </header>
+      </header> -->
+
+      <div class="bar bar-header bar-blue concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+        <div class="ErrorMessage ErrorMessageDiv"></div>
+        <div class="button button-icon closeIcon" ng-click="removemodal()">
+            <i class="addBtn" ng-bind-html="drawSVGCIcon('cross')"></i>
+        </div>
+        <div class="h1 title barTitle localizejs">Height</div>
+        <div class="rightHeaderIcon button-positive rightIcon" ng-click="heightsave()">
+            <i class="addBtn" ng-bind-html="drawSVGCIcon('check')"></i>
+        </div>
+    </div>
+
       <ion-content has-header="true" class="concernListContent">
          <ion-list>
             <ion-item class="search_home  concernListSearch">

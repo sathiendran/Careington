@@ -89,7 +89,9 @@
                <div class="item item-input" >
                   <span class="input-label cardfont localizejs" >Zip</span>
                   <!--<input  style="line-height: 20px; font-size: 18px; padding: 0px; {{invalidZip}}"   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  type = "tel"  placeholder="Required" ng-model="editcard.editZip" name="editZip" id="editZip" maxlength="7" required/>-->
-                   <input type="text" class="localizejs" style="line-height: 20px; font-size: 18px; padding: 0px; {{invalidZip}}"  placeholder="Required"  ng-model="editCardDetails.cardEditZip"  input-max-length-number maxlength="10" name="editZip" id="editZip" required/>
+                   <input ng-if="editCardDetails.cardEditCountry == 'US'" type="text" class="localizejs" style="line-height: 20px; font-size: 18px; padding: 0px; {{invalidZip}}"  placeholder="Required"  ng-model="editCardDetails.cardEditZip"  input-max-length-number maxlength="10" name="editZip" id="editZip" required/>
+                   <input ng-if="editCardDetails.cardEditCountry != 'US'" type="text" class="localizejs" style="line-height: 20px; font-size: 18px; padding: 0px; {{invalidZip}}"    ng-model="editCardDetails.cardEditZip"  input-max-length-number maxlength="10" name="editZip" id="editZip"/>
+
                </div>
             </div>
             <div class="planDetails" ng-if="addCardStatus !== 200"  style="opacity:{{planverify}};">

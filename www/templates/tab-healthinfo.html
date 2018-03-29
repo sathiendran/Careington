@@ -2,7 +2,8 @@
 .headerval{
     padding: 7px 0px;
     margin: 0 auto;
-    top: -2px !important;
+    /*top: -2px !important; */
+    top: 2px !important;
   }
   .headerval-done{
       padding: 6px 0px;
@@ -36,7 +37,7 @@
                Done</button>
          </h1> -->
 
-         <div class="bar bar-header headerbg">
+         <div class="bar bar-header headerbg" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
            <div class="buttons button-icon">
              <span class="button icon button-clear" style="{{HomeBackIOS}}" id="BackButtonIcon" ng-click="toggleLeft()">
                <i ng-bind-html="drawSVGCIcon('menu')"></i>

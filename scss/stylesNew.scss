@@ -1190,7 +1190,7 @@ top: -8px;
     right: 10px;
 }
 .add-user-icon-IOS{
-    top: 22px;
+    top: 22px !important;
 }
 .add-user-icon-Android{
     top: 10px;
@@ -3602,7 +3602,8 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 .HealthTitle-IOS {
 left: -28px;
 position: relative;
-top: -3px;
+//top: -3px;
+top: 2px;
 }
 .HealthTitle-Android {
 left: -34px;
@@ -3615,6 +3616,7 @@ top: -3px;
   border: none !important;
   font-size: 20px;
   cursor: pointer;
+  top: -30px !important;
 }
 .healthLeft-Android {
   top: -34px !important;
