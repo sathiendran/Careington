@@ -15,7 +15,7 @@
       <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">
          <div class="Server_Error ErrorMessageDiv" ></div>
          <div id="Error_Message" class="relatedUserError"></div>
-         <span class="localizejs HealthTitle-{{deviceName}}"> Related Users </span>
+         <span class="localizejs HealthTitle-{{deviceName}}" style="padding-right: 25px !important;left: 0px !important;"> Related Users </span>
       </h1>
       <a ng-if="customerSso != 'Mandatory' && cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'" ng-show="cousericon" class="add-user-icon add-user-icon-{{deviceName}}" ng-click="addcouser()" ><i class="icon ion-plus"></i></a></span>
       <a ng-if="customerSso != 'Mandatory' && cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'" ng-hide="cousericon" class="add-user-icon add-user-icon-{{deviceName}}"  ng-click="adddependent()"><i class="icon ion-plus"></i></a></span>
@@ -177,7 +177,7 @@
                      <div class="docAppointImage" ng-bind-html="drawImage(getDependentDetails.profileImagePath,getDependentDetails.patientFirstName,getDependentDetails.patientLastName)"></div>
                      <h2 class="relatedhead"><span class="sfont fname">{{getDependentDetails.patientFirstName}}</span> <span class="sname">{{getDependentDetails.patientLastName}}</span> </h2>
                      <!-- <p class="relatediconfont">{{getDependentDetails.gender}} .<span ng-if="getDependentDetails.birthdate != ''">  {{getDependentDetails.birthdate}}</span> <span ng-if="getDependentDetails.relationship != ''"> . {{getDependentDetails.relationship}} </span></p> -->
-                     <p class="relatediconfont localizejs">{{getDependentDetails.gender}} .<!-- <span ng-if="getDependentDetails.birthdate != ''">  {{getDependentDetails.modifiedBirthdate}}</span> --> 
+                     <p class="relatediconfont localizejs"><span class="localizejs">{{getDependentDetails.gender}} </span> .<!-- <span ng-if="getDependentDetails.birthdate != ''">  {{getDependentDetails.modifiedBirthdate}}</span> --> 
                         <span  ng-if="getDependentDetails.birthdate != ''"> <span>{{getDependentDetails.birthdate | ageFilter}}</span><span class="localizejs">{{getDependentDetails.birthdate | ageYearsStringFilter}}</span><span>{{getDependentDetails.birthdate | ageMonthFilter}}</span> <span>{{getDependentDetails.birthdate | ageDayFilter}}</span> </span>
                         <span class="localizejs" ng-if="getDependentDetails.relationship != ''"> . {{getDependentDetails.relationship}} </span></p>
                   </a>

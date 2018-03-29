@@ -660,11 +660,13 @@ angular.module('starter.controllers')
         }*/
         $rootScope.ValidationReg = function ($a) {
             $('.ContinueAddressBtn').css({'display':'none'});
+            $('.CancelAddressBtn').css({'display':'none'});
             function refresh_close() {
                 $('.close').click(function () {
                     $(this).parent().fadeOut(200);
                     setTimeout(function(){
                     $('.ContinueAddressBtn').css({'display':'block'});
+                    $('.CancelAddressBtn').css({'display':'block'});
                     },100)
                 });
             }
@@ -687,6 +689,7 @@ angular.module('starter.controllers')
             $rootScope.ValidationReg($scope.ErrorMessage);
           } else {
             $('.ContinueAddressBtn').css({'display':'block'});
+            $('.CancelAddressBtn').css({'display':'block'});
           }
           if(document.getElementById('fullAddress').value != $rootScope.defaultAddressText )
           {
@@ -847,7 +850,7 @@ angular.module('starter.controllers')
      $("#localize-widget").show();
    }
         $scope.addressEditModal = function () {
-          // $("#localize-widget").show();
+           $("#localize-widget").hide();
             //$('#healthInfoHeightUnit').val("");
             $('#regDOB').blur();
             $ionicModal.fromTemplateUrl('templates/tab-addressedittemplate.html', {
@@ -858,7 +861,7 @@ angular.module('starter.controllers')
             }).then(function (modal) {
                 $scope.modal = modal;
                 $scope.modal.show().then(function () {
-
+                $("#localize-widget").hide();
                   var AddrText = '';
 
                   if(document.getElementById('regaddress').value == '')

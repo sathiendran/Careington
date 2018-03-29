@@ -343,6 +343,11 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
             LoginService.getHospitalInfo(params);
         }
 
+        $rootScope.goBackButton = function(page) {
+            debugger;
+            $state.go('tab.'+ page);
+        }
+
         $rootScope.ClearRootScope = function () {
             $rootScope.cuttlocations = '';
             $window.localStorage.setItem('tokenExpireTime', '');
@@ -585,6 +590,7 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
                 $scope.modal.show();
             });
         };
+        var isOpenError = 0;
         $scope.closePrimaryConcerns = function () {
             $rootScope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {
                 checked: true
@@ -594,8 +600,12 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
                 $rootScope.codeId = $scope.PatientPrimaryConcernItem[0].codeId;
                 if (typeof $rootScope.PatientSecondaryConcern[0] !== 'undefined') {
                     if ($scope.PatientPrimaryConcernItem[0].text === $rootScope.PatientSecondaryConcern[0].text) {
-                        $scope.ErrorMessage = "Primary and Secondary Concerns must be different";
-                        $rootScope.ValidationFunction1($scope.ErrorMessage);
+                        if(isOpenError == 0) {
+                            $scope.ErrorMessage = "Primary and Secondary Concerns must be different";
+                            $rootScope.ValidationFunction1($scope.ErrorMessage);
+                            isOpenError += 1;
+                        }
+                        
                     } else {
                         $rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
                         $rootScope.IsValue = $scope.PatientPrimaryConcernItem.length;
@@ -626,7 +636,7 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
         $scope.openOtherPrimaryConcernView = function () {
             $scope.data = {}
             $ionicPopup.show({
-                template: '<div class="PopupError_Message ErrorMessageDiv" ></div><textarea name="comment" id="comment-textarea" maxlength="500" ng-model="data.PrimaryConcernOther" class="textAreaPop">',
+                template: '<div class="PopupError_Message ErrorMessageDiv" ></div><textarea name="comment" id="comment-textarea" maxlength="230" ng-model="data.PrimaryConcernOther" class="textAreaPop">',
                 title: '<span class="localizejs">Enter Primary Concern</span>',
                 subTitle: '',
                 scope: $scope,
@@ -926,6 +936,7 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
                 $scope.modal.show();
             });
         };
+        
         $scope.closeSecondaryConcerns = function () {
             $scope.PatientSecondaryConcernItem = $filter('filter')($scope.secondaryConcernList, {
                 checked: true
@@ -935,8 +946,12 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
                 $rootScope.SecondarycodeId = $scope.PatientSecondaryConcernItem[0].codeId;
                 if (typeof $rootScope.PatientPrimaryConcern[0] !== 'undefined') {
                     if ($scope.PatientSecondaryConcernItem[0].text === $rootScope.PatientPrimaryConcern[0].text) {
-                        $scope.ErrorMessage = "Primary and Secondary Concerns must be different";
-                        $rootScope.ValidationFunction1($scope.ErrorMessage);
+                        if(isOpenError == 0) {
+                            $scope.ErrorMessage = "Primary and Secondary Concerns must be different";
+                            $rootScope.ValidationFunction1($scope.ErrorMessage);
+                            isOpenError += 1;
+                        }
+                       
                     } else {
                         $rootScope.PatientSecondaryConcern = $scope.PatientSecondaryConcernItem;
                         $rootScope.secondaryConcernValueExist = $rootScope.PatientSecondaryConcern.length;
@@ -967,7 +982,7 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
         $scope.openOtherSecondaryConcernView = function () {
             $scope.data = {}
             $ionicPopup.show({
-                template: '<textarea name="comment" id="comment-textarea" ng-model="data.SecondaryConcernOther" class="textAreaPop">',
+                template: '<textarea name="comment" id="comment-textarea" maxlength="230" ng-model="data.SecondaryConcernOther" class="textAreaPop">',
                 title: '<span class="localizejs">Enter Secondary Concern</span>',
                 subTitle: '',
                 scope: $scope,
@@ -1429,6 +1444,7 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
             function refresh_close() {
                 $('.close').click(function () {
                     $(this).parent().fadeOut(200);
+                     isOpenError = 0; // by sakthi multi popup error msg
                 });
             }
             refresh_close();

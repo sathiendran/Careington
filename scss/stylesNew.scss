@@ -11,11 +11,10 @@ margin-top: 125px !important;
 .emailext{
   text-align:center;
   font-size:21pz !important;
-}
+}   
 .userlistAccountHome-ios5{
     //margin-top: 0px !important;fv
 }
-
 @media (max-width: 320px) and (min-width: 315px) {
   .showNewSurgeryAddios {
       //  margin-top: -30px !important;
@@ -47,7 +46,7 @@ margin-top: 125px !important;
   .concernListHeader {
     height: 60px !important;
   .concernListTitle-ios {
-  margin-top: 12px !important;
+  margin-top: 13px !important;
   font-size:18px !important;
   margin-left: 3px !important;
   }
@@ -175,7 +174,7 @@ margin-top: 125px !important;
                 margin-left: -5px !important;
             }
             .FooterCenter {
-              width: 35% !important;
+             // width: 35% !important;
             }
 	          .accMainContent .accOndemandCon .accOnVisit {
 	               margin-top: -27px !important;
@@ -201,26 +200,26 @@ margin-top: 125px !important;
               margin-top: 32% !important;
               #accountMngeProfile-IOS {
                   padding: 19px 10px;
-              }
+              }   
           }
         .mobileInput-Ios5 {
-                   padding-left: 32px !important;
-                   float: right !important;
+                  // padding-left: 32px !important;
+                   float: left !important;
               }
-        .button_new {
-              margin-right: 15px !important;
+        .button_new {      
+          //    margin-right: 15px !important;
         }
         .FooterCenter {
           .button_new {
-                margin-right: 0px !important;
+            //    margin-right: 0px !important;
           }
           .button_newios{
-               margin-right: -200px !important;
+            //   margin-right: -200px !important;
          }
 
         }
         .ConsultChargeCancel {
-          .button_newios{
+          .ios{
                 margin-right: -200px !important;
           }
         }
@@ -316,7 +315,7 @@ margin-top: 125px !important;
     margin-left: 5px !important;
 }
 .passedDetails-IOS {
-    width: 25% !important;
+    width: 27% !important;
     margin-left: 0px !important;
     color: #666666;
     font-family: Glober Regular;
@@ -368,14 +367,14 @@ margin-top: 125px !important;
     width: 146px;
     font-size: 15px;
 }
-.userAccountPanel {
+.userAccountPanel {   
    .hometext {
          margin-left: -10px !important;
    }
  }
  .ConsultChargeFooter {
    .ConsultChargeCancel{
-         width: 40% !important;
+        // width: 40% !important;
      }
    }
    .ReportEthnicity {
@@ -1171,7 +1170,7 @@ line-height: 1.2;
 }
 .headerval {
 color: #FFFFFF;
-font-family: Glober Regular;
+font-family: GloberRegular;
 float: right;
 margin-right: 8px;
 font-weight: normal;
@@ -1986,7 +1985,7 @@ color: #948E8E;
     //  margin-left: 20px;
     padding-left: 5px;
     text-align: center;
-    //width: 56%;
+    width: 75px;
 }
 .alpha_sidebar {
 position: absolute;
@@ -3527,7 +3526,7 @@ opacity: 1 !important;
 .accountHeader-IOS {
 //margin-right: 48px;
     margin-right: 100px;
-    margin-top: 15px;
+    margin-top: 16px;
 }
 .accountHeader-Android {
 //margin-right: 30px;
@@ -3570,7 +3569,7 @@ padding: 14px 0px 11px 0px !important;
 margin-left: 0px;
 }
 .healthTitle-IOS {
-margin-top: 13px !important;
+margin-top: 11px !important;
 }
 .healthTitle-Android {
 margin-top: 22px !important;
@@ -3611,7 +3610,7 @@ position: relative;
 top: -3px;
 }
 .healthLeft-IOS {
-  top: -34px !important;
+//  top: -34px !important;
   background: transparent !important;
   border: none !important;
   font-size: 20px;
@@ -3663,6 +3662,10 @@ text-align: right !important;
 .newUserTitle-IOS {
 top: -3px;
 left: 10px;
+position: relative;
+}
+.relatedUserTitle{
+top: -3px;
 position: relative;
 }
 #patientAuthorize {
@@ -4166,11 +4169,11 @@ text-align: right;
     .col {
         margin-left: 3px;
     }
-}
+}   
 }
 .dependHeigh-IOS {
-width: 67%;
-padding-right: 6px;
+width: 67%;   
+//padding-right: 6px;
 float: left;
 input {
     margin-left: 2px !important;
@@ -4306,7 +4309,7 @@ h3 {
 }
 .logProvider {
     position: relative;
-    top: 3px;
+    top: -11px;
 }
 }
 .reg2-Android {
@@ -4640,7 +4643,8 @@ padding: 20px 0px 20px;
 text-align:center;
 }
 .newProviderSub {
-padding: 33px;
+padding-top: 46px;
+padding-bottom: 14px;
 }
 .newProContent {
      margin-top: 228px;
@@ -7040,8 +7044,8 @@ background-color: rgb(245,245,245);
 .button-Search-providers{
     padding: 3px;
     border-radius: 5px;
-    background-color: rgb(255,198,11);
-    border-color: rgb(255,198,11);
+    background-color: rgb(255,198,11) !important;
+    border-color: rgb(255,198,11) !important;
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
     /* -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); */
@@ -7050,7 +7054,7 @@ background-color: rgb(245,245,245);
     width: 100%;
 }
 .userAccountbackBtn{
-    width: 102px;
+    width: 30%;
     padding-top: 0px;
     color: rgb(255,255,255);
     font-size: 19px;
@@ -7164,7 +7168,7 @@ background-color: rgb(245,245,245);
     float: left;
     /* left: -15px; */
     position: relative;
-    margin-top: 10px;
+    margin-top: 13px;
     cursor: pointer;
 }
 
@@ -7172,7 +7176,7 @@ background-color: rgb(245,245,245);
         float: right;
     right: 5px;
     position: absolute;
-    margin-top: 10px;
+    margin-top: 13px;
     cursor: pointer;
 }
 
@@ -7196,8 +7200,8 @@ background-color: rgb(245,245,245);
 
 @media (min-width:321px) and (max-width:365px) {
   .mobileInput-Ios5 {
-    padding-left: 50px !important;
-    float: right !important;
+    //padding-left: 50px !important;
+    float: left !important;
   }
 
 }
@@ -7210,8 +7214,8 @@ background-color: rgb(245,245,245);
       }
   }
   .mobileInput-Ios5 {
-    padding-left: 58px !important;
-    float: right !important;
+    //padding-left: 58px !important;
+    float: left !important;
   }
   .ReportEthnicity {
     width: 35.333% !important;
@@ -7247,8 +7251,8 @@ top:15px !important;
 }
 @media (min-width:376px) and (max-width:414px) {
   .mobileInput-Ios5 {
-    padding-left: 74px !important;
-    float: right !important;
+    //padding-left: 74px !important;
+    float: left !important;
   }
   .mobileInputNo-Ios5 {
         margin-left: 0px !important;
@@ -7256,9 +7260,9 @@ top:15px !important;
 }
 @media (min-width:415px) and (max-width:767px) {
   .mobileInput-Ios5 {
-      width: 5% !important;
-      margin-left: 44% !important;
-      float: right !important;
+     // width: 5% !important;
+      //margin-left: 44% !important;
+      float: left !important;
   }
   .mobileInputNo-Ios5 {
     margin-left: 15px !important;
@@ -7266,16 +7270,16 @@ top:15px !important;
 }
 @media (min-width:1024px) and (max-width:1360px) {
 .mobileInput-Ios5 {
-    width: 5% !important;
-    margin-left: 34% !important;
-    float: right !important;
+    //width: 5% !important;
+   // margin-left: 34% !important;
+    float: left !important;
 }
 }
 @media (min-width:768px) and (max-width:1020px) {
 .mobileInput-Ios5 {
-    width: 5% !important;
-    margin-left: 31% !important;
-    float: right !important;
+   // width: 5% !important;
+   // margin-left: 31% !important;
+    float: left !important;
 }
 .mobileInputNo-Ios5 {
 //  margin-left: 15px !important;
@@ -7321,10 +7325,12 @@ padding-top: 3px;
   font-family: "GloberBold" !important;
   font-size: 20pt;
   line-height: 24pt;
-  width: 272pt;
-  height: 48pt;
+  //width: 272pt;
+  width: 100%;
+  //height: 48pt;
   margin-bottom: 12pt;
   color: rgba(0, 0, 0, 0.75);
+  text-align: left;
 }
 
 .termscontent p strong span {
@@ -7388,6 +7394,7 @@ padding-top: 3px;
     text-overflow: inherit;
     white-space: normal;
     display: inline-flex;
+    width:100px;
 }
 .userHmeInPerson {
   .icon-users{
@@ -7395,3 +7402,155 @@ padding-top: 3px;
     top: -3px;
   }
 }
+
+@media (min-width:414px){
+  .concernListHeader {
+    height: 64px !important;
+}
+.concernListHeader .concernListTitle-ios { 
+    font-size: 18px !important;
+    color: #FFFFFF !important;
+    font-family: "Glober SemiBold";
+    margin-top: 18px !important;
+}
+.rightHeaderIcon {
+    margin-top: 18px;
+    
+}
+.leftHeaderIcon {
+    margin-top: 18px;
+}
+
+    .termsCondition {
+        display: block !important;
+    }
+    .terms {
+        display: none !important;
+    }
+} 
+@media (min-width:375px){   
+.rightHeaderIcon {
+    margin-top: 18px; 
+}
+.leftHeaderIcon {
+    margin-top: 18px;
+}
+}
+//jp
+
+
+.headerbg {
+  background-color: #333fe2;
+  border-color: #333fe2;
+  background-image: none;
+  align-items: center;
+  vertical-align: middle;
+  height: auto;
+//  padding-bottom: 0;
+}
+/* ios css */
+/* .title-head {
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 20px !important;
+  font-family: "Glober Bold";
+  font-weight: normal;
+  color: rgb(255, 255, 255);
+  left: -28px;
+  top: 9px
+} */
+.title-head {
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 20px !important;
+  font-family: "Glober Bold";
+  font-weight: normal;
+  color: rgb(255, 255, 255);
+  left: -28px;
+  top: 0px
+}
+/* ios css */
+/* #BackButtonIcon {
+  left: -5px;
+  top: 4px;
+} */
+#BackButtonIcon {
+  left: -5px;
+  top: -5px;
+}
+/* ios css */
+/* .add-user-icon {
+  height: 30px;
+  right: 8px;
+} */
+.add-user-icon {
+  height: 30px;
+  right: 8px;
+  top: 11px;
+}
+.subHeaderTop{
+  top: unset !important;
+}
+.SearchImage{
+  float: right !important;
+  top: -18px !important;
+  //margin-top: -18px !important;
+}
+
+
+.titleLineheight {
+    line-height: 48px !important;
+}
+.backText {
+    font-family: "Glober Book";
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.38;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+}
+
+.cancelText {
+    font-family: "Glober Light";
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.38;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    position: relative;
+    top: 4px;
+}
+
+.nextText {
+    font-family: "Glober Book";
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 39px !important;
+    position: relative;
+    left: -8px !important;
+    letter-spacing: 0.7px;
+    color: #ffffff;
+    top: 0px;
+}
+
+.bar .button.button-clear .icon:before,
+.bar .button.button-clear.icon:before,
+.bar .button.button-clear.icon-left:before,
+.bar .button.button-clear.icon-right:before {
+    font-size: 21px !important;
+    margin-top: 2.5px;
+}
+
+.iconVer {
+    vertical-align: middle !important;
+}
+
+//jp
