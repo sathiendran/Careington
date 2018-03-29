@@ -7396,7 +7396,15 @@ padding-top: 3px;
     text-overflow: inherit;
     white-space: normal;
     display: inline-flex;
-    width:100px;
+    width:90px;
+}
+.addDependentwrabPatientId {
+    overflow-wrap: break-word;
+    overflow: hidden;
+    text-overflow: inherit;
+    white-space: normal;
+    display: inline-flex;
+    width:90px;
 }
 .userHmeInPerson {
   .icon-users{
@@ -7404,7 +7412,17 @@ padding-top: 3px;
     top: -3px;
   }
 }
-
+.healthViewDetailsEdit {
+    height :95px;
+}
+@media (max-width: 1024px) and (min-width: 720px) {
+.addDependentwrab {
+    width:115px;
+}
+.addDependentwrabPatientId {
+    width:220px;
+}
+}
 @media (min-width:414px){
   .concernListHeader {
     height: 64px !important;

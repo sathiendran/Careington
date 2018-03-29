@@ -1,5 +1,23 @@
 <style media="screen">
-  .item-text-wrap {
+
+.cardh-On-demand {
+    font-size: 26px !important;
+    color: rgba(0, 0, 0, 0.54) !important;
+    opacity: 0.50 !important;
+    font-family: "Glober bold" !important;
+}
+.provider-on-call {
+    font-size: 16px !important;
+    color: rgba(0, 0, 0, 0.54) !important;
+    opacity: 0.50 !important;
+}               
+.Questions-Content {
+    font-size: 14px !important;
+    font-family: "Glober Regular" !important;
+    padding-bottom: 0px !important;
+}
+
+.item-text-wrap {
     background-color: #f4f4f4;
   }
 
@@ -201,6 +219,10 @@
     .bar-dark .button {
       width: 75% !important;
     }
+    .cardCreate {
+      position: relative;
+      top:30px;
+    }
   }
 
   .userAccountbackBtn span {
@@ -340,7 +362,7 @@
 
               <div class="card accMainContent mr-b30" ng-if="P_isAuthorized && providerAvailability == true">
                 <div class="item item-text-wrap">
-                  <h1 class="localizejs cardh1">On-demand visit</h1>
+                  <h1 class="localizejs cardh1 ">On-demand visit</h1>
                   <p class="localizejs cardP">See the next available</p>
                   <p class="localizejs cardP2">provider on-call.</p>
                   <button type="submit" class="button button-block button-balanced user-button-position" ng-click="goToPatientConcerns(currentPatientDetails)">
@@ -355,11 +377,11 @@
 
               <div class="card cardBorder mr-b30" ng-if="providerAvailability != true && providerOnDemandEnabled != false">
                 <div class="item item-text-wrap">
-                  <h1 class="localizejs cardh1">On-demand visit</h1>
-                  <p class="localizejs cardP">See the next available</p>
-                  <p class="localizejs cardP">provider on-call.</p>
+                  <h1 class="localizejs cardh1 cardh-On-demand">On-demand visit</h1>
+                  <p class="localizejs cardP provider-on-call">See the next available</p>
+                  <p class="localizejs cardP provider-on-call">provider on-call.</p>
                   <p class="localizejs cardP">Service is currently unavailable.</p>
-                  <p class="localizejs cardP2"><span class="localizejs">Questions? Please call </span>
+                  <p class="localizejs cardP2 Questions-Content"><span class="localizejs">Questions? Please call </span>
                     <a class="localizejs accOnCall2 accOnQuestion phoneNumColor" ng-click="callPhone()">{{appointmentsContactNumber}}</a>
                   </p>
 
@@ -387,14 +409,14 @@
               <!-- END Col 3 cards -->
 
               <!-- START Col 4 cards -->
-              <div class="card cardBorder mr-b30" ng-if="onSSAvailability == 'on' && chkAvailabiltyOfSS != true">
+              <div class="card cardCreate cardBorder mr-b30" ng-if="onSSAvailability == 'on' && chkAvailabiltyOfSS != true">
                 <div class="item item-text-wrap">
-                  <h2 class="localizejs cardh1">Create appointment</h2>
-                  <p class="localizejs cardP">Schedule a visit</p>
-                  <p class="localizejs cardP">with a specific provider</p>
+                  <h2 class="localizejs cardh1 cardh-On-demand">Create appointment</h2>
+                  <p class="localizejs cardP provider-on-cal" style="opacity: 0.50 !important;">Schedule a visit</p>
+                  <p class="localizejs cardP provider-on-cal" style="opacity: 0.50 !important;">with a specific provider</p>
                   <p class="localizejs cardP">Service is currently unavailable.</p>
-                  <p class="localizejs cardP"><span class="localizejs">Questions? Please call </span>
-                    <a class="localizejs accOnCall2 accOnQuestion phoneNumColor cardP" ng-click="callPhone()">{{appointmentsContactNumber}}</a>
+                  <p class="localizejs cardP Questions-Content"><span class="localizejs">Questions? Please call </span>
+                    <a class="localizejs accOnCall2 accOnQuestion phoneNumColor" ng-click="callPhone()">{{appointmentsContactNumber}}</a>
                   </p>
                 </div>
               </div>
