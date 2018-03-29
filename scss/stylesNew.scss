@@ -11,7 +11,7 @@ margin-top: 125px !important;
 .emailext{
   text-align:center;
   font-size:21pz !important;
-} 
+}   
 .userlistAccountHome-ios5{
     //margin-top: 0px !important;fv
 }
@@ -7407,7 +7407,7 @@ padding-top: 3px;
   .concernListHeader {
     height: 64px !important;
 }
-.concernListHeader .concernListTitle-ios {
+.concernListHeader .concernListTitle-ios { 
     font-size: 18px !important;
     color: #FFFFFF !important;
     font-family: "Glober SemiBold";
@@ -7496,7 +7496,61 @@ padding-top: 3px;
 .SearchImage{
   float: right !important;
   top: -18px !important;
-  margin-top: -18px !important;
+  //margin-top: -18px !important;
+}
+
+
+.titleLineheight {
+    line-height: 48px !important;
+}
+.backText {
+    font-family: "Glober Book";
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.38;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+}
+
+.cancelText {
+    font-family: "Glober Light";
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.38;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    position: relative;
+    top: 4px;
+}
+
+.nextText {
+    font-family: "Glober Book";
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 39px !important;
+    position: relative;
+    left: -8px !important;
+    letter-spacing: 0.7px;
+    color: #ffffff;
+    top: 0px;
+}
+
+.bar .button.button-clear .icon:before,
+.bar .button.button-clear.icon:before,
+.bar .button.button-clear.icon-left:before,
+.bar .button.button-clear.icon-right:before {
+    font-size: 21px !important;
+    margin-top: 2.5px;
+}
+
+.iconVer {
+    vertical-align: middle !important;
 }
 
 //jp

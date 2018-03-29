@@ -44,7 +44,7 @@
                   <div class="consultation_numberCopay" ng-if="adminSetlocale != 'en-GB'"> <span>{{currencySymbol}}{{copayAmount}}*</span></div>
                </div>
                <div ng-if="cardPage == 'consultCharge'" class="consultation_head RegularFontStyle consultChargeNoPlanText" >
-                  <div class="consultTittleCharge consultTittleChargeNew localizejs">Consultation Charge</div>
+                  <div class="consultTittleCharge consultTittleChargeNew localizejs" style="font-size: 23px !important;">Consultation Charge</div>
                   <div><span class="consultation_number consultation-charge" ng-if="adminSetlocale == 'en-GB'">&pound;{{consultationAmount}}*</span></div>
                   <div><span class="consultation_number consultation-charge" ng-if="adminSetlocale != 'en-GB'">{{currencySymbol}}{{consultationAmount}}*</span></div>
                </div>
@@ -99,7 +99,7 @@
          </form>
       </ion-content>
       <!-- <div class="hide-on-keyboard-open"> -->
-         <ion-footer-bar align-title="left" class="footer" hide-on-keyboard="true">
+         <!-- <ion-footer-bar align-title="left" class="footer" hide-on-keyboard="true">
             <div class="ConsultChargeFooter">
                <div class="ConsultChargeBack" >
 
@@ -113,7 +113,26 @@
                   <a class="button_new icon localizejs" ng-click="cancelConsultation()" >Cancel</a>
                </div>
             </div>
-         </ion-footer-bar>
+         </ion-footer-bar> -->
+
+         <ion-footer-bar class="bar bar-footer footer" hide-on-keyboard="true">
+            <div class="button button-clear" ng-click="goToPreviosPage();" ng-if="cardPage == 'consultCharge'">
+                <a class="button_new icon ion-chevron-left iconVer" style="position: relative;top:-2px;" >
+                    <span class="localizejs backText"> Back</span>
+                </a>
+            </div>
+            <div ng-if="cardPage == 'consultCharge'" class="title titleLineheight"  style="height:auto;">
+                <a class="button_new icon localizejs cancelText iconVer " style="{{PatientConcernCancel}}" ng-click="cancelConsultation()">
+                    <span>Cancel</span>
+                </a>
+            </div>
+
+            <div ng-if="cardPage != 'consultCharge'" class="title titleLineheight"  style="height:auto;">
+                <a class="button_new icon localizejs cancelText iconVer " style="{{PatientConcernCancel}}" ng-click="cancelConsultation()">
+                    <span>Cancel</span>
+                </a>
+            </div> 
+        </ion-footer-bar>
       <!-- </div> -->
    </ion-side-menu-content>
    <!--Side Menu File Include --->

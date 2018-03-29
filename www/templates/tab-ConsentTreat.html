@@ -66,7 +66,7 @@
      		</div>
       </ion-content>
    </ion-view>
-   <ion-footer-bar  class="footer">
+   <!-- <ion-footer-bar  class="footer">
       <span class="ConcernsFooter">
          <div class="FooterLeft">
             <a class="button_new icon ion-chevron-left" ng-click="goBackFromConcernToTreat()" ><span class="localizejs"> Back</span></a>
@@ -75,6 +75,22 @@
             <a class="button_new icon localizejs" style="padding-left: 15px !important;" >Cancel</a>
          </div>
       </span>
-   </ion-footer-bar>
+   </ion-footer-bar> -->
+
+   <ion-footer-bar class="bar bar-footer footer">
+      <div class="button button-clear" ng-click="goBackFromConcernToTreat();">
+        <a class="button_new icon ion-chevron-left iconVer" style="position: relative;top:-2px;">
+          <span class="localizejs backText"> Back</span>
+        </a>
+      </div>
+      <div class="title titleLineheight"  style="height:auto;">
+        <a class="button_new icon localizejs cancelText iconVer " style="{{PatientConcernCancel}}" ng-click="cancelConsultation()">
+          <span>Cancel</span>
+        </a>
+      </ion-footer-bar>
+     
+    </div>
+
+
 </ion-side-menu-content>
 <div ng-include src="'templates/SideMenu.html'"></div>

@@ -3,7 +3,6 @@
     font-family: 'Glober Black Italic';
     src: url("Glober Black Italic.otf");
 }
-
 @font-face {
     font-family: 'Glober Black';     
     src: url("Glober Black.otf");
@@ -1472,7 +1471,7 @@ body {
 @media (min-width: 320px) and (max-width: 568px) {
   .consultation_head {
     .consultTittle {
-      font-size: 20px !important;
+      //font-size: 20px !important;
     }
     .consultTittleCopay {
     //  font-size: 14px !important;
@@ -1480,13 +1479,13 @@ body {
     .consultation_number {
       width: 110% !important;
         span {
-          font-size: 20px !important;
+          //font-size: 20px !important;
         }
     }
     .consultation_numberCopay {
       width: 110% !important;
         span {
-            font-size: 20px !important;
+           // font-size: 20px !important;
         }
     }
     .consultTittleChargeNew {
@@ -2466,7 +2465,7 @@ select {
             //margin-left: -44px;margin-right: 25px;position: relative;top: -4px;left: -20px;
         }
     }
-}
+}  
 .concernListHeader {
     height: 55px;
     .concernListTitle {
@@ -3258,7 +3257,7 @@ a {
     position: relative;
     top: 7px;
     margin-left: -55px;
-}
+} 
 .bar-subheaderHomeUser {
     height: 63%;
     top: 80px;
@@ -3280,7 +3279,7 @@ a {
     //margin: 70px 0 0 0;
     font-family: $fontFamily_regular;
     border-top: 1px solid #C4C5C3;
-    margin: 12px 0 0 0;
+    //margin: 12px 0 0 0;
     clear: both;
 
 
@@ -4167,7 +4166,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 }
 .subHeaderTop {
     top: 70px;
-    padding-top: 19px;
+    padding-top: 8px;
     height: 56px;
 }
 #BackButtonIcon {

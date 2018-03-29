@@ -1,137 +1,134 @@
 <style>
-.has-footer{
-  bottom: 0px!important;
-}
-.consultTittle {
+  .has-footer {
+    bottom: 0px!important;
+  }
+
+  .consultTittle {
     color: #666666;
     font-family: "Glober SemiBold";
     width: 58% !important;
     text-align: right;
     font-size: 23px;
-}
-.consultation_number {
+  }
+
+  .consultation_number {
     font-family: "Glober SemiBold";
     font-size: 23px;
     color: #666666;
     text-align: left;
     text-decoration: line-through;
-}
-.consultation_numberCopy {
+  }
+
+  .consultation_numberCopy {
     font-family: "Glober SemiBold";
-    font-size:23px;
+    font-size: 23px;
     color: #666666;
     text-align: left;
     color: red;
-    position: relative; 
-}
-.consultTittleCopay {
+    position: relative;
+  }
+
+  .consultTittleCopay {
     color: #666666;
     font-family: "Glober SemiBold";
-    font-size:17px;
-    text-align: center;
+    font-size: 17px;
+    text-align: right;
     margin: 0 auto;
     vertical-align: middle;
     line-height: 7px;
-}
+  }
 
-.consultCharge_subHeader span {
+  .consultCharge_subHeader span {
     color: #666666;
     position: relative;
     left: 15px;
     font-family: "Glober SemiBold";
     font-weight: normal;
-}
-.pt34{
-  padding-top: 20px;
-  margin-bottom: 15px;
-}
-.contentPayHomeAddCard{
-  padding-top: 6% !important;
-}
-@media only screen and (min-device-width: 710px) and (max-device-width: 1280px) {
-  .consultTittle{
-    font-size: 23px !important;
-    text-align: center !important;
   }
-  .consultTittleCopay{
-    font-size: 17px !important;
-    text-align: center !important;
-    padding-left: 120px;
+
+  .pt34 {
+    padding-top: 20px;
+    margin-bottom: 15px;
   }
-  .consultation_numberCopy{
-    text-align: left !important;
-    font-size: 23px !important;
-    position: relative;
-    left: 0px;
+
+  .contentPayHomeAddCard {
+    padding-top: 6% !important;
   }
-  .consultation_number{
-    text-align: left;
-    font-size: 23px;
+
+  @media only screen and (min-device-width: 710px) and (max-device-width: 1280px) {
+    .consultTittle {
+      font-size: 23px !important;
+      text-align: center !important;
+    }
+    .consultTittleCopay {
+      font-size: 17px !important;
+      text-align: center !important;
+      padding-left: 120px;
+    }
+    .consultation_numberCopy {
+      text-align: left !important;
+      font-size: 23px !important;
+      position: relative;
+      left: 0px;
+    }
+    .consultation_number {
+      text-align: left;
+      font-size: 23px;
+    }
+    .has-header {
+      top: 60px;
+    }
   }
-  .has-header {
-    top: 60px;
-}
-}
 </style>
-<div id="Error_Message" class="ErrorMessageDiv localizejs" ></div>
-<div class="Error_Message ErrorMessageDiv localizejs" ></div>
-<div class="Server_Error ErrorMessageDiv localizejs" ></div>
+<div id="Error_Message" class="ErrorMessageDiv localizejs"></div>
+<div class="Error_Message ErrorMessageDiv localizejs"></div>
+<div class="Server_Error ErrorMessageDiv localizejs"></div>
 <ion-view title="Add Card">
-   <ion-side-menus>
-   <ion-side-menu-content>
+  <ion-side-menus>
+    <ion-side-menu-content>
       <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-         <!-- <div class="buttons" >
+        <!-- <div class="buttons" >
             <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
          </div>
          <h1 class="{{title_patient}} calendarTitle localizejs" style="{{PatientTitle}}" >Patient</h1> -->
 
-         <div class="bar bar-header headerbg">
-           <div class="buttons button-icon">
-             <span class="button icon button-clear" style="{{HomeBackIOS}}" id="BackButtonIcon" ng-click="toggleLeft()">
-               <i ng-bind-html="drawSVGCIcon('menu')"></i>
-             </span>
-           </div>
-           <div class="h1 title-head localizejs" style="{{HomeHeaderIOS}}">Patient</div>
+        <div class="bar bar-header headerbg">
+          <div class="buttons button-icon">
+            <span class="button icon button-clear" style="{{HomeBackIOS}}" id="BackButtonIcon" ng-click="toggleLeft()">
+              <i ng-bind-html="drawSVGCIcon('menu')"></i>
+            </span>
+          </div>
+          <div class="h1 title-head localizejs" style="{{HomeHeaderIOS}}">Patient</div>
 
-         </div>
+        </div>
 
 
-         <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
-            <div class="calendar_subHeader paymentSubHeader" >
-               <div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
-               <div class="subHeader_content-{{deviceName}} ellipsis" >
-                  <div class="ellipsis subHeader_content_name" >
-                     <span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
-                     <span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
-                  </div>
-                  <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span ng-if="userGender != ''" class="localizejs">{{userGender}} . </span> <span>{{userDOB| ageFilter}}</span><span class="localizejs">{{userDOB | ageYearsStringFilter}}</span><span>{{userDOB | ageMonthFilter}}</span> <span>{{userDOB | ageDayFilter}}</span> <span ng-if="primaryPatientId != patientId" class="localizejs"> . {{patRelationShip}}</span></div>
-               </div>
+        <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}">
+          <div class="calendar_subHeader paymentSubHeader">
+            <div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
+            <div class="subHeader_content-{{deviceName}} ellipsis">
+              <div class="ellipsis subHeader_content_name">
+                <span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
+                <span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
+              </div>
+              <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">
+                <span ng-if="userGender != ''" class="localizejs">{{userGender}} . </span>
+                <span>{{userDOB| ageFilter}}</span>
+                <span class="localizejs">{{userDOB | ageYearsStringFilter}}</span>
+                <span>{{userDOB | ageMonthFilter}}</span>
+                <span>{{userDOB | ageDayFilter}}</span>
+                <span ng-if="primaryPatientId != patientId" class="localizejs"> . {{patRelationShip}}</span>
+              </div>
             </div>
-         </div>
-         <div class="bar consultCharge_subHeader PatintHeaderFontStyle"  style="padding: 0px; margin-top: 127px;	background-color: #fff; {{PaymentStyle}}">
-            <span class="localizejs">Payment</span>
-         </div>
+          </div>
+        </div>
+        <div class="bar consultCharge_subHeader PatintHeaderFontStyle" style="padding: 0px; margin-top: 127px;	background-color: #fff; {{PaymentStyle}}">
+          <span class="localizejs">Payment</span>
+        </div>
       </ion-header-bar>
-      <ion-content class="consultCharge_contentPayment consultConPaymentMargin addCardConScetion">
-        <div class="row pt34">
-        <div class="col-67 consultTittle localizejs">Consultation Charge</div>
-        <div class="col-10">&nbsp;</div>
-        <div class="col">
-          <div class="consultation_number" ng-if="adminSetlocale == 'en-GB'"> <span>&pound;{{consultationAmount}}*</span></div>
-           <div class="consultation_number" ng-if="adminSetlocale != 'en-GB'"> <span>{{currencySymbol}}{{consultationAmount}}*</span></div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col col-67 consultTittleCopay localizejs">Your Copay</div>
-        <div class="col-10">&nbsp;</div>
-        <div class="col">
-          <div class="consultation_numberCopy" ng-if="adminSetlocale == 'en-GB'"> <span>&pound;{{copayAmount}}*</span></div>
-          <div class="consultation_numberCopy" ng-if="adminSetlocale != 'en-GB'"> <span>{{currencySymbol}}{{copayAmount}}*</span></div>
-        </div>
-      </div>
-
-         <!-- <div class="col">
-            <div class="consultation_head RegularFontStyle consultChargeNoPlanText">
+      <ion-content class="consultCharge_contentPayment consultConPaymentMargin addCardConScetion"  >
+       <!--  <div style="padding-right: 10%;">
+            <div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
                <div class="consultTittle localizejs">Consultation Charge</div>
                <div class="consultation_number" ng-if="adminSetlocale == 'en-GB'"> <span>&pound;{{consultationAmount}}*</span></div>
                 <div class="consultation_number" ng-if="adminSetlocale != 'en-GB'"> <span>{{currencySymbol}}{{consultationAmount}}*</span></div>
@@ -142,6 +139,32 @@
                <div class="consultation_numberCopay" ng-if="adminSetlocale != 'en-GB'"> <span>{{currencySymbol}}{{copayAmount}}*</span></div>
             </div>
          </div> -->
+		 
+		  <div class="row pt34">
+          <div class="col-67 consultTittle localizejs">Consultation Charge</div>
+          <div class="col-10">&nbsp;</div>
+          <div class="col">
+            <div class="consultation_number" ng-if="adminSetlocale == 'en-GB'">
+              <span>&pound;{{consultationAmount}}*</span>
+            </div>
+            <div class="consultation_number" ng-if="adminSetlocale != 'en-GB'">
+              <span>{{currencySymbol}}{{consultationAmount}}*</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-67 consultTittleCopay localizejs">Your Copay</div>
+          <div class="col-10">&nbsp;</div>
+          <div class="col">
+            <div class="consultation_numberCopy" ng-if="adminSetlocale == 'en-GB'">
+              <span>&pound;{{copayAmount}}*</span>
+            </div>
+            <div class="consultation_numberCopy" ng-if="adminSetlocale != 'en-GB'">
+              <span>{{currencySymbol}}{{copayAmount}}*</span>
+            </div>
+          </div>
+        </div>
+		 
          <div class="password_home contentPayHomeAddCard">
             <div class="healthPlan_header consultCard" style="display: {{enableSubmitpaymentAddCard}} " >
                   <h4 class="insurancelist">
@@ -210,7 +233,7 @@
             <div class="ConsultChargeFooter">
                <div class="ConsultChargeBack">
                </div>
-               <div class="ConsultChargeCancel" style="width: 100%;">
+               <div class="ConsultChargeCancel" style="width: 100%;margin-top: 12px;">
                   <a class="button_newios icon localizejs" ng-click="cancelConsultationForHealthPlan()" >Cancel</a>
                </div>
             </div>

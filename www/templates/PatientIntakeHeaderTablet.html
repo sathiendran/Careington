@@ -1,0 +1,42 @@
+<ion-header-bar align-title="left" class="chatEncounter-bar-positiveHomeUser" style="background-color:#2c6ebf;border-color:{{brandColor}}">
+   <div class="buttons" >
+      <!-- <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span> -->
+   </div>
+    <h1 class="{{title_patient}} chatEncounter-calendarTitle localizejs" style="" >Provider Organization Name</h1>
+   <div class="chatEncounter-bar chatEncounter-bar-subheaderHomeUser chatEncounter-patient_subHeader chatEncounter-calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
+
+       <div class="chatEncounter-chat" style="">
+
+         <span ng-bind-html="drawSVGCIcon('chat')" class="ng-binding chatEncounter-chatIcon" style="">
+             <svg class="iconImg-chat"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#iconImg-chat"></use></svg>
+
+         </span>
+               <span class="chatEncounter-suptitle-consultation">Chat consultation</span>
+
+                <div class="chatEncounter-duration" style="">
+                  <div class="time">00:00</div>
+                  <span class="">Duration</span>
+               </div>
+         </div>
+
+
+      <div class="chatEncounter-calendar_subHeader chatEncounter-paymentSubHeader" style="">
+         <div class="chatEncounter-subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
+
+         <div class="chatEncounter-subHeader_content-{{deviceName}} chatEncounter-ellipsis" >
+           <div class="chatEncounter-supHeader-content1">
+              <div class="chatEncounter-subHeader_content_name chatEncounter-ellipsis" >
+                 <span class="chatEncounter-PatintHeaderFontStyle chatEncounter-patientName chatEncounter-ellipsis">Jonathan </span>
+                 <span class="chatEncounter-PatintHeaderFontStyleInner chatEncounter-patientLastName chatEncounter-ellipsis">Fitzpatrick</span>
+              </div>
+              <div class="chatEncounter-subHeader_content_age chatEncounter-PatintHeaderFontStyleSub chatEncounter-ellipsis"><span  class="localizejs">Male <span class="age-dot">.</span></span> 29yrs <span class="localizejs"> <span class="age-dot">.</span> </span><span class="country-title"><span class="localizejs">CA,</span><span class="localizejs"> USA</span></span></div>
+              </div>
+            <div class="chatEncounter-supHeader-content2">
+                <div class="chatEncounter-endBtn"><span>End</span></div>
+            </div>
+
+         </div>
+
+      </div>
+   </div>
+</ion-header-bar>

@@ -35,7 +35,7 @@
     font-family: "Glober Bold";
     font-weight: normal;
     color: rgb(255, 255, 255);
-    left: -28px;
+    left: 0px;
     top: 0px
   }
 
@@ -202,6 +202,11 @@
       width: 75% !important;
     }
   }
+
+  .userAccountbackBtn span {
+    margin-left: -12px;
+    margin-right: -17px;
+}
 </style>
 <ion-side-menus>
   <ion-side-menu-content>
@@ -220,10 +225,10 @@
  			</div> -->
 
       <div class="bar bar-header headerbg">
-        <div class="buttons button-icon">
+        <div class="buttons button-icon" style="left: -5px;position: fixed;{{Useraccount}}">
           <a ng-href="#/tab/userhome" class="userAccountbackBtn">
             <i class="iconfontSVG ng-binding" ng-bind-html="drawSVGCIcon('chevron-left')">
-              <svg class="icon-chevron-left">
+              <svg class="icon-chevron-left" style="margin-bottom: -9px;">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chevron-left"></use>
               </svg>
             </i>
@@ -354,7 +359,7 @@
                   <p class="localizejs cardP">See the next available</p>
                   <p class="localizejs cardP">provider on-call.</p>
                   <p class="localizejs cardP">Service is currently unavailable.</p>
-                  <p class="localizejs cardP2">Questions? Please call
+                  <p class="localizejs cardP2"><span class="localizejs">Questions? Please call </span>
                     <a class="localizejs accOnCall2 accOnQuestion phoneNumColor" ng-click="callPhone()">{{appointmentsContactNumber}}</a>
                   </p>
 
@@ -388,7 +393,7 @@
                   <p class="localizejs cardP">Schedule a visit</p>
                   <p class="localizejs cardP">with a specific provider</p>
                   <p class="localizejs cardP">Service is currently unavailable.</p>
-                  <p class="localizejs cardP">Questions? Please call
+                  <p class="localizejs cardP"><span class="localizejs">Questions? Please call </span>
                     <a class="localizejs accOnCall2 accOnQuestion phoneNumColor cardP" ng-click="callPhone()">{{appointmentsContactNumber}}</a>
                   </p>
                 </div>

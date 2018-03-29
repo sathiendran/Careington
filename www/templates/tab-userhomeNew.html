@@ -1,0 +1,373 @@
+
+<style type="text/css">
+
+  .iconImg-font {
+    font-size: 18px !important;
+    float: left;
+}
+.UserHmelistImgView {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid #999999;
+}
+.DependentList {
+    padding: 11px;
+    top: 25px;
+    height: 72px;
+}
+.userHomeImage {
+    float: left;
+    padding-top: 6px;
+}
+.SubTitleSpan {
+      font-size: 20px;
+}
+.UserHomePatient .UserHomeHeader{
+      padding: 14px;
+}
+</style>
+<ion-side-menus>
+	<ion-side-menu-content>
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:#23b4d6;border-color:#23b4d6;">
+
+		<div class="buttons {{menuicon}}" >
+			<!--<button class="button icon button-clear ion-navicon-round UserHomeIcon {{menuicon}}" id="BackButtonIcon" style="{{MenuIconBottom}}" ng-click="toggleLeft()" ></button>-->
+			<span class="button icon button-clear UserHomeIcon {{menuicon}}" id="BackButtonIcon" style="{{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
+		</div>
+
+
+		<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} userhomePlusIcon">
+			<div class="Server_Error ErrorMessageDiv" ></div>
+	 		<div id="Error_Message"></div>
+			<span class="localizejs userHomeTitle" style="font-size: 20px;font-family:Glober Bold;" > Home </span>
+	</h1>
+		<a ng-if="cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'" class="add-user-icon add-user-icon-{{deviceName}}" ng-if="customerSso != 'Mandatory'" ><i class="icon ion-plus"></i></a>
+
+
+
+			<div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds" style="height: 56px;">
+
+
+				<div id="whoNeedsTextval" class="TitleHomeUser_Sub localizejs lang-font" style="text-align: center;">Who needs care today?</div>
+
+					<!-- <div class="SearchImage" >
+						<i class="ion-search" style="float: right; font-size: 23px;color: #666666;"></i>
+					</div> -->
+			</div>
+
+
+	</ion-header-bar>
+
+
+
+
+<ion-view title="User Home">
+<div id="divSearchInput" class="UserHme userSearch-{{deviceName}}" style="display: none;">
+	<div  class="UserHmeSub-{{deviceName}}">
+        <label class="item-input"  ><i style="display: {{homeMagnifyDisplay}}" class="iconfontSVG userhmeSeach" ng-bind-html="drawSVGCIcon('magnifying-glass')"></i>
+            <input type="search" class="localizejs" placeholder="Search" id="searchQuery" ng-model="data.searchQuery"  >
+        </label>
+	</div>
+</div>
+
+
+<ion-content class="ContentUserHome UserHme" ng-controller="LoginCtrl" ng-init="loadDependent(); doRefreshUserHome();" >
+ 	<ion-list>
+
+	<div><ion-refresher on-refresh="doRefreshUserHome()"  >
+    </ion-refresher></div>
+
+	<a ng-if="primaryPatientName != ''" class="UserHomePatient">
+		<ion-item class="UserHomeHeader" ng-hide="data.searchQuery" style="border: none;border-bottom: 1px solid #9D9E9C;">
+			 <div class="HrefListView">
+				<div class="UserhmePatientDetails">
+				<!--	<img ng-src="{{PatientImage}}" src="{{PatientImage}}" class="UserHmelistImgView">-->
+					<div class="userHomeImageMainPat" style="position: relative;top: 8px;">
+
+              <img src="https://emerald.qa1.snapvcm.com/api/v2.1/images/68ece4a2-d3fe-4c51-850d-5f261a710e5d" class='UserHmelistImgView'>
+
+            </div>
+          </div>
+					<div class= "ListTextTitle ellipsis userHomeFullName" style="font-size: 20px;"> <b class="ng-binding firstname">Jhon</b><span class="SubTitleSpan ellipsis"> Miller</span></div>
+					<!--<p class="ListText listTitle" style="font-size: 24px;overflow: auto;"><b>Login Details Welcome</b> <span class="SubTitleSpan">Sathiendran <span></p> -->
+					<p class="ListHomeUser_pTitle DateFormateStyle"><span class="localizejs">Male<span class="age-dot"> . </span> </span>39yrs  <!--<span ng-if="primaryPatientGuardianName"> | Guardain : {{primaryPatientGuardianName}}</span>--></p>
+					<!--<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>-->
+					<i class="iconfontSVG ListLinkHref UserHomeIcon right-link" ng-bind-html="drawSVGCIcon('chevron-right')"></i>
+				</div>
+			 </div>
+		 </ion-item>
+	</a>
+			 <div style="display: none;"><timer end-time="time"></timer></div>
+
+			<div class="inside" ng-hide="data.searchQuery" ng-if="primaryAppointDetails != ''" style="display: {{primaryAppointDetails[0].nextAppointmentDisplay}};"></div>
+			<ion-item ng-hide="data.searchQuery"  class="UserHomeNextAppointment ItemList outside" ng-repeat="scheduledListData in primaryAppointDetails"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData, 'userHome')" ng-if="$first" style="height: 44px;padding-top: 12px;background-color: {{scheduledListData.userHomeRecentAppointmentColor}}; border-top: none; display: {{scheduledListData.nextAppointmentDisplay}}; margin-bottom: 17px;" >
+				<a class="HrefListView"  >
+					 <h2>
+								<!-- <i ng-if="scheduledListData.encounterTypeCode == 3" class="ng-binding iconImg-font">
+									 <svg  class="icon-video_camera iconImg-font iconImg-font" style="font-size:18px;"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-video_camera"></use></svg>
+
+								</i> -->
+                 <svg  class="icon-video_camera1 iconImg-font iconImg-font"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-video_camera"></use></svg>
+
+								<i ng-if="scheduledListData.encounterTypeCode != 3" ng-bind-html="drawSVGCIcon('phone')" class="ng-binding" style="font-size: 30px;">
+									<svg class="iconImg-phone userhome-icons"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-phone"></use></svg>
+								</i>
+							 <span style="top: -7px;position: relative;padding-left: 5px;font-size: 20px;">Appt @  <b>7.00 am</b></span>
+					</h2>
+				   <list class="ion-chevron-right ListLinkHref nextList" style="top: -7px !important; position: relative !important; font-size: 21px  !important;"></list>
+				   <span class="DateFormateStyle AppointmentView localizejs" style="top: -5px; position: relative;">In queue</span>
+				   <span ng-if="scheduledListData.appointmentStatusCode != 'Waiting' && scheduledListData.status != 71" class="DateFormateStyle AppointmentView localizejs" style="top: -5px; position: relative;display:none">View Details</span>
+				   <span ng-if="scheduledListData.status == 71" class="DateFormateStyle AppointmentView localizejs" style="top: -5px; position: relative;">In progress</span>
+
+			    </a>
+			</ion-item>
+
+
+
+
+	<!--<ion-item class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-click="GoToPatientDetails()">
+			<a class="HrefListView"  >
+			   <span class = "ListText UHomeNextAppoinment">Next Appointment:</span>
+			   <h2 class="DateFormateStyle"><b>OCT 12 </b> <span class="NextAppointTime"><sup>@</sup></span> <b>12:15</b><span class="NextAppointAMorPM">PM</span></h2>
+			   <list class="ion-chevron-right ListLinkHref nextList"></list>
+			   <span class="DateFormateStyle AppointmentView" >View Details</span>
+		    </a>
+		</ion-item>-->
+
+
+
+
+    <div style="top: -2px;">
+
+
+
+
+
+      <div class="DependentList item">
+       <div class="HrefListViewDependent">
+        <div class="UserhmePatientDetails">
+          <!--	<img ng-src="{{dependentDetails.profileImagePath}}" src="{{dependentDetails.profileImagePath}}" class="UserHmelistImgView">-->
+        <div class="userHomeImage">
+          <img src="https://emerald.qa1.snapvcm.com/api/v2.1/images/68ece4a2-d3fe-4c51-850d-5f261a710e5d" class='UserHmelistImgView'>
+
+        </div>
+          <div class= "ListTextTitle ellipsis userHomeFullName" style="font-size: 20px;"><b>Elizabeth </b> <span class="SubTitleSpan">Fitzpatric</span></div>
+          <p class="ListHomeUser_pTitle DateFormateStyle"><span class="localizejs"><span class="localizejs">Male</span> <span class="age-dot"> . </span> </span>9yrs<span class="localizejs"><span class="age-dot"> . </span> Son </span><!--<span ng-if="primaryPatientId != dependentDetails.patientId">| Guardian : {{dependentDetails.guardianName}}</span>--></p>
+          <!--<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>-->
+            <i class="iconfontSVG ListLinkHref UserHomeIcon right-link" ng-bind-html="drawSVGCIcon('chevron-right')"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="inside1" ng-if="dependentDetails.patientId == dependentDetails.appoint.patientId" style="display: {{dependentDetails.appoint.nextAppointmentDisplay}};"></div>
+      <div ng-if="dependentDetails.patientId == dependentDetails.appoint.patientId" style="background-color: {{dependentDetails.appoint.userHomeRecentAppointmentColor}}; border-top: none; display: {{dependentDetails.appoint.nextAppointmentDisplay}}; margin-bottom: 17px;"  class="UserHomeNextAppointment1 UserHomeNextAppointment-content ItemList outside"  ng-click="GoToappoimentDetailsFromUserHome(dependentDetails.appoint, 'userHome')" >
+        <a class="HrefListView"  >
+          <h2>
+             <i ng-if="dependentDetails.appoint.encounterTypeCode == 3" ng-bind-html="drawSVGCIcon('video_camera')" class="ng-binding">
+               <svg class="icon_chat userhome-icons"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon_chat"></use></svg>
+             </i>
+             <!-- <i ng-if="dependentDetails.appoint.encounterTypeCode != 3" ng-bind-html="drawSVGCIcon('chat')" class="ng-binding" style="font-size: 30px;">
+               <svg class="icon_chat userhome-icons"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon_chat"></use></svg>
+             </i> -->
+
+            <svg  class="icon-chat iconImg-font iconImg-font"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-chat"></use></svg>
+
+            <span style="top: -7px;position: relative;padding-left: 5px;font-size: 20px;"><span class="">Appt</span> @  <b>7.15 am</b></span>
+         </h2>
+          <list class="ion-chevron-right ListLinkHref nextList" style="top: -13px !important; position: relative !important; font-size: 21px  !important;"></list>
+          <span ng-if="dependentDetails.appoint.appointmentStatusCode == 'Waiting' && dependentDetails.appoint.status != 71" class="DateFormateStyle AppointmentView localizejs" style="top: -10px; position: relative;">In queue</span>
+          <span ng-if="dependentDetails.appoint.appointmentStatusCode != 'Waiting' && dependentDetails.appoint.status != 71" class="DateFormateStyle AppointmentView localizejs" style="top: -10px; position: relative;">View Details</span>
+          <span ng-if="dependentDetails.appoint.status == 71" class="DateFormateStyle AppointmentView localizejs" style="top: -10px; position: relative;">In progress</span>
+         </a>
+      </div>
+
+
+    <div class="DependentList item">
+     <div class="HrefListViewDependent">
+      <div class="UserhmePatientDetails">
+        <!--	<img ng-src="{{dependentDetails.profileImagePath}}" src="{{dependentDetails.profileImagePath}}" class="UserHmelistImgView">-->
+      <div class="userHomeImage">
+        <img src="https://emerald.qa1.snapvcm.com/api/v2.1/images/aeaacb9a-0eea-470d-971a-03dc18a06f1f" class='UserHmelistImgView'>
+      </div>
+        <div class= "ListTextTitle ellipsis userHomeFullName" style="font-size: 20px;"><b>Robert </b> <span class="SubTitleSpan">Fitzpatrick</span></div>
+        <p class="ListHomeUser_pTitle DateFormateStyle"><span class="localizejs"><span class="localizejs">Female</span> <span class="age-dot"> . </span> </span>19yrs<span class="localizejs"><span class="age-dot"> . </span> Daughter  </span><!--<span ng-if="primaryPatientId != dependentDetails.patientId">| Guardian : {{dependentDetails.guardianName}}</span>--></p>
+        <!--<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>-->
+          <i class="iconfontSVG ListLinkHref UserHomeIcon right-link" ng-bind-html="drawSVGCIcon('chevron-right')"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="inside1" ng-if="dependentDetails.patientId == dependentDetails.appoint.patientId" style="display: {{dependentDetails.appoint.nextAppointmentDisplay}};"></div>
+    <div ng-if="dependentDetails.patientId == dependentDetails.appoint.patientId" style="background-color: {{dependentDetails.appoint.userHomeRecentAppointmentColor}}; border-top: none; display: {{dependentDetails.appoint.nextAppointmentDisplay}}; margin-bottom: 17px;"  class="UserHomeNextAppointment1 UserHomeNextAppointment-content ItemList outside"  ng-click="GoToappoimentDetailsFromUserHome(dependentDetails.appoint, 'userHome')" >
+      <a class="HrefListView"  >
+        <h2>
+           <i ng-if="dependentDetails.appoint.encounterTypeCode == 3" ng-bind-html="drawSVGCIcon('video_camera')" class="ng-binding">
+             <svg class="iconImg-video_camera iconImg-font userhome-icons"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-video_camera"></use></svg>
+           </i>
+           <!-- <i ng-if="dependentDetails.appoint.encounterTypeCode != 3" ng-bind-html="drawSVGCIcon('phone')" class="ng-binding" style="font-size: 30px;">
+             <svg class="iconImg-phone userhome-icons"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-phone"></use></svg>
+           </i> -->
+           <svg  class="icon-phone iconImg-font"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-phone"></use></svg>
+
+          <span style="top: -7px;position: relative;padding-left: 5px;font-size: 20px;"><span class="">Appt</span> @  <b>11.30 am</b></span>
+       </h2>
+        <list class="ion-chevron-right ListLinkHref nextList" style="top: -13px !important; position: relative !important; font-size: 21px  !important;"></list>
+        <span ng-if="dependentDetails.appoint.appointmentStatusCode == 'Waiting' && dependentDetails.appoint.status != 71" class="DateFormateStyle AppointmentView localizejs" style="top: -10px; position: relative;">In queue</span>
+        <span ng-if="dependentDetails.appoint.appointmentStatusCode != 'Waiting' && dependentDetails.appoint.status != 71" class="DateFormateStyle AppointmentView localizejs" style="top: -10px; position: relative;">View Details</span>
+        <span ng-if="dependentDetails.appoint.status == 71" class="DateFormateStyle AppointmentView localizejs" style="top: -10px; position: relative;">In progress</span>
+       </a>
+    </div>
+
+
+  <div class="DependentList item">
+   <div class="HrefListViewDependent">
+    <div class="UserhmePatientDetails">
+      <!--	<img ng-src="{{dependentDetails.profileImagePath}}" src="{{dependentDetails.profileImagePath}}" class="UserHmelistImgView">-->
+    <div class="userHomeImage" >
+<img src="https://emerald.qa1.snapvcm.com/api/v2.1/images/ece3af7c-2a85-4627-8bdd-db10bf1c836d" class='UserHmelistImgView'>
+    </div>
+      <div class= "ListTextTitle ellipsis userHomeFullName" style="font-size: 20px;"><b>Colleen </b> <span class="SubTitleSpan">Fitzpatrick</span></div>
+      <p class="ListHomeUser_pTitle DateFormateStyle"><span class="localizejs"><span class="localizejs">Male</span> <span class="age-dot">.</span> </span>44yrs<span class="localizejs"> </span><!--<span ng-if="primaryPatientId != dependentDetails.patientId">| Guardian : {{dependentDetails.guardianName}}</span>--></p>
+      <!--<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>-->
+        <i class="iconfontSVG ListLinkHref UserHomeIcon right-link" ng-bind-html="drawSVGCIcon('chevron-right')"></i>
+    </div>
+  </div>
+</div>
+
+<div class="inside1" ng-if="dependentDetails.patientId == dependentDetails.appoint.patientId" style="display: {{dependentDetails.appoint.nextAppointmentDisplay}};"></div>
+  <div ng-if="dependentDetails.patientId == dependentDetails.appoint.patientId" style="background-color: {{dependentDetails.appoint.userHomeRecentAppointmentColor}}; border-top: none; display: {{dependentDetails.appoint.nextAppointmentDisplay}}; margin-bottom: 17px;"  class="UserHomeNextAppointment1 UserHomeNextAppointment-content ItemList outside"  ng-click="GoToappoimentDetailsFromUserHome(dependentDetails.appoint, 'userHome')" >
+    <a class="HrefListView"  >
+      <h2>
+         <i ng-if="dependentDetails.appoint.encounterTypeCode == 3" ng-bind-html="drawSVGCIcon('users')" class="ng-binding">
+           <svg class="icon_users userhome-icons"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon_users"></use></svg>
+         </i>
+      <!--    <i ng-if="dependentDetails.appoint.encounterTypeCode != 3" ng-bind-html="drawSVGCIcon('users')" class="ng-binding" style="font-size: 30px;">
+           <svg class="icon_users userhome-icons"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon_users"></use></svg>
+         </i> -->
+          <svg  class="icon-users iconImg-font"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-users"></use></svg>
+
+        <span style="top: -7px;position: relative;padding-left: 5px;font-size: 20px;"><span class="">Appt</span> @  <b>12.15 am</b></span>
+     </h2>
+      <list class="ion-chevron-right ListLinkHref nextList" style="top: -13px !important; position: relative !important; font-size: 21px  !important;"></list>
+      <span ng-if="dependentDetails.appoint.appointmentStatusCode == 'Waiting' && dependentDetails.appoint.status != 71" class="DateFormateStyle AppointmentView localizejs" style="top: -10px; position: relative;">In queue</span>
+      <span ng-if="dependentDetails.appoint.appointmentStatusCode != 'Waiting' && dependentDetails.appoint.status != 71" class="DateFormateStyle AppointmentView localizejs" style="top: -10px; position: relative;">View Details</span>
+      <span ng-if="dependentDetails.appoint.status == 71" class="DateFormateStyle AppointmentView localizejs" style="top: -10px; position: relative;">In progress</span>
+     </a>
+  </div>
+
+
+
+<div class="DependentList item">
+ <div class="HrefListViewDependent">
+  <div class="UserhmePatientDetails">
+    <!--	<img ng-src="{{dependentDetails.profileImagePath}}" src="{{dependentDetails.profileImagePath}}" class="UserHmelistImgView">-->
+  <div class="userHomeImage" >
+<img src="https://emerald.qa1.snapvcm.com/api/v2.1/images/db096e87-0bca-467a-9561-238e3f635340" class='UserHmelistImgView'>
+  </div>
+    <div class= "ListTextTitle ellipsis userHomeFullName" style="font-size: 20px;"><b>Ismael </b> <span class="SubTitleSpan">Fitzpatrick</span></div>
+    <p class="ListHomeUser_pTitle DateFormateStyle"><span class="localizejs"><span class="localizejs">Female</span> <span class="age-dot">.</span> </span>16yrs<span class="localizejs"><span class="age-dot"> . </span>Daughter  </span><!--<span ng-if="primaryPatientId != dependentDetails.patientId">| Guardian : {{dependentDetails.guardianName}}</span>--></p>
+    <!--<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>-->
+      <i class="iconfontSVG ListLinkHref UserHomeIcon right-link" ng-bind-html="drawSVGCIcon('chevron-right')"></i>
+  </div>
+</div>
+</div>
+
+<div class="inside1" ng-if="dependentDetails.patientId == dependentDetails.appoint.patientId" style="display: {{dependentDetails.appoint.nextAppointmentDisplay}};"></div>
+  <div ng-if="dependentDetails.patientId == dependentDetails.appoint.patientId" style="background-color: {{dependentDetails.appoint.userHomeRecentAppointmentColor}}; border-top: none; display: {{dependentDetails.appoint.nextAppointmentDisplay}}; margin-bottom: 17px;"  class="UserHomeNextAppointment1 UserHomeNextAppointment-contentItemList outside"  ng-click="GoToappoimentDetailsFromUserHome(dependentDetails.appoint, 'userHome')" >
+    <a class="HrefListView"  >
+      <h2>
+         <i ng-if="dependentDetails.appoint.encounterTypeCode == 3" ng-bind-html="drawSVGCIcon('video_camera')" class="ng-binding">
+           <svg class="iconImg-video_camera iconImg-font userhome-icons"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-video_camera"></use></svg>
+         </i>
+        <!--  <i ng-if="dependentDetails.appoint.encounterTypeCode != 3" ng-bind-html="drawSVGCIcon('phone')" class="ng-binding" style="font-size: 30px;">
+           <svg class="iconImg-phone userhome-icons"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-phone"></use></svg>
+         </i> -->
+          <svg  class="icon-phone iconImg-font"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-phone"></use></svg>
+
+        <span style="top: -7px;position: relative;padding-left: 5px;font-size: 20px;"><span class="">Appt</span> @  <b>1.00 am</b></span>
+     </h2>
+      <list class="ion-chevron-right ListLinkHref nextList" style="top: -13px !important; position: relative !important; font-size: 21px  !important;"></list>
+      <span ng-if="dependentDetails.appoint.appointmentStatusCode == 'Waiting' && dependentDetails.appoint.status != 71" class="DateFormateStyle AppointmentView localizejs" style="top: -10px; position: relative;">In queue</span>
+      <span ng-if="dependentDetails.appoint.appointmentStatusCode != 'Waiting' && dependentDetails.appoint.status != 71" class="DateFormateStyle AppointmentView localizejs" style="top: -10px; position: relative;">View Details</span>
+      <span ng-if="dependentDetails.appoint.status == 71" class="DateFormateStyle AppointmentView localizejs" style="top: -10px; position: relative;">In progress</span>
+     </a>
+  </div>
+
+<div class="DependentList item">
+ <div class="HrefListViewDependent">
+  <div class="UserhmePatientDetails">
+    <!--	<img ng-src="{{dependentDetails.profileImagePath}}" src="{{dependentDetails.profileImagePath}}" class="UserHmelistImgView">-->
+  <div class="userHomeImage" >
+<img src=" + image + " class='UserHmelistImgView'>
+  </div>
+    <div class= "ListTextTitle ellipsis userHomeFullName" style="font-size: 20px;"><b>Pat </b> <span class="SubTitleSpan">Fitzpatrick</span></div>
+    <p class="ListHomeUser_pTitle DateFormateStyle"><span class="localizejs"><span class="localizejs">Male</span> <span class="age-dot"> . </span> </span>27yrs<span class="localizejs"><span class="age-dot"> . </span>Father </span><!--<span ng-if="primaryPatientId != dependentDetails.patientId">| Guardian : {{dependentDetails.guardianName}}</span>--></p>
+    <!--<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>-->
+      <i class="iconfontSVG ListLinkHref UserHomeIcon right-link" ng-bind-html="drawSVGCIcon('chevron-right')"></i>
+  </div>
+</div>
+</div>
+
+
+		<div class="inside1" ng-if="dependentDetails.patientId == dependentDetails.appoint.patientId" style="display: {{dependentDetails.appoint.nextAppointmentDisplay}};"></div>
+			<div ng-if="dependentDetails.patientId == dependentDetails.appoint.patientId" style="background-color: {{dependentDetails.appoint.userHomeRecentAppointmentColor}}; border-top: none; display: {{dependentDetails.appoint.nextAppointmentDisplay}}; margin-bottom: 17px;"  class="UserHomeNextAppointment1 UserHomeNextAppointment-contentItemList outside"  ng-click="GoToappoimentDetailsFromUserHome(dependentDetails.appoint, 'userHome')" >
+				<a class="HrefListView"  >
+					<h2>
+						 <i ng-if="dependentDetails.appoint.encounterTypeCode == 3" ng-bind-html="drawSVGCIcon('video_camera')" class="ng-binding">
+							 <svg class="iconImg-video_camera iconImg-font userhome-icons"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-video_camera"></use></svg>
+						 </i>
+						<!--  <i ng-if="dependentDetails.appoint.encounterTypeCode != 3" ng-bind-html="drawSVGCIcon('phone')" class="ng-binding" style="font-size: 30px;">
+							 <svg class="iconImg-phone userhome-icons"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-phone"></use></svg>
+						 </i> -->
+              <svg  class="icon-phone iconImg-font"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-phone"></use></svg>
+
+						<span style="top: -7px;position: relative;padding-left: 5px;font-size: 20px;"><span class="">Appt</span> @  <b>8.00 am</b></span>
+				 </h2>
+					<list class="ion-chevron-right ListLinkHref nextList" style="top: -13px !important; position: relative !important; font-size: 21px  !important;"></list>
+					<span ng-if="dependentDetails.appoint.appointmentStatusCode == 'Waiting' && dependentDetails.appoint.status != 71" class="DateFormateStyle AppointmentView localizejs" style="top: -10px; position: relative;">In queue</span>
+					<span ng-if="dependentDetails.appoint.appointmentStatusCode != 'Waiting' && dependentDetails.appoint.status != 71" class="DateFormateStyle AppointmentView localizejs" style="top: -10px; position: relative;">View Details</span>
+					<span ng-if="dependentDetails.appoint.status == 71" class="DateFormateStyle AppointmentView localizejs" style="top: -10px; position: relative;">In progress</span>
+				 </a>
+			</div>
+
+		</div>
+
+		<ion-item ng-if="searched == true && filteredResult == ''" class="noResult" > Search result not found! </ion-item>
+		<div ng-controller="appoimentDetailsCtrl">
+		</div>
+		<i style="visibility:hidden;" class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('video_camera_mute')"></i>
+		<i style="visibility:hidden;" class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('cross')"></i>
+		<i style="visibility:hidden;" class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('circle-with-plus')"></i>
+
+	</ion-list>
+</ion-content>
+</ion-side-menu-content>
+ <!--Side Menu File Include --->
+	<!--<ion-side-menu side="left" style="background-color: #464644;">
+        <a ng-click="toggleLeft()" class="sidemenuContent" >
+			<ion-list>
+				<ion-item class="ion-ios-list" id="{{sidemenuHome}}">
+					<span>  Patient List</span>
+				</ion-item>
+			</ion-list>
+		</a>
+       <a ng-click="ClearRootScope()" class="SidemenuLogOut" >
+			<ion-list>
+				<ion-item class="ion-power LogOutText" >
+					<span>  Logout</span>
+				</ion-item>
+			</ion-list>
+        </a>
+
+
+
+	</ion-side-menu>
+</ion-side-menus>-->
+
+<div ng-include src="'templates/primaryPatientSideMenu.html'"></div>
+
+</ion-side-menus>
+
+
+</ion-view>

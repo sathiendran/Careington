@@ -1,57 +1,5 @@
 <style>
-    .titleLineheight {
-        line-height: 48px !important;
-    }
-    .backText {
-        font-family: "Glober Book";
-        font-size: 16px !important;
-        font-weight: 400 !important;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.38;
-        letter-spacing: 0.5px;
-        color: #ffffff;
-    }
-
-    .cancelText {
-        font-family: "Glober Light";
-        font-size: 16px !important;
-        font-weight: 400 !important;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.38;
-        letter-spacing: 0.5px;
-        color: #ffffff;
-        position: relative;
-        top: 4px;
-    }
-
-    .nextText {
-        font-family: "Glober Book";
-        font-size: 16px !important;
-        font-weight: 400 !important;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 39px !important;
-        position: relative;
-        left: -8px !important;
-        letter-spacing: 0.7px;
-        color: #ffffff;
-        top: 0px;
-    }
-
-    .bar .button.button-clear .icon:before,
-    .bar .button.button-clear.icon:before,
-    .bar .button.button-clear.icon-left:before,
-    .bar .button.button-clear.icon-right:before {
-        font-size: 21px !important;
-        margin-top: 2.5px;
-    }
-
-    .iconVer {
-        vertical-align: middle !important;
-    }
-
+    
     .ion-chevron-right:before {
         float: right;
     }
@@ -133,8 +81,8 @@
                     <span class="localizejs backText"> Back</span>
                 </a>
             </div>
-            <div class="title titleLineheight" ng-click="clearRootScopeConce()" style="height:auto;">
-                <a class="button_new icon localizejs cancelText iconVer " style="{{PatientConcernCancel}}">
+            <div class="title titleLineheight"  style="height:auto;">
+                <a class="button_new icon localizejs cancelText iconVer " style="{{PatientConcernCancel}}" ng-click="clearRootScopeConce()">
                     <span>Cancel</span>
                 </a>
             </div>

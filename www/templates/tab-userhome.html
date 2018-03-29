@@ -64,8 +64,11 @@
 	.SearchImage {
 		float: right !important;
 		top: -18px !important;
-		margin-top: -18px !important;
+	//	margin-top: -18px !important;
 	}
+	.bar-subheaderHomeUser {
+    margin-top: 70px;
+}
 </style>
 
 <ion-side-menus>
@@ -110,7 +113,7 @@
 				<i class="icon ion-plus"></i>
 			</a>
 
-
+ -->
 
 			<div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds" style="height: auto;">
 
@@ -120,19 +123,29 @@
 				<div class="SearchImage" ng-click="showSearchInput();">
 					<i class="ion-search" style="float: right; font-size: 23px;color: #666666;"></i>
 				</div>
-			</div> -->
+			</div>
 		</ion-header-bar>
 		<ion-view title="User Home">
-			<ion-content class="ContentUserHome UserHme" ng-controller="LoginCtrl" ng-init="loadDependent(); doRefreshUserHome();">
+
 				<div id="divSearchInput" class="UserHme userSearch-{{deviceName}}" style="display: none;">
+						<div class="UserHmeSub-{{deviceName}}">
+							<label class="item-input">
+								<i style="display: {{homeMagnifyDisplay}}" class="iconfontSVG userhmeSeach" ng-bind-html="drawSVGCIcon('magnifying-glass')"></i>
+								<input type="search" class="localizejs" placeholder="Search" id="searchQuery" ng-model="data.searchQuery">
+							</label>
+						</div>
+					</div>
+
+			<ion-content class="ContentUserHome UserHme" ng-controller="LoginCtrl" ng-init="loadDependent(); doRefreshUserHome();" style="margin: 70px 0 0 0 !important;">
+				<!-- <div id="divSearchInput" class="UserHme userSearch-{{deviceName}}" style="display: none;">
 					<div class="UserHmeSub-{{deviceName}}">
 						<label class="item-input">
 							<i style="display: {{homeMagnifyDisplay}}" class="iconfontSVG userhmeSeach" ng-bind-html="drawSVGCIcon('magnifying-glass')"></i>
 							<input type="search" class="localizejs" placeholder="Search" id="searchQuery" ng-model="data.searchQuery">
 						</label>
 					</div>
-				</div>
-				<div class="col subHeaderTop UserNeeds">
+				</div> -->
+				<!-- <div class="col subHeaderTop UserNeeds">
 					<div id="whoNeedsTextval" class="TitleHomeUser_Sub localizejs lang-font whoNeedsText" style="{{whoNeedsText}}">Who Needs Care Today?</div>
 					<div class="SearchImage" ng-click="showSearchInput();">
 						<i class="ion-search" style="float: right; font-size: 23px;color: #666666;"></i>
@@ -141,7 +154,7 @@
 
 
 					</div>  -->
-				</div>
+				<!--</div> -->
 
 				<!-- <div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds" style="height: auto;">
 				<div id="whoNeedsTextval" class="TitleHomeUser_Sub localizejs lang-font whoNeedsText" style="{{whoNeedsText}}">Who Needs Care Today?</div>

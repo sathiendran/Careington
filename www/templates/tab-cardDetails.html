@@ -16,7 +16,7 @@
                </button>
             </div>
             <div style="width: 100%; text-align: right;" ng-if="!CardForm.$invalid">
-               <button type="submit" class="button_new icon PlanNext localizejs"  style="{{CardDetailsNextButton}};right: -10px;"  ng-disabled="CardForm.$invalid" >                   Next
+               <button type="submit" class="button_new icon PlanNext localizejs"  style="{{CardDetailsNextButton}};right: 0px;"  ng-disabled="CardForm.$invalid" >                   Next
                </button>
             </div>
          </div>
@@ -93,9 +93,12 @@
                   <input type="text" class="localizejs" placeholder="Required" ng-model="getCardDetails.CountryFullName"  name="Country" id="Country" required>
                </div>
                <div class="item item-input" >
+                  
                   <span class="input-label cardfont localizejs" >Zip</span>
-                  <input type="text" style="{{invalidZip}}" placeholder="Required"  ng-model="getCardDetails.CardZipCode"  class="localizejs" input-max-length-number maxlength="10" name="Zip" id="Zip" required/>
-               </div>
+                  <!-- <input ng-if="!getCardDetails"  type="text" style="{{invalidZip}}" placeholder="Required"  ng-model="getCardDetails.CardZipCode"  class="localizejs" input-max-length-number maxlength="10" name="Zip" id="Zip" required/> -->
+                  <input ng-if="getCardDetails.Country == 'US'"  type="text" style="{{invalidZip}}" placeholder="Required"  ng-model="getCardDetails.CardZipCode"  class="localizejs" input-max-length-number maxlength="10" name="Zip" id="Zip" required/>
+                  <input ng-if="getCardDetails.Country != 'US'" type="text" style="{{invalidZip}}"   ng-model="getCardDetails.CardZipCode"  class="localizejs" input-max-length-number maxlength="10" name="Zip" id="Zip" />
+                </div>
             </div>
             <div class="planDetails" ng-if="addCardStatus !== 200" style="opacity:{{planverify}};">
                <p class="carddetails localizejs">When you add a credit card, information about your card, will be sent to Authorize.net and your card issuer.</p>
@@ -105,7 +108,8 @@
               About {{Hospital}} Privacy</a> -->
 
               <a class="localizejs" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" >
-                About {{Hospital}} Privacy</a>
+              <!--  About {{Hospital}} Privacy --> Terms and Conditions
+              </a>
 
             </div>
          </div>
