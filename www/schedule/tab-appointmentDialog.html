@@ -1,29 +1,31 @@
 ﻿<style>
-span.icon_video_camera {
-    font-size: 30px;
-}
-span.icon_phone {
-    font-size: 30px;
-}
-:lang(es) .button__red.error::after {
-  content: "Rever?";
-  padding-bottom: 10px;
-    /* border-color: black; */
-}
+    span.icon_video_camera {
+        font-size: 30px;
+    }
 
-span.k-widget.k-datepicker.k-header.k-input{
-border: 0;
-    padding-top: 2px;
-}
+    span.icon_phone {
+        font-size: 30px;
+    }
 
-input#datepicker1
-{
-    margin: 0 auto;
-    vertical-align: middle;
-}
-.dialogbox-master__datepicker .k-datepicker {
-    width: 135px !important;
-}
+     :lang(es) .button__red.error::after {
+        content: "Rever?";
+        padding-bottom: 10px;
+        /* border-color: black; */
+    }
+
+    span.k-widget.k-datepicker.k-header.k-input {
+        border: 0;
+        padding-top: 2px;
+    }
+
+    input#datepicker1 {
+        margin: 0 auto;
+        vertical-align: middle;
+    }
+
+    .dialogbox-master__datepicker .k-datepicker {
+        width: 135px !important;
+    }
 </style>
 <div id="appointDialog">
     <div class="dialogbox-master is-next is-pss">
@@ -47,7 +49,8 @@ input#datepicker1
                         <div class="dialogbox-master__header is-absolute js-scroll-header">
                             <div class="dialogbox-master__title localizejs">Appointment Details</div>
                             <div class="dialogbox-master__title-link localizejs" data-bind="css: {is-active: vm_canShowTimeOffsets}, events: {click: vm_showTimeOffsets}">
-                                <span data-bind="invisible: vm_isTimeOffsetsVisible" class="localizejs">Show</span><span data-bind="visible: vm_isTimeOffsetsVisible" class="localizejs">Hide</span> <span class="localizejs">time offsets</span>
+                                <span data-bind="invisible: vm_isTimeOffsetsVisible" class="localizejs">Show</span>
+                                <span data-bind="visible: vm_isTimeOffsetsVisible" class="localizejs">Hide</span> <span class="localizejs">time offsets</span>
                             </div>
                         </div>
 
@@ -73,7 +76,7 @@ input#datepicker1
                             </div>
                         </div>
 
-                      <!--  <div class="dialogbox-master__box dialogbox-master__box--encounter-method">
+                        <!--  <div class="dialogbox-master__box dialogbox-master__box--encounter-method">
                             <div class="dialogbox-master__subtitle localizejs">Encounter Method</div>
 
                             <div class="consultation-type" data-bind="css:{is-disabled:isReadOnly}">
@@ -109,8 +112,7 @@ input#datepicker1
                             </div>
                         </div>-->
 
-                        <div class="dialogbox-master__box dialogbox-master__box--encounter-method"
-                            data-bind="source: encounterMethodSelector" data-template="encounterSelectorTemplate">
+                        <div class="dialogbox-master__box dialogbox-master__box--encounter-method" data-bind="source: encounterMethodSelector" data-template="encounterSelectorTemplate">
                         </div>
 
                         <div class="dialogbox-master__box dialogbox-master__box--phone js-show-phone" data-bind="css: {is-active: isPhone}">
@@ -120,24 +122,20 @@ input#datepicker1
                                 <div class="consultation-phone__number">
                                     <div class="consultation-phone__icon"><span class="icon_phone"></span></div>
                                     <!--<input id="ffff" type="tel" data-value-update="keyup" data-bind="events: { click: vm_enterNumber,keyup: vm_onPhoneNumberChange }, value: phoneNumber, disabled: isReadOnly" class="consultation-phone__input js-phone-input localizejs" placeholder="Enter a phone number…" tabindex="5">-->
-                                   	<span class="localizejs">
+                                    <span class="localizejs">
                                     <input
                                         type="text"
                                         data-value-update="keyup"
-                                        data-bind="events: { keyup: vm_onPhoneNumberChange }, value: phoneNumber, disabled: isReadOnly"
+                                        data-bind="events: { click: vm_enterNumber, keyup: vm_onPhoneNumberChange }, value: phoneNumber, disabled: isReadOnly"
                                         class="localizejs consultation-phone__input js-phone-input"
                                         placeholder="Enter a phone number…"
                                         tabindex="5">
                                     </span>
                                 </div>
                                 <div class="consultation-phone__type js-phone-wrap">
-                                   <!-- <input type="text" data-bind="value: phoneType, source: phoneTypeDs, events: {change: vm_onPhoneTypeChange, open: onOpen}, disabled: isReadOnly" data-role="dropdownlist" data-value-primitive="true" data-text-field="text" data-value-field="value" class="consultation-phone__dropdown js-dropdown-phone localizejs">-->
-                                   <input type="text"
-                                        data-bind="value: phoneType, source: phoneTypeDs, events: {change: vm_onPhoneTypeChange}, disabled: isReadOnly"
-                                        data-role="dropdownlist"
-                                        data-value-primitive="true"
-                                        data-text-field="text"
-                                        data-value-field="value"
+                                    <!-- <input type="text" data-bind="value: phoneType, source: phoneTypeDs, events: {change: vm_onPhoneTypeChange, open: onOpen}, disabled: isReadOnly" data-role="dropdownlist" data-value-primitive="true" data-text-field="text" data-value-field="value" class="consultation-phone__dropdown js-dropdown-phone localizejs">-->
+                                    <input type="text" data-bind="value: phoneType, source: phoneTypeDs, events: {change: vm_onPhoneTypeChange}, disabled: isReadOnly"
+                                        data-role="dropdownlist" data-value-primitive="true" data-text-field="text" data-value-field="value"
                                         class="consultation-phone__dropdown js-dropdown-phone">
                                 </div>
                             </div>
@@ -151,7 +149,7 @@ input#datepicker1
                                     <a href="#" class="localizejs js-edit-appt" data-bind="click: vm_onToggleEditDate, invisible: isReadOnly, html: vm_getDateAreaActionLabel"></a>
                                 </div>
 
-                              <!--  <div class="dialogbox-master__reschedule-appt" data-bind="visible: isDateAreaInEditMode">
+                                <!--  <div class="dialogbox-master__reschedule-appt" data-bind="visible: isDateAreaInEditMode">
                                     <button type="button" class="localizejs button button__yellow js-cancel-appt" data-bind="click: vm_onCancelEditDate">Cancel</button>
 
                                     <div class="dialogbox-master__datepicker">
@@ -166,20 +164,26 @@ input#datepicker1
 
                                     <div class="dialogbox-master__datepicker">
                                         <label class="localizejs">Appt. Date</label>
-                                        <input data-role="datepicker" id="datepicker1" data-bind="value: startDate, events: {change: vm_startDateChange}, min: vm_currentDate" />
+                                        <input data-role="datepicker" id="datepicker1" data-bind="value: startDate, events: {change: vm_startDateChange}, min: vm_currentDate"
+                                        />
                                     </div>
-                                    <div class="dialogbox-master__appt-times" data-bind="source: apptsSlotsTray, events: {change: vm_appointmentSlotsChanged}" data-template="patient_apptsSlotsTemplate">
+                                    <div class="dialogbox-master__appt-times" data-bind="source: apptsSlotsTray, events: {change: vm_appointmentSlotsChanged}"
+                                        data-template="patient_apptsSlotsTemplate">
                                     </div>
                                 </div>
 
-                                <div class="dialogbox-master__when"  data-bind="invisible: isDateAreaInEditMode">
+                                <div class="dialogbox-master__when" data-bind="invisible: isDateAreaInEditMode">
                                     <div class="dialogbox-master__time">
                                         <span class="dialogbox-master__hour" data-bind="html: vm_getStartTime"></span>
                                         <spoan class="dialogbox-master__timezone" data-bind="text: timezone">pst</spoan>
                                     </div>
-                                      <!-- <div class="dialogbox-master__fulldate" data-bind="text: vm_getStartDate"></div> -->
-                                    <div class="dialogbox-master__fulldate" >
-                                      <span class="localizejs" data-bind="text: vm_getStartWeek"></span><span>, </span><span class="localizejs" data-bind="text: vm_getStartMonth"></span><span> </span><span class="" data-bind="text: vm_getStartDateYear"></span></div>
+                                    <!-- <div class="dialogbox-master__fulldate" data-bind="text: vm_getStartDate"></div> -->
+                                    <div class="dialogbox-master__fulldate">
+                                        <span class="localizejs" data-bind="text: vm_getStartWeek"></span><span>, </span>
+                                        <span class="localizejs" data-bind="text: vm_getStartMonth"></span><span> </span>
+                                        <span
+                                            class="" data-bind="text: vm_getStartDateYear"></span>
+                                    </div>
                                 </div>
 
                             </div>
@@ -206,56 +210,40 @@ input#datepicker1
 
                                 <ul class="dialogbox-master__reason-list js-reason-list">
                                     <li class="dialogbox-master__reason js-reason-item" data-bind="css:{is-active:vm_primaryConcernActive, is-other: vm_isPrimaryConcernOtherSelected, is-error:vm_primaryConcernError, is-smaller:displaySecondaryConcern}">
-                                       <select class="localizejs dialogbox-master__reason-dropdown"
-                                            data-role="dropdownlist"
-                                            data-option-label="Primary Concern/Reason"
-                                            data-value-primitive="true"
-                                            data-text-field="text"
-                                            data-value-field="codeId"
-                                            data-bind="
+                                        <select class="localizejs dialogbox-master__reason-dropdown" data-role="dropdownlist" data-option-label="Primary Concern/Reason"
+                                            data-value-primitive="true" data-text-field="text" data-value-field="codeId" data-bind="
                                             value: vm_primaryConsernId,
                                             source: dataPrimaryConcernList,
                                             events: { change: vm_onPrimaryConcernChange },
                                             disabled: isReadOnly" tabindex="8"></select>
 
-                                            <div class="dialogbox-master__other"
-                                                 data-bind="visible: vm_isPrimaryConcernOtherSelected">
+                                        <div class="dialogbox-master__other" data-bind="visible: vm_isPrimaryConcernOtherSelected">
 
-                                                <textarea data-value-update="keyup"
-                                                          data-bind="
+                                            <textarea data-value-update="keyup" data-bind="
                                                         value: primaryConcernOtherText,
                                                         events: { keyup: vm_onPrimaryConcernChange }"></textarea>
-                                            </div>
+                                        </div>
                                     </li>
-                                    <li class="dialogbox-master__reason"
-                                        data-bind="visible: displaySecondaryConcern, css:{is-active:vm_secondaryConcernActive, is-error:vm_secondaryConcernError, is-other:vm_isSecondaryConcernOtherSelected, is-error:vm_secondaryConcernError}"  id="dialogbox-master__reason-primary">
-                                        <div class="dialogbox-master__reason-del"
-                                             data-bind="events: {click: vm_onRemoveSecondaryConcernClick}, onEnterKey: vm_onRemoveSecondaryConcernClick, invisible: isReadOnly"><span class="icon_circle-with-minus" tabindex="11"></span></div>
-                                        <select class="localizejs dialogbox-master__reason-dropdown"
-                                            data-role="dropdownlist"
-                                            data-option-label="Secondary Concern/Reason"
-                                            data-value-primitive="true"
-                                            data-text-field="text"
-                                            data-value-field="codeId"
-                                            data-bind="
+                                    <li class="dialogbox-master__reason" data-bind="visible: displaySecondaryConcern, css:{is-active:vm_secondaryConcernActive, is-error:vm_secondaryConcernError, is-other:vm_isSecondaryConcernOtherSelected, is-error:vm_secondaryConcernError}"
+                                        id="dialogbox-master__reason-primary">
+                                        <div class="dialogbox-master__reason-del" data-bind="events: {click: vm_onRemoveSecondaryConcernClick}, onEnterKey: vm_onRemoveSecondaryConcernClick, invisible: isReadOnly"><span class="icon_circle-with-minus" tabindex="11"></span></div>
+                                        <select class="localizejs dialogbox-master__reason-dropdown" data-role="dropdownlist" data-option-label="Secondary Concern/Reason"
+                                            data-value-primitive="true" data-text-field="text" data-value-field="codeId" data-bind="
                                             value: vm_secondaryConsernId,
                                             source: dataSecondaryConcernList,
                                             events: { change: vm_onSecondaryConcernChange },
                                             disabled: isReadOnly" tabindex="10"></select>
 
-                                            <div class="dialogbox-master__other"
-                                                 data-bind="visible: vm_isSecondaryConcernOtherSelected">
-                                                 <textarea data-value-update="keyup"
-                                                           data-bind="
+                                        <div class="dialogbox-master__other" data-bind="visible: vm_isSecondaryConcernOtherSelected">
+                                            <textarea data-value-update="keyup" data-bind="
                                                          value: secondaryConcernOtherText,
                                                          events: { keyup: vm_onSecondaryConcernChange }"></textarea>
-                                            </div>
+                                        </div>
                                     </li>
 
                                 </ul>
 
-                                <div class="dialogbox-master__reason-add js-reason-add"
-                                    data-bind="events: {click: vm_onAddConcernClick}, onEnterKey: vm_onAddConcernClick, css:{is-active: vm_isAddConcernButtonVisible}"><span class="icon_circle-with-plus" tabindex="9"></span> <span class="localizejs">Add another complaint </span> </div>
+                                <div class="dialogbox-master__reason-add js-reason-add" data-bind="events: {click: vm_onAddConcernClick}, onEnterKey: vm_onAddConcernClick, css:{is-active: vm_isAddConcernButtonVisible}"><span class="icon_circle-with-plus" tabindex="9"></span> <span class="localizejs">Add another complaint </span>                                    </div>
                             </div>
 
                             <div class="dialogbox-master__box dialogbox-master__box--notes">
@@ -265,16 +253,21 @@ input#datepicker1
                                             <span class="icon_text-document"></span>
                                         </div>
                                         <div class="localizejs consultation-note__title">Additional Notes</div>
-                                        <div class="consultation-note__action"  data-bind="invisible: isReadOnly, click:vm_expandAddNotes">
+                                        <div class="consultation-note__action" data-bind="invisible: isReadOnly, click:vm_expandAddNotes">
                                             <span class="icon_plus"></span>
                                         </div>
                                     </div>
                                     <div class="localizejs consultation-note__drop">
                                         <!--<textarea name="" id="" class="consultation-note__textarea js-autoresize-textarea" placeholder="Enter Additional Notes..." data-bind="value: additionalNotes, invisible: isReadOnly, events:{keyup: vm_onKeyUpAdditionalNotes}"></textarea>-->
-                                        <textarea name="" id="" class="consultation-note__textarea js-autoresize-textarea localizejs" placeholder="Enter Additional Notes..." data-bind="value: additionalNotes, invisible: isReadOnly, events:{click:vm_enterNotes,keyup: vm_onKeyUpAdditionalNotes}" style="overflow: hidden; word-wrap: break-word; height: 160px;"></textarea>
+                                        <textarea name="" id="" class="consultation-note__textarea js-autoresize-textarea localizejs" placeholder="Enter Additional Notes..."
+                                            data-bind="value: additionalNotes, invisible: isReadOnly, events:{click:vm_enterNotes,keyup: vm_onKeyUpAdditionalNotes}"
+                                            style="overflow: hidden; word-wrap: break-word; height: 160px;"></textarea>
                                         <!--<textarea disabled name="" id="" class="consultation-note__textarea js-autoresize-textarea" data-bind="html: additionalNotes, visible: isReadOnly"></textarea>-->
-                                        <textarea disabled="" name="" id="" class="consultation-note__textarea js-autoresize-textarea" data-bind="html: additionalNotes, visible: isReadOnly" style="overflow-x: hidden; word-wrap: break-word; overflow-y: visible; height: auto;"></textarea>
+                                        <textarea disabled="" name="" id="" class="consultation-note__textarea js-autoresize-textarea" data-bind="html: additionalNotes, visible: isReadOnly"
+                                            style="overflow-x: hidden; word-wrap: break-word; overflow-y: visible; height: auto;"></textarea>
                                     </div>
+
+                                    <span class="TextareaHieght" style="display:none;"></span>
                                 </div>
                             </div>
 
@@ -286,24 +279,24 @@ input#datepicker1
             </div>
         </div>
 
-        <div class="dialogbox-master__buttons localizejs" >
-          <!--  <div data-bind="invisible: isReadOnly">-->
-                <!--<button style="line-height: 30px;min-height: 30px;" class="button button__red button__red--cancel localizejs" tabindex="13" data-bind="
+        <div class="dialogbox-master__buttons localizejs">
+            <!--  <div data-bind="invisible: isReadOnly">-->
+            <!--<button style="line-height: 30px;min-height: 30px;" class="button button__red button__red--cancel localizejs" tabindex="13" data-bind="
                         visible: vm_isCancelBtnVisible,
                         disabled: isDisabled,
                         events: { click: vm_onRemoveClick },
                         css: { is-loading: isLoading, error: isError, button__gray: isDisabled }"><span class="localizejs" style="margin-left: 0px;">Cancel</span></button>-->
-                <button style="line-height: 30px;min-height: 30px;" class="button button__red button__red--cancel" tabindex="13" data-bind="
+            <button style="line-height: 30px;min-height: 30px;" class="button button__red button__red--cancel" tabindex="13" data-bind="
                         visible: vm_isCancelBtnVisible,
                         disabled: isDisabled,
                         events: { click: vm_onRemoveClick },
                         css: { is-loading: isLoading, error: isError, button__red: vm_isNotDisabled, button__gray: isDisabled }"><span class="localizejs" style="margin-left: 0px;">Cancel</span></button>
-              <!--  <button style="min-height: 30px; line-height: 30px;" class="button button__green localizejs" tabindex="13" data-bind="
+            <!--  <button style="min-height: 30px; line-height: 30px;" class="button button__green localizejs" tabindex="13" data-bind="
                         invisible: vm_isCancelBtnVisible,
                         disabled: isDisabled,
                         events: { click: vm_onSubmitClick },
                         css: { is-loading: isLoading, button__red: isError, error: isError, button__green: vm_isNotError, button__gray: isDisabled }"><span data-bind="text:vm_saveBtnTxt" id="retrySpanish" class="localizejs"></span></button>-->
-                <button style="min-height: 30px; line-height: 30px;" class="button button__green" tabindex="13" data-bind="
+            <button style="min-height: 30px; line-height: 30px;" class="button button__green" tabindex="13" data-bind="
                         visible: vm_isSaveBtnVisible,
                         disabled: isDisabled,
                         events: { click: vm_onSubmitClick },
@@ -316,4 +309,26 @@ input#datepicker1
             <!--<button style="min-height: 30px; line-height: 30px;" class="button button__cancel js-cancel localizejs" tabindex="12"  data-bind="events: { click: vm_onCloseClick }" ><span class="localizejs">Close</span></button>-->
         </div>
     </div>
-<!--</div>-->
+    <!--</div>-->
+
+    <script>
+        $(document).ready(function () {
+            debugger;
+            var AndroidDevice = localStorage.getItem('AndroidDevice');
+           if (AndroidDevice == "false") {
+                $('.consultation-note__textarea').focus(function () {
+                    $('.TextareaHieght').css({ 'display': 'block', 'height': '300px' })
+                }).blur(function () {
+                    $('.TextareaHieght').css({ 'display': 'none' })
+                });
+
+            } else {
+                $('.consultation-note__textarea').focus(function () {
+                    $('.TextareaHieght').css({ 'display': 'block', 'height': '0px' })
+                }).blur(function () {
+                    $('.TextareaHieght').css({ 'display': 'none' })
+                });
+
+            }
+        });
+    </script>

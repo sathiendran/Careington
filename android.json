@@ -1,0 +1,74 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "com.tokbox.cordova.opentok": {
+            "PACKAGE_NAME": "com.snap.connectedcare.mdAmericaStage"
+        },
+        "cordova-plugin-actionsheet": {
+            "PACKAGE_NAME": "com.snap.connectedcare.mdAmericaStage"
+        },
+        "cordova-plugin-background-mode": {
+            "PACKAGE_NAME": "com.snap.connectedcare.mdAmericaStage"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.snap.connectedcare.mdAmericaStage"
+        },
+        "cordova-plugin-customurlscheme": {
+            "URL_SCHEME": "vc175",
+            "ANDROID_SCHEME": " ",
+            "ANDROID_HOST": " ",
+            "ANDROID_PATHPREFIX": "/",
+            "PACKAGE_NAME": "com.snap.connectedcare.mdAmericaStage"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.snap.connectedcare.mdAmericaStage"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.snap.connectedcare.mdAmericaStage"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.snap.connectedcare.mdAmericaStage"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.snap.connectedcare.mdAmericaStage"
+        },
+        "cordova-plugin-insomnia": {
+            "PACKAGE_NAME": "com.snap.connectedcare.mdAmericaStage"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.snap.connectedcare.mdAmericaStage"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.snap.connectedcare.mdAmericaStage"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.snap.connectedcare.mdAmericaStage"
+        },
+        "cordova.plugins.diagnostic": {
+            "PACKAGE_NAME": "com.snap.connectedcare.mdAmericaStage"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.snap.connectedcare.mdAmericaStage"
+        }
+    },
+    "dependent_plugins": {
+        "com.ionic.keyboard": {
+            "PACKAGE_NAME": "com.snap.connectedcare.mdAmericaStage"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.snap.connectedcare.mdAmericaStage"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.snap.connectedcare.mdAmericaStage"
+        },
+        "cordova-plugin-iosrtc": {
+            "PACKAGE_NAME": "com.snap.connectedcare.mdAmericaStage"
+        }
+    }
+}

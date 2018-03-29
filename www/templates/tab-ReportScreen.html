@@ -1,16 +1,15 @@
 
-<div id="Error_Message" class="ErrorMessageDiv" ></div>
-<div class="Server_Error ErrorMessageDiv" ></div>
-<div class="Error_Message ErrorMessageDiv" ></div>
 <ion-view title="Add Card">
 <!-- <ion-side-menus>
 <ion-side-menu-content> -->
-   <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};" >
+   <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};height: 67px;padding-top: 0px;" >
      <!-- <div class="buttons">
          <span class="button icon button-clear {{menuiconIOS}}  reportIconBack-{{deviceName}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
     </div>-->
-
-      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} reportscreenTitle-{{deviceName}}" > <span class="headerfont _accountHeader-{{deviceName}} localizejs reportScreenHeader">Post-Encounter Report</span>
+    <div id="Error_Message" class="ErrorMessageDiv" ></div>
+    <div class="Server_Error ErrorMessageDiv" ></div>
+    <div class="Error_Message ErrorMessageDiv" ></div>
+      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} reportscreenTitle-{{deviceName}}" style="top: 6px !important;"> <span class="headerfont _accountHeader-{{deviceName}} localizejs reportScreenHeader">Post-Encounter Report</span>
          <span> <a class="headerval _accountCancel-{{deviceName}} localizejs" ng-click="EnableBackButton();" >Done</a>
 
          </span>
@@ -92,7 +91,10 @@
                                     <span class="pc-report__data-list-title localizejs" style="
     width: 100%;
 ">AGE</span>
-                                    <span class="pc-report__data-list-desc">{{existingConsultationReport.ageFormat}}</span>
+                            <!-- <span class="pc-report__data-list-desc">{{existingConsultationReport.ageFormat}}</span> -->
+
+<span class="pc-report__data-list-desc localizejs"><span>{{existingConsultationReport.dob | ageFilter}}</span><span class="localizejs">{{existingConsultationReport.dob | ageYearsStringFilter}}</span><span>{{existingConsultationReport.dob | ageMonthFilter}}</span> <span>{{existingConsultationReport.dob | ageDayFilter}}</span> </span>
+
                                 </div>
                             </div>
                             <div class="pc-report__data-list">
@@ -160,7 +162,7 @@
 
                             <div class="pc-report__data-list pc-report__data-list-item">
                                 <div class="pc-report__data-list-title enStatus localizejs">length</div>
-                                <div class="pc-report__data-list-desc1" ng-if="displayCOnsultationDuration != 'none'">{{consultDurationMinutes}}:{{consultDurationSeconds}} <strong>min</strong></div>
+                                <div class="pc-report__data-list-desc1" ng-if="displayCOnsultationDuration != 'none'">{{consultDurationMinutes}}:{{consultDurationSeconds}} <!--<strong>min</strong>--><span>min</span></span></div>
                             </div>
 
                             <div class="pc-report__data-list pc-report__data-list-item">
@@ -170,16 +172,19 @@
 
                             <div class="pc-report__data-list">
                                <div class="pc-report__data-list-item pc-report__data-list-item--small" style="width: 136% !important;">
-                                   <span class="pc-report__data-list-title localizejs departmentClass" style="width: 27.333%;{{departmentClass}}">class</span>
+                                   <span class="pc-report__data-list-title localizejs departmentClass" style="width: 26.333%;{{departmentClass}}">class</span>
                                    <span class="pc-report__data-list-desc localizejs departmentClassVal" style="width: 67.666%%;">{{appointmenttype}}</span>
                                </div>
-                               <div class="pc-report__data-list-item pc-report__data-list-item--small" style="width: 23%">
-                                   <span class="pc-report__data-list-title localizejs departmentClass" style="margin-left: 1px;width: 18.333%;padding-left: 3px;{{departmentClass}}">VIA</span>
-                                   <span class="pc-report__data-list-desc pc-report__data-list-desc--video localizejs" ng-if="encountercode == 3" style="width: 72.666%;">Video</span>
-                                   <span class="pc-report__data-list-desc pc-report__data-list-desc--phone localizejs" ng-if="encountercode == 2" style="width: 72.666%;">Phone</span>
-                                   <span class="pc-report__data-list-desc pc-report__data-list-desc--in-person localizejs" ng-if="encountercode == 4" style="width: 79.666%;">In Person</span>
-                                     <!--<span class="pc-report__data-list-desc pc-report__data-list-desc--video">{{encountertype}}</span> -->
-                               </div>
+
+                          </div>
+                          <div class="pc-report__data-list">
+                            <div class="pc-report__data-list-item pc-report__data-list-item--small" style="width: 23%">
+                                <span class="pc-report__data-list-title localizejs departmentClass" style="margin-left: 1px;width: 26.333%;padding-left: 3px;{{departmentClass}}">VIA</span>
+                                <span class="pc-report__data-list-desc pc-report__data-list-desc--video localizejs" ng-if="encountercode == 3" style="width: 72.666%;">Video</span>
+                                <span class="pc-report__data-list-desc pc-report__data-list-desc--phone localizejs" ng-if="encountercode == 2" style="width: 72.666%;">Phone</span>
+                                <span class="pc-report__data-list-desc pc-report__data-list-desc--in-person localizejs" ng-if="encountercode == 4" style="width: 72.666%;">In-Office</span>
+                                <!--<span class="pc-report__data-list-desc pc-report__data-list-desc--video">{{encountertype}}</span> -->
+                            </div>
                           </div>
 
                             <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed pc-report__sub-section-title--margin localizejs">Other Attendees</div>

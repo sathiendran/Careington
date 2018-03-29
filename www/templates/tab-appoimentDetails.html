@@ -127,10 +127,18 @@
                </div>
 
                <div class="appointEdit localizejs" ng-if="scheduledListDatas.appointmentTypeCode === 3 && scheduledListDatas.appointmentStatusCode != 'Waiting'" >
-                 <button  ng-disabled="betDelay" ng-click="editAppointment(scheduledListDatas);delay();" style="border: none;padding: 0;background: none;" >
-                   <!--<i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i>-->
+                 <!-- <button  ng-disabled="betDelay" ng-click="editAppointment(scheduledListDatas);delay();" style="border: none;padding: 0;background: none;width: 100px;" ng-if="isEnable" >
                    Edit
                  </button>
+                 <button  ng-disabled="betDelay"  style="border: none;padding: 0;background: none;width: 100px;" ng-if="!isEnable" >
+                   Edit
+                </button> -->
+                
+                <button  ng-disabled="betDelay" ng-click="editAppointment(scheduledListDatas);delay();" style="border: none;padding: 0;background: none;width: 100px;">
+                  <!--<i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i>-->
+                  Edit
+                </button>
+                
                </div>
          </div>
        </ion-item>

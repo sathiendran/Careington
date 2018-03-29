@@ -1,17 +1,17 @@
 //@ sourceURL=selfSchedulingService.js
-var setUserVars = function() {
+var setUserVars = function () {
     snap.userSession = JSON.parse(localStorage.getItem("snap_user_session"));
     snap.profileSession = JSON.parse(localStorage.getItem("snap_patientprofile_session"));
     snap.hospitalSession = JSON.parse(localStorage.getItem("snap_hospital_session"));
     snap.hospitalSettings = JSON.parse(localStorage.getItem("snap_hospital_settings"));
 };
-(function($, snap) {
+(function ($, snap) {
     "use strict";
 
-    snap.namespace("snap.service").using(["snapHttp"]).define("selfSchedulingService", function($http) {
+    snap.namespace("snap.service").using(["snapHttp"]).define("selfSchedulingService", function ($http) {
 
         var apptApiUrl = snap.baseUrl + "/api/v2.1/patients/appointments";
-        var getApptApiUrl = function() {
+        var getApptApiUrl = function () {
             // if (!snap.userSession) {
             snap.userSession = JSON.parse(localStorage.getItem("snap_user_session"));
             snap.profileSession = JSON.parse(localStorage.getItem("snap_patientprofile_session"));
@@ -21,14 +21,14 @@ var setUserVars = function() {
 
             return snap.baseUrl + "/api/v2.1/patients/appointments";
         }
-        this.getAppointment = function(apptId) {
+        this.getAppointment = function (apptId) {
 
             return $http.get([getApptApiUrl(), apptId].join("/"));
         }
-        this.getUserCurrentTime = function() {
+        this.getUserCurrentTime = function () {
             return $http.get(snap.baseUrl + "/api/v2.1/users/current-time");
         }
-        this.addAppointment = function(appt) {
+        this.addAppointment = function (appt) {
             var path = getApptApiUrl();
             var headers = util.getHeaders();
 
@@ -41,7 +41,7 @@ var setUserVars = function() {
             });
         };
 
-        this.removeAppointment = function(appointmentId) {
+        this.removeAppointment = function (appointmentId) {
             var path = [getApptApiUrl(), appointmentId].join("/");
 
             return $.ajax({
@@ -50,7 +50,7 @@ var setUserVars = function() {
             });
         };
 
-        this.updateAppointment = function(appt, apptId) {
+        this.updateAppointment = function (appt, apptId) {
             var path = [getApptApiUrl(), apptId].join("/");
 
             return $.ajax({
@@ -61,7 +61,7 @@ var setUserVars = function() {
                 data: JSON.stringify(appt),
             });
         };
-        this.getSingleClinician = function(clinicianUserId, date) {
+        this.getSingleClinician = function (clinicianUserId, date) {
             return $.ajax({
                 type: "GET",
                 url: [snap.baseUrl + "/api/v2.1/patients/appointments/self-scheduling/clinicians", clinicianUserId].join("/"),
@@ -71,30 +71,30 @@ var setUserVars = function() {
             });
         };
 
-        this.getServiceTypes = function(appointmentType) {
+        this.getServiceTypes = function (appointmentType) {
             var opt = {
                 appointmentType: appointmentType
             };
             return $.get(snap.baseUrl + "/api/v2.1/patients/service-types", opt);
         };
 
-        this.getCliniciansCards = function(opt) {
+        this.getCliniciansCards = function (opt) {
             return $http.get(snap.baseUrl + "/api/v2.1/patients/appointments/self-scheduling/clinicians", opt);
         };
 
-        this.getFamillyGroup = function(opt) {
+        this.getFamillyGroup = function (opt) {
             return $http.get(snap.baseUrl + "/api/v2.1/patients/authorized-patients", opt);
         };
 
-        this.getFamillyGroupPatient = function(patientId) {
+        this.getFamillyGroupPatient = function (patientId) {
             return $http.get([snap.baseUrl + "/api/v2.1/patients/authorized-patients", patientId].join("/"));
         };
 
-        this.getClinicianCard = function(userId, date) {
+        this.getClinicianCard = function (userId, date) {
             return $.get([snap.baseUrl + "/api/v2.1/patients/appointments/self-scheduling/clinicians", userId].join("/"), { date: date });
         };
 
-        this.addClinicianToFavourites = function(data) {
+        this.addClinicianToFavourites = function (data) {
             return $.ajax({
                 type: "POST",
                 url: snap.baseUrl + "/api/v2.1/patients/favorite-clinicians",
@@ -104,7 +104,7 @@ var setUserVars = function() {
             });
         };
 
-        this.removeClinicianFromFavourites = function(personId) {
+        this.removeClinicianFromFavourites = function (personId) {
             //Real API call.
             return $.ajax({
                 type: "DELETE",
@@ -115,13 +115,13 @@ var setUserVars = function() {
 }(jQuery, window.snap = window.snap || {}));
 //@ sourceURL=encounterMethod.helper.js
 ;
-(function($, snap) {
+(function ($, snap) {
     "use strict";
     snap.namespace("snap.helper")
         .use([
             "snap.common.schedule.ScheduleCommon"
         ])
-        .define("encounterMethodHelper", function(
+        .define("encounterMethodHelper", function (
             $scheduleCommon
         ) {
             var adminEncounterMap = {},
@@ -157,7 +157,7 @@ var setUserVars = function() {
                 return encounterNameMap[typeCode] || "None Reported";
             };
 
-            this.getFirstEnabledEncounterMethod = function(appointmentTypeCode) {
+            this.getFirstEnabledEncounterMethod = function (appointmentTypeCode) {
                 var encounterMap;
                 if (appointmentTypeCode === $scheduleCommon.appointmentTypeCode.patientScheduled) {
                     encounterMap = patientEncounterMap;
@@ -178,7 +178,7 @@ var setUserVars = function() {
                 return $encounterTypeCode.None;
             };
 
-            this.isEncounterMethodEnabled = function(encounterType, appointmentTypeCode) {
+            this.isEncounterMethodEnabled = function (encounterType, appointmentTypeCode) {
                 if (appointmentTypeCode === $scheduleCommon.appointmentTypeCode.patientScheduled) {
                     return patientEncounterMap[encounterType] || false;
                 } else if (appointmentTypeCode === $scheduleCommon.appointmentTypeCode.onDemand) {
@@ -193,20 +193,20 @@ var setUserVars = function() {
 
 
 
-(function($, snap, kendo) {
+(function ($, snap, kendo) {
     "use strict";
 
     snap.namespace("snap.patient.schedule").use(["snap.service.selfSchedulingService", "snap.admin.schedule.TimeUtils", "snap.common.overlay", "snap.common.schedule.ScheduleCommon", "snap.patient.patientEnterConsultationHelper"])
-        .define("patientAppointmentService", function($selfSchedulingService, $timeUtils, $overlay, $scheduleCommon, $patientEnterConsultationHelper) {
-            var formatErrorMessage = function(error) {
-                if (typeof(error) === "undefined" || error === null) {
+        .define("patientAppointmentService", function ($selfSchedulingService, $timeUtils, $overlay, $scheduleCommon, $patientEnterConsultationHelper) {
+            var formatErrorMessage = function (error) {
+                if (typeof (error) === "undefined" || error === null) {
                     return "Unknown error";
                 }
 
                 window.console.error(error);
 
                 var errorMessage;
-                if (typeof(error) === 'string') {
+                if (typeof (error) === 'string') {
                     errorMessage = error;
                 } else {
                     if (error.status === 500) {
@@ -246,9 +246,9 @@ var setUserVars = function() {
                     $selfSchedulingService.addAppointment(appt) :
                     $selfSchedulingService.updateAppointment(appt, appt.id);
 
-                action.done(function(response) {
+                action.done(function (response) {
                     dfd.resolve(response);
-                }).fail(function(response) {
+                }).fail(function (response) {
                     dfd.reject(response);
                 });
 
@@ -259,7 +259,7 @@ var setUserVars = function() {
             function saveAppointmen(appt) {
                 var dfd = $.Deferred();
                 sessionStorage.setItem("appointPatId", appt.participants[1].patientId);
-                saveAppt(appt).done(function(appointmentResponse) {
+                saveAppt(appt).done(function (appointmentResponse) {
                     if (appt.isNow && $overlay) {
                         var isLoading = true;
 
@@ -268,13 +268,13 @@ var setUserVars = function() {
                         $overlay.toggleOverlay();
 
 
-                        setTimeout(function() {
+                        setTimeout(function () {
                             if (isLoading) {
                                 $overlay.setLoadingTxt("Sending your appointment information.");
                             }
                         }, 3000);
 
-                        setTimeout(function() {
+                        setTimeout(function () {
                             if (isLoading) {
                                 $overlay.setLoadingTxt("Prepping your consultation room.");
                             }
@@ -284,21 +284,21 @@ var setUserVars = function() {
                         // TODO: create common service to inject it into this object
                         snap.patientPage = true;
                         if (snap.patientPage) {
-                          debugger;
+                            debugger;
                             var path = snap.baseUrl + '/api/v2.1/patients/appointments/' + appointmentResponse.data[0].appointmentId;
                             $.ajax({
                                 type: "GET",
                                 url: path,
                                 contentType: "application/json; charset=utf-8",
                                 dataType: "json",
-                                success: function(response) {
+                                success: function (response) {
                                     isLoading = false;
                                     var data = response.data[0];
                                     //this works slow
                                     $overlay.setLoadingIcn("images/Clipboard-Done-C.svg");
                                     $overlay.setLoadingTxt("All set.");
 
-                                     if (appt.encounterTypeCode === snap.enums.EncounterTypeCode.Phone || appt.encounterTypeCode === snap.enums.EncounterTypeCode.InPerson) {
+                                    if (appt.encounterTypeCode === snap.enums.EncounterTypeCode.Phone || appt.encounterTypeCode === snap.enums.EncounterTypeCode.InPerson) {
                                         $overlay.setSubTxt("A provider will call you shortly.");
                                     } else {
                                         //$overlay.setSubTxt("Accept the consent to treat agreement to enter the waiting room.");
@@ -309,28 +309,28 @@ var setUserVars = function() {
                                     //     $overlay.toggleOverlay();
                                     // }, 2000);
 
-                                    window.setTimeout(function() {
-                                        Snap.Patient.PatientHomeNewViewModel().goToSchedConsultInternal(data, function() {
-                                            window.setTimeout(function() {
-                                              // $overlay.toggleOverlay();
+                                    window.setTimeout(function () {
+                                        Snap.Patient.PatientHomeNewViewModel().goToSchedConsultInternal(data, function () {
+                                            window.setTimeout(function () {
+                                                // $overlay.toggleOverlay();
                                             }, 4000);
                                         });
                                     }, 2000);
 
-                                  /*  var patient = $scheduleCommon.findPatient(data.participants);
-                                    var opt = {
-                                        patientId: data.patientId,
-                                        patientPersonId: patient.personId,
-                                        appointmentId: data.appointmentId,
-                                        encounterTypeCode: data.encounterTypeCode,
-                                    };
-                                    $patientEnterConsultationHelper.enterConsultation(opt).then(function() {
-                                        window.setTimeout(function() {
-                                            $overlay.toggleOverlay();
-                                        }, 2000);
-                                    }, function() {
-                                        $overlay.toggleOverlay();
-                                    });*/
+                                    /*  var patient = $scheduleCommon.findPatient(data.participants);
+                                      var opt = {
+                                          patientId: data.patientId,
+                                          patientPersonId: patient.personId,
+                                          appointmentId: data.appointmentId,
+                                          encounterTypeCode: data.encounterTypeCode,
+                                      };
+                                      $patientEnterConsultationHelper.enterConsultation(opt).then(function() {
+                                          window.setTimeout(function() {
+                                              $overlay.toggleOverlay();
+                                          }, 2000);
+                                      }, function() {
+                                          $overlay.toggleOverlay();
+                                      });*/
                                 },
                                 error: function () {
                                     snapError("Cannot find appointment.");
@@ -342,30 +342,30 @@ var setUserVars = function() {
                     }
                     sessionStorage.setItem("SSscheduledAppointmentId", appointmentResponse.data[0].appointmentId);
                     dfd.resolve(appointmentResponse); //Success
-                }).fail(function(error) {
+                }).fail(function (error) {
                     dfd.reject(formatErrorMessage(error));
                 });
 
                 return dfd.promise();
             }
 
-            this.removeAppointment = function(id) {
+            this.removeAppointment = function (id) {
                 var def = $.Deferred();
-                $selfSchedulingService.removeAppointment(id).done(function() {
+                $selfSchedulingService.removeAppointment(id).done(function () {
                     def.resolve();
-                }).fail(function(error) {
+                }).fail(function (error) {
                     def.reject(formatErrorMessage(error));
                 });
                 return def.promise();
             };
 
-            this.saveAppointment = function(obj) {
+            this.saveAppointment = function (obj) {
                 return saveAppointmen(obj);
             };
 
-            this.getClinician = function(clinicianId, date) {
+            this.getClinician = function (clinicianId, date) {
                 var dfd = $.Deferred();
-                $selfSchedulingService.getSingleClinician(clinicianId, date).done(function(clinicianResp) {
+                $selfSchedulingService.getSingleClinician(clinicianId, date).done(function (clinicianResp) {
                     var doc = clinicianResp.data[0];
                     var docPerson = {
                         id: doc.personId,
@@ -384,18 +384,18 @@ var setUserVars = function() {
                 return dfd.promise();
             };
 
-            this.getAppointment = function(apptId) {
+            this.getAppointment = function (apptId) {
                 var promise = $.Deferred();
                 var that = this;
-                $selfSchedulingService.getAppointment(apptId).done(function(resp) {
+                $selfSchedulingService.getAppointment(apptId).done(function (resp) {
                     var appt = resp.data[0];
-                    that.getClinician(appt.clinicianId, $timeUtils.dateToString($timeUtils.dateFromSnapDateString(appt.startTime))).done(function(clinicianResp) {
+                    that.getClinician(appt.clinicianId, $timeUtils.dateToString($timeUtils.dateFromSnapDateString(appt.startTime))).done(function (clinicianResp) {
                         appt.clinician = clinicianResp;
                         promise.resolve(appt);
-                    }).fail(function() {
+                    }).fail(function () {
                         promise.reject();
                     });
-                }).fail(function() {
+                }).fail(function () {
                     promise.reject();
                 });
                 return promise.promise();
@@ -405,7 +405,7 @@ var setUserVars = function() {
 
 //@ sourceURL=patientResponseAddressDialog.viewmodel.js
 
-(function($, snap, kendo) {
+(function ($, snap, kendo) {
     "use strict";
 
     snap.namespace("snap.patient")
@@ -413,10 +413,10 @@ var setUserVars = function() {
             "snapNotification",
             "snap.EventAggregator",
             "snap.admin.patientRules.ruleService",
-           "snap.DataService.customerDataService",
+            "snap.DataService.customerDataService",
             "snap.helper.locationHelper"
         ])
-        .define("patientResponseAddressDialog", function ($snapNotification, $eventAggregator, $ruleService, $customerDataService,  $locationHelper) {
+        .define("patientResponseAddressDialog", function ($snapNotification, $eventAggregator, $ruleService, $customerDataService, $locationHelper) {
 
             var userId = null;
             var patientId = null;
@@ -427,7 +427,7 @@ var setUserVars = function() {
             this.countryCodes = [];
             this.regions = [];
 
-           this.selectedCountry = null;
+            this.selectedCountry = null;
             this.selectedRegion = null;
             this.currentLocationText = "";
             this.currentLocation = "";
@@ -444,7 +444,7 @@ var setUserVars = function() {
 
 
             /* Initialization */
-           this.setOptions = function(opt) {
+            this.setOptions = function (opt) {
                 dialog = opt.dialog;
                 patientId = opt.opt.patientId;
 
@@ -456,7 +456,7 @@ var setUserVars = function() {
                 this.currentLocation = opt.opt.currentLocation;
 
                 var that = this;
-                this._loadCountries().done(function() {
+                this._loadCountries().done(function () {
                     that._loadStatesForSelectedCountry();
                 });
 
@@ -470,17 +470,17 @@ var setUserVars = function() {
                 this.set("vm_isLoading", false);
 
                 this.trigger("change", { field: "vm_isSelfLocationDialog" });
-                this.trigger("change", { field: "vm_saveButtonText"});
+                this.trigger("change", { field: "vm_saveButtonText" });
             };
 
             this.onDialogCreate = function () {
                 var that = this;
 
-                $('.search input').on('focus', function() {
+                $('.search input').on('focus', function () {
                     that.set("vm_isLocationAutocompleteFocused", true);
                 });
 
-                $('.search input').on('blur', function(){
+                $('.search input').on('blur', function () {
                     that.set("vm_isLocationAutocompleteFocused", false);
                 });
             };
@@ -488,29 +488,29 @@ var setUserVars = function() {
 
             /* MVVM properties */
 
-            this.vm_saveButtonText = function() {
+            this.vm_saveButtonText = function () {
                 return this.vm_isError ? "Retry?" : "Save";
             };
 
-            this.vm_isRegionsAutocompleteEnable = function() {
+            this.vm_isRegionsAutocompleteEnable = function () {
                 return this.regions.length > 0;
             };
 
-            this.vm_isSelfLocationDialog = function() {
+            this.vm_isSelfLocationDialog = function () {
                 return patientId === snap.profileSession.profileId;
             };
 
 
             /* MVVM actions */
 
-            this.vm_onYesClick = function() {
+            this.vm_onYesClick = function () {
                 this.set("vm_isLoading", true);
 
                 var that = this;
 
                 var locationEncoded = $locationHelper.encodeLocation(this.currentLocation);
 
-                $customerDataService.updatePatientResponseAddress(locationEncoded, patientId).done(function(response) {
+                $customerDataService.updatePatientResponseAddress(locationEncoded, patientId).done(function (response) {
                     that.set("vm_isLoading", false);
                     dialog.close();
                     var addressText = response.data[0];
@@ -518,23 +518,23 @@ var setUserVars = function() {
                 });
             };
 
-            this.vm_onNoClick = function() {
-            	this.set("isEditMode", true);
+            this.vm_onNoClick = function () {
+                this.set("isEditMode", true);
             };
 
-            this.vm_onCancelClick = function() {
-            	this.set("isEditMode", false);
+            this.vm_onCancelClick = function () {
+                this.set("isEditMode", false);
             };
 
-            this.vm_onSaveClick = function() {
-                if(!this._validate()) {
+            this.vm_onSaveClick = function () {
+                if (!this._validate()) {
                     this.set("vm_isError", true);
-                    this.trigger("change", { field: "vm_saveButtonText"});
+                    this.trigger("change", { field: "vm_saveButtonText" });
                     return false;
                 }
 
                 this.set("vm_isError", false);
-                this.trigger("change", { field: "vm_saveButtonText"});
+                this.trigger("change", { field: "vm_saveButtonText" });
 
                 this.set("vm_isLoading", true);
 
@@ -547,7 +547,7 @@ var setUserVars = function() {
                 var locationEncoded = $locationHelper.encodeLocation(selectedLocation);
 
                 var that = this;
-                $customerDataService.updatePatientResponseAddress(locationEncoded, patientId).done(function(response) {
+                $customerDataService.updatePatientResponseAddress(locationEncoded, patientId).done(function (response) {
                     that.set("vm_isLoading", false);
                     dialog.close();
                     var addressText = response.data[0];
@@ -555,14 +555,14 @@ var setUserVars = function() {
                 });
             };
 
-            this.vm_onCountryChange = function() {
+            this.vm_onCountryChange = function () {
                 this._loadStatesForSelectedCountry();
             };
 
-            this.vm_onRegionChange = function() {
+            this.vm_onRegionChange = function () {
                 this.set("vm_stateError", !this.selectedRegion || !this.selectedRegion.value);
                 this.set("vm_isError", this.vm_stateError);
-                this.trigger("change", { field: "vm_saveButtonText"});
+                this.trigger("change", { field: "vm_saveButtonText" });
 
                 this.set("vm_isStateFilled", !this.vm_stateError);
             };
@@ -572,19 +572,19 @@ var setUserVars = function() {
 
 
 
-  /* Private methods */
+            /* Private methods */
 
-            this._loadCountries = function() {
+            this._loadCountries = function () {
                 var that = this;
-                return $customerDataService.getProviderLicensePatientAddressMetaRule().done(function(data){
-                    var d = data.data[0].countries.map(function(country) {
+                return $customerDataService.getProviderLicensePatientAddressMetaRule().done(function (data) {
+                    var d = data.data[0].countries.map(function (country) {
                         var obj = {
                             text: $.trim(country.country),
                             value: $.trim(country.countryCode)
                         };
 
-                        if(country.regions) {
-                            obj.regions = country.regions.map(function(region) {
+                        if (country.regions) {
+                            obj.regions = country.regions.map(function (region) {
                                 return {
                                     text: $.trim(region.region),
                                     value: $.trim(region.regionCode)
@@ -599,7 +599,7 @@ var setUserVars = function() {
 
                     // select current location country
                     var selectedCountryCode = that.currentLocation.countryCode || "US";
-                    var defaultCountry = d.find(function(el) {
+                    var defaultCountry = d.find(function (el) {
                         return el.value === selectedCountryCode;
                     });
                     defaultCountry = defaultCountry || d[0];
@@ -607,7 +607,7 @@ var setUserVars = function() {
                 });
             };
 
-            this._loadStatesForSelectedCountry = function() {
+            this._loadStatesForSelectedCountry = function () {
                 this.set("regions", []);
                 this.set("selectedRegion", null);
                 this.set("vm_stateError", false);
@@ -617,7 +617,7 @@ var setUserVars = function() {
                     this.set("vm_countryError", false);
                     this.set("vm_isError", false);
 
-                    if(this.selectedCountry.regions) {
+                    if (this.selectedCountry.regions) {
                         this.set("regions", this.selectedCountry.regions);
                     }
                 } else {
@@ -628,17 +628,17 @@ var setUserVars = function() {
                 this.set("vm_isCountryFilled", !this.vm_countryError);
 
                 this.trigger("change", { field: "vm_isRegionsAutocompleteEnable" });
-                this.trigger("change", { field: "vm_saveButtonText"});
+                this.trigger("change", { field: "vm_saveButtonText" });
             };
 
-            this._validate = function() {
-                if(!this.selectedCountry || !this.selectedCountry.value) {
+            this._validate = function () {
+                if (!this.selectedCountry || !this.selectedCountry.value) {
                     this.set("vm_countryError", true);
                     return false;
                 }
 
-                if(this.vm_isRegionsAutocompleteEnable()) {
-                    if(!this.selectedRegion || !this.selectedRegion.value) {
+                if (this.vm_isRegionsAutocompleteEnable()) {
+                    if (!this.selectedRegion || !this.selectedRegion.value) {
                         this.set("vm_stateError", true);
                         return false;
                     }
@@ -647,13 +647,13 @@ var setUserVars = function() {
                 return true;
             };
 
-			function compareCodesByName(a, b) {
-	            if (a.text < b.text)
-	                return -1;
-	            if (a.text > b.text)
-	                return 1;
-	            return 0;
-	        }
+            function compareCodesByName(a, b) {
+                if (a.text < b.text)
+                    return -1;
+                if (a.text > b.text)
+                    return 1;
+                return 0;
+            }
         }).singleton();
 }(jQuery, snap, window));
 //@ sourceURL=rulesService.js
@@ -742,7 +742,7 @@ var setUserVars = function() {
                 conditionType: 2,
             };
 
-            this.getUIStylesMapping = function() {
+            this.getUIStylesMapping = function () {
                 return getUIStylesMapping(this);
             };
 
@@ -786,7 +786,7 @@ var setUserVars = function() {
         }).singleton();
 
     snap.namespace("snap.admin.patientRules").use(["snapHttp"])
-        .define("ruleService", function($http) {
+        .define("ruleService", function ($http) {
 
             var ruleApiUrl = snap.baseUrl + "/api/v2.1/admin/rules",
                 postalCodeApiUrl = snap.baseUrl + "/api/v2.1/admin/postalcodes",
@@ -795,74 +795,74 @@ var setUserVars = function() {
                 patientResponseMetaRuleApi = snap.baseUrl + "/api/v2.1/admin/rules/patient-response-meta-rules",
                 patientProviderLicenseMetaRuleApi = snap.baseUrl + "/api/v2.1/admin/rules/patient-provider-license-meta-rules";
 
-            this.getCountries = function() {
+            this.getCountries = function () {
                 return $http.get(addressMetaRuleApi, {
                     providerId: snap.hospitalSession.hospitalId
                 });
             };
 
-            this.getPostalCodes = function(filter) {
+            this.getPostalCodes = function (filter) {
                 return $http.get(postalCodeApiUrl, filter);
             };
 
-            this.getProviderLicenseMetadata = function() {
+            this.getProviderLicenseMetadata = function () {
                 return $http.get(providerLicenseMetaRuleApi, {
                     providerId: snap.hospitalSession.hospitalId
                 });
             };
 
-            this.getPatientResponseMetadata = function() {
+            this.getPatientResponseMetadata = function () {
                 return $http.get(patientResponseMetaRuleApi, {
                     providerId: snap.hospitalSession.hospitalId
                 });
             };
 
-            this.getPatientProviderLicenseMetadata = function() {
+            this.getPatientProviderLicenseMetadata = function () {
                 return $http.get(patientProviderLicenseMetaRuleApi, {
                     providerId: snap.hospitalSession.hospitalId
                 });
             };
 
-            this.getCategoriesWithRules = function() {
+            this.getCategoriesWithRules = function () {
                 var dfd = $.Deferred();
 
                 $.when(
                     this.getCategories(),
                     this.getRules(snap.hospitalSession.hospitalId)
-                ).done(function(cResponse, rResponse) {
-                    var categories = cResponse[0].data.filter(function(obj) {
+                ).done(function (cResponse, rResponse) {
+                    var categories = cResponse[0].data.filter(function (obj) {
                         return obj.key > 0;
-                    }).map(function(obj) {
+                    }).map(function (obj) {
                         return {
                             categoryCode: obj.key,
                             categoryName: obj.value,
-                            rules: rResponse.filter(function(item) {
+                            rules: rResponse.filter(function (item) {
                                 return item.ruleTemplate.ruleSet.ruleCategoryId === obj.key;
                             })
                         };
                     });
 
                     dfd.resolve(categories);
-                }).fail(function(error) {
+                }).fail(function (error) {
                     dfd.reject(error);
                 });
 
                 return dfd.promise();
             };
 
-            this.getRuleTemplates = function(filter) {
+            this.getRuleTemplates = function (filter) {
                 var path = [ruleApiUrl, "rule-templates"].join("/");
 
                 return $http.get(path, filter);
             };
 
-            this.getCategories = function() {
+            this.getCategories = function () {
                 var path = [ruleApiUrl, "rule-categories"].join("/");
 
                 return $http.get(path);
             };
 
-            this.getRules = function() {
+            this.getRules = function () {
                 var active = {
                     ProviderId: snap.hospitalSession.hospitalId,
                     StatusCode: 1
@@ -874,24 +874,24 @@ var setUserVars = function() {
                 };
 
                 var def = $.Deferred();
-                $.when($http.get(ruleApiUrl, active), $http.get(ruleApiUrl, suspended)).done(function(activeResp, suspendedResp) {
+                $.when($http.get(ruleApiUrl, active), $http.get(ruleApiUrl, suspended)).done(function (activeResp, suspendedResp) {
                     var rules = [];
                     rules = rules.concat(activeResp[0].data);
                     rules = rules.concat(suspendedResp[0].data);
-                    rules.sort(function(item1, item2) {
+                    rules.sort(function (item1, item2) {
                         return item1.sequence - item2.sequence;
                     });
                     def.resolve(rules);
-                }).fail(function() {
+                }).fail(function () {
                     def.reject();
                 });
                 return def.promise();
             };
 
-            this.getFilteredRules = function(filters) {
+            this.getFilteredRules = function (filters) {
                 var def = $.Deferred();
-                this.getRules().done(function(resp) {
-                    var rules = resp.filter(function(item) {
+                this.getRules().done(function (resp) {
+                    var rules = resp.filter(function (item) {
                         if (filters.categoryCode) {
                             return item.ruleTemplate.ruleSet.ruleCategoryId === filters.categoryCode;
                         } else {
@@ -899,14 +899,14 @@ var setUserVars = function() {
                         }
                     });
                     def.resolve(rules);
-                }).fail(function(err) {
+                }).fail(function (err) {
                     def.reject(err);
                 });
 
                 return def.promise();
             };
 
-            this.deleteRule = function(ruleId) {
+            this.deleteRule = function (ruleId) {
                 return $.ajax({
                     url: [snap.baseUrl + "/api/v2.1/admin/rules", ruleId].join("/"),
                     type: 'DELETE'
@@ -914,7 +914,7 @@ var setUserVars = function() {
             };
 
 
-            this.saveRuleDescription = function(ruleDescription, ruleTypeUrlPart) {
+            this.saveRuleDescription = function (ruleDescription, ruleTypeUrlPart) {
                 var dfd = $.Deferred();
 
                 var error = this._validateRuleDescription(ruleDescription);
@@ -922,19 +922,19 @@ var setUserVars = function() {
                     dfd.reject(error);
                 } else {
                     var that = this;
-                    this.getRuleTemplates().done(function(data) {
-                        var ruleTemplate = data.data.filter(function(rTemplate) {
+                    this.getRuleTemplates().done(function (data) {
+                        var ruleTemplate = data.data.filter(function (rTemplate) {
                             return rTemplate.statusCode === 1 && rTemplate.ruleTypeId === ruleDescription.ruleTypeId;
                         })[0];
 
                         ruleDescription.ruleTemplateId = ruleTemplate.id;
 
-                        that._save(ruleDescription, ruleTypeUrlPart).done(function() {
+                        that._save(ruleDescription, ruleTypeUrlPart).done(function () {
                             dfd.resolve();
-                        }).fail(function(error) {
+                        }).fail(function (error) {
                             dfd.reject(error);
                         });
-                    }).fail(function(error) {
+                    }).fail(function (error) {
                         dfd.reject(error);
                     });
                 }
@@ -942,7 +942,7 @@ var setUserVars = function() {
                 return dfd;
             };
 
-            this._save = function(rule, ruleTypeUrlPart) {
+            this._save = function (rule, ruleTypeUrlPart) {
                 if (!!rule.id) {
                     return $.ajax({
                         url: [ruleApiUrl, ruleTypeUrlPart, rule.id].join('/'),
@@ -960,15 +960,15 @@ var setUserVars = function() {
                 }
             };
 
-            this.saveAdressRule = function(ruleDescription) {
+            this.saveAdressRule = function (ruleDescription) {
                 return this.saveRuleDescription(ruleDescription, "subject-address-rules");
             };
 
-            this.saveProviderLicensePatientAddressRule = function(ruleDescription) {
+            this.saveProviderLicensePatientAddressRule = function (ruleDescription) {
                 return this.saveRuleDescription(ruleDescription, "patient-provider-license-rules");
             };
 
-            this.changeRuleStatus = function(ruleId, status) {
+            this.changeRuleStatus = function (ruleId, status) {
                 var url = [ruleApiUrl, ruleId, "status"].join('/') + "?status=" + status;
 
                 return $.ajax({
@@ -978,7 +978,7 @@ var setUserVars = function() {
                 });
             };
 
-            this.reorderCategory = function(rulesCaterhories) {
+            this.reorderCategory = function (rulesCaterhories) {
                 var url = [ruleApiUrl, "rule-categories/order"].join("/");
 
                 return $.ajax({
@@ -989,7 +989,7 @@ var setUserVars = function() {
                 });
             };
 
-            this._validateRuleDescription = function(ruleDescription) {
+            this._validateRuleDescription = function (ruleDescription) {
                 if (isNullOrUndefined(ruleDescription)) {
                     return "Rule is empty.";
                 }
@@ -1009,13 +1009,13 @@ var setUserVars = function() {
                 return null;
 
                 function isNullOrUndefined(obj) {
-                    return typeof(obj) === "undefined" || obj === null;
+                    return typeof (obj) === "undefined" || obj === null;
                 }
             };
         }).singleton();
 
     snap.namespace("snap.admin.patientRules").use(["snap.admin.patientRules.patientRulesCommon", "snap.admin.patientRules.ruleService"])
-        .define("rulesDescription", function($patientRulesCommon, $ruleService) {
+        .define("rulesDescription", function ($patientRulesCommon, $ruleService) {
             function toRuleObject(rule) {
                 return {
                     id: rule.id,
@@ -1029,96 +1029,96 @@ var setUserVars = function() {
 
 
             this.rulesDescriptions = [{
-                    description: "Allow patients to register if",
-                    shortDescription: "Address Rule",
-                    ruleCategoryId: $patientRulesCommon.ruleCategoryCodeEnum.registrationAvailability,
-                    ruleTypeId: $patientRulesCommon.ruleTypeCodeEnum.AddressRule,
-                    operators: [{
-                            conditionTypeId: $patientRulesCommon.ruleLogicTypeCodeEnum.In,
-                            tile: {
-                                iconClass: "icon_plus",
-                                description: "Includes"
-                            }
-                        },
-                        {
-                            conditionTypeId: $patientRulesCommon.ruleLogicTypeCodeEnum.NotIn,
-                            tile: {
-                                iconClass: "icon_minus",
-                                description: "Does Not Include"
-                            }
-                        }
-                    ],
+                description: "Allow patients to register if",
+                shortDescription: "Address Rule",
+                ruleCategoryId: $patientRulesCommon.ruleCategoryCodeEnum.registrationAvailability,
+                ruleTypeId: $patientRulesCommon.ruleTypeCodeEnum.AddressRule,
+                operators: [{
+                    conditionTypeId: $patientRulesCommon.ruleLogicTypeCodeEnum.In,
                     tile: {
-                        iconClass: "icon_address",
-                        description: "Address",
-                        detailedDescription: "patient address",
-                        title: "Patient"
-                    },
-                    conditionVM: {
-                        vmPath: "/Scripts/viewModels/Admin/PatientRules/rules/patientAddressRule.viewmodel.js?v=1694",
-                        vmName: "snap.admin.patientRules.patientAddressRule",
-                        contentPath: "/content/admin/patientRules/rules/patientAddress.html?v=1694"
-                    },
-                     getRuleSummaryInfo: function(ruleObject) {
-                        var locationsText = new LocationsText().getLocationsSummary(ruleObject.subjectAddresses);
-
-                        var operator = ruleObject.conditionTypeId === $patientRulesCommon.ruleLogicTypeCodeEnum.NotIn ? "isn't located" : "is located";
-
-                        return ["Allow patients to register if the patient's address", operator, locationsText].join(" ");
-                    },
-                    getRuleSummaryShortInfo: function(ruleObject) {
-                        var shortSummary = new LocationsText().getLacationsShortSummary(ruleObject.subjectAddresses);
-
-                        return { description: shortSummary };
-                    },
-                    save: function(ruleObject) {
-                        return $ruleService.saveAdressRule(ruleObject);
-                    },
-                    getRuleObject: function(rule) {
-                        var rObject = toRuleObject(rule);
-                        rObject.subjectAddresses = rule.subjectAddresses;
-
-                        return rObject;
-                    },
-
-                    ruleHelpPage: "https://virtualcare.zendesk.com/hc/en-us/articles/224949767-Restrict-Patient-Registration-Based-on-Location"
+                        iconClass: "icon_plus",
+                        description: "Includes"
+                    }
                 },
                 {
-                    description: "Allow Patient and Provider to see each other if",
-                    shortDescription: "Visibility Rule",
-                    ruleCategoryId: $patientRulesCommon.ruleCategoryCodeEnum.visibilityRules,
-                    ruleTypeId: $patientRulesCommon.ruleTypeCodeEnum.PatientProviderLicenseRule,
-                    operators: [{
-                        conditionTypeId: $patientRulesCommon.ruleLogicTypeCodeEnum.In,
-                        tile: {
-                            iconClass: "icon_plus",
-                            description: "Includes"
-                        }
-                    }],
+                    conditionTypeId: $patientRulesCommon.ruleLogicTypeCodeEnum.NotIn,
                     tile: {
-                        iconClass: "icon_v-card",
-                        description: "License",
-                        detailedDescription: "provider license",
-                        title: "Provider"
-                    },
-                    conditionVM: {
-                        vmPath: "/Scripts/viewModels/Admin/PatientRules/rules/visibilityRule.viewmodel.js?v=1694",
-                        vmName: "snap.admin.patientRules.visibilityRule",
-                        contentPath: "/content/admin/patientRules/rules/visibilityRule.html?v=1694"
-                    },
-                    getRuleSummaryInfo: function(ruleObject) {
-                        var r = ruleObject.conditionSource === $patientRulesCommon.ruleConditionSourceEnum.ProviderLicenseAndPatientAddress ? "Patient Address" : "Patient Response";
-
-                        return ["Allow Patient and Provider to see each other if <br/> Provider License match to", r].join(" ");
-                    },
-                    save: function(ruleObject) {
-                        return $ruleService.saveProviderLicensePatientAddressRule(ruleObject);
-                    },
-                    getRuleObject: function(rule) {
-                        return toRuleObject(rule);
-                    },
-                    ruleHelpPage: "https://virtualcare.zendesk.com/hc/en-us/articles/115002342408-Webinar-Provider-Visibility-by-License-Phone-Consult-workflow-Service-Types-"
+                        iconClass: "icon_minus",
+                        description: "Does Not Include"
+                    }
                 }
+                ],
+                tile: {
+                    iconClass: "icon_address",
+                    description: "Address",
+                    detailedDescription: "patient address",
+                    title: "Patient"
+                },
+                conditionVM: {
+                    vmPath: "/Scripts/viewModels/Admin/PatientRules/rules/patientAddressRule.viewmodel.js?v=1694",
+                    vmName: "snap.admin.patientRules.patientAddressRule",
+                    contentPath: "/content/admin/patientRules/rules/patientAddress.html?v=1694"
+                },
+                getRuleSummaryInfo: function (ruleObject) {
+                    var locationsText = new LocationsText().getLocationsSummary(ruleObject.subjectAddresses);
+
+                    var operator = ruleObject.conditionTypeId === $patientRulesCommon.ruleLogicTypeCodeEnum.NotIn ? "isn't located" : "is located";
+
+                    return ["Allow patients to register if the patient's address", operator, locationsText].join(" ");
+                },
+                getRuleSummaryShortInfo: function (ruleObject) {
+                    var shortSummary = new LocationsText().getLacationsShortSummary(ruleObject.subjectAddresses);
+
+                    return { description: shortSummary };
+                },
+                save: function (ruleObject) {
+                    return $ruleService.saveAdressRule(ruleObject);
+                },
+                getRuleObject: function (rule) {
+                    var rObject = toRuleObject(rule);
+                    rObject.subjectAddresses = rule.subjectAddresses;
+
+                    return rObject;
+                },
+
+                ruleHelpPage: "https://virtualcare.zendesk.com/hc/en-us/articles/224949767-Restrict-Patient-Registration-Based-on-Location"
+            },
+            {
+                description: "Allow Patient and Provider to see each other if",
+                shortDescription: "Visibility Rule",
+                ruleCategoryId: $patientRulesCommon.ruleCategoryCodeEnum.visibilityRules,
+                ruleTypeId: $patientRulesCommon.ruleTypeCodeEnum.PatientProviderLicenseRule,
+                operators: [{
+                    conditionTypeId: $patientRulesCommon.ruleLogicTypeCodeEnum.In,
+                    tile: {
+                        iconClass: "icon_plus",
+                        description: "Includes"
+                    }
+                }],
+                tile: {
+                    iconClass: "icon_v-card",
+                    description: "License",
+                    detailedDescription: "provider license",
+                    title: "Provider"
+                },
+                conditionVM: {
+                    vmPath: "/Scripts/viewModels/Admin/PatientRules/rules/visibilityRule.viewmodel.js?v=1694",
+                    vmName: "snap.admin.patientRules.visibilityRule",
+                    contentPath: "/content/admin/patientRules/rules/visibilityRule.html?v=1694"
+                },
+                getRuleSummaryInfo: function (ruleObject) {
+                    var r = ruleObject.conditionSource === $patientRulesCommon.ruleConditionSourceEnum.ProviderLicenseAndPatientAddress ? "Patient Address" : "Patient Response";
+
+                    return ["Allow Patient and Provider to see each other if <br/> Provider License match to", r].join(" ");
+                },
+                save: function (ruleObject) {
+                    return $ruleService.saveProviderLicensePatientAddressRule(ruleObject);
+                },
+                getRuleObject: function (rule) {
+                    return toRuleObject(rule);
+                },
+                ruleHelpPage: "https://virtualcare.zendesk.com/hc/en-us/articles/115002342408-Webinar-Provider-Visibility-by-License-Phone-Consult-workflow-Service-Types-"
+            }
             ];
 
 
@@ -1150,7 +1150,7 @@ var setUserVars = function() {
             "snap.patient.schedule.providersSlotsLocator",
             "snap.common.timer",
             "snap.DataService.customerDataService",
-          //  "snap.errorHandler",
+            //  "snap.errorHandler",
             "snap.common.navigationHelper"
         ])
         .define("AppointmentFactory", function ($snapNotification, $timeUtils,
@@ -1190,7 +1190,7 @@ var setUserVars = function() {
                     info: "For this appointment"
                 };
 
-                this.preventDefault = function(e) {
+                this.preventDefault = function (e) {
                     if (e) {
                         e.preventDefault();
                     }
@@ -1217,13 +1217,13 @@ var setUserVars = function() {
 
                 this.appointmentId = opt.appointmentId || 0;
                 this.consultationId = opt.consultationId || null; // Optional field. Consultation may not exist yet.
-               this.start = opt.start;
+                this.start = opt.start;
                 this.end = opt.end;
                 this.startDate = opt.start;
                 this.oldStartDate = opt.start;
                 this.availabilityBlockId = opt.availabilityBlockId;
                 this.isNow = opt.isNow;
- 				this.waiveFee = opt.waiveFee;
+                this.waiveFee = opt.waiveFee;
                 this.paymentRequisites = opt.paymentRequisites;
 
                 this.isLoading = false;
@@ -1290,14 +1290,14 @@ var setUserVars = function() {
                     this.encounterMethodSelector = $encounterMethodSelector.createSelector({
                         appointmentTypeCode: this.appointmentTypeCode
                     });
-                    this.encounterMethodSelector.bind($encounterMethodSelector.events.onMethodSelected, function(encounterTypeCode) {
+                    this.encounterMethodSelector.bind($encounterMethodSelector.events.onMethodSelected, function (encounterTypeCode) {
                         scope.encounterTypeCode = encounterTypeCode;
                         scope.trigger("change", { field: "isPhone" });
                         scope._onDataChange();
                     });
                 };
 
-                 this.getAppointmentDetails = function () {
+                this.getAppointmentDetails = function () {
                     var patient = this.patientsSelector.getSelectedItem();
                     var appointmentDetails = {
                         clinicianId: this.clinicianCard ? this.clinicianCard.userId : null,
@@ -1353,7 +1353,7 @@ var setUserVars = function() {
                         end: this.end,
                         availabilityBlockId: this.availabilityBlockId,
                         isNow: this.isNow,
-                       appointmentTypeCode: this.appointmentTypeCode,
+                        appointmentTypeCode: this.appointmentTypeCode,
                         intakeMetadata: {
                             additionalNotes: this.additionalNotes,
                             concerns: concerns
@@ -1369,7 +1369,7 @@ var setUserVars = function() {
                 };
 
                 /*********************** PUBLIC API ***********************/
-                this.setInitialFocus = function() {
+                this.setInitialFocus = function () {
                     $(".directory__opener").first().focus();
                 };
                 this._finishLoading = function () {
@@ -1383,14 +1383,14 @@ var setUserVars = function() {
                         scope.trigger("change", { field: "vm_secondaryConsernId" });
                     }, 1000);
                 };
-                this._checkCurrentTime = function() {
+                this._checkCurrentTime = function () {
                     var dfd = $.Deferred();
                     if (!this.isReadOnly && !this.vm_isNew()) {
-                        $userService.getUserCurrentTime().done(function(resp) {
+                        $userService.getUserCurrentTime().done(function (resp) {
                             var userTime = $timeUtils.dateFromSnapDateString(resp.data[0]);
                             scope.set("isReadOnly", scope.start < userTime);
                             scope.patientsSelector.set("isSelectorLocked", scope.patientsSelector.isSelectorLocked || scope.isReadOnly);
-                            scope.trigger("change", {field: "vm_dialogTitle"});
+                            scope.trigger("change", { field: "vm_dialogTitle" });
 
                             scope.encounterMethodSelector.setReadonly(scope.isReadOnly);
 
@@ -1403,7 +1403,7 @@ var setUserVars = function() {
                     }
                     return dfd.promise();
                 }
- this.load = function (loadOptions) {
+                this.load = function (loadOptions) {
                     scope = this;
 
                     var lockSlotOnOpen = !(loadOptions && loadOptions.doNotLockSlotOnOpen);
@@ -1412,7 +1412,7 @@ var setUserVars = function() {
                         this.lockSlot();
                     }
 
-                    this._checkCurrentTime().always(function() {
+                    this._checkCurrentTime().always(function () {
                         // autosize textarea after changing readonly property
                         global.autosize($('.js-autoresize-textarea'));
                     });
@@ -1432,7 +1432,7 @@ var setUserVars = function() {
                             });
                         }
                     }
-                    if(sessionStorage.getItem('chkSSAddOrEdit') === 'Edit') {
+                    if (sessionStorage.getItem('chkSSAddOrEdit') === 'Edit') {
                         this.patientsSelector.set("isSelectorLocked", 'true');
                     }
                     this.set("vm_isAddNotesExpanded", !!this.additionalNotes.length);
@@ -1459,10 +1459,10 @@ var setUserVars = function() {
                     });
 
                     $eventAggregator.unSubscribe("itemSelector_onProfileClick");
-                    $eventAggregator.subscriber("itemSelector_onProfileClick", function(data) {
+                    $eventAggregator.subscriber("itemSelector_onProfileClick", function (data) {
                         $navigationHelper.patient.goToPatietProfile({ patientId: data.id });
                     });
-					$eventAggregator.unSubscribe("slotTray_goToDate");
+                    $eventAggregator.unSubscribe("slotTray_goToDate");
                     $eventAggregator.subscriber("slotTray_goToDate", function (obj) {
                         var dateFilter = new Date(obj.nextDate);
                         dateFilter.setHours(0, 0, 0, 0);
@@ -1489,7 +1489,7 @@ var setUserVars = function() {
                             });
                         });
                     }
-  if (this.vm_isNew()) {
+                    if (this.vm_isNew()) {
                         this._loadServiceTypeInfo();
                     }
 
@@ -1503,7 +1503,7 @@ var setUserVars = function() {
                         } else {
                             // check and refresh the patient
                             if (scope.patientsSelector.vm_isItemsLoading) {
-                                scope.patientsSelector.one($itemSelector.events.onDataLoaded, function() {
+                                scope.patientsSelector.one($itemSelector.events.onDataLoaded, function () {
                                     scope._checkPatient(patient, data);
                                 });
                             } else {
@@ -1585,83 +1585,83 @@ var setUserVars = function() {
                             }
                         });
                     });
-  				var useExpirationTimer = loadOptions ? loadOptions.useExpirationTimer : true;
+                    var useExpirationTimer = loadOptions ? loadOptions.useExpirationTimer : true;
 
                     if (useExpirationTimer && !this.appointmentId) {
                         this._initDeactivationTimeout();
                     }
                 };
 
-                this._loadServiceTypeInfo = function() {
+                this._loadServiceTypeInfo = function () {
                     var dfd = $.Deferred();
-                    $selfSchedulingService.getServiceTypes(this.appointmentTypeCode).then(function(data) {
+                    $selfSchedulingService.getServiceTypes(this.appointmentTypeCode).then(function (data) {
                         scope.serviceTypeId = data[0].serviceTypeId;
                         scope.serviceTypeFee = data[0].baseFee;
                         dfd.resolve();
-                    }, function() {
+                    }, function () {
                         $snapNotification.error("Failed to load service type details");
                         dfd.reject();
                     });
                     return dfd.promise();
                 };
 
-                this._checkPatient = function(patient, data) {
-                   if (scope.vm_isNew()) {
-                       var patientItem = scope.patientsSelector.getItemById(patient.id) || scope.patientsSelector.getFirstItem();
-                       if (patientItem) {
-                           scope.patientsSelector.selectHandler(patientItem);
-                       }
-                       data.patientProfileId = scope.patientsSelector.getSelectedItem().id;
-                   }
-                   getPatientItem(data.patientProfileId).then(function (item) {
-                       if (item) {
-                           scope.patientsSelector.selectInitialItem(item);
-                       } else {
-                           scope.set("isDisabled", true);
-                           scope.trigger("change", { field: "vm_isNotDisabled" });
-                           scope.patientsSelector.disableSelectedItem($errorHandler.getProfileDisabledReason());
-                       }
-                   }, function(error) {
-                       scope.set("isDisabled", true);
-                       scope.trigger("change", { field: "vm_isNotDisabled" });
-                       scope.patientsSelector.disableSelectedItem($errorHandler.getProfileDisabledReason(error));
-                   }).always(function() {
-                       scope._isPatientLoaded = true;
-                       if (scope._areConcernsLoaded) {
-                           scope._finishLoading();
-                       }
-                       scope.set("vm_canShowTimeOffsets", scope.patientsSelector.getSelectedItem() !== null);
-                   });
-               };
+                this._checkPatient = function (patient, data) {
+                    if (scope.vm_isNew()) {
+                        var patientItem = scope.patientsSelector.getItemById(patient.id) || scope.patientsSelector.getFirstItem();
+                        if (patientItem) {
+                            scope.patientsSelector.selectHandler(patientItem);
+                        }
+                        data.patientProfileId = scope.patientsSelector.getSelectedItem().id;
+                    }
+                    getPatientItem(data.patientProfileId).then(function (item) {
+                        if (item) {
+                            scope.patientsSelector.selectInitialItem(item);
+                        } else {
+                            scope.set("isDisabled", true);
+                            scope.trigger("change", { field: "vm_isNotDisabled" });
+                            scope.patientsSelector.disableSelectedItem($errorHandler.getProfileDisabledReason());
+                        }
+                    }, function (error) {
+                        scope.set("isDisabled", true);
+                        scope.trigger("change", { field: "vm_isNotDisabled" });
+                        scope.patientsSelector.disableSelectedItem($errorHandler.getProfileDisabledReason(error));
+                    }).always(function () {
+                        scope._isPatientLoaded = true;
+                        if (scope._areConcernsLoaded) {
+                            scope._finishLoading();
+                        }
+                        scope.set("vm_canShowTimeOffsets", scope.patientsSelector.getSelectedItem() !== null);
+                    });
+                };
 
-                this.save = function() {
+                this.save = function () {
                     this.set("isLoading", true);
                     this.set("isError", false);
 
                     var that = this;
                     var promise = $appointmentService.saveAppointment(this.getOptions());
-                    promise.done(function() {
+                    promise.done(function () {
                         if (!that.vm_isNew()) {
                             sessionStorage.setItem('ssAppointUpdate', 'yes');
                             $snapNotification.success(that._typeName + " updated successfully");
                             var aa1 = (new Date).getTime();
 
                             $.connection.hub.qs = {};
-                              var hubs = [];
-                              $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-                              location.href = "#/tab/appoimentDetails/webSSAppointUpdate"+ aa1;
-                              /*
-                            setTimeout(function() {
-                              $.connection.hub.qs = {};
-                              var hubs = [];
-                              $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-                              location.href = "#/tab/appoimentDetails/webSSAppointUpdate"+ aa1;
-                            }, 3000);*/
+                            var hubs = [];
+                            $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+                            location.href = "#/tab/appoimentDetails/webSSAppointUpdate" + aa1;
+                            /*
+                          setTimeout(function() {
+                            $.connection.hub.qs = {};
+                            var hubs = [];
+                            $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+                            location.href = "#/tab/appoimentDetails/webSSAppointUpdate"+ aa1;
+                          }, 3000);*/
                         }
                         that.set("isError", false);
-                    }).fail(function() {
+                    }).fail(function () {
                         that.set("isError", true);
-                    }).always(function() {
+                    }).always(function () {
                         that.set("isLoading", false);
                     });
 
@@ -1669,55 +1669,54 @@ var setUserVars = function() {
                 };
 
                 this.remove = function () {
-                   var dfd = $.Deferred();
-                   var that = this;
-                   this._checkPaymentStatus().done(function(result) {
-                       if(result) {
-                           $appointmentService.removeAppointment(that.appointmentId).done(function() {
-                               dfd.resolve();
-                           }).fail(function(error) {
-                               dfd.reject(error);
-                           });
-                       } else {
-                           dfd.reject("Consultation is already paid by other user.");
-                       }
-                   });
+                    var dfd = $.Deferred();
+                    var that = this;
+                    this._checkPaymentStatus().done(function (result) {
+                        if (result) {
+                            $appointmentService.removeAppointment(that.appointmentId).done(function () {
+                                dfd.resolve();
+                            }).fail(function (error) {
+                                dfd.reject(error);
+                            });
+                        } else {
+                            dfd.reject("Consultation is already paid by other user.");
+                        }
+                    });
 
-                   return dfd;
-               };
+                    return dfd;
+                };
 
- 				this.lockSlot = function() {
+                this.lockSlot = function () {
                     $patientSelfSchedulingHub.lockSlot(this.availabilityBlockId, this.start, this.end);
                 };
 
-               this.unlockSlot = function() {
-                   this._clearDeactivationTimeout();
+                this.unlockSlot = function () {
+                    this._clearDeactivationTimeout();
 
-                   $patientSelfSchedulingHub.unlockSlot(this.availabilityBlockId, this.start, this.end);
-               };
+                    $patientSelfSchedulingHub.unlockSlot(this.availabilityBlockId, this.start, this.end);
+                };
 
-               this._checkPaymentStatus = function() {
-                   var dfd = $.Deferred();
-                   if(this.consultationId) {
-                       $customerDataService.checkPaymentStatus(this.consultationId).done(function (responsePayment) {
-                           if (responsePayment.paidByUserId === snap.profileSession.userId)
-                           {
-                               dfd.resolve(true);
-                           }
-                           else {
-                               dfd.resolve(false);
-                           }
-                       }).fail(function() {
-                           dfd.resolve(true);
-                       });
-                   } else {
-                       dfd.resolve(true);
-                   }
+                this._checkPaymentStatus = function () {
+                    var dfd = $.Deferred();
+                    if (this.consultationId) {
+                        $customerDataService.checkPaymentStatus(this.consultationId).done(function (responsePayment) {
+                            if (responsePayment.paidByUserId === snap.profileSession.userId) {
+                                dfd.resolve(true);
+                            }
+                            else {
+                                dfd.resolve(false);
+                            }
+                        }).fail(function () {
+                            dfd.resolve(true);
+                        });
+                    } else {
+                        dfd.resolve(true);
+                    }
 
-                   return dfd;
-               };
+                    return dfd;
+                };
 
-                this.validate = function() {
+                this.validate = function () {
                     var errorList = [];
                     if (this.start === null) {
                         errorList.push("Start date is required");
@@ -1783,20 +1782,20 @@ var setUserVars = function() {
                     return errorList;
                 };
 
-                this.toggleDateArea = function() {
+                this.toggleDateArea = function () {
                     this.set("startDate", this.start);
                     this.set("isDateAreaInEditMode", !this.get("isDateAreaInEditMode"));
                 };
                 /*********************** MVVM BINDINGS ***********************/
-            //    this.availableTime = "00:00";
+                //    this.availableTime = "00:00";
 
-                this._startTimer = function() {
+                this._startTimer = function () {
                     console.log("enter");
                     var that = this;
                     availableTimeTimer = $timer.createTimer({
                         countDown: true,
                         time: 300,
-                        onTimerTickCallback: function(timerTick) {
+                        onTimerTickCallback: function (timerTick) {
                             that.set("availableTime", [timerTick.formatted.minutes, timerTick.formatted.seconds].join(":"));
                         }
                     });
@@ -1804,7 +1803,7 @@ var setUserVars = function() {
                     availableTimeTimer.start();
                 };
 
-                this.vm_currentDate = function() {
+                this.vm_currentDate = function () {
                     var dateFilter = new Date();
                     dateFilter.setHours(0, 0, 0, 0);
 
@@ -1815,10 +1814,10 @@ var setUserVars = function() {
                     return dateFilter;
                 };
 
-                this.vm_isNotError = function() {
+                this.vm_isNotError = function () {
                     return !this.isError;
                 };
-                this.vm_isNew = function() {
+                this.vm_isNew = function () {
                     return this.appointmentId === 0;
                 };
                 this.vm_hideTimer = false;
@@ -1830,18 +1829,20 @@ var setUserVars = function() {
                 this.vm_isNotDisabled = function () {
                     return !this.isDisabled;
                 };
-                this.vm_saveBtnTxt = function() {
+                this.vm_saveBtnTxt = function () {
                     return this.vm_isNew() ? "Create" : "Save";
                 };
-                this.isRepeaterVisible = function() {
+                this.isRepeaterVisible = function () {
                     return this.vm_isNew() ? true : this.isReadOnly ? true : false;
                 };
-                this.vm_onSubmitClick = function() {
-                     //debugger;
+
+                $("#localize-widget").hide();
+                this.vm_onSubmitClick = function () {
+                    //debugger;
                     var that = this;
                     //if(that.additionalNotes == ""){
-                         var addnotes = $(".consultation-note__textarea").val();
-                         that.additionalNotes = addnotes;
+                    var addnotes = $(".consultation-note__textarea").val();
+                    that.additionalNotes = addnotes;
                     //}
 
                     //$patientSelfSchedulingHub.bookSlot(this.availabilityBlockId,  $timeUtils.dateToString(this.start), $timeUtils.dateToString(this.end));
@@ -1861,97 +1862,97 @@ var setUserVars = function() {
                     }
 
                     function saveAction() {
-                        that.save().done(function() {
+                        that.save().done(function () {
                             $eventAggregator.published(fact.savedEvent, that.getOptions());
                             that._clearDeactivationTimeout();
                             $patientSelfSchedulingHub.bookSlot(that.availabilityBlockId, that.start, that.end);
-                        }).fail(function(error) {
+                        }).fail(function (error) {
                             if (error) {
                                 $snapNotification.error(error);
                                 that.set("isError", true);
                             }
-                        }).always(function() {
+                        }).always(function () {
                             that.set("isloading", false);
                         });
                     }
                 };
 
-                this.vm_onCloseClick = function(e) {
-                  //$("#localize-widget").show();
-                    if(sessionStorage.getItem('chkSSAddOrEdit') === 'Edit') {
+                this.vm_onCloseClick = function (e) {
+                    //$("#localize-widget").show();
+                    if (sessionStorage.getItem('chkSSAddOrEdit') === 'Edit') {
                         $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                     }
-                  //  this._clearDeactivationTimeout();
+                    //  this._clearDeactivationTimeout();
                     $eventAggregator.published(fact.closeEvent, this);
 
-                  //  $snapNotification.hideAllConfirmations();
+                    //  $snapNotification.hideAllConfirmations();
 
-                  //  $patientSelfSchedulingHub.unlockSlot(this.availabilityBlockId, this.start, this.end);
+                    //  $patientSelfSchedulingHub.unlockSlot(this.availabilityBlockId, this.start, this.end);
 
                     this.preventDefault(e);
                 };
 
-                this.vm_onRemoveClick = function() {
-//                  $("#localize-widget").show();
+                this.vm_onRemoveClick = function () {
+                    //                  $("#localize-widget").show();
                     this._clearDeactivationTimeout();
                     var that = this;
                     $snapNotification.hideAllConfirmations();
-                    $snapNotification.confirmationWithCallbacks("Are you sure you want to remove this appointment?", function() {
+                    $snapNotification.confirmationWithCallbacks("Are you sure you want to remove this appointment?", function () {
                         that.set("isLoading", true);
                         that.set("vm_appointmentChanged", true);
                         that.trigger("change", { field: "vm_isNotError" });
 
-                        that.remove().done(function() {
+                        that.remove().done(function () {
                             $eventAggregator.published(fact.removedEvent, that);
-                            if(snap.lanName === 'English') {
+                            if (snap.lanName === 'English') {
                                 $snapNotification.success("Appointment is unassigned successfully");
                             } else {
-                              $snapNotification.success("La cita no se ha asignado correctamente");
+                                $snapNotification.success("La cita no se ha asignado correctamente");
                             }
-                          // $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-                            setTimeout(function() {
-                              $.connection.hub.qs = {};
-                              var hubs = [];
+                            // $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+                            setTimeout(function () {
+                                $.connection.hub.qs = {};
+                                var hubs = [];
                                 location.href = "#/tab/appointmentpatientdetails/webSSCancel";
                             }, 2000);
-                        }).fail(function(error) {
+                        }).fail(function (error) {
                             $snapNotification.error(error);
                             that.set("isError", true);
-                        }).always(function() {
+                        }).always(function () {
                             that.set("isLoading", false);
                         });
                     });
                 };
 
-                this.vm_isAddConcernButtonVisible = function() {
+                this.vm_isAddConcernButtonVisible = function () {
                     return !this.isReadOnly && !this.displaySecondaryConcern && this.vm_primaryConsernId !== null;
                 };
-                this.vm_isCancelButtonVisible = function() {
+                this.vm_isCancelButtonVisible = function () {
                     return !this.vm_isNew() && this.isFuture;
                 };
 
-                this.vm_isSaveBtnVisible = function() {
-                   return this._dialogChanged || this.vm_isNew();
-               };
+                this.vm_isSaveBtnVisible = function () {
+                    return this._dialogChanged || this.vm_isNew();
+                };
 
-               this.vm_isCancelBtnVisible = function () {
-                   return !this.vm_isSaveBtnVisible() && this.isRemovable;
-               };
+                this.vm_isCancelBtnVisible = function () {
+                    return !this.vm_isSaveBtnVisible() && this.isRemovable;
+                };
 
                 this.vm_canShowTimeOffsets = false;
                 this.vm_isTimeOffsetsVisible = false;
                 this.vm_ProviderTimeText = "";
-                this.vm_showTimeOffsets = function() {
+                this.vm_showTimeOffsets = function () {
                     var flag = !this.vm_isTimeOffsetsVisible;
                     this.set("vm_isTimeOffsetsVisible", flag);
                     this.patientsSelector.showTimeOffset(flag);
                 };
 
-                this._setSelectorTime = function() {
+                this._setSelectorTime = function () {
                     this.patientsSelector.setEventTime(this.start, this.end, this.timeZoneId);
                 };
 
-                this._updateProviderEventTime = function() {
+                this._updateProviderEventTime = function () {
                     var that = this;
                     var duration = this.end - this.start;
                     var opt = {
@@ -1959,7 +1960,7 @@ var setUserVars = function() {
                         sourceTimeZoneId: this.timeZoneId,
                         targetUserId: this.clinicianCard.userId
                     };
-                    $availabilityBlockService.convertTime(opt).done(function(convertedTime) {
+                    $availabilityBlockService.convertTime(opt).done(function (convertedTime) {
                         if (convertedTime) {
                             var convertedStartTime = $timeUtils.dateFromSnapDateString(convertedTime.convertedDateTime);
                             var timeZoneName = convertedTime.targetTimeZone.abbreviation;
@@ -1972,8 +1973,8 @@ var setUserVars = function() {
                 };
 
 
- this._dialogChanged = false;
-                 this._onDataChange = function () {
+                this._dialogChanged = false;
+                this._onDataChange = function () {
                     if (!this._dialogChanged) {
                         this._dialogChanged = true;
                         this.trigger("change", { field: "vm_isSaveBtnVisible" });
@@ -1984,28 +1985,28 @@ var setUserVars = function() {
                     }
                 };
 
-                this.isVideo = function() {
+                this.isVideo = function () {
                     return this.encounterTypeCode == encounterTypeCodes.Video;
                 };
-                this.isPhone = function() {
+                this.isPhone = function () {
                     return this.encounterTypeCode == encounterTypeCodes.Phone;
                 };
-                this.isText = function() {
+                this.isText = function () {
                     return this.encounterTypeCode == encounterTypeCodes.Text;
                 };
-                this.isInPerson = function() {
+                this.isInPerson = function () {
                     return this.encounterTypeCode == encounterTypeCodes.InPerson;
                 };
-                this.refreshEncounterType = function() {
+                this.refreshEncounterType = function () {
                     this.trigger("change", { field: "isVideo" });
                     this.trigger("change", { field: "isPhone" });
                     this.trigger("change", { field: "isText" });
                     this.trigger("change", { field: "isInPerson" });
                 };
                 var setEncounterType = function (encounterTypeCode) {
-                        scope.set("encounterTypeCode", encounterTypeCode);
-                        scope.refreshEncounterType();
-                        scope._onDataChange();
+                    scope.set("encounterTypeCode", encounterTypeCode);
+                    scope.refreshEncounterType();
+                    scope._onDataChange();
                 };
                 this.setVideoType = function () {
                     setEncounterType(encounterTypeCodes.Video);
@@ -2016,26 +2017,26 @@ var setUserVars = function() {
                 this.isPhoneConsultationDisabled = function () {
                     return snap && snap.hospitalSettings.disablePhoneConsultation;
                 }
-                this.setTextType = function() {
+                this.setTextType = function () {
                     setEncounterType(encounterTypeCodes.Text);
                 };
-                this.setInPersonType = function() {
+                this.setInPersonType = function () {
                     setEncounterType(encounterTypeCodes.InPerson);
                 };
 
                 this.vm_isPhoneNumberFilled = false;
 
-                this.vm_onPhoneNumberChange = function() {
+                this.vm_onPhoneNumberChange = function () {
 
-                  // validmask: function (input) {
-                  //               console.log(input);
-                  //               if (input.is("[data-validmask-msg]") && input.val() != "") {
-                  //                   var maskedtextbox = input.data("kendoMaskedTextBox");
-                  //                   return maskedtextbox.value().indexOf(maskedtextbox.options.promptChar) === -1;
-                  //               }
-                  //
-                  //               return true;
-                  //           }
+                    // validmask: function (input) {
+                    //               console.log(input);
+                    //               if (input.is("[data-validmask-msg]") && input.val() != "") {
+                    //                   var maskedtextbox = input.data("kendoMaskedTextBox");
+                    //                   return maskedtextbox.value().indexOf(maskedtextbox.options.promptChar) === -1;
+                    //               }
+                    //
+                    //               return true;
+                    //           }
                     this.set("vm_phoneNumberError", false);
                     this.set("vm_isPhoneNumberFilled", $.trim(this.phoneNumber) !== "");
                     if (this.phoneType !== phoneTypeEnum.other) {
@@ -2044,18 +2045,28 @@ var setUserVars = function() {
                     this._onDataChange();
                 };
 
-                this.vm_phoneClick = function() {
-                  window.scrollTo(0, 150);
-                  debugger;
-                //  alert('gggg123');
-                /*  var $htmlOrBody = $('html, body'), // scrollTop works on <body> for some browsers, <html> for others
-                  scrollTopPadding = 8;
-                  var textareaTop = $(this).offset().top;
-                  // scroll to the textarea
-                  $htmlOrBody.scrollTop(textareaTop - scrollTopPadding);*/
+                //Sakthi
+                this.vm_onKeyUpAdditionalNotes = function () {
+                                 this.set("vm_isPhoneNumberFilled", $.trim(this.phoneNumber) !== "");
+                                        if (this.phoneType !== phoneTypeEnum.other) {
+                                            this.set("phoneType", phoneTypeEnum.other);
+                                        }
+                                        this._onDataChange();
+                                    };
+               
+
+                this.vm_phoneClick = function () {
+                    window.scrollTo(0, 150);
+                    debugger;
+                    //  alert('gggg123');
+                    /*  var $htmlOrBody = $('html, body'), // scrollTop works on <body> for some browsers, <html> for others
+                      scrollTopPadding = 8;
+                      var textareaTop = $(this).offset().top;
+                      // scroll to the textarea
+                      $htmlOrBody.scrollTop(textareaTop - scrollTopPadding);*/
                 };
 
-                this.vm_onPhoneTypeChange = function() {
+                this.vm_onPhoneTypeChange = function () {
                     // get phone type
                     // get phone from person from selector
                     // update phone field
@@ -2063,7 +2074,7 @@ var setUserVars = function() {
                     try {
                         var _phoneType = this.phoneType;
 
-                        var filterFunc = function(array, callback) {
+                        var filterFunc = function (array, callback) {
                             var result = [];
                             for (var i = 0; i < array.length; i++) {
                                 if (callback(array[i])) {
@@ -2073,7 +2084,7 @@ var setUserVars = function() {
                             return result;
                         };
 
-                        var callback = function(a) {
+                        var callback = function (a) {
                             return phoneTypeEnum[a] == _phoneType;
                         };
 
@@ -2082,7 +2093,7 @@ var setUserVars = function() {
                         //there is a selected patient
                         if (this.patientsSelector.getSelectedItem()) {
                             var phones = this.patientsSelector.getSelectedItem().data.person.phones;
-                            var callback2 = function(b) {
+                            var callback2 = function (b) {
                                 return b.use == typeName;
                             };
                             var numberVal = filterFunc(phones, callback2);
@@ -2107,24 +2118,35 @@ var setUserVars = function() {
                     return this.isReadOnly || !this.vm_isNew();
                 };
 
-                this.vm_expandAddNotes = function() {
+                this.vm_expandAddNotes = function () {
+                    debugger;
                     this.set("vm_isAddNotesExpanded", !this.vm_isAddNotesExpanded);
-                        $('.dialogbox-master__wrapper').animate({scrollTop : 1000},900);
+                    // $('.dialogbox-master__wrapper').animate({scrollTop : 1000},900);
+                    window.setTimeout(function () {
+                        $('.dialogbox-master__wrapper').animate({ scrollTop: 1000 }, 1900);
+                    }, 1000);
                 };
-                this.vm_enterNotes = function() {
-
-                        $('.dialogbox-master__wrapper').animate({scrollTop : 500},400);
+                this.vm_enterNotes = function () {
+                    debugger;
+                    window.setTimeout(function () {
+                        $('.dialogbox-master__wrapper').animate({ scrollTop: 500 }, 400);
+                    }, 1000);
                 };
-                this.vm_enterNumber = function() {
-
-                        $('.dialogbox-master__wrapper').animate({scrollTop : 300},100);
+                this.vm_enterNumber = function () {
+                    var AndroidDevice = localStorage.getItem('AndroidDevice');
+                    window.setTimeout(function () {
+                        if (AndroidDevice == "false") {
+                            $('.dialogbox-master__wrapper').animate({ scrollTop: 1000 }, 900);
+                        }
+                        else {
+                            $('.dialogbox-master__wrapper').animate({ scrollTop: 100 }, 90);
+                        }
+                    }, 1000);
                 };
 
-                this.vm_onKeyUpAdditionalNotes = function() {
-                    this._onDataChange();
-                };
+                //sakthi
 
-                this.vm_onAddConcernClick = function(e) {
+                this.vm_onAddConcernClick = function (e) {
                     this.preventDefault(e);
                     this.set("displaySecondaryConcern", true);
                     this.trigger("change", {
@@ -2133,7 +2155,7 @@ var setUserVars = function() {
                     this._onDataChange();
                 };
 
-                this.vm_onRemoveSecondaryConcernClick = function() {
+                this.vm_onRemoveSecondaryConcernClick = function () {
                     this.set("vm_secondaryConcernError", false);
                     this.set("vm_secondaryConcernActive", false);
                     if (this._concernsSimilarError) {
@@ -2156,46 +2178,46 @@ var setUserVars = function() {
 
                 this.vm_primaryConcernActive = false;
 
-                this.vm_isPrimaryConcernOtherSelected = function() {
+                this.vm_isPrimaryConcernOtherSelected = function () {
                     return this.vm_primaryConsernId === otherPrimaryConcernId;
                 };
 
-                this.vm_isSecondaryConcernOtherSelected = function() {
+                this.vm_isSecondaryConcernOtherSelected = function () {
                     return this.vm_secondaryConsernId === otherSecondaryConcernId;
                 };
                 //venkat
-                this.onOpen = function(){
-                                $('ul li.k-item').addClass('localizejs');
-                              }
+                this.onOpen = function () {
+                    $('ul li.k-item').addClass('localizejs');
+                }
 
-                              this.vm_onPrimaryConcernChange = function () {
-                                 this.trigger("change", { field: "vm_isPrimaryConcernOtherSelected" });
-                                 this.trigger("change", { field: "vm_isAddConcernButtonVisible" });
+                this.vm_onPrimaryConcernChange = function () {
+                    this.trigger("change", { field: "vm_isPrimaryConcernOtherSelected" });
+                    this.trigger("change", { field: "vm_isAddConcernButtonVisible" });
 
-                                 this.set("vm_primaryConcernError", false);
-                                 if (this._concernsSimilarError) {
-                                     this.set("vm_secondaryConcernError", false);
-                                     this.set("vm_secondaryConcernActive", this.vm_secondaryConsernId !== null);
-                                     this._concernsSimilarError = false;
-                                 }
-                                 this.set("vm_primaryConcernActive", this.vm_primaryConsernId !== null);
+                    this.set("vm_primaryConcernError", false);
+                    if (this._concernsSimilarError) {
+                        this.set("vm_secondaryConcernError", false);
+                        this.set("vm_secondaryConcernActive", this.vm_secondaryConsernId !== null);
+                        this._concernsSimilarError = false;
+                    }
+                    this.set("vm_primaryConcernActive", this.vm_primaryConsernId !== null);
 
-                                 var concern = this._formatConcernData(this.dataPrimaryConcernList, this.vm_primaryConsernId, true);
-                                 var changedSelectedConcern = this.primaryConcern ? this.vm_primaryConsernId !== this.primaryConcern.customCode.code : true;
-                                 if (changedSelectedConcern && this.primaryConcernOtherText !== "") {
-                                     this.set("primaryConcernOtherText", "");
-                                 }
+                    var concern = this._formatConcernData(this.dataPrimaryConcernList, this.vm_primaryConsernId, true);
+                    var changedSelectedConcern = this.primaryConcern ? this.vm_primaryConsernId !== this.primaryConcern.customCode.code : true;
+                    if (changedSelectedConcern && this.primaryConcernOtherText !== "") {
+                        this.set("primaryConcernOtherText", "");
+                    }
 
-                                 if (this.vm_isPrimaryConcernOtherSelected()) {
-                                     concern.customCode.description = this.get("primaryConcernOtherText");
-                                 }
+                    if (this.vm_isPrimaryConcernOtherSelected()) {
+                        concern.customCode.description = this.get("primaryConcernOtherText");
+                    }
 
-                                 this.primaryConcern = concern;
+                    this.primaryConcern = concern;
 
-                                 this._onDataChange();
-                             };
+                    this._onDataChange();
+                };
 
- this.vm_onPrimaryConcernChange = function () {
+                this.vm_onPrimaryConcernChange = function () {
                     this.trigger("change", { field: "vm_isPrimaryConcernOtherSelected" });
                     this.trigger("change", { field: "vm_isAddConcernButtonVisible" });
 
@@ -2255,107 +2277,107 @@ var setUserVars = function() {
                     this._onDataChange();
                 };
 
-                this.vm_getStartTime = function() {
+                this.vm_getStartTime = function () {
                     return [kendo.toString(this.get("start"), "h:mm"), " <span>", kendo.toString(this.get("start"), "tt"), "</span>"].join("");
                 };
-//venkat start
-  this.vm_getStartMonth = function() {
-    var apponitmentMonth= kendo.toString(this.get("start"), "MMMM");
-    return apponitmentMonth;
-  }
-  this.vm_getStartWeek = function() {
-    var apponitmentWeek = kendo.toString(this.get("start"), "dddd");
-      return apponitmentWeek;
-  }
-  this.vm_getStartDateYear = function() {
-    var apponitmentYear = kendo.toString(this.get("start"), "dd, yyyy");
-      return apponitmentYear;
-  }
+                //venkat start
+                this.vm_getStartMonth = function () {
+                    var apponitmentMonth = kendo.toString(this.get("start"), "MMMM");
+                    return apponitmentMonth;
+                }
+                this.vm_getStartWeek = function () {
+                    var apponitmentWeek = kendo.toString(this.get("start"), "dddd");
+                    return apponitmentWeek;
+                }
+                this.vm_getStartDateYear = function () {
+                    var apponitmentYear = kendo.toString(this.get("start"), "dd, yyyy");
+                    return apponitmentYear;
+                }
 
-  //venkat end
-                this.vm_getStartDate = function() {
-                //    console.log("5");
-//venkat start
-                  // var dateGet = kendo.toString(this.get("start"), "dddd, MMMM dd, yyyy");
-                  // var apponitmentYear = kendo.toString(this.get("start"), "dd, yyyy");
-                  // var apponitmentWeek = kendo.toString(this.get("start"), "dddd");
-                  // var apponitmentMonth= kendo.toString(this.get("start"), "MMMM");
-                  //
-                  //   console.log("apponitmentWeek ="+apponitmentWeek);
-                  //   console.log("apponitmentMonth ="+apponitmentMonth);
-                  //
-                  //  var localizeCurrent = $('#localize-current').text();
-                  //
-                  //  var resultMonth = {"January":"enero","February":"febrero","March":"marzo","April":"abril","May":"Mayo","June":"junio","August":"agosto","September":"septiembre","October":"octubre","November":"noviembre","December":"diciembre"};
-                  //  $.each(resultMonth, function(k, v) {
-                  //  if(k === apponitmentMonth){
-                  //        if(localizeCurrent == "Español") {
-                  //              $(".apponitmentMonthSS").text(v);
-                  //            }
-                  //        if(localizeCurrent == "English (UK)") {
-                  //              $(".apponitmentMonthSS").text(k);
-                  //            }
-                  //        if(localizeCurrent == "English") {
-                  //              $(".apponitmentMonthSS").text(k);
-                  //            }
-                  //       }
-                  //  });
-                  //
-                  //  var resultDay = {"Monday":"lunes","Tuesday":"martes","Wednesday":"miércoles","Thursday":"jueves","Friday":"viernes","Saturday":"sábado","Sunday":"domingo"};
-                  //    $.each(resultDay, function(k, v) {
-                  //    if(k === apponitmentWeek){
-                  //          if(localizeCurrent == "Español") {
-                  //                $(".apponitmentWeekSS").text(v);
-                  //              }
-                  //          if(localizeCurrent == "English (UK)") {
-                  //                $(".apponitmentWeekSS").text(k);
-                  //              }
-                  //          if(localizeCurrent == "English") {
-                  //                $(".apponitmentWeekSS").text(k);
-                  //              }
-                  //         }
-                  //    });
-                  //
-                  //    $(".apponitmentYearSS").text(apponitmentYear);
-//venkat
+                //venkat end
+                this.vm_getStartDate = function () {
+                    //    console.log("5");
+                    //venkat start
+                    // var dateGet = kendo.toString(this.get("start"), "dddd, MMMM dd, yyyy");
+                    // var apponitmentYear = kendo.toString(this.get("start"), "dd, yyyy");
+                    // var apponitmentWeek = kendo.toString(this.get("start"), "dddd");
+                    // var apponitmentMonth= kendo.toString(this.get("start"), "MMMM");
+                    //
+                    //   console.log("apponitmentWeek ="+apponitmentWeek);
+                    //   console.log("apponitmentMonth ="+apponitmentMonth);
+                    //
+                    //  var localizeCurrent = $('#localize-current').text();
+                    //
+                    //  var resultMonth = {"January":"enero","February":"febrero","March":"marzo","April":"abril","May":"Mayo","June":"junio","August":"agosto","September":"septiembre","October":"octubre","November":"noviembre","December":"diciembre"};
+                    //  $.each(resultMonth, function(k, v) {
+                    //  if(k === apponitmentMonth){
+                    //        if(localizeCurrent == "Español") {
+                    //              $(".apponitmentMonthSS").text(v);
+                    //            }
+                    //        if(localizeCurrent == "English (UK)") {
+                    //              $(".apponitmentMonthSS").text(k);
+                    //            }
+                    //        if(localizeCurrent == "English") {
+                    //              $(".apponitmentMonthSS").text(k);
+                    //            }
+                    //       }
+                    //  });
+                    //
+                    //  var resultDay = {"Monday":"lunes","Tuesday":"martes","Wednesday":"miércoles","Thursday":"jueves","Friday":"viernes","Saturday":"sábado","Sunday":"domingo"};
+                    //    $.each(resultDay, function(k, v) {
+                    //    if(k === apponitmentWeek){
+                    //          if(localizeCurrent == "Español") {
+                    //                $(".apponitmentWeekSS").text(v);
+                    //              }
+                    //          if(localizeCurrent == "English (UK)") {
+                    //                $(".apponitmentWeekSS").text(k);
+                    //              }
+                    //          if(localizeCurrent == "English") {
+                    //                $(".apponitmentWeekSS").text(k);
+                    //              }
+                    //         }
+                    //    });
+                    //
+                    //    $(".apponitmentYearSS").text(apponitmentYear);
+                    //venkat
                     return kendo.toString(this.get("start"), "dddd, MMMM dd, yyyy");
                 };
-//venkat start
+                //venkat start
 
-                var enDay = {Monday:"lunes", Tuesday:"martes", Wednesday:"miércoles", Thursday:"jueves", Friday:"viernes", Saturday:"sábado", Sunday:"domingo"};
-                var spDay = {lunes:"Monday", martes:"Tuesday", miércoles:"Wednesday", jueves:"Thursday", viernes:"Friday", sábado:"Saturday", domingo:"Sunday"};
-                var enMonth = {January:"enero", February:"febrero", March:"marzo", April:"abril",May:"Mayo", June:"junio", July:"julio", August:"agosto", September:"septiembre",October:"octubre", November:"noviembre", December:"diciembre"};
-                var spMonth = {enero:"January", febrero:"February", marzo:"March", abril:"April",Mayo:"May", junio:"June", julio:"July", agosto:"August", septiembre:"September",octubre:"October", noviembre:"November", diciembre:"December"};
+                var enDay = { Monday: "lunes", Tuesday: "martes", Wednesday: "miércoles", Thursday: "jueves", Friday: "viernes", Saturday: "sábado", Sunday: "domingo" };
+                var spDay = { lunes: "Monday", martes: "Tuesday", miércoles: "Wednesday", jueves: "Thursday", viernes: "Friday", sábado: "Saturday", domingo: "Sunday" };
+                var enMonth = { January: "enero", February: "febrero", March: "marzo", April: "abril", May: "Mayo", June: "junio", July: "julio", August: "agosto", September: "septiembre", October: "octubre", November: "noviembre", December: "diciembre" };
+                var spMonth = { enero: "January", febrero: "February", marzo: "March", abril: "April", Mayo: "May", junio: "June", julio: "July", agosto: "August", septiembre: "September", octubre: "October", noviembre: "November", diciembre: "December" };
 
-                $('#localize-langs').click(function() {
-                       var isLang = $('#localize-langs .activated').text();
+                $('#localize-langs').click(function () {
+                    var isLang = $('#localize-langs .activated').text();
 
-                       var apponitmentWeek = $(".apponitmentWeekSS").text();
-                       var apponitmentMonth = $(".apponitmentMonthSS").text();
+                    var apponitmentWeek = $(".apponitmentWeekSS").text();
+                    var apponitmentMonth = $(".apponitmentMonthSS").text();
 
-                       if(isLang == "Español") {
-                             $(".apponitmentWeekSS").text(enDay[apponitmentWeek]);
-                             $(".apponitmentMonthSS").text(enMonth[apponitmentMonth]);
-                           }
-                       if(isLang == "English (UK)") {
-                             $(".apponitmentWeekSS").text(spDay[apponitmentWeek]);
-                             $(".apponitmentMonthSS").text(spMonth[apponitmentMonth]);
-                           }
-                       if(isLang == "English") {
-                             $(".apponitmentWeekSS").text(spDay[apponitmentWeek]);
-                             $(".apponitmentMonthSS").text(spMonth[apponitmentMonth]);
-                           }
-             });
-//venkat end
+                    if (isLang == "Español") {
+                        $(".apponitmentWeekSS").text(enDay[apponitmentWeek]);
+                        $(".apponitmentMonthSS").text(enMonth[apponitmentMonth]);
+                    }
+                    if (isLang == "English (UK)") {
+                        $(".apponitmentWeekSS").text(spDay[apponitmentWeek]);
+                        $(".apponitmentMonthSS").text(spMonth[apponitmentMonth]);
+                    }
+                    if (isLang == "English") {
+                        $(".apponitmentWeekSS").text(spDay[apponitmentWeek]);
+                        $(".apponitmentMonthSS").text(spMonth[apponitmentMonth]);
+                    }
+                });
+                //venkat end
 
-                this.vm_onToggleEditDate = function(e) {
+                this.vm_onToggleEditDate = function (e) {
                     if (!this.isDateAreaInEditMode) {
                         $('.js-footer-slider').not('.slick-initialized').slick({
                             infinite: false,
                             variableWidth: true,
                             slidesToShow: 1,
-                          //  slidesToScroll: 3,
-                          slidesToScroll: 1,
+                            //  slidesToScroll: 3,
+                            slidesToScroll: 1,
                             draggable: false,
                             easing: 'ease',
                             prevArrow: '<button type="button" class="slick-prev"><span class="icon_chevron-thin-left"></span></button>',
@@ -2369,24 +2391,24 @@ var setUserVars = function() {
                     return false;
                 };
 
-                this.vm_onCancelEditDate = function() {
+                this.vm_onCancelEditDate = function () {
                     this.toggleDateArea();
                 };
 
-                this.vm_getDateAreaHeader = function() {
+                this.vm_getDateAreaHeader = function () {
                     return this.get("isDateAreaInEditMode") ? "Reschedule Your Appointment" : "Date and Time";
                 };
 
-                this.vm_getDateAreaActionLabel = function() {
+                this.vm_getDateAreaActionLabel = function () {
                     return this.get("isDateAreaInEditMode") ? "Done" : "<span class='icon_note'></span> Edit";
                 };
-                this.vm_onViewClinicianProfileClick = function() {
+                this.vm_onViewClinicianProfileClick = function () {
                     //TODO: GET ID AND IMPLEMENT REDIRECT
                 };
 
                 this.vm_notification_msg = "";
 
-                this.vm_startDateChange = function() {
+                this.vm_startDateChange = function () {
                     if (this.startDate === null) {
                         this.set("startDate", this.oldStartDate);
                     } else {
@@ -2394,7 +2416,7 @@ var setUserVars = function() {
                     }
                 };
 
-                this.setSlotsDate = function(starDate) {
+                this.setSlotsDate = function (starDate) {
                     var that = this;
 
                     var date = new Date(starDate);
@@ -2402,7 +2424,7 @@ var setUserVars = function() {
 
                     this.set("startDate", date);
 
-                    $selfSchedulingService.getSingleClinician(this.clinicianCard.userId, $timeUtils.dateToString(date)).done(function(response) {
+                    $selfSchedulingService.getSingleClinician(this.clinicianCard.userId, $timeUtils.dateToString(date)).done(function (response) {
                         var clinicianCard = response.data[0];
                         that.set("apptsSlotsTray", $apptsSlotsTray.createTimeSlotsTray(clinicianCard, date, that._selectNewAppointmentTime));
                         slotsLocator.setSlots(that.apptsSlotsTray.slots, date);
@@ -2412,14 +2434,14 @@ var setUserVars = function() {
                             infinite: false,
                             variableWidth: true,
                             slidesToShow: 1,
-                          //  slidesToScroll: 3,
-                          slidesToScroll: 1,
+                            //  slidesToScroll: 3,
+                            slidesToScroll: 1,
                             draggable: false,
                             easing: 'ease',
                             prevArrow: '<button type="button" class="slick-prev"><span class="icon_chevron-thin-left"></span></button>',
                             nextArrow: '<button type="button" class="slick-next"><span class="icon_chevron-thin-right"></span></button>'
                         });
-                    }).fail(function(error) {
+                    }).fail(function (error) {
                         if (error.status === 404) {
                             that.set("startDate", that.oldStartDate);
                             $snapNotification.info("There is no available appointment slots for selected date.");
@@ -2427,7 +2449,7 @@ var setUserVars = function() {
                     });
                 };
                 /*********************** PRIVATE API ***********************/
-                this._setOptions = function(opt, clinicianCard) {
+                this._setOptions = function (opt, clinicianCard) {
                     this._setSelectorTime();
 
                     if (opt.intakeMetadata) {
@@ -2472,24 +2494,24 @@ var setUserVars = function() {
                     var patient = $scheduleCommon.findPatient(opt.participants);
                     var patientId = patient.patientId || data.patientProfileId;
                     if (patient) {
-                       this.patientsSelector.selectInitialItem(
-                           $itemSelector.convertPersonToSelectorItem(patient.person, patientId, $itemSelector.personType.patient), true);
-                   }
+                        this.patientsSelector.selectInitialItem(
+                            $itemSelector.convertPersonToSelectorItem(patient.person, patientId, $itemSelector.personType.patient), true);
+                    }
 
-                   this.vm_isAddNotesExpanded = false;
-                   this.phoneNumber = opt.phoneNumber;
-                   this.phoneType = opt.phoneType || phoneTypeEnum.other;
+                    this.vm_isAddNotesExpanded = false;
+                    this.phoneNumber = opt.phoneNumber;
+                    this.phoneType = opt.phoneType || phoneTypeEnum.other;
 
-                   this.encounterTypeCode = opt.encounterTypeCode || $encounterMethodHelper.getFirstEnabledEncounterMethod(this.appointmentTypeCode);
-                   this.encounterMethodSelector.select(this.encounterTypeCode);
-               };
+                    this.encounterTypeCode = opt.encounterTypeCode || $encounterMethodHelper.getFirstEnabledEncounterMethod(this.appointmentTypeCode);
+                    this.encounterMethodSelector.select(this.encounterTypeCode);
+                };
 
-                this._selectNewAppointmentTime = function(timeSlot) {
+                this._selectNewAppointmentTime = function (timeSlot) {
                     $eventAggregator.published("apptvm_TimeSlotSelected", timeSlot);
                     $patientSelfSchedulingHub.lockSlot(timeSlot.availabilityBlockId, $timeUtils.dateToString(timeSlot.start), $timeUtils.dateToString(timeSlot.end));
                 };
-                this._formatConcernData = function(concernList, selectedConcernId, isPrimary) {
-                    var concerns = concernList.data().filter(function(concern) {
+                this._formatConcernData = function (concernList, selectedConcernId, isPrimary) {
+                    var concerns = concernList.data().filter(function (concern) {
                         return concern.codeId === selectedConcernId;
                     });
 
@@ -2536,7 +2558,7 @@ var setUserVars = function() {
 
                         $patientSelfSchedulingHub.unlockSlot(that.availabilityBlockId, that.start, that.end);
                     },
-                    5 * 60 * 1000);
+                        5 * 60 * 1000);
                 };
 
                 this._initSelectors();
@@ -2575,7 +2597,7 @@ var setUserVars = function() {
 
 
 
-            this.createNew = function(opts) {
+            this.createNew = function (opts) {
                 return new Appointment(opts);
             };
         }).singleton();
@@ -2586,19 +2608,19 @@ var setUserVars = function() {
     "use strict";
 
     snap.namespace("snap.patient.schedule")
-    .use([
-        "snapNotification",
-        "snap.EventAggregator",
-        "snap.patient.schedule.AppointmentFactory",
-        "snap.patient.schedule.patientAppointmentService",
-        "snap.service.availabilityBlockService",
-        "snap.enums.userTypes",
-        "snap.common.schedule.ScheduleCommon",
-        "snap.common.timeUtils",
-        "snap.common.dialogWindow",
-      //  "snap.errorHandler",
-        "snap.service.selfSchedulingService"
-    //    "snap.shared.wizard.appointmentWizard"
+        .use([
+            "snapNotification",
+            "snap.EventAggregator",
+            "snap.patient.schedule.AppointmentFactory",
+            "snap.patient.schedule.patientAppointmentService",
+            "snap.service.availabilityBlockService",
+            "snap.enums.userTypes",
+            "snap.common.schedule.ScheduleCommon",
+            "snap.common.timeUtils",
+            "snap.common.dialogWindow",
+            //  "snap.errorHandler",
+            "snap.service.selfSchedulingService"
+            //    "snap.shared.wizard.appointmentWizard"
         ])
         .define("appointmentDialog", function (
             $snapNotification,
@@ -2610,9 +2632,9 @@ var setUserVars = function() {
             $scheduleCommon,
             $timeUtils,
             $dialogWindow,
-          //  $errorHandler,
+            //  $errorHandler,
             $selfSchedulingService
-          //  $appointmentWizard
+            //  $appointmentWizard
         ) {
             var
                 content = null,
@@ -2626,7 +2648,7 @@ var setUserVars = function() {
                 var dfd = $.Deferred();
 
                 if (content === null) {
-                    $.get("schedule/tab-appointmentDialog.html" + snap.addVersion, function(data) {
+                    $.get("schedule/tab-appointmentDialog.html" + snap.addVersion, function (data) {
                         content = data;
                         dfd.resolve(content);
                     });
@@ -2642,10 +2664,10 @@ var setUserVars = function() {
 
                 var dfd = $.Deferred();
 
-                loadContent().done(function(content) {
+                loadContent().done(function (content) {
                     if ($(container).length === 0) {
                         $("body").append("<div id='patientPopUpContainer'></div>");
- setTimeout(function () {
+                        setTimeout(function () {
                             snap.datepickers.initializeDatePicker('.appointmentDP', null, snap.dateLimits.getTodayMaxDate(), "MM/dd/yy");
                             $(".k-list-container").addClass("localizejs");
                         }, 1000);
@@ -2658,20 +2680,20 @@ var setUserVars = function() {
 
                     eventVM.dialogContainer = $container;
 
-                 /*   $eventAggregator.subscriber("apptvm_TimeSlotSelected", function(timeSlot) {
-                        eventVM.set("start", timeSlot.start);
-                        eventVM.set("end", timeSlot.end);
-                        eventVM.set("availabilityBlockId", timeSlot.availabilityBlockId);
-                        eventVM.set("isNow", timeSlot.isNow);
-                        eventVM.toggleDateArea();
-                    });
-
-                    $eventAggregator.subscriber("slotTray_goToDate", function(obj) {
-                        var dateFilter = new Date(obj.nextDate);
-                        dateFilter.setHours(0, 0, 0, 0);
-
-                        eventVM.setSlotsDate(dateFilter);
-                    });*/
+                    /*   $eventAggregator.subscriber("apptvm_TimeSlotSelected", function(timeSlot) {
+                           eventVM.set("start", timeSlot.start);
+                           eventVM.set("end", timeSlot.end);
+                           eventVM.set("availabilityBlockId", timeSlot.availabilityBlockId);
+                           eventVM.set("isNow", timeSlot.isNow);
+                           eventVM.toggleDateArea();
+                       });
+   
+                       $eventAggregator.subscriber("slotTray_goToDate", function(obj) {
+                           var dateFilter = new Date(obj.nextDate);
+                           dateFilter.setHours(0, 0, 0, 0);
+   
+                           eventVM.setSlotsDate(dateFilter);
+                       });*/
 
 
 
@@ -2685,13 +2707,13 @@ var setUserVars = function() {
 
                         $container.parent().addClass('dialogbox-modal');
 
-                       currentDialog = {
+                        currentDialog = {
                             kendoWindow: $container.data("kendoWindow")
                         };
                     }
 
                     kendo.bind($container, eventVM);
- currentDialog.viewModel = eventVM;
+                    currentDialog.viewModel = eventVM;
 
 
                     $container.show();
@@ -2700,7 +2722,7 @@ var setUserVars = function() {
                     currentDialog.kendoWindow.open();
                     eventVM.load();
 
-                    setTimeout(function(){
+                    setTimeout(function () {
                         $container.find('.dialogbox-master').addClass("is-visible");
                     }, 100);
 
@@ -2713,7 +2735,7 @@ var setUserVars = function() {
                     $("#patientPopUpContainer").click(function (e) {
                         var div = eventVM._type + "_editor";
 
-                        if(e.target.id == div){
+                        if (e.target.id == div) {
                             close();
                         }
 
@@ -2733,7 +2755,7 @@ var setUserVars = function() {
                 if (currentDialog) {
                     $(container).find('.dialogbox-master').addClass("is-hidden");
                     $snapNotification.hideAllConfirmations();
-                    setTimeout(function(){
+                    setTimeout(function () {
                         currentDialog.viewModel.unlockSlot();
                         currentDialog.kendoWindow.close();
                         currentDialog.kendoWindow.destroy();
@@ -2749,8 +2771,8 @@ var setUserVars = function() {
             ///*********************** EVENTS SUBSCRIPTION ************************/
             [
                 $appointmentFactory.closeEvent
-            ].forEach(function(event) {
-                $eventAggregator.subscriber(event, function() {
+            ].forEach(function (event) {
+                $eventAggregator.subscriber(event, function () {
                     close();
                 });
             });
@@ -2758,8 +2780,8 @@ var setUserVars = function() {
             [
                 $appointmentFactory.savedEvent,
                 $appointmentFactory.removedEvent
-            ].forEach(function(event) {
-                $eventAggregator.subscriber(event, function() {
+            ].forEach(function (event) {
+                $eventAggregator.subscriber(event, function () {
                     close();
                     $eventAggregator.published(dlg.appointmentPopupSavedEvent);
                 });
@@ -2767,11 +2789,11 @@ var setUserVars = function() {
 
 
             /*********************** PUBLIC METHODS *****************************/
-            this.open = function(opt) {
+            this.open = function (opt) {
                 var event = $appointmentFactory.createNew(opt);
 
                 event = kendo.observable(event);
-                open(event).done(function() {
+                open(event).done(function () {
                     // var editor = $("#editor").data("kendoEditor");
                     // if (editor !== null) {
                     //     editor.refresh();
@@ -2782,11 +2804,11 @@ var setUserVars = function() {
                 return event;
             };
 
-            this.close = function() {
+            this.close = function () {
                 close();
             };
 
-  this.openAppointmentWizard = function(options, displayOpt) {
+            this.openAppointmentWizard = function (options, displayOpt) {
                 if (!appointmentWizard) {
                     var wizardVm = $appointmentWizard.createNew({
                         userType: displayOpt.userType
@@ -2806,11 +2828,11 @@ var setUserVars = function() {
                 });
             };
 
-            this.openNewAppointmentDialog = function(dialogOpt) {
+            this.openNewAppointmentDialog = function (dialogOpt) {
                 var dfd = $.Deferred();
                 sessionStorage.setItem('chkSSAddOrEdit', 'Add');
                 var that = this;
-                $selfSchedulingService.getClinicianCard(dialogOpt.clinicianId, $timeUtils.dateToString(dialogOpt.start)).done(function(response) {
+                $selfSchedulingService.getClinicianCard(dialogOpt.clinicianId, $timeUtils.dateToString(dialogOpt.start)).done(function (response) {
                     var clinicianCard = response.data[0];
 
                     var participants = [{
@@ -2830,7 +2852,7 @@ var setUserVars = function() {
                             }
                         },
                         participantTypeCode: $scheduleCommon.participantTypeCode.practicioner
- }, {
+                    }, {
                         appointmentId: null,
                         attendenceCode: $scheduleCommon.attendenceCode.required,
                         person: {},
@@ -2864,20 +2886,20 @@ var setUserVars = function() {
                     //     };
                     //     that.openAppointmentWizard(result, diaplayOpt);
                     // } else {
-                         that.open(result);
-                  //  }
+                    that.open(result);
+                    //  }
 
                 }).fail(function () {
                     $snapNotification.error("Provider card information is not available");
                 });
             };
 
-            this.openExistedAppointmentDialog = function(apptId, isReadOnly) {
+            this.openExistedAppointmentDialog = function (apptId, isReadOnly) {
                 var dfd = $.Deferred();
 
                 var that = this;
                 sessionStorage.setItem('chkSSAddOrEdit', 'Edit');
-                $selfSchedulingService.getAppointment(apptId).done(function(resp) {
+                $selfSchedulingService.getAppointment(apptId).done(function (resp) {
                     var result = {
                         appt: resp.data[0],
                         isReadOnly: isReadOnly,
@@ -2893,11 +2915,11 @@ var setUserVars = function() {
                     result.appt.phoneNumber = result.appt.where;
                     result.appt.phoneType = result.appt.whereUse;
                     debugger;
-                    $selfSchedulingService.getUserCurrentTime().done(function(resp) {
-                      //  var userDNATime = $timeUtils.dateFromSnapDateString(resp.data[0]);
-                      //  userDNATime.setMinutes(userDNATime.getMinutes() - 30);
-                      //  result.isFuture = userDNATime <= result.appt.end;
-                        $selfSchedulingService.getClinicianCard(result.appt.clinicianId, $timeUtils.dateToString($timeUtils.dateFromSnapDateString(result.appt.startTime))).done(function(clinicianResp) {
+                    $selfSchedulingService.getUserCurrentTime().done(function (resp) {
+                        //  var userDNATime = $timeUtils.dateFromSnapDateString(resp.data[0]);
+                        //  userDNATime.setMinutes(userDNATime.getMinutes() - 30);
+                        //  result.isFuture = userDNATime <= result.appt.end;
+                        $selfSchedulingService.getClinicianCard(result.appt.clinicianId, $timeUtils.dateToString($timeUtils.dateFromSnapDateString(result.appt.startTime))).done(function (clinicianResp) {
                             var clinicianCard = clinicianResp.data[0];
                             result.clinicianCard = {
                                 userId: clinicianCard.userId,
@@ -2910,15 +2932,15 @@ var setUserVars = function() {
                                     secondary: clinicianCard.subSpeciality
                                 };
                             }
-                        }).fail(function() {
+                        }).fail(function () {
                             if (!result.isReadOnly) {
                                 result.isClinicianDisabled = true;
                             }
-                        }).always(function() {
+                        }).always(function () {
                             var appt = that.open(result);
                             dfd.resolve(appt);
                         });
-                    }).fail(function() {
+                    }).fail(function () {
                         dfd.reject();
                     });
                 });
@@ -2930,11 +2952,11 @@ var setUserVars = function() {
 }(jQuery, snap, kendo));
 //@ sourceURL=itemSelector.control.js
 
-(function($, snap, kendo) {
+(function ($, snap, kendo) {
     "use strict";
 
     snap.namespace("snap.common").use(["snapNotification", "snap.EventAggregator", "snap.admin.schedule.TimeUtils", "snap.common.schedule.ScheduleCommon", "snap.common.loadingStack", "snap.service.availabilityBlockService", "snap.service.appointmentService"])
-        .define("ItemSelector", function($snapNotification, $eventAggregator, $timeUtils, $scheduleCommon, $loadingStack, $availabilityBlockService, $appointmentService) {
+        .define("ItemSelector", function ($snapNotification, $eventAggregator, $timeUtils, $scheduleCommon, $loadingStack, $availabilityBlockService, $appointmentService) {
             var itemDefaultValues = {
                 id: null,
                 name: "Select a Person",
@@ -2956,7 +2978,7 @@ var setUserVars = function() {
             };
 
             function sortByName(arr) {
-                return arr.sort(function(a, b) {
+                return arr.sort(function (a, b) {
                     var nameA = a.name.toLowerCase(),
                         nameB = b.name.toLowerCase();
 
@@ -2992,17 +3014,17 @@ var setUserVars = function() {
 
                 this._convertedTimeCashe = item._convertedTimeCashe || null;
 
-                this.select = function(val) {
+                this.select = function (val) {
                     this.set("isSelected", val);
                 };
 
-                this.onSelectClick = function() {
+                this.onSelectClick = function () {
                     if (container) {
                         container.onSelectClick(this);
                     }
                 };
 
-                this.onViewProfileClick = function(e) {
+                this.onViewProfileClick = function (e) {
                     if (!!this.id) {
                         $eventAggregator.published("itemSelector_onProfileClick", {
                             id: this.id,
@@ -3013,11 +3035,11 @@ var setUserVars = function() {
                     return false;
                 };
 
-                this.getValue = function() {
+                this.getValue = function () {
                     return item;
                 };
 
-                this.vm_isVisible = function() {
+                this.vm_isVisible = function () {
                     if (container) {
                         return !this.isSelected;
                     }
@@ -3025,12 +3047,12 @@ var setUserVars = function() {
                     return true;
                 };
 
-                this.updateTime = function(startTime, endTime, sourceTimeZoneId, useCahedValue) {
+                this.updateTime = function (startTime, endTime, sourceTimeZoneId, useCahedValue) {
                     var that = this;
                     var dfd = $.Deferred();
                     var duration = endTime - startTime;
                     var convertedTimePromise = (useCahedValue && this._convertedTimeCashe) ? dfd.resolve(this._convertedTimeCashe) : this._convertTime(startTime, sourceTimeZoneId);
-                    convertedTimePromise.done(function(convertedTime) {
+                    convertedTimePromise.done(function (convertedTime) {
                         if (convertedTime) {
                             that._convertedTimeCashe = convertedTime;
                             var convertedStartTime = $timeUtils.dateFromSnapDateString(convertedTime.convertedDateTime);
@@ -3047,7 +3069,7 @@ var setUserVars = function() {
                     return dfd.promise();
                 };
 
-                this._convertTime = function(time, sourceTimeZoneId) {
+                this._convertTime = function (time, sourceTimeZoneId) {
                     var dfd = $.Deferred();
                     if (!time) {
                         dfd.reject();
@@ -3061,9 +3083,9 @@ var setUserVars = function() {
                         } else {
                             opt.targetPatientId = this.id;
                         }
-                        $availabilityBlockService.convertTime(opt).then(function(resp) {
+                        $availabilityBlockService.convertTime(opt).then(function (resp) {
                             dfd.resolve(resp);
-                        }, function() {
+                        }, function () {
                             dfd.reject();
                         });
                     }
@@ -3087,17 +3109,17 @@ var setUserVars = function() {
                 var scope = this;
 
                 var defaultItem = $.extend(true, {}, itemDefaultValues, opt.defaultItem);
-                var triggerEvent = function(name) {
+                var triggerEvent = function (name) {
                     var args = Array.prototype.slice.call(arguments).slice(1, arguments.length);
                     var eventCbList = eventList[name];
                     if (eventCbList) {
-                        $.each(eventCbList, function() {
+                        $.each(eventCbList, function () {
                             return this.apply(scope, args);
                         });
                     }
                 };
 
-                this.onSelectClick = function(item) {
+                this.onSelectClick = function (item) {
                     if (this.selectWithConfirmation) {
                         triggerEvent($scope.events.onItemClicked, item);
                     } else {
@@ -3105,8 +3127,8 @@ var setUserVars = function() {
                     }
                 };
 
-                this.selectHandler = function(item) {
-                    this.ds.data().forEach(function(i) {
+                this.selectHandler = function (item) {
+                    this.ds.data().forEach(function (i) {
                         if (i.isSelected) {
                             i.select(false);
                         }
@@ -3129,81 +3151,81 @@ var setUserVars = function() {
                 var eventList = {};
 
                 /*********************** PUBLIC API ***********************/
-                this.setDataSource = function(ds) {
+                this.setDataSource = function (ds) {
                     this.set("ds", ds);
 
                     var that = this;
-                    var loadingStack = $loadingStack.newStack(function() {
+                    var loadingStack = $loadingStack.newStack(function () {
                         that.set("vm_isItemsLoading", true);
-                    }, function() {
+                    }, function () {
                         that.set("vm_isItemsLoading", false);
                     });
 
-                    this.ds.bind("change", function() {
+                    this.ds.bind("change", function () {
                         that._refresh();
                     });
 
-                    this.ds.bind("requestStart", function() {
+                    this.ds.bind("requestStart", function () {
                         loadingStack.push();
                     })
 
-                    this.ds.bind("requestEnd", function() {
+                    this.ds.bind("requestEnd", function () {
                         loadingStack.pop();
                     })
                 };
 
-                this.getSelectedItem = function() {
+                this.getSelectedItem = function () {
                     return this.selectedItem;
                 };
 
-                this.isAnyItemSelected = function() {
+                this.isAnyItemSelected = function () {
                     var selectedItem = this.getSelectedItem();
                     return selectedItem !== null;
                 };
 
-                this.selectItem = function(item, doNotUpdateTime) {
+                this.selectItem = function (item, doNotUpdateTime) {
                     var that = this;
                     this.set("selectedItem", new Item(item));
                     this.selectedItem.select(true);
                     this._refresh();
                     if (!doNotUpdateTime) {
-                        this.selectedItem.updateTime(this._startTime, this._endTime, this._timeZoneId).done(function() {
+                        this.selectedItem.updateTime(this._startTime, this._endTime, this._timeZoneId).done(function () {
                             that._refresh();
                         });
                     }
 
                 };
 
-                this.setEventTime = function(start, end, timeZoneId) {
+                this.setEventTime = function (start, end, timeZoneId) {
                     this._startTime = start;
                     this._endTime = end;
                     this._timeZoneId = timeZoneId;
                 };
 
-                this.updateEventTime = function(start, end, timeZoneId, useCahedValue) {
+                this.updateEventTime = function (start, end, timeZoneId, useCahedValue) {
                     var that = this;
                     this.setEventTime(start, end, timeZoneId);
                     if (this.selectedItem) {
-                        this.selectedItem.updateTime(this._startTime, this._endTime, this._timeZoneId, useCahedValue).done(function() {
+                        this.selectedItem.updateTime(this._startTime, this._endTime, this._timeZoneId, useCahedValue).done(function () {
                             that._refresh();
                         });
                     }
                 };
 
-                this.showTimeOffset = function(value) {
+                this.showTimeOffset = function (value) {
                     if (this.selectedItem) {
                         this.selectedItem.set("isTimeOffsetsVisible", value);
                         this._refresh();
                     }
                 };
 
-                this.refresh = function() {
+                this.refresh = function () {
                     this._reloadItems();
                 };
 
                 //We need event subscription because we can not not use Kendo Observable in constructor.
                 //And use var scope = this; scope.set("...", ...)
-                this.on = function(eventName, cb) {
+                this.on = function (eventName, cb) {
                     var eventCbList = eventList[eventName];
                     if (!eventCbList) {
                         eventCbList = [];
@@ -3215,35 +3237,35 @@ var setUserVars = function() {
                 /*********************** MVVM BINDINGS ***********************/
                 this.vm_isItemsLoading = false;
 
-                this.vm_nameFilterChange = function() {
+                this.vm_nameFilterChange = function () {
                     if (!!this.searchTimeout) {
                         clearTimeout(this.searchTimeout);
                     }
                     var that = this;
-                    this.searchTimeout = setTimeout(function() {
+                    this.searchTimeout = setTimeout(function () {
                         that.ds.read({
                             skip: 0
                         });
                     }, 500);
                 };
 
-                this.vm_isItemsListEmpty = function() {
+                this.vm_isItemsListEmpty = function () {
                     return this.ds.data().length === 0;
                 };
 
-                this.vm_getItemsListEmptyNotification = function() {
+                this.vm_getItemsListEmptyNotification = function () {
                     return this.nameFilter === "" ?
                         "Enter user name to begin search" :
                         "No users match your search";
                 };
 
-                this.vm_getSelectedItemOrDefault = function() {
+                this.vm_getSelectedItemOrDefault = function () {
                     if (this.selectedItem) {
                         var selected = kendo.observable(new Item(this.selectedItem));
-                        if(sessionStorage.getItem('chkSSAddOrEdit') === 'Edit') {
-                          selected.set("isSelectorLocked", !this.isSelectorLocked);
+                        if (sessionStorage.getItem('chkSSAddOrEdit') === 'Edit') {
+                            selected.set("isSelectorLocked", !this.isSelectorLocked);
                         } else {
-                          selected.set("isSelectorLocked", this.isSelectorLocked);
+                            selected.set("isSelectorLocked", this.isSelectorLocked);
                         }
                         return selected;
                     } else {
@@ -3256,11 +3278,11 @@ var setUserVars = function() {
                     }
                 };
 
-                this.vm_isSelectedItemsListNotEmpty = function() {
+                this.vm_isSelectedItemsListNotEmpty = function () {
                     return this.vm_getSelectedItems().length > 0;
                 };
 
-                this.vm_getSelectedItems = function() {
+                this.vm_getSelectedItems = function () {
                     var arr = [];
 
                     if (this.selectedItem) {
@@ -3269,7 +3291,7 @@ var setUserVars = function() {
                     return arr;
                 };
 
-                this.vm_openItemsSelector = function(e) {
+                this.vm_openItemsSelector = function (e) {
                     if (e) {
                         e.preventDefault();
                     }
@@ -3277,31 +3299,31 @@ var setUserVars = function() {
                         var that = this;
                         that.set("isItemsSelectorVisible", true);
 
-                        window.setTimeout(function() {
+                        window.setTimeout(function () {
                             $(".directory.is-active").find(".nameFilterField").focus();
                         }, 500);
                     }
                 };
 
-                this.vm_hideItemsSelector = function(e) {
+                this.vm_hideItemsSelector = function (e) {
                     e.preventDefault();
                     this.set("isItemsSelectorVisible", false);
                     triggerEvent($scope.events.onSelectorHide);
                 };
 
                 /************************ PRIVATE METHODS ************************/
-                this._reloadItems = function() {
+                this._reloadItems = function () {
                     var that = this;
-                    this.ds.read({ skip: 0 }).done(function() {
+                    this.ds.read({ skip: 0 }).done(function () {
                         that._refresh();
 
-                        window.setTimeout(function() {
+                        window.setTimeout(function () {
                             $(".directory.is-active").find(".nameFilterField").focus();
                         }, 500);
                     });
                 };
 
-                this._refresh = function() {
+                this._refresh = function () {
                     this.trigger("change", {
                         field: "vm_getSelectedItems"
                     });
@@ -3321,7 +3343,7 @@ var setUserVars = function() {
                     });
                 };
 
-                this.disableSelectedItem = function() {
+                this.disableSelectedItem = function () {
                     if (this.selectedItem) {
                         this.selectedItem.set("isDisabled", true);
                         this.trigger("change", {
@@ -3342,7 +3364,7 @@ var setUserVars = function() {
                             contentType: 'application/json',
                             type: "get"
                         },
-                        parameterMap: function(data, type) {
+                        parameterMap: function (data, type) {
                             if (type !== "read") {
                                 return JSON.stringify({
                                     data: data.models
@@ -3359,12 +3381,12 @@ var setUserVars = function() {
                             }
                         }
                     },
-                    error: function(e) {
+                    error: function (e) {
                         $scheduleCommon.handleDataSourceError(e, "Provider list");
                     },
                     schema: {
-                        data: function(clinicians) {
-                            var data = clinicians.data.map(function(clinician) {
+                        data: function (clinicians) {
+                            var data = clinicians.data.map(function (clinician) {
                                 clinician.person.providerId = clinician.providerId;
                                 return new Item({
                                     id: clinician.userId,
@@ -3378,7 +3400,7 @@ var setUserVars = function() {
                             });
 
                             if (container.selectedItem) {
-                                data.forEach(function(item) {
+                                data.forEach(function (item) {
                                     if (item.personId === container.selectedItem.personId) {
                                         item.isSelected = true;
                                     }
@@ -3404,7 +3426,7 @@ var setUserVars = function() {
                             contentType: 'application/json',
                             type: "get"
                         },
-                        parameterMap: function(data, type) {
+                        parameterMap: function (data, type) {
                             if (type !== "read") {
                                 return JSON.stringify({
                                     data: data.models
@@ -3421,12 +3443,12 @@ var setUserVars = function() {
                             }
                         }
                     },
-                    error: function(e) {
+                    error: function (e) {
                         $scheduleCommon.handleDataSourceError(e, "Patients list");
                     },
                     schema: {
-                        data: function(patients) {
-                            var data = patients.data.map(function(patient) {
+                        data: function (patients) {
+                            var data = patients.data.map(function (patient) {
                                 patient.person.providerId = patient.providerId;
                                 return new Item({
                                     id: patient.patientId,
@@ -3440,7 +3462,7 @@ var setUserVars = function() {
                             });
 
                             if (container.selectedItem) {
-                                data.forEach(function(item) {
+                                data.forEach(function (item) {
                                     if (item.personId === container.selectedItem.personId) {
                                         item.isSelected = true;
                                     }
@@ -3466,7 +3488,7 @@ var setUserVars = function() {
                             contentType: 'application/json',
                             type: "get"
                         },
-                        parameterMap: function(data, type) {
+                        parameterMap: function (data, type) {
                             if (type !== "read") {
                                 return JSON.stringify({
                                     data: data.models
@@ -3484,12 +3506,12 @@ var setUserVars = function() {
                             }
                         }
                     },
-                    error: function(e) {
+                    error: function (e) {
                         $scheduleCommon.handleDataSourceError(e, "Patients list");
                     },
                     schema: {
-                        data: function(patients) {
-                            var data = patients.data.map(function(patient) {
+                        data: function (patients) {
+                            var data = patients.data.map(function (patient) {
                                 patient.person.providerId = patient.providerId;
                                 return new Item({
                                     id: patient.patientId,
@@ -3503,7 +3525,7 @@ var setUserVars = function() {
                             });
 
                             if (container.selectedItem) {
-                                data.forEach(function(item) {
+                                data.forEach(function (item) {
                                     if (item.personId === container.selectedItem.personId) {
                                         item.isSelected = true;
                                     }
@@ -3522,14 +3544,14 @@ var setUserVars = function() {
             /************************ "STATIC" METHODS ************************/
             this.containerClass = Container;
 
-            this.emptySelector = function(opt) {
+            this.emptySelector = function (opt) {
                 var c = kendo.observable(new Container(opt));
                 c.setDataSource(new kendo.data.DataSource({ data: [] }));
 
                 return c;
             };
 
-            this.patientsSelector = function(opt) {
+            this.patientsSelector = function (opt) {
                 opt.tabindex = 1;
                 var c = kendo.observable(new Container(opt));
                 var ds = createPatientsDS(c);
@@ -3538,7 +3560,7 @@ var setUserVars = function() {
                 return c;
             };
 
-            this.cliniciansSelector = function(opt) {
+            this.cliniciansSelector = function (opt) {
                 opt.tabindex = 2;
                 var c = kendo.observable(new Container(opt));
                 var ds = createCliniciansDS(c);
@@ -3547,7 +3569,7 @@ var setUserVars = function() {
                 return c;
             };
 
-            this.familyGroupSelector = function(opt) {
+            this.familyGroupSelector = function (opt) {
                 opt.tabindex = 1;
                 var c = kendo.observable(new Container(opt));
                 var ds = createFamilyGroupDS(c);
@@ -3560,7 +3582,7 @@ var setUserVars = function() {
             //     return patientsSelector(opt)
             // }
 
-            this.convertPersonToSelectorItem = function(person, id, personType, speciality) {
+            this.convertPersonToSelectorItem = function (person, id, personType, speciality) {
                 var item = {
                     id: id || null,
                     personId: person.id,
@@ -3584,14 +3606,14 @@ var setUserVars = function() {
         }).singleton();
 }(jQuery, snap, kendo));
 
-(function($, snap) {
+(function ($, snap) {
     "use strict";
-    snap.namespace("snap.service").using(["snapHttp"]).define("availabilityBlockService", function($http) {
+    snap.namespace("snap.service").using(["snapHttp"]).define("availabilityBlockService", function ($http) {
         var abApiUrl = snap.baseUrl + "/api/v2.1/clinicians/availability-blocks",
             apptApiUrl = snap.baseUrl + "/api/v2.1/clinicians/appointments";
         var codeSetsDS = new snap.dataSource.codeSetDataSourceWrapper(["consultprimaryconcerns", "consultsecondaryconcerns"]);
 
-        this.getAvailabilityBlocks = function(opt) {
+        this.getAvailabilityBlocks = function (opt) {
             var path = abApiUrl;
 
             return $http.get(path, {
@@ -3601,13 +3623,13 @@ var setUserVars = function() {
             });
         };
 
-        this.getSingleAvailabilityBlock = function(blockId) {
+        this.getSingleAvailabilityBlock = function (blockId) {
             var path = [abApiUrl, blockId].join("/");
 
             return $http.get(path);
         };
 
-        this.addAvailabilityBlock = function(block) {
+        this.addAvailabilityBlock = function (block) {
             var path = abApiUrl;
 
             return $.ajax({
@@ -3620,7 +3642,7 @@ var setUserVars = function() {
 
         };
 
-        this.updateAvailabilityBlock = function(block, blockId) {
+        this.updateAvailabilityBlock = function (block, blockId) {
             var path = [abApiUrl, blockId].join("/");
 
             return $.ajax({
@@ -3632,7 +3654,7 @@ var setUserVars = function() {
             });
         };
 
-        this.deleteAvailabilityBlock = function(blockId) {
+        this.deleteAvailabilityBlock = function (blockId) {
             var path = [abApiUrl, blockId].join("/");
 
             return $.ajax({
@@ -3643,7 +3665,7 @@ var setUserVars = function() {
             });
         };
 
-        this.deleteAvailabilityBlockRule = function(blockId, ruleId) {
+        this.deleteAvailabilityBlockRule = function (blockId, ruleId) {
             var path = [abApiUrl, blockId, "rule", ruleId].join("/");
 
             return $.ajax({
@@ -3654,37 +3676,37 @@ var setUserVars = function() {
             });
         };
 
-        this.getAvailabilityBlockClinician = function(blockId) {
+        this.getAvailabilityBlockClinician = function (blockId) {
             var path = [abApiUrl, blockId, "clinicians"].join("/");
 
             return $http.get(path);
         };
 
-        this.getAppointmentsForClinician = function(opt) {
+        this.getAppointmentsForClinician = function (opt) {
             var path = apptApiUrl;
 
             return $http.get(path, opt);
         };
 
-        this.getAppointmentsForPatient = function(opt) {
+        this.getAppointmentsForPatient = function (opt) {
             return $http.get(snap.baseUrl + "/api/v2.1/patients/filtered-appointments", opt);
         };
 
 
-        this.getAppointment = function(apptId) {
+        this.getAppointment = function (apptId) {
             var path = [apptApiUrl, apptId].join("/");
 
             return $http.get(path);
         };
 
-        this.getAppointmentForpatient = function(apptId) {
+        this.getAppointmentForpatient = function (apptId) {
             var path = [snap.baseUrl + "/api/v2.1/patients/appointments", apptId].join("/");
 
             return $http.get(path);
         };
 
         /************************ Appointments *************************/
-        this.addAppointment = function(appt) {
+        this.addAppointment = function (appt) {
             var path = apptApiUrl;
 
             return $.ajax({
@@ -3696,7 +3718,7 @@ var setUserVars = function() {
             });
         };
 
-        this.updateAppointment = function(appt, apptId) {
+        this.updateAppointment = function (appt, apptId) {
             var path = [apptApiUrl, apptId].join("/");
 
             return $.ajax({
@@ -3708,7 +3730,7 @@ var setUserVars = function() {
             });
         };
 
-        this.deleteAppointment = function(apptId) {
+        this.deleteAppointment = function (apptId) {
             var path = [apptApiUrl, apptId].join("/");
 
             return $.ajax({
@@ -3720,13 +3742,13 @@ var setUserVars = function() {
         };
 
         /************************ COVERAGES *************************/
-        this.getCoverageBlocks = function(filters) {
+        this.getCoverageBlocks = function (filters) {
             var dfd = $.Deferred();
             if (filters.type !== "all") {
-                $http.get(snap.baseUrl + '/api/v2.1/clinicians/availability-blocks/coverage', filters).done(function(coverageBlocks) {
+                $http.get(snap.baseUrl + '/api/v2.1/clinicians/availability-blocks/coverage', filters).done(function (coverageBlocks) {
                     var blocks = extendBlockArrayWithType(coverageBlocks.data, filters.type);
                     dfd.resolve({ data: blocks, total: blocks.length });
-                }).fail(function() {
+                }).fail(function () {
                     dfd.reject();
                 });
             } else {
@@ -3735,7 +3757,7 @@ var setUserVars = function() {
                     $http.get(snap.baseUrl + '/api/v2.1/clinicians/availability-blocks/coverage', $.extend({}, filters, { type: "patientScheduled" })),
                     $http.get(snap.baseUrl + '/api/v2.1/clinicians/availability-blocks/coverage', $.extend({}, filters, { type: "adminScheduled" })),
                     $http.get(snap.baseUrl + '/api/v2.1/clinicians/availability-blocks/coverage', $.extend({}, filters, { type: "unavailable" }))
-                ).done(function(onDemand, patientScheduled, adminScheduled, unavailable) {
+                ).done(function (onDemand, patientScheduled, adminScheduled, unavailable) {
                     var blocks = [].concat(
                         extendBlockArrayWithType(onDemand[0].data, 'onDemand'),
                         extendBlockArrayWithType(patientScheduled[0].data, 'patientScheduled'),
@@ -3743,7 +3765,7 @@ var setUserVars = function() {
                         extendBlockArrayWithType(unavailable[0].data, 'unavailable')
                     );
                     dfd.resolve({ data: blocks, total: blocks.length });
-                }).fail(function() {
+                }).fail(function () {
                     dfd.reject();
                 });
             }
@@ -3751,7 +3773,7 @@ var setUserVars = function() {
             return dfd.promise();
 
             function extendBlockArrayWithType(coverageBlocks, coverageBlockType) {
-                return coverageBlocks.map(function(item) {
+                return coverageBlocks.map(function (item) {
                     return $.extend({}, item, { type: coverageBlockType });
                 });
             }
@@ -3759,7 +3781,7 @@ var setUserVars = function() {
 
         /************************ ENCOUNTER DIALOG *************************/
 
-        this.saveEncounterDocument = function(encDoc) {
+        this.saveEncounterDocument = function (encDoc) {
             var path = snap.baseUrl + "/api/v2.1/clinicians/documentencounter";
 
             return $.ajax({
@@ -3772,9 +3794,9 @@ var setUserVars = function() {
         };
 
         /************************ CONCERNS **************************/
-        this.getPrimaryConcerns = function() {
+        this.getPrimaryConcerns = function () {
             var def = $.Deferred();
-            codeSetsDS.getItemIdByName("primary", snap.hospitalSession.hospitalId, "other").done(function(codeId) {
+            codeSetsDS.getItemIdByName("primary", snap.hospitalSession.hospitalId, "other").done(function (codeId) {
                 if (codeId !== null) {
                     def.resolve(codeSetsDS.getCodeSetDataSourceReplacingNames(
                         "primary",
@@ -3797,9 +3819,9 @@ var setUserVars = function() {
             return def.promise();
         };
 
-        this.getSecondaryConcerns = function() {
+        this.getSecondaryConcerns = function () {
             var def = $.Deferred();
-            codeSetsDS.getItemIdByName("secondary", snap.hospitalSession.hospitalId, "other").done(function(codeId) {
+            codeSetsDS.getItemIdByName("secondary", snap.hospitalSession.hospitalId, "other").done(function (codeId) {
                 if (codeId !== null) {
                     def.resolve(codeSetsDS.getCodeSetDataSourceReplacingNames(
                         "secondary",
@@ -3822,7 +3844,7 @@ var setUserVars = function() {
         };
 
         /************************ PERSON **************************/
-        this.getPatientList = function(providerId, searchText, take, skip) {
+        this.getPatientList = function (providerId, searchText, take, skip) {
             var path = [snap.baseUrl + "/api/v2.1/providers", providerId, "patients"].join("/");
             var parameters = {
                 take: take,
@@ -3834,19 +3856,19 @@ var setUserVars = function() {
             return $http.get(path, parameters);
         };
 
-        this.getClinicianList = function(providerId) {
+        this.getClinicianList = function (providerId) {
             var path = [snap.baseUrl + "/api/v2.1/providers", providerId, "clinicians"].join("/");
 
             return $http.get(path);
         };
 
-        this.getAllStaffAccountsForScheduling = function(providerId) {
+        this.getAllStaffAccountsForScheduling = function (providerId) {
             var path = [snap.baseUrl + "/api/v2.1/providers/", providerId, "/clinicians?roleFunctions=", snap.security.conduct_virtual_consultations].join("");
 
             return $http.get(path);
         };
 
-        this.getPersonByEmail = function(email, userType) {
+        this.getPersonByEmail = function (email, userType) {
             var path = snap.baseUrl + "/api/v2.1/people?email=" + email;
 
             if (userType) {
@@ -3856,11 +3878,11 @@ var setUserVars = function() {
             return $http.get(path);
         };
 
-        this.getUserCurrentTime = function() {
+        this.getUserCurrentTime = function () {
             return $http.get(snap.baseUrl + "/api/v2.1/users/current-time");
         };
 
-        this.getPatientProfile = function(providerId, patientId) {
+        this.getPatientProfile = function (providerId, patientId) {
             var path = [snap.baseUrl + "/api/v2.1/providers", providerId, "patients", patientId].join("/");
 
             return $.ajax({
@@ -3892,17 +3914,17 @@ var setUserVars = function() {
                 dataType: "json"
             });
         };
-      /*  this.getPatientProfilesForPatient = function(patientId) {
-            var path = [snap.baseUrl + "/api/v2/patients/profiles", patientId].join("/");
-
-            return $.ajax({
-                type: "GET",
-                url: path,
-                contentType: "application/json; charset=utf-8",
-                dataType: "json"
-            });
-        };*/
-        this.getClinicianProfile = function(providerId, clinicianId) {
+        /*  this.getPatientProfilesForPatient = function(patientId) {
+              var path = [snap.baseUrl + "/api/v2/patients/profiles", patientId].join("/");
+  
+              return $.ajax({
+                  type: "GET",
+                  url: path,
+                  contentType: "application/json; charset=utf-8",
+                  dataType: "json"
+              });
+          };*/
+        this.getClinicianProfile = function (providerId, clinicianId) {
             var path = [snap.baseUrl + "/api/v2.1/providers", providerId, "users", clinicianId, "clinician/person"].join("/");
 
             return $.ajax({
@@ -3912,11 +3934,11 @@ var setUserVars = function() {
                 dataType: "json",
             });
         };
-        this.convertTime = function(opt) {
+        this.convertTime = function (opt) {
             var path = snap.baseUrl + "/api/v2.1/convert-time";
             return $http.get(path, opt);
         };
-        this.getTimeZones = function() {
+        this.getTimeZones = function () {
             var path = snap.baseUrl + "/api/v2/timezones";
             return $http.get(path);
         };
@@ -3924,16 +3946,16 @@ var setUserVars = function() {
     }).singleton();
 }(jQuery, window.snap = window.snap || {}));
 snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.selfSchedulingService", "snap.common.schedule.ScheduleCommon"])
-    .define("familyGroupDataSource", function($snapNotification, $selfSchedulingService, $scheduleCommon) {
+    .define("familyGroupDataSource", function ($snapNotification, $selfSchedulingService, $scheduleCommon) {
 
         function CachedDS(items) {
             var localItems = items;
 
-            this.selectById = function(id) {
+            this.selectById = function (id) {
                 return selectBy(id, "id");
             };
 
-            this.selectByPersonId = function(personId) {
+            this.selectByPersonId = function (personId) {
                 return selectBy(personId, "personId");
             };
 
@@ -3952,12 +3974,12 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
         function LocalDS(items) {
             CachedDS.call(this, items);
             var localItems = items;
-            this.selectByName = function(name) {
+            this.selectByName = function (name) {
                 var filtered;
-                if (typeof(name) === "undefined" || name === null || name === "") {
+                if (typeof (name) === "undefined" || name === null || name === "") {
                     filtered = localItems;
                 } else {
-                    filtered = localItems.filter(function(item) {
+                    filtered = localItems.filter(function (item) {
                         return name === "" || item.name.toLowerCase().indexOf(name.toLowerCase()) > -1;
                     });
                 }
@@ -3969,22 +3991,22 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
         }
 
         function DS() {
-            this.read = function(nameFilter) {
+            this.read = function (nameFilter) {
 
                 var dfd = $.Deferred();
 
-                this._getDS(nameFilter).done(function(ds) {
+                this._getDS(nameFilter).done(function (ds) {
                     dfd.resolve(ds.selectByName(nameFilter));
                 });
 
                 return dfd.promise();
             };
 
-            this.selectById = function(id) {
+            this.selectById = function (id) {
                 var df = $.Deferred();
 
                 if (id) {
-                    this._getDS().done(function(ds) {
+                    this._getDS().done(function (ds) {
                         df.resolve(ds.selectById(id));
                     });
                 } else {
@@ -3994,11 +4016,11 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 return df.promise();
             };
 
-            this.selectByPersonId = function(id) {
+            this.selectByPersonId = function (id) {
                 var df = $.Deferred();
 
                 if (id) {
-                    this._getDS().done(function(ds) {
+                    this._getDS().done(function (ds) {
                         df.resolve(ds.selectByPersonId(id));
                     });
                 } else {
@@ -4008,7 +4030,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 return df.promise();
             };
 
-            this.getLocalDS = function() {
+            this.getLocalDS = function () {
                 return this._getDS();
             };
         }
@@ -4019,11 +4041,11 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
              *************************************************************/
             DS.call(this);
 
-            this._getDS = function() {
+            this._getDS = function () {
                 var dfd = $.Deferred();
-                $selfSchedulingService.getFamillyGroup().done(function(resp) {
+                $selfSchedulingService.getFamillyGroup().done(function (resp) {
 
-                    var data = resp.data.map(function(patient) {
+                    var data = resp.data.map(function (patient) {
                         patient.person.providerId = patient.providerId;
                         return {
                             id: patient.patientId,
@@ -4041,32 +4063,32 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 return dfd.promise();
             };
         }
-        this.getfamilyGroupDataSource = function() {
+        this.getfamilyGroupDataSource = function () {
             return new FamillyGroupDS();
         }
     });
 //@ sourceURL=timeUtils.js
 
-(function($, snap) {
+(function ($, snap) {
     "use strict";
     snap.namespace("snap.admin.schedule").use([])
-        .define("TimeUtils", function() {
-            this.addDays = function(date, days) {
+        .define("TimeUtils", function () {
+            this.addDays = function (date, days) {
                 var result = new Date(date);
                 result.setDate(result.getDate() + days);
                 return result;
             };
 
-            this.addMinutes = function(date, minutes) {
+            this.addMinutes = function (date, minutes) {
                 return new Date(date.getTime() + minutes * 60000);
             };
 
             /********************** SnapTime format: "2016-04-05T14:00:00+02:00" *********************************/
-            this.extractDatePartFromSnapDateString = function(snapDateString) {
+            this.extractDatePartFromSnapDateString = function (snapDateString) {
                 return snapDateString.slice(0, 19) + "Z"; //we need 'Z' in order to have the same data in Chrome and FF.
             };
 
-            this.dateFromSnapDateString = function(snapDateString) {
+            this.dateFromSnapDateString = function (snapDateString) {
                 var year = snapDateString.slice(0, 4); // - 1900;
                 var month = snapDateString.slice(5, 7) - 1;
                 var day = snapDateString.slice(8, 10);
@@ -4075,7 +4097,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 return new Date(year, month, day, hours, min);
             };
 
-            this.dateToString = function(snapDateObject) {
+            this.dateToString = function (snapDateObject) {
                 var year = snapDateObject.getFullYear();
                 var month = ('0' + (snapDateObject.getMonth() + 1)).slice(-2);
                 var day = ('0' + snapDateObject.getDate()).slice(-2);
@@ -4084,7 +4106,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 return year + '-' + month + '-' + day + 'T' + hours + ':' + min;
             };
 
-            this.parseTimeInterval = function(timeIntervalInSeconds) {
+            this.parseTimeInterval = function (timeIntervalInSeconds) {
                 // does the same job as parseInt truncates the float
                 var hours = (timeIntervalInSeconds / 3600) | 0;
                 var minutes = ((timeIntervalInSeconds % 3600) / 60) | 0;
@@ -4101,7 +4123,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                         minutes: minutes < 10 ? "0" + minutes : minutes,
                         seconds: seconds < 10 ? "0" + seconds : seconds,
                     },
-                    toString: function() {
+                    toString: function () {
                         return [this.formatted.hours, this.formatted.minutes, this.formatted.seconds].join(":");
                     }
                 };
@@ -4109,11 +4131,11 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
 
         }).singleton();
 }(jQuery, window.snap = window.snap || {}));
-(function($, snap, kendo) {
+(function ($, snap, kendo) {
     "use strict";
 
     snap.namespace("snap.common.schedule").use(["snapNotification"])
-        .define("ScheduleCommon", function($snapNotification) {
+        .define("ScheduleCommon", function ($snapNotification) {
 
             /************************ START Timezone ***************************/
             //This functionality check that we have timeZoneSystemId.
@@ -4126,17 +4148,17 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                     url: snap.baseUrl + "/api/v2.1/users/current-time",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                }).done(function(response) {
+                }).done(function (response) {
                     var timeZone = response.message;
                     snap.userSession.timeZoneSystemId = timeZone;
                     snap.updateSnapJsSession("snap_user_session", "timeZoneSystemId", timeZone);
-                }).fail(function() {
+                }).fail(function () {
                     $snapNotification.error("Error. Time zone info missied");
                 });
             }
             /************************ END Timezone ***************************/
 
-            this.findParticipant = function(participants, participantTypeCode) {
+            this.findParticipant = function (participants, participantTypeCode) {
                 if (participants) {
                     for (var j = 0; j < participants.length; j++) {
                         if (participants[j] && participants[j].participantTypeCode === participantTypeCode && (typeof participants[j].status === "undefined" || participants[j].status === 1)) {
@@ -4148,15 +4170,15 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 return null;
             };
 
-            this.findProvider = function(participants) {
+            this.findProvider = function (participants) {
                 return this.findParticipant(participants, this.participantTypeCode.practicioner);
             };
 
-            this.findPatient = function(participants) {
+            this.findPatient = function (participants) {
                 return this.findParticipant(participants, this.participantTypeCode.patient);
             };
 
-            this.getFullName = function(person) {
+            this.getFullName = function (person) {
                 var fullName = "";
                 if (person && person.name) {
                     var nameParts = [];
@@ -4175,7 +4197,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 return fullName;
             };
 
-            this.getPhoneNumber = function(person) {
+            this.getPhoneNumber = function (person) {
                 var phoneTypesPriority = ["home", "work", "other", "old", "temp"];
 
                 if (person && person.phones && person.phones.length) {
@@ -4192,7 +4214,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 return "";
             };
 
-            this.getSpeciality = function(speciality) {
+            this.getSpeciality = function (speciality) {
                 if (!isEmpty(speciality)) {
                     var arr = [];
 
@@ -4269,26 +4291,26 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 otherPrimary: -1,
                 otherSecondary: -2
             };
-            this.isAppointmentFulfilled = function(status) {
-                if (typeof(status) === "string") {
+            this.isAppointmentFulfilled = function (status) {
+                if (typeof (status) === "string") {
                     return status === this.appointmentStatus.fulfilled;
                 }
                 return status === this.appointmentStatusCode.fulfilled;
             }
-            this.isAppointmentReadOnly = function(status) {
-                if (typeof(status) === "string") {
+            this.isAppointmentReadOnly = function (status) {
+                if (typeof (status) === "string") {
                     return [this.appointmentStatus.scheduled, this.appointmentStatus.transferred].indexOf(status) === -1;
                 }
                 return [this.appointmentStatusCode.scheduled, this.appointmentStatusCode.transferred].indexOf(status) === -1;
             };
-            this.isAppointmentInWaiting = function(status) {
-                if (typeof(status) === "string") {
+            this.isAppointmentInWaiting = function (status) {
+                if (typeof (status) === "string") {
                     return status === this.appointmentStatus.waiting;
                 }
                 return status === this.appointmentStatusCode.waiting;
             };
 
-            this.handleDataSourceError = function(e, dsName) {
+            this.handleDataSourceError = function (e, dsName) {
                 if (!snap.isUnloading) {
                     var errorMessage = dsName + " error. ";
                     if (e.errorThrown === "Unauthorized") {
@@ -4306,30 +4328,30 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
 }(jQuery, snap, kendo));
 //@ sourceURL=apptSlotsTray.viewmodel.js
 
-(function($, snap, kendo) {
+(function ($, snap, kendo) {
     "use strict";
 
     snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.EventAggregator", "snap.admin.schedule.TimeUtils", "snap.service.userService", "snap.patient.schedule.patientSelfSchedulingHub"])
-        .define("apptsSlotsTray", function($snapNotification, $eventAggregator, $timeUtils, $userService, $patientSelfSchedulingHub) {
+        .define("apptsSlotsTray", function ($snapNotification, $eventAggregator, $timeUtils, $userService, $patientSelfSchedulingHub) {
             var defaultCard = {
                 slots: []
             };
 
-            var Singleton = (function() {
+            var Singleton = (function () {
                 var currentUserTime = null;
 
                 getTime();
-                setInterval(function() {
+                setInterval(function () {
                     getTime();
                 }, 60000);
 
                 function getTime() {
                     var dfd = $.Deferred();
 
-                    $userService.getUserCurrentTime().done(function(response) {
+                    $userService.getUserCurrentTime().done(function (response) {
                         currentUserTime = $timeUtils.dateFromSnapDateString(response.data[0]);
                         dfd.resolve();
-                    }).fail(function() {
+                    }).fail(function () {
                         $snapNotification.error("Can not get current user time");
                     });
 
@@ -4337,7 +4359,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 }
 
                 return {
-                    getCurrentTime: function() {
+                    getCurrentTime: function () {
                         if (currentUserTime === null) {
                             window.console.error("currentUserTime is null");
                         }
@@ -4345,7 +4367,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                         return new Date(currentUserTime);
                     },
 
-                    getCurrentDate: function() {
+                    getCurrentDate: function () {
                         var currentDate = this.getCurrentTime();
                         currentDate.setHours(0, 0, 0, 0);
 
@@ -4387,11 +4409,11 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 var trayModel = this;
 
                 this.userId = clinicianCard.userId;
-                this.slots = clinicianCard.slots.map(function(s) {
+                this.slots = clinicianCard.slots.map(function (s) {
                     return new Slot(s, clinicianCard.userId, trayModel.userSelectedDate, slotClickCallback);
                 });
 
-                this.vm_slots = function() {
+                this.vm_slots = function () {
                     var slots = getFilteredSlots(this.slots, this.userSelectedDate);
 
                     if (slots.length > 0) {
@@ -4412,15 +4434,15 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                     return slots;
                 };
 
-                this.vm_isEmpty = function() {
+                this.vm_isEmpty = function () {
                     return getFilteredSlots(this.slots, this.userSelectedDate).length === 0;
                 };
 
-                this.vm_onNextButtuonClick = function() {
+                this.vm_onNextButtuonClick = function () {
                     snapInfo("Not implemented yet!!!");
                 };
 
-                this.vm_getNextApptSlotInfo = function() {
+                this.vm_getNextApptSlotInfo = function () {
                     var nextDay = getClosestNextSlotDate(this.slots);
 
                     if (nextDay) {
@@ -4430,14 +4452,14 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                     return "There is no slots for Self-Scheduling";
                 };
 
-                this.vm_goToNextDate = function() {
+                this.vm_goToNextDate = function () {
                     snapInfo("Not implemented yet");
                 };
 
                 function getFilteredSlots(slots, userSelectedDate) {
                     var currentTime = Singleton.getCurrentTime();
 
-                    return slots.filter(function(slot) {
+                    return slots.filter(function (slot) {
                         return isSlotHasRightTime(slot, currentTime, userSelectedDate);
                     });
                 }
@@ -4445,12 +4467,12 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 function getClosestNextSlotDate(slots) {
                     var currentDate = trayModel.userSelectedDate;
 
-                    var dates = slots.filter(function(slot) {
+                    var dates = slots.filter(function (slot) {
                         var slotDate = new Date(slot.from);
                         slotDate.setHours(0, 0, 0, 0);
 
                         return slotDate > currentDate;
-                    }).map(function(slot) {
+                    }).map(function (slot) {
                         return slot.from;
                     });
 
@@ -4495,7 +4517,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 this.availabilityBlockId = slot.availabilityBlockId;
 
                 this.vm_isInvisible = false;
-                this.vm_onSlotClick = function() {
+                this.vm_onSlotClick = function () {
                     debugger;
                     slotClickCallback({ clinicianId: clinicianUserId, start: new Date(this.from), end: new Date(this.to), availabilityBlockId: this.availabilityBlockId, isNow: this.isNow });
                     $eventAggregator.published("slotTray_slotClickCallback");
@@ -4503,15 +4525,15 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
 
                 this.isNow = false;
 
-                this.formatedTime = function() {
+                this.formatedTime = function () {
                     return this.isNow ? "Now" : kendo.toString(this.from, "t");
                 };
 
-                this.hide = function() {
+                this.hide = function () {
                     this.set("vm_isInvisible", true);
                 };
 
-                this.show = function() {
+                this.show = function () {
                     this.set("vm_isInvisible", false);
                 };
             }
@@ -4519,11 +4541,11 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
             function NextSlot(userId, nextDate) {
                 this.vm_isVisible = true;
 
-                this.formatedTime = function() {
+                this.formatedTime = function () {
                     return "Next";
                 };
 
-                this.vm_onSlotClick = function() {
+                this.vm_onSlotClick = function () {
                     $eventAggregator.published("slotTray_goToDate", {
                         nextDate: nextDate,
                         userId: userId
@@ -4531,23 +4553,23 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 };
             }
 
-            this.createTimeSlotsTray = function(clinicianCard, userSelectedDate, slotClickCallback) {
+            this.createTimeSlotsTray = function (clinicianCard, userSelectedDate, slotClickCallback) {
                 var tray = $.extend(true, {}, defaultCard, clinicianCard);
-                return kendo.observable(new Tray(tray, userSelectedDate, slotClickCallback || function() {}));
+                return kendo.observable(new Tray(tray, userSelectedDate, slotClickCallback || function () { }));
             };
         }).singleton();
 }(jQuery, snap, kendo));
-(function($, snap) {
+(function ($, snap) {
     "use strict";
-    snap.namespace("snap.service").using(["snapHttp"]).define("userService", function($http) {
-        this.getUserCurrentTime = function() {
+    snap.namespace("snap.service").using(["snapHttp"]).define("userService", function ($http) {
+        this.getUserCurrentTime = function () {
             setUserVars();
-            return $http.get(snap.baseUrl + "/api/v2.1/users/current-time").fail(function() {
+            return $http.get(snap.baseUrl + "/api/v2.1/users/current-time").fail(function () {
                 snap.redirectToLogin();
             });
         };
 
-        this.getUserTimeZoneId = function() {
+        this.getUserTimeZoneId = function () {
             setUserVars();
             return $http.get(snap.baseUrl + "/api/v2.1/users/current-time");
         };
@@ -4555,12 +4577,12 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
 }(jQuery, window.snap = window.snap || {}));
 //@ sourceURL=patientSelfSchedulingHub.js
 
-(function($, snap, kendo) {
+(function ($, snap, kendo) {
     "use strict";
 
     snap.namespace("snap.patient.schedule")
         .use(["snap.admin.schedule.TimeUtils", "snap.hub.mainHub", "snap.hub.hubModel"])
-        .define("patientSelfSchedulingHub", function($timeUtils, $mainHub, $hubModel) {
+        .define("patientSelfSchedulingHub", function ($timeUtils, $mainHub, $hubModel) {
             var scope = this,
                 hubListeningDate = null,
                 isHubInitiated = false,
@@ -4569,35 +4591,35 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
             var patientSelfSchedulingHub = $.connection.patientSelfSchedulingHub;
             $hubModel._initModel(patientSelfSchedulingHub, this);
 
-            var initEvent = function() {
-                patientSelfSchedulingHub.client.lockSlot = function(data, from, to) {
+            var initEvent = function () {
+                patientSelfSchedulingHub.client.lockSlot = function (data, from, to) {
                     scope.triggerEvent("lockSlot", data, from, to);
                 };
 
-                patientSelfSchedulingHub.client.unlockSlot = function(data, from, to) {
+                patientSelfSchedulingHub.client.unlockSlot = function (data, from, to) {
                     scope.triggerEvent("unlockSlot", data, from, to);
                 };
 
-                patientSelfSchedulingHub.client.bookSlot = function(data, from, to) {
+                patientSelfSchedulingHub.client.bookSlot = function (data, from, to) {
                     scope.triggerEvent("bookSlot", data, from, to);
                 };
             };
 
-            this.init = function() {
+            this.init = function () {
                 if (isHubInitiated) {
                     return;
                 }
 
                 isHubInitiated = true; //hub was initiated.
 
-                if (patientSelfSchedulingHub === null || typeof(patientSelfSchedulingHub) === "undefined") {
+                if (patientSelfSchedulingHub === null || typeof (patientSelfSchedulingHub) === "undefined") {
                     window.console.error("$consulationHub script is not included");
                 }
 
                 initEvent();
             };
 
-            this.start = function(token, timeZoneSystemId, dateForListening) {
+            this.start = function (token, timeZoneSystemId, dateForListening) {
                 if (isHubStarted) {
                     return;
                 }
@@ -4618,20 +4640,20 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
             //     $.connection.hub.qs["Date"] = date;
             // }
 
-            this.lockSlot = function(availabilityBlockId, from, to) {
+            this.lockSlot = function (availabilityBlockId, from, to) {
                 return patientSelfSchedulingHub.server.lockSlot(availabilityBlockId, from, to);
             };
 
-            this.unlockSlot = function(availabilityBlockId, from, to) {
+            this.unlockSlot = function (availabilityBlockId, from, to) {
                 return patientSelfSchedulingHub.server.unlockSlot(availabilityBlockId, from, to);
             };
 
-            this.bookSlot = function(availabilityBlockId, from, to) {
+            this.bookSlot = function (availabilityBlockId, from, to) {
                 return patientSelfSchedulingHub.server.bookSlot(availabilityBlockId, from, to);
             };
 
             //Hub listen specific date, this method change date which is currently listening.
-            this.changeHubListeningDate = function(dateForListening) {
+            this.changeHubListeningDate = function (dateForListening) {
                 hubListeningDate = dateForListening;
                 $.connection.hub.qs["Date"] = $timeUtils.dateToString(dateForListening);
 
@@ -4639,21 +4661,21 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
             };
 
             //Hub listen specific date, this method return date which is currently listening.
-            this.getHubListeningDate = function() {
+            this.getHubListeningDate = function () {
                 return new Date(hubListeningDate);
             };
 
             //Hub implemented as singleton because current backend hub implementation do not allow to have several hubs for a single page.
             //this metthod provide information about Hub state, was it initiated or not.
-            this.isHubInitiated = function() {
+            this.isHubInitiated = function () {
                 return isHubInitiated;
             };
 
-            this.isHubStarted = function() {
+            this.isHubStarted = function () {
                 return isHubStarted;
             };
 
-            this.markAsStarted = function(value) {
+            this.markAsStarted = function (value) {
                 isHubStarted = !!value;
             };
 
@@ -4662,33 +4684,33 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
 
 //@ sourceURL=providersSlotsLocator.js
 
-(function($, snap) {
+(function ($, snap) {
     "use strict";
 
     snap.namespace("snap.patient.schedule")
         .use(["snapNotification", "snap.admin.schedule.TimeUtils", "snap.patient.schedule.patientSelfSchedulingHub", "snap.service.userService",
             "snap.hub.mainHub"
         ])
-        .define("providersSlotsLocator", function($snapNotification, $timeUtils, $patientSelfSchedulingHub, $userService, $mainHub) {
+        .define("providersSlotsLocator", function ($snapNotification, $timeUtils, $patientSelfSchedulingHub, $userService, $mainHub) {
             var lockedSlotsList = new SlotList();
 
-            $patientSelfSchedulingHub.on("start", function() {
+            $patientSelfSchedulingHub.on("start", function () {
                 window.console.log("patientSelfSchedulingHub started");
             });
 
-            $patientSelfSchedulingHub.on("lockSlot", function(availabilityBlockId, from, to) {
+            $patientSelfSchedulingHub.on("lockSlot", function (availabilityBlockId, from, to) {
                 window.console.log("lockSlot:" + availabilityBlockId + " time: " + from);
 
                 lockedSlotsList.addSlot(convertToSlot(availabilityBlockId, from, to));
             });
 
-            $patientSelfSchedulingHub.on("unlockSlot", function(availabilityBlockId, from, to) {
+            $patientSelfSchedulingHub.on("unlockSlot", function (availabilityBlockId, from, to) {
                 window.console.log("unlockSlot:" + availabilityBlockId + " time: " + from);
 
                 lockedSlotsList.removeSlot(convertToSlot(availabilityBlockId, from, to));
             });
 
-            $patientSelfSchedulingHub.on("bookSlot", function(availabilityBlockId, from, to) {
+            $patientSelfSchedulingHub.on("bookSlot", function (availabilityBlockId, from, to) {
                 window.console.log("bookSlot:" + availabilityBlockId + " time: " + from);
 
                 lockedSlotsList.addSlot(convertToSlot(availabilityBlockId, from, to));
@@ -4704,7 +4726,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
 
             function setListeningDate(hubListeningDate) {
                 var dfd = $.Deferred();
-                if (typeof(hubListeningDate) === "undefined") {
+                if (typeof (hubListeningDate) === "undefined") {
                     hubListeningDate = new Date();
                 }
                 hubListeningDate.setHours(0, 0, 0, 0);
@@ -4712,18 +4734,18 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 if (!$patientSelfSchedulingHub.isHubInitiated()) {
                     $mainHub.register($patientSelfSchedulingHub);
 
-                    $userService.getUserTimeZoneId().done(function(response) {
-                      /*  $patientSelfSchedulingHub.start(
-                            snap.userSession.token,
-                            response.message,
-                            hubListeningDate);
-                        dfd.resolve();*/
+                    $userService.getUserTimeZoneId().done(function (response) {
+                        /*  $patientSelfSchedulingHub.start(
+                              snap.userSession.token,
+                              response.message,
+                              hubListeningDate);
+                          dfd.resolve();*/
 
                         $patientSelfSchedulingHub.start(
-                              snap.userSession.token,
-                              snap.userSession.timeZoneSystemId,
-                              hubListeningDate);
-                          dfd.resolve();
+                            snap.userSession.token,
+                            snap.userSession.timeZoneSystemId,
+                            hubListeningDate);
+                        dfd.resolve();
 
                     });
                 } else if ($patientSelfSchedulingHub.isHubStarted() && $patientSelfSchedulingHub.getHubListeningDate().getTime() !== hubListeningDate.getTime()) {
@@ -4739,7 +4761,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
             function SlotList() {
                 var slotsDictionary = {};
 
-                this.addSlot = function(slot) {
+                this.addSlot = function (slot) {
                     if (this.findSlot(slot) === null) {
                         if (!(slot.availabilityBlockId in slotsDictionary)) {
                             slotsDictionary[slot.availabilityBlockId] = [];
@@ -4749,7 +4771,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                     }
                 };
 
-                this.removeSlot = function(slot) {
+                this.removeSlot = function (slot) {
                     slot = this.findSlot(slot);
                     if (slot) {
                         var slotindex = slotsDictionary[slot.availabilityBlockId].indexOf(slot);
@@ -4757,7 +4779,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                     }
                 };
 
-                this.findSlot = function(slot) {
+                this.findSlot = function (slot) {
                     if (slot.availabilityBlockId in slotsDictionary) {
                         var blockSlots = slotsDictionary[slot.availabilityBlockId];
 
@@ -4771,7 +4793,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                     return null;
                 };
 
-                this.clear = function() {
+                this.clear = function () {
                     slotsDictionary = {};
                 };
             }
@@ -4779,37 +4801,37 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
             function ProvidersSlotsLocator() {
                 var uiSlotsList = new SlotList();
 
-                $patientSelfSchedulingHub.on("lockSlot", function(availabilityBlockId, from, to) {
+                $patientSelfSchedulingHub.on("lockSlot", function (availabilityBlockId, from, to) {
                     var uiSlot = uiSlotsList.findSlot(convertToSlot(availabilityBlockId, from, to));
                     if (uiSlot) {
                         uiSlot.hide();
                     }
                 });
 
-                $patientSelfSchedulingHub.on("unlockSlot", function(availabilityBlockId, from, to) {
+                $patientSelfSchedulingHub.on("unlockSlot", function (availabilityBlockId, from, to) {
                     var uiSlot = uiSlotsList.findSlot(convertToSlot(availabilityBlockId, from, to));
                     if (uiSlot) {
                         uiSlot.show();
                     }
                 });
 
-                $patientSelfSchedulingHub.on("bookSlot", function(availabilityBlockId, from, to) {
+                $patientSelfSchedulingHub.on("bookSlot", function (availabilityBlockId, from, to) {
                     var uiSlot = uiSlotsList.findSlot(convertToSlot(availabilityBlockId, from, to));
                     if (uiSlot) {
                         uiSlot.hide();
                     }
                 });
 
-                this.setSlots = function(slots, slotsDate) {
+                this.setSlots = function (slots, slotsDate) {
                     uiSlotsList.clear();
-                    slots.forEach(function(uiSlot) {
+                    slots.forEach(function (uiSlot) {
                         uiSlotsList.addSlot(uiSlot);
                     });
 
                     if ($patientSelfSchedulingHub.getHubListeningDate().getTime() !== slotsDate.getTime()) {
                         setListeningDate(slotsDate);
                     } else {
-                        slots.forEach(function(uiSlot) {
+                        slots.forEach(function (uiSlot) {
                             if (lockedSlotsList.findSlot(uiSlot)) {
                                 uiSlot.hide();
                             }
@@ -4818,41 +4840,41 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 };
             }
 
-            this.setListeningDate = function(hubListeningDate) {
+            this.setListeningDate = function (hubListeningDate) {
                 return setListeningDate(hubListeningDate);
             };
 
-            this.createSlotsLocator = function() {
+            this.createSlotsLocator = function () {
                 return new ProvidersSlotsLocator();
             };
         }).singleton();
 }(jQuery, snap));
-(function($, snap) {
+(function ($, snap) {
     "use strict";
 
-    snap.namespace("snap.common").define("loadingStack", function() {
+    snap.namespace("snap.common").define("loadingStack", function () {
         function Stack(onPush, onPop) {
             var waitStack = [],
                 pushCallback = onPush,
                 popCallback = onPop;
 
             function callIfStackIsEmpty(callback) {
-                if (waitStack.length === 0 && callback && typeof(callback.call) !== "undefined") {
+                if (waitStack.length === 0 && callback && typeof (callback.call) !== "undefined") {
                     callback.call();
                 }
             }
 
-            this.init = function(onPush, onPop) {
+            this.init = function (onPush, onPop) {
                 pushCallback = onPush;
                 popCallback = onPop;
             };
 
-            this.push = function() {
+            this.push = function () {
                 callIfStackIsEmpty(pushCallback);
                 waitStack.push({});
             };
 
-            this.pop = function() {
+            this.pop = function () {
                 if (waitStack.length === 0) {
                     return;
                 }
@@ -4861,7 +4883,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
             };
         }
 
-        this.newStack = function(onPush, onPop) {
+        this.newStack = function (onPush, onPop) {
             return new Stack(onPush, onPop);
         };
     }).singleton();
@@ -4874,7 +4896,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
 /// <reference path="../../core/utility.js" />
 
 ;
-(function($, snap, kendo) {
+(function ($, snap, kendo) {
     "use strict";
     snap.namespace("Snap.Patient")
         .use(["snapNotification", "snapHttp", "snapLoader", "eventaggregator", "snap.DataService.customerDataService", "snap.service.appointmentService",
@@ -4884,7 +4906,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
             "snap.common.dialogWindow", "snap.common.timer", "snap.patient.patientResponseAddressDialog", "snap.common.utility", "snap.common.overlay"
         ])
         .extend(kendo.observable)
-        .define("PatientHomeNewViewModel", function($snapNotification, $snapHttp, $snapLoader, $eventAggregator, $service, $appointmentService, $availabilityBlockService,
+        .define("PatientHomeNewViewModel", function ($snapNotification, $snapHttp, $snapLoader, $eventAggregator, $service, $appointmentService, $availabilityBlockService,
             $mainHub, $consultationsListingHub, $creditHub, $patientHeaderVM, $notificationService,
             $reEnterConsultationDialog,
             $dialogWindow, $timer, $patientResponseAddressDialog, $utility, $overlay) {
@@ -4897,16 +4919,16 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
 
             var encounterTypeCode = snap.enums.EncounterTypeCode;
 
-            var hubStart = function() {
+            var hubStart = function () {
                 $mainHub.register($consultationsListingHub);
-                $consultationsListingHub.on('refreshConsultationsListings', function() {
+                $consultationsListingHub.on('refreshConsultationsListings', function () {
                     loadData();
                 });
                 $mainHub.register($creditHub);
-                $creditHub.on("onCreditChanged", function() {
+                $creditHub.on("onCreditChanged", function () {
                     $scope.checkForCredits();
                 });
-                $notificationService.on("message", function(messageType, message) {
+                $notificationService.on("message", function (messageType, message) {
                     var consultationId = +message;
                     console.debug("Message Type : " + messageType);
                     console.debug("Message value : " + consultationId);
@@ -4923,7 +4945,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                             $scope.patientObj.set("isInQueue", false);
                             $scope.patientObj.set("isInProgress", true);
                         } else {
-                            var consultationData = $scope.availableConsultation.find(function(item) {
+                            var consultationData = $scope.availableConsultation.find(function (item) {
                                 return item.consultationId == consultationId
                             });
                             if (consultationData) {
@@ -4942,7 +4964,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                         $snapNotification.success("Consultation is ended.");
                         $scope._hasActiveConsultation = false;
                         $scope.activeConsultationId = null;
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $scope.trigger("change", { field: "showMoreScheduledBlock" });
                         }, 500);
                         loadData();
@@ -4953,7 +4975,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                         $snapNotification.info("This consultation has been dismissed. If you feel this cancellation is in error, please contact your provider.");
                         $scope._hasActiveConsultation = false;
                         $scope.activeConsultationId = null;
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $scope.trigger("change", { field: "showMoreScheduledBlock" });
                         }, 500);
                         loadData();
@@ -4965,7 +4987,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                         $snapNotification.info("The Provider has marked your consultation as complete.");
                         $scope._hasActiveConsultation = false;
                         $scope.activeConsultationId = null;
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $scope.trigger("change", { field: "showMoreScheduledBlock" });
                         }, 500);
                         loadData();
@@ -4987,7 +5009,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 this.isTextType = false;
                 this.isInPersonType = false;
 
-                this._setEncounterType = function(typeCode) {
+                this._setEncounterType = function (typeCode) {
                     if (typeCode == encounterTypeCode.Video) {
                         this.isVideoType = true;
                     } else if (typeCode == encounterTypeCode.Phone) {
@@ -5033,27 +5055,27 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
             this.patientObj = null;
 
             this._hasActiveConsultation = false;
-            this.showMoreScheduledBlock = function() {
+            this.showMoreScheduledBlock = function () {
                 return this._hasActiveConsultation || this.scheduledConsultation.length > 0;
             };
             this.isOnDemandLoaded = false;
             this.isScheduledLoaded = false;
-            this.isLoading = function() {
+            this.isLoading = function () {
                 return !(this.get("isOnDemandLoaded") && this.get("isScheduledLoaded"));
             };
             this.isReadyState = false;
             this.isMoreScheduled = false;
-            this._updateCreditsVisibility = function() {
+            this._updateCreditsVisibility = function () {
                 $scope.set("isVisibleApptBadge", $scope.hasCredits && ($scope.isOnDemandAvailable || $scope.isSelfScheduleAvailable || $scope.hasScheduledConsult));
             };
-            this.onViewProfileClick = function(e) {
+            this.onViewProfileClick = function (e) {
                 sessionStorage.setItem('snap_patientId_ref', e.data.patientObj.id);
                 location.href = "/Customer/User";
 
                 e.preventDefault();
                 return false;
             };
-            this.titleScheduled = function() {
+            this.titleScheduled = function () {
 
                 var itemCount = this.get("scheduledConsultation").length - 1;
 
@@ -5063,34 +5085,34 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                     return ["There are <b>", itemCount, "</b> more appointments today "].join("");
                 }
             };
-            this.detailsBtn = function(e) {
+            this.detailsBtn = function (e) {
                 e.preventDefault();
                 sessionStorage.setItem("snap_tabName_ref", "Scheduled");
                 window.location.href = "/Customer/PatientConsultations";
             };
-            this.manageAccount = function() {
+            this.manageAccount = function () {
                 window.location.href = "/Customer/Users";
             };
-            this.searchProviders = function() {
+            this.searchProviders = function () {
                 window.location.href = "/Customer/Main/#/selfScheduling";
             };
             this.isOnDemandAvailable = false;
             this.isSelfScheduleAvailable = false;
             this.hasCredits = false;
-            this.isProviderAvailable = function() {
+            this.isProviderAvailable = function () {
                 $scope.set("isSelfScheduleAvailable", $patientHeaderVM.isSelfScheduleAvailable);
                 $scope._updateCreditsVisibility();
             };
-            this.callOnDemand = function() {
+            this.callOnDemand = function () {
                 if (kendo.support.mobileOS !== false) {
                     //snap.openMobileApp("", function() {
-                        $scope.startIntakeForm();
-                  //  });
-                  return;
+                    $scope.startIntakeForm();
+                    //  });
+                    return;
                 }
                 this.startIntakeForm();
             };
-            this.startIntakeForm = function() {
+            this.startIntakeForm = function () {
 
                 if (kendo.support.browser && kendo.support.browser["edge"] === true) {
                     $snapNotification.info("Microsoft Edge Browser is not curently supported for consultation.Please use Chrome or Firefox.");
@@ -5102,9 +5124,9 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
 
 
 
-            this.IsOpenForBusiness = function() {
+            this.IsOpenForBusiness = function () {
                 try {
-                    $service.getOnDemand().done(function(response) {
+                    $service.getOnDemand().done(function (response) {
                         var data = response.data[0];
                         var onDemandAvailable = false;
                         if (data.providerOnDemandEnabled) {
@@ -5117,16 +5139,16 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                         }
                         $scope.set("isOnDemandAvailable", data.providerOnDemandEnabled && onDemandAvailable);
                         $scope._updateCreditsVisibility();
-                    }).fail(function(xhr) {
+                    }).fail(function (xhr) {
                         if (xhr.status === 401) {
                             sessionStorage.setItem("snap_logoutError", "outside of Provider operating hours");
-                          //  window.location = snap.patientLogin();
-                        //  window.location.href = snap.redirctPage;
-                        //  window.location.reload(true);
+                            //  window.location = snap.patientLogin();
+                            //  window.location.href = snap.redirctPage;
+                            //  window.location.reload(true);
                         } else {
                             $snapNotification.error(xhr.d);
                         }
-                    }).always(function() {
+                    }).always(function () {
                         $scope.set("isOnDemandLoaded", true);
                     });
                 } catch (err) {
@@ -5137,9 +5159,9 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
             this.isVisibleApptBadge = false;
             this.availCredits = 0;
             this.availCreditsTxt = "Appointment Credits";
-            this.checkForCredits = function() {
+            this.checkForCredits = function () {
                 var that = this;
-                $service.getPatientCredits(snap.profileSession.profileId).done(function(response) {
+                $service.getPatientCredits(snap.profileSession.profileId).done(function (response) {
                     var credits = response.total;
                     that.hasCredits = credits > 0;
                     if (credits > 0) {
@@ -5147,11 +5169,11 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                         that.set("availCreditsTxt", credits === 1 ? "Appointment Credit" : "Appointment Credits");
                     }
                     that._updateCreditsVisibility();
-                }).fail(function(xhr, status, error) {
+                }).fail(function (xhr, status, error) {
                     console.log("Credit Failure");
                 });
             };
-            this.closePopup = function() {
+            this.closePopup = function () {
                 var currentDialog = $('#popup-container').data("kendoWindow");
 
                 if (currentDialog) {
@@ -5159,13 +5181,13 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 }
             };
 
-            this.checkForReEntryConsultation = function() {
-                $service.getActiveConsultations().done(function(response) {
+            this.checkForReEntryConsultation = function () {
+                $service.getActiveConsultations().done(function (response) {
                     var tdata = response.total;
 
                     if (tdata > 0) {
                         var activeConnection;
-                        response.data.forEach(function(connectionModel) {
+                        response.data.forEach(function (connectionModel) {
                             if (connectionModel.status === snap.consultationStatus.startedConsultation && connectionModel.encounterTypeCode === encounterTypeCode.Video) {
                                 activeConnection = connectionModel;
                             }
@@ -5190,13 +5212,13 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                             });
                         }
                     }
-                }).fail(function(xhr, status, error) {
+                }).fail(function (xhr, status, error) {
                     window.console.error("Consult API failure" + error);
                 });
             };
             this.isMoreAvailConsults = false;
             this.availConsults = [];
-            this.processAvailableConsultations = function() {
+            this.processAvailableConsultations = function () {
                 var schedConsultData = $scope.scheduledConsultation,
                     availConsultData = [];
 
@@ -5217,7 +5239,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
 
             };
 
-            var startAppointmentExpirationTimer = function(time) {
+            var startAppointmentExpirationTimer = function (time) {
                 if (timer) {
                     timer.stop();
                     timer = null;
@@ -5225,7 +5247,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 timer = $timer.createTimer({
                     countDown: true,
                     time: time,
-                    onTimerTickCallback: function(timerTick) {
+                    onTimerTickCallback: function (timerTick) {
                         if (timerTick.original.hours <= 0 && timerTick.original.minutes <= 0 && timerTick.original.seconds <= 0) {
                             timer.stop();
                             timer = null;
@@ -5237,7 +5259,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 timer.start();
             };
 
-            this._startTimer = function() {
+            this._startTimer = function () {
                 $scope.set("isReadyState", false);
                 if ($scope.patientObj) {
                     if (timer) {
@@ -5255,7 +5277,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                         timer = $timer.createTimer({
                             countDown: true,
                             time: restTime,
-                            onTimerTickCallback: function(timerTick) {
+                            onTimerTickCallback: function (timerTick) {
                                 if (timerTick.original.hours <= 0 && timerTick.original.minutes <= 0 && timerTick.original.seconds <= 0) {
                                     // now can enter appointment
                                     timer.stop();
@@ -5286,15 +5308,15 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
 
             this.loadingConsult = false;
 
-            this.enterSchedConsult = function(e) {
+            this.enterSchedConsult = function (e) {
                 e.preventDefault();
                 this.set("loadingConsult", true);
                 this._goToSchedConsult(this.nextschedConsult);
             };
-            this.goToSchedConsultInternal = function(data, callback) {
+            this.goToSchedConsultInternal = function (data, callback) {
                 this._goToSchedConsult(data, true, callback);
             };
-            this._goToSchedConsult = function(data, isInternal, callback) {
+            this._goToSchedConsult = function (data, isInternal, callback) {
                 var appointmentId = data.appointmentId,
                     participants = data.participants,
                     patientParticipant = null,
@@ -5305,7 +5327,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                     $snapNotification.error("Patient Loading Error");
                     return;
                 }
-                $.each(participants, function() {
+                $.each(participants, function () {
                     if (this.participantTypeCode === 1) {
                         patientParticipant = this;
                     }
@@ -5320,7 +5342,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
 
                 if (data.encounterTypeCode === encounterTypeCode.Phone || data.encounterTypeCode === encounterTypeCode.InPerson) {
                     // phone-type consultation is automatically created in api
-                    window.setTimeout(function() {
+                    window.setTimeout(function () {
                         $overlay.toggleOverlay();
                         $.connection.hub.qs = {};
                         var hubs = [];
@@ -5333,14 +5355,14 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                         location.href = snap.getPatientHome();
                     }
                 } else {
-                    $service.createConsultationFromAppointment(personId, appointmentId).then(function(data) {
+                    $service.createConsultationFromAppointment(personId, appointmentId).then(function (data) {
                         if (data) {
                             var respData = data.data[0];
                             var newConsultationId = respData.consultationId;
 
                             if (parseInt(newConsultationId) > 0) {
 
-                                $appointmentService.getConsultationById(newConsultationId).done(function(resp) {
+                                $appointmentService.getConsultationById(newConsultationId).done(function (resp) {
                                     if (resp.data && resp.data.length > 0) {
                                         var consultationData = resp.data[0].consultationInfo;
                                         var consultationAmount = consultationData.consultationAmount || 0;
@@ -5361,34 +5383,34 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                                         if (callback && callback.call) {
                                             callback.call();
                                         }
-                                      //  $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-                                      window.setTimeout(function() {
-                                          $overlay.toggleOverlay();
-                                          //alert('hhh');
-                                          $.connection.hub.qs = {};
-                                          var hubs = [];
-                                      }, 2000);
+                                        //  $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+                                        window.setTimeout(function () {
+                                            $overlay.toggleOverlay();
+                                            //alert('hhh');
+                                            $.connection.hub.qs = {};
+                                            var hubs = [];
+                                        }, 2000);
                                         if (snap.hospitalSettings.showCTTOnScheduled) {
                                             //location.href = "/Customer/Intake/#/Confirmation";
-                                            location.href = "#/tab/ConsentTreat/CTT/" +newConsultationId;
+                                            location.href = "#/tab/ConsentTreat/CTT/" + newConsultationId;
                                         } else if (snap.hospitalSettings.insuranceBeforeWaiting) {
                                             //location.href = "/Customer/Intake/#/Insurance";
-                                            location.href = "#/tab/consultCharge/CTT/" +newConsultationId;
+                                            location.href = "#/tab/consultCharge/CTT/" + newConsultationId;
                                         } else if (snap.hospitalSettings.eCommerce && consultationAmount > 0 && !snap.hospitalSettings.hidePaymentPageBeforeWaitingRoom) {
                                             //location.href = "/Customer/Intake/#/Payment";
-                                            location.href = "#/tab/consultCharge/CTT/" +newConsultationId;
+                                            location.href = "#/tab/consultCharge/CTT/" + newConsultationId;
                                         } else {
                                             if (kendo.support.mobileOS) {
-                                              //  snap.openMobileApp(parseInt(newConsultationId), function() {
-                                                    sessionStorage.setItem("consultationinitaction", "1");
-                                                    //location.href = "/Customer/Main/#/Waiting";
-                                                    location.href = "#/tab/receipt/CTT/" +newConsultationId;
-                                              //  });
+                                                //  snap.openMobileApp(parseInt(newConsultationId), function() {
+                                                sessionStorage.setItem("consultationinitaction", "1");
+                                                //location.href = "/Customer/Main/#/Waiting";
+                                                location.href = "#/tab/receipt/CTT/" + newConsultationId;
+                                                //  });
                                                 return;
                                             }
                                             sessionStorage.setItem("consultationinitaction", "1");
                                             //location.href = "/Customer/Main/#/Waiting";
-                                            location.href = "#/tab/receipt/CTT/" +newConsultationId;
+                                            location.href = "#/tab/receipt/CTT/" + newConsultationId;
                                         }
                                     }
                                 });
@@ -5397,7 +5419,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                             }
                         }
 
-                    }, function(error) {
+                    }, function (error) {
                         $snapNotification.error(error.responseText);
                         if (!isInternal) {
                             $scope.set("loadingConsult", false);
@@ -5407,7 +5429,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 }
             };
 
-            this._initHomePageBanner = function(consultationData) {
+            this._initHomePageBanner = function (consultationData) {
                 var isConsultStarted = consultationData.status === snap.consultationStatus.startedConsultation;
                 if ($scope._hasActiveConsultation) {
                     if ($scope.patientObj.isInProgress) {
@@ -5427,7 +5449,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                     timer.stop();
                     timer = null;
                 }
-                $service.getPatientProfileDetails(consultationData.patientId, "all").done(function(res) {
+                $service.getPatientProfileDetails(consultationData.patientId, "all").done(function (res) {
                     $scope._hasActiveConsultation = true;
                     $scope.activeConsultationId = consultationData.consultationId;
                     $scope.set("isReadyState", true);
@@ -5444,9 +5466,9 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
             this.scheduledConsultation = [];
             this.nextschedConsult = null;
             this.hasScheduledConsult = false;
-            var loadData = function() {
+            var loadData = function () {
                 $.when($service.getAvailableConsultation(), $service.getScheduledConsultation())
-                    .then(function(availableConsultationData, schedDate) {
+                    .then(function (availableConsultationData, schedDate) {
                         $scope.hasScheduledConsult = false;
                         $scope.loadTime = new Date();
                         var availableConsultData = availableConsultationData[0].data,
@@ -5454,7 +5476,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
 
                         if (availableConsultData) {
                             var availableConsultations = [];
-                            $.each(availableConsultData, function(index, value) {
+                            $.each(availableConsultData, function (index, value) {
                                 if (value.encounterTypeCode === encounterTypeCode.Phone) {
                                     $scope._initHomePageBanner(value);
                                 } else if (value.status === snap.consultationStatus.startedConsultation && (value.doctorStatus === 0 || value.patientStatus === 4 || value.doctorStatus === 2)) {
@@ -5476,7 +5498,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                         //Becuase now schedule comes from appointment and available is consulation
 
 
-                        $.each(schedConsultData, function(index, value) {
+                        $.each(schedConsultData, function (index, value) {
                             value.scheduledTime = new Date(value.startTime);
                             value.endTime = new Date(value.endTime);
                             value.expiryTime = Math.floor((value.scheduledTime.getTime() - $scope.loadTime.getTime()) / 1000);
@@ -5485,7 +5507,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
 
                         var expDate = new Date();
                         expDate.setTime(expDate.getTime() + (HOUR_LIMIT * 60 * 60 * 1000));
-                        schedConsultData = schedConsultData.filter(function(v) {
+                        schedConsultData = schedConsultData.filter(function (v) {
                             return v.expiryTime < HOUR_LIMIT * 60 * 60;
                         });
 
@@ -5499,7 +5521,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
 
                         if ($scope.nextschedConsult && !$scope._hasActiveConsultation) {
                             $scope.hasScheduledConsult = true;
-                            $service.getPatientProfileDetails(nextschedConsult.patientId, "all").then(function(res) {
+                            $service.getPatientProfileDetails(nextschedConsult.patientId, "all").then(function (res) {
                                 if (!$scope._hasActiveConsultation) {
                                     // need to check again because active consultation might initiate during getPatientProfileDetails request
                                     var patientObj = res.data[0];
@@ -5512,25 +5534,25 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                         }
                         $scope.processAvailableConsultations();
                         $scope._updateCreditsVisibility();
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $scope.trigger("change", { field: "showMoreScheduledBlock" });
                         }, 3000);
                     })
-                    .always(function() {
+                    .always(function () {
                         $scope.set("isScheduledLoaded", true);
                     });
             };
 
-            this.loadData = function() {
+            this.loadData = function () {
                 hubStart();
                 var that = this;
 
                 if (sessionStorage.getItem("snap_locationWasChecked") === "true") {
                     loadPageDetails();
                 } else {
-                    $service.isResponseRulesActive().done(function(isActive) {
+                    $service.isResponseRulesActive().done(function (isActive) {
                         if (isActive.active) {
-                            $service.getDefaultPatientProfileDetails("all").done(function(data) {
+                            $service.getDefaultPatientProfileDetails("all").done(function (data) {
                                 var dialog = $dialogWindow.createNewDialog({
                                     vm: $patientResponseAddressDialog,
                                     container: "#patientResponseAddressPopUpContainer",
@@ -5541,11 +5563,11 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                                     patientId: snap.profileSession.profileId,
                                     userId: snap.profileSession.profileId,
                                     currentLocation: $utility.getLocationFromPatientProfile(data.data[0]),
-                                   imageSource: snap.profileSession.profileImage,
-                                   fullName: snap.profileSession.fullName,
-                                   firstName: snap.profileSession.firstName
-                                  //  patientProfile: data.data[0]
-                                }).done(function() {
+                                    imageSource: snap.profileSession.profileImage,
+                                    fullName: snap.profileSession.fullName,
+                                    firstName: snap.profileSession.firstName
+                                    //  patientProfile: data.data[0]
+                                }).done(function () {
                                     // If the Window has no set dimensions and is centered before its content is loaded with Ajax, it is probably going to resize after the content is loaded.
                                     // This naturally changes the position of the widget on the screen and it is no longer centered.
                                     dialog.rCenter();
@@ -5557,7 +5579,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                         }
                     });
 
-                    $eventAggregator.subscribe("patientResponseDialog_locationConfirmed", function() {
+                    $eventAggregator.subscribe("patientResponseDialog_locationConfirmed", function () {
                         loadPageDetails();
                         sessionStorage.setItem("snap_locationWasChecked", true);
                     });
@@ -5567,7 +5589,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                 function loadPageDetails() {
                     loadData();
                     that.IsOpenForBusiness();
-                    $patientHeaderVM.isProviderAvailable().done(function() {
+                    $patientHeaderVM.isProviderAvailable().done(function () {
                         that.isProviderAvailable()
                     });
                 }

@@ -23,9 +23,9 @@ angular.module('ion-google-place', [])
 								 '<div class="bar bar-header item-input-inset" style="{{GoogleSearchStyle}}">',
 									'<label class="item-input-wrapper">',
 										'<i class="icon ion-ios7-search placeholder-icon"></i>',
-										'<input class="google-place-search placeHolderCountrySearch" type="search" ng-model="gPlaceSearchQuery" placeholder="Enter your Address" autofocus>',
+										'<input class="google-place-search placeHolderCountrySearch localizejs" type="search" ng-model="gPlaceSearchQuery" placeholder="Enter your Address" autofocus>',
 									'</label>',
-									'<button class="button button-clear">',
+									'<button class="button button-clear localizejs">',
 										'Cancel',
 									'</button>',
 								 '</div>',
@@ -53,9 +53,9 @@ angular.module('ion-google-place', [])
 								 '<div class="bar bar-header item-input-inset" style="{{GoogleSearchStyle}}">',
 									'<label class="item-input-wrapper">',
 										'<i class="icon ion-ios7-search placeholder-icon"></i>',
-										'<input class="google-place-search placeHolderCountrySearch" type="search" ng-model="gPlaceSearchQuery" placeholder="Enter your Address" autofocus>',
+										'<input class="google-place-search placeHolderCountrySearch localizejs" type="search" ng-model="gPlaceSearchQuery" placeholder="Enter your Address" autofocus>',
 									'</label>',
-									'<button class="button button-clear">',
+									'<button class="button button-clear localizejs">',
 										'Cancel',
 									'</button>',
 								 '</div>',
@@ -83,9 +83,9 @@ angular.module('ion-google-place', [])
                  '<div class="bar bar-header item-input-inset" style="{{GoogleSearchStyle}}">',
                   '<label class="item-input-wrapper">',
                     '<i class="icon ion-ios7-search placeholder-icon"></i>',
-                    '<input class="google-place-search placeHolderCountrySearch" type="search" ng-model="gPlaceSearchQuery" placeholder="Enter your Address" autofocus>',
+                    '<input class="google-place-search placeHolderCountrySearch localizejs" type="search" ng-model="gPlaceSearchQuery" placeholder="Enter your Address" autofocus>',
                   '</label>',
-                  '<button class="button button-clear">',
+                  '<button class="button button-clear localizejs">',
                     'Cancel',
                   '</button>',
                  '</div>',
@@ -113,9 +113,9 @@ angular.module('ion-google-place', [])
                  '<div class="bar bar-header item-input-inset" style="{{GoogleSearchStyle}}">',
                   '<label class="item-input-wrapper">',
                     '<i class="icon ion-ios7-search placeholder-icon"></i>',
-                    '<input class="google-place-search placeHolderCountrySearch" type="search" ng-model="gPlaceSearchQuery" placeholder="Enter your Address" autofocus>',
+                    '<input class="google-place-search placeHolderCountrySearch localizejs" type="search" ng-model="gPlaceSearchQuery" placeholder="Enter your Address" autofocus>',
                   '</label>',
-                  '<button class="button button-clear">',
+                  '<button class="button button-clear localizejs">',
                     'Cancel',
                   '</button>',
                  '</div>',
@@ -135,7 +135,35 @@ angular.module('ion-google-place', [])
               scope: scope,
               appendTo: $document[0].body
             });
+          } else if($rootScope.currState.$current.name==="tab.cardeditDetails")  {
+            var POPUP_TPL = [
+              '<div class="ion-google-place-container" id="googleContainerId">',
+                '<div style=" {{BackgroundColorGoogle}}">',
+                 '<div class="bar bar-header item-input-inset" style="{{GoogleSearchStyle}}">',
+                  '<label class="item-input-wrapper">',
+                    '<i class="icon ion-ios7-search placeholder-icon"></i>',
+                    '<input class="google-place-search placeHolderCountrySearch localizejs" type="search" ng-model="gPlaceSearchQuery" placeholder="Enter a City or ZIP" autofocus>',
+                  '</label>',
+                  '<button class="button button-clear localizejs">',
+                    'Cancel',
+                  '</button>',
+                 '</div>',
+                 '</div>',
+                '<ion-content class="has-header has-header" style="{{GoogleSearchContent}}">',
+                  '<ion-list>',
+                    '<ion-item ng-repeat="location in locations" style="{{CountrySearchItem}}" type="item-text-wrap" ng-click="selectLocationForEditCardDetails(location)">',
+                      '{{location.formatted_address}}',
+                    '</ion-item>',
+                  '</ion-list>',
+                '</ion-content>',
+              '</div>'
+            ].join('');
 
+            var popupPromise = $ionicTemplateLoader.compile({
+              template: POPUP_TPL,
+              scope: scope,
+              appendTo: $document[0].body
+            });
 					} else {
             var POPUP_TPL = [
 							'<div class="ion-google-place-container" id="googleContainerId">',
@@ -143,9 +171,9 @@ angular.module('ion-google-place', [])
 								 '<div class="bar bar-header item-input-inset" style="{{GoogleSearchStyle}}">',
 									'<label class="item-input-wrapper">',
 										'<i class="icon ion-ios7-search placeholder-icon"></i>',
-										'<input class="google-place-search placeHolderCountrySearch" type="search" ng-model="gPlaceSearchQuery" placeholder="Enter a City or ZIP">',
+										'<input class="google-place-search placeHolderCountrySearch localizejs" type="search" ng-model="gPlaceSearchQuery" placeholder="Enter a City or ZIP">',
 									'</label>',
-									'<button class="button button-clear">',
+									'<button class="button button-clear localizejs">',
 										'Cancel',
 									'</button>',
 								 '</div>',
@@ -176,10 +204,11 @@ angular.module('ion-google-place', [])
                                     scope.getCardDetails.CardZipCode = Number(location.address_components[k].long_name);
                                 }
                                 if(location.address_components[k].types.indexOf("administrative_area_level_1") >= 0){
-                                    scope.getCardDetails.State = location.address_components[k].long_name;
+                                    scope.getCardDetails.State = location.address_components[k].short_name;
                                 }
                                 if(location.address_components[k].types.indexOf("country") >= 0){
-                                    scope.getCardDetails.Country = location.address_components[k].long_name;
+                                    scope.getCardDetails.Country = location.address_components[k].short_name;
+                                    scope.getCardDetails.CountryFullName = location.address_components[k].long_name;
                                 }
                                 if(location.address_components[k].types.indexOf("locality") >= 0){
                                     scope.getCardDetails.City = location.address_components[k].long_name;
@@ -187,6 +216,29 @@ angular.module('ion-google-place', [])
 
                             }
                             ngModel.$setViewValue(scope.getCardDetails.City);
+                            ngModel.$render();
+                            el.element.css('display', 'none');
+                            $ionicBackdrop.release();
+                        };
+
+                         scope.selectLocationForEditCardDetails = function(location){
+                            scope.address_components = location.address_components;
+                            for(var k = 0; k < location.address_components.length; k++){
+                                if(location.address_components[k].types.indexOf("postal_code") >= 0){
+                                    scope.editCardDetails.cardEditZip = Number(location.address_components[k].long_name);
+                                }
+                                if(location.address_components[k].types.indexOf("administrative_area_level_1") >= 0){
+                                    scope.editCardDetails.cardEditState = location.address_components[k].short_name;
+                                }
+                                if(location.address_components[k].types.indexOf("country") >= 0){
+                                    scope.editCardDetails.cardEditCountry = location.address_components[k].long_name;
+                                }
+                                if(location.address_components[k].types.indexOf("locality") >= 0){
+                                    scope.editCardDetails.cardEditCity = location.address_components[k].long_name;
+                                }
+
+                            }
+                            ngModel.$setViewValue(scope.editCardDetails.cardEditCity);
                             ngModel.$render();
                             el.element.css('display', 'none');
                             $ionicBackdrop.release();
@@ -208,7 +260,7 @@ angular.module('ion-google-place', [])
                               var postCode = Number(location.address_components[k].long_name);
                           }
                           if(location.address_components[k].types.indexOf("administrative_area_level_1") >= 0){
-                              var state = location.address_components[k].long_name;
+                              var state = location.address_components[k].short_name;
                           }
                           if(location.address_components[k].types.indexOf("country") >= 0){
                               var country = location.address_components[k].long_name;
@@ -218,7 +270,7 @@ angular.module('ion-google-place', [])
                           }
 
                       }
-                      if(typeof postCode == "undefined" || typeof state == "undefined" || typeof country =="undefined" || typeof city =="undefined") {
+                    /*  if(typeof postCode == "undefined" || typeof state == "undefined" || typeof country =="undefined" || typeof city =="undefined") {
                       //  alert("City or State or Country or Zipcode is empty. Please Select Valid address!");
                         navigator.notification.alert(
                             'Address is invalid! Please select an address with Zip Code!', // message
@@ -229,13 +281,13 @@ angular.module('ion-google-place', [])
                             $rootScope.alertMsgName, // title
                             'Done' // buttonName
                         );
-                      } else {
+                      } else {*/
                            scope.healthInfoModel.address = location.formatted_address;
                            ngModel.$setViewValue(scope.healthInfoModel.address);
                            ngModel.$render();
                            el.element.css('display', 'none');
                            $ionicBackdrop.release();
-                         }
+                        // }
                        };
 
                        scope.selectLocationForCoUser = function(location){
@@ -246,7 +298,7 @@ angular.module('ion-google-place', [])
                                          var postCode = Number(location.address_components[k].long_name);
                                      }
                                      if(location.address_components[k].types.indexOf("administrative_area_level_1") >= 0){
-                                         var state = location.address_components[k].long_name;
+                                         var state = location.address_components[k].short_name;
                                      }
                                      if(location.address_components[k].types.indexOf("country") >= 0){
                                          var country = location.address_components[k].long_name;
@@ -256,7 +308,7 @@ angular.module('ion-google-place', [])
                                      }
 
                                  }
-                                 if(typeof postCode == "undefined" || typeof state == "undefined" || typeof country =="undefined" || typeof city =="undefined") {
+                              /*   if(typeof postCode == "undefined" || typeof state == "undefined" || typeof country =="undefined" || typeof city =="undefined") {
                                  //  alert("City or State or Country or Zipcode is empty. Please Select Valid address!");
                                    navigator.notification.alert(
                                        'Address is invalid! Please select an address with Zip Code!', // message
@@ -267,13 +319,13 @@ angular.module('ion-google-place', [])
                                        $rootScope.alertMsgName, // title
                                        'Done' // buttonName
                                    );
-                                 } else {
+                                 } else {*/
                                       scope.newUSer.address = location.formatted_address;
                                       ngModel.$setViewValue(scope.newUSer.address);
                                       ngModel.$render();
                                       el.element.css('display', 'none');
                                       $ionicBackdrop.release();
-                                    }
+                                    //}
                                   };
 
                                   scope.selectLocationForUserDependent = function(location){
@@ -284,7 +336,7 @@ angular.module('ion-google-place', [])
                                                     var postCode = Number(location.address_components[k].long_name);
                                                 }
                                                 if(location.address_components[k].types.indexOf("administrative_area_level_1") >= 0){
-                                                    var state = location.address_components[k].long_name;
+                                                    var state = location.address_components[k].short_name;
                                                 }
                                                 if(location.address_components[k].types.indexOf("country") >= 0){
                                                     var country = location.address_components[k].long_name;
@@ -294,7 +346,7 @@ angular.module('ion-google-place', [])
                                                 }
 
                                             }
-                                            if(typeof postCode == "undefined" || typeof state == "undefined" || typeof country =="undefined" || typeof city =="undefined") {
+                                          /*  if(typeof postCode == "undefined" || typeof state == "undefined" || typeof country =="undefined" || typeof city =="undefined") {
                                             //  alert("City or State or Country or Zipcode is empty. Please Select Valid address!");
                                               navigator.notification.alert(
                                                   'Address is invalid! Please select an address with Zip Code!', // message
@@ -305,13 +357,13 @@ angular.module('ion-google-place', [])
                                                   $rootScope.alertMsgName, // title
                                                   'Done' // buttonName
                                               );
-                                            } else {
+                                            } else {*/
                                                  scope.addNewDependent.homeadd = location.formatted_address;
                                                  ngModel.$setViewValue(scope.addNewDependent.homeadd);
                                                  ngModel.$render();
                                                  el.element.css('display', 'none');
                                                  $ionicBackdrop.release();
-                                               }
+                                               //}
                                              };
 
                         scope.$watch('gPlaceSearchQuery', function(query){

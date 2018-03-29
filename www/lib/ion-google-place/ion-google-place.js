@@ -204,10 +204,11 @@ angular.module('ion-google-place', [])
                                     scope.getCardDetails.CardZipCode = Number(location.address_components[k].long_name);
                                 }
                                 if(location.address_components[k].types.indexOf("administrative_area_level_1") >= 0){
-                                    scope.getCardDetails.State = location.address_components[k].long_name;
+                                    scope.getCardDetails.State = location.address_components[k].short_name;
                                 }
                                 if(location.address_components[k].types.indexOf("country") >= 0){
-                                    scope.getCardDetails.Country = location.address_components[k].long_name;
+                                    scope.getCardDetails.Country = location.address_components[k].short_name;
+                                    scope.getCardDetails.CountryFullName = location.address_components[k].long_name;
                                 }
                                 if(location.address_components[k].types.indexOf("locality") >= 0){
                                     scope.getCardDetails.City = location.address_components[k].long_name;
@@ -227,7 +228,7 @@ angular.module('ion-google-place', [])
                                     scope.editCardDetails.cardEditZip = Number(location.address_components[k].long_name);
                                 }
                                 if(location.address_components[k].types.indexOf("administrative_area_level_1") >= 0){
-                                    scope.editCardDetails.cardEditState = location.address_components[k].long_name;
+                                    scope.editCardDetails.cardEditState = location.address_components[k].short_name;
                                 }
                                 if(location.address_components[k].types.indexOf("country") >= 0){
                                     scope.editCardDetails.cardEditCountry = location.address_components[k].long_name;
@@ -259,7 +260,7 @@ angular.module('ion-google-place', [])
                               var postCode = Number(location.address_components[k].long_name);
                           }
                           if(location.address_components[k].types.indexOf("administrative_area_level_1") >= 0){
-                              var state = location.address_components[k].long_name;
+                              var state = location.address_components[k].short_name;
                           }
                           if(location.address_components[k].types.indexOf("country") >= 0){
                               var country = location.address_components[k].long_name;
@@ -297,7 +298,7 @@ angular.module('ion-google-place', [])
                                          var postCode = Number(location.address_components[k].long_name);
                                      }
                                      if(location.address_components[k].types.indexOf("administrative_area_level_1") >= 0){
-                                         var state = location.address_components[k].long_name;
+                                         var state = location.address_components[k].short_name;
                                      }
                                      if(location.address_components[k].types.indexOf("country") >= 0){
                                          var country = location.address_components[k].long_name;
@@ -335,7 +336,7 @@ angular.module('ion-google-place', [])
                                                     var postCode = Number(location.address_components[k].long_name);
                                                 }
                                                 if(location.address_components[k].types.indexOf("administrative_area_level_1") >= 0){
-                                                    var state = location.address_components[k].long_name;
+                                                    var state = location.address_components[k].short_name;
                                                 }
                                                 if(location.address_components[k].types.indexOf("country") >= 0){
                                                     var country = location.address_components[k].long_name;

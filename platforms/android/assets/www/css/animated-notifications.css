@@ -61,7 +61,7 @@
 	-moz-box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 	-webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-	
+
 }
 #notifications-bottom-right-tab-close{
 	height: 20px;
@@ -194,16 +194,35 @@
 	top: 0px;
 	width: 100%;
 	background-color: black;
-	height: 55px;
+	height: auto ;
+	z-index: 999;
+	text-align: center;
+	line-height: 70px;
+	color: white;
+	font-size: 18px;
+	font-weight: 600;
+	padding-bottom: 18px;
+	padding-top: 10px;
+}
+.notifications-top-center {
+	opacity: 0.85;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	background-color: black;
+	/*height: 65px;*/
+	height: auto;
 	text-align: center;
 	line-height: 70px;
 	color: white;
 	font-size: 18px;
 	font-weight: 600;
 	z-index:1;
-}
-.notifications-top-center {
-	opacity: 0.85;
+	padding-bottom: 18px;
+	padding-top: 10px;
+
+	/* opacity: 0.85;
 	position: fixed;
 	left: 0px;
 	top: 0px;
@@ -215,14 +234,14 @@
 	color: white;
 	font-size: 18px;
 	font-weight: 600;
-	z-index:1;
+	z-index:1;*/
 }
 #notifications-top-center-close {
 	opacity: 0.85;
-	background-color: black;
 	float: right;
-	height: 50px;
-	width: 50px;
+/*	height: 70px;*/
+	height: auto;
+	width: 25px !important;
 	font-size: 20px;
 	color: white;
 	font-weight: 400;
@@ -231,15 +250,28 @@
 	-o-transition: all 0.5s;
 	transition: all 0.5s;
 	padding-right: 10px;
-	padding-top: 10px;
+	padding-top: 12px;
 }
 #notifications-top-center-close:hover {
 	cursor: pointer;
-	background-color: black;
+	/*background-color: black;*/
 	opacity: 0.85;
 }
 .notifications-top-center-close {
 	opacity: 0.85;
+	float: right;
+	height: 70px;
+	width: 25px !important;
+	font-size: 20px;
+	color: white;
+	font-weight: 400;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+	padding-right: 10px;
+	padding-top: 12px;
+	/*opacity: 0.85;
 	background-color: black;
 	float: right;
 	height: 50px;
@@ -250,11 +282,11 @@
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	-o-transition: all 0.5s;
-	transition: all 0.5s;
+	transition: all 0.5s;*/
 }
 .notifications-top-center-close:hover {
 	cursor: pointer;
-	background-color: black;
+	/*background-color: black;*/
 	opacity: 0.85;
 }
 #notifications-full{
@@ -295,7 +327,8 @@
 	width: 100%;
 	font-size: 65px;
 	text-align: center;
-	height: 65px;
+	/*height: 65px;*/
+	height: auto;
 	margin-top: 35px;
 	color: #404040;
 }
@@ -309,9 +342,9 @@
 	line-height: 24px;
 	color: #404040;
 }
-
-.notificationError { height:auto !important;line-height: normal !important;font-size: 18px;left: 0px;
+/*height:auto !important;*/
+.notificationError { line-height: normal !important;font-size: 18px;left: 0px;
   top: 0px; }
-.ErrorContent { text-align: center;width: 93% !important;margin-top: 22px;  margin-bottom: -30px; }
-.NoticationClose { position: relative;width: 7% !important;  float: right !important;margin-top: -10px !important ; }
+.ErrorContent { text-align: center;width: 93% !important;margin-top: 15px !important;  margin-bottom: -30px; }
+.NoticationClose { position: relative;width: 7% !important;  float: right !important;margin-top: -10px; }
 .noticationIcon { left: 0px;position: relative;top: 19px  !important; }

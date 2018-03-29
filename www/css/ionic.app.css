@@ -9437,7 +9437,6 @@ body {
   color: #fff;
   background-color: #4D4D4D !important;
   border-color: #4D4D4D !important;
-  padding: 20px 0px 20px 0px;
   font-family: "Glober Light";
   font-weight: bold;
   font-size: 11px;
@@ -9638,12 +9637,8 @@ body {
   font-size: 19px;
   color: #fff;
   border-radius: 7px;
-  width: 105px;
-  min-height: 38px;
-  margin: 0 0 0 10px;
   text-decoration: none;
-  cursor: pointer;
-  margin-right: 16px; }
+  cursor: pointer; }
 
 .ion-chevron-left::before {
   color: #fff;
@@ -10139,16 +10134,15 @@ body {
 
 .consultCharge_subHeader {
   border-bottom: 1px solid #C5C5C5;
-  height: 60px;
   margin-top: 125px;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
   line-height: 3;
   color: #666666; }
   .consultCharge_subHeader span {
     color: #666666;
-    font-size: 26px;
-    top: -8px;
+    font-size: 25px;
+    top: -16px !important;
     position: relative;
     left: 15px;
     font-family: "Glober SemiBold";
@@ -10161,12 +10155,6 @@ body {
   margin: 139px 0 0 0; }
   .consultConPaymentMargin .AddCard {
     margin-top: 7px; }
-
-.paymentConSecton {
-  margin: 160px 0 0 0; }
-
-.addCardConScetion {
-  margin: 155px 0 0 0; }
 
 .consultCharge_content {
   padding-bottom: 30px;
@@ -10238,7 +10226,7 @@ body {
 
 .consultation_head {
   font-size: 164%;
-  padding-top: 22px;
+  padding-top: 34px;
   color: #2A2A2A;
   width: 110%; }
   .consultation_head .consultation_number {
@@ -10298,8 +10286,6 @@ body {
 @media (min-width: 320px) and (max-width: 568px) {
   .consultation_head .consultTittle {
     font-size: 20px !important; }
-  .consultation_head .consultTittleCopay {
-    font-size: 14px !important; }
   .consultation_head .consultation_number {
     width: 110% !important; }
     .consultation_head .consultation_number span {
@@ -11061,19 +11047,19 @@ select {
       color: #999999;
       font-weight: normal; }
   .ConcernsFooter .FooterRight {
-    text-align: right;
-    float: left;
+    text-align: center;
+    float: right;
     width: 33%;
     position: relative;
     top: -4px;
-    left: 5px; }
+    margin:  0 auto !important; }
     .ConcernsFooter .FooterRight .ion-chevron-right:before {
       content: "\f125";
       font-size: 22px !important;
       margin-top: -2px;
       position: absolute;
       top: -4px;
-      right: 18px; }
+      right: 12px; }
     .ConcernsFooter .FooterRight a {
       cursor: pointer;
       font-weight: bold;
@@ -11083,7 +11069,8 @@ select {
       margin-left: -42px;
       position: relative;
       top: -3px;
-      left: -18px; }
+      right: 25px;
+      float: right; }
 
 .concernListHeader {
   height: 55px; }
@@ -11809,9 +11796,10 @@ a {
   font-family: "Glober Regular"; }
 
 .ContentUserHome {
-  margin: 70px 0 0 0;
+  margin: 12px 0 0 0;
   font-family: "Glober Regular";
-  border-top: 1px solid #C4C5C3; }
+  border-top: 1px solid #C4C5C3;
+  clear: both; }
 
 .listImgView {
   width: 45px !important;
@@ -12617,7 +12605,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   font-size: 20px;
   text-align: center;
   width: 100%;
-  margin-top: 13px; }
+  margin-top: 11px; }
 
 .HeaderListAndroid {
   font-size: 20px;
@@ -13018,7 +13006,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   pointer-events: none;
   color: #60605D;
   position: absolute;
-  width: 87%;
+  width: 92%;
   height: 100%;
   z-index: 15;
   overflow: hidden;
@@ -13028,7 +13016,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   text-overflow: ellipsis;
   font-size: 19px;
   padding: 6px;
-  left: 18px;
+  left: 13px;
   top: 8px;
   text-align: left;
   /*font-weight: bold;*/ }
@@ -13266,7 +13254,6 @@ textarea {
   padding: 200px 7px 7px 7px;
   font-size: 19px;
   color: #4D4D4D;
-  text-align: justify;
   position: relative; }
 
 .singleTermsconContent-IOS {
@@ -14013,8 +14000,9 @@ hr {
       position: relative;
       top: 3px; }
   .list .authorizedview .authorcont {
+    float: left;
     margin-top: -5px;
-    margin-left: 14px;
+    margin-left: 9px;
     font-size: 11px !important; }
 
 .list .statustab {
@@ -14306,8 +14294,7 @@ hr {
   top: 3px !important; }
 
 .reportTitle-IOS {
-  top: 20px !important;
-  margin-left: 23px !important; }
+  top: 20px !important; }
 
 .reportscreenTitle-Android {
   top: 12px !important; }
@@ -14462,8 +14449,6 @@ hr {
   font-size: 21pz !important; }
 
 @media (max-width: 320px) and (min-width: 315px) {
-  .showNewSurgeryAddios {
-    margin-top: -30px !important; }
   .AvailableIn .availableImage .AvailableTimer {
     padding-left: 25px !important; }
   .providerHead-ios {
@@ -14480,7 +14465,7 @@ hr {
   .concernListHeader {
     height: 60px !important; }
     .concernListHeader .concernListTitle-ios {
-      margin-top: 12px !important;
+      margin-top: 13px !important;
       font-size: 18px !important;
       margin-left: 3px !important; }
   .CancelAddressBtn {
@@ -14490,8 +14475,6 @@ hr {
     font-size: 14px !important; }
   #ContinueAddress {
     font-size: 14px !important; }
-  .concernListContent .concernListSearch {
-    margin-top: -30px !important; }
   .concernListTitle-ios {
     margin-left: -15px !important; }
   .depenErrorMsg-IOS #notifications-top-center .ErrorContent {
@@ -14567,20 +14550,17 @@ hr {
     .usercontent-IOS #accountMngeProfile-IOS {
       padding: 19px 10px; }
   .mobileInput-Ios5 {
-    padding-left: 40px !important;
-    float: right !important; }
+    float: left !important; }
   .button_new {
     margin-right: 15px !important; }
   .FooterCenter .button_new {
     margin-right: 0px !important; }
   .FooterCenter .button_newios {
     margin-right: -200px !important; }
-  .ConsultChargeCancel .button_newios {
+  .ConsultChargeCancel .ios {
     margin-right: -200px !important; }
   .fulldate-ios5 {
     font-size: 18px !important; }
-  .accountHeaderReport {
-    margin-left: -30px !important; }
   .reportScreenHeader {
     margin-left: 0px !important; }
   #WhoNeeds {
@@ -14604,7 +14584,7 @@ hr {
   .listprofileEdit .col-45 .labelcolor {
     width: 100%; }
   .deptlist .formlabel {
-    font-size: 17px; }
+    font-size: 18px; }
   .apponitmentfday-Android {
     margin-left: -14px;
     margin-right: -14px;
@@ -14636,7 +14616,7 @@ hr {
     width: 19% !important;
     margin-left: 5px !important; }
   .passedDetails-IOS {
-    width: 25% !important;
+    width: 27% !important;
     margin-left: 0px !important;
     color: #666666;
     font-family: Glober Regular; }
@@ -15314,7 +15294,7 @@ hr {
 
 .headerval {
   color: #FFFFFF;
-  font-family: Glober Regular;
+  font-family: GloberRegular;
   float: right;
   margin-right: 8px;
   font-weight: normal;
@@ -15983,16 +15963,18 @@ hr {
   font-size: 2.3em;
   position: absolute;
   margin-top: 15px;
-  margin-left: 30px; }
+  margin-left: 32px; }
 
 .circletext {
   font-size: 13px;
-  margin-top: 43px;
+  margin-top: 48%;
   position: absolute;
   font-family: Glober Regular;
   color: #888;
   line-height: 1.2;
-  margin-left: 23px; }
+  padding-left: 5px;
+  text-align: center;
+  width: 75px; }
 
 .alpha_sidebar {
   position: absolute;
@@ -17507,7 +17489,7 @@ Pagination Styles
 
 .accountHeader-IOS {
   margin-right: 100px;
-  margin-top: 15px; }
+  margin-top: 16px; }
 
 .accountHeader-Android {
   margin-right: 100px;
@@ -17546,7 +17528,7 @@ Pagination Styles
   margin-left: 0px; }
 
 .healthTitle-IOS {
-  margin-top: 13px !important; }
+  margin-top: 11px !important; }
 
 .healthTitle-Android {
   margin-top: 22px !important; }
@@ -17584,7 +17566,6 @@ Pagination Styles
   top: -3px; }
 
 .healthLeft-IOS {
-  top: -34px !important;
   background: transparent !important;
   border: none !important;
   font-size: 20px;
@@ -17636,6 +17617,10 @@ Pagination Styles
 .newUserTitle-IOS {
   top: -3px;
   left: 10px;
+  position: relative; }
+
+.relatedUserTitle {
+  top: -3px;
   position: relative; }
 
 #patientAuthorize {
@@ -18228,7 +18213,7 @@ input.ion-google-place[readonly] {
 
 .searchAccount .logProvider {
   position: relative;
-  top: 3px; }
+  top: -11px; }
 
 .reg2-Android {
   margin-top: -12px; }
@@ -18515,7 +18500,8 @@ input.ion-google-place[readonly] {
   text-align: center; }
 
 .newProviderSub {
-  padding: 33px; }
+  padding-top: 46px;
+  padding-bottom: 14px; }
 
 .newProContent {
   margin-top: 228px; }
@@ -18760,7 +18746,7 @@ input.ion-google-place[readonly] {
 
 @media screen and (min-width: 320px) and (max-width: 568px) {
   .listprofileEdit .labelcolor {
-    width: 45%; } }
+    width: 100%; } }
 
 .ioncontentalign .item {
   border-color: #979797; }
@@ -18839,15 +18825,14 @@ input.ion-google-place[readonly] {
     left: 5px;
     line-height: 20px; }
 
-.depenErrorMsg-IOS #notifications-top-center {
-  height: 65px !important; }
-  .depenErrorMsg-IOS #notifications-top-center .ErrorContent {
-    position: relative;
-    top: 10px; }
-  .depenErrorMsg-IOS #notifications-top-center #notifications-top-center-close span {
-    position: relative;
-    top: 10px;
-    left: -3px; }
+.depenErrorMsg-IOS #notifications-top-center .ErrorContent {
+  position: relative;
+  top: 10px; }
+
+.depenErrorMsg-IOS #notifications-top-center #notifications-top-center-close span {
+  position: relative;
+  top: 10px;
+  left: -3px; }
 
 .enterAppoinment2 {
   display: none;
@@ -20405,7 +20390,7 @@ a.item.item-avatar.avatheight:first-child {
   white-space: normal; }
 
 .labelcolor {
-  width: 46% !important; }
+  width: 100% !important; }
 
 /*
 .itemFloat-Android{
@@ -20549,8 +20534,8 @@ a.item.item-avatar.avatheight:first-child {
 .button-Search-providers {
   padding: 3px;
   border-radius: 5px;
-  background-color: #ffc60b;
-  border-color: #ffc60b;
+  background-color: #ffc60b !important;
+  border-color: #ffc60b !important;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   /* -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); */
@@ -20659,14 +20644,14 @@ a.item.item-avatar.avatheight:first-child {
   float: left;
   /* left: -15px; */
   position: relative;
-  margin-top: 10px;
+  margin-top: 13px;
   cursor: pointer; }
 
 .rightHeaderIcon {
   float: right;
   right: 5px;
   position: absolute;
-  margin-top: 10px;
+  margin-top: 13px;
   cursor: pointer; }
 
 .stateDropDown {
@@ -20686,15 +20671,13 @@ a.item.item-avatar.avatheight:first-child {
 
 @media (min-width: 321px) and (max-width: 365px) {
   .mobileInput-Ios5 {
-    padding-left: 55px !important;
-    float: right !important; } }
+    float: left !important; } }
 
 @media (min-width: 366px) and (max-width: 375px) {
   .AvailableIn .availableImage .AvailableTimer {
     padding-left: 25px !important; }
   .mobileInput-Ios5 {
-    padding-left: 67px !important;
-    float: right !important; }
+    float: left !important; }
   .ReportEthnicity {
     width: 35.333% !important; }
   .depenErrorMsg-IOS #notifications-top-center .ErrorContent {
@@ -20716,24 +20699,23 @@ a.item.item-avatar.avatheight:first-child {
 
 @media (min-width: 376px) and (max-width: 414px) {
   .mobileInput-Ios5 {
-    padding-left: 85px !important;
-    float: right !important; }
+    float: left !important; }
   .mobileInputNo-Ios5 {
     margin-left: 0px !important; } }
 
 @media (min-width: 415px) and (max-width: 767px) {
   .mobileInput-Ios5 {
-    width: 5% !important;
-    margin-left: 44% !important;
-    float: right !important; }
+    float: left !important; }
   .mobileInputNo-Ios5 {
     margin-left: 15px !important; } }
 
-@media (min-width: 768px) and (max-width: 1280px) {
+@media (min-width: 1024px) and (max-width: 1360px) {
   .mobileInput-Ios5 {
-    width: 5% !important;
-    margin-left: 32% !important;
-    float: right !important; } }
+    float: left !important; } }
+
+@media (min-width: 768px) and (max-width: 1020px) {
+  .mobileInput-Ios5 {
+    float: left !important; } }
 
 .CancelAddressBtn-IOS {
   margin-top: 10px !important; }
@@ -20743,6 +20725,177 @@ a.item.item-avatar.avatheight:first-child {
 
 .ContinueAddressBtn-IOS {
   margin-top: 10px !important; }
+
+.terms-close {
+  text-align: left;
+  font-family: "GloberSemiBold";
+  font-size: 18pt;
+  line-height: 24pt;
+  height: 24pt;
+  float: left;
+  padding-left: 16pt;
+  padding-top: 3px; }
+
+.terms-headtitle {
+  text-align: Center;
+  font-family: "GloberBold" !important;
+  font-size: 20pt;
+  line-height: 28pt;
+  width: 53pt;
+  height: 28pt;
+  padding-left: 50px;
+  padding-right: 100px; }
+
+.terms-Hospitaltitle {
+  text-align: Center;
+  font-family: "GloberBold" !important;
+  font-size: 20pt;
+  line-height: 24pt;
+  width: 272pt;
+  height: 48pt;
+  margin-bottom: 12pt;
+  color: rgba(0, 0, 0, 0.75); }
+
+.termscontent p strong span {
+  text-align: Left !important;
+  font-family: "GloberSemiBold"  !important;
+  font-size: 15pt !important;
+  line-height: 24pt !important;
+  width: 168pt !important;
+  height: 24pt !important;
+  color: rgba(0, 0, 0, 0.75); }
+
+.termscontent p span {
+  text-align: Left !important;
+  font-family: "GloberRegular"  !important;
+  font-size: 13pt !important;
+  line-height: 10pt !important;
+  width: 280pt !important;
+  height: 372pt !important;
+  color: rgba(0, 0, 0, 0.54); }
+
+.TC-content {
+  padding-left: 5%;
+  padding-right: 5%; }
+
+.termsCloseNew-Android {
+  font-size: 18px !important;
+  top: -10px;
+  color: white;
+  /* font-size: 12px !important; */
+  margin-top: 10px;
+  display: block !important; }
+
+.termsCloseNew-IOS {
+  font-size: 18px !important;
+  top: 2px !important;
+  color: white;
+  /* font-size: 12px !important; */
+  margin-top: 10px;
+  display: block !important; }
+
+.termsTitleNew-IOS {
+  top: 4px !important; }
+
+.surDone-Android {
+  font-size: 18px !important;
+  padding: 15px 0 0 0 !important; }
+
+.surDone-IOS {
+  font-size: 18px !important;
+  padding: 10px 0 0 0 !important; }
+
+.phoneNumColor {
+  color: blue; }
+
+.addDependentwrab {
+  overflow-wrap: break-word;
+  overflow: hidden;
+  text-overflow: inherit;
+  white-space: normal;
+  display: inline-flex;
+  width: 90px; }
+
+.userHmeInPerson .icon-users {
+  position: relative;
+  top: -3px; }
+
+@media (min-width: 414px) {
+  .concernListHeader {
+    height: 64px !important; }
+  .concernListHeader .concernListTitle-ios {
+    font-size: 18px !important;
+    color: #FFFFFF !important;
+    font-family: "Glober SemiBold";
+    margin-top: 18px !important; }
+  .rightHeaderIcon {
+    margin-top: 18px; }
+  .leftHeaderIcon {
+    margin-top: 18px; } }
+
+@media (min-width: 375px) {
+  .rightHeaderIcon {
+    margin-top: 18px; }
+  .leftHeaderIcon {
+    margin-top: 18px; } }
+
+.headerbg {
+  background-color: #333fe2;
+  border-color: #333fe2;
+  background-image: none;
+  align-items: center;
+  vertical-align: middle;
+  height: auto; }
+
+/* ios css */
+/* .title-head {
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 20px !important;
+  font-family: "Glober Bold";
+  font-weight: normal;
+  color: rgb(255, 255, 255);
+  left: -28px;
+  top: 9px
+} */
+.title-head {
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 20px !important;
+  font-family: "Glober Bold";
+  font-weight: normal;
+  color: white;
+  left: -28px;
+  top: 0px; }
+
+/* ios css */
+/* #BackButtonIcon {
+  left: -5px;
+  top: 4px;
+} */
+#BackButtonIcon {
+  left: -5px;
+  top: -5px; }
+
+/* ios css */
+/* .add-user-icon {
+  height: 30px;
+  right: 8px;
+} */
+.add-user-icon {
+  height: 30px;
+  right: 8px;
+  top: 11px; }
+
+.subHeaderTop {
+  top: unset !important; }
+
+.SearchImage {
+  float: right !important;
+  top: -18px !important;
+  margin-top: -18px !important; }
 
 .locpopup .locicon {
   padding: 3px; }

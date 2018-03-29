@@ -618,6 +618,19 @@ angular.module('starter.controllers')
                 $rootScope.timezoneDisplay = 'none';
             }
         }
+
+        window.addEventListener('native.keyboardshow', function () {
+            $scope.$apply(function () {
+                $("#localize-widget").hide();
+            });
+
+        })
+        window.addEventListener('native.keyboardhide', function () {
+            $scope.$apply(function () {
+                $("#localize-widget").show();
+            });
+        });
+        
         $scope.isDisabled = false;
 
         $scope.postDependentDetails = function () {
@@ -1213,7 +1226,8 @@ angular.module('starter.controllers')
             };
             LoginService.getListOfPatientids(params);
 
-            // $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
+             $ionicScrollDelegate.$getByHandle('scrollTopView').scrollTop();
+            //$ionicScrollDelegate.scrollTop(true);
 
             $scope.alphabet = iterateAlphabet();
             var users = $rootScope.currentPatientIDlist;
@@ -1291,7 +1305,7 @@ angular.module('starter.controllers')
                 currentpatientdet.checked === false;
                 $scope.modal.remove();
             }
-
+            $ionicScrollDelegate.scrollTop(true);
         }
         $scope.clearSelectionAndRebindpatSelectionList = function (selectedListItem, mainListItem) {
             angular.forEach(mainListItem, function (item, key2) {
@@ -1628,11 +1642,13 @@ angular.module('starter.controllers')
 
         $rootScope.ValidationReg = function ($a) {
             $('.ContinueAddressBtn').css({ 'display': 'none' });
+            $('.CancelAddressBtn').css({'display':'none'});
             function refresh_close() {
                 $('.close').click(function () {
                     $(this).parent().fadeOut(200);
                     setTimeout(function () {
                         $('.ContinueAddressBtn').css({ 'display': 'block' });
+                        $('.CancelAddressBtn').css({'display':'block'});
                     }, 100)
                 });
             }
@@ -1655,6 +1671,7 @@ angular.module('starter.controllers')
                 $rootScope.ValidationReg($scope.ErrorMessage);
             } else {
                 $('.ContinueAddressBtn').css({ 'display': 'block' });
+                $('.CancelAddressBtn').css({'display':'block'});
             }
 
             var stateObj = '';
@@ -1811,6 +1828,7 @@ angular.module('starter.controllers')
             }).then(function (modal) {
                 $scope.modal = modal;
                 $scope.modal.show().then(function () {
+                    $("#localize-widget").hide();
                     document.getElementById('fullAddress').value = $scope.addNewDependent.homeadd;
                     document.getElementById('country').value = $scope.Country;
                     if ($scope.state1 == undefined)
