@@ -729,10 +729,10 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
                 }
             }
 
-            cordova.plugins.backgroundMode.setDefaults({
-                text: $rootScope.alertMsgName
-            });
-            cordova.plugins.backgroundMode.enable();
+            // cordova.plugins.backgroundMode.setDefaults({
+            //     text: $rootScope.alertMsgName
+            // });
+            // cordova.plugins.backgroundMode.enable();
 
             /*  cordova.plugins.backgroundMode.onactivate = function () {
                 var i = 0;
@@ -761,90 +761,90 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
                 }, 30000);
             }*/
 
-            cordova.plugins.backgroundMode.onactivate = function () {
-                var backGroundNetConnection;
-                backGroundNetConnection = setInterval(function () {
-                    //  $rootScope.flagpopup=true;
-                    var myPopup;
-                    $rootScope.online = navigator.onLine;
+            // cordova.plugins.backgroundMode.onactivate = function () {
+            //     var backGroundNetConnection;
+            //     backGroundNetConnection = setInterval(function () {
+            //         //  $rootScope.flagpopup=true;
+            //         var myPopup;
+            //         $rootScope.online = navigator.onLine;
 
-                    $window.addEventListener("offline", function () {
-                        $rootScope.$apply(function () {
-                            if ($rootScope.connAlertStatus !== true) {
-                                $rootScope.online = navigator.onLine;
-                                if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
-                                    console.log('gggg5');
-                                    $('#thumbVideos').remove();
-                                    $('#videoControls').remove();
-                                    session.unpublish(publisher)
-                                    session.disconnect();
-                                    $('#publisher').hide();
-                                    $('#subscriber').hide();
-                                    OT.updateViews();
-                                } else {
-                                    $('.popup').addClass("ietpopup");
-                                    $('.popup-title').addClass("iettitle");
-                                    $('.popup-buttons').addClass("ietpopup-buttons");
-                                    $('.dialogbox--person-location').css("visibility", "hidden");
-                                    $('.dialogbox-master').css("visibility", "hidden");
-                                    $('#scd-bdy').css("visibility", "hidden");
-                                    $rootScope.alertPopupA = function () {
-                                        $rootScope.flagpopup = false;
-                                        var myPopup = $ionicPopup.show({
-                                            template: '<b class="localizejs">Please make sure that you have network connection.</b>',
-                                            title: '<span class="localizejs">No Internet Connection</span>',
-                                            rootScope: $rootScope,
-                                            cssClass: 'my-custom-popup',
-                                            buttons: [{
-                                                text: '<b class="ietfonttype localizejs">ok</b>',
-                                                onTap: function (e) {
-                                                    return false;
-                                                }
-                                            }]
-                                        });
+            //         $window.addEventListener("offline", function () {
+            //             $rootScope.$apply(function () {
+            //                 if ($rootScope.connAlertStatus !== true) {
+            //                     $rootScope.online = navigator.onLine;
+            //                     if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
+            //                         console.log('gggg5');
+            //                         $('#thumbVideos').remove();
+            //                         $('#videoControls').remove();
+            //                         session.unpublish(publisher)
+            //                         session.disconnect();
+            //                         $('#publisher').hide();
+            //                         $('#subscriber').hide();
+            //                         OT.updateViews();
+            //                     } else {
+            //                         $('.popup').addClass("ietpopup");
+            //                         $('.popup-title').addClass("iettitle");
+            //                         $('.popup-buttons').addClass("ietpopup-buttons");
+            //                         $('.dialogbox--person-location').css("visibility", "hidden");
+            //                         $('.dialogbox-master').css("visibility", "hidden");
+            //                         $('#scd-bdy').css("visibility", "hidden");
+            //                         $rootScope.alertPopupA = function () {
+            //                             $rootScope.flagpopup = false;
+            //                             var myPopup = $ionicPopup.show({
+            //                                 template: '<b class="localizejs">Please make sure that you have network connection.</b>',
+            //                                 title: '<span class="localizejs">No Internet Connection</span>',
+            //                                 rootScope: $rootScope,
+            //                                 cssClass: 'my-custom-popup',
+            //                                 buttons: [{
+            //                                     text: '<b class="ietfonttype localizejs">ok</b>',
+            //                                     onTap: function (e) {
+            //                                         return false;
+            //                                     }
+            //                                 }]
+            //                             });
 
-                                        myPopup.then(function (res) {
-                                            if (res) {
-                                                console.log('res', res);
-                                            } else {
-                                                console.log('else');
-                                            }
-                                        });
-                                        $rootScope.closepopup = function () {
-                                            myPopup.close();
-                                            $('.dialogbox--person-location').css("visibility", "visible");
-                                            $('.dialogbox-master').css("visibility", "visible");
-                                            $('#scd-bdy').css("visibility", "visible");
-                                            $rootScope.flagpopup = true;
-                                        }
-                                    }
-                                    if ($rootScope.flagpopup === true) {
-                                        $rootScope.alertPopupA();
-                                    }
+            //                             myPopup.then(function (res) {
+            //                                 if (res) {
+            //                                     console.log('res', res);
+            //                                 } else {
+            //                                     console.log('else');
+            //                                 }
+            //                             });
+            //                             $rootScope.closepopup = function () {
+            //                                 myPopup.close();
+            //                                 $('.dialogbox--person-location').css("visibility", "visible");
+            //                                 $('.dialogbox-master').css("visibility", "visible");
+            //                                 $('#scd-bdy').css("visibility", "visible");
+            //                                 $rootScope.flagpopup = true;
+            //                             }
+            //                         }
+            //                         if ($rootScope.flagpopup === true) {
+            //                             $rootScope.alertPopupA();
+            //                         }
 
-                                }
-                            }
-                            return false;
-                        });
-                    }, false);
+            //                     }
+            //                 }
+            //                 return false;
+            //             });
+            //         }, false);
 
-                    $window.addEventListener("online", function () {
-                        $rootScope.$apply(function () {
-                            console.log('Closing in controller!');
-                            $rootScope.online = navigator.onLine;
-                            if ($rootScope.connAlertStatus !== false) {
-                                if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
-                                    $rootScope.netConnectionStaus = true;
-                                } else {
-                                    //if($rootScope.flagpopup==false){
-                                    $rootScope.closepopup();
-                                    //}
-                                }
-                            }
-                        });
-                    }, false);
-                }, 30000);
-            }
+            //         $window.addEventListener("online", function () {
+            //             $rootScope.$apply(function () {
+            //                 console.log('Closing in controller!');
+            //                 $rootScope.online = navigator.onLine;
+            //                 if ($rootScope.connAlertStatus !== false) {
+            //                     if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
+            //                         $rootScope.netConnectionStaus = true;
+            //                     } else {
+            //                         //if($rootScope.flagpopup==false){
+            //                         $rootScope.closepopup();
+            //                         //}
+            //                     }
+            //                 }
+            //             });
+            //         }, false);
+            //     }, 30000);
+            // }
 
             setTimeout(function () {
                 //  Idle.watch();

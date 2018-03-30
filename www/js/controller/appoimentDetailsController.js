@@ -349,9 +349,10 @@ angular.module('starter.controllers')
 
             LoginService.getUserTimezone(params);
         }
-
+       
         $scope.editAppointment = function (scheduledListData, $timeout) {
             $scope.isEnable = false;
+            $rootScope.isOpenPage = true;
             var localizeCurrent = $('#localize-current').text();
             if (localizeCurrent == "Español") {
                 snap.lanName = 'Spanish';
@@ -485,6 +486,7 @@ angular.module('starter.controllers')
                             'clinicianId': index.clinicianId,
                             'where': index.where
                         });
+                       
                     });
                     $rootScope.scheduledListDatas = $rootScope.scheduledListDatas[0];
 
@@ -534,6 +536,11 @@ angular.module('starter.controllers')
                     var getReplaceTime = $rootScope.scheduledListDatas.scheduledTime;
                     var currentUserHomeDate = currentUserHomeDate;
 
+                    if($rootScope.isOpenPage == true) {
+                        $scope.doRefreshAccountdetails($rootScope.scheduledListDatas.appointmentId);
+                        $rootScope.isOpenPage = false;
+                    }
+                   
 
                     //  if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                     $("#appointNotes").html($rootScope.appointNotes);
@@ -557,7 +564,7 @@ angular.module('starter.controllers')
                     }
                     var currentUserHomeDate = currentUserHomeDate;
                     if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
-
+                        $scope.$broadcast('timer-stop');
                         $rootScope.time = new Date(getReplaceTime).getTime();
 
                         $timeout(function () {
@@ -593,6 +600,7 @@ angular.module('starter.controllers')
                                 $('.enterAppoinment').hide();
                             }
                         });
+                        
                         $rootScope.time = new Date(getReplaceTime).getTime();
                         var d = new Date();
                         //  var currentUserHomeDate = CustomCalendar.getLocalTime(d);
@@ -672,7 +680,7 @@ angular.module('starter.controllers')
                 var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
                 var getReplaceTime = $scope.addMinutes(getReplaceTime1, -05);
             }
-
+            $scope.$broadcast('timer-stop');
             $rootScope.time = new Date(getReplaceTime).getTime();
 
             $scope.$on('timer-tick', function (event, args) {

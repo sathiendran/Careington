@@ -9040,7 +9040,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     var currentUserHomeDate = currentUserHomeDate;
                     if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
 
-
+                        $scope.$broadcast('timer-stop');
                         $rootScope.time = new Date(getReplaceTime).getTime();
 
                         /*    $timeout(function() {
