@@ -1,3 +1,8 @@
+<style>
+      .ion-chevron-right:before {
+        float: right;
+      }
+</style>
 <form>
    <div class="ErrorMessage ErrorMessageDiv" ></div>
    <div class="Server_Error ErrorMessageDiv" ></div>
@@ -53,7 +58,7 @@
             </ion-list>
          </ion-content>
       </ion-view>
-      <ion-footer-bar  class="footer">
+      <!-- <ion-footer-bar  class="footer">
          <span class="ConcernsFooter">
          <div class="FooterLeft">
             <a class="button_new icon ion-chevron-left" ng-click="backFromIntakeBornHisPage();" _href="#/tab/CurrentMedication" ><span class="localizejs"> Back</span></a>
@@ -66,8 +71,27 @@
             <span class="ConcernFooterNext localizejs" style="">Next<span>
             </a>
          </div>
-         </span>
-      </ion-footer-bar>
+         </span> 
+        </ion-footer-bar>  -->
+
+         <ion-footer-bar class="bar bar-footer footer">
+            <div class="button button-clear" ng-click="backFromIntakeBornHisPage();">
+              <a class="button_new icon ion-chevron-left iconVer" style="position: relative;top:-2px;">
+                <span class="localizejs backText"> Back</span>
+              </a>
+            </div>
+            <div class="title titleLineheight" style="height:auto;">
+              <a class="button_new icon localizejs cancelText iconVer " style="{{PatientConcernCancel}}"  ng-click="clearRootScopeConce()">
+                <span>Cancel</span>
+              </a>
+            </div>
+            <div class="button button-clear" style="right:6px;" ng-click="goToConsentToTreat()">
+              <a class="button_new icon ion-chevron-right iconVer">
+                <span class="localizejs nextText">Next
+                  <span>
+              </a>
+            </div>
+       </ion-footer-bar>
 </form>
 </ion-side-menu-content>
 <!--Side Menu File Include --->

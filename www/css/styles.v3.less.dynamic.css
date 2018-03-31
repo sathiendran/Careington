@@ -62563,7 +62563,7 @@ input:checked+.slider:before {
           flex-grow: 1
       }
   }
-  @media only screen and (min-width: 800px) {
+  @media only screen and (min-width: 768px) {
 .left-col {
     position: relative;
     left: auto !important;

@@ -11,7 +11,7 @@ margin-top: 125px !important;
 .emailext{
   text-align:center;
   font-size:21pz !important;
-}   
+}    
 .userlistAccountHome-ios5{
     //margin-top: 0px !important;fv
 }
@@ -7572,5 +7572,18 @@ padding-top: 3px;
 .iconVer {
     vertical-align: middle !important;
 }
-
 //jp
+.ionic_row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 5px;
+    width: 100%;
+}
+.ionic_row + .ionic_row {
+    //margin-top: -5px;
+    padding-top: 0;
+}

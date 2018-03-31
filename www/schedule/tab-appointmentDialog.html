@@ -175,7 +175,7 @@
                                 <div class="dialogbox-master__when" data-bind="invisible: isDateAreaInEditMode">
                                     <div class="dialogbox-master__time">
                                         <span class="dialogbox-master__hour" data-bind="html: vm_getStartTime"></span>
-                                        <spoan class="dialogbox-master__timezone" data-bind="text: timezone">pst</spoan>
+                                        <span class="dialogbox-master__timezone" data-bind="text: timezone">pst</span>
                                     </div>
                                     <!-- <div class="dialogbox-master__fulldate" data-bind="text: vm_getStartDate"></div> -->
                                     <div class="dialogbox-master__fulldate">
@@ -259,11 +259,11 @@
                                     </div>
                                     <div class="localizejs consultation-note__drop">
                                         <!--<textarea name="" id="" class="consultation-note__textarea js-autoresize-textarea" placeholder="Enter Additional Notes..." data-bind="value: additionalNotes, invisible: isReadOnly, events:{keyup: vm_onKeyUpAdditionalNotes}"></textarea>-->
-                                        <textarea name="" id="" class="consultation-note__textarea js-autoresize-textarea localizejs" placeholder="Enter Additional Notes..."
+                                        <textarea  class="consultation-note__textarea js-autoresize-textarea localizejs" placeholder="Enter Additional Notes..."
                                             data-bind="value: additionalNotes, invisible: isReadOnly, events:{click:vm_enterNotes,keyup: vm_onKeyUpAdditionalNotes}"
                                             style="overflow: hidden; word-wrap: break-word; height: 160px;"></textarea>
                                         <!--<textarea disabled name="" id="" class="consultation-note__textarea js-autoresize-textarea" data-bind="html: additionalNotes, visible: isReadOnly"></textarea>-->
-                                        <textarea disabled="" name="" id="" class="consultation-note__textarea js-autoresize-textarea" data-bind="html: additionalNotes, visible: isReadOnly"
+                                        <textarea disabled=""  class="consultation-note__textarea js-autoresize-textarea" data-bind="html: additionalNotes, visible: isReadOnly"
                                             style="overflow-x: hidden; word-wrap: break-word; overflow-y: visible; height: auto;"></textarea>
                                     </div>
 
@@ -310,7 +310,7 @@
         </div>
     </div>
     <!--</div>-->
-
+</div>
     <script>
         $(document).ready(function () {
             debugger;
