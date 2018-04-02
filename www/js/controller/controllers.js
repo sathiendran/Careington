@@ -10,7 +10,7 @@ var api_keys_env = '';
 var session = null;
 var publisher = null;
 var isSSProviderListLoaded = false;
-if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv === "QA") {
+if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv === "QA" || deploymentEnv === "QA1") {
     var util = {
 
         setHeaders: function (request, credentials) {
