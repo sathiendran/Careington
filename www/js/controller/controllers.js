@@ -10,7 +10,7 @@ var api_keys_env = '';
 var session = null;
 var publisher = null;
 var isSSProviderListLoaded = false;
-if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv === "QA" || deploymentEnv === "QA1") {
+if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv === "QA" || deploymentEnv === "QA1" || deploymentEnv === "QA2" ) {
     var util = {
 
         setHeaders: function (request, credentials) {
@@ -538,7 +538,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.APICommonURL = apiCommonURL;
 
         }
-        $rootScope.envList = ["Snap.QA1", "Sandbox", "Staging", "Snap-test", "Snap-azure-Dev2"];
+        $rootScope.envList = ["Snap.QA1", "Snap.QA2", "Sandbox", "Staging", "Snap-test", "Snap-azure-Dev2"];
 
         $scope.ChangeEnv = function (env) {
             $rootScope.backColor = '#DD472D';
@@ -548,6 +548,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 //  apiCommonURL = 'https://snap-qa.com';
                 $rootScope.APICommonURL = 'https://emerald.qa1.snapvcm.com';
                 apiCommonURL = 'https://emerald.qa1.snapvcm.com';
+                api_keys_env = "Snap.QA";
+            } else if (env === "Snap.QA2") {
+                //  $rootScope.APICommonURL = 'https://snap-qa.com';
+                //  apiCommonURL = 'https://snap-qa.com';
+                $rootScope.APICommonURL = 'https://emerald.qa2.snapvcm.com';
+                apiCommonURL = 'https://emerald.qa2.snapvcm.com';
                 api_keys_env = "Snap.QA";
             } else if (env === "Sandbox") {
                 $rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
