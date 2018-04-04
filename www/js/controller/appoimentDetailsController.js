@@ -317,7 +317,7 @@ angular.module('starter.controllers')
             $('.AvailableIn').hide();
             $('.enterAppoinment').show();
         };
-        $scope.doGetUserTimezone = function () {
+        $rootScope.doGetUserTimezone = function () {
             var params = {
                 accessToken: $rootScope.accessToken,
                 success: function (data) {
@@ -373,9 +373,8 @@ angular.module('starter.controllers')
                     snap.hospitalSession = JSON.parse($window.localStorage.getItem("snap_hospital_session"));
                     snap.hospitalSettings = JSON.parse($window.localStorage.getItem("snap_hospital_settings"));
                     $rootScope.brandName = snap.hospitalSession.brandName;
-                    $scope.doGetUserTimezone();
                 }
-
+                $rootScope.doGetUserTimezone();
                 snap.resolveObject("snap.patient.schedule");
                 var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
                 var headerVM = snap.resolveObject("snap.patient.PatientHeaderViewModel");
@@ -462,6 +461,7 @@ angular.module('starter.controllers')
 
                         $rootScope.scheduledListDatas.push({
                             'scheduledTime': CustomCalendar.getLocalTime1(index.startTime),
+                            'scheduledTimelab': GetFormattedTimeFromTimeStamp(index.startTime),
                             'appointmentId': index.appointmentId,
                             'appointmentStatusCode': index.appointmentStatusCode,
                             'appointmentTypeCode': index.appointmentTypeCode,

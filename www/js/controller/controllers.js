@@ -6952,6 +6952,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
                             $rootScope.getScheduledList.push({
                                 'scheduledTime': CustomCalendar.getLocalTime1(index.startTime),
+                                'scheduledTimelab': GetFormattedTimeFromTimeStamp(index.startTime),
                                 'appointmentId': index.appointmentId,
                                 'appointmentStatusCode': index.appointmentStatusCode,
                                 'appointmentTypeCode': index.appointmentTypeCode,
@@ -7045,6 +7046,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                     'consultantUserId': index.consultantUserId,
                                     //'scheduledTime': CustomCalendar.getLocalTime1(index.consultationDateInfo),
                                     'scheduledTime': CustomCalendar.getLocalTime(index.consultationDateInfo),
+                                    'scheduledTimelab': GetFormattedTimeFromTimeStamp(index.consultationDateInfo),
                                     'consultationId': index.consultationId,
                                     'createdDate': index.createdDate,
                                     'doctorStatus': index.doctorStatus,
@@ -7177,6 +7179,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
                             $rootScope.getScheduledList.push({
                                 'scheduledTime': CustomCalendar.getLocalTime1(index.startTime),
+                                'scheduledTimelab': GetFormattedTimeFromTimeStamp(index.startTime),
                                 'appointmentId': index.appointmentId,
                                 'appointmentStatusCode': index.appointmentStatusCode,
                                 'appointmentTypeCode': index.appointmentTypeCode,

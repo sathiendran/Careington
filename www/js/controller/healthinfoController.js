@@ -1946,6 +1946,7 @@ angular.module('starter.controllers')
                 },
                 patientMedicalHistoryData: $scope.patientMedicalHistoryDetails,
                 success: function (data) {
+
                     $rootScope.PatientidupdateList = [];
                     $scope.editimg = true;
                     $scope.viewimg = false;
@@ -2033,6 +2034,9 @@ angular.module('starter.controllers')
                         edittextarea.addClass('textdata');
                     }
                     $rootScope.doGetPrimaryPatientProfiles();
+                   
+                    $rootScope.userTimeZoneId = $scope.healthInfoTimezone;  //sakthi
+                    $rootScope.doGetUserTimezone();
                 },
                 error: function (data, status) {
                     if (status === 400) {
