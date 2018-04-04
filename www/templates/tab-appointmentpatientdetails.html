@@ -109,7 +109,7 @@
                        <i class="setIcon" ng-bind-html="drawSVGCIcon('phone')"></i> </span>
                      <span class="encounterappticon " style="top: 28px !important;" ng-if="scheduledListData.encounterTypeCode == 4">
                        <i class="setIcon" ng-bind-html="drawSVGCIcon('users')"></i> </span>
-                     <h4 style="margin-top:-14px;"><span class="fname localizejs" style="margin-left: 0px;">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname localizejs">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span><span class="fonttime localizejs">{{scheduledListData.scheduledTime | date: "a"}}</span>
+                     <h4 style="margin-top:-14px;"><span class="fname localizejs" style="margin-left: 0px;">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname localizejs">{{scheduledListData.scheduledTimelab | date: "hh:mm"}} </span><span class="fonttime localizejs">{{scheduledListData.scheduledTime | date: "a"}}</span>
                      </h4>
                   </a>
                 </div>
@@ -134,7 +134,7 @@
                     <i class="setIcon" ng-bind-html="drawSVGCIcon('phone')"></i> </span>
                   <span class="encounterappticon" style="top: 30px !important;" ng-if="scheduledListData.encounterTypeCode == 4">
                     <i class="setIcon" ng-bind-html="drawSVGCIcon('users')"></i> </span>
-                  <h4 style="margin-top:-14px;"><span class="fname localizejs" style="margin-left: 0px;">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname localizejs">{{scheduledListData.scheduledTime | date: "hh:mm"}} </span><span class="fonttime localizejs">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
+                  <h4 style="margin-top:-14px;"><span class="fname localizejs" style="margin-left: 0px;">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname localizejs">{{scheduledListData.scheduledTimelab | date: "hh:mm"}} </span><span class="fonttime localizejs">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
                </a>
                <a class="item item-avatar appitem" ng-repeat="scheduledListData in getIndividualPatScheduleDetails" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
                   <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
