@@ -307,14 +307,14 @@ angular.element(document).ready(function () {
         }*/
 
         $scope.GoToappoimentDetails = function(scheduledListData) {
-            // debugger;
-           if(scheduledListData.status != 71) {
+            if(scheduledListData.status != 71) {
                  $rootScope.appointmentId = '';
                  $rootScope.appointPersonId = '';
                  $rootScope.AppointScheduleTime = '';
                  $rootScope.scheduledListDatas = scheduledListData;
                  $rootScope.appointPreviousPage = 'tab.appointmentpatientdetails';
                  $rootScope.appointmentwaivefee = scheduledListData.waiveFee;
+                 $rootScope.scheduledListDatas.scheduledTimeDate;
                  // $rootScope.schedulemobile = scheduledListData.participants[1].person.phones[0].value;
                  $rootScope.schedulemobile = scheduledListData.where;
                  var currentTime = $rootScope.scheduledListDatas.scheduledTime;

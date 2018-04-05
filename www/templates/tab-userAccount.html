@@ -286,8 +286,8 @@
                 </svg>
               </i>
               <span class="apptTime localizejs">
-                <span class="localizejs">Appt</span> @ {{scheduledListData.scheduledTime | date: "hh:mm"}} {{scheduledListData.scheduledTime | date:
-                "a"}}</span>
+                <span class="localizejs">Appt</span> @ {{scheduledListData.scheduledTimelab | date: "hh:mm"}} {{scheduledListData.scheduledTimelabGMT | date:
+                "a" | lowercase}}</span>
               <span class="apptDetailsInfo" ng-if="scheduledListData.appointmentStatusCode != 'Waiting' && scheduledListData.status != 71">
                 <a class="appviewinfo-{{deviceName}} localizejs">View Details</a>
                 <i class="iconfontSVG ng-binding appViewicons" ng-bind-html="drawSVGCIcon('chevron-right')">

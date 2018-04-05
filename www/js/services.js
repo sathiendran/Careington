@@ -2514,6 +2514,43 @@ angular.module('starter.services', [])
             return hours + ':' + mins + ' ' + ampm;
         }
 
+        this.formatJSONDateShort = function(jsonDate) {
+
+            var mon, day;
+            var newDate;
+            if (jsonDate != null) {
+                var value = jsonDate;
+                if (typeof value !== "string" || value.substring(0, 6) == "/Date(") {
+                    if (typeof value === "string")
+                        newDate = new Date(parseInt(value.substring(6, value.length - 2)));
+                    else
+                        newDate = new Date(value);
+                    mon = newDate.getUTCMonth() + 1;
+        
+                    if (newDate.getUTCDate() < 10)
+                        day = '0' + newDate.getUTCDate();
+                    else
+                        day = newDate.getUTCDate();
+                    return (mon + "/" + day + "/" + newDate.getUTCFullYear());
+                }
+                else {
+                    var newYear = value.substring(0, 4);
+                    mon = value.substring(5, 7);
+                    day = value.substring(8, 10);
+        
+                    return (mon + "/" + day + "/" + newYear);
+                }
+        
+            }
+            else
+                return '';
+        }
+        // this.SnapDateTime1 = function(jsonDate) {
+        //     return formatJSONDate1(jsonDate) + ' ' + GetFormattedTimeFromTimeStamp(jsonDate);
+        // }
+        // this.SnapDateTimeShort = function(jsonDate) {
+        //     return formatJSONDateShort(jsonDate) + ' ' + GetFormattedTimeFromTimeStamp(jsonDate);
+        // }
 
         this.getMonthName = function (PriorSurgerymonth) {
             PriorSurgerymonth = Number(PriorSurgerymonth);

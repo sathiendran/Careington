@@ -2111,7 +2111,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
 
         $rootScope.doCheckExistingConsulatationStatus = function (CurrentPage) {
-            debugger;
+            
             var params = {
                 consultationId: $rootScope.consultationId,
                 accessToken: $rootScope.accessToken,
@@ -2128,7 +2128,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.consultationAmount = $rootScope.consultionInformation.consultationAmount;
                     $rootScope.copayAmount = $rootScope.consultationAmount;
                     $rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
-                    debugger;
+                   
                     if (!angular.isUndefined($rootScope.consultationStatusId)) {
                         if ($rootScope.consultationStatusId === 71) {
                             //  $rootScope.doGetScheduledNowPhoneConsulatation();
@@ -2472,7 +2472,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         };
         $scope.mobileloc = false;
         $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme = function () {
-            debugger;
+            
             $rootScope.paymentMode = '';
             $rootScope.insuranceMode = '';
             $rootScope.onDemandMode = '';
@@ -3106,7 +3106,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.regCountry2 = $('#regCountryCode').val();
             }
 
-            //  debugger;
+            
             if (deploymentEnvLogout === 'Single') {
                 if (deploymentEnvForProduction === 'Production') {
                     //    if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
@@ -6575,7 +6575,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
 
         $scope.doPostPaymentProfileDetails = function () {
-            debugger;
+           
             $rootScope.iscancel = false;
 
             $rootScope.isEditAvailable = false;
@@ -6949,10 +6949,18 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                     $rootScope.timerCOlor = '#a2d28a';
                                 }
                             }
+                            
+                            var AppoinmentDateString = formatJSONDateShort(index.startTime);
+                            var AppoinmentDate = new Date(AppoinmentDateString);
+                            var AppionmentTimeString =  GetFormattedTimeFromTimeStamp(index.startTime);
+                            var AppionmentTimeSplit = AppionmentTimeString.split(' ');
 
                             $rootScope.getScheduledList.push({
                                 'scheduledTime': CustomCalendar.getLocalTime1(index.startTime),
-                                'scheduledTimelab': GetFormattedTimeFromTimeStamp(index.startTime),
+                                //'scheduledTimelab': GetFormattedTimeFromTimeStamp(index.startTime),
+                                'scheduledTimelab': AppionmentTimeSplit[0],
+                                'scheduledTimelabGMT': AppionmentTimeSplit[1],
+                                'scheduledTimeDate': AppoinmentDate,
                                 'appointmentId': index.appointmentId,
                                 'appointmentStatusCode': index.appointmentStatusCode,
                                 'appointmentTypeCode': index.appointmentTypeCode,
@@ -7042,11 +7050,19 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         }
                         angular.forEach(data.data, function (index) {
                             if (index.status == 71) {
+                                
+                                var AppoinmentDateString = formatJSONDateShort(index.consultationDateInfo);
+                                var AppoinmentDate = new Date(AppoinmentDateString);
+                                var AppionmentTimeString =  GetFormattedTimeFromTimeStamp(index.consultationDateInfo);
+                                var AppionmentTimeSplit = AppionmentTimeString.split(' ');
+
                                 $rootScope.getScheduledList.push({
                                     'consultantUserId': index.consultantUserId,
                                     //'scheduledTime': CustomCalendar.getLocalTime1(index.consultationDateInfo),
                                     'scheduledTime': CustomCalendar.getLocalTime(index.consultationDateInfo),
-                                    'scheduledTimelab': GetFormattedTimeFromTimeStamp(index.consultationDateInfo),
+                                    'scheduledTimelab': AppionmentTimeSplit[0],
+                                    'scheduledTimelabGMT': AppionmentTimeSplit[1],
+                                    'scheduledTimeDate': AppoinmentDate,
                                     'consultationId': index.consultationId,
                                     'createdDate': index.createdDate,
                                     'doctorStatus': index.doctorStatus,
@@ -7177,9 +7193,17 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                 }
                             }
 
+                            
+                            var AppoinmentDateString = formatJSONDateShort(index.startTime);
+                            var AppoinmentDate = new Date(AppoinmentDateString);
+                            var AppionmentTimeString =  GetFormattedTimeFromTimeStamp(index.startTime);
+                            var AppionmentTimeSplit = AppionmentTimeString.split(' ');
+
                             $rootScope.getScheduledList.push({
                                 'scheduledTime': CustomCalendar.getLocalTime1(index.startTime),
-                                'scheduledTimelab': GetFormattedTimeFromTimeStamp(index.startTime),
+                                'scheduledTimelab': AppionmentTimeSplit[0],
+                                'scheduledTimelabGMT': AppionmentTimeSplit[1],
+                                'scheduledTimeDate': AppoinmentDate,
                                 'appointmentId': index.appointmentId,
                                 'appointmentStatusCode': index.appointmentStatusCode,
                                 'appointmentTypeCode': index.appointmentTypeCode,
@@ -7387,7 +7411,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $scope.doRefreshUserHome();
            $rootScope.inProgressConsultID = message;
             if (messageType == 'consultation_ended') {
-                debugger;
+                
                 //  alert('gg2');
                 navigator.notification.alert(
                     //'Consultation is ended.', // message
@@ -9747,7 +9771,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
 
         $rootScope.GoToPatientDetails = function (Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
-           debugger;
+           
             $rootScope.checkpatid = P_Id;
             if ($rootScope.patientSearchKey !== '' && typeof $rootScope.patientSearchKey !== "undefined") {
                 //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
@@ -9985,7 +10009,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
         $scope.GoToConsultCharge = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
-            debugger;
+            
             $rootScope.PatientImageSelectUser = P_img;
             $rootScope.PatientFirstName = P_Fname;
             $rootScope.PatientLastName = P_Lname;
@@ -10320,7 +10344,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.schedulemobile = scheduledListData.where;
                 $rootScope.scheduledListDatas = scheduledListData;
                 $rootScope.appointmentwaivefee = scheduledListData.waiveFee;
-                var currentTime = $rootScope.scheduledListDatas.scheduledTime;
+                var currentTime = $rootScope.scheduledListDatas.scheduledTime; 
 
                 var serverDateTime = currentTime;
 
@@ -10997,7 +11021,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 var num_months = (difdt1 % 31536000000) / 2628000000;
                 var num_days = ((difdt1 % 31536000000) % 2628000000) / 86400000;
                 // return ageString = Math.floor(num_months) + monthString;
-                debugger; // month //
+               
                 var ageString = monthsCount + monthString;
                 return ageString;
 
@@ -11130,7 +11154,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 var num_days = ((difdt1 % 31536000000) % 2628000000) / 86400000;
                 //return ageString = Math.floor(num_days) + dayString ;
                 //Days//
-                debugger;
+                
                 var ageString = age.days + dayString;
                 return ageString;
 

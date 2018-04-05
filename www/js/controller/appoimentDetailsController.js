@@ -6,7 +6,7 @@ angular.module('starter.controllers')
         //     $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
         //venkat start
         if ($rootScope.is_iPadDeviceWidth <= 360) {
-            $('.apponitmentdate').attr('style', 'width: 115% !important; font-size: 22px !important;margin-top: 10px !important;');
+            $('.apponitmentdate').attr('style', 'width: 100% !important; font-size: 22px !important;margin-top: 10px !important;');
         } else {
             $('.apponitmentdate').attr('style', 'width: 115% !important; padding-right: 15%; margin-top: 20px !important;');
         }
@@ -448,6 +448,8 @@ angular.module('starter.controllers')
                         var splityear = newda.getFullYear();
                         var Aptdate = splityear + "/" + splitmnth + "/" + splitdate;
                         $scope.formatscheduleddate = moment(Aptdate, 'YYYY/MM/DD').format('MMM D');
+                        var AppoinmentDateString = formatJSONDateShort(index.startTime);
+                        var AppoinmentDate = new Date(AppoinmentDateString);
                         $rootScope.appointmentwaivefee = index.waiveFee;
                         $scope.paticipatingPatientName = $scope.paticipatingPatient.person.name.given + ' ' + $scope.paticipatingPatient.person.name.family;
                         $scope.paticipatingPatientInitial = getInitialForName($scope.paticipatingPatientName);
@@ -458,10 +460,15 @@ angular.module('starter.controllers')
                         $scope.paticipatingPhysicianName = $scope.paticipatingPhysician.person.name.given + ' ' + $scope.paticipatingPhysician.person.name.family;
                         $scope.paticipatingPhysicianInitial = getInitialForName($scope.paticipatingPhysicianName);
                         $scope.paticipatingPhysicianPhoto = $scope.paticipatingPhysician.person.photoUrl;
+                        
+                        var AppionmentTimeString =  GetFormattedTimeFromTimeStamp(index.startTime);
+                        var AppionmentTimeSplit = AppionmentTimeString.split(' ');
 
                         $rootScope.scheduledListDatas.push({
                             'scheduledTime': CustomCalendar.getLocalTime1(index.startTime),
-                            'scheduledTimelab': GetFormattedTimeFromTimeStamp(index.startTime),
+                            'scheduledTimelab': AppionmentTimeSplit[0],
+                            'scheduledTimeGMT': AppionmentTimeSplit[1],
+                            'scheduledTimeDate': AppoinmentDate,
                             'appointmentId': index.appointmentId,
                             'appointmentStatusCode': index.appointmentStatusCode,
                             'appointmentTypeCode': index.appointmentTypeCode,
@@ -764,7 +771,7 @@ angular.module('starter.controllers')
                                 //  'Your consultation is already started on other device.', // message
 
                                 function () {
-                                  debugger;
+                                  
                                     $state.go('tab.userhome');
                                     return;
                                 },
@@ -859,7 +866,7 @@ angular.module('starter.controllers')
                 accessToken: $rootScope.accessToken,
                 success: function (data) {
 
-                    debugger;
+                   
 
                     // $rootScope.appointmentsPatientFirstName =  data.data[0].patientName;
                     //  $rootScope.appointmentsPatientLastName = data.data[0].lastName;
