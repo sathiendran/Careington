@@ -1,0 +1,20 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-customurlscheme": {
+            "URL_SCHEME": "vc287",
+            "PACKAGE_NAME": "com.snap.connectedcare.production"
+        }
+    },
+    "dependent_plugins": {
+        "com.ionic.keyboard": {
+            "PACKAGE_NAME": "com.snap.connectedcare.production"
+        }
+    }
+}

@@ -21,7 +21,7 @@
 				var _uiq_config_url = (("https:" == document.location.protocol) ? "https" : "http") + "://feed.useriq.com/";
 				var _uiq_prod_url = (("https:" == document.location.protocol) ? "https" : "http") + "://secure.useriq.com/";
 				_uiq.push(["setTrackerUrl", _uiq_prod_url + "visits/push"]);
-				_uiq.push(["setSiteId", "406028401"]);
+				_uiq.push(["setSiteId", "XXXX"]); //Include your own SiteID value here
 				var d = document, g = d.createElement("script"), s = d.getElementsByTagName("script")[0];
 				g.type = "text/javascript";
 				g.defer = true;

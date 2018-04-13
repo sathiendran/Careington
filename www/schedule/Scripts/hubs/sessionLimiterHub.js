@@ -46,9 +46,9 @@
 
                                  if (deploymentEnvLogout === "Multiple") {
                                      window.location.href = '#/tab/chooseEnvironment';
-                                 } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
+                                 } else if (cobrandApp === 'XXX' && deploymentEnvLogout === "Single") {
                                      window.location.href = '#/tab/singleTheme';
-                                 }else if (cobrandApp !== 'MDAmerica' && deploymentEnvLogout === "Single") {
+                                 }else if (cobrandApp !== 'XXX' && deploymentEnvLogout === "Single") {
                                      window.location.href = '#/tab/singleTheme';
                                  }else {
                                      window.location.href = '#/tab/login';

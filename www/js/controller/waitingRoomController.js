@@ -4,10 +4,7 @@ angular.module('starter.controllers')
     $.getScript( "lib/jquery.signalR-2.1.2.js", function( data, textStatus, jqxhr ) {
 
     });
-    /*
-    $.getScript( "https://snap-qa.com/api/signalR/hubs", function( data, textStatus, jqxhr ) {
-
-    });*/
+   
     $("#localize-widget").show();
 
 
@@ -290,7 +287,7 @@ angular.module('starter.controllers')
                 $rootScope.Hospital = data.data[0].brandName;
                 $rootScope.adminSetlocale = data.data[0].locale;
                 if (deploymentEnvLogout === 'Multiple') {
-                    $rootScope.alertMsgName = 'Virtual Care';
+                    $rootScope.alertMsgName = 'XXXS';
                     $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
                 } else {
                     $rootScope.alertMsgName = $rootScope.Hospital;
@@ -351,8 +348,8 @@ angular.module('starter.controllers')
       $ionicBackdrop.release();
       $window.localStorage.setItem('tokenExpireTime', '');
         $(".overlay").css({"display": "none" });
-    //  if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging') {
-    if ((deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && api_keys_env === 'Staging' && cobrandApp !== 'MDAmerica') && (appStoreTestUserEmail === 'itunesmobiletester@gmail.com' || appStoreTestUserEmail2 == 'snap.rinsoft.qaapptester@gmail.com')) {
+    
+    if ((deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && api_keys_env === 'Staging' && cobrandApp !== 'XXXX') && (appStoreTestUserEmail === 'XXXX' || appStoreTestUserEmail2 == 'XXXX')) {
             $rootScope.hospitalId = singleHospitalId;
             apiCommonURL = 'https://connectedcare.md';
             api_keys_env = 'Production';
@@ -360,17 +357,17 @@ angular.module('starter.controllers')
             $scope.doGetSingleHosInfoForiTunesStage();
       } else {
 
-        if (deploymentEnvLogout === "Multiple") {
+        if (deploymentEnvLogout === "XXX") {
             $state.go('tab.chooseEnvironment');
             $timeout(function() {
                    //$window.location.reload(true);
                });
-        } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
+        } else if (cobrandApp === 'XXX' && deploymentEnvLogout === "Single") {
                  $state.go('tab.singleTheme');
                  $timeout(function() {
                         //$window.location.reload(true);
                     });
-        }else if (cobrandApp !== 'MDAmerica' && deploymentEnvLogout === "Single") {
+        }else if (cobrandApp !== 'XXX' && deploymentEnvLogout === "Single") {
             $state.go('tab.singleTheme');
             $timeout(function() {
                    //$window.location.reload(true);

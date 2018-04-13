@@ -7,7 +7,7 @@ $("#localize-widget").hide();
 
 
     /*
-    $.getScript( "https://snap-qa.com/api/signalR/hubs", function( data, textStatus, jqxhr ) {
+   
 
     });*/
      function resetSessionLogoutTimer(){
@@ -171,72 +171,6 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
     });
 
 //end
-
-
-    //venkat start
-      /*  var localizeCurrent = $('#localize-current').text();
-        var myLength = $(".departmentClassVal").text().length;
-        console.log("myLength ="+myLength);
-         if($( window ).width()<= 375) {
-           if(localizeCurrent == "Español") {
-               console.log("Español");
-             $scope.ReportEthnicityVal1 = "width:36.33% !important";
-           } if(localizeCurrent == "English (UK)") {
-             $scope.ReportEthnicityVal1 = "width:41.33% !important";
-           } if(localizeCurrent == "English") {
-             $scope.ReportEthnicityVal1 = "width:41.33% !important";
-           }
-            if(myLength >= 11) {
-                console.log("myLength  is more=");
-              if(localizeCurrent == "Español") {
-                  console.log("Español");
-                  $scope.departmentClass = "height:45px !important";
-              } if(localizeCurrent == "English (UK)") {
-                  $scope.departmentClass = "height:25px !important";
-              } if(localizeCurrent == "English") {
-                  $scope.departmentClass = "height:25px !important";
-              }
-            }
-             } else {
-                 if(localizeCurrent == "Español"){
-                   }else{
-                   }
-             }
-
-               $('#localize-langs').click(function() {
-                     var myLength = $(".departmentClassVal").text().length;
-                     var isLang = $('#localize-langs .activated').text();
-
-                  //     console.log("myLength ="+myLength);
-                  if($( window ).width()<= 375){
-                    if(isLang == "Español") {
-                        console.log("Español");
-                      $(".ReportEthnicity").css("width", "36.33% !important");
-
-                    } if(isLang == "English (UK)") {
-                      $(".ReportEthnicity").css("width", "41.33% !important");
-
-                    } if(isLang == "English") {
-                      $(".ReportEthnicity").css("width", "41.33% !important");
-
-                    }
-                    if(myLength >= 11) {
-                        console.log("myLength  is more=");
-                     if(isLang == "Español") {
-                          $(".departmentClass").css("height", "45px !important");
-                     }
-                     if(isLang == "English (UK)") {
-                         $(".departmentClass").css("height", "25px !important");
-                     }
-                     if(isLang == "English") {
-                            $(".departmentClass").css("height", "25px !important");
-                     }
-                   isLang = "";
-                 }
-               }
-           }); */
-        //venkat end
-
 
     function clearSessionLogoutTimer(){
        if(typeof appIdleInterval !== "undefined"){
@@ -902,45 +836,6 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
         LoginService.getConsultationFinalReport(params);
     }
 
-   /* $scope.doGetAttachmentList = function() {
-
-        var params = {
-            consultationId: $rootScope.consultationId,
-            accessToken: $rootScope.accessToken,
-            success: function(data) {
-                $scope.getSoapNotes();
-                $rootScope.getAttachmentList = [];
-
-
-                angular.forEach(data.data[0].snapFile.files, function(index) {
-                    var attachImage = index.name.split(".");
-                    $rootScope.getAttachmentList.push({
-                        'id': index.id,
-                        'name': index.name,
-                        'image': attachImage[attachImage.length - 1]
-                    });
-
-                });
-                $rootScope.attachmentLength = $rootScope.getAttachmentList.length;
-
-
-            },
-            error: function(data,status) {
-              if(status===0 ){
-
-                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                   $rootScope.Validation($scope.ErrorMessage);
-
-              }else{
-                $rootScope.serverErrorMessageValidation();
-              }
-            }
-        };
-
-        LoginService.getAttachmentList(params);
-
-    }*/
-
     $scope.doGetAttachmentList = function() {
 
             var params = {
@@ -1122,13 +1017,13 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
             $timeout(function() {
                    //$window.location.reload(true);
                });
-        } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
+        } else if (cobrandApp === 'XXX' && deploymentEnvLogout === "Single") {
                  //$state.go('tab.login');
                  $state.go('tab.singleTheme');
                  $timeout(function() {
                         //$window.location.reload(true);
                     });
-        }else if (cobrandApp !== 'MDAmerica' && deploymentEnvLogout === "Single") {
+        }else if (cobrandApp !== 'XXX' && deploymentEnvLogout === "Single") {
             //$state.go('tab.loginSingle');
             $state.go('tab.singleTheme');
             $timeout(function() {
@@ -1799,7 +1694,7 @@ if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $r
             videoCallSessionDuration = 0;
         }
         resetSessionLogoutTimer();
-        if (deploymentEnv === 'Single' && cobrandApp === 'Hello420') {
+        if (deploymentEnv === 'Single' && cobrandApp === '') {  // add your hosbital ID
             var consulationEndRedirectURL = $rootScope.patientConsultEndUrl;
             if (consulationEndRedirectURL !== "") {
                 $state.go('tab.singleTheme');

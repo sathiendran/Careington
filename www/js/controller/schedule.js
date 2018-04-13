@@ -192,9 +192,9 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
         snap.appName = $rootScope.alertMsgName;
         if (deploymentEnvLogout === "Multiple") {
               snap.redirctPage = '#/tab/chooseEnvironment';
-        } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
+        } else if (cobrandApp === 'XXX' && deploymentEnvLogout === "Single") {
                  snap.redirctPage = '#/tab/singleTheme';
-        }else if (cobrandApp !== 'MDAmerica' && deploymentEnvLogout === "Single") {
+        }else if (cobrandApp !== 'XXX' && deploymentEnvLogout === "Single") {
             snap.redirctPage = '#/tab/singleTheme';
         }else {
            snap.redirctPage = '#/tab/login';

@@ -301,7 +301,7 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
                     $rootScope.Hospital = data.data[0].brandName;
                     $rootScope.adminSetlocale = data.data[0].locale;
                     if (deploymentEnvLogout === 'Multiple') {
-                        $rootScope.alertMsgName = 'Virtual Care';
+                        $rootScope.alertMsgName = 'XXX';
                         $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
                     } else {
                         $rootScope.alertMsgName = $rootScope.Hospital;
@@ -369,8 +369,8 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
                $rootScope.sessionRoomConHub = null;
                $rootScope.sessionConsultConnection = null;
             });
-            //  if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging') {
-            if ((deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && api_keys_env === 'Staging' && cobrandApp !== 'MDAmerica') && (appStoreTestUserEmail === 'itunesmobiletester@gmail.com' || appStoreTestUserEmail2 == 'snap.rinsoft.qaapptester@gmail.com')) {
+            
+            if ((deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && api_keys_env === 'Staging' && cobrandApp !== 'XXX') && (appStoreTestUserEmail === 'XXXX' || appStoreTestUserEmail2 == 'XXXX')) {
                 $rootScope.hospitalId = singleHospitalId;
                 apiCommonURL = 'https://connectedcare.md';
                 api_keys_env = 'Production';
@@ -382,12 +382,12 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
                     $timeout(function () {
                         //$window.location.reload(true);
                     });
-                } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
+                } else if (cobrandApp === 'XXX' && deploymentEnvLogout === "Single") {
                     $state.go('tab.singleTheme');
                     $timeout(function () {
                         //$window.location.reload(true);
                     });
-                } else if (cobrandApp !== 'MDAmerica' && deploymentEnvLogout === "Single") {
+                } else if (cobrandApp !== 'XXX' && deploymentEnvLogout === "Single") {
                     $state.go('tab.singleTheme');
                     $timeout(function () {
                         //$window.location.reload(true);

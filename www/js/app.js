@@ -4,29 +4,22 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-/*var handleOpenURL = function(url) {
-    console.log("received url: " + url);
-    //window.localstorage.setItem('ASA', url);
-}*/
-// Sandbox -  https://sandbox.connectedcare.md
-// Production - https://connectedcare.md
-// QA - https://snap-qa.com
-// Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
-var deploymentEnv = 'Multiple'; //Production //Multiple //Multiple //Single //Demo
-var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProduction = 'Production';
-var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
-var appStoreTestUserEmail2 = 'snap.rinsoft.qaapptester@gmail.com';
+
+
+var deploymentEnv = 'Production'; //Production //Multiple //Multiple //Single //Demo
+var deploymentEnvLogout = 'Production'; // same as above var deploymentEnvForProduction = 'Production';
+var appStoreTestUserEmail = ''; // Need to update your QA test account & same id need to add in WaitingRoomController, ConferenceController & IntakeController
+var appStoreTestUserEmail2 = ''; // Need to update your QA test account & same id need to add in WaitingRoomController, ConferenceController & IntakeController
 var deploymentEnvForProduction = ''; //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
-var loginPageEnv = 'Multiple'; //Multiple //Production // Single
-var appVersion = 8.1;
-var serviceAPIError = 'https://www.connectedcarestatus.com/';
-//var xApiKey = 'c69fe0477e08cb4352e07c502ddd2d146b316112'; // For Photo Upload
-//var xDeveloperId = '84f6101ff82d494f8fcc5c0e54005895'; // For Photo Upload
+var loginPageEnv = 'Production'; //Multiple //Production // Single
+var appVersion = 8.1; // PUT your current app version
+var serviceAPIError = '' // IF  API returns 500 - Page redirect to web page - PUT your 500 WEb error page link here;
+
 var timeoutValue = 0;
 var videoCallSessionDuration = 8000;
 var videoCallStartTime = new Date();
 if (deploymentEnv == 'Single') {
-    appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
+    appStoreTestUserEmail = '';
     deploymentEnvForProduction = 'Staging'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
 
     var singleStagingHospitalId;
@@ -38,198 +31,17 @@ if (deploymentEnv == 'Single') {
 
 
 
-    var cobrandApp = 'MDAmerica';
+    var cobrandApp = ' '; // add your Hospital Name
     switch (cobrandApp) {
-        case "EpicMD":
-            singleStagingHospitalId = 155;
-            singleHospitalId = 190;
-            singleQAHospitalId = '';
-            singleSandboxHospitalId = '';
-            brandColor = '#66c3b0';
-            logo = 'img/epicmd_logotypebg.png';
-            Hospital = 'EpicMD';
-            HospitalTag = 'Virtual Care Concierge';
-            ssoURL = "";
-            break;
-        case "TelehealthOne":
-            singleStagingHospitalId = 142;
-            singleHospitalId = 142;
-            singleQAHospitalId = '';
-            singleSandboxHospitalId = '';
-            brandColor = '#5ec4fe';
-            logo = 'img/teleLogo.png';
-            Hospital = 'telehealthONE';
-            HospitalTag = 'Virtual Care Concierge';
-            ssoURL = "";
-            break;
-        case "Dokita":
-            singleStagingHospitalId = 156;
-            singleHospitalId = 184;
-            singleQAHospitalId = '';
-            singleSandboxHospitalId = '';
-            brandColor = '#ff0000';
-            logo = 'img/dokita.png';
-            Hospital = 'Dokita247';
-            HospitalTag = 'Virtual Care Concierge';
-            ssoURL = "";
-            break;
-        case "DYW":
-            singleStagingHospitalId = 157;
-            singleHospitalId = 168;
-            singleQAHospitalId = 156;
-            singleSandboxHospitalId = '126';
-            brandColor = '#22508b';
-            logo = 'img/dyw.jpg';
-            Hospital = "DocYourWay's Global Care Management";
-            HospitalTag = 'Virtual Care Concierge';
-            ssoURL = "";
-            break;
-        case "Hello420":
-            singleStagingHospitalId = 160;
-            singleHospitalId = 197;
-            singleQAHospitalId = '';
-            singleSandboxHospitalId = 142;
-            brandColor = '#000080';
-            logo = 'img/hello420.png';
-            logo = 'https://connectedcare.md/api/v2.1/images/91e9aff7-4236-415e-aff5-17434a17c17b';
-            Hospital = "Hello420";
-            HospitalTag = 'Medical marijuana cards, quickly';
-            ssoURL = "http://52.34.151.119/hello420/login/";
-            break;
-        case "ambientcare":
-            singleStagingHospitalId = 161;
-            singleHospitalId = 212;
-            singleQAHospitalId = 164;
-            singleSandboxHospitalId = '';
-            brandColor = '#193def';
-            logo = 'img/ambientcare.png';
-            logo = 'https://snap-stage.com/api/v2.1/images/1456c0dc-9322-4502-98c4-d26e501f0dc0';
-            Hospital = "Ambient Virtual Care";
-            HospitalTag = 'Virtual Consultation Platform';
-            ssoURL = "";
-            break;
-        case "1800md":
-            singleStagingHospitalId = 164;
-            singleHospitalId = 229;
-            singleQAHospitalId = 165;
-            singleSandboxHospitalId = 146;
-            brandColor = '#005b9f';
-            logo = 'img/1800md.png';
-            logo = 'https://snap-stage.com/api/v2.1/images/b98206b9-1238-4a69-9e5d-3b8090406e32';
-            Hospital = "1.800MD";
-            HospitalTag = 'Convenient Care Anywhere';
-            ssoURL = "";
-            break;
-        case "LatchOn":
-            singleStagingHospitalId = 166;
-            singleHospitalId = 218;
-            singleQAHospitalId = '';
-            singleSandboxHospitalId = '';
-            brandColor = '#d14a43';
-            logo = 'img/1800md.png';
-            logo = 'https://snap-stage.com/api/v2.1/images/b98206b9-1238-4a69-9e5d-3b8090406e32';
-            Hospital = "1.800MD";
-            HospitalTag = 'Convenient Care Anywhere';
-            ssoURL = "";
-            break;
-        case "Emerald Healthcare Group":
-            singleStagingHospitalId = 126;
-            singleHospitalId = 126;
-            singleQAHospitalId = '';
-            singleSandboxHospitalId = 129; // 126;
-            brandColor = '#0071bb';
-            logo = 'https://sandbox.connectedcare.md/api/v2.1/images/745eb236-2286-4635-b7c1-50dfe7fac390';
-            Hospital = 'Emerald City Healthcare';
-            HospitalTag = 'Virtual Telemedicine';
-            ssoURL = "";
-            break;
-        case "TeleMD Virtual Clinic":
-            singleStagingHospitalId = 167;
-            singleHospitalId = 268;
-            singleQAHospitalId = '';
-            singleSandboxHospitalId = 144; // 126;
-            brandColor = '#0000ff';
-            logo = 'https://sandbox.connectedcare.md/api/v2.1/images/59953d85-4202-4b1b-ae0b-c4bf31203b19';
-            Hospital = 'TeleMD Virtual Clinic';
-            HospitalTag = 'Always Nearby';
-            ssoURL = "";
-            break;
-        case "TheDocApp":
-            singleStagingHospitalId = 162;
-            singleHospitalId = 259;
-            singleQAHospitalId = '';
-            singleSandboxHospitalId = '';
-            brandColor = '#4bc9f0';
-            //  logo = 'img/1800md.png';
-            logo = 'https://snap-stage.com/api/v2.1/images/7900bdca-83e3-4a66-850e-7bd4c78a8f58';
-            Hospital = "TheDocApp";
-            HospitalTag = 'Convenient Care Anywhere';
-            ssoURL = "";
-            break;
-        case "eVirtualcare":
-            singleStagingHospitalId = 168;
-            singleHospitalId = 271;
-            singleQAHospitalId = '';
-            singleSandboxHospitalId = '';
-            brandColor = '#0073c0';
-            logo = 'https://snapmdadmin.snap-stage.com/api/v2.1/images/ca001725-db79-4cdb-99d1-5193029a884b';
-            Hospital = "eVirtualcare";
-            HospitalTag = '';
-            ssoURL = "";
-            break;
-        case "Quensic":
-            singleStagingHospitalId = 169;
-            singleHospitalId = 298;
-            singleQAHospitalId = '';
-            singleSandboxHospitalId = '';
-            brandColor = '#275ba9';
-            logo = 'https://snapadmin.snap-stage.com/api/v2.1/images/acd5f13c-94b1-49b8-8c86-a84fac870a70';
-            Hospital = "Quensic Health";
-            HospitalTag = '';
-            ssoURL = "";
-            break;
-        case "Totalcare":
-            singleStagingHospitalId = 172;
-            singleHospitalId = 283;
-            singleQAHospitalId = '';
-            singleSandboxHospitalId = '';
-            brandColor = '#275ba9';
-            logo = 'https://snapadmin.snap-stage.com/api/v2.1/images/acd5f13c-94b1-49b8-8c86-a84fac870a70';
-            Hospital = "Total Care";
-            HospitalTag = '';
-            ssoURL = "";
-            break;
-        case "AvaMD":
-            singleStagingHospitalId = 170;
-            singleHospitalId = 293;
-            singleQAHospitalId = '';
-            singleSandboxHospitalId = '';
-            brandColor = '#0073c0';
-            logo = 'https://connectedcare.md/api/v2.1/images/0ad39512-5d3f-40a4-afa7-e829a1c996f2';
-            Hospital = "AVA MD";
-            HospitalTag = '';
-            ssoURL = "";
-            break;
-        case "UKOnline":
-            singleStagingHospitalId = '';
-            singleHospitalId = '';
-            singleQAHospitalId = '';
-            singleSandboxHospitalId = 129; // 126;
-            brandColor = '#007bb6';
-            logo = 'https://sandbox.connectedcare.md/api/v2.1/images/9bc12213-bf66-4aa6-81b2-d932d6034690';
-            Hospital = 'Online Doctor';
-            HospitalTag = 'Your Personal Online Consultation';
-            ssoURL = "";
-            break;
-        case "MDAmerica":
-            singleStagingHospitalId = 175;
-            singleHospitalId = 191;
-            singleQAHospitalId = 205;
-            singleSandboxHospitalId = ''; // 126;
-            // brandColor = '#d14a43';
-            //   logo = 'https://sandbox.connectedcare.md/api/v2.1/images/9bc12213-bf66-4aa6-81b2-d932d6034690';
-            Hospital = 'MD America';
-            HospitalTag = 'Your Personal Online Consultation';
+        case " ": // add your Hospital Name
+            singleStagingHospitalId = 0; // If you want stage build, you need to set Stage Hospital ID here
+            singleHospitalId = 0; // If you want Production build, you need to set Production Hospital ID here
+            singleQAHospitalId = ''; // If you want QA build, you need to set QA Hospital ID here
+            singleSandboxHospitalId = ''; // If you want Sandbox build, you need to set sandbox Hospital ID here
+            brandColor = ''; // add your Brand Color
+            logo = ''; // add your Hospital Name
+            Hospital = ' '; // you need to set Hospital Brand name Here
+            HospitalTag = ' '; // you need to set Hospital tag name Here
             ssoURL = "";
             break;
     }
@@ -246,18 +58,13 @@ var handleOpenURL = function (url) {
     }, 0);
 }
 
-//angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.services' , 'ngMaterial' ])
+
 angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.services'])
 
     .run(function ($ionicPlatform, $state, $rootScope, LoginService, $ionicPopup, $window, Idle, $ionicBackdrop, $interval) {
 
         $ionicPlatform.ready(function () {
-            // Idle.watch();
-
-            // var is_iPad = navigator.userAgent.match(/iPad/i) != null;
-            // var is_iPadDeviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-
-            //console.log(is_iPad);
+         
 
             function resetSessionLogoutTimer() {
                 window.localStorage.setItem('Active', timeoutValue);
@@ -313,176 +120,7 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
                 goActive();
             }
 
-            //    $rootScope.alertTimedout = "Your session timed out.";
-            //    $rootScope.alertokay = "Ok";
-            //    $rootScope.alertupload = "Unable to upload the photo. Please try again later.";
-            //    $rootScope.alertokay = "Ok";
-            //    $rootScope.alertconstarted = "Your consultation is already started on other device.";
-            //    $rootScope.alertconended = "Your consultation is already ended.";
-            //    $rootScope.alertDone = "Done";
-            //    $rootScope.alertconcancel = "Your consultation is cancelled.";
-            //    $rootScope.alertconprogress = "Your consultation is in progress on other device.";
-            //    $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cancel this consultation?";
-            //    $rootScope.YESMessageProviderSearch='Yes';
-            //    $rootScope.NaviConfirmation = 'Confirmation:';
-            //    $rootScope.alertTimedout = "Your session timed out.";
-            //    $rootScope.alertokay = "Ok";
-            //    $rootScope.alertconsultationsave = "Consultation saved successfully!" ;
-            //    $rootScope.alertconsultationfailed = "Failed to save consultation!";
-            //    $rootScope.alertMsg = "A verification email has been sent to the user.";
-            //    $rootScope.alertokay = "Ok";
-            //    $rootScope.alertphoto = "Photo can be uploaded only after activating co-user account.";
-            //    $rootScope.alertMsgvideo = "Consultation ended successfully!";
-            //    $rootScope.consultStartMsg = 'Your consultation is already started on other device.';
-            //    $rootScope.consultEndMeg = 'Your consultation is already ended.';
-            //    $rootScope.consultCancelMsg = 'Your consultation is cancelled.';
-            //    $rootScope.consultProgMsg = 'Your consultation is in progress on other device.';
-            //    $rootScope.sessAlertDone = 'Done';
-            //    $rootScope.alertMsgConference = "Consultation ended successfully!";
-            //    $rootScope.Buttonmsg = "Done";
-            //    $rootScope.alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
-            //    $rootScope.consultAlredComplMsg = 'Consultation already completed!';
-            //    $rootScope. NaviConfirmation = 'Confirmation:';
-            //    $rootScope. YESMessageProviderSearch='Yes';
-
-            //       var localizeCurrent = $('#localize-current').text();
-            //       console.log("lang "+localizeCurrent);
-            //         if(localizeCurrent == "Español") {
-            //         $rootScope.alertTimedout = "Su sesión ha expirado.";
-            //         $rootScope.alertokay = "De acuerdo";
-            //         $rootScope.alertupload = "No se puede cargar la foto. Por favor, inténtelo de nuevo más tarde.";
-            //         $rootScope.alertokay = "De acuerdo";
-            //         $rootScope.alertconstarted = "Su consulta ya se inició en otro dispositivo.";
-            //         $rootScope.alertconended = "Su consulta ya ha finalizado.";
-            //         $rootScope.alertDone = "Hecho";
-            //         $rootScope.alertconcancel = "Su consulta se cancela.";
-            //         $rootScope.alertconprogress = "Su consulta está en progreso en otro dispositivo.";
-            //         $rootScope.alertCancelMessageConsultation = "¿Estás seguro de que quieres cancelar esta consulta?";
-            //         $rootScope.YESMessageProviderSearch='Sí';
-            //         $rootScope.NaviConfirmation = 'Confirmación:';
-            //         $rootScope.alertTimedout = "Su sesión ha expirado.";
-            //         $rootScope.alertokay = "De acuerdo";
-            //         $rootScope.alertconsultationsave = "Consulta guardada exitosamente!";
-            //         $rootScope.alertconsultationfailed = "Error al guardar consulta!";
-            //         $rootScope.alertMsg = "Se ha enviado un correo electrónico de verificación al usuario.";
-            //         $rootScope.alertokay = "De acuerdo";
-            //         $rootScope.alertphoto = "La foto se puede subir solo después de activar la cuenta de co-usuario.";
-            //         $rootScope.alertMsgvideo = "¡La consulta terminó exitosamente!";
-            //         $rootScope.consultStartMsg = 'Su consulta ya se inició en otro dispositivo.';
-            //         $rootScope.consultEndMeg = 'Su consulta ya ha finalizado';
-            //         $rootScope.consultCancelMsg = 'Su consulta se cancela.';
-            //         $rootScope.consultProgMsg = 'Su consulta está en progreso en otro dispositivo.';
-            //         $rootScope.alertMsgConference = "¡La consulta terminó exitosamente!";
-            //         $rootScope.Buttonmsg = "Listo";
-            //         $rootScope.alertconfirm = "Actualmente tiene una consulta en curso. ¿Está seguro de que desea finalizar esta consulta?";
-            //         $rootScope.consultAlredComplMsg = 'Consulta ya completada!';
-            //         $rootScope.NaviConfirmation = 'Confirmación:';
-            //         $rootScope.YESMessageProviderSearch='Sí';
-            //         }
-
-            //       else  {
-            //       $rootScope.alertTimedout = "Your session timed out."
-            //       $rootScope.alertokay = "Ok";
-            //       $rootScope.alertupload = "Unable to upload the photo. Please try again later.";
-            //       $rootScope.alertokay = "Ok";
-            //       $rootScope.alertconstarted = "Your consultation is already started on other device.";
-            //       $rootScope.alertconended = "Your consultation is already ended.";
-            //       $rootScope.alertDone = "Done";
-            //       $rootScope.alertconcancel = "Your consultation is cancelled.";
-            //       $rootScope.alertconprogress = "Your consultation is in progress on other device.";
-            //       $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cancel this consultation?";
-            //        $rootScope.YESMessageProviderSearch='Yes';
-            //        $rootScope.NaviConfirmation = 'Confirmation:';
-            //        $rootScope.alertTimedout = "Your session timed out.";
-            //        $rootScope.alertokay = "Ok";
-            //        $rootScope.alertconsultationsave = "Consultation saved successfully!" ;
-            //        $rootScope.alertconsultationfailed = "Failed to save consultation!";
-            //        $rootScope.alertMsg = "A verification email has been sent to the user.";
-            //        $rootScope.alertokay = "Ok";
-            //        $rootScope.alertphoto = "Photo can be uploaded only after activating co-user account.";
-            //        $rootScope.alertMsgvideo = "Consultation ended successfully!";
-            //        $rootScope.consultStartMsg = 'Your consultation is already started on other device.';
-            //        $rootScope.consultEndMeg = 'Your consultation is already ended.';
-            //        $rootScope.consultCancelMsg = 'Your consultation is cancelled.';
-            //        $rootScope.consultProgMsg = 'Your consultation is in progress on other device.';
-            //        $rootScope.sessAlertDone = 'Done';$rootScope.alertMsgConference = "Consultation ended successfully!";
-            //        $rootScope.Buttonmsg = "Done";
-            //        $rootScope.alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
-            //        $rootScope.consultAlredComplMsg = 'Consultation already completed!';
-            //        $rootScope. NaviConfirmation = 'Confirmation:';
-            //        $rootScope. YESMessageProviderSearch='Yes';
-            //         }
-
-
-            //        $('#localize-langs').click(function() {
-            //          var isLang = $('#localize-langs .activated').text();
-            //            console.log("lang "+isLang);
-            //            if(isLang == "Español") {
-            //              $rootScope.alertTimedout = "Su sesión ha expirado.";
-            //              $rootScope.alertokay = "De acuerdo";
-            //              $rootScope.alertupload = "Unable to upload the photo. Please try again later.";
-            //              $rootScope.alertokay = "Ok";
-            //              $rootScope.alertconstarted = "Su consulta ya se inició en otro dispositivo.";
-            //              $rootScope.alertconended = "Su consulta ya ha finalizado.";
-            //              $rootScope.alertDone = "Hecho";
-            //              $rootScope.alertconcancel = "Su consulta se cancela.";
-            //              $rootScope.alertconprogress = "Su consulta está en progreso en otro dispositivo.";
-            //              $rootScope.alertCancelMessageConsultation = "¿Estás seguro de que quieres cancelar esta consulta?";
-            //              $rootScope.YESMessageProviderSearch='Sí';
-            //              $rootScope.NaviConfirmation = 'Confirmación:';
-            //              $rootScope.alertTimedout = "Su sesión ha expirado.";
-            //              $rootScope.alertokay = "De acuerdo";
-            //             $rootScope.alertconsultationsave = "Consulta guardada exitosamente!";
-            //             $rootScope.alertconsultationfailed = "Error al guardar consulta!";
-            //             $rootScope.alertMsg = "Se ha enviado un correo electrónico de verificación al usuario.";
-            //             $rootScope.alertokay = "De acuerdo";
-            //             $rootScope.alertphoto = "La foto se puede subir solo después de activar la cuenta de co-usuario.";
-            //             $rootScope.alertMsgvideo = "¡La consulta terminó exitosamente!";
-            //             $rootScope.consultStartMsg = 'Su consulta ya se inició en otro dispositivo.';
-            //             $rootScope.consultEndMeg = 'Su consulta ya ha finalizado';
-            //             $rootScope.consultCancelMsg = 'Su consulta se cancela.';
-            //             $rootScope.consultProgMsg = 'Su consulta está en progreso en otro dispositivo.';
-            //             $rootScope.alertMsgConference = "¡La consulta terminó exitosamente!";
-            //             $rootScope.Buttonmsg = "Listo";
-            //             $rootScope.alertconfirm = "Actualmente tiene una consulta en curso. ¿Está seguro de que desea finalizar esta consulta?";
-            //             $rootScope.consultAlredComplMsg = 'Consulta ya completada!';
-            //             $rootScope.NaviConfirmation = 'Confirmación:';
-            //             $rootScope.YESMessageProviderSearch='Sí';
-            //            }
-            //             else{
-            //                 $rootScope.alertTimedout = "Your session timed out."
-            //                 $rootScope.alertokay = "Ok";
-            //                 $rootScope.alertupload = "Unable to upload the photo. Please try again later.";
-            //                 $rootScope.alertokay = "Ok";
-            //                 $rootScope.alertconstarted = "Your consultation is already started on other device.";
-            //                 $rootScope.alertconended = "Your consultation is already ended.";
-            //                 $rootScope.alertDone = "Done";
-            //                 $rootScope.alertconcancel = "Your consultation is cancelled.";
-            //                 $rootScope.alertconprogress = "Your consultation is in progress on other device.";
-            //                 $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cancel this consultation?";
-            //                  $rootScope.YESMessageProviderSearch='Yes';
-            //                  $rootScope.NaviConfirmation = 'Confirmation:';
-            //                  $rootScope.alertTimedout = "Your session timed out.";
-            //                  $rootScope.alertokay = "Ok";
-            //                  $rootScope.alertconsultationsave = "Consultation saved successfully!" ;
-            //                  $rootScope.alertconsultationfailed = "Failed to save consultation!";
-            //                  $rootScope.alertMsg = "A verification email has been sent to the user.";
-            //                  $rootScope.alertokay = "Ok";
-            //                  $rootScope.alertphoto = "Photo can be uploaded only after activating co-user account.";
-            //                  $rootScope.alertMsgvideo = "Consultation ended successfully!";
-            //                  $rootScope.consultStartMsg = 'Your consultation is already started on other device.';
-            //                  $rootScope.consultEndMeg = 'Your consultation is already ended.';
-            //                  $rootScope.consultCancelMsg = 'Your consultation is cancelled.';
-            //                  $rootScope.consultProgMsg = 'Your consultation is in progress on other device.';
-            //                  $rootScope.sessAlertDone = 'Done';
-            //                  $rootScope.alertMsgConference = "Consultation ended successfully!";
-            //                  $rootScope.Buttonmsg = "Done";
-            //                  $rootScope.alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
-            //                  $rootScope.consultAlredComplMsg = 'Consultation already completed!';
-            //                  $rootScope. NaviConfirmation = 'Confirmation:';
-            //                  $rootScope. YESMessageProviderSearch='Yes';
-            //             }
-            //           });
+           
 
 
             function goInactive() {
@@ -602,10 +240,9 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
                     navigator.splashscreen.hide();
                 }, 500);
             } else {
-                //setTimeout(function() {
+              
                 window.localStorage.setItem("app_load", "yes");
-                //navigator.splashscreen.hide();
-                //}, 10000);
+               
             }
             if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
                 cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -626,28 +263,7 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
                     $(".footer").show();
                 }
             });
-            /*                $rootScope.flagpopup=false;
-                        // An elaborate, custom popup
-                        myPopup = $ionicPopup.show({
-                          template: '<b>Please make sure that you have network connection.</b>',
-                          title: 'No Internet Connection',
-                          cssClass: 'my-custom-popup',
-                          buttons: [
-                                 { text: '<b class="ietfonttype">ok</b>',
-                                   type:'button',
-                                }
-                              ]
-    
-                            });
-               myPopup.then(function(res) {
-                 console.log('Tapped!', res);
-               });
-               navigator.notification.alert(
-                     'Please make sure that you have network connection.', // message
-                     null,
-                     'No Internet Connection', // title
-                     'Ok' // buttonName
-                 );*/
+            
 
 
             setTimeout(function () {
@@ -734,32 +350,6 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
             // });
             // cordova.plugins.backgroundMode.enable();
 
-            /*  cordova.plugins.backgroundMode.onactivate = function () {
-                var i = 0;
-                var alive_waiting_room_pool;
-                alive_waiting_room_pool = setInterval(function(){
-                     if(window.localStorage.getItem("isCustomerInWaitingRoom") == "Yes"){
-                          i++;
-                          vConsultationWatingId = window.localStorage.getItem("waitingRoomConsultationId");
-                          vAccessToken = window.localStorage.getItem("accessToken");
-                          var alive_timestamp_url = apiCommonURL + '/api/v2/patients/activeconsultations/' + vConsultationWatingId + '/alive-timestamp';
-                          var reqHeaders = util.getHeaders();
-                          reqHeaders['Authorization'] = "Bearer " + vAccessToken;
-                          $.ajax({
-                              type: 'PUT',
-                              headers: reqHeaders,
-                              url: alive_timestamp_url,
-                              //dataType: 'json',
-                              success: function(data){
-                                console.log('Success at ' + i);
-                              },
-                              failure: function(error){
-                                console.log('Failed at ' + 1);
-                              }
-                          });
-                     }
-                }, 30000);
-            }*/
 
             // cordova.plugins.backgroundMode.onactivate = function () {
             //     var backGroundNetConnection;
@@ -969,7 +559,7 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
                                         apiCommonURL = 'https://sandbox.connectedcare.md';
                                     } else if (dEnv.toUpperCase() == "QA") {
                                         deploymentEnv = "QA";
-                                        apiCommonURL = 'https://emerald.qa1.snapvcm.com';
+                                        apiCommonURL = 'https://emerald.qa1.com';
                                     } else if (dEnv.toUpperCase() == "PRODUCTION") {
                                         deploymentEnv = "Production";
                                         apiCommonURL = 'https://connectedcare.md';
@@ -1660,10 +1250,7 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
             $urlRouterProvider.otherwise('/tab/chooseEnvironment');
         } else if (deploymentEnv == "Single") {
             $urlRouterProvider.otherwise('/tab/singleTheme');
-            // if(cobrandApp == 'Hello420')
-            // 	$urlRouterProvider.otherwise('/tab/singleTheme');
-            // else
-            // 	$urlRouterProvider.otherwise('/tab/loginSingle');
+           
         } else {
             $urlRouterProvider.otherwise('/tab/login');
         }
@@ -1744,5 +1331,3 @@ function getAge(birth) {
 var createSVGIcon = function (iconName) {
     return "<svg class='icon-" + iconName + " svgIcon" + iconName + " svgIconForVideo'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
 };
-//snapmdconnectedcare://?token=RXC5PBj-uQbrKcsoQv3i6EY-uxfWrQ-X5RzSX13WPYqmaqdwbLBs2WdsbCZFCf_5jrykzkpuEKKdf32bpU4YJCvi2XQdYymvrjZQHiAb52G-tIYwTQZ9IFwXCjf-PRst7A9Iu70zoQgPrJR0CJMxtngVf6bbGP86AF2kiomBPuIsR00NISp2Kd0I13-LYRqgfngvUXJzVf703bq2Jv1ixBl_DRUlWkmdyMacfV0J5itYR4mXpnjfdPpeRMywajNJX6fAVTP0l5KStKZ3-ufXIKk6l5iRi6DtNfxIyT2zvd_Wp8x2nOQezJSvwtrepb34quIr5jSB_s3_cv9XE6Sg3Rtl9qbeKQB2gfU20WlJMnOVAoyjYq36neTRb0tdq6WeWo1uqzmuuYlepxl2Tw5BaQ&hospitalId=126&consultationId=
-//vc126://??jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1bmlxdWVfbmFtZSI6ImJl…y6_DhMlvg3rqavL8l38Hdu3CKu4iQYhlsnS5U7wxeXOL0qGAbSmTdrADW9DnYCc&state={123}

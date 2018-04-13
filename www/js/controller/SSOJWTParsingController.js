@@ -200,9 +200,9 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
     }
     $scope.goToStore = function() {
       if($rootScope.AndroidDevice) {
-         window.location.href = 'https://play.google.com/store/apps/details?id=com.snap.connectedcare.production';
+         window.location.href = ''; // Put your Play store URl  - //To DO
       } else {
-         window.location.href = 'https://itunes.apple.com/us/app/virtual-care/id1035220141?ls=1&mt=8';
+         window.location.href = ''; // Put your Play store URl  - //To DO
       }
     }
     $("#localize-widget").show();
@@ -275,14 +275,14 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
                     $rootScope.singleHospital = data.data[0].brandName;
                     $rootScope.adminSetlocale = data.data[0].locale;
                     if (deploymentEnvLogout === 'Multiple') {
-                        $rootScope.alertMsgName = 'Virtual Care';
+                        $rootScope.alertMsgName = 'XXXX';
                         $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
                     } else {
                         $rootScope.alertMsgName = $rootScope.Hospital;
                         $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
                     }
-                    if(cobrandApp === 'MDAmerica' && deploymentEnv === "Single"){
-                         $rootScope.cobrandApp_New = 'MDAmerica';
+                    if(cobrandApp === 'XXX' && deploymentEnv === "Single"){
+                         $rootScope.cobrandApp_New = 'XXX';
                          $rootScope.deploymentEnv_New = deploymentEnv;
                     }
                     $rootScope.HospitalTag = data.data[0].brandTitle;
@@ -1552,8 +1552,8 @@ $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cance
          if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
         } else if (deploymentEnvLogout === "Single") {
-             if(cobrandApp === 'MDAmerica' && deploymentEnv === "Single"){
-                  $rootScope.cobrandApp_New = 'MDAmerica';
+             if(cobrandApp === 'XXX' && deploymentEnv === "Single"){
+                  $rootScope.cobrandApp_New = 'XXX';
                   $rootScope.deploymentEnv_New = deploymentEnv;
                   $state.go('tab.login');
              } else {

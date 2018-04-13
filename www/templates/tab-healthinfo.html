@@ -48,14 +48,10 @@
              <span class=" localizejs" style="display: {{viewhealthDisplay}};"> Health Info</span>
 
              </div>
-           <!-- <a ng-if="cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'" class="add-user-icon" style="{{HomeUserIconIOS}}" ng-if="customerSso != 'Mandatory'"
-            ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')"
-            _ng-href="#/tab/addnewuser">
-             <i class="icon ion-plus"></i>
+          
            </a> -->
           <div class="edittext">
            <span ng-show="patientAuthorize && editshow" ng-if="patientAuthorizeValue = 'Y' && editOption !== 'None' && customerSso != 'Mandatory' && P_isAuthorized !== false" class="headerval healthLeft-{{deviceName}} localizejs" ng-click="edittext()">Edit</span>
-           <!-- doGetCountries();getStatesForUS(); <span class="headerval healthLeft-{{deviceName}} localizejs"  ng-show="cancelshow" ><a ng-href="#/tab/userAccount" class="headerval" >Cancel</a></span>-->
            <button  type="submit" class="headerval headerval-done healthLeft-{{deviceName}} localizejs"  ng-hide="doneshow"> Done</button>
           </div>
          </div>

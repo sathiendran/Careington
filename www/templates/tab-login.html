@@ -13,7 +13,7 @@
      width: 50%;
      position: relative;
     top: 4px;
-    }   
+    }
 
 </style>
 <ion-view>
@@ -21,8 +21,8 @@
    <div class="Server_Error" ></div>
    <ion-content class="register loginEmail regLogin" style="background-color: {{backColor}}">
       <div >
-           <h2 ng-if="cobrandApp_New != 'MDAmerica' && deploymentEnv_New != 'Single'"><span>Virtual Care</span></h2>
-           <h2 ng-if="cobrandApp_New == 'MDAmerica' && deploymentEnv_New == 'Single'"><span>{{singleHospital}}</span></h2>
+           <h2 ng-if="cobrandApp_New != 'XXX' && deploymentEnv_New != 'Single'"><span>Virtual Care</span></h2>
+           <h2 ng-if="cobrandApp_New == 'XXX' && deploymentEnv_New == 'Single'"><span>{{singleHospital}}</span></h2>
       </div>
       <form ng-submit="LoginFunction()">
          <div class="card" id="loginEmail" style="display: block;">
@@ -77,10 +77,10 @@
             <i class="ion-ios-circle-outline" style="display: none;"></i>
          </div>
       </div>
-      <div class="acinfo1-{{deviceName}}" ng-if="(deploymentEnv == 'Multiple' || deploymentEnv == 'Single' || deploymentEnv == 'QA' || deploymentEnv == 'QA1' || deploymentEnv == 'QA2') && cobrandApp_New != 'MDAmerica'">
+      <div class="acinfo1-{{deviceName}}">
          <h4 class="localizejs">Need an account?</h4>
       </div>
-      <div class="acinfo1-{{deviceName}} newLogProviderSecDiv-{{deviceName}}" ng-if="(deploymentEnv == 'Multiple' || deploymentEnv == 'Single' || deploymentEnv == 'QA' || deploymentEnv == 'QA1' || deploymentEnv == 'QA2') && cobrandApp_New != 'MDAmerica'">
+      <div class="acinfo1-{{deviceName}} newLogProviderSecDiv-{{deviceName}}" >
          <h4><span class="localizejs" ng-click="goToSearchProvider('login');">Click here to find your provider.</span></h4>
       </div>
    </ion-content>
@@ -91,11 +91,11 @@
       <ion-footer-bar class="footer"  hide-on-keyboard="true" style="background-color: {{backColor}} !important; border-color: {{backColor}} !important">
          <div class="terms1" >
             <a ng-if="deploymentEnv == 'Multiple' || deploymentEnv=='QA'" class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/chooseEnvironment"><span class="localizejs">Back</span></a>
-            <a ng-if="deploymentEnv != 'Multiple' && cobrandApp_New !== 'MDAmerica' && deploymentEnv !=='QA'" ng-href="#/tab/terms"><b class="localizejs">Terms & Conditions</b></a>
-           <a ng-if="deploymentEnv != 'Multiple' && cobrandApp_New === 'MDAmerica'" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.login');"><b class="localizejs">Terms & Conditions</b></a>
+            <a ng-if="deploymentEnv != 'Multiple' && cobrandApp_New !== 'XXX' && deploymentEnv !=='QA'" ng-href="#/tab/terms"><b class="localizejs" style="color:#fff">Terms & Conditions</b></a>
+           <a ng-if="deploymentEnv != 'Multiple' && cobrandApp_New === 'XXX'" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.login');"><b class="localizejs" style="color:#fff">Terms & Conditions</b></a>
         </div>
          <div class="powerdBySnapMD">
-            <a style="top: 10px; position: relative;"><b>v9.0.4<b></a>
+            <a style="top: 10px; position: relative;"><b>v9.1.0<b></a>
          </div>
       </ion-footer-bar>
    <!-- </div> -->

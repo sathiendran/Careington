@@ -280,7 +280,7 @@ $("#localize-widget").hide();
                     $rootScope.logo = data.data[0].hospitalImage;
                     $rootScope.Hospital = data.data[0].brandName;
                     if (deploymentEnvLogout === 'Multiple') {
-                        $rootScope.alertMsgName = 'Virtual Care';
+                        $rootScope.alertMsgName = 'XXX';
                         $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
                     } else {
                         $rootScope.alertMsgName = $rootScope.Hospital;

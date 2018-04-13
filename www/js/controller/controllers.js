@@ -4,8 +4,7 @@ var indexOf = [].indexOf || function (item) {
     }
     return -1;
 }
-// request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
-// request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
+
 var api_keys_env = '';
 var session = null;
 var publisher = null;
@@ -19,24 +18,24 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
                     request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
                 }
                 request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-                request.defaults.headers.post['X-Developer-Id'] = 'cc552a3733af44a88ccb0c88ecec2d78';
-                request.defaults.headers.post['X-Api-Key'] = '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38';
+                request.defaults.headers.post['X-Developer-Id'] = ''; // you need to set Staging Developer ID Here, if you need Staging build
+                request.defaults.headers.post['X-Api-Key'] = ''; // you need to set Staging X-Api-Key Here, if you need Staging build
                 return request;
             } else if (api_keys_env === 'Sandbox') {
                 if (typeof credentials !== 'undefined') {
                     request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
                 }
                 request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-                request.defaults.headers.post['X-Developer-Id'] = '1e9b9d60bb7f45d8bf41cd35627a60df';
-                request.defaults.headers.post['X-Api-Key'] = '21c50e877e0ec912bc014280aee25bcf978de453';
+                request.defaults.headers.post['X-Developer-Id'] = ''; // you need to set Production Developer ID Here, if you need Production build
+                request.defaults.headers.post['X-Api-Key'] = ''; // you need to set Production X-Api-Key Here, if you need Production build
                 return request;
             } else {
                 if (typeof credentials !== 'undefined') {
                     request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
                 }
                 request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-                request.defaults.headers.post['X-Developer-Id'] = '84f6101ff82d494f8fcc5c0e54005895';
-                request.defaults.headers.post['X-Api-Key'] = 'c69fe0477e08cb4352e07c502ddd2d146b316112';
+                request.defaults.headers.post['X-Developer-Id'] = ''; // you need to set QA Developer ID Here, if you need Staging build
+                request.defaults.headers.post['X-Api-Key'] = ''; // you need to set QA X-Api-Key Here, if you need QA build
                 //  request.defaults.headers.post['Time-Zone'] = 'West Asia Standard Time';
                 return request;
             }
@@ -44,8 +43,8 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
         getHeaders: function (accessToken) {
             if (api_keys_env === 'Staging') {
                 var headers = {
-                    'X-Developer-Id': 'cc552a3733af44a88ccb0c88ecec2d78',
-                    'X-Api-Key': '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38',
+                    'X-Developer-Id': '',
+                    'X-Api-Key': '',
                     'Content-Type': 'application/json; charset=utf-8'
                 };
                 if (typeof accessToken !== 'undefined') {
@@ -55,8 +54,8 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
                 return headers;
             } else if (api_keys_env === 'Sandbox') {
                 var headers = {
-                    'X-Developer-Id': '1e9b9d60bb7f45d8bf41cd35627a60df',
-                    'X-Api-Key': '21c50e877e0ec912bc014280aee25bcf978de453',
+                    'X-Developer-Id': '',
+                    'X-Api-Key': '',
                     'Content-Type': 'application/json; charset=utf-8'
                 };
                 if (typeof accessToken !== 'undefined') {
@@ -66,8 +65,8 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
             } else {
 
                 var headers = {
-                    'X-Developer-Id': '84f6101ff82d494f8fcc5c0e54005895',
-                    'X-Api-Key': 'c69fe0477e08cb4352e07c502ddd2d146b316112',
+                    'X-Developer-Id': '',
+                    'X-Api-Key': '',
                     'Content-Type': 'application/json; charset=utf-8'
                     //  'Time-Zone' : 'West Asia Standard Time'
                 };
@@ -86,16 +85,16 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
                     request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
                 }
                 request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-                request.defaults.headers.post['X-Developer-Id'] = '1f9480321986463b822a981066cad094';
-                request.defaults.headers.post['X-Api-Key'] = 'd3d2f653608d25c080810794928fcaa12ef372a2';
+                request.defaults.headers.post['X-Developer-Id'] = '';
+                request.defaults.headers.post['X-Api-Key'] = '';
                 return request;
             } else if (api_keys_env == 'Staging') {
                 if (typeof credentials != 'undefined') {
                     request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
                 }
                 request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-                request.defaults.headers.post['X-Developer-Id'] = 'cc552a3733af44a88ccb0c88ecec2d78';
-                request.defaults.headers.post['X-Api-Key'] = '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38';
+                request.defaults.headers.post['X-Developer-Id'] = '';
+                request.defaults.headers.post['X-Api-Key'] = '';
                 return request;
 
             }
@@ -103,8 +102,8 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
         getHeaders: function (accessToken) {
             if (api_keys_env === 'Production') {
                 var headers = {
-                    'X-Developer-Id': '1f9480321986463b822a981066cad094',
-                    'X-Api-Key': 'd3d2f653608d25c080810794928fcaa12ef372a2',
+                    'X-Developer-Id': '',
+                    'X-Api-Key': '',
                     'Content-Type': 'application/json; charset=utf-8'
                 };
                 if (typeof accessToken !== 'undefined') {
@@ -114,8 +113,8 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
                 return headers;
             } else if (api_keys_env === 'Staging') {
                 var headers = {
-                    'X-Developer-Id': 'cc552a3733af44a88ccb0c88ecec2d78',
-                    'X-Api-Key': '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38',
+                    'X-Developer-Id': '',
+                    'X-Api-Key': '',
                     'Content-Type': 'application/json; charset=utf-8'
                 };
                 if (typeof accessToken !== 'undefined') {
@@ -134,40 +133,40 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
                     request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
                 }
                 request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-                request.defaults.headers.post['X-Developer-Id'] = 'cc552a3733af44a88ccb0c88ecec2d78';
-                request.defaults.headers.post['X-Api-Key'] = '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38';
+                request.defaults.headers.post['X-Developer-Id'] = '';
+                request.defaults.headers.post['X-Api-Key'] = '';
                 return request;
             } else if (api_keys_env == 'Production') {
                 if (typeof credentials != 'undefined') {
                     request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
                 }
                 request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-                request.defaults.headers.post['X-Developer-Id'] = '1f9480321986463b822a981066cad094';
-                request.defaults.headers.post['X-Api-Key'] = 'd3d2f653608d25c080810794928fcaa12ef372a2';
+                request.defaults.headers.post['X-Developer-Id'] = '';
+                request.defaults.headers.post['X-Api-Key'] = '';
                 return request;
             } else if (api_keys_env == 'QA') {
                 if (typeof credentials != 'undefined') {
                     request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
                 }
                 request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-                request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
-                request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
+                request.defaults.headers.post['X-Developer-Id'] = '';
+                request.defaults.headers.post['X-Api-Key'] = '';
                 return request;
             } else if (api_keys_env == 'Sandbox') {
                 if (typeof credentials != 'undefined') {
                     request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
                 }
                 request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-                request.defaults.headers.post['X-Developer-Id'] = '1e9b9d60bb7f45d8bf41cd35627a60df';
-                request.defaults.headers.post['X-Api-Key'] = '21c50e877e0ec912bc014280aee25bcf978de453';
+                request.defaults.headers.post['X-Developer-Id'] = '';
+                request.defaults.headers.post['X-Api-Key'] = '';
                 return request;
             }
         },
         getHeaders: function (accessToken) {
             if (api_keys_env === 'Staging') {
                 var headers = {
-                    'X-Developer-Id': 'cc552a3733af44a88ccb0c88ecec2d78',
-                    'X-Api-Key': '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38',
+                    'X-Developer-Id': '', // you need to set Staging Developer ID Here, if you need Staging build
+                    'X-Api-Key': '', // you need to set Staging X-Api-Key Here, if you need Staging build
                     'Content-Type': 'application/json; charset=utf-8'
                 };
                 if (typeof accessToken !== 'undefined') {
@@ -177,8 +176,8 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
                 return headers;
             } else if (api_keys_env === 'Production') {
                 var headers = {
-                    'X-Developer-Id': '1f9480321986463b822a981066cad094',
-                    'X-Api-Key': 'd3d2f653608d25c080810794928fcaa12ef372a2',
+                    'X-Developer-Id': '', // you need to set Production Developer ID Here, if you need Production build
+                    'X-Api-Key': '', // you need to set Production X-Api-Key Here, if you need Production build
                     'Content-Type': 'application/json; charset=utf-8'
                 };
                 if (typeof accessToken !== 'undefined') {
@@ -188,8 +187,8 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
                 return headers;
             } else if (api_keys_env == 'QA') {
                 var headers = {
-                    'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
-                    'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
+                    'X-Developer-Id': '', // you need to set QA Developer ID Here, if you need QA build
+                    'X-Api-Key': '',  // you need to set QA X-Api-Key Here, if you need QA build
                     'Content-Type': 'application/json; charset=utf-8'
                 };
                 if (typeof accessToken != 'undefined') {
@@ -199,8 +198,8 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
                 return headers;
             } else if (api_keys_env == 'Sandbox') {
                 var headers = {
-                    'X-Developer-Id': '1e9b9d60bb7f45d8bf41cd35627a60df',
-                    'X-Api-Key': '21c50e877e0ec912bc014280aee25bcf978de453',
+                    'X-Developer-Id': '',
+                    'X-Api-Key': '',
                     'Content-Type': 'application/json; charset=utf-8'
                 };
                 if (typeof accessToken != 'undefined') {
@@ -219,14 +218,14 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
                 request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
             }
             request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-            request.defaults.headers.post['X-Developer-Id'] = 'f92f6017f3f043809e0f317c1d0cde4c';
-            request.defaults.headers.post['X-Api-Key'] = 'ddc9e736777f130b97f7fff5976c5bc9e7f3b337';
+            request.defaults.headers.post['X-Developer-Id'] = '';
+            request.defaults.headers.post['X-Api-Key'] = '';
             return request;
         },
         getHeaders: function (accessToken) {
             var headers = {
-                'X-Developer-Id': 'f92f6017f3f043809e0f317c1d0cde4c',
-                'X-Api-Key': 'ddc9e736777f130b97f7fff5976c5bc9e7f3b337',
+                'X-Developer-Id': '',
+                'X-Api-Key': '',
                 'Content-Type': 'application/json; charset=utf-8'
             };
             if (typeof accessToken !== 'undefined') {
@@ -299,7 +298,7 @@ angular.module('ngIOS9UIWebViewPatch', ['ng']).config(function ($provide) {
 if (deploymentEnv === "Sandbox") {
     apiCommonURL = 'https://sandbox.connectedcare.md';
 } else if (deploymentEnv === "Production") {
-    $rootScope.backColor = '#DD472D';
+  
     apiCommonURL = 'https://connectedcare.md';
     api_keys_env = "Production";
 } else if (deploymentEnv === "QA") {
@@ -317,10 +316,8 @@ if (deploymentEnv === "Sandbox") {
         apiCommonURL = 'https://emerald.qa1.snapvcm.com';
         api_keys_env = "QA";
     } else if (deploymentEnvForProduction === 'Sandbox') {
-        //  apiCommonURL = 'https://hello420.sandbox.connectedcare.md';
-        apiCommonURL = 'https://sandbox.connectedcare.md';
-
-        api_keys_env = "Sandbox";
+       apiCommonURL = 'https://sandbox.connectedcare.md';
+       api_keys_env = "Sandbox";
     }
 } else if (deploymentEnv === "Staging") {
 
@@ -333,7 +330,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     .controller('LoginCtrl', function ($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, ageFilterReport, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup) {
         $("#localize-widget").show();
 
-
+  $rootScope.backColor = '#DD472D';
         //venkat start
         $(".accoTitle-IOS").css("margin-top", "4px");
 
@@ -352,12 +349,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             else if (localizeCurrent == "English") {
                 $scope.whoNeedsText = "font-size:21px";
             }
-            // else {
-            //     $scope.whoNeedsText = "font-size:21px";
-            //     $scope.consentTitleFont = "font-size:20px !important";
-            //     $(".newProviderSub").css("padding-bottom", "33px");
-            //     $(".ConcernsFooter .FooterCenter a").css("padding-left", "10px");
-            // }
+           
         } else {
             $scope.consentTitleFont = "font-size:21px !important";
         }
@@ -377,11 +369,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $("#whoNeedsTextval").css("font-size", "21px");
                 }
 
-                //    else {
-                //        $("#whoNeedsTextval").css("font-size", "21px");
-                //        $(".newProviderSub").css("padding-bottom", "33px");
-                //        $(".ConcernsFooter .FooterCenter a").css("padding-left", "10px");
-                //    }
+               
                 isLang = "";
             }
         });
@@ -394,22 +382,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         console.log("myLength =" + myLength);
         if ($(window).width() <= 375) {
             if (localizeCurrent == "Español") {
-                //   console.log("Español");
-                //  $scope.ReportEthnicityVal = "width:36.33%";
+               
             } else {
-                ///  $scope.ReportEthnicityVal = "width:41.33%";
+              
             }
-            /* if(myLength >= 11) {
-             //    console.log("myLength  is more=");
-               if(localizeCurrent == "Español") {
-             //      console.log("Español");
-                   $scope.departmentClass = "height:45px";
-               } if(localizeCurrent == "English (UK)") {
-                   $scope.departmentClass = "height:25px";
-               } if(localizeCurrent == "English") {
-                   $scope.departmentClass = "height:25px";
-               }
-             }*/
+            
         } else {
             if (localizeCurrent == "Español") {
             } else {
@@ -417,20 +394,18 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
 
         $('#localize-langs').click(function () {
-            ///    console.log("myLength ="+myLength);
+           
             if ($(window).width() <= 375) {
                 var isLang = $('#localize-langs .activated').text();
                 var myLength = $(".departmentClassVal").text().length;
-                //console.log("val ="+$(".departmentClassVal").text());
-                //console.log("myLength ="+myLength);
+                
                 if (isLang == "Español") {
-                    //console.log("Español");
-                    //       $scope.ReportEthnicityVal = "width:36.33%";
+                   
                 } else {
                     // $scope.ReportEthnicityVal = "width:41.33%";
                 }
                 if (myLength >= 11) {
-                    //  console.log("myLength  is more=");
+                  
                     if (isLang == "Español") {
                         $scope.departmentClass = "height:45px";
                     } else {
@@ -455,7 +430,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
         };
 
-        //  $scope.formatIsdCode = (s,c,n) => (s.length<n) ? s+c.repeat(n-s.length):
+       
 
 
         $rootScope.drawImage = function (imagePath, firstName, lastName) {
@@ -544,14 +519,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.backColor = '#DD472D';
             $window.localStorage.setItem('tokenExpireTime', '');
             if (env === "Snap.QA1") {
-                //  $rootScope.APICommonURL = 'https://snap-qa.com';
-                //  apiCommonURL = 'https://snap-qa.com';
+                
                 $rootScope.APICommonURL = 'https://emerald.qa1.snapvcm.com';
                 apiCommonURL = 'https://emerald.qa1.snapvcm.com';
                 api_keys_env = "Snap.QA";
             } else if (env === "Snap.QA2") {
-                //  $rootScope.APICommonURL = 'https://snap-qa.com';
-                //  apiCommonURL = 'https://snap-qa.com';
+                
                 $rootScope.APICommonURL = 'https://emerald.qa2.snapvcm.com';
                 apiCommonURL = 'https://emerald.qa2.snapvcm.com';
                 api_keys_env = "Snap.QA";
@@ -568,12 +541,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 apiCommonURL = 'https://snap-test.com';
                 api_keys_env = "Snap.QA";
             } else if (env === "Snap-azure-Dev2") {
-                //  $rootScope.APICommonURL = 'https://connectedcarepilotweb2.azurewebsites.net';
-                //  apiCommonURL = 'https://connectedcarepilotweb2.azurewebsites.net';
-                //   $rootScope.APICommonURL = 'https://emerald.qa1.snapvcm.com';
-                //               apiCommonURL = 'https://emerald.qa1.snapvcm.com';
-                //               api_keys_env = "Snap.QA";
-
+               
                 $rootScope.APICommonURL = 'https://emerald.dev2.snapvcm.com';
                 apiCommonURL = 'https://emerald.dev2.snapvcm.com';
                 api_keys_env = "Snap.QA";
@@ -596,7 +564,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.isIPad = ionic.Platform.isIPad();
         $rootScope.isWindow = true;
 
-        /******** Prabin: Code to implement static brand color, logo and tagline. *******/
+        
         if (deploymentEnvLogout === 'Single') {
             if ($rootScope.currState.$current.name === "tab.loginSingle") {
                 $rootScope.brandColor = brandColor;
@@ -605,15 +573,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.Hospital = Hospital;
                 $rootScope.alertMsgName = Hospital;
                 $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
-            } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === 'Single' && $rootScope.currState.$current.name === "tab.login") {
+            } else if (cobrandApp === 'XXX' && deploymentEnvLogout === 'Single' && $rootScope.currState.$current.name === "tab.login") {
                 $rootScope.HospitalTag = HospitalTag;
                 $rootScope.Hospital = Hospital;
                 $rootScope.alertMsgName = Hospital;
                 $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
             }
         } else {
-            $rootScope.alertMsgName = 'Virtual Care';
-            $rootScope.reportHospitalUpperCase = 'Virtual Care';
+            $rootScope.alertMsgName = 'XXX';
+            $rootScope.reportHospitalUpperCase = 'XXX';
         }
 
 
@@ -733,7 +701,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.HomeHeaderIOS =	"top: 7px !important";
                 $rootScope.HomeBackIOS =	"top: 4px; !important";
                 $rootScope.HomeUserIconIOS =	"top: 19px; !important";
-               
+
             }
             if ($rootScope.isIPad) {
                 $rootScope.PrimaryConcernPopupH = "height: 66px;";
@@ -892,39 +860,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $interval.cancel(checkAndChangeMenuIcon);
         $scope.currentstateview = true;
 
-        /*$rootScope.checkAndChangeMenuIcon = function() {
-            if (!$ionicSideMenuDelegate.isOpen(true)) {
-                if ($('#BackButtonIcon svg').hasClass("ion-close")) {
-                    $('#BackButtonIcon svg').removeClass("ion-close");
-                    $('#BackButtonIcon svg').addClass("icon-menu");
-                }
-            } else {
-                if ($('#BackButtonIcon svg').hasClass("icon-menu")) {
-                    $('#BackButtonIcon svg').removeClass("icon-menu");
-                    $('#BackButtonIcon svg').addClass("ion-close");
-                }
-            }
-        }
-
-        $rootScope.toggleLeft = function() {
-            $rootScope.statename = $rootScope.currState.$current.name;
-            $ionicSideMenuDelegate.toggleLeft();
-            $rootScope.checkAndChangeMenuIcon();
-            if (checkAndChangeMenuIcon) {
-                $interval.cancel(checkAndChangeMenuIcon);
-            }
-            if ($rootScope.statename === "tab.userhome") {
-                $('.sideuserhome').addClass("uhome");
-
-            }
-            if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle") {
-                checkAndChangeMenuIcon = $interval(function() {
-                    if ($rootScope.checkAndChangeMenuIcon) {
-                        $rootScope.checkAndChangeMenuIcon();
-                    }
-                }, 300);
-            }
-        };*/
+        
 
 
         $rootScope.checkAndChangeMenuIcon = function () {
@@ -961,19 +897,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             }
         };
 
-        // // // $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-        // if($rootScope.chkSSPageEnter) {
-        //    $ionicSideMenuDelegate.toggleLeft();
-        // }
 
         $scope.doRefreshUserHome = function () {
             $rootScope.doGetPatientProfiles();
-            //  $rootScope.cuttlocations = "tab.ReportScreen";
-            //$rootScope.doGetRelatedPatientProfiles('tab.userhome');
+            
             $timeout(function () {
                 $scope.$broadcast('scroll.refreshComplete');
             }, 1000);
-            //  $scope.$apply();
+            
         };
 
 
@@ -1005,8 +936,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $(".ion-google-place-container").css({
                 "display": "none"
             });
-            //  if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging' && cobrandApp !== 'MDAmerica') {
-            if ((deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && api_keys_env === 'Staging' && cobrandApp !== 'MDAmerica') && (appStoreTestUserEmail === 'itunesmobiletester@gmail.com' || appStoreTestUserEmail2 == 'snap.rinsoft.qaapptester@gmail.com')) {
+            
+            if ((deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && api_keys_env === 'Staging' && cobrandApp !== 'XXX') && (appStoreTestUserEmail === 'add your itune account' || appStoreTestUserEmail2 == 'add qa email id')) {
                 $rootScope.hospitalId = singleHospitalId;
                 apiCommonURL = 'https://connectedcare.md';
                 api_keys_env = 'Production';
@@ -1018,13 +949,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $timeout(function () {
                         //$window.location.reload(true);
                     });
-                } else if (cobrandApp === 'MDAmerica' && deploymentEnvLogout === "Single") {
+                } else if (cobrandApp === 'XXX' && deploymentEnvLogout === "Single") {
                     //$state.go('tab.login');
                     $state.go('tab.singleTheme');
                     $timeout(function () {
                         //$window.location.reload(true);
                     });
-                } else if (cobrandApp !== 'MDAmerica' && deploymentEnvLogout === "Single") {
+                } else if (cobrandApp !== 'XXX' && deploymentEnvLogout === "Single") {
                     //$state.go('tab.loginSingle');
                     $state.go('tab.singleTheme');
                     $timeout(function () {
@@ -1050,7 +981,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
 
 
-        //  if(typeof $rootScope.accessToken != 'undefined' && $rootScope.accessToken != '') {
+       
         $rootScope.sessionConsultConnection = $.hubConnection();
         $rootScope.sessionRoomConHub = $rootScope.sessionConsultConnection.createHubProxy('sessionLimiterHub');
         $rootScope.sessionConsultConnection.url = $rootScope.APICommonURL + "/api/signalR/";
@@ -1076,10 +1007,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.sessionConsultConnection.disconnected(function () {
                 // console.log("hhhh");
                 setTimeout(function () {
-                    // if(activeConsultConnection && activeConsultConnection.start){
-                    //   activeConsultConnection.start();
-                    //console.log("iiii");
-                    //   }
+                    
                 }, 5000);
             });
 
@@ -1098,12 +1026,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             );
         });
 
-        /*  sessionRoomConHub.on("forceLogout", function(ip) {
-              alert("You might have logged in on another device.");
-              window.console.log("You might have logged in on another device. IP: " + ip);
-             $scope.getLogoutPopup();
-             forceLogout();
-          });*/
+       
 
         $rootScope.sessionRoomConHub.on("sessionRegistered", function (ip) {
             //alert("sessionLimiterHub: Session limiter registered");
@@ -1112,9 +1035,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
         //   }
 
-        /*  $('#Provider').change(function() {
-              $('div.viewport1').text($("option:selected", this).text());
-          });*/
+       
         $scope.currentYear = new Date().getFullYear()
         $scope.currentMonth = new Date().getMonth() + 1
         $scope.months = $locale.DATETIME_FORMATS.MONTH
@@ -1381,7 +1302,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $scope.GetSingleLoginDetailsFOrCheckingMic = function () {
             if (deploymentEnvLogout === 'Single') {
                 if (deploymentEnvForProduction === 'Production') {
-                    //  if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
+                   
                     if ((appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) || (appStoreTestUserEmail2 !== '' && $("#UserEmail").val() === appStoreTestUserEmail2)) {
                         $rootScope.hospitalId = singleStagingHospitalId;
                         apiCommonURL = 'https://emerald.stage.snapvcm.com';
@@ -1417,8 +1338,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $window.localStorage.setItem('username', "");
                 $rootScope.chkedchkbox = false;
             }
-            //  if(appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging') {
-            if ((appStoreTestUserEmail === 'itunesmobiletester@gmail.com' || appStoreTestUserEmail2 === 'snap.rinsoft.qaapptester@gmail.com') && api_keys_env === 'Staging') {
+            
+            if ((appStoreTestUserEmail === '' || appStoreTestUserEmail2 === 'add qa email id') && api_keys_env === 'Staging') {
                 $scope.doGetToken();
             } else {
                 $scope.doGetSingleHosInfoForiTunesStage('HosInfoForCoBrand');
@@ -1475,9 +1396,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             if ($rootScope.getDetails[i] === 'HideForgotPasswordLink' || $rootScope.getDetails[i] === 'mHideForgotPasswordLink') {
                                 $rootScope.HideForgotPasswordLink = 'on';
                             }
-                            /*if (($rootScope.getDetails[i] === 'ClinicianSearch' || $rootScope.getDetails[i] === 'mClinicianSearch') && ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand')) {
-                                $rootScope.BlankUserAccount = 'on';
-                            }*/
+                           
                             if ($rootScope.getDetails[i] === 'InsVerificationDummy' || $rootScope.getDetails[i] === 'mInsVerificationDummy') {
                                 $rootScope.InsVerificationDummy = 'on';
                             }
@@ -1520,13 +1439,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.logo = data.data[0].hospitalImage;
                     $rootScope.Hospital = data.data[0].brandName;
                     $rootScope.adminSetlocale = data.data[0].locale;
-                    /*  if(data.data[0].locale == 'en-GB') {
-                          $rootScope.adminSetlocale = '&pound;';
-                      } else {
-                         $rootScope.adminSetlocale = '$';
-                      }*/
+                    
                     if (deploymentEnvLogout === 'Multiple') {
-                        $rootScope.alertMsgName = 'Virtual Care';
+                        $rootScope.alertMsgName = 'XXX';
                         $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
                     } else {
                         $rootScope.alertMsgName = $rootScope.Hospital;
@@ -1940,7 +1855,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             $rootScope.alertMsgName = $rootScope.Hospital;
                             $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
                         } else {
-                            $rootScope.alertMsgName = 'Virtual Care';
+                            $rootScope.alertMsgName = 'XXXS';
                             $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
                         }
                         $rootScope.HospitalTag = data.data[0].brandTitle;
@@ -2080,11 +1995,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
         $scope.goToStore = function () {
             if ($rootScope.AndroidDevice) {
-                var url = 'https://play.google.com/store/apps/details?id=com.snap.connectedcare.production';
-                // window.location.href = 'https://play.google.com/store/apps/details?id=com.snap.connectedcare.production';
+                var url = ''; // Put your Play store URl  - //To DO
+                
             } else {
-                var url = 'https://itunes.apple.com/us/app/virtual-care/id1035220141?ls=1&mt=8';
-                //window.location.href = 'https://itunes.apple.com/us/app/virtual-care/id1035220141?ls=1&mt=8';
+                var url = ''; // Put your Play store URl  - //To DO
             }
             window.open(encodeURI(url), '_system', 'location=yes');
             return false;
@@ -2111,7 +2025,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
 
         $rootScope.doCheckExistingConsulatationStatus = function (CurrentPage) {
-            
+
             var params = {
                 consultationId: $rootScope.consultationId,
                 accessToken: $rootScope.accessToken,
@@ -2128,7 +2042,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.consultationAmount = $rootScope.consultionInformation.consultationAmount;
                     $rootScope.copayAmount = $rootScope.consultationAmount;
                     $rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
-                   
+
                     if (!angular.isUndefined($rootScope.consultationStatusId)) {
                         if ($rootScope.consultationStatusId === 71) {
                             //  $rootScope.doGetScheduledNowPhoneConsulatation();
@@ -2472,7 +2386,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         };
         $scope.mobileloc = false;
         $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme = function () {
-            
+
             $rootScope.paymentMode = '';
             $rootScope.insuranceMode = '';
             $rootScope.onDemandMode = '';
@@ -2556,7 +2470,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.Hospital = data.data[0].brandName;
                     $rootScope.adminSetlocale = data.data[0].locale;
                     if (deploymentEnvLogout === 'Multiple') {
-                        $rootScope.alertMsgName = 'Virtual Care';
+                        $rootScope.alertMsgName = 'XXX';
                         $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
                     } else {
                         $rootScope.alertMsgName = $rootScope.Hospital;
@@ -2724,9 +2638,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
         $scope.doGetTokenSSO = function () {
             var loginEmail = $rootScope.UserEmail;
-            if (cobrandApp === "Hello420" && loginEmail.toLowerCase() !== "itunesmobiletester@gmail.com") {
+            if (cobrandApp === "" && loginEmail.toLowerCase() !== "add your itune account") {
 
-                $scope.checkForSSOUserExistsInHello420();
+                $scope.checkForSSOUserExistsInCustomerApp();
             } else if ($rootScope.customerSso === "Mandatory" && $rootScope.ssopatienttoken != "") {
                 $scope.doCheckssoToken();
             } else {
@@ -2734,17 +2648,17 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             }
         }
 
-        $scope.checkForSSOUserExistsInHello420 = function () {
-            var Hello420HospitalId = 197;
+        $scope.checkForSSOUserExistsInCustomerApp = function () {
+            var hospitalHospitalId = 197;
             var params = {
                 emailAddress: $rootScope.UserEmail,
                 success: function (data) {
                     $rootScope.FacilitiesList = data.data;
                     if ($rootScope.FacilitiesList.length > 0) {
                         angular.forEach($rootScope.FacilitiesList, function (index) {
-                            if (index.providerId === Hello420HospitalId) {
+                            if (index.providerId === hospitalHospitalId) {
                                 if (ssoURL !== "") {
-                                    $scope.ErrorMessage = "You will be directed to the Hello420 website momentarily";
+                                    $scope.ErrorMessage = "You will be directed to the Hospital website momentarily";
                                     $rootScope.Validation($scope.ErrorMessage);
                                     setTimeout(function () {
                                         window.open(ssoURL, '_system', '');
@@ -2894,9 +2808,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         } else {
                             $scope.tokenStatus = 'alert-success';
                             $scope.getPatDetailsForSession();
-                            // $scope.doGetUserTimezone();
-                            // $scope.doGetCodesSet();
-                            // $scope.chkPatientFilledAllRequirements();
+                           
                         }
                         window.localStorage.setItem('rootScope', angular.fromJson($rootScope));
                     },
@@ -2959,9 +2871,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
         $scope.doPostSendPasswordResetEmail = function () {
 
-            if (deploymentEnv === "Single" && cobrandApp !== 'MDAmerica') {
+            if (deploymentEnv === "Single" && cobrandApp !== 'XXX') {
                 $scope.userEmailId = $('#UserEmail').val();
-            } else if (deploymentEnv === "Single" && cobrandApp === 'MDAmerica') {
+            } else if (deploymentEnv === "Single" && cobrandApp === 'XXX') {
                 $scope.userEmailId = $rootScope.UserEmail;
             } else {
                 $scope.userEmailId = $rootScope.UserEmail;
@@ -2980,10 +2892,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $scope.ErrorMessage = "Please enter a valid email address";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else {
-                    if (deploymentEnv === "Single" && cobrandApp !== 'MDAmerica') {
+                    if (deploymentEnv === "Single" && cobrandApp !== 'XXX') {
                         if (deploymentEnvLogout === 'Single') {
                             if (deploymentEnvForProduction === 'Production') {
-                                //   if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
+                                
                                 if ((appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) || (appStoreTestUserEmail2 !== '' && $("#UserEmail").val() === appStoreTestUserEmail2)) {
                                     $rootScope.hospitalId = singleStagingHospitalId;
                                     apiCommonURL = 'https://snap-stage.com';
@@ -3085,7 +2997,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
 
         $scope.goBackFromReset = function () {
-            if (deploymentEnv === "Single" && cobrandApp !== 'MDAmerica') {
+            if (deploymentEnv === "Single" && cobrandApp !== 'XXX') {
                 $state.go('tab.loginSingle');
             } else {
                 $state.go('tab.password');
@@ -3106,10 +3018,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.regCountry2 = $('#regCountryCode').val();
             }
 
-            
+
             if (deploymentEnvLogout === 'Single') {
                 if (deploymentEnvForProduction === 'Production') {
-                    //    if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
+                   
                     if ((appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) || (appStoreTestUserEmail2 !== '' && $("#UserEmail").val() === appStoreTestUserEmail2)) {
                         $rootScope.hospitalId = singleStagingHospitalId;
                         apiCommonURL = 'https://emerald.stage.snapvcm.com';
@@ -3225,21 +3137,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 success: function (data) {
                     //  $rootScope.aaa = [];
                     $rootScope.serviceCountries = angular.fromJson(data.data);
-                    /* angular.forEach($rootScope.serviceCountries, function(item,index) {
-                       if((item.code).length === 2) {
-                         $scope.cntryCode = item.code + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ item.name;
-                       } else if((item.code).length === 3) {
-                          $scope.cntryCode = item.code + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ item.name
-                       } else if((item.code).length === 4) {
-                          $scope.cntryCode = item.code + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ item.name
-                       }
-                          $rootScope.aaa.push({
-                              'code': item.code,
-                              'name': item.name,
-                              'id': item.id,
-                              'sd': $scope.cntryCode
-                          });
-                      });*/
+                   
                     $scope.getTimezoneList();
                 },
                 error: function (data, status) {
@@ -3362,8 +3260,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             'addressObject': angular.fromJson(index.addressObject),
                         });
                     });
-                    // $rootScope.addressInfoFetch = '';
-                    // $rootScope.addressInfoFetch = $scope.primaryPatientDetailsSecond;
+                   
                     $rootScope.primaryPatientDetails[0].address = ($rootScope.primaryPatientDetails[0].address != '' ? $rootScope.primaryPatientDetails[0].address : $rootScope.primaryPatientDetails[0].addressObject.addressText);
                     $rootScope.addressInfoFetch[0].address = ($rootScope.addressInfoFetch[0].address != '' ? $rootScope.addressInfoFetch[0].address : $rootScope.addressInfoFetch[0].addressObject.addressText);
                     $rootScope.patientInfomation = data.data[0];
@@ -3526,8 +3423,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             'addressObject': angular.fromJson(index.addressObject),
                         });
                     });
-                    // $rootScope.addressInfoFetch = '';
-                    // $rootScope.addressInfoFetch = $scope.primaryPatientDetailsSecond;
+                    
                     $rootScope.primaryPatientDetails[0].address = ($rootScope.primaryPatientDetails[0].address != '' ? $rootScope.primaryPatientDetails[0].address : $rootScope.primaryPatientDetails[0].addressObject.addressText);
                     $rootScope.addressInfoFetch[0].address = ($rootScope.addressInfoFetch[0].address != '' ? $rootScope.addressInfoFetch[0].address : $rootScope.addressInfoFetch[0].addressObject.addressText);
                     $rootScope.patientInfomation = data.data[0];
@@ -3753,8 +3649,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     profileData.dob = data.data[0].dob;
                     profileData.isLogouted = false;
 
-                    /*  profileData.profileImage = data.data[0].profileImagePath
-                          || getDefaultProfileImageForPatient(data.data[0].gender);*/
+                    
 
 
                     if (data.data[0].profileImage.indexOf("api") <= 0) {
@@ -3998,11 +3893,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             if ($rootScope.cuttlocations == "tab.ReportScreen") {
                                 $state.go('tab.userhome');
                             }
-                            // else if ($rootScope.cuttlocations == undefined) {
-                            //   $scope.doGetlocationResponse();
-                            // } else {
-                            //     $scope.doGetlocationResponse();
-                            // }
+                            
                         }
                     } else {
                         $state.go('tab.healthinfo');
@@ -4085,8 +3976,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         } else {
                             if ($rootScope.cuttlocations == "tab.ReportScreen" && (!$rootScope.passwordPreviousPage || $rootScope.passwordPreviousPage == '')) {
                                 $state.go('tab.userhome');
-                                /*  }  else if ($rootScope.cuttlocations == undefined) {
-                                    $scope.doGetlocationResponse();*/
+                               
                             } else {
                                 $rootScope.cuttlocations = "tab.ReportScreen";
                                 $rootScope.passwordPreviousPage = false;
@@ -4613,8 +4503,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
 
         $rootScope.openAddHealthPlanSection = function () {
-            //  if ($rootScope.insuranceMode === 'on' && $rootScope.InsuranceBeforeWaiting === 'on' && $rootScope.paymentMode !== 'on') {
-            //    if (($rootScope.paymentMode === 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on') ||  ($rootScope.paymentMode !== 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on') || $rootScope.copayAmount === 0) {
+            
             if ($rootScope.paymentMode != 'on' && $rootScope.insuranceMode === 'on') {
                 $rootScope.applyPlanMode = "none";
                 $rootScope.chooseHealthHide = 'initial';
@@ -4779,15 +4668,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         //Start Open Country List popup
         $scope.loadCountriesList = function () {
 
-            /*  $ionicModal.fromTemplateUrl('templates/tab-CountryList.html', {
-                  scope: $scope,
-                  animation: 'slide-in-up',
-                  focusFirstInput: false
-              }).then(function(modal) {
-                  $scope.modal = modal;
-                  $scope.modal.show();
-              });*/
-
         };
 
         // Onchange of Contries
@@ -4813,14 +4693,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         //End Countries
 
         $scope.loadStateList = function (CountryCode) {
-            /*  $ionicModal.fromTemplateUrl('templates/tab-StateList.html', {
-                  scope: $scope,
-                  animation: 'slide-in-up',
-                  focusFirstInput: false
-              }).then(function(modal) {
-                  $scope.modal = modal;
-                  $scope.modal.show();
-              });*/
+           
             $rootScope.CountryCode = CountryCode;
         };
         $scope.stateList = '';
@@ -4843,7 +4716,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         }
                     };
 
-                    var googlePlacesUrl = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?callback=angular.callbacks._&input=' + $a + '&types=(cities)&language=en&components=country:' + $rootScope.CountryCode + '&key=AIzaSyCjq4bTUhjvIxSFJBA6Ekk3DPdA_VrU9Zs';
+                    var googlePlacesUrl = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?callback=angular.callbacks._&input=' + $a + '&types=(cities)&language=en&components=country:' + $rootScope.CountryCode + '&key=put your google map key';
 
                     var googlePlacesResponsePromise = $http.jsonp(googlePlacesUrl, {
                         'params': {
@@ -4993,11 +4866,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             LoginService.getInsuranceDetails(params);
 
         }
-        // $scope.editinsuranceDOB=function(){
-        //   var chngedob=$('#date').val();
-        //   var patdob =new Date(chngedob);
-        //   // $rootScope.restage =getAge(patdob);
-        // }
+       
 
         $scope.doGetHealthPlanProvider = function (currentplan) {
             $rootScope.HealthPlanProvidersList = [];
@@ -5018,10 +4887,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         });
                     });
                     // $state.go('tab.planDetails');
-                    /* if(typeof(currentplan) === 'undefined') {
-                       currentplan = "tab.planDetails";
-                     }*/
-                    //   	var currentplandet = $rootScope.currentplan;
+                   
                     if (currentplan === "tab.planDetails" || typeof currentplan === 'undefined' || currentplan == '') {
                         $state.go('tab.planDetails');
                     } else if (currentplan === "tab.planeditDetails") {
@@ -5969,36 +5835,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                     imgUrl = 'logoNone';
                                 }
 
-                                /*
-                              switch(index.cardType)
-                              {
-                                  case "Visa":
-                                      imgUrl = 'img/card-logo/Visa-dark.png';
-                                      break;
-                                  case "MasterCard":
-                                      imgUrl = 'img/card-logo/MasterCard-dark.png';
-                                      break;
-                                  case "American_express":
-                                      imgUrl = 'img/card-logo/AmericanExpress-dark.png';
-                                      break;
-                                  case "Discover":
-                                      imgUrl = 'img/card-logo/Discover-dark.png';
-                                      break;
-                                  case "Diners_club":
-                                      imgUrl = 'img/card-logo/DinersClub-dark.png';
-                                      break;
-                                  case "Jcb":
-                                      imgUrl = 'img/card-logo/JCB-dark.png';
-                                      break;
-                                  case "Maestro":
-                                      imgUrl = 'img/card-logo/Maestro-dark.png';
-                                      break;
-                                  case "Laser":
-                                      imgUrl = 'img/card-logo/Laser-dark.png';
-                                      break;
-                                  default:
-                                      imgUrl = 'logoNone';
-                              }
+                               
   */
                                 $rootScope.PaymentProfile.push({
                                     'id': index.$id,
@@ -6199,14 +6036,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 }
             }
 
-            /*
-                    if($rootScope.userDefaultPaymentProfileText == null)
-                    {
-                        $rootScope.editCardStyle ="none";
-                    }else{
-                        $rootScope.editCardStyle ="block";
-                    }*/
-            //$rootScope.profileid = proid;
+           
             $rootScope.editPaymentProfile = [];
             angular.forEach($rootScope.PaymentProfile, function (index) {
                 if (index.profileID == $rootScope.profileid) {
@@ -6229,14 +6059,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.editbilling = $rootScope.editPaymentProfile[0].billingAddress;
             $rootScope.editcardNumber = $rootScope.editPaymentProfile[0].cardNumber;
 
-            /* $scope.editCardDetails.cardEditCity = $rootScope.editbilling.city;
-                $scope.editCardDetails.cardEditState = $rootScope.editbilling.state;
-                $scope.editCardDetails.cardEditCountry = $rootScope.editbilling.country;
-                $scope.editCardDetails.cardEditZip = $rootScope.editbilling.zip;
-                $("#editCity").val($scope.editCardDetails.cardEditCity);
-                $("#editState").val($scope.editCardDetails.cardEditState);
-                $("#editCountry").val($scope.editCardDetails.cardEditCountry);
-                $("#editZip").val($scope.editCardDetails.cardEditZip);*/
+          
         }
 
         if ($rootScope.currState.$current.name == 'tab.cardeditDetails') {
@@ -6314,9 +6137,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.ReceiptTimeout();
         }
 
-        //$("#Cvv").keyup(function() {
-        //  $("#Cvv").val(this.value.match(/[0-9]*/));
-        //});
+       
 
         $rootScope.verifyCardDisplay = "none";
         $rootScope.cardDisplay = "inherit;";
@@ -6353,8 +6174,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             var editzipCount = $('#editZip').val().length;
             var currentTime = new Date()
             var EditexpiryDateCheck = new Date();
-            //  EditexpiryDateCheck.setFullYear($scope.getCardDetails.CardExpireDatesYear, $scope.getCardDetails.CardExpireDatesMonth, 1);
-            //  ExpiryDateCheck.setFullYear($scope.getCardDetails.CardExpireDatesYear, $scope.getCardDetails.CardExpireDatesMonth, 1);
+           
 
             $rootScope.editFirstName = $("#editFirstName").val();
             $rootScope.editLastName = $("#editLastName").val();
@@ -6546,15 +6366,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                 var strCardNo = cardNo.toString();
                                 var getLastFour = strCardNo.substr(strCardNo.length - 4);
                                 $rootScope.userCardNumber = getLastFour;
-                                //alert('cardno ->'+$rootScope.userCardNumber);
-
-                                /*if($rootScope.paymentProfileId == $window.localStorage.getItem("Card"+ $rootScope.UserEmail))
-                                {
-                                     $window.localStorage.setItem("Card" + $rootScope.UserEmail, $rootScope.paymentProfileId);
-                                     $window.localStorage.setItem("CardText" + $rootScope.UserEmail, $rootScope.paymentCardNumber);
-                                     $window.localStorage.setItem("CardLogo" + $rootScope.UserEmail, $rootScope.paymentProfileLogo);
-                                     $window.localStorage.setItem("hosNameforCard", $rootScope.hospitalName);
-                                }*/
+                               
                             }
                             $rootScope.doGetPatientPaymentProfiles();
                             $state.go('tab.submitPayment');
@@ -6575,7 +6387,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
 
         $scope.doPostPaymentProfileDetails = function () {
-           
+
             $rootScope.iscancel = false;
 
             $rootScope.isEditAvailable = false;
@@ -6949,7 +6761,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                     $rootScope.timerCOlor = '#a2d28a';
                                 }
                             }
-                            
+
                             var AppoinmentDateString = formatJSONDateShort(index.startTime);
                             var AppoinmentDate = new Date(AppoinmentDateString);
                             var AppionmentTimeString =  GetFormattedTimeFromTimeStamp(index.startTime);
@@ -7050,7 +6862,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         }
                         angular.forEach(data.data, function (index) {
                             if (index.status == 71) {
-                                
+
                                 var AppoinmentDateString = formatJSONDateShort(index.consultationDateInfo);
                                 var AppoinmentDate = new Date(AppoinmentDateString);
                                 var AppionmentTimeString =  GetFormattedTimeFromTimeStamp(index.consultationDateInfo);
@@ -7193,7 +7005,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                 }
                             }
 
-                            
+
                             var AppoinmentDateString = formatJSONDateShort(index.startTime);
                             var AppoinmentDate = new Date(AppoinmentDateString);
                             var AppionmentTimeString =  GetFormattedTimeFromTimeStamp(index.startTime);
@@ -7411,7 +7223,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $scope.doRefreshUserHome();
            $rootScope.inProgressConsultID = message;
             if (messageType == 'consultation_ended') {
-                
+
                 //  alert('gg2');
                 navigator.notification.alert(
                     //'Consultation is ended.', // message
@@ -7566,10 +7378,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $rootScope.sessionConsultConnection.disconnected(function () {
                             // console.log("hhhh");
                             setTimeout(function () {
-                                // if(activeConsultConnection && activeConsultConnection.start){
-                                //   activeConsultConnection.start();
-                                //console.log("iiii");
-                                //   }
+                                
                             }, 5000);
                         });
 
@@ -8509,40 +8318,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
 
 
-        //Language Changer
-        // $rootScope.alertTimedout = "Your session timed out.";
-        // $rootScope.alertokay = "Ok";
-        // $rootScope.alertupload = "Unable to upload the photo. Please try again later.";
-        // $rootScope.alertokay = "Ok";
-        // $rootScope.alertconstarted = "Your consultation is already started on other device.";
-        // $rootScope.alertconended = "Your consultation is already ended.";
-        // $rootScope.alertDone = "Done";
-        // $rootScope.alertconcancel = "Your consultation is cancelled.";
-        // $rootScope.alertconprogress = "Your consultation is in progress on other device.";
-        // $rootScope.alertCancelMessageConsultation = "Are you sure that you want to cancel this consultation?";
-        // $rootScope.YESMessageProviderSearch='Yes';
-        // $rootScope.NaviConfirmation = 'Confirmation:';
-        // $rootScope.alertTimedout = "Your session timed out.";
-        // $rootScope.alertokay = "Ok";
-        // $rootScope.alertconsultationsave = "Consultation saved successfully!" ;
-        // $rootScope.alertconsultationfailed = "Failed to save consultation!";
-        // $rootScope.alertMsg = "A verification email has been sent to the user.";
-        // $rootScope.alertokay = "Ok";
-        // $rootScope.alertphoto = "Photo can be uploaded only after activating co-user account.";
-        // $rootScope.alertMsgvideo = "Consultation ended successfully!";
-        // $rootScope.consultStartMsg = 'Your consultation is already started on other device.';
-        // $rootScope.consultEndMeg = 'Your consultation is already ended.';
-        // $rootScope.consultCancelMsg = 'Your consultation is cancelled.';
-        // $rootScope.consultProgMsg = 'Your consultation is in progress on other device.';
-        // $rootScope.sessAlertDone = 'Done';
-        // $rootScope.alertMsgConference = "Consultation ended successfully!";
-        // $rootScope.Buttonmsg = "Done";
-        // $rootScope.alertconfirm = "You currently have a consultation in progress.Are you sure you want to end this consultation?";
-        // $rootScope.consultAlredComplMsg = 'Consultation already completed!';
-        // $rootScope. NaviConfirmation = 'Confirmation:';
-        // $rootScope. YESMessageProviderSearch='Yes';
-
-        var localizeCurrent = $('#localize-current').text();
+       
+      var localizeCurrent = $('#localize-current').text();
         console.log("lang " + localizeCurrent);
         if (localizeCurrent == "Español") {
             $rootScope.alertTimedout = "Su sesión ha expirado.";
@@ -9771,7 +9548,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
 
         $rootScope.GoToPatientDetails = function (Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
-           
+
             $rootScope.checkpatid = P_Id;
             if ($rootScope.patientSearchKey !== '' && typeof $rootScope.patientSearchKey !== "undefined") {
                 //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
@@ -10009,7 +9786,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
         $scope.GoToConsultCharge = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
-            
+
             $rootScope.PatientImageSelectUser = P_img;
             $rootScope.PatientFirstName = P_Fname;
             $rootScope.PatientLastName = P_Lname;
@@ -10344,7 +10121,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.schedulemobile = scheduledListData.where;
                 $rootScope.scheduledListDatas = scheduledListData;
                 $rootScope.appointmentwaivefee = scheduledListData.waiveFee;
-                var currentTime = $rootScope.scheduledListDatas.scheduledTime; 
+                var currentTime = $rootScope.scheduledListDatas.scheduledTime;
 
                 var serverDateTime = currentTime;
 
@@ -10641,14 +10418,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
 
-
-        // $(".overlay").css({"display": "none" });
-
-
-        // Note
-
-
-
     })
 
     .directive('inputMaxLengthNumber', function () {
@@ -10772,36 +10541,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
 
-            // if (age.years === 0) {
-            //    /* if (age.days <= 15) {
-            //         return ageString = age.months + monthString;;
-            //     } else if (age.days > 15) {
-            //         return ageString = (age.months + 1) + monthString;;
-            //     }*/
-            //     //var sdt = new Date('1993-10-20');
-            //     var dob1 = new Date(dateString);
-            //     var difdt1 = new Date(new Date() - dob1);
-            //     var num_years = difdt1/31536000000;
-            //     var num_months = (difdt1 % 31536000000)/2628000000;
-            //     var num_days = ((difdt1 % 31536000000) % 2628000000)/86400000;
-            //     return ageString = Math.floor(num_months) + monthString + Math.floor(num_days) + dayString ;
-            // }
-            // if (age.years > 0) {
-            //    /* if (age.days <= 15) {
-            //         var month = age.months + monthString;;
-            //     } else if (age.days > 15) {
-            //         var month = (age.months + 1) + monthString;;
-            //     }*/
-            //      //if (age.days != 0) {
-            //         var month = age.months + monthString;;
-            //    // }
-            //     if (age.months !== 0) {
-            //         return ageString = age.years + yearString + month;
-            //     } else {
-            //         return ageString = age.years + yearString;
-            //     }
-
-            // }
+           
         }
         return function (birthdate) {
             var BirthDate = new Date(birthdate);
@@ -11021,7 +10761,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 var num_months = (difdt1 % 31536000000) / 2628000000;
                 var num_days = ((difdt1 % 31536000000) % 2628000000) / 86400000;
                 // return ageString = Math.floor(num_months) + monthString;
-               
+
                 var ageString = monthsCount + monthString;
                 return ageString;
 
@@ -11154,7 +10894,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 var num_days = ((difdt1 % 31536000000) % 2628000000) / 86400000;
                 //return ageString = Math.floor(num_days) + dayString ;
                 //Days//
-                
+
                 var ageString = age.days + dayString;
                 return ageString;
 

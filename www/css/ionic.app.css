@@ -9474,14 +9474,12 @@ body {
   background-image: none; }
 
 .terms_footer_a {
-  margin-left: 20px !important;
   font-weight: bold !important;
   cursor: pointer; }
   .terms_footer_a span {
     top: -2px;
     position: relative;
-    font-size: 17px;
-    padding-left: 3px; }
+    font-size: 17px; }
 
 .provider_item {
   color: #888 !important;
@@ -10284,16 +10282,10 @@ body {
     font-size: 24px; }
 
 @media (min-width: 320px) and (max-width: 568px) {
-  .consultation_head .consultTittle {
-    font-size: 20px !important; }
   .consultation_head .consultation_number {
     width: 110% !important; }
-    .consultation_head .consultation_number span {
-      font-size: 20px !important; }
   .consultation_head .consultation_numberCopay {
     width: 110% !important; }
-    .consultation_head .consultation_numberCopay span {
-      font-size: 20px !important; }
   .consultation_head .consultTittleChargeNew {
     margin-left: 3% !important;
     font-size: 20px !important;
@@ -11012,7 +11004,7 @@ select {
   width: 100%; }
   .ConcernsFooter .FooterLeft {
     float: left;
-    width: 33%;
+    width: 33.33%;
     cursor: pointer;
     position: relative;
     top: -10px;
@@ -11031,7 +11023,7 @@ select {
   .ConcernsFooter .FooterCenter {
     text-align: center;
     float: left;
-    width: 33%;
+    width: 33.33%;
     position: relative;
     top: -6px; }
     .ConcernsFooter .FooterCenter a {
@@ -11041,7 +11033,10 @@ select {
       padding: 10px;
       font-size: 17px;
       color: #FFFFFF;
-      font-family: "Glober Bold"; }
+      font-family: "Glober Bold";
+      text-align: center;
+      margin: 0 auto;
+      padding-left: 15px; }
     .ConcernsFooter .FooterCenter .newProCancel {
       font-family: "Glober Regular";
       color: #999999;
@@ -11049,7 +11044,7 @@ select {
   .ConcernsFooter .FooterRight {
     text-align: center;
     float: right;
-    width: 33%;
+    width: 33.33%;
     position: relative;
     top: -4px;
     margin:  0 auto !important; }
@@ -11075,12 +11070,11 @@ select {
 .concernListHeader {
   height: 55px; }
   .concernListHeader .concernListTitle {
-    top: 8px !important;
+    top: 13px !important;
     font-size: 20px !important;
     color: #FFFFFF !important;
     font-family: "Glober SemiBold"; }
   .concernListHeader .concernListDone {
-    top: 7px !important;
     font-size: 18px !important;
     font-family: "Glober Regular";
     padding: 9px !important; }
@@ -11088,6 +11082,11 @@ select {
     font-size: 20px !important;
     color: #FFFFFF !important;
     font-family: "Glober SemiBold"; }
+  .concernListHeader .concernListTitle-Android {
+    font-family: 'Glober SemiBold';
+    margin: 0 auto;
+    text-align: center;
+    top: 13px; }
   .concernListHeader .concernListDone-ios {
     top: 5px !important;
     font-size: 15px !important;
@@ -11796,7 +11795,6 @@ a {
   font-family: "Glober Regular"; }
 
 .ContentUserHome {
-  margin: 12px 0 0 0;
   font-family: "Glober Regular";
   border-top: 1px solid #C4C5C3;
   clear: both; }
@@ -12620,7 +12618,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 
 .subHeaderTop {
   top: 70px;
-  padding-top: 19px;
+  padding-top: 8px;
   height: 56px; }
 
 #BackButtonIcon {
@@ -14530,8 +14528,6 @@ hr {
     margin-left: -10px; }
   .FooterRight {
     margin-left: -5px !important; }
-  .FooterCenter {
-    width: 35% !important; }
   .accMainContent .accOndemandCon .accOnVisit {
     margin-top: -27px !important;
     font-size: 25px !important; }
@@ -14551,12 +14547,6 @@ hr {
       padding: 19px 10px; }
   .mobileInput-Ios5 {
     float: left !important; }
-  .button_new {
-    margin-right: 15px !important; }
-  .FooterCenter .button_new {
-    margin-right: 0px !important; }
-  .FooterCenter .button_newios {
-    margin-right: -200px !important; }
   .ConsultChargeCancel .ios {
     margin-right: -200px !important; }
   .fulldate-ios5 {
@@ -14656,8 +14646,6 @@ hr {
     font-size: 15px; }
   .userAccountPanel .hometext {
     margin-left: -10px !important; }
-  .ConsultChargeFooter .ConsultChargeCancel {
-    width: 40% !important; }
   .ReportEthnicity {
     width: 41.333% !important; } }
 
@@ -15314,7 +15302,7 @@ hr {
   right: 10px; }
 
 .add-user-icon-IOS {
-  top: 22px; }
+  top: 22px !important; }
 
 .add-user-icon-Android {
   top: 10px; }
@@ -17558,7 +17546,7 @@ Pagination Styles
 .HealthTitle-IOS {
   left: -28px;
   position: relative;
-  top: -3px; }
+  top: 2px; }
 
 .HealthTitle-Android {
   left: -34px;
@@ -17569,7 +17557,8 @@ Pagination Styles
   background: transparent !important;
   border: none !important;
   font-size: 20px;
-  cursor: pointer; }
+  cursor: pointer;
+  top: -30px !important; }
 
 .healthLeft-Android {
   top: -34px !important;
@@ -18088,7 +18077,6 @@ input.ion-google-place[readonly] {
 
 .dependHeigh-IOS {
   width: 67%;
-  padding-right: 6px;
   float: left; }
   .dependHeigh-IOS input {
     margin-left: 2px !important;
@@ -20544,7 +20532,7 @@ a.item.item-avatar.avatheight:first-child {
   width: 100%; }
 
 .userAccountbackBtn {
-  width: 102px;
+  width: 30%;
   padding-top: 0px;
   color: white;
   font-size: 19px;
@@ -20751,10 +20739,10 @@ a.item.item-avatar.avatheight:first-child {
   font-family: "GloberBold" !important;
   font-size: 20pt;
   line-height: 24pt;
-  width: 272pt;
-  height: 48pt;
+  width: 100%;
   margin-bottom: 12pt;
-  color: rgba(0, 0, 0, 0.75); }
+  color: rgba(0, 0, 0, 0.75);
+  text-align: left; }
 
 .termscontent p strong span {
   text-align: Left !important;
@@ -20816,9 +20804,26 @@ a.item.item-avatar.avatheight:first-child {
   display: inline-flex;
   width: 90px; }
 
+.addDependentwrabPatientId {
+  overflow-wrap: break-word;
+  overflow: hidden;
+  text-overflow: inherit;
+  white-space: normal;
+  display: inline-flex;
+  width: 90px; }
+
 .userHmeInPerson .icon-users {
   position: relative;
   top: -3px; }
+
+.healthViewDetailsEdit {
+  height: 95px; }
+
+@media (max-width: 1024px) and (min-width: 720px) {
+  .addDependentwrab {
+    width: 115px; }
+  .addDependentwrabPatientId {
+    width: 220px; } }
 
 @media (min-width: 414px) {
   .concernListHeader {
@@ -20831,7 +20836,11 @@ a.item.item-avatar.avatheight:first-child {
   .rightHeaderIcon {
     margin-top: 18px; }
   .leftHeaderIcon {
-    margin-top: 18px; } }
+    margin-top: 18px; }
+  .termsCondition {
+    display: block !important; }
+  .terms {
+    display: none !important; } }
 
 @media (min-width: 375px) {
   .rightHeaderIcon {
@@ -20894,8 +20903,82 @@ a.item.item-avatar.avatheight:first-child {
 
 .SearchImage {
   float: right !important;
-  top: -18px !important;
-  margin-top: -18px !important; }
+  top: -18px !important; }
+
+.titleLineheight {
+  line-height: 48px !important; }
+
+.backText {
+  font-family: "Glober Book";
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.38;
+  letter-spacing: 0.5px;
+  color: #ffffff; }
+
+.cancelText {
+  font-family: "Glober Light";
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.38;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  position: relative;
+  top: 4px; }
+
+.nextText {
+  font-family: "Glober Book";
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 39px !important;
+  position: relative;
+  left: -8px !important;
+  letter-spacing: 0.7px;
+  color: #ffffff;
+  top: 0px; }
+
+.bar .button.button-clear .icon:before,
+.bar .button.button-clear.icon:before,
+.bar .button.button-clear.icon-left:before,
+.bar .button.button-clear.icon-right:before {
+  font-size: 21px !important;
+  margin-top: 2.5px; }
+
+.iconVer {
+  vertical-align: middle !important; }
+
+.ionic_row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 5px;
+  width: 100%; }
+
+.ionic_row + .ionic_row {
+  padding-top: 0; }
+
+@media only screen and (min-width: 768px) {
+  .left-col {
+    position: relative;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    height: calc(100vh - 44px - 58px);
+    background-color: #f9f9f9; }
+  #searchFilter {
+    display: block !important; }
+  h1.s3mobile {
+    margin-top: 20px !important; } }
 
 .locpopup .locicon {
   padding: 3px; }
