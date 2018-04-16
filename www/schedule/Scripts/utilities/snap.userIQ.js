@@ -31,7 +31,7 @@
 			})();
 		};
 
-		}).singleton();
+		}).singleton();   
 
 
 	snap.namespace("snap.utilities")
